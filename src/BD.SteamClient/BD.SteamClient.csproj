@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.SteamClient.Models\BD.SteamClient.Models.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\GeneratePackage.props" />
+
+</Project>

@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{6E093A62-E7FD-4E80-B38E-EACDECB2CD44}"
+	ProjectSection(SolutionItems) = preProject
+		src\.editorconfig = src\.editorconfig
+		.gitignore = .gitignore
+		src\Directory.Build.props = src\Directory.Build.props
+		src\Directory.Packages.props = src\Directory.Packages.props
+		src\GeneratePackage.props = src\GeneratePackage.props
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient", "src\BD.SteamClient\BD.SteamClient.csproj", "{775FD784-5FB7-4A03-B9D8-1DB912D0417E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.UnitTest", "src\BD.SteamClient.UnitTest\BD.SteamClient.UnitTest.csproj", "{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Models", "src\BD.SteamClient.Models\BD.SteamClient.Models.csproj", "{EB0F9A71-D94F-4344-BE6F-C516D6437D50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{775FD784-5FB7-4A03-B9D8-1DB912D0417E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775FD784-5FB7-4A03-B9D8-1DB912D0417E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775FD784-5FB7-4A03-B9D8-1DB912D0417E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775FD784-5FB7-4A03-B9D8-1DB912D0417E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4370799-C6DA-47D0-94F7-7F56FD9B7178}
+	EndGlobalSection
+EndGlobal

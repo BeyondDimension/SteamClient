@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>BD.SteamClient</RootNamespace>
+		<DefineConstants>LINK_THISASSEMBLY;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\BD.SteamClient\Properties\ThisAssembly.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.SteamClient\Properties\ThisAssembly.AssemblyProduct.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="Google.Protobuf.Tools" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\GeneratePackage.props" />
+
+</Project>
