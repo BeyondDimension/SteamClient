@@ -18,6 +18,9 @@
 		<!-- Common -->
 		<PackageVersion Include="BD.Common" Version="1.22.1012.1545" />
 		<PackageVersion Include="BD.Common.Primitives" Version="1.22.1012.1545" />
+		
+		<!-- Html Parser -->
+		<PackageVersion Include="AngleSharp" Version="0.17.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('net6.0')) ">
 		<!-- Microsoft.Extensions.* 6.0 -->
