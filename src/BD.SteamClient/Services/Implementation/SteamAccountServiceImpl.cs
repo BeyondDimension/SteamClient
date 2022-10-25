@@ -12,9 +12,9 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace BD.SteamClient.Services;
 
-public sealed class SteamAccountService : HttpClientUseCookiesWithProxyServiceImpl, ISteamAccountService
+public sealed class SteamAccountServiceImpl : HttpClientUseCookiesWithProxyServiceImpl, ISteamAccountService
 {
-    public SteamAccountService(IServiceProvider s)
+    public SteamAccountServiceImpl(IServiceProvider s)
     {
     }
 
@@ -389,11 +389,7 @@ public sealed class SteamAccountService : HttpClientUseCookiesWithProxyServiceIm
 
         if (loginState.ClientId != null)
         {
-            if (loginState.Requires2FA)
-            {
-                await UpdateAuthSessionWithSteamGuardAsync(loginState);
-            }
-            else if (loginState.RequiresEmailAuth)
+            if (loginState.Requires2FA || loginState.RequiresEmailAuth)
             {
                 await UpdateAuthSessionWithSteamGuardAsync(loginState);
             }
@@ -551,31 +547,6 @@ public sealed class SteamAccountService : HttpClientUseCookiesWithProxyServiceIm
 
         if (tokens.TransferInfo?.Any() == true)
         {
-            foreach (var transfer in tokens.TransferInfo)
-            {
-                if (transfer.Url?.Contains("help.steampowered.com") == true ||
-                    transfer.Url?.Contains("steam.tv") == true)
-                {
-                    //跳过暂时用不到的域名 节约带宽
-                    continue;
-                }
-
-                var req = new HttpRequestMessage(HttpMethod.Post, transfer.Url)
-                {
-                    Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                                {
-                                      { "nonce", transfer.Params?.Nonce },
-                                      { "auth", transfer.Params?.Auth },
-                                      { "steamid", loginState.SteamId.ToString() },
-                                }),
-                };
-
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(UserAgent.Default);
-
-                await client.SendAsync(req);
-            }
-
             foreach (var transfer in tokens.TransferInfo)
             {
                 if (transfer.Url?.Contains("help.steampowered.com") == true ||
