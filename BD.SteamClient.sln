@@ -11,13 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{6E093A62
 		src\Directory.Packages.props = src\Directory.Packages.props
 		src\GeneratePackage.props = src\GeneratePackage.props
 		README.md = README.md
+		src\TFM_NET7.props = src\TFM_NET7.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient", "src\BD.SteamClient\BD.SteamClient.csproj", "{775FD784-5FB7-4A03-B9D8-1DB912D0417E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient", "src\BD.SteamClient\BD.SteamClient.csproj", "{775FD784-5FB7-4A03-B9D8-1DB912D0417E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.UnitTest", "src\BD.SteamClient.UnitTest\BD.SteamClient.UnitTest.csproj", "{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient.UnitTest", "src\BD.SteamClient.UnitTest\BD.SteamClient.UnitTest.csproj", "{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Models", "src\BD.SteamClient.Models\BD.SteamClient.Models.csproj", "{EB0F9A71-D94F-4344-BE6F-C516D6437D50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient.Models", "src\BD.SteamClient.Models\BD.SteamClient.Models.csproj", "{EB0F9A71-D94F-4344-BE6F-C516D6437D50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
