@@ -123,7 +123,7 @@
 	</ItemGroup>
 	<!-- Serialize NJson -->
 	<ItemGroup>
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageVersion Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 	<!-- Serialize NJson & AspNetCore -->
 	<ItemGroup>
