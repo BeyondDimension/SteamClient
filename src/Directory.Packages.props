@@ -123,7 +123,7 @@
 	</ItemGroup>
 	<!-- Serialize NJson -->
 	<ItemGroup>
-		<PackageVersion Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageVersion Include="Newtonsoft.Json" Version="13.0.2" />
 	</ItemGroup>
 	<!-- Serialize NJson & AspNetCore -->
 	<ItemGroup>
@@ -196,7 +196,7 @@
 	</ItemGroup>
 	<!-- .NET Compat(Madness) -->
 	<ItemGroup>
-		<PackageVersion Include="JustArchiNET.Madness" Version="3.7.0" />
+		<PackageVersion Include="JustArchiNET.Madness" Version="3.8.0" />
 	</ItemGroup>
 	<!-- AspNetCore 7 OpenId/OAuth -->
 	<ItemGroup>
