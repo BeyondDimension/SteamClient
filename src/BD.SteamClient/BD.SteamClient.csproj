@@ -12,6 +12,11 @@
 	  <ProjectReference Include="..\BD.SteamClient.Models\BD.SteamClient.Models.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Heleprs\" />
+	  <Folder Include="Services\Implementation\" />
+	</ItemGroup>
+
 	<Import Project="..\TFM_NET7.props" />
 	<Import Project="..\GeneratePackage.props" />
 
