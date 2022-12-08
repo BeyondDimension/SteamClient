@@ -3,7 +3,7 @@ namespace BD.SteamClient.Models;
 /// <summary>
 /// 账户历史数据返回值
 /// </summary>
-public class HistoryParseResponse
+public sealed class HistoryParseResponse
 {
     /// <summary>未知</summary>
     public int Unknown;
