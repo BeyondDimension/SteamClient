@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越蒸汽客户端库单元测试</Product>
 		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 

@@ -1,18 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越蒸汽客户端模型库</Product>
 		<RootNamespace>BD.SteamClient</RootNamespace>
 		<DefineConstants>LINK_THISASSEMBLY;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="..\BD.SteamClient\Properties\ThisAssembly.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-		<Compile Include="..\BD.SteamClient\Properties\ThisAssembly.AssemblyProduct.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="BD.Common" />

@@ -1,6 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<Product>次元超越蒸汽客户端库</Product>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -10,11 +11,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BD.SteamClient.Models\BD.SteamClient.Models.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Heleprs\" />
-	  <Folder Include="Services\Implementation\" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NET7.props" />
