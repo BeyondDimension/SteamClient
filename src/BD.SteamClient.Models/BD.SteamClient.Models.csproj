@@ -2,6 +2,8 @@
 
 	<PropertyGroup>
 		<Product>次元超越蒸汽客户端模型库</Product>
+		<PackageTags>BeyondDimension SteamClientModels SteamClient</PackageTags>
+		<Description>$(Product)</Description>
 		<RootNamespace>BD.SteamClient</RootNamespace>
 		<DefineConstants>LINK_THISASSEMBLY;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
