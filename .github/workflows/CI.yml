@@ -45,7 +45,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        ProjectName: [ BD.SteamClient ]
+        ProjectName: [ BD.SteamClient.Models ]
 
     steps:
       - name: Checkout code
