@@ -1,3 +1,12 @@
 [submodule "ref/DirectoryPackages"]
 	path = ref/DirectoryPackages
 	url = https://github.com/BeyondDimension/DirectoryPackages.git
+[submodule "ref/Gameloop.Vdf"]
+	path = ref/Gameloop.Vdf
+	url = https://github.com/BeyondDimension/Gameloop.Vdf.git
+[submodule "ref/SteamAchievementManager"]
+	path = ref/SteamAchievementManager
+	url = https://github.com/BeyondDimension/SteamAchievementManager.git
+[submodule "ref/Steam4NET"]
+	path = ref/Steam4NET
+	url = https://github.com/BeyondDimension/Steam4NET.git
