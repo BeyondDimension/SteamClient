@@ -1,17 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BD.SteamClient.Models;
-
-public sealed class CurrencyData
-{
-    public string? Display { get; set; }
-
-    public string? CurrencyCode { get; set; }
-}
 
 public sealed class CursorData
 {

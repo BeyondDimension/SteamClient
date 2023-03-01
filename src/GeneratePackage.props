@@ -1,7 +1,7 @@
 <Project>
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/BeyondDimension/Common</PackageProjectUrl>
+		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/BeyondDimension/SteamClient</PackageProjectUrl>
 		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
 		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>

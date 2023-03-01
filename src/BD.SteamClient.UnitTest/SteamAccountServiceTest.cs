@@ -1,8 +1,4 @@
-using BD.SteamClient.Models;
-//using BD.SteamClient.Services;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace ProjectRecharge;
+namespace BD.SteamClient.UnitTest;
 
 public sealed class SteamAccountServiceTest
 {

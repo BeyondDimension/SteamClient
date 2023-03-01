@@ -42,7 +42,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        ProjectName: [ BD.SteamClient.Models ]
+        ProjectName: [ BD.SteamClient ]
 
     steps:
       - name: Checkout repository

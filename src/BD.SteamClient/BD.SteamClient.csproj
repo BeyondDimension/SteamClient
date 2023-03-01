@@ -7,15 +7,52 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" />
-		<PackageReference Include="AngleSharp" />
+		<Compile Include="..\ImplicitUsings.Common.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Primitives.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.MSEX.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.ReactiveUI.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.MessagePack.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient.Models\BD.SteamClient.Models.csproj" />
+		<PackageReference Include="BD.Common" />
+		<PackageReference Include="BD.Common.Primitives" />
+		<PackageReference Include="BD.Common.Security" />
+		<PackageReference Include="BD.Common.Toast" />
+		<PackageReference Include="BD.Common.Mvvm" />
+		<PackageReference Include="BD.Common.Mvvm.ReactiveUI" />
+		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="AngleSharp" />
+		<PackageReference Include="ReactiveUI" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
+		<!-- Desktop Only -->
+		<PackageReference Include="SteamKit2" />
+		<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />
+		<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />
+		<ProjectReference Include="..\..\ref\SteamAchievementManager\SAM.API\SAM.API.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<!-- Windows Only -->
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NET7_WITH_ALL.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Root", "_Root", "{6E093A62-E7FD-4E80-B38E-EACDECB2CD44}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{6E093A62-E7FD-4E80-B38E-EACDECB2CD44}"
 	ProjectSection(SolutionItems) = preProject
 		src\.editorconfig = src\.editorconfig
 		.gitignore = .gitignore
@@ -18,18 +18,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient", "src\BD.St
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient.UnitTest", "src\BD.SteamClient.UnitTest\BD.SteamClient.UnitTest.csproj", "{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient.Models", "src\BD.SteamClient.Models\BD.SteamClient.Models.csproj", "{EB0F9A71-D94F-4344-BE6F-C516D6437D50}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TFM", "TFM", "{346C7617-6ACE-4512-9C0F-A52374EAEF28}"
 	ProjectSection(SolutionItems) = preProject
 		src\TFM_NET7.props = src\TFM_NET7.props
+		src\TFM_NET7_WITH_ALL.props = src\TFM_NET7_WITH_ALL.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ImplicitUsings", "ImplicitUsings", "{15259751-42F0-447E-99FE-53DF81B67E35}"
 	ProjectSection(SolutionItems) = preProject
 		src\ImplicitUsings.BCL.cs = src\ImplicitUsings.BCL.cs
+		src\ImplicitUsings.Common.cs = src\ImplicitUsings.Common.cs
+		src\ImplicitUsings.JsonProperty.cs = src\ImplicitUsings.JsonProperty.cs
+		src\ImplicitUsings.MessagePack.cs = src\ImplicitUsings.MessagePack.cs
+		src\ImplicitUsings.MSEX.cs = src\ImplicitUsings.MSEX.cs
+		src\ImplicitUsings.Primitives.cs = src\ImplicitUsings.Primitives.cs
+		src\ImplicitUsings.ReactiveUI.cs = src\ImplicitUsings.ReactiveUI.cs
 		src\ImplicitUsings.UnitTest.cs = src\ImplicitUsings.UnitTest.cs
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Reference", "1.Reference", "{CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SAM.API", "ref\SteamAchievementManager\SAM.API\SAM.API.csproj", "{432572EE-05CC-4176-AA97-17064F0F4A5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gameloop.Vdf", "ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj", "{60751B99-F817-423B-A0F8-3D240BE658D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Steam4NET", "ref\Steam4NET\Steam4NET\Steam4NET.csproj", "{47866076-0F25-42FE-8AB0-42EADD3FA322}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,10 +58,18 @@ Global
 		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAAF7DE4-C46D-4E1D-9DD8-9796FD4C4E89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB0F9A71-D94F-4344-BE6F-C516D6437D50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432572EE-05CC-4176-AA97-17064F0F4A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432572EE-05CC-4176-AA97-17064F0F4A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432572EE-05CC-4176-AA97-17064F0F4A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432572EE-05CC-4176-AA97-17064F0F4A5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60751B99-F817-423B-A0F8-3D240BE658D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60751B99-F817-423B-A0F8-3D240BE658D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60751B99-F817-423B-A0F8-3D240BE658D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60751B99-F817-423B-A0F8-3D240BE658D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +77,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{346C7617-6ACE-4512-9C0F-A52374EAEF28} = {6E093A62-E7FD-4E80-B38E-EACDECB2CD44}
 		{15259751-42F0-447E-99FE-53DF81B67E35} = {6E093A62-E7FD-4E80-B38E-EACDECB2CD44}
+		{432572EE-05CC-4176-AA97-17064F0F4A5B} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
+		{60751B99-F817-423B-A0F8-3D240BE658D6} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
+		{47866076-0F25-42FE-8AB0-42EADD3FA322} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4370799-C6DA-47D0-94F7-7F56FD9B7178}
