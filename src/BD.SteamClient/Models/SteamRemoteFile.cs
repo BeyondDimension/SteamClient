@@ -14,7 +14,7 @@ public class SteamRemoteFile : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public ERemoteStoragePlatform SyncPlatforms { get; set; }
+    public SteamKit2ERemoteStoragePlatform SyncPlatforms { get; set; }
 
 #endif
 

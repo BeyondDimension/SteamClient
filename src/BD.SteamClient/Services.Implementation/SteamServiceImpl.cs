@@ -47,12 +47,12 @@ public abstract partial class SteamServiceImpl : ISteamService
     public SteamServiceImpl(ILoggerFactory loggerFactory)
     {
         logger = loggerFactory.CreateLogger(TAG);
-        mSteamDirPath = PlatformHelper.GetSteamDirPath();
-        mSteamProgramPath = PlatformHelper.GetSteamProgramPath();
+        mSteamDirPath = GetSteamDirPath();
+        mSteamProgramPath = GetSteamProgramPath();
         UserVdfPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "config", "loginusers.vdf");
         AppInfoPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "appcache", "appinfo.vdf");
         LibrarycacheDirPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "appcache", "librarycache");
-        mRegistryVdfPath = PlatformHelper.GetRegistryVdfPath();
+        mRegistryVdfPath = GetRegistryVdfPath();
         // SteamDirPath == null ? null : Path.Combine(SteamDirPath, "registry.vdf");
         //RegistryVdfPath  = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "registry.vdf");
         ConfigVdfPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "config", "config.vdf");
@@ -169,7 +169,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     {
         if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
         {
-            if (OperatingSystem.IsWindows() && !SteamSettingsIsRunSteamAdministrator)
+            if (OperatingSystem.IsWindows() && !SteamSettings_IsRunSteamAdministrator)
             {
                 StartAsInvoker(SteamProgramPath, arguments);
             }
@@ -193,7 +193,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
-    public string GetLastLoginUserName() => PlatformHelper.GetLastSteamLoginUserName();
+    public string GetLastLoginUserName() => GetLastSteamLoginUserName();
 
     public List<SteamUser> GetRememberUserList()
     {
@@ -362,7 +362,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void SetCurrentUser(string userName) => PlatformHelper.SetSteamCurrentUser(userName);
+    public void SetCurrentUser(string userName) => SetSteamCurrentUser(userName);
 
     public List<SteamApp>? GetAppListJson(string filePath)
     {
@@ -560,7 +560,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                         {
                             //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
                             //    continue;
-                            if (GameLibrarySettingsHideGameList!.ContainsKey(app.AppId))
+                            if (GameLibrarySettings_HideGameList!.ContainsKey(app.AppId))
                                 continue;
                             //if (app.ParentId > 0)
                             //{
@@ -658,8 +658,8 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} msg: {{msg}}", SaveEditedAppInfo_SaveFailed);
-            Toast.Show(SaveEditedAppInfo_SaveFailed);
+            logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} msg: {{msg}}", AppResources_SaveEditedAppInfo_SaveFailed);
+            Toast.Show(AppResources_SaveEditedAppInfo_SaveFailed);
 
             //if (File.Exists(bakFile))
             //    File.Copy(bakFile, AppInfoPath, true);

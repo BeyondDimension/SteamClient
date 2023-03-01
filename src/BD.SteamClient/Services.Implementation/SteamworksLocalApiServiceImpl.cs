@@ -18,7 +18,7 @@ sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 
     public SteamworksLocalApiServiceImpl()
     {
-        Steam.GetInstallPathDelegate = PlatformHelper.GetSteamDynamicLinkLibraryPath;
+        Steam.GetInstallPathDelegate = SteamServiceImpl.GetSteamDynamicLinkLibraryPath;
         SteamClient = new SAMAPIClient();
     }
 
@@ -256,7 +256,7 @@ sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
             var file = new SteamRemoteFile(name, length, SteamClient.SteamRemoteStorage.FileExists(name),
                 SteamClient.SteamRemoteStorage.FilePersisted(name), SteamClient.SteamRemoteStorage.GetFileTimestamp(name))
             {
-                SyncPlatforms = (SteamKit2.ERemoteStoragePlatform)SteamClient.SteamRemoteStorage.GetSyncPlatforms(name),
+                SyncPlatforms = (SteamKit2ERemoteStoragePlatform)SteamClient.SteamRemoteStorage.GetSyncPlatforms(name),
             };
             files.Add(file);
         }

@@ -22,4 +22,7 @@ global using SteamApps = BD.SteamClient.Models.SteamApps;
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 global using SteamKit2SteamUser = SteamKit2.SteamUser;
 global using SteamKit2SteamApps = SteamKit2.SteamApps;
+
+global using ERemoteStoragePlatform = SAM.API.Types.ERemoteStoragePlatform;
+global using SteamKit2ERemoteStoragePlatform = SteamKit2.ERemoteStoragePlatform;
 #endif

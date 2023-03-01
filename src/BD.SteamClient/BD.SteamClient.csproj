@@ -4,6 +4,7 @@
 		<Product>次元超越蒸汽客户端库</Product>
 		<PackageTags>BeyondDimension SteamClient</PackageTags>
 		<Description>$(Product)</Description>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -25,6 +26,28 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\**\*.cs">
+			<LinkBase>ThirdParty\Gameloop.Vdf</LinkBase>
+		</Compile>
+		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\bin\**" />
+		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\obj\**" />
+		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Properties\**" />
+		<Compile Include="..\..\ref\Steam4NET\Steam4NET\**\*.cs">
+			<LinkBase>ThirdParty\Steam4NET</LinkBase>
+		</Compile>
+		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\bin\**" />
+		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\obj\**" />
+		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\Properties\**" />
+		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\autogen\CGameID.cs" />
+		<None Include="..\..\ref\Steam4NET\Steam4NET\autogen\CGameID.cs">
+			<LinkBase>ThirdParty\Steam4NET\autogen</LinkBase>
+		</None>
+		<Compile Include="..\..\ref\SteamAchievementManager\SAM.API\**\*.cs">
+			<LinkBase>ThirdParty\SAM.API</LinkBase>
+		</Compile>
+		<Compile Remove="..\..\ref\SteamAchievementManager\SAM.API\bin\**" />
+		<Compile Remove="..\..\ref\SteamAchievementManager\SAM.API\obj\**" />
+		<Compile Remove="..\..\ref\SteamAchievementManager\SAM.API\Properties\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,9 +65,9 @@
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
 		<!-- Desktop Only -->
 		<PackageReference Include="SteamKit2" />
-		<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />
-		<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />
-		<ProjectReference Include="..\..\ref\SteamAchievementManager\SAM.API\SAM.API.csproj" />
+		<!--<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />-->
+		<!--<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />-->
+		<!--<ProjectReference Include="..\..\ref\SteamAchievementManager\SAM.API\SAM.API.csproj" />-->
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
