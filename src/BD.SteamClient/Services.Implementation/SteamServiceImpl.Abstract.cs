@@ -27,7 +27,7 @@ abstract partial class SteamServiceImpl
     /// <summary>
     /// SteamSettings.SteamStratParameter.Value
     /// </summary>
-    protected abstract string SteamSettings_StratParameter { get; }
+    protected abstract string? SteamSettings_StratParameter { get; }
 
     /// <summary>
     /// SteamSettings.IsRunSteamAdministrator.Value
