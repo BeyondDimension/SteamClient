@@ -1,5 +1,5 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-using Gameloop.Vdf.Linq;
+using ValveKeyValue;
 
 namespace BD.SteamClient.Services.Implementation;
 
@@ -65,6 +65,9 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public string? SteamDirPath => mSteamDirPath;
 
+    /// <summary>
+    /// 非windows平台 steam 注册表配置路径
+    /// </summary>
     public string? RegistryVdfPath => mRegistryVdfPath;
 
     public string? SteamProgramPath => mSteamProgramPath;
@@ -202,34 +205,31 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             if (!string.IsNullOrWhiteSpace(UserVdfPath) && File.Exists(UserVdfPath))
             {
-                // 注意：动态类型在移动端受限，且运行时可能抛出异常
-                dynamic v = VdfHelper.Read(UserVdfPath);
-                foreach (var item in v.Value)
+                var v = VdfHelper.Read(UserVdfPath);
+                foreach (var item in v)
                 {
                     try
                     {
-                        var i = item.Value;
-                        long timestamp = i.timestamp != null ?
-                                Convert.ToInt64(i.timestamp?.ToString()) :
-                                Convert.ToInt64(i.Timestamp?.ToString());
+                        long timestamp = item["timestamp"] != null ?
+                                (long)item["timestamp"] :
+                                (long)item["Timestamp"];
                         var user = new SteamUser
                         {
-                            SteamId64 = Convert.ToInt64(item.Key.ToString()),
-                            AccountName = i.AccountName?.ToString(),
-                            SteamID = i.PersonaName?.ToString(),
-                            PersonaName = i.PersonaName?.ToString(),
-                            RememberPassword = Convert.ToBoolean(Convert.ToInt64(i.RememberPassword?.ToString())),
+                            SteamId64 = Convert.ToInt64(item.Name),
+                            AccountName = (string)item["AccountName"],
+                            SteamID = (string)item["PersonaName"],
+                            PersonaName = (string)item["PersonaName"],
+                            RememberPassword = (bool)item["RememberPassword"],
 
                             // 老版本 Steam 数据 小写 mostrecent 支持
-                            MostRecent = i.mostrecent != null ?
-                                Convert.ToBoolean(Convert.ToByte(i.mostrecent.ToString())) :
-                                Convert.ToBoolean(Convert.ToByte(i.MostRecent.ToString())),
+                            MostRecent = item["mostrecent"] != null ?
+                                (bool)item["mostrecent"] :
+                                (bool)item["MostRecent"],
 
                             Timestamp = timestamp,
                             LastLoginTime = timestamp.ToDateTimeS(),
 
-                            WantsOfflineMode = i.WantsOfflineMode != null ?
-                                Convert.ToBoolean(Convert.ToByte(i.WantsOfflineMode.ToString())) : false,
+                            WantsOfflineMode = (bool)item["WantsOfflineMode"],
 
                             // 因为警告这个东西应该都不需要所以直接默认跳过好了
                             // SkipOfflineModeWarning = i.SkipOfflineModeWarning != null ?
@@ -260,30 +260,21 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
-                dynamic v = VdfHelper.Read(ConfigVdfPath);
-                var authorizedDevice = v.Value.AuthorizedDevice;
-                if (authorizedDevice != null)
+                var v = VdfHelper.Read(ConfigVdfPath);
+                var lists = new List<KVObject>();
+                foreach (var item in model.OrderBy(x => x.Index))
                 {
-                    var lists = new VObject();
-                    foreach (var item in model.OrderBy(x => x.Index))
+                    KVObject itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
                     {
-                        VObject itemTemp = new VObject
-                            {
-                                { "timeused", new VValue(item.Timeused) },
-                                { "description", new VValue(item.Description) },
-                                { "tokenid", new VValue(item.Tokenid) },
-                            };
-
-                        lists.Add(item.SteamId3_Int.ToString(), itemTemp);
-                    }
-                    v.Value.AuthorizedDevice = lists;
-                    VdfHelper.Write(ConfigVdfPath, v);
-                    return true;
+                            new KVObject("timeused", (KVValue)item.Timeused),
+                            new KVObject("description", (KVValue)item.Description),
+                            new KVObject("tokenid", (KVValue)item.Tokenid),
+                    });
+                    lists.Add(itemTemp);
                 }
-                else
-                {
-                    return false;
-                }
+                v.Add(new KVObject("AuthorizedDevice", lists));
+                VdfHelper.Write(ConfigVdfPath, v);
+                return true;
             }
         }
         catch (Exception e)
@@ -300,13 +291,13 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
-                dynamic v = VdfHelper.Read(ConfigVdfPath);
-                var authorizedDevice = v.Value.AuthorizedDevice;
-                if (authorizedDevice != null)
-                {
-                    authorizedDevice = ((IEnumerable<VProperty>)authorizedDevice).Where(x => x.Key != model.SteamId3_Int.ToString());
-                    VdfHelper.Write(ConfigVdfPath, v);
-                }
+                //var v = VdfHelper.Read(ConfigVdfPath);
+                //var authorizedDevice = v.Value.AuthorizedDevice;
+                //if (authorizedDevice != null)
+                //{
+                //    authorizedDevice = ((IEnumerable<VProperty>)authorizedDevice).Where(x => x.Key != model.SteamId3_Int.ToString());
+                //    VdfHelper.Write(ConfigVdfPath, v);
+                //}
                 return true;
             }
         }
@@ -325,24 +316,22 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
-                // 注意：动态类型在移动端受限，且运行时可能抛出异常
-                dynamic v = VdfHelper.Read(ConfigVdfPath);
-                var authorizedDevice = v.Value.AuthorizedDevice;
+                var v = VdfHelper.Read(ConfigVdfPath);
+                var authorizedDevice = v["AuthorizedDevice"];
                 if (authorizedDevice != null)
                 {
                     var index = 0;
-                    foreach (var item in authorizedDevice)
+                    foreach (var item in (IEnumerable<KVObject>)authorizedDevice)
                     {
                         try
                         {
-                            var i = item.Value;
-                            authorizeds.Add(new AuthorizedDevice(item.ToString())
+                            authorizeds.Add(new AuthorizedDevice()
                             {
                                 Index = index,
-                                SteamId3_Int = Convert.ToInt64(item.Key.ToString()),
-                                Timeused = Convert.ToInt64(i.timeused.ToString()),
-                                Description = i.description.ToString(),
-                                Tokenid = i.tokenid.ToString(),
+                                SteamId3_Int = Convert.ToInt64(item.Name.ToString()),
+                                Timeused = (long)item["timeused"],
+                                Description = (string)item["description"],
+                                Tokenid = (string)item["tokenid"],
                             });
                             index++;
                         }
@@ -892,30 +881,27 @@ public abstract partial class SteamServiceImpl : ISteamService
         return paths.ToArray();
     }
 
-    static int GetInt32(dynamic value)
+    static int GetInt32(object value)
     {
         if (value is null) return 0;
-        if (value is VValue vvalue) return GetInt32(vvalue.Value!);
         if (value is int value2) return value2;
         if (value is IConvertible convertible)
             return convertible.ToInt32(CultureInfo.InvariantCulture);
         return int.Parse(value.ToString());
     }
 
-    static uint GetUInt32(dynamic value)
+    static uint GetUInt32(object value)
     {
         if (value is null) return 0;
-        if (value is VValue vvalue) return GetUInt32(vvalue.Value!);
         if (value is uint value2) return value2;
         if (value is IConvertible convertible)
             return convertible.ToUInt32(CultureInfo.InvariantCulture);
         return uint.Parse(value.ToString());
     }
 
-    static long GetInt64(dynamic value)
+    static long GetInt64(object value)
     {
         if (value is null) return 0;
-        if (value is VValue vvalue) return GetInt64(vvalue.Value!);
         if (value is long value2) return value2;
         if (value is IConvertible convertible)
             return convertible.ToInt64(CultureInfo.InvariantCulture);

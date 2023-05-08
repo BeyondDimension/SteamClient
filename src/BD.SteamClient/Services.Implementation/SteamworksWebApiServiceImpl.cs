@@ -19,7 +19,7 @@ internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, IS
     Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
         var client = CreateClient();
-        return GetAsync<T>(client, logger, requestUri, accept,
+        return client.GetAsync<T>(logger, requestUri, accept,
             cancellationToken: cancellationToken, userAgent: http_helper.UserAgent);
     }
 

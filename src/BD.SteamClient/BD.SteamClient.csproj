@@ -26,12 +26,12 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\**\*.cs">
+		<!--<Compile Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\**\*.cs">
 			<LinkBase>ThirdParty\Gameloop.Vdf</LinkBase>
 		</Compile>
 		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\bin\**" />
 		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\obj\**" />
-		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Properties\**" />
+		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Properties\**" />-->
 		<Compile Include="..\..\ref\Steam4NET\Steam4NET\**\*.cs">
 			<LinkBase>ThirdParty\Steam4NET</LinkBase>
 		</Compile>
@@ -65,6 +65,7 @@
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
 		<!-- Desktop Only -->
 		<PackageReference Include="SteamKit2" />
+		<PackageReference Include="ValveKeyValue" />
 		<!--<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />-->
 		<!--<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />-->
 		<!--<ProjectReference Include="..\..\ref\SteamAchievementManager\SAM.API\SAM.API.csproj" />-->

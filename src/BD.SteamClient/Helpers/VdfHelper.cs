@@ -1,6 +1,6 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-using Gameloop.Vdf;
-using Gameloop.Vdf.Linq;
+using System.IO;
+using ValveKeyValue;
 
 namespace BD.SteamClient.Helpers;
 
@@ -16,17 +16,20 @@ public static class VdfHelper
     /// </summary>
     /// <param name="filePath"></param>
     /// <returns></returns>
-    public static VProperty Read(string filePath)
+    public static KVObject Read(string filePath)
     {
-        var text = File.ReadAllText(filePath, Encoding.UTF8);
-        return VdfConvert.Deserialize(text);
+        var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+        var data = kv.Deserialize(IOPath.OpenRead(filePath));
+        return data;
     }
 
-    public static void Write(string filePath, VProperty content)
+    public static void Write(string filePath, KVObject content)
     {
         try
         {
-            File.WriteAllText(filePath, VdfConvert.Serialize(content), Encoding.UTF8);
+            using var stream = File.OpenWrite(filePath);
+            var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+            kv.Serialize(stream, content);
         }
         catch (Exception e)
         {

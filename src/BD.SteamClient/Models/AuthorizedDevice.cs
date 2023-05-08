@@ -6,11 +6,6 @@ public class AuthorizedDevice : ReactiveObject
 
     public AuthorizedDevice() { }
 
-    public AuthorizedDevice(string vdfString) : this()
-    {
-        OriginVdfString = vdfString;
-    }
-
     public bool Disable { get; set; }
 
     public string ProfileUrl => string.Format(STEAM_PROFILES_URL, SteamId64_Int);
@@ -76,12 +71,4 @@ public class AuthorizedDevice : ReactiveObject
         get => _AvatarStream;
         set => this.RaiseAndSetIfChanged(ref _AvatarStream, value);
     }
-
-    public string? OriginVdfString { get; set; }
-
-    public string CurrentVdfString =>
-       "\t\t\"" + SteamId3_Int + "\"\n\t\t{\n" +
-       "\t\t\t\"timeused\"\t\t\"" + Timeused + "\"\n" +
-       "\t\t\t\"description\"\t\t\"" + Description + "\"\n" +
-       "\t\t\t\"tokenid\"\t\t\"" + Tokenid + "\"\n\t\t}";
 }
