@@ -1,3 +1,5 @@
+using ValveKeyValue;
+
 namespace BD.SteamClient.Services.Implementation;
 
 abstract partial class SteamServiceImpl
@@ -142,10 +144,10 @@ abstract partial class SteamServiceImpl
             var registryVdfPath = GetRegistryVdfPath();
             if (!string.IsNullOrWhiteSpace(registryVdfPath) && File.Exists(registryVdfPath))
             {
-                dynamic v = VdfHelper.Read(registryVdfPath);
-                if (v.Value.HKCU.Software.Valve.Steam.AutoLoginUser != null)
+                var v = VdfHelper.Read(registryVdfPath);
+                if (v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] != null)
                 {
-                    v.Value.HKCU.Software.Valve.Steam.AutoLoginUser = userName;
+                    v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] = userName;
                     VdfHelper.Write(registryVdfPath, v);
                 }
                 else

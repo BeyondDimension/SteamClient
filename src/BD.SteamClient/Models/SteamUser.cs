@@ -120,6 +120,12 @@ public class SteamUser : ReactiveObject
     public string? PersonaName { get; set; }
 
     /// <summary>
+    /// 从 Valve Data File 读取到的AllowAutoLogin
+    /// </summary>
+    [XmlIgnore]
+    public bool AllowAutoLogin { get; set; }
+
+    /// <summary>
     /// 用户名
     /// </summary>
     public string? AccountName { get; set; }

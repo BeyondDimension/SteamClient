@@ -220,6 +220,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                             SteamID = (string)item["PersonaName"],
                             PersonaName = (string)item["PersonaName"],
                             RememberPassword = (bool)item["RememberPassword"],
+                            AllowAutoLogin = (bool)item["AllowAutoLogin"],
 
                             // 老版本 Steam 数据 小写 mostrecent 支持
                             MostRecent = item["mostrecent"] != null ?
@@ -416,28 +417,25 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             try
             {
-                dynamic v = VdfHelper.Read(UserVdfPath);
-                dynamic users = v.Value.Children();
-                if (users != null)
+                var v = VdfHelper.Read(UserVdfPath);
+                var users = (IEnumerable<KVObject>)v["users"];
+                if (users.Any_Nullable())
                 {
-                    for (int i = 0; i < users.Count; i++)
+                    var item = v.Children.FirstOrDefault(s => s.Name == user.SteamId64.ToString());
+                    if (item != null)
                     {
-                        var item = users[i];
-                        if (item != null && item!.Key == user.SteamId64.ToString())
+                        v.Add(new KVObject("Users", item));
+                        VdfHelper.Write(UserVdfPath, v);
+
+                        if (isDeleteUserData)
                         {
-                            users.Remove(users[i]);
-                            VdfHelper.Write(UserVdfPath, v);
-                            //VdfHelper.DeleteValueByKey(UserVdfPath, user.SteamId64.ToString());
-                            if (isDeleteUserData)
+                            var temp = Path.Combine(SteamDirPath, UserDataDirectory, user.SteamId32.ToString());
+                            if (Directory.Exists(temp))
                             {
-                                var temp = Path.Combine(SteamDirPath, UserDataDirectory, user.SteamId32.ToString());
-                                if (Directory.Exists(temp))
-                                {
-                                    Directory.Delete(temp, true);
-                                }
+                                Directory.Delete(temp, true);
                             }
-                            return;
                         }
+                        return;
                     }
 
                 }
@@ -457,20 +455,21 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         else
         {
-            dynamic models = VdfHelper.Read(UserVdfPath);
-            foreach (var item in models.Value.Children())
+            var v = VdfHelper.Read(UserVdfPath);
+            var models = (IEnumerable<KVObject>)v["users"];
+            foreach (var item in models)
             {
                 try
                 {
-                    var itemUser = users.FirstOrDefault(x => x.SteamId64.ToString() == item.Key);
+                    var itemUser = users.FirstOrDefault(x => x.SteamId64.ToString() == item.Name);
                     if (itemUser == null)
                     {
-                        item.Value.MostRecent = 0;
+                        item["MostRecent"] = 0;
                         break;
                     }
-                    item.Value.MostRecent = Convert.ToByte(itemUser.MostRecent);
-                    item.Value.WantsOfflineMode = Convert.ToByte(itemUser.WantsOfflineMode);
-                    item.Value.SkipOfflineModeWarning = Convert.ToByte(itemUser.SkipOfflineModeWarning);
+                    item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
+                    item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
+                    item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);
                 }
                 catch (Exception e)
                 {
@@ -478,7 +477,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                 }
             }
 
-            VdfHelper.Write(UserVdfPath, models);
+            VdfHelper.Write(UserVdfPath, v);
         }
     }
 
@@ -836,17 +835,19 @@ public abstract partial class SteamServiceImpl : ISteamService
             string libraryFoldersPath = Path.Combine(SteamDirPath, dirname_steamapps, "libraryfolders.vdf");
             if (File.Exists(libraryFoldersPath))
             {
-                dynamic v = VdfHelper.Read(libraryFoldersPath);
+                var v = VdfHelper.Read(libraryFoldersPath);
 
                 for (int i = 1; ; i++)
                 {
                     try
                     {
-                        dynamic pathNode = v.Value[i.ToString()];
+                        var pathNode = v[i.ToString()];
 
                         if (pathNode == null) break;
 
-                        if (pathNode.path != null)
+                        var path = pathNode["path"].ToString();
+
+                        if (!string.IsNullOrEmpty(path))
                         {
                             // New format
                             // Valve introduced a new format for the "libraryfolders.vdf" file
@@ -855,15 +856,14 @@ public abstract partial class SteamServiceImpl : ISteamService
 
                             // If a library folder is removed in the Steam settings, the path persists, but its 'mounted' value is set to 0 (disabled)
                             // We consider only the value '1' as that the path is actually enabled.
-                            if (pathNode.mounted != null && pathNode.mounted.ToString() != "1")
+                            if (pathNode["mounted"] != null && pathNode["mounted"].ToString() != "1")
                                 continue;
-                            pathNode = pathNode.path;
+
+                            path = Path.Combine(path, dirname_steamapps);
+
+                            if (Directory.Exists(path))
+                                paths.Add(path);
                         }
-
-                        string path = Path.Combine(pathNode.ToString(), dirname_steamapps);
-
-                        if (Directory.Exists(path))
-                            paths.Add(path);
                     }
                     catch (Exception e)
                     {
@@ -881,39 +881,6 @@ public abstract partial class SteamServiceImpl : ISteamService
         return paths.ToArray();
     }
 
-    static int GetInt32(object value)
-    {
-        if (value is null) return 0;
-        if (value is int value2) return value2;
-        if (value is IConvertible convertible)
-            return convertible.ToInt32(CultureInfo.InvariantCulture);
-        return int.Parse(value.ToString());
-    }
-
-    static uint GetUInt32(object value)
-    {
-        if (value is null) return 0;
-        if (value is uint value2) return value2;
-        if (value is IConvertible convertible)
-            return convertible.ToUInt32(CultureInfo.InvariantCulture);
-        return uint.Parse(value.ToString());
-    }
-
-    static long GetInt64(object value)
-    {
-        if (value is null) return 0;
-        if (value is long value2) return value2;
-        if (value is IConvertible convertible)
-            return convertible.ToInt64(CultureInfo.InvariantCulture);
-        return long.Parse(value.ToString());
-    }
-
-    static DateTime GetDateTimeS(dynamic value)
-    {
-        long value_int64 = GetInt64(value); // dynamic 必须声明类型，不可用 var 替代
-        return value_int64.ToDateTimeS();
-    }
-
     /// <summary>
     /// acf 文件转 SteamApp
     /// </summary>
@@ -927,7 +894,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             // Skip if file contains only NULL bytes (this can happen sometimes, example: download crashes, resulting in a corrupted file)
             if (content.Length == 1 && string.IsNullOrWhiteSpace(content[0].TrimStart('\0'))) return null;
 
-            dynamic v = VdfHelper.Read(filename);
+            var v = VdfHelper.Read(filename);
 
             if (v.Value == null)
             {
@@ -935,23 +902,22 @@ public abstract partial class SteamServiceImpl : ISteamService
                     $"{filename}{Environment.NewLine}contains unexpected content.{Environment.NewLine}This game will be ignored.");
                 return null;
             }
-            v = v.Value;
 
-            string installdir = v.installdir.ToString();
+            string? installdir = v["installdir"].ToString();
             var filenameDir = Path.GetDirectoryName(filename);
             var newInfo = new SteamApp
             {
-                AppId = GetUInt32(v.appid ?? v.appID ?? v.AppID),
-                Name = v.name.ToString() ?? installdir,
+                AppId = (uint)(v["appid"] ?? v["appID"] ?? v["AppId"]),
+                Name = v["name"].ToString() ?? installdir,
                 InstalledDir = Path.Combine(filenameDir.ThrowIsNull(), "common", installdir),
-                State = GetInt32(v.StateFlags),
-                SizeOnDisk = GetInt64(v.SizeOnDisk),
-                LastOwner = GetInt64(v.LastOwner),
-                BytesToDownload = GetInt64(v.BytesToDownload),
-                BytesDownloaded = GetInt64(v.BytesDownloaded),
-                BytesToStage = GetInt64(v.BytesToStage),
-                BytesStaged = GetInt64(v.BytesStaged),
-                LastUpdated = GetDateTimeS(v.LastUpdated),
+                State = (int)v["StateFlags"],
+                SizeOnDisk = (long)v["SizeOnDisk"],
+                LastOwner = (long)v["LastOwner"],
+                BytesToDownload = (long)v["BytesToDownload"],
+                BytesDownloaded = (long)v["BytesDownloaded"],
+                BytesToStage = (long)v["BytesToStage"],
+                BytesStaged = (long)v["BytesStaged"],
+                LastUpdated = ((long)v["LastUpdated"]).ToDateTimeS(),
             };
             return newInfo;
         }

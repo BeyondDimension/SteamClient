@@ -31,6 +31,17 @@ public sealed class SteamServiceTest
         Assert.True(list.Any_Nullable());
     }
 
+    [Test]
+    public void TestGetDownloadingAppList()
+    {
+        var list = Client.GetDownloadingAppList();
+        list.ForEach(x =>
+        {
+            TestContext.WriteLine($"{x.Name}   {x.AppId}");
+        });
+        Assert.True(list.Any_Nullable());
+    }
+
     sealed class TestSteamServiceImpl : SteamServiceImpl
     {
         public TestSteamServiceImpl(ILoggerFactory loggerFactory) : base(loggerFactory)
