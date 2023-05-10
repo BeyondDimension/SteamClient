@@ -1,4 +1,6 @@
+#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 using ValveKeyValue;
+#endif
 
 namespace BD.SteamClient.Services.Implementation;
 
