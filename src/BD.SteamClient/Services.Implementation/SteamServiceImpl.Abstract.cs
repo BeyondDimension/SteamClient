@@ -147,7 +147,7 @@ abstract partial class SteamServiceImpl
                 var v = VdfHelper.Read(registryVdfPath);
                 if (v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] != null)
                 {
-                    v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] = userName;
+                    //v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] = userName;
                     VdfHelper.Write(registryVdfPath, v);
                 }
                 else
