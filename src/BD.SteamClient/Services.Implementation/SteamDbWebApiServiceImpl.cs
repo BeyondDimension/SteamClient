@@ -1,4 +1,4 @@
-using System.Net.Http.Client;
+using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
 
 namespace BD.SteamClient.Services.Implementation;
 

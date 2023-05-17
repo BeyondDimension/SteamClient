@@ -1,4 +1,4 @@
-using System.Net.Http.Client;
+using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace BD.SteamClient.Services.Implementation;
