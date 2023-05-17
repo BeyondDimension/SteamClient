@@ -1,3 +1,4 @@
+using System.Net.Http.Client;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace BD.SteamClient.Services.Implementation;

@@ -1,3 +1,5 @@
+using System.Net.Http.Client;
+
 namespace BD.SteamClient.Services.Implementation;
 
 internal sealed class SteamDbWebApiServiceImpl : GeneralHttpClientFactory, ISteamDbWebApiService

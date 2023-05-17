@@ -6,7 +6,7 @@ using Polly.Retry;
 using HttpMethod = System.Net.Http.HttpMethod;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace ProjectRecharge.Services.Implementation;
+namespace BD.SteamClient.Services;
 
 public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynamicProxyServiceImpl, ISteamAccountService
 {
