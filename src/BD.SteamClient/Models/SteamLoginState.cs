@@ -24,6 +24,8 @@ public sealed class SteamLoginState : JsonModel<SteamLoginState>
 
     public string? TwofactorCode { get; set; }
 
+    [MessagePackFormatter(typeof(CookieFormatter))]
+    [CookieCollectionFormatter]
     public CookieCollection? Cookies { get; set; }
 
     public string? SteamIdString { get; set; }
