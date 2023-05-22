@@ -1,3 +1,5 @@
+using System.Runtime.Serialization.Formatters;
+
 namespace BD.SteamClient.Models;
 
 public sealed class SteamLoginState : JsonModel<SteamLoginState>
