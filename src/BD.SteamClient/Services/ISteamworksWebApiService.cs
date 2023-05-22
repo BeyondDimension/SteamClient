@@ -1,7 +1,7 @@
 namespace BD.SteamClient.Services;
 
 /// <summary>
-/// Steamworks Web API 服务
+/// Steamworks WebApi 服务
 /// </summary>
 public interface ISteamworksWebApiService
 {

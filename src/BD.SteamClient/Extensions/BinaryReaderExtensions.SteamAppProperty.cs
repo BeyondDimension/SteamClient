@@ -79,25 +79,34 @@ internal static partial class BinaryReaderExtensions
             switch (property.PropertyType)
             {
                 case SteamAppPropertyType.Table:
-                    writer.Write((SteamAppPropertyTable)property.Value);
+                    if (property.Value is SteamAppPropertyTable table1)
+                        writer.Write(table1);
                     break;
                 case SteamAppPropertyType.String:
-                    writer.WriteAppInfoString((string)property.Value);
+                    writer.WriteAppInfoString(property.Value?.ToString() ?? string.Empty);
                     break;
                 case SteamAppPropertyType.WString:
-                    writer.WriteAppInfoWideString((string)property.Value);
+                    writer.WriteAppInfoWideString(property.Value?.ToString() ?? string.Empty);
                     break;
                 case SteamAppPropertyType.Int32:
-                    writer.Write((int)property.Value);
+                    if (property.Value is not int int32)
+                        int32 = default;
+                    writer.Write(int32);
                     break;
                 case SteamAppPropertyType.Uint64:
-                    writer.Write((ulong)property.Value);
+                    if (property.Value is not ulong uint64)
+                        uint64 = default;
+                    writer.Write(uint64);
                     break;
                 case SteamAppPropertyType.Float:
-                    writer.Write((float)property.Value);
+                    if (property.Value is not float single)
+                        single = default;
+                    writer.Write(single);
                     break;
                 case SteamAppPropertyType.Color:
-                    writer.Write((Color)property.Value);
+                    if (property.Value is not Color color)
+                        color = default;
+                    writer.Write(color);
                     break;
                 default:
                     throw new NotImplementedException("The value type " + property.PropertyType.ToString() + " has not been implemented.");

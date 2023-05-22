@@ -440,7 +440,7 @@ public class SteamApp : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public Task<string> LibraryGridStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Grid);
+    public Task<ImageSource.ClipStream?> LibraryGridStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Grid);
 
 #endif
 
@@ -456,7 +456,7 @@ public class SteamApp : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public Task<string> LibraryHeroStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Hero);
+    public Task<ImageSource.ClipStream?> LibraryHeroStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Hero);
 
 #endif
 
@@ -472,7 +472,7 @@ public class SteamApp : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public Task<string> LibraryHeroBlurStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Hero_Blur);
+    public Task<ImageSource.ClipStream?> LibraryHeroBlurStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Hero_Blur);
 
 #endif
 
@@ -480,7 +480,7 @@ public class SteamApp : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public Task<string> LibraryLogoStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Logo);
+    public Task<ImageSource.ClipStream?> LibraryLogoStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Logo);
 
 #endif
 
@@ -496,7 +496,7 @@ public class SteamApp : ReactiveObject
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
-    public Task<string> HeaderLogoStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Header);
+    public Task<ImageSource.ClipStream?> HeaderLogoStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Header);
 
 #endif
 
@@ -920,12 +920,22 @@ public class SteamApp : ReactiveObject
          */
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    static async Task<Stream?> GetStreamAsync(Task<ImageSource.ClipStream?> task)
+    {
+        if (task != null)
+        {
+            return (await task)?.Stream;
+        }
+        return null;
+    }
+
     public async void RefreshEditImage()
     {
-        EditLibraryGridStream = IOPath.OpenRead(await LibraryGridStream);
-        EditLibraryHeroStream = IOPath.OpenRead(await LibraryHeroStream);
-        EditLibraryLogoStream = IOPath.OpenRead(await LibraryLogoStream);
-        EditHeaderLogoStream = IOPath.OpenRead(await HeaderLogoStream);
+        EditLibraryGridStream = await GetStreamAsync(LibraryGridStream);
+        EditLibraryHeroStream = await GetStreamAsync(LibraryHeroStream);
+        EditLibraryLogoStream = await GetStreamAsync(LibraryLogoStream);
+        EditHeaderLogoStream = await GetStreamAsync(HeaderLogoStream);
     }
 
 #endif

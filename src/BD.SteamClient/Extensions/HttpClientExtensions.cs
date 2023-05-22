@@ -6,7 +6,8 @@ namespace System;
 
 static class HttpClientExtensions
 {
-    static async Task<T?> SendAsync<T>(
+    [RequiresUnreferencedCode("Calls System.Xml.Serialization.XmlSerializer.XmlSerializer(Type)")]
+    static async Task<T?> SendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
         this HttpClient client,
         ILogger logger,
         JsonSerializer? jsonSerializer,
@@ -119,7 +120,7 @@ static class HttpClientExtensions
             var knownType = e.GetKnownType();
             if (knownType == ExceptionKnownType.Unknown)
             {
-                logger.LogError(e, "SendAsync fail, requestUri: {0}", requestUri);
+                logger.LogError(e, "SendAsync fail, requestUri: {requestUri}", requestUri);
             }
         }
         finally
@@ -133,8 +134,9 @@ static class HttpClientExtensions
         return default;
     }
 
+    [RequiresUnreferencedCode("Calls System.Xml.Serialization.XmlSerializer.XmlSerializer(Type)")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Task<T?> SendAsync<T>(
+    public static Task<T?> SendAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
         this HttpClient client,
         ILogger logger,
         JsonSerializer? jsonSerializer,
@@ -159,8 +161,9 @@ static class HttpClientExtensions
             handlerResponseByIsNotSuccessStatusCode);
     }
 
+    [RequiresUnreferencedCode("Calls System.Xml.Serialization.XmlSerializer.XmlSerializer(Type)")]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Task<T?> GetAsync<T>(
+    public static Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(
         this HttpClient client,
         ILogger logger,
         string requestUri,

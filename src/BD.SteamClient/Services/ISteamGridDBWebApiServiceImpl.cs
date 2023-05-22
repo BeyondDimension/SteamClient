@@ -1,7 +1,7 @@
 namespace BD.SteamClient.Services;
 
 /// <summary>
-/// SteamGridDB Web API 服务
+/// SteamGridDB WebApi 服务
 /// </summary>
 public interface ISteamGridDBWebApiServiceImpl
 {

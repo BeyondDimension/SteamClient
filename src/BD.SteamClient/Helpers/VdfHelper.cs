@@ -16,6 +16,7 @@ public static class VdfHelper
     /// </summary>
     /// <param name="filePath"></param>
     /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static KVObject Read(string filePath)
     {
         var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
@@ -23,11 +24,12 @@ public static class VdfHelper
         return data;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void Write(string filePath, KVObject content)
     {
         try
         {
-            using var stream = File.OpenWrite(filePath);
+            using var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
             var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
             kv.Serialize(stream, content);
         }

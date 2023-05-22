@@ -47,6 +47,7 @@ global using DeploymentMode = System.Runtime.DeploymentMode;
 global using System.Runtime.Devices;
 global using System.Runtime.InteropServices;
 global using System.Runtime.Versioning;
+global using System.Runtime.Serialization.Formatters;
 
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -66,3 +67,15 @@ global using IPAddress = System.Net.IPAddress;
 global using Ioc = System.Ioc;
 global using DateTimeFormat = System.DateTimeFormat;
 global using SerializationDateTimeFormat = System.Runtime.Serialization.DateTimeFormat;
+
+global using HttpHandlerCategory = System.Net.Http.Client.HttpHandlerCategory;
+global using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
+#if ANDROID
+global using HttpHandlerType = Xamarin.Android.Net.AndroidMessageHandler;
+#elif IOS || MACCATALYST
+global using HttpHandlerType = System.Net.Http.NSUrlSessionHandler;
+#elif NETFRAMEWORK
+global using HttpHandlerType = System.Net.Http.HttpClientHandler;
+#else
+global using HttpHandlerType = System.Net.Http.SocketsHttpHandler;
+#endif
