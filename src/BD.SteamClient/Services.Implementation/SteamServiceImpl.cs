@@ -647,7 +647,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         catch (Exception ex)
         {
             logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} 保存 AppInfos 出现错误");
-
+            Toast.Show(GetString("SaveEditedAppInfo_SaveFailed")!);
             //if (File.Exists(bakFile))
             //    File.Copy(bakFile, AppInfoPath, true);
 

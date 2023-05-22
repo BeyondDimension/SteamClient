@@ -36,6 +36,8 @@ abstract partial class SteamServiceImpl
     /// </summary>
     protected abstract Dictionary<uint, string?>? HideGameList { get; }
 
+    protected abstract string? GetString(string name);
+
 #if WINDOWS
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string? GetFullPath(string s)
