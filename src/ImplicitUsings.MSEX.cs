@@ -9,6 +9,7 @@
 //global using Microsoft.Extensions.Configuration;
 //#endif
 global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Logging.Abstractions;
 global using Microsoft.Extensions.Options;
 //#if !BLAZOR && !__NOT_IMPORT_WEBENCODERS__
 //global using Microsoft.Extensions.WebEncoders;

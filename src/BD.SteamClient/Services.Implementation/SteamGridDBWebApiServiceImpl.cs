@@ -1,4 +1,3 @@
-using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace BD.SteamClient.Services.Implementation;
@@ -24,7 +23,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : GeneralHttpClientFactory, I
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
-        var client = CreateClient();
+        var client = CreateClient(TAG, HttpHandlerCategory.Default);
         return SendAsync<T>(client, logger, jsonSerializer, requestUri,
             () =>
             {

@@ -24,10 +24,10 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Include="..\ImplicitUsings.UnitTest.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\BD.SteamClient\Properties\ImplicitUsings.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>

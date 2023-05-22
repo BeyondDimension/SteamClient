@@ -1,8 +1,3 @@
-using BD.SteamClient.Services;
-using BD.SteamClient.Services.Implementation;
-using BD.SteamClient.Services.Mvvm;
-using Microsoft.Extensions.Logging.Abstractions;
-
 namespace BD.SteamClient.UnitTest;
 
 public sealed class SteamServiceTest
@@ -51,12 +46,10 @@ public sealed class SteamServiceTest
 
         public override ISteamConnectService Conn => throw new NotImplementedException();
 
-        protected override string AppResources_SaveEditedAppInfo_SaveFailed => throw new NotImplementedException();
+        protected override string? StratSteamDefaultParameter => default;
 
-        protected override string? SteamSettings_StratParameter => throw new NotImplementedException();
+        protected override bool IsRunSteamAdministrator => default;
 
-        protected override bool SteamSettings_IsRunSteamAdministrator => throw new NotImplementedException();
-
-        protected override Dictionary<uint, string?> GameLibrarySettings_HideGameList => throw new NotImplementedException();
+        protected override Dictionary<uint, string?>? HideGameList => default;
     }
 }

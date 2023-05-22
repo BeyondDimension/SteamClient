@@ -3,6 +3,7 @@ using AngleSharp.Dom;
 using Google.Protobuf;
 using Polly;
 using Polly.Retry;
+using static BD.SteamClient.Constants.SteamApiUrls;
 using HttpMethod = System.Net.Http.HttpMethod;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
@@ -10,6 +11,8 @@ namespace BD.SteamClient.Services;
 
 public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynamicProxyServiceImpl, ISteamAccountService
 {
+    public const string default_donotache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
+
     readonly IRandomGetUserAgentService uas;
 
     [ActivatorUtilitiesConstructor]
@@ -22,7 +25,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     }
 
     public SteamAccountService(
-        Func<SocketsHttpHandler, HttpClient>? func,
+        Func<HttpHandlerType, HttpClient>? func,
         IRandomGetUserAgentService uas,
         ILogger logger) : base(func, logger)
     {
@@ -40,9 +43,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         [CallerFilePath] string sourceFilePath = "",
         [CallerLineNumber] int sourceLineNumber = 0) => Policy.Handle<Exception>().WaitAndRetryAsync(new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), }, (ex, _, i, _) =>
         {
-            logger.LogError(ex, $"第 {i} 次重试，MemberName：{memberName}，FilePath：{sourceFilePath}，LineNumber：{sourceLineNumber}");
+            logger.LogError(ex, "第 {i} 次重试，MemberName：{memberName}，FilePath：{sourceFilePath}，LineNumber：{sourceLineNumber}", i, memberName, sourceFilePath, sourceLineNumber);
         });
 
+    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
     public async Task<(string encryptedPassword64, string timestamp)> GetRSAkeyAsync(string username, string password)
     {
         var data = new Dictionary<string, string>()
@@ -50,9 +54,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             { "donotache", default_donotache },
             { "username", username },
         };
+        [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
         async Task<(string encryptedPassword64, string timestamp)> GetRSAkeyAsync()
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, Urls.GetRSAkeyUrl)
+            var request = new HttpRequestMessage(HttpMethod.Post, GetRSAkeyUrl)
             {
                 Content = new FormUrlEncodedContent(data),
             };
@@ -100,6 +105,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     [GeneratedRegex("[^\\u0000-\\u007F]")]
     private static partial Regex SteamUNPWDRegex();
 
+    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
     public async Task DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false)
     {
         loginState.Success = false;
@@ -114,10 +120,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
         loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
 
-        if (string.IsNullOrEmpty(cookieContainer.GetCookieValue(new Uri(Urls.SteamStore), "sessionid")))
+        if (string.IsNullOrEmpty(cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid")))
         {
             // 访问一次登录页获取SessionId
-            await client.GetAsync(Urls.SteamLoginUrl);
+            await client.GetAsync(SteamLoginUrl);
         }
 
         var (encryptedPassword64, timestamp) = await GetRSAkeyAsync(loginState.Username, loginState.Password);
@@ -139,7 +145,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var respone = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, Urls.DologinUrl)
+            var request = new HttpRequestMessage(HttpMethod.Post, DologinUrl)
             {
                 Content = new FormUrlEncodedContent(data),
             };
@@ -175,13 +181,13 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             try
             {
                 var errorStr = await respone.Content.ReadAsStringAsync();
-                logger.LogError($"登录异常:{errorStr} StatusCode:{respone.StatusCode}");
+                logger.LogError("login fail, error: {errorStr}, statusCode: {statusCode}.", errorStr, respone.StatusCode);
             }
-            catch
+            catch (Exception ex)
             {
-                logger.LogError($"登录异常 StatusCode:{respone.StatusCode}");
+                logger.LogError(ex, "login fail, statusCode: {statusCode}.", respone.StatusCode);
             }
-            loginState.Message = $"登录错误: 无效的{nameof(jsonObj)}";
+            loginState.Message = $"登录错误: 无效的 {nameof(jsonObj)}";
             loginState.Success = false;
             return;
         }
@@ -208,7 +214,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             if (message?.Contains("验证码中的字符", StringComparison.OrdinalIgnoreCase) == true)
             {
                 loginState.CaptchaId = jsonObj["captcha_gid"]?.GetValue<string>();
-                loginState.CaptchaUrl = Urls.CaptchaImageUrl + loginState.CaptchaId;
+                loginState.CaptchaUrl = CaptchaImageUrl + loginState.CaptchaId;
                 if (isDownloadCaptchaImage && !string.IsNullOrEmpty(loginState.CaptchaId))
                 {
                     loginState.CaptchaImageBase64 = await GetCaptchaImageBase64(loginState.CaptchaId);
@@ -336,7 +342,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     {
         var result = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, Urls.OpenIdloginUrl)
+            var request = new HttpRequestMessage(HttpMethod.Post, OpenIdloginUrl)
             {
                 Content = new MultipartFormDataContent
                 {
@@ -445,7 +451,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
             loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
 
-            loginState.SeesionId = cookieContainer.GetCookieValue(new Uri(Urls.SteamStore), "sessionid");
+            loginState.SeesionId = cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid");
             if (string.IsNullOrEmpty(loginState.SeesionId))
             {
                 // 访问一次登录页获取 SessionId
@@ -453,7 +459,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 {
                     await client.GetAsync("https://store.steampowered.com/login/");
                 });
-                loginState.SeesionId = cookieContainer.GetCookieValue(new Uri(Urls.SteamStore), "sessionid");
+                loginState.SeesionId = cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid");
             }
 
             var (encryptedPassword64, timestamp) = await GetRSAkeyV2Async(loginState.Username, loginState.Password);
@@ -729,7 +735,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Urls.SteamStoreAccountHistoryDetailUrl);
+            var request = new HttpRequestMessage(HttpMethod.Get, SteamStoreAccountHistoryDetailUrl);
 
             request.Headers.UserAgent.Clear();
             request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
@@ -745,7 +751,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
                 //var historyCursor = JsonSerializer.Deserialize<CursorData>(historyCursorString);
 
-                //var request1 = new HttpRequestMessage(HttpMethod.Post, Urls.SteamStoreAccountHistoryAjaxlUrl)
+                //var request1 = new HttpRequestMessage(HttpMethod.Post, SteamStoreAccountHistoryAjaxlUrl)
                 //{
                 //    Content = new FormUrlEncodedContent(new Dictionary<string, string>()
                 //    {
@@ -1039,7 +1045,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Urls.SteamStoreAccountlUrl);
+            var request = new HttpRequestMessage(HttpMethod.Get, SteamStoreAccountlUrl);
 
             request.Headers.UserAgent.Clear();
             request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
@@ -1079,12 +1085,12 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
     async Task<(SteamResult Result, PurchaseResultDetail? Detail)?> RedeemWalletCodeCore(SteamLoginState loginState, string walletCode)
     {
-        var request = new HttpRequestMessage(HttpMethod.Post, Urls.SteamStoreRedeemWalletCodelUrl)
+        var request = new HttpRequestMessage(HttpMethod.Post, SteamStoreRedeemWalletCodelUrl)
         {
             Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
             {
                 { "wallet_code", walletCode },
-                { "sessionid", cookieContainer.GetCookieValue(new Uri(Urls.SteamStore), "sessionid") },
+                { "sessionid", cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid") },
             }),
         };
 
@@ -1139,12 +1145,12 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, Urls.SteamStoreAccountSetCountryUrl)
+            var request = new HttpRequestMessage(HttpMethod.Post, SteamStoreAccountSetCountryUrl)
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                 {
                     { "cc", currencyCode },
-                    { "sessionid", cookieContainer.GetCookieValue(new Uri(Urls.SteamStore), "sessionid") },
+                    { "sessionid", cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid") },
                 }),
             };
 
@@ -1181,7 +1187,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, Urls.SteamStoreAddFundsUrl);
+            var request = new HttpRequestMessage(HttpMethod.Get, SteamStoreAddFundsUrl);
 
             request.Headers.UserAgent.Clear();
             request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
@@ -1218,38 +1224,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     {
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
-            var url = Urls.CaptchaImageUrl + captchaId;
+            var url = CaptchaImageUrl + captchaId;
             var response = await client.GetByteArrayAsync(url);
             return Convert.ToBase64String(response);
         });
         return r;
     }
-}
-
-public partial class SteamAccountService
-{
-    public static class Urls
-    {
-        public const string SteamCommunity = "https://steamcommunity.com";
-        public const string SteamStore = "https://store.steampowered.com";
-
-        public const string GetRSAkeyUrl = $"{SteamStore}/login/getrsakey/";
-        public const string DologinUrl = $"{SteamStore}/login/dologin?l=schinese";
-        public const string SteamLoginUrl = $"{SteamStore}/login?oldauth=1";
-
-        public const string OpenIdloginUrl = $"{SteamCommunity}/openid/login";
-
-        public const string CaptchaImageUrl = $"{SteamStore}/login/rendercaptcha/?gid=";
-
-        public const string SteamStoreRedeemWalletCodelUrl = $"{SteamStore}/account/ajaxredeemwalletcode?l=schinese";
-
-        public const string SteamStoreAccountlUrl = $"{SteamStore}/account?l=schinese";
-        public const string SteamStoreAccountHistoryDetailUrl = $"{SteamStore}/account/history?l=schinese";
-        public const string SteamStoreAccountHistoryAjaxlUrl = $"{SteamStore}/AjaxLoadMoreHistory?l=schinese";
-
-        public const string SteamStoreAccountSetCountryUrl = $"{SteamStore}/account/setcountry";
-        public const string SteamStoreAddFundsUrl = $"{SteamStore}/steamaccount/addfunds?l=schinese";
-    }
-
-    public const string default_donotache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
 }

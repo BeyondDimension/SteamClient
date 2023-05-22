@@ -172,7 +172,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     {
         if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
         {
-            if (OperatingSystem.IsWindows() && !SteamSettings_IsRunSteamAdministrator)
+            if (OperatingSystem.IsWindows() && !IsRunSteamAdministrator)
             {
                 StartAsInvoker(SteamProgramPath, arguments);
             }
@@ -548,7 +548,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                         {
                             //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
                             //    continue;
-                            if (GameLibrarySettings_HideGameList!.ContainsKey(app.AppId))
+                            if (HideGameList != null && HideGameList.ContainsKey(app.AppId))
                                 continue;
                             //if (app.ParentId > 0)
                             //{
@@ -595,7 +595,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     }
 
     /// <summary>
-    /// 保存修改后的游戏数据到steam本地客户端缓存文件
+    /// 保存修改后的游戏数据到 Steam 本地客户端缓存文件
     /// </summary>
     public async Task<bool> SaveAppInfosToSteam()
     {
@@ -646,8 +646,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         catch (Exception ex)
         {
-            logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} msg: {{msg}}", AppResources_SaveEditedAppInfo_SaveFailed);
-            Toast.Show(AppResources_SaveEditedAppInfo_SaveFailed);
+            logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} 保存 AppInfos 出现错误");
 
             //if (File.Exists(bakFile))
             //    File.Copy(bakFile, AppInfoPath, true);
@@ -710,17 +709,19 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
-    public async Task<string> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type)
+    public async Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type)
     {
         var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
         if (mostRecentUser != null)
         {
             var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
-            if (File.Exists(customFilePath)) return customFilePath!;
+            if (customFilePath != null && File.Exists(customFilePath))
+                return customFilePath;
         }
 
         var cacheFilePath = GetAppLibCacheFilePath(app.AppId, type);
-        if (File.Exists(cacheFilePath)) return cacheFilePath!;
+        if (cacheFilePath != null && File.Exists(cacheFilePath))
+            return cacheFilePath;
 
         var url = type switch
         {
@@ -733,10 +734,11 @@ public abstract partial class SteamServiceImpl : ISteamService
             _ => null,
         };
 
-        if (url == null) return string.Empty;
-        var value = await ImageChannelType.SteamGames.GetImageAsync(url);
+        if (url == default)
+            return default;
+        var value = await ImageSource.GetAsync(url);
 
-        return value ?? string.Empty;
+        return value;
     }
 
     /// <summary>

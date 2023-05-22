@@ -50,4 +50,24 @@ public static class SteamApiUrls
     public const string STEAM_USERINFO_XML_URL = "https://steamcommunity.com/profiles/{0}?xml=1";
 
     public const string STEAMCN_USERINFO_XML_URL = "https://my.steamchina.com/profiles/76561198289531723?xml=1";
+
+    public const string STEAM_COMMUNITY_URL = "https://steamcommunity.com";
+    public const string STEAM_STORE_URL = "https://store.steampowered.com";
+
+    public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
+    public const string DologinUrl = $"{STEAM_STORE_URL}/login/dologin?l=schinese";
+    public const string SteamLoginUrl = $"{STEAM_STORE_URL}/login?oldauth=1";
+
+    public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
+
+    public const string CaptchaImageUrl = $"{STEAM_STORE_URL}/login/rendercaptcha/?gid=";
+
+    public const string SteamStoreRedeemWalletCodelUrl = $"{STEAM_STORE_URL}/account/ajaxredeemwalletcode?l=schinese";
+
+    public const string SteamStoreAccountlUrl = $"{STEAM_STORE_URL}/account?l=schinese";
+    public const string SteamStoreAccountHistoryDetailUrl = $"{STEAM_STORE_URL}/account/history?l=schinese";
+    public const string SteamStoreAccountHistoryAjaxlUrl = $"{STEAM_STORE_URL}/AjaxLoadMoreHistory?l=schinese";
+
+    public const string SteamStoreAccountSetCountryUrl = $"{STEAM_STORE_URL}/account/setcountry";
+    public const string SteamStoreAddFundsUrl = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
 }

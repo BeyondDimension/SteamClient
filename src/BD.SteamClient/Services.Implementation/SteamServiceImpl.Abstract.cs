@@ -10,8 +10,7 @@ abstract partial class SteamServiceImpl
 
     public abstract ISteamConnectService Conn { get; }
 
-    public virtual void StartSteamWithParameter()
-        => StartSteam(SteamSettings_StratParameter);
+    public virtual void StartSteamWithParameter() => StartSteam(StratSteamDefaultParameter);
 
     /// <summary>
     /// 以正常权限启动进程
@@ -23,25 +22,19 @@ abstract partial class SteamServiceImpl
          => Process2.Start(fileName, arguments);
 
     /// <summary>
-    /// 保存 AppInfos 出现错误
-    /// <para>AppResources.SaveEditedAppInfo_SaveFailed</para>
-    /// </summary>
-    protected abstract string AppResources_SaveEditedAppInfo_SaveFailed { get; }
-
-    /// <summary>
     /// SteamSettings.SteamStratParameter.Value
     /// </summary>
-    protected abstract string? SteamSettings_StratParameter { get; }
+    protected abstract string? StratSteamDefaultParameter { get; }
 
     /// <summary>
     /// SteamSettings.IsRunSteamAdministrator.Value
     /// </summary>
-    protected abstract bool SteamSettings_IsRunSteamAdministrator { get; }
+    protected abstract bool IsRunSteamAdministrator { get; }
 
     /// <summary>
     /// GameLibrarySettings.HideGameList.Value
     /// </summary>
-    protected abstract Dictionary<uint, string?> GameLibrarySettings_HideGameList { get; }
+    protected abstract Dictionary<uint, string?>? HideGameList { get; }
 
 #if WINDOWS
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

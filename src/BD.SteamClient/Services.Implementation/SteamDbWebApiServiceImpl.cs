@@ -1,5 +1,3 @@
-using IHttpClientFactory = System.Net.Http.Client.IHttpClientFactory;
-
 namespace BD.SteamClient.Services.Implementation;
 
 internal sealed class SteamDbWebApiServiceImpl : GeneralHttpClientFactory, ISteamDbWebApiService
@@ -21,7 +19,7 @@ internal sealed class SteamDbWebApiServiceImpl : GeneralHttpClientFactory, IStea
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
-        var client = CreateClient();
+        var client = CreateClient(TAG, HttpHandlerCategory.Default);
         return GetAsync<T>(client, logger, requestUri, accept,
             cancellationToken: cancellationToken, userAgent: http_helper.UserAgent);
     }
