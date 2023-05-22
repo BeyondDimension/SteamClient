@@ -6,6 +6,8 @@ public sealed class SteamServiceTest
 
     ISteamService Client => service.GetRequiredService<ISteamService>();
 
+    static readonly bool IsCI = Environment.UserName.Contains("runner", StringComparison.OrdinalIgnoreCase); // DOTNET_ROOT: C:\Users\runneradmin\AppData\Local\Microsoft\dotnet
+
     [SetUp]
     public void Setup()
     {
@@ -18,6 +20,7 @@ public sealed class SteamServiceTest
     [Test]
     public void TestGetRememberUserList()
     {
+        if (IsCI) return;
         var list = Client.GetRememberUserList();
         list.ForEach(x =>
         {
@@ -29,6 +32,7 @@ public sealed class SteamServiceTest
     [Test]
     public void TestGetDownloadingAppList()
     {
+        if (IsCI) return;
         var list = Client.GetDownloadingAppList();
         list.ForEach(x =>
         {
