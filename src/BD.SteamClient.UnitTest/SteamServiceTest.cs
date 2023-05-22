@@ -55,5 +55,7 @@ public sealed class SteamServiceTest
         protected override bool IsRunSteamAdministrator => default;
 
         protected override Dictionary<uint, string?>? HideGameList => default;
+
+        protected override string? GetString(string name) => default;
     }
 }
