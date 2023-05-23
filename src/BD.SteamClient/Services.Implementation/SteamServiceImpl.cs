@@ -38,6 +38,7 @@ public abstract partial class SteamServiceImpl : ISteamService
 #endif
         "steamservice",
         "steamwebhelper",
+        "GameOverlayUI",
     };
 
     readonly ILogger logger;
@@ -262,7 +263,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
                 var v = VdfHelper.Read(ConfigVdfPath);
-                var lists = new List<KVObject>();
+                var lists = new KVCollectionValue();
                 foreach (var item in model.OrderBy(x => x.Index))
                 {
                     KVObject itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
@@ -273,7 +274,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                     });
                     lists.Add(itemTemp);
                 }
-                v.Add(new KVObject("AuthorizedDevice", lists));
+                v.Set("AuthorizedDevice", lists);
                 VdfHelper.Write(ConfigVdfPath, v);
                 return true;
             }
@@ -292,13 +293,14 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
-                //var v = VdfHelper.Read(ConfigVdfPath);
-                //var authorizedDevice = v.Value.AuthorizedDevice;
-                //if (authorizedDevice != null)
-                //{
-                //    authorizedDevice = ((IEnumerable<VProperty>)authorizedDevice).Where(x => x.Key != model.SteamId3_Int.ToString());
-                //    VdfHelper.Write(ConfigVdfPath, v);
-                //}
+                var v = VdfHelper.Read(ConfigVdfPath);
+                var authorizedDevices = v["AuthorizedDevice"] as KVCollectionValue;
+                if (authorizedDevices != null)
+                {
+                    authorizedDevices.Remove(model.SteamId3_Int.ToString());
+                    //v["AuthorizedDevice"] = authorizedDevices;
+                    VdfHelper.Write(ConfigVdfPath, v);
+                }
                 return true;
             }
         }
@@ -354,59 +356,6 @@ public abstract partial class SteamServiceImpl : ISteamService
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetCurrentUser(string userName) => SetSteamCurrentUser(userName);
 
-    public List<SteamApp>? GetAppListJson(string filePath)
-    {
-        if (!File.Exists(filePath))
-        {
-            return null;
-        }
-
-        var lastChanged = File.GetLastWriteTime(filePath);
-        int daysSinceChanged = (int)(DateTime.Now - lastChanged).TotalDays;
-        if (daysSinceChanged > 10)
-        {
-            return null;
-        }
-
-        string json = File.ReadAllText(filePath, Encoding.UTF8);
-        if (string.IsNullOrEmpty(json))
-        {
-            return null;
-        }
-
-        var apps = Serializable.DJSON<SteamApps?>(json);
-        return apps?.AppList?.Apps;
-    }
-
-    public bool UpdateAppListJson(List<SteamApp> apps, string filePath)
-    {
-        try
-        {
-            var json_str = Serializable.SJSON(apps);
-            File.WriteAllText(filePath, json_str, Encoding.UTF8);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "UpdateAppListJson(obj) fail.");
-            return false;
-        }
-    }
-
-    public bool UpdateAppListJson(string appsJsonStr, string filePath)
-    {
-        try
-        {
-            File.WriteAllText(filePath, appsJsonStr, Encoding.UTF8);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "UpdateAppListJson(str) fail.");
-            return false;
-        }
-    }
-
     public void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || string.IsNullOrWhiteSpace(SteamDirPath))
@@ -421,10 +370,10 @@ public abstract partial class SteamServiceImpl : ISteamService
                 var users = (IEnumerable<KVObject>)v["users"];
                 if (users.Any_Nullable())
                 {
-                    var item = v.Children.FirstOrDefault(s => s.Name == user.SteamId64.ToString());
+                    var item = users.FirstOrDefault(s => s.Name == user.SteamId64.ToString());
                     if (item != null)
                     {
-                        v.Add(new KVObject("Users", item));
+                        v.Remove(user.SteamId64.ToString());
                         VdfHelper.Write(UserVdfPath, v);
 
                         if (isDeleteUserData)
@@ -456,28 +405,31 @@ public abstract partial class SteamServiceImpl : ISteamService
         else
         {
             var v = VdfHelper.Read(UserVdfPath);
-            var models = (IEnumerable<KVObject>)v["users"];
-            foreach (var item in models)
+            var models = v["users"] as KVCollectionValue;
+            if (models.Any_Nullable())
             {
-                try
+                foreach (var item in models)
                 {
-                    var itemUser = users.FirstOrDefault(x => x.SteamId64.ToString() == item.Name);
-                    if (itemUser == null)
+                    try
                     {
-                        item["MostRecent"] = 0;
-                        break;
+                        var itemUser = users.FirstOrDefault(x => x.SteamId64.ToString() == item.Name);
+                        if (itemUser == null)
+                        {
+                            item["MostRecent"] = 0;
+                            break;
+                        }
+                        item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
+                        item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
+                        item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);
                     }
-                    item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
-                    item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
-                    item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);
+                    catch (Exception e)
+                    {
+                        logger.LogError(e, "GetUserVdfPath for catch.");
+                    }
                 }
-                catch (Exception e)
-                {
-                    logger.LogError(e, "GetUserVdfPath for catch.");
-                }
-            }
 
-            VdfHelper.Write(UserVdfPath, v);
+                VdfHelper.Write(UserVdfPath, v);
+            }
         }
     }
 

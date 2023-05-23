@@ -17,9 +17,9 @@ public static class VdfHelper
     /// <param name="filePath"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static KVObject Read(string filePath)
+    public static KVObject Read(string filePath, bool isBinary = false)
     {
-        var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+        var kv = KVSerializer.Create(isBinary ? KVSerializationFormat.KeyValues1Binary : KVSerializationFormat.KeyValues1Text);
         var data = kv.Deserialize(IOPath.OpenRead(filePath));
         return data;
     }

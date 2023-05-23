@@ -1,3 +1,6 @@
+using System.IO;
+using ValveKeyValue;
+
 namespace BD.SteamClient.UnitTest;
 
 public sealed class SteamServiceTest
@@ -15,6 +18,38 @@ public sealed class SteamServiceTest
         services.AddLogging(l => l.AddProvider(NullLoggerProvider.Instance));
         services.AddSingleton<ISteamService, TestSteamServiceImpl>();
         service = services.BuildServiceProvider();
+    }
+
+    [Test]
+    public void TestVdfBenchmark()
+    {
+        if (IsCI && string.IsNullOrEmpty(Client.SteamDirPath)) return;
+        const int numIterations = 10;
+        string vdfStr = Path.Combine(Client.SteamDirPath!, "config", "config.vdf");
+        var sw = Stopwatch.StartNew();
+        var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+        var k = kv.Deserialize(File.OpenRead(vdfStr));
+        sw.Stop();
+        TestContext.WriteLine($"ValveKeyValue (VDF)       : {sw.ElapsedMilliseconds / numIterations}ms, {sw.ElapsedTicks / numIterations}ticks average");
+    }
+
+    [Test]
+    public void TestRemoveAuthorizedDeviceList()
+    {
+        if (IsCI && string.IsNullOrEmpty(Client.SteamDirPath)) return;
+        string vdfStr = Path.Combine(Client.SteamDirPath!, "config", "config.vdf");
+        var v = VdfHelper.Read(vdfStr);
+        var authorizedDevices = v["AuthorizedDevice"] as KVCollectionValue;
+        if (authorizedDevices != null)
+        {
+            authorizedDevices.Remove("130741779");
+            //v["AuthorizedDevice"] = authorizedDevices;
+            foreach (var x in v["AuthorizedDevice"] as KVCollectionValue)
+            {
+                TestContext.WriteLine($"{x.Name}   {x["description"]}");
+            }
+            //VdfHelper.Write(vdfStr, v);
+        }
     }
 
     [Test]

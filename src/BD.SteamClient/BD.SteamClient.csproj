@@ -65,7 +65,7 @@
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
 		<!-- Desktop Only -->
 		<PackageReference Include="SteamKit2" />
-		<PackageReference Include="ValveKeyValue" />
+		<ProjectReference Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj" />
 		<!--<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />-->
 		<!--<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />-->
 		<!--<ProjectReference Include="..\..\ref\SteamAchievementManager\SAM.API\SAM.API.csproj" />-->

@@ -44,6 +44,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gameloop.Vdf", "ref\Gameloo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Steam4NET", "ref\Steam4NET\Steam4NET\Steam4NET.csproj", "{47866076-0F25-42FE-8AB0-42EADD3FA322}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValveKeyValue", "ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj", "{D93F2D56-466D-483C-B114-327C26E6F4D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{432572EE-05CC-4176-AA97-17064F0F4A5B} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
 		{60751B99-F817-423B-A0F8-3D240BE658D6} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
 		{47866076-0F25-42FE-8AB0-42EADD3FA322} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
+		{D93F2D56-466D-483C-B114-327C26E6F4D4} = {CF36291E-D496-4D2E-8D3F-EA2E643FEAE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4370799-C6DA-47D0-94F7-7F56FD9B7178}

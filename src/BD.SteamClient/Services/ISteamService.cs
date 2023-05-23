@@ -93,12 +93,6 @@ public partial interface ISteamService
     /// <param name="userName"></param>
     void SetCurrentUser(string userName);
 
-    List<SteamApp>? GetAppListJson(string filePath);
-
-    bool UpdateAppListJson(List<SteamApp> apps, string filePath);
-
-    bool UpdateAppListJson(string appsJsonStr, string filePath);
-
     void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false);
 
     void UpdateLocalUserData(IEnumerable<SteamUser> users);
