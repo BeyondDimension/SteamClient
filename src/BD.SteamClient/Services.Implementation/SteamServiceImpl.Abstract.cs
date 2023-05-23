@@ -134,6 +134,7 @@ abstract partial class SteamServiceImpl
         //else
         //{
         Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "AutoLoginUser", userName, RegistryValueKind.String);
+        Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "RememberPassword", 1, RegistryValueKind.DWord);
         //}
 #elif LINUX || MACOS || MACCATALYST
         try
@@ -142,9 +143,15 @@ abstract partial class SteamServiceImpl
             if (!string.IsNullOrWhiteSpace(registryVdfPath) && File.Exists(registryVdfPath))
             {
                 var v = VdfHelper.Read(registryVdfPath);
-                if (v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] != null)
+                var kv = v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] as KVObjectValue<string>;
+                if (kv != null)
                 {
-                    //v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] = userName;
+                    kv.Value = userName;
+                    var rememberPasswordKV = v["HKCU"]["Software"]["Valve"]["Steam"]["RememberPassword"] as KVObjectValue<string>;
+                    if (rememberPasswordKV != null)
+                    {
+                        rememberPasswordKV.Value = "1";
+                    }
                     VdfHelper.Write(registryVdfPath, v);
                 }
                 else

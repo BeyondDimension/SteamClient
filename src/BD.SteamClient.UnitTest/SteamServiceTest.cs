@@ -34,6 +34,21 @@ public sealed class SteamServiceTest
     }
 
     [Test]
+    public void TestVdfValueEdit()
+    {
+        if (IsCI && string.IsNullOrEmpty(Client.SteamDirPath)) return;
+        string vdfStr = Path.Combine(Client.SteamDirPath!, "config", "config.vdf");
+        var v = VdfHelper.Read(vdfStr);
+        if (v != null)
+        {
+            var kv = v["Software"]["valve"]["Steam"]["ipv6check_http_state"] as KVObjectValue<string>;
+            kv.Value = "bad1";
+            TestContext.WriteLine($"{v["Software"]["valve"]["Steam"]["ipv6check_http_state"]}");
+            //VdfHelper.Write(vdfStr, v);
+        }
+    }
+
+    [Test]
     public void TestRemoveAuthorizedDeviceList()
     {
         if (IsCI && string.IsNullOrEmpty(Client.SteamDirPath)) return;

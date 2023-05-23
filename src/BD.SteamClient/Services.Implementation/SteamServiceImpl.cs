@@ -356,6 +356,36 @@ public abstract partial class SteamServiceImpl : ISteamService
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void SetCurrentUser(string userName) => SetSteamCurrentUser(userName);
 
+    /// <summary>
+    /// Sets whether the user is invisible or not
+    /// </summary>
+    /// <param name="steamId32">SteamID of user to update</param>
+    /// <param name="ePersonaState">Persona state enum for user (0-7)</param>
+    public void SetPersonaState(string steamId32, PersonaState ePersonaState)
+    {
+        if (string.IsNullOrEmpty(SteamDirPath)) return;
+        // Values:
+        // 0: Offline, 1: Online, 2: Busy, 3: Away, 4: Snooze, 5: Looking to Trade, 6: Looking to Play, 7: Invisible
+        var localConfigFilePath = Path.Combine(SteamDirPath, UserDataDirectory, steamId32, "config", "localconfig.vdf");
+        if (!File.Exists(localConfigFilePath)) return;
+        var localConfigText = File.ReadAllText(localConfigFilePath); // Read relevant localconfig.vdf
+
+        // Find index of range needing to be changed.
+        var positionOfVar = localConfigText.IndexOf("ePersonaState", StringComparison.Ordinal); // Find where the variable is being set
+        if (positionOfVar == -1) return;
+        var indexOfBefore = localConfigText.IndexOf(":", positionOfVar, StringComparison.Ordinal) + 1; // Find where the start of the variable's value is
+        var indexOfAfter = localConfigText.IndexOf(",", positionOfVar, StringComparison.Ordinal); // Find where the end of the variable's value is
+
+        // The variable is now in-between the above numbers. Remove it and insert something different here.
+        var sb = new StringBuilder(localConfigText);
+        _ = sb.Remove(indexOfBefore, indexOfAfter - indexOfBefore);
+        _ = sb.Insert(indexOfBefore, (int)ePersonaState);
+        localConfigText = sb.ToString();
+
+        // Output
+        File.WriteAllText(localConfigFilePath, localConfigText);
+    }
+
     public void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || string.IsNullOrWhiteSpace(SteamDirPath))

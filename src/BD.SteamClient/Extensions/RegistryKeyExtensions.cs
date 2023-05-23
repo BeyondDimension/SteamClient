@@ -33,7 +33,7 @@ static class RegistryKeyExtensions
     /// <param name="value"></param>
     /// <param name="valueKind"></param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void AddOrUpdate(this RegistryKey registryKey, string path, string name, string value, RegistryValueKind valueKind)
+    public static void AddOrUpdate(this RegistryKey registryKey, string path, string name, object value, RegistryValueKind valueKind)
     {
         var rk = registryKey.OpenSubKey(path, true);
         if (rk != null) // 该项必须已存在
