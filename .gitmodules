@@ -10,3 +10,6 @@
 [submodule "ref/Steam4NET"]
 	path = ref/Steam4NET
 	url = https://github.com/BeyondDimension/Steam4NET.git
+[submodule "ref/ValveKeyValue"]
+	path = ref/ValveKeyValue
+	url = https://github.com/BeyondDimension/ValveKeyValue
