@@ -77,7 +77,7 @@ public partial interface ISteamService
     /// <returns></returns>
     List<SteamUser> GetRememberUserList();
 
-    bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> list);
+    bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> model);
 
     bool RemoveAuthorizedDeviceList(AuthorizedDevice list);
 
@@ -93,9 +93,16 @@ public partial interface ISteamService
     /// <param name="userName"></param>
     void SetCurrentUser(string userName);
 
+    /// <summary>
+    /// Sets whether the user is invisible or not
+    /// </summary>
+    /// <param name="steamId32">SteamID of user to update</param>
+    /// <param name="ePersonaState">Persona state enum for user (0-7)</param>
+    void SetPersonaState(string steamId32, PersonaState ePersonaState);
+
     void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false);
 
-    void UpdateLocalUserData(IEnumerable<SteamUser> users);
+    void UpdateLocalUserData(params SteamUser[] users);
 
     void WatchLocalUserDataChange(Action changedAction);
 

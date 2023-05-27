@@ -255,7 +255,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return users;
     }
 
-    public bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> model)
+    public bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> items)
     {
         var authorizeds = new List<AuthorizedDevice>();
         try
@@ -264,7 +264,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             {
                 var v = VdfHelper.Read(ConfigVdfPath);
                 var lists = new KVCollectionValue();
-                foreach (var item in model.OrderBy(x => x.Index))
+                foreach (var item in items.OrderBy(x => x.Index))
                 {
                     KVObject itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
                     {
@@ -426,7 +426,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
-    public void UpdateLocalUserData(IEnumerable<SteamUser> users)
+    public void UpdateLocalUserData(params SteamUser[] users)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || !File.Exists(UserVdfPath))
         {
@@ -446,7 +446,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                         if (itemUser == null)
                         {
                             item["MostRecent"] = 0;
-                            break;
+                            continue;
                         }
                         item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
                         item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
