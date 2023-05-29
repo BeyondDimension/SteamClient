@@ -102,7 +102,7 @@ public partial interface ISteamService
 
     void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false);
 
-    void UpdateLocalUserData(params SteamUser[] users);
+    void UpdateLocalUserData(IEnumerable<SteamUser> users);
 
     void WatchLocalUserDataChange(Action changedAction);
 

@@ -426,7 +426,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
-    public void UpdateLocalUserData(params SteamUser[] users)
+    public void UpdateLocalUserData(IEnumerable<SteamUser> users)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || !File.Exists(UserVdfPath))
         {
