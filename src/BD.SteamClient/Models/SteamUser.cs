@@ -65,23 +65,32 @@ public class SteamUser : ReactiveObject
     [XmlElement("privacyState")]
     public string? PrivacyState { get; set; }
 
+    string? _AvatarIcon;
+
     [XmlElement("avatarIcon")]
-    public string? AvatarIcon { get; set; }
-
-    [XmlElement("avatarMedium")]
-    public string? AvatarMedium { get; set; }
-
-    Task<string?>? _AvatarStream;
-
-    [XmlIgnore]
-    public Task<string?>? AvatarStream
+    public string? AvatarIcon
     {
-        get => _AvatarStream;
-        set => this.RaiseAndSetIfChanged(ref _AvatarStream, value);
+        get => _AvatarIcon;
+        set => this.RaiseAndSetIfChanged(ref _AvatarIcon, value);
     }
 
+    string? _AvatarMedium;
+
+    [XmlElement("avatarMedium")]
+    public string? AvatarMedium
+    {
+        get => _AvatarMedium;
+        set => this.RaiseAndSetIfChanged(ref _AvatarMedium, value);
+    }
+
+    string? _AvatarFull;
+
     [XmlElement("avatarFull")]
-    public string? AvatarFull { get; set; }
+    public string? AvatarFull
+    {
+        get => _AvatarFull;
+        set => this.RaiseAndSetIfChanged(ref _AvatarFull, value);
+    }
 
     /// <summary>
     /// 注册日期

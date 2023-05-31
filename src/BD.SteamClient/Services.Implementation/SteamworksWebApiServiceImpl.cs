@@ -1,3 +1,5 @@
+using System;
+
 namespace BD.SteamClient.Services.Implementation;
 
 internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, ISteamworksWebApiService
@@ -20,7 +22,7 @@ internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, IS
     {
         var client = CreateClient(TAG, HttpHandlerCategory.Default);
         return client.GetAsync<T>(logger, requestUri, accept,
-            cancellationToken: cancellationToken, userAgent: http_helper.UserAgent);
+            cancellationToken: cancellationToken, userAgent: http_helper.UserAgent, jsonSerializer: Newtonsoft.Json.JsonSerializer.CreateDefault());
     }
 
     public async Task<string> GetAllSteamAppsString()
