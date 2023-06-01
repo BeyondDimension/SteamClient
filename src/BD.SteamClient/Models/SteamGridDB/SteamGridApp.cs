@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Models.SteamGridDB;
+namespace BD.SteamClient.Primitives.Models.SteamGridDB;
 
 public class SteamGridApp
 {
@@ -10,12 +10,12 @@ public class SteamGridApp
     /// <summary>
     /// 
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public List<string> Types { get; set; }
+    public List<string> Types { get; set; } = new();
 
     /// <summary>
     /// 
@@ -33,10 +33,10 @@ public class SteamGridAppData
     /// <summary>
     /// 
     /// </summary>
-    public SteamGridApp Data { get; set; }
+    public SteamGridApp Data { get; set; } = new();
 
     /// <summary>
     /// 
     /// </summary>
-    public List<string> Errors { get; set; }
+    public List<string> Errors { get; set; } = new();
 }

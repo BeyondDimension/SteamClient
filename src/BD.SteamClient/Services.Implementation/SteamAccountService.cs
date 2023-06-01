@@ -3,8 +3,6 @@ using AngleSharp.Dom;
 using Google.Protobuf;
 using Polly;
 using Polly.Retry;
-using static BD.SteamClient.Constants.SteamApiUrls;
-using HttpMethod = System.Net.Http.HttpMethod;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace BD.SteamClient.Services;

@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Models;
+namespace BD.SteamClient.Primitives.Models;
 
 [XmlRoot("profile")]
 public class SteamUser : ReactiveObject

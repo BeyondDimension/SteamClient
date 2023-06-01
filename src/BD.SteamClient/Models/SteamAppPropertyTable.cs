@@ -1,5 +1,5 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-namespace BD.SteamClient.Models;
+namespace BD.SteamClient.Primitives.Models;
 
 public class SteamAppPropertyTable
 {
@@ -94,7 +94,7 @@ public class SteamAppPropertyTable
         _properties.Add(item);
     }
 
-    public bool SetPropertyValue(string name, SteamAppPropertyType type, object value)
+    public bool SetPropertyValue(string name, SteamAppPropertyType type, object? value)
     {
         SteamAppProperty property = this[name];
         if (property == null)
@@ -102,13 +102,13 @@ public class SteamAppPropertyTable
             property = new SteamAppProperty(name);
             _properties.Add(property);
         }
-        bool result = property.PropertyType != type || !property.Value.Equals(value);
+        bool result = property.PropertyType != type || !object.Equals(property.Value, value);
         property.PropertyType = type;
         property.Value = value;
         return result;
     }
 
-    public bool SetPropertyValue(SteamAppPropertyType type, object value, params string[] propertyPath)
+    public bool SetPropertyValue(SteamAppPropertyType type, object? value, params string[] propertyPath)
     {
         SteamAppPropertyTable propertyTable = this;
         foreach (string item in propertyPath.Take(propertyPath.Length - 1))
@@ -202,7 +202,7 @@ public class SteamAppPropertyTable
 
     public override bool Equals(object obj)
     {
-        return Equals(obj as SteamAppPropertyTable);
+        return Equals((obj as SteamAppPropertyTable)!);
     }
 
     public override int GetHashCode()

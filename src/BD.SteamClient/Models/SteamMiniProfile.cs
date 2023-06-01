@@ -1,6 +1,6 @@
 #pragma warning disable IDE1006 // 命名样式
 
-namespace BD.SteamClient.Models;
+namespace BD.SteamClient.Primitives.Models;
 
 public class SteamMiniProfile
 {

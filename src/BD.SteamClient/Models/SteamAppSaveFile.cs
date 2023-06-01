@@ -2,7 +2,7 @@
 using SysIOPath = System.IO.Path;
 #endif
 
-namespace BD.SteamClient.Models;
+namespace BD.SteamClient.Primitives.Models;
 
 public class SteamAppSaveFile : ReactiveObject
 {

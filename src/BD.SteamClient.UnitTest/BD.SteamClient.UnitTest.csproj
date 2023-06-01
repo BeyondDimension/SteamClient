@@ -1,11 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Product>次元超越蒸汽客户端库单元测试</Product>
+		<Product>次元超越 SteamClient 单元测试</Product>
 		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+		<DefineConstants>TEST_PROJ;$(DefineConstants)</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.UnitTest.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
 		<Compile Include="..\ImplicitUsings.Common.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -15,19 +20,31 @@
 		<Compile Include="..\ImplicitUsings.MSEX.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.ReactiveUI.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.UnitTest.cs">
+		<Compile Include="..\ImplicitUsings.R.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\BD.SteamClient\Properties\ImplicitUsings.cs">
+		<Compile Include="..\ImplicitUsings.Models.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Helpers.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Constants.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.System.Management.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.BD.SteamClient.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>
@@ -44,6 +61,6 @@
 		<ProjectReference Include="..\BD.SteamClient\BD.SteamClient.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7.props" />
+	<Import Project="..\TFM_NETX_SINGLE.props" />
 
 </Project>

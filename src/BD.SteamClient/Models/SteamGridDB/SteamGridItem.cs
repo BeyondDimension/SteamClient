@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Models.SteamGridDB;
+namespace BD.SteamClient.Primitives.Models.SteamGridDB;
 
 public class SteamGridItem
 {
@@ -15,27 +15,27 @@ public class SteamGridItem
     /// <summary>
     /// 
     /// </summary>
-    public string Style { get; set; }
+    public string Style { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public string Url { get; set; }
+    public string Url { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public string Thumb { get; set; }
+    public string Thumb { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public List<string> Tags { get; set; }
+    public List<string> Tags { get; set; } = new();
 
     /// <summary>
     /// 
     /// </summary>
-    public SteamGridItemAuthor Author { get; set; }
+    public SteamGridItemAuthor Author { get; set; } = new();
 
     /// <summary>
     /// 
@@ -48,17 +48,17 @@ public class SteamGridItemAuthor
     /// <summary>
     /// 
     /// </summary>
-    public string Name { get; set; }
+    public string Name { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public string Steam64 { get; set; }
+    public string Steam64 { get; set; } = "";
 
     /// <summary>
     /// 
     /// </summary>
-    public string Avatar { get; set; }
+    public string Avatar { get; set; } = "";
 }
 
 public class SteamGridItemData
@@ -71,10 +71,10 @@ public class SteamGridItemData
     /// <summary>
     /// 
     /// </summary>
-    public List<SteamGridItem> Data { get; set; }
+    public List<SteamGridItem> Data { get; set; } = new();
 
     /// <summary>
     /// 
     /// </summary>
-    public List<string> Errors { get; set; }
+    public List<string> Errors { get; set; } = new();
 }

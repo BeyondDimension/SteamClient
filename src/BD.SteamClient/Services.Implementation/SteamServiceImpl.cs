@@ -888,6 +888,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             }
 
             string? installdir = v["installdir"].ToString();
+            installdir.ThrowIsNull();
             var filenameDir = Path.GetDirectoryName(filename);
             var newInfo = new SteamApp
             {

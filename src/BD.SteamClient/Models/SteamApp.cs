@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Models;
+namespace BD.SteamClient.Primitives.Models;
 
 public class SteamApp : ReactiveObject
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
@@ -877,10 +877,10 @@ public class SteamApp : ReactiveObject
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(_properties);
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
-        byte[] buffer = SHA1.Create().ComputeHash(bytes);
+        byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)AppId);
         using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
-        binaryWriter.Write(_stuffBeforeHash);
+        binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);
         binaryWriter.Write(_changeNumber);
         binaryWriter.Write(propertyTable);

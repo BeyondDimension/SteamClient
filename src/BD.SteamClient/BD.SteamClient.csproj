@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Product>次元超越蒸汽客户端库</Product>
+		<Product>次元超越 SteamClient 库</Product>
 		<PackageTags>BeyondDimension SteamClient</PackageTags>
 		<Description>$(Product)</Description>
+		<DefineConstants>USE_STMCLIENT_LIB;$(DefineConstants)</DefineConstants>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
@@ -17,15 +18,42 @@
 		<Compile Include="..\ImplicitUsings.MSEX.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.ReactiveUI.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.JsonProperty.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
+		<Compile Include="..\ImplicitUsings.R.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Models.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Services.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Helpers.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Constants.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.System.Management.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.BD.SteamClient.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.ReactiveUI.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.Common.Mvvm.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 		<!--<Compile Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\**\*.cs">
 			<LinkBase>ThirdParty\Gameloop.Vdf</LinkBase>
 		</Compile>
@@ -77,7 +105,12 @@
 		<PackageReference Include="System.Management" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NET7_WITH_ALL.props" />
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.SteamClient.Primitives.Models.Protobuf\BD.SteamClient.Primitives.Models.Protobuf.csproj" />
+	  <ProjectReference Include="..\BD.SteamClient.Primitives.Resources\BD.SteamClient.Primitives.Resources.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 	<Import Project="..\GeneratePackage.props" />
 
 </Project>

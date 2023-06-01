@@ -10,7 +10,6 @@ global using BD.Common.Columns;
 global using BD.Common.Models;
 global using BD.Common.Models.Abstractions;
 
-global using BD.SteamClient.Enums;
-global using BD.SteamClient.Enums.SteamGridDB;
-global using BD.SteamClient.Models;
-global using BD.SteamClient.Models.SteamGridDB;
+//global using BD.SteamClient.Primitives.Columns;
+global using BD.SteamClient.Primitives.Enums;
+global using BD.SteamClient.Primitives.Enums.SteamGridDB;

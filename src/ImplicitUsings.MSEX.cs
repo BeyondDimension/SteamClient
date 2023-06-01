@@ -5,14 +5,8 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-//#if !__NOT_IMPORT_CONFIGURATION__
-//global using Microsoft.Extensions.Configuration;
-//#endif
 global using Microsoft.Extensions.Logging;
 global using Microsoft.Extensions.Logging.Abstractions;
 global using Microsoft.Extensions.Options;
-//#if !BLAZOR && !__NOT_IMPORT_WEBENCODERS__
-//global using Microsoft.Extensions.WebEncoders;
-//#endif
 global using Microsoft.Extensions.Primitives;
 global using ILogger = Microsoft.Extensions.Logging.ILogger;
