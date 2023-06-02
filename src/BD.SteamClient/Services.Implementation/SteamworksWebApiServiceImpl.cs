@@ -48,7 +48,7 @@ internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, IS
         if (rsp != null)
         {
             data.MiniProfile = rsp;
-            data.SteamID = rsp.PersonaName;
+            data.SteamID = WebUtility.HtmlDecode(rsp.PersonaName);
             data.AvatarFull = rsp.AvatarUrl;
             data.AvatarMedium = rsp.AvatarUrl;
         }
