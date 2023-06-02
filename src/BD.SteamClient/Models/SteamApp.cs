@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 public class SteamApp : ReactiveObject
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)

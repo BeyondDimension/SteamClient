@@ -18,7 +18,7 @@ option optimize_for = SPEED;
 option cc_generic_services = true;
 
 // [START csharp_declaration]
-option csharp_namespace = "BD.SteamClient.Primitives.Models";
+option csharp_namespace = "BD.SteamClient.Models";
 // [END csharp_declaration]
 
 // [START messages]

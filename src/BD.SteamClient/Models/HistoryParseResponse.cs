@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 /// <summary>
 /// 账户历史数据返回值

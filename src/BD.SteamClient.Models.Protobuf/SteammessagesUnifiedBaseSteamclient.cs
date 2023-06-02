@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace BD.SteamClient.Primitives.Models {
+namespace BD.SteamClient.Models {
 
   /// <summary>Holder for reflection information generated from steammessages_unified_base.steamclient.proto</summary>
   public static partial class SteammessagesUnifiedBaseSteamclientReflection {
@@ -41,8 +41,8 @@ namespace BD.SteamClient.Primitives.Models {
             "IAEoCUIdSAGAAQGqAhVCRC5TdGVhbUNsaWVudC5Nb2RlbHM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.Reflection.GoogleProtobufDescriptorReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::BD.SteamClient.Primitives.Models.EProtoExecutionSite), }, new pb::Extension[] { SteammessagesUnifiedBaseSteamclientExtensions.Description, SteammessagesUnifiedBaseSteamclientExtensions.ServiceDescription, SteammessagesUnifiedBaseSteamclientExtensions.ServiceExecutionSite, SteammessagesUnifiedBaseSteamclientExtensions.MethodDescription, SteammessagesUnifiedBaseSteamclientExtensions.EnumDescription, SteammessagesUnifiedBaseSteamclientExtensions.EnumValueDescription }, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.NoResponse), global::BD.SteamClient.Primitives.Models.NoResponse.Parser, null, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::BD.SteamClient.Models.EProtoExecutionSite), }, new pb::Extension[] { SteammessagesUnifiedBaseSteamclientExtensions.Description, SteammessagesUnifiedBaseSteamclientExtensions.ServiceDescription, SteammessagesUnifiedBaseSteamclientExtensions.ServiceExecutionSite, SteammessagesUnifiedBaseSteamclientExtensions.MethodDescription, SteammessagesUnifiedBaseSteamclientExtensions.EnumDescription, SteammessagesUnifiedBaseSteamclientExtensions.EnumValueDescription }, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.NoResponse), global::BD.SteamClient.Models.NoResponse.Parser, null, null, null, null, null)
           }));
     }
     #endregion
@@ -54,8 +54,8 @@ namespace BD.SteamClient.Primitives.Models {
       new pb::Extension<global::Google.Protobuf.Reflection.FieldOptions, string>(50000, pb::FieldCodec.ForString(400002, ""));
     public static readonly pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, string> ServiceDescription =
       new pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, string>(50000, pb::FieldCodec.ForString(400002, ""));
-    public static readonly pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, global::BD.SteamClient.Primitives.Models.EProtoExecutionSite> ServiceExecutionSite =
-      new pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, global::BD.SteamClient.Primitives.Models.EProtoExecutionSite>(50008, pb::FieldCodec.ForEnum(400064, x => (int) x, x => (global::BD.SteamClient.Primitives.Models.EProtoExecutionSite) x, global::BD.SteamClient.Primitives.Models.EProtoExecutionSite.KEprotoExecutionSiteUnknown));
+    public static readonly pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, global::BD.SteamClient.Models.EProtoExecutionSite> ServiceExecutionSite =
+      new pb::Extension<global::Google.Protobuf.Reflection.ServiceOptions, global::BD.SteamClient.Models.EProtoExecutionSite>(50008, pb::FieldCodec.ForEnum(400064, x => (int) x, x => (global::BD.SteamClient.Models.EProtoExecutionSite) x, global::BD.SteamClient.Models.EProtoExecutionSite.KEprotoExecutionSiteUnknown));
     public static readonly pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, string> MethodDescription =
       new pb::Extension<global::Google.Protobuf.Reflection.MethodOptions, string>(50000, pb::FieldCodec.ForString(400002, ""));
     public static readonly pb::Extension<global::Google.Protobuf.Reflection.EnumOptions, string> EnumDescription =
@@ -87,7 +87,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesUnifiedBaseSteamclientReflection.Descriptor.MessageTypes[0]; }
+      get { return global::BD.SteamClient.Models.SteammessagesUnifiedBaseSteamclientReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

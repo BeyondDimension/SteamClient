@@ -1,5 +1,5 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 [MPObj, MP2Obj(SerializeLayout.Explicit)]
 public partial class ModifiedApp

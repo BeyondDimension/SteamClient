@@ -9,12 +9,14 @@
 global using SteamKit2;
 #endif
 
+#if !PROTOBUF_LIB
 global using static BD.SteamClient.Constants.SteamApiUrls;
 global using static BD.SteamClient.Constants.SteamGridDBApiUrls;
+#endif
 
-#if !PRIMITIVES_LIB && !PROTOBUF_LIB
-global using SteamUser = BD.SteamClient.Primitives.Models.SteamUser;
-global using SteamApps = BD.SteamClient.Primitives.Models.SteamApps;
+#if !PROTOBUF_LIB
+global using SteamUser = BD.SteamClient.Models.SteamUser;
+global using SteamApps = BD.SteamClient.Models.SteamApps;
 #endif
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)

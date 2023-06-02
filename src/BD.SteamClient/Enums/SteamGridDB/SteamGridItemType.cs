@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Enums.SteamGridDB;
+namespace BD.SteamClient.Enums.SteamGridDB;
 
 public enum SteamGridItemType
 {

@@ -35,12 +35,11 @@ Steam 客户端 API 调用
     - Helpers 静态助手类
     - Services 服务接口
     - Services.Implementation 服务接口实现
-- BD.SteamClient.Primitives **基本库**
+- BD.SteamClient **基本库**
     - Columns 列接口
     - Enums 枚举
     - Extensions 扩展函数
-- BD.SteamClient.Primitives.Models.Protobuf **Protobuf 模型库**
-- BD.SteamClient.Primitives.Resources **资源库**
+- BD.SteamClient.Models.Protobuf **Protobuf 模型库**
 - BD.SteamClient.UnitTest **单元测试**
     - XXXXUnitTest.cs 对某个功能进行测试
 

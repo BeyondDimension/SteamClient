@@ -24,9 +24,6 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.R.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.Models.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -106,8 +103,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient.Primitives.Models.Protobuf\BD.SteamClient.Primitives.Models.Protobuf.csproj" />
-	  <ProjectReference Include="..\BD.SteamClient.Primitives.Resources\BD.SteamClient.Primitives.Resources.csproj" />
+	  <ProjectReference Include="..\BD.SteamClient.Models.Protobuf\BD.SteamClient.Models.Protobuf.csproj" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX_WITH_ALL.props" />

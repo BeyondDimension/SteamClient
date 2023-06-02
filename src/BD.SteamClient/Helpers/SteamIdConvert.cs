@@ -76,13 +76,13 @@ public class SteamIdConvert
         {
             var s = _inputType switch
             {
-                SteamId3 => _input[4..],
+                SteamId3 => _input == null ? "" : _input[4..],
                 SteamId32 => _input,
                 SteamId64 => CalcSteamId32(),
                 _ => ""
             };
 
-            Id += GetOddity(s) + ":" + FloorDivide(s, 2);
+            Id += GetOddity(s!) + ":" + FloorDivide(s!, 2);
         }
     }
 
@@ -105,9 +105,9 @@ public class SteamIdConvert
         {
             Id32 = _inputType switch
             {
-                SteamId => (int.Parse(_input[10..]) * 2 + int.Parse($"{_input[8]}")).ToString(),
-                SteamId3 => _input[4..],
-                SteamId64 => (long.Parse(_input) - UndefinedId).ToString(),
+                SteamId => ((int.Parse(_input.ThrowIsNull()[10..]) * 2) + int.Parse($"{_input[8]}")).ToString(),
+                SteamId3 => _input.ThrowIsNull()[4..],
+                SteamId64 => (long.Parse(_input.ThrowIsNull()) - UndefinedId).ToString(),
                 _ => Id32
             };
         }
@@ -122,9 +122,9 @@ public class SteamIdConvert
         else
             Id64 = _inputType switch
             {
-                SteamId => (int.Parse(_input[10..]) * 2 + int.Parse($"{_input[8]}") + UndefinedId).ToString(),
-                SteamId3 => (int.Parse(_input[4..]) + UndefinedId).ToString(),
-                SteamId32 => (int.Parse(_input) + UndefinedId).ToString(),
+                SteamId => (int.Parse(this._input.ThrowIsNull()[10..]) * 2 + int.Parse($"{_input[8]}") + UndefinedId).ToString(),
+                SteamId3 => (int.Parse(_input.ThrowIsNull()[4..]) + UndefinedId).ToString(),
+                SteamId32 => (int.Parse(_input.ThrowIsNull()) + UndefinedId).ToString(),
                 _ => Id64
             };
     }

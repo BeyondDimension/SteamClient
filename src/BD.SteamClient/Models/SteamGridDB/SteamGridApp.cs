@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Models.SteamGridDB;
+namespace BD.SteamClient.Models.SteamGridDB;
 
 public class SteamGridApp
 {

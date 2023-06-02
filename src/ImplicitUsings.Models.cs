@@ -8,7 +8,7 @@
 global using BD.Common.Models;
 global using BD.Common.Models.Abstractions;
 
-global using BD.SteamClient.Primitives.Models;
+global using BD.SteamClient.Models;
 #if !PROTOBUF_LIB
-global using BD.SteamClient.Primitives.Models.SteamGridDB;
+global using BD.SteamClient.Models.SteamGridDB;
 #endif

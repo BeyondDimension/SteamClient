@@ -1,6 +1,6 @@
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
 
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 public sealed class ImportedSDAEntry
 {

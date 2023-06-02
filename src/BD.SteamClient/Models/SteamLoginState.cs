@@ -1,6 +1,6 @@
 using System.Runtime.Serialization.Formatters;
 
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 [MPObj, MP2Obj(SerializeLayout.Explicit)]
 public sealed partial class SteamLoginState : JsonModel<SteamLoginState>

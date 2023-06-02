@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Enums;
+namespace BD.SteamClient.Enums;
 
 public enum SteamResult
 {

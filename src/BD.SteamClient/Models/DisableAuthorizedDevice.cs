@@ -1,4 +1,4 @@
-namespace BD.SteamClient.Primitives.Models;
+namespace BD.SteamClient.Models;
 
 [MPObj, MP2Obj(SerializeLayout.Explicit)]
 public partial class DisableAuthorizedDevice

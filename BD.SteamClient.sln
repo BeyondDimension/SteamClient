@@ -76,13 +76,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{EF6DFA
 		src\Utils.cs = src\Utils.cs
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Primitives.Resources", "src\BD.SteamClient.Primitives.Resources\BD.SteamClient.Primitives.Resources.csproj", "{98955426-A0DC-4440-A636-53BE7D89A74C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Primitives", "src\BD.SteamClient.Primitives\BD.SteamClient.Primitives.csproj", "{12046055-695B-4279-BF3E-83265B38B1EF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Primitives.Models.Protobuf", "src\BD.SteamClient.Primitives.Models.Protobuf\BD.SteamClient.Primitives.Models.Protobuf.csproj", "{7872A503-7FA7-41FB-B6F2-FF4ECFC7B57C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValveKeyValue", "ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj", "{D93F2D56-466D-483C-B114-327C26E6F4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient.Models.Protobuf", "src\BD.SteamClient.Models.Protobuf\BD.SteamClient.Models.Protobuf.csproj", "{C6FD46A6-636E-4B2E-863D-331B973A3B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,22 +106,14 @@ Global
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47866076-0F25-42FE-8AB0-42EADD3FA322}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98955426-A0DC-4440-A636-53BE7D89A74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98955426-A0DC-4440-A636-53BE7D89A74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98955426-A0DC-4440-A636-53BE7D89A74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98955426-A0DC-4440-A636-53BE7D89A74C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{12046055-695B-4279-BF3E-83265B38B1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12046055-695B-4279-BF3E-83265B38B1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12046055-695B-4279-BF3E-83265B38B1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12046055-695B-4279-BF3E-83265B38B1EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7872A503-7FA7-41FB-B6F2-FF4ECFC7B57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7872A503-7FA7-41FB-B6F2-FF4ECFC7B57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7872A503-7FA7-41FB-B6F2-FF4ECFC7B57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7872A503-7FA7-41FB-B6F2-FF4ECFC7B57C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D93F2D56-466D-483C-B114-327C26E6F4D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6FD46A6-636E-4B2E-863D-331B973A3B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6FD46A6-636E-4B2E-863D-331B973A3B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6FD46A6-636E-4B2E-863D-331B973A3B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6FD46A6-636E-4B2E-863D-331B973A3B4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

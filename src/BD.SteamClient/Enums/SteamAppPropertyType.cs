@@ -1,7 +1,7 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable SA1413 // Use trailing comma in multi-line initializers
 
-namespace BD.SteamClient.Primitives.Enums;
+namespace BD.SteamClient.Enums;
 
 public enum SteamAppPropertyType
 {

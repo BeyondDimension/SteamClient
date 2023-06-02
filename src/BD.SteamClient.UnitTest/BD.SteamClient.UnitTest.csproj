@@ -26,9 +26,6 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.R.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.Models.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>

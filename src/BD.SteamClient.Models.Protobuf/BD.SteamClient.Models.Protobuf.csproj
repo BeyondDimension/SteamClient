@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<Product>次元超越 SteamClient ProtoBuf 模型库</Product>
-		<RootNamespace>BD.SteamClient.Primitives.Models</RootNamespace>
+		<RootNamespace>BD.SteamClient.Models</RootNamespace>
 		<PackageTags>BeyondDimension SteamClient</PackageTags>
 		<Description>$(Product)</Description>
 		<DefineConstants>PROTOBUF_LIB;$(DefineConstants)</DefineConstants>
@@ -24,9 +24,6 @@
 		<Compile Include="..\ImplicitUsings.MessagePack.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
-		<Compile Include="..\ImplicitUsings.R.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
 		<Compile Include="..\ImplicitUsings.Models.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
@@ -40,10 +37,6 @@
 		<PackageReference Include="BD.Common.Primitives" />
 		<PackageReference Include="BD.Common.Security" />
 		<PackageReference Include="Google.Protobuf" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\BD.SteamClient.Primitives\BD.SteamClient.Primitives.csproj" />
 	</ItemGroup>
 
 	<Import Project="..\TFM_NETX.props" />

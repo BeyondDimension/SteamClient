@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace BD.SteamClient.Primitives.Models {
+namespace BD.SteamClient.Models {
 
   /// <summary>Holder for reflection information generated from steammessages_auth.steamclient.proto</summary>
   public static partial class SteammessagesAuthSteamclientReflection {
@@ -390,50 +390,50 @@ namespace BD.SteamClient.Primitives.Models {
             "ZWFtIGNsb3VkIGdhbWluZyBvcGVyYXRpb25zQhuAAQGqAhVCRC5TdGVhbUNs",
             "aWVudC5Nb2RlbHM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::BD.SteamClient.Primitives.Models.SteammessagesBaseReflection.Descriptor, global::BD.SteamClient.Primitives.Models.SteammessagesUnifiedBaseSteamclientReflection.Descriptor, global::BD.SteamClient.Primitives.Models.EnumsReflection.Descriptor, },
-          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType), typeof(global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType), typeof(global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory), typeof(global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction), typeof(global::BD.SteamClient.Primitives.Models.EAuthTokenState), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetPasswordRSAPublicKey_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_GetPasswordRSAPublicKey_Request.Parser, new[]{ "AccountName" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetPasswordRSAPublicKey_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_GetPasswordRSAPublicKey_Response.Parser, new[]{ "PublickeyMod", "PublickeyExp", "Timestamp" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails), global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails.Parser, new[]{ "DeviceFriendlyName", "PlatformType", "OsType", "GamingDeviceType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaQR_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaQR_Request.Parser, new[]{ "DeviceFriendlyName", "PlatformType", "DeviceDetails" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation), global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation.Parser, new[]{ "ConfirmationType", "AssociatedMessage" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaQR_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaQR_Response.Parser, new[]{ "ClientId", "ChallengeUrl", "RequestId", "Interval", "AllowedConfirmations", "Version" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaCredentials_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaCredentials_Request.Parser, new[]{ "DeviceFriendlyName", "AccountName", "EncryptedPassword", "EncryptionTimestamp", "RememberLogin", "PlatformType", "Persistence", "WebsiteId", "DeviceDetails", "GuardData" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaCredentials_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_BeginAuthSessionViaCredentials_Response.Parser, new[]{ "ClientId", "RequestId", "Interval", "AllowedConfirmations", "Steamid", "WeakToken" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_PollAuthSessionStatus_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_PollAuthSessionStatus_Request.Parser, new[]{ "ClientId", "RequestId", "TokenToRevoke" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_PollAuthSessionStatus_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_PollAuthSessionStatus_Response.Parser, new[]{ "NewClientId", "NewChallengeUrl", "RefreshToken", "AccessToken", "HadRemoteInteraction", "AccountName", "NewGuardData" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionInfo_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionInfo_Request.Parser, new[]{ "ClientId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionInfo_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionInfo_Response.Parser, new[]{ "Ip", "Geoloc", "City", "State", "Country", "PlatformType", "DeviceFriendlyName", "Version", "LoginHistory", "RequestorLocationMismatch", "HighUsageLogin", "RequestedPersistence" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.Parser, new[]{ "Version", "ClientId", "Steamid", "Signature", "Confirm", "Persistence" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.Parser, new[]{ "ClientId", "Steamid", "Code", "CodeType" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_AccessToken_GenerateForApp_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_AccessToken_GenerateForApp_Request.Parser, new[]{ "RefreshToken", "Steamid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_AccessToken_GenerateForApp_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_AccessToken_GenerateForApp_Response.Parser, new[]{ "AccessToken" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Request.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Parser, new[]{ "RefreshTokens", "RequestingToken" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent.Parser, new[]{ "Time", "Ip", "Locale" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription.Parser, new[]{ "TokenId", "TokenDescription", "TimeUpdated", "PlatformType", "LoggedIn", "OsPlatform", "AuthType", "GamingDeviceType", "FirstSeen", "LastSeen" }, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionsForAccount_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionsForAccount_Request.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionsForAccount_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_GetAuthSessionsForAccount_Response.Parser, new[]{ "ClientIds" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_MigrateMobileSession_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_MigrateMobileSession_Request.Parser, new[]{ "Steamid", "Token", "Signature" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_MigrateMobileSession_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_MigrateMobileSession_Response.Parser, new[]{ "RefreshToken", "AccessToken" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Revoke_Request), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Revoke_Request.Parser, new[]{ "TokenId", "Steamid", "RevokeAction", "Signature" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Revoke_Response), global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Revoke_Response.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Request), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Request.Parser, new[]{ "Steamid", "IncludeRevokedTokens" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription), global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription.Parser, new[]{ "TokenId", "TokenDescription", "TimeUpdated", "PlatformType", "TokenState", "OwnerSteamid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Response), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Response.Parser, new[]{ "RefreshTokens" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokenByID_Request), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokenByID_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokenByID_Response), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_QueryRefreshTokenByID_Response.Parser, new[]{ "RefreshTokens" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_RevokeToken_Request), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_RevokeToken_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_RevokeToken_Response), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_RevokeToken_Response.Parser, null, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_GetTokenHistory_Request), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_GetTokenHistory_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit), global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit.Parser, new[]{ "Action", "Time", "Ip", "Actor" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_GetTokenHistory_Response), global::BD.SteamClient.Primitives.Models.CAuthenticationSupport_GetTokenHistory_Response.Parser, new[]{ "History" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CCloudGaming_CreateNonce_Request), global::BD.SteamClient.Primitives.Models.CCloudGaming_CreateNonce_Request.Parser, new[]{ "Platform", "Appid" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CCloudGaming_CreateNonce_Response), global::BD.SteamClient.Primitives.Models.CCloudGaming_CreateNonce_Response.Parser, new[]{ "Nonce", "Expiry" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CCloudGaming_GetTimeRemaining_Request), global::BD.SteamClient.Primitives.Models.CCloudGaming_GetTimeRemaining_Request.Parser, new[]{ "Platform", "AppidList" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining), global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining.Parser, new[]{ "Appid", "MinutesRemaining" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Primitives.Models.CCloudGaming_GetTimeRemaining_Response), global::BD.SteamClient.Primitives.Models.CCloudGaming_GetTimeRemaining_Response.Parser, new[]{ "Entries" }, null, null, null, null)
+          new pbr::FileDescriptor[] { global::BD.SteamClient.Models.SteammessagesBaseReflection.Descriptor, global::BD.SteamClient.Models.SteammessagesUnifiedBaseSteamclientReflection.Descriptor, global::BD.SteamClient.Models.EnumsReflection.Descriptor, },
+          new pbr::GeneratedClrTypeInfo(new[] {typeof(global::BD.SteamClient.Models.EAuthTokenPlatformType), typeof(global::BD.SteamClient.Models.EAuthSessionGuardType), typeof(global::BD.SteamClient.Models.EAuthSessionSecurityHistory), typeof(global::BD.SteamClient.Models.EAuthTokenRevokeAction), typeof(global::BD.SteamClient.Models.EAuthTokenState), }, null, new pbr::GeneratedClrTypeInfo[] {
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetPasswordRSAPublicKey_Request), global::BD.SteamClient.Models.CAuthentication_GetPasswordRSAPublicKey_Request.Parser, new[]{ "AccountName" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetPasswordRSAPublicKey_Response), global::BD.SteamClient.Models.CAuthentication_GetPasswordRSAPublicKey_Response.Parser, new[]{ "PublickeyMod", "PublickeyExp", "Timestamp" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_DeviceDetails), global::BD.SteamClient.Models.CAuthentication_DeviceDetails.Parser, new[]{ "DeviceFriendlyName", "PlatformType", "OsType", "GamingDeviceType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaQR_Request), global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaQR_Request.Parser, new[]{ "DeviceFriendlyName", "PlatformType", "DeviceDetails" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation), global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation.Parser, new[]{ "ConfirmationType", "AssociatedMessage" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaQR_Response), global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaQR_Response.Parser, new[]{ "ClientId", "ChallengeUrl", "RequestId", "Interval", "AllowedConfirmations", "Version" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaCredentials_Request), global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaCredentials_Request.Parser, new[]{ "DeviceFriendlyName", "AccountName", "EncryptedPassword", "EncryptionTimestamp", "RememberLogin", "PlatformType", "Persistence", "WebsiteId", "DeviceDetails", "GuardData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaCredentials_Response), global::BD.SteamClient.Models.CAuthentication_BeginAuthSessionViaCredentials_Response.Parser, new[]{ "ClientId", "RequestId", "Interval", "AllowedConfirmations", "Steamid", "WeakToken" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_PollAuthSessionStatus_Request), global::BD.SteamClient.Models.CAuthentication_PollAuthSessionStatus_Request.Parser, new[]{ "ClientId", "RequestId", "TokenToRevoke" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_PollAuthSessionStatus_Response), global::BD.SteamClient.Models.CAuthentication_PollAuthSessionStatus_Response.Parser, new[]{ "NewClientId", "NewChallengeUrl", "RefreshToken", "AccessToken", "HadRemoteInteraction", "AccountName", "NewGuardData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetAuthSessionInfo_Request), global::BD.SteamClient.Models.CAuthentication_GetAuthSessionInfo_Request.Parser, new[]{ "ClientId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetAuthSessionInfo_Response), global::BD.SteamClient.Models.CAuthentication_GetAuthSessionInfo_Response.Parser, new[]{ "Ip", "Geoloc", "City", "State", "Country", "PlatformType", "DeviceFriendlyName", "Version", "LoginHistory", "RequestorLocationMismatch", "HighUsageLogin", "RequestedPersistence" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request), global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.Parser, new[]{ "Version", "ClientId", "Steamid", "Signature", "Confirm", "Persistence" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response), global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request), global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.Parser, new[]{ "ClientId", "Steamid", "Code", "CodeType" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response), global::BD.SteamClient.Models.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_AccessToken_GenerateForApp_Request), global::BD.SteamClient.Models.CAuthentication_AccessToken_GenerateForApp_Request.Parser, new[]{ "RefreshToken", "Steamid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_AccessToken_GenerateForApp_Response), global::BD.SteamClient.Models.CAuthentication_AccessToken_GenerateForApp_Response.Parser, new[]{ "AccessToken" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Request), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Request.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Parser, new[]{ "RefreshTokens", "RequestingToken" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent.Parser, new[]{ "Time", "Ip", "Locale" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription.Parser, new[]{ "TokenId", "TokenDescription", "TimeUpdated", "PlatformType", "LoggedIn", "OsPlatform", "AuthType", "GamingDeviceType", "FirstSeen", "LastSeen" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetAuthSessionsForAccount_Request), global::BD.SteamClient.Models.CAuthentication_GetAuthSessionsForAccount_Request.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_GetAuthSessionsForAccount_Response), global::BD.SteamClient.Models.CAuthentication_GetAuthSessionsForAccount_Response.Parser, new[]{ "ClientIds" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_MigrateMobileSession_Request), global::BD.SteamClient.Models.CAuthentication_MigrateMobileSession_Request.Parser, new[]{ "Steamid", "Token", "Signature" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_MigrateMobileSession_Response), global::BD.SteamClient.Models.CAuthentication_MigrateMobileSession_Response.Parser, new[]{ "RefreshToken", "AccessToken" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Revoke_Request), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Revoke_Request.Parser, new[]{ "TokenId", "Steamid", "RevokeAction", "Signature" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthentication_RefreshToken_Revoke_Response), global::BD.SteamClient.Models.CAuthentication_RefreshToken_Revoke_Response.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Request), global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Request.Parser, new[]{ "Steamid", "IncludeRevokedTokens" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CSupportRefreshTokenDescription), global::BD.SteamClient.Models.CSupportRefreshTokenDescription.Parser, new[]{ "TokenId", "TokenDescription", "TimeUpdated", "PlatformType", "TokenState", "OwnerSteamid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Response), global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokensByAccount_Response.Parser, new[]{ "RefreshTokens" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokenByID_Request), global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokenByID_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokenByID_Response), global::BD.SteamClient.Models.CAuthenticationSupport_QueryRefreshTokenByID_Response.Parser, new[]{ "RefreshTokens" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_RevokeToken_Request), global::BD.SteamClient.Models.CAuthenticationSupport_RevokeToken_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_RevokeToken_Response), global::BD.SteamClient.Models.CAuthenticationSupport_RevokeToken_Response.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_GetTokenHistory_Request), global::BD.SteamClient.Models.CAuthenticationSupport_GetTokenHistory_Request.Parser, new[]{ "TokenId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CSupportRefreshTokenAudit), global::BD.SteamClient.Models.CSupportRefreshTokenAudit.Parser, new[]{ "Action", "Time", "Ip", "Actor" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CAuthenticationSupport_GetTokenHistory_Response), global::BD.SteamClient.Models.CAuthenticationSupport_GetTokenHistory_Response.Parser, new[]{ "History" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Request), global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Request.Parser, new[]{ "Platform", "Appid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Response), global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Response.Parser, new[]{ "Nonce", "Expiry" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Request), global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Request.Parser, new[]{ "Platform", "AppidList" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_TimeRemaining), global::BD.SteamClient.Models.CCloudGaming_TimeRemaining.Parser, new[]{ "Appid", "MinutesRemaining" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response), global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response.Parser, new[]{ "Entries" }, null, null, null, null)
           }));
     }
     #endregion
@@ -500,7 +500,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[0]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -704,7 +704,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[1]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1012,7 +1012,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[2]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1074,12 +1074,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "platform_type" field.</summary>
     public const int PlatformTypeFieldNumber = 2;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+    private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+    public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
       get { if ((_hasBits0 & 1) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -1309,7 +1309,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 16: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 24: {
@@ -1340,7 +1340,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 16: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 24: {
@@ -1373,7 +1373,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[3]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1434,12 +1434,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "platform_type" field.</summary>
     public const int PlatformTypeFieldNumber = 2;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+    private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+    public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
       get { if ((_hasBits0 & 1) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -1461,10 +1461,10 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "device_details" field.</summary>
     public const int DeviceDetailsFieldNumber = 3;
-    private global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails deviceDetails_;
+    private global::BD.SteamClient.Models.CAuthentication_DeviceDetails deviceDetails_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails DeviceDetails {
+    public global::BD.SteamClient.Models.CAuthentication_DeviceDetails DeviceDetails {
       get { return deviceDetails_; }
       set {
         deviceDetails_ = value;
@@ -1590,7 +1590,7 @@ namespace BD.SteamClient.Primitives.Models {
       }
       if (other.deviceDetails_ != null) {
         if (deviceDetails_ == null) {
-          DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+          DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
         }
         DeviceDetails.MergeFrom(other.DeviceDetails);
       }
@@ -1614,12 +1614,12 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 16: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 26: {
             if (deviceDetails_ == null) {
-              DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+              DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
             }
             input.ReadMessage(DeviceDetails);
             break;
@@ -1644,12 +1644,12 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 16: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 26: {
             if (deviceDetails_ == null) {
-              DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+              DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
             }
             input.ReadMessage(DeviceDetails);
             break;
@@ -1676,7 +1676,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[4]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1710,12 +1710,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "confirmation_type" field.</summary>
     public const int ConfirmationTypeFieldNumber = 1;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType ConfirmationTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType.KEauthSessionGuardTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthSessionGuardType ConfirmationTypeDefaultValue = global::BD.SteamClient.Models.EAuthSessionGuardType.KEauthSessionGuardTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType confirmationType_;
+    private global::BD.SteamClient.Models.EAuthSessionGuardType confirmationType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType ConfirmationType {
+    public global::BD.SteamClient.Models.EAuthSessionGuardType ConfirmationType {
       get { if ((_hasBits0 & 1) != 0) { return confirmationType_; } else { return ConfirmationTypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -1881,7 +1881,7 @@ namespace BD.SteamClient.Primitives.Models {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            ConfirmationType = (global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType) input.ReadEnum();
+            ConfirmationType = (global::BD.SteamClient.Models.EAuthSessionGuardType) input.ReadEnum();
             break;
           }
           case 18: {
@@ -1904,7 +1904,7 @@ namespace BD.SteamClient.Primitives.Models {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            ConfirmationType = (global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType) input.ReadEnum();
+            ConfirmationType = (global::BD.SteamClient.Models.EAuthSessionGuardType) input.ReadEnum();
             break;
           }
           case 18: {
@@ -1933,7 +1933,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[5]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2077,12 +2077,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "allowed_confirmations" field.</summary>
     public const int AllowedConfirmationsFieldNumber = 5;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> _repeated_allowedConfirmations_codec
-        = pb::FieldCodec.ForMessage(42, global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> allowedConfirmations_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> _repeated_allowedConfirmations_codec
+        = pb::FieldCodec.ForMessage(42, global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> allowedConfirmations_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> AllowedConfirmations {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> AllowedConfirmations {
       get { return allowedConfirmations_; }
     }
 
@@ -2371,7 +2371,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[6]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2545,12 +2545,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "platform_type" field.</summary>
     public const int PlatformTypeFieldNumber = 6;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+    private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+    public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
       get { if ((_hasBits0 & 4) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -2572,12 +2572,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "persistence" field.</summary>
     public const int PersistenceFieldNumber = 7;
-    private readonly static global::BD.SteamClient.Primitives.Models.ESessionPersistence PersistenceDefaultValue = global::BD.SteamClient.Primitives.Models.ESessionPersistence.KEsessionPersistencePersistent;
+    private readonly static global::BD.SteamClient.Models.ESessionPersistence PersistenceDefaultValue = global::BD.SteamClient.Models.ESessionPersistence.KEsessionPersistencePersistent;
 
-    private global::BD.SteamClient.Primitives.Models.ESessionPersistence persistence_;
+    private global::BD.SteamClient.Models.ESessionPersistence persistence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.ESessionPersistence Persistence {
+    public global::BD.SteamClient.Models.ESessionPersistence Persistence {
       get { if ((_hasBits0 & 8) != 0) { return persistence_; } else { return PersistenceDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -2625,10 +2625,10 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "device_details" field.</summary>
     public const int DeviceDetailsFieldNumber = 9;
-    private global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails deviceDetails_;
+    private global::BD.SteamClient.Models.CAuthentication_DeviceDetails deviceDetails_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails DeviceDetails {
+    public global::BD.SteamClient.Models.CAuthentication_DeviceDetails DeviceDetails {
       get { return deviceDetails_; }
       set {
         deviceDetails_ = value;
@@ -2889,7 +2889,7 @@ namespace BD.SteamClient.Primitives.Models {
       }
       if (other.deviceDetails_ != null) {
         if (deviceDetails_ == null) {
-          DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+          DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
         }
         DeviceDetails.MergeFrom(other.DeviceDetails);
       }
@@ -2932,11 +2932,11 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 56: {
-            Persistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            Persistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
           case 66: {
@@ -2945,7 +2945,7 @@ namespace BD.SteamClient.Primitives.Models {
           }
           case 74: {
             if (deviceDetails_ == null) {
-              DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+              DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
             }
             input.ReadMessage(DeviceDetails);
             break;
@@ -2990,11 +2990,11 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 56: {
-            Persistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            Persistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
           case 66: {
@@ -3003,7 +3003,7 @@ namespace BD.SteamClient.Primitives.Models {
           }
           case 74: {
             if (deviceDetails_ == null) {
-              DeviceDetails = new global::BD.SteamClient.Primitives.Models.CAuthentication_DeviceDetails();
+              DeviceDetails = new global::BD.SteamClient.Models.CAuthentication_DeviceDetails();
             }
             input.ReadMessage(DeviceDetails);
             break;
@@ -3034,7 +3034,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[7]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3152,12 +3152,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "allowed_confirmations" field.</summary>
     public const int AllowedConfirmationsFieldNumber = 4;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> _repeated_allowedConfirmations_codec
-        = pb::FieldCodec.ForMessage(34, global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> allowedConfirmations_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> _repeated_allowedConfirmations_codec
+        = pb::FieldCodec.ForMessage(34, global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> allowedConfirmations_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_AllowedConfirmation> AllowedConfirmations {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_AllowedConfirmation> AllowedConfirmations {
       get { return allowedConfirmations_; }
     }
 
@@ -3472,7 +3472,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[8]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3781,7 +3781,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[9]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4294,7 +4294,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[10]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4500,7 +4500,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[11]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4674,12 +4674,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "platform_type" field.</summary>
     public const int PlatformTypeFieldNumber = 6;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+    private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+    public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
       get { if ((_hasBits0 & 1) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
       set {
         _hasBits0 |= 1;
@@ -4754,12 +4754,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "login_history" field.</summary>
     public const int LoginHistoryFieldNumber = 9;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory LoginHistoryDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory.KEauthSessionSecurityHistoryInvalid;
+    private readonly static global::BD.SteamClient.Models.EAuthSessionSecurityHistory LoginHistoryDefaultValue = global::BD.SteamClient.Models.EAuthSessionSecurityHistory.KEauthSessionSecurityHistoryInvalid;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory loginHistory_;
+    private global::BD.SteamClient.Models.EAuthSessionSecurityHistory loginHistory_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory LoginHistory {
+    public global::BD.SteamClient.Models.EAuthSessionSecurityHistory LoginHistory {
       get { if ((_hasBits0 & 4) != 0) { return loginHistory_; } else { return LoginHistoryDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -4835,12 +4835,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "requested_persistence" field.</summary>
     public const int RequestedPersistenceFieldNumber = 12;
-    private readonly static global::BD.SteamClient.Primitives.Models.ESessionPersistence RequestedPersistenceDefaultValue = global::BD.SteamClient.Primitives.Models.ESessionPersistence.KEsessionPersistenceInvalid;
+    private readonly static global::BD.SteamClient.Models.ESessionPersistence RequestedPersistenceDefaultValue = global::BD.SteamClient.Models.ESessionPersistence.KEsessionPersistenceInvalid;
 
-    private global::BD.SteamClient.Primitives.Models.ESessionPersistence requestedPersistence_;
+    private global::BD.SteamClient.Models.ESessionPersistence requestedPersistence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.ESessionPersistence RequestedPersistence {
+    public global::BD.SteamClient.Models.ESessionPersistence RequestedPersistence {
       get { if ((_hasBits0 & 32) != 0) { return requestedPersistence_; } else { return RequestedPersistenceDefaultValue; } }
       set {
         _hasBits0 |= 32;
@@ -5160,7 +5160,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 58: {
@@ -5172,7 +5172,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 72: {
-            LoginHistory = (global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory) input.ReadEnum();
+            LoginHistory = (global::BD.SteamClient.Models.EAuthSessionSecurityHistory) input.ReadEnum();
             break;
           }
           case 80: {
@@ -5184,7 +5184,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 96: {
-            RequestedPersistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            RequestedPersistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
         }
@@ -5223,7 +5223,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 58: {
@@ -5235,7 +5235,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 72: {
-            LoginHistory = (global::BD.SteamClient.Primitives.Models.EAuthSessionSecurityHistory) input.ReadEnum();
+            LoginHistory = (global::BD.SteamClient.Models.EAuthSessionSecurityHistory) input.ReadEnum();
             break;
           }
           case 80: {
@@ -5247,7 +5247,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 96: {
-            RequestedPersistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            RequestedPersistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
         }
@@ -5272,7 +5272,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[12]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5444,12 +5444,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "persistence" field.</summary>
     public const int PersistenceFieldNumber = 6;
-    private readonly static global::BD.SteamClient.Primitives.Models.ESessionPersistence PersistenceDefaultValue = global::BD.SteamClient.Primitives.Models.ESessionPersistence.KEsessionPersistencePersistent;
+    private readonly static global::BD.SteamClient.Models.ESessionPersistence PersistenceDefaultValue = global::BD.SteamClient.Models.ESessionPersistence.KEsessionPersistencePersistent;
 
-    private global::BD.SteamClient.Primitives.Models.ESessionPersistence persistence_;
+    private global::BD.SteamClient.Models.ESessionPersistence persistence_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.ESessionPersistence Persistence {
+    public global::BD.SteamClient.Models.ESessionPersistence Persistence {
       get { if ((_hasBits0 & 16) != 0) { return persistence_; } else { return PersistenceDefaultValue; } }
       set {
         _hasBits0 |= 16;
@@ -5673,7 +5673,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            Persistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            Persistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
         }
@@ -5712,7 +5712,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 48: {
-            Persistence = (global::BD.SteamClient.Primitives.Models.ESessionPersistence) input.ReadEnum();
+            Persistence = (global::BD.SteamClient.Models.ESessionPersistence) input.ReadEnum();
             break;
           }
         }
@@ -5736,7 +5736,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[13]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5889,7 +5889,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[14]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6005,12 +6005,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "code_type" field.</summary>
     public const int CodeTypeFieldNumber = 4;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType CodeTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType.KEauthSessionGuardTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthSessionGuardType CodeTypeDefaultValue = global::BD.SteamClient.Models.EAuthSessionGuardType.KEauthSessionGuardTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType codeType_;
+    private global::BD.SteamClient.Models.EAuthSessionGuardType codeType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType CodeType {
+    public global::BD.SteamClient.Models.EAuthSessionGuardType CodeType {
       get { if ((_hasBits0 & 4) != 0) { return codeType_; } else { return CodeTypeDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -6194,7 +6194,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 32: {
-            CodeType = (global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType) input.ReadEnum();
+            CodeType = (global::BD.SteamClient.Models.EAuthSessionGuardType) input.ReadEnum();
             break;
           }
         }
@@ -6225,7 +6225,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 32: {
-            CodeType = (global::BD.SteamClient.Primitives.Models.EAuthSessionGuardType) input.ReadEnum();
+            CodeType = (global::BD.SteamClient.Models.EAuthSessionGuardType) input.ReadEnum();
             break;
           }
         }
@@ -6249,7 +6249,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[15]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6402,7 +6402,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[16]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6658,7 +6658,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[17]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6861,7 +6861,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[18]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7014,7 +7014,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[19]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7048,12 +7048,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "refresh_tokens" field.</summary>
     public const int RefreshTokensFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> _repeated_refreshTokens_codec
-        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> _repeated_refreshTokens_codec
+        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> RefreshTokens {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription> RefreshTokens {
       get { return refreshTokens_; }
     }
 
@@ -7249,7 +7249,7 @@ namespace BD.SteamClient.Primitives.Models {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Descriptor.NestedTypes[0]; }
+          get { return global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Descriptor.NestedTypes[0]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7311,10 +7311,10 @@ namespace BD.SteamClient.Primitives.Models {
 
         /// <summary>Field number for the "ip" field.</summary>
         public const int IpFieldNumber = 2;
-        private global::BD.SteamClient.Primitives.Models.CMsgIPAddress ip_;
+        private global::BD.SteamClient.Models.CMsgIPAddress ip_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::BD.SteamClient.Primitives.Models.CMsgIPAddress Ip {
+        public global::BD.SteamClient.Models.CMsgIPAddress Ip {
           get { return ip_; }
           set {
             ip_ = value;
@@ -7463,7 +7463,7 @@ namespace BD.SteamClient.Primitives.Models {
           }
           if (other.ip_ != null) {
             if (ip_ == null) {
-              Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+              Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
             }
             Ip.MergeFrom(other.Ip);
           }
@@ -7491,7 +7491,7 @@ namespace BD.SteamClient.Primitives.Models {
               }
               case 18: {
                 if (ip_ == null) {
-                  Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+                  Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
                 }
                 input.ReadMessage(Ip);
                 break;
@@ -7521,7 +7521,7 @@ namespace BD.SteamClient.Primitives.Models {
               }
               case 18: {
                 if (ip_ == null) {
-                  Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+                  Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
                 }
                 input.ReadMessage(Ip);
                 break;
@@ -7552,7 +7552,7 @@ namespace BD.SteamClient.Primitives.Models {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
         public static pbr::MessageDescriptor Descriptor {
-          get { return global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Descriptor.NestedTypes[1]; }
+          get { return global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Descriptor.NestedTypes[1]; }
         }
 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7674,12 +7674,12 @@ namespace BD.SteamClient.Primitives.Models {
 
         /// <summary>Field number for the "platform_type" field.</summary>
         public const int PlatformTypeFieldNumber = 4;
-        private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+        private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-        private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+        private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+        public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
           get { if ((_hasBits0 & 4) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
           set {
             _hasBits0 |= 4;
@@ -7809,10 +7809,10 @@ namespace BD.SteamClient.Primitives.Models {
 
         /// <summary>Field number for the "first_seen" field.</summary>
         public const int FirstSeenFieldNumber = 9;
-        private global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent firstSeen_;
+        private global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent firstSeen_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent FirstSeen {
+        public global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent FirstSeen {
           get { return firstSeen_; }
           set {
             firstSeen_ = value;
@@ -7821,10 +7821,10 @@ namespace BD.SteamClient.Primitives.Models {
 
         /// <summary>Field number for the "last_seen" field.</summary>
         public const int LastSeenFieldNumber = 10;
-        private global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent lastSeen_;
+        private global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent lastSeen_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent LastSeen {
+        public global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent LastSeen {
           get { return lastSeen_; }
           set {
             lastSeen_ = value;
@@ -8059,13 +8059,13 @@ namespace BD.SteamClient.Primitives.Models {
           }
           if (other.firstSeen_ != null) {
             if (firstSeen_ == null) {
-              FirstSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+              FirstSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
             }
             FirstSeen.MergeFrom(other.FirstSeen);
           }
           if (other.lastSeen_ != null) {
             if (lastSeen_ == null) {
-              LastSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+              LastSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
             }
             LastSeen.MergeFrom(other.LastSeen);
           }
@@ -8097,7 +8097,7 @@ namespace BD.SteamClient.Primitives.Models {
                 break;
               }
               case 32: {
-                PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+                PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
                 break;
               }
               case 40: {
@@ -8118,14 +8118,14 @@ namespace BD.SteamClient.Primitives.Models {
               }
               case 74: {
                 if (firstSeen_ == null) {
-                  FirstSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+                  FirstSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
                 }
                 input.ReadMessage(FirstSeen);
                 break;
               }
               case 82: {
                 if (lastSeen_ == null) {
-                  LastSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+                  LastSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
                 }
                 input.ReadMessage(LastSeen);
                 break;
@@ -8158,7 +8158,7 @@ namespace BD.SteamClient.Primitives.Models {
                 break;
               }
               case 32: {
-                PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+                PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
                 break;
               }
               case 40: {
@@ -8179,14 +8179,14 @@ namespace BD.SteamClient.Primitives.Models {
               }
               case 74: {
                 if (firstSeen_ == null) {
-                  FirstSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+                  FirstSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
                 }
                 input.ReadMessage(FirstSeen);
                 break;
               }
               case 82: {
                 if (lastSeen_ == null) {
-                  LastSeen = new global::BD.SteamClient.Primitives.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
+                  LastSeen = new global::BD.SteamClient.Models.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent();
                 }
                 input.ReadMessage(LastSeen);
                 break;
@@ -8217,7 +8217,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[20]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8369,7 +8369,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[21]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8550,7 +8550,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[22]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8857,7 +8857,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[23]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9112,7 +9112,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[24]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9202,12 +9202,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "revoke_action" field.</summary>
     public const int RevokeActionFieldNumber = 3;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction RevokeActionDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction.KEauthTokenRevokePermanent;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenRevokeAction RevokeActionDefaultValue = global::BD.SteamClient.Models.EAuthTokenRevokeAction.KEauthTokenRevokePermanent;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction revokeAction_;
+    private global::BD.SteamClient.Models.EAuthTokenRevokeAction revokeAction_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction RevokeAction {
+    public global::BD.SteamClient.Models.EAuthTokenRevokeAction RevokeAction {
       get { if ((_hasBits0 & 4) != 0) { return revokeAction_; } else { return RevokeActionDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -9413,7 +9413,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 24: {
-            RevokeAction = (global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction) input.ReadEnum();
+            RevokeAction = (global::BD.SteamClient.Models.EAuthTokenRevokeAction) input.ReadEnum();
             break;
           }
           case 34: {
@@ -9444,7 +9444,7 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 24: {
-            RevokeAction = (global::BD.SteamClient.Primitives.Models.EAuthTokenRevokeAction) input.ReadEnum();
+            RevokeAction = (global::BD.SteamClient.Models.EAuthTokenRevokeAction) input.ReadEnum();
             break;
           }
           case 34: {
@@ -9472,7 +9472,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[25]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9625,7 +9625,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[26]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9883,7 +9883,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[27]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[27]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10001,12 +10001,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "platform_type" field.</summary>
     public const int PlatformTypeFieldNumber = 4;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformTypeDefaultValue = global::BD.SteamClient.Models.EAuthTokenPlatformType.KEauthTokenPlatformTypeUnknown;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType platformType_;
+    private global::BD.SteamClient.Models.EAuthTokenPlatformType platformType_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType PlatformType {
+    public global::BD.SteamClient.Models.EAuthTokenPlatformType PlatformType {
       get { if ((_hasBits0 & 4) != 0) { return platformType_; } else { return PlatformTypeDefaultValue; } }
       set {
         _hasBits0 |= 4;
@@ -10028,12 +10028,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "token_state" field.</summary>
     public const int TokenStateFieldNumber = 5;
-    private readonly static global::BD.SteamClient.Primitives.Models.EAuthTokenState TokenStateDefaultValue = global::BD.SteamClient.Primitives.Models.EAuthTokenState.KEauthTokenStateInvalid;
+    private readonly static global::BD.SteamClient.Models.EAuthTokenState TokenStateDefaultValue = global::BD.SteamClient.Models.EAuthTokenState.KEauthTokenStateInvalid;
 
-    private global::BD.SteamClient.Primitives.Models.EAuthTokenState tokenState_;
+    private global::BD.SteamClient.Models.EAuthTokenState tokenState_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.EAuthTokenState TokenState {
+    public global::BD.SteamClient.Models.EAuthTokenState TokenState {
       get { if ((_hasBits0 & 8) != 0) { return tokenState_; } else { return TokenStateDefaultValue; } }
       set {
         _hasBits0 |= 8;
@@ -10276,11 +10276,11 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 32: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 40: {
-            TokenState = (global::BD.SteamClient.Primitives.Models.EAuthTokenState) input.ReadEnum();
+            TokenState = (global::BD.SteamClient.Models.EAuthTokenState) input.ReadEnum();
             break;
           }
           case 49: {
@@ -10315,11 +10315,11 @@ namespace BD.SteamClient.Primitives.Models {
             break;
           }
           case 32: {
-            PlatformType = (global::BD.SteamClient.Primitives.Models.EAuthTokenPlatformType) input.ReadEnum();
+            PlatformType = (global::BD.SteamClient.Models.EAuthTokenPlatformType) input.ReadEnum();
             break;
           }
           case 40: {
-            TokenState = (global::BD.SteamClient.Primitives.Models.EAuthTokenState) input.ReadEnum();
+            TokenState = (global::BD.SteamClient.Models.EAuthTokenState) input.ReadEnum();
             break;
           }
           case 49: {
@@ -10347,7 +10347,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[28]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[28]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10379,12 +10379,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "refresh_tokens" field.</summary>
     public const int RefreshTokensFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> _repeated_refreshTokens_codec
-        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> _repeated_refreshTokens_codec
+        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Models.CSupportRefreshTokenDescription.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> RefreshTokens {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> RefreshTokens {
       get { return refreshTokens_; }
     }
 
@@ -10526,7 +10526,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[29]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[29]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10731,7 +10731,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[30]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[30]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -10763,12 +10763,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "refresh_tokens" field.</summary>
     public const int RefreshTokensFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> _repeated_refreshTokens_codec
-        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> _repeated_refreshTokens_codec
+        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Models.CSupportRefreshTokenDescription.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> refreshTokens_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenDescription> RefreshTokens {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenDescription> RefreshTokens {
       get { return refreshTokens_; }
     }
 
@@ -10910,7 +10910,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[31]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[31]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11115,7 +11115,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[32]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[32]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11268,7 +11268,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[33]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[33]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11474,7 +11474,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[34]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[34]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11564,10 +11564,10 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "ip" field.</summary>
     public const int IpFieldNumber = 3;
-    private global::BD.SteamClient.Primitives.Models.CMsgIPAddress ip_;
+    private global::BD.SteamClient.Models.CMsgIPAddress ip_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::BD.SteamClient.Primitives.Models.CMsgIPAddress Ip {
+    public global::BD.SteamClient.Models.CMsgIPAddress Ip {
       get { return ip_; }
       set {
         ip_ = value;
@@ -11733,7 +11733,7 @@ namespace BD.SteamClient.Primitives.Models {
       }
       if (other.ip_ != null) {
         if (ip_ == null) {
-          Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+          Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
         }
         Ip.MergeFrom(other.Ip);
       }
@@ -11765,7 +11765,7 @@ namespace BD.SteamClient.Primitives.Models {
           }
           case 26: {
             if (ip_ == null) {
-              Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+              Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
             }
             input.ReadMessage(Ip);
             break;
@@ -11799,7 +11799,7 @@ namespace BD.SteamClient.Primitives.Models {
           }
           case 26: {
             if (ip_ == null) {
-              Ip = new global::BD.SteamClient.Primitives.Models.CMsgIPAddress();
+              Ip = new global::BD.SteamClient.Models.CMsgIPAddress();
             }
             input.ReadMessage(Ip);
             break;
@@ -11829,7 +11829,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[35]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[35]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11861,12 +11861,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "history" field.</summary>
     public const int HistoryFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit> _repeated_history_codec
-        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit> history_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CSupportRefreshTokenAudit> _repeated_history_codec
+        = pb::FieldCodec.ForMessage(10, global::BD.SteamClient.Models.CSupportRefreshTokenAudit.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenAudit> history_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenAudit>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CSupportRefreshTokenAudit> History {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CSupportRefreshTokenAudit> History {
       get { return history_; }
     }
 
@@ -12008,7 +12008,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[36]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[36]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12265,7 +12265,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[37]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[37]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12521,7 +12521,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[38]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[38]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12753,7 +12753,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[39]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[39]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13010,7 +13010,7 @@ namespace BD.SteamClient.Primitives.Models {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::BD.SteamClient.Primitives.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[40]; }
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[40]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -13042,12 +13042,12 @@ namespace BD.SteamClient.Primitives.Models {
 
     /// <summary>Field number for the "entries" field.</summary>
     public const int EntriesFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining> _repeated_entries_codec
-        = pb::FieldCodec.ForMessage(18, global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining.Parser);
-    private readonly pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining> entries_ = new pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining>();
+    private static readonly pb::FieldCodec<global::BD.SteamClient.Models.CCloudGaming_TimeRemaining> _repeated_entries_codec
+        = pb::FieldCodec.ForMessage(18, global::BD.SteamClient.Models.CCloudGaming_TimeRemaining.Parser);
+    private readonly pbc::RepeatedField<global::BD.SteamClient.Models.CCloudGaming_TimeRemaining> entries_ = new pbc::RepeatedField<global::BD.SteamClient.Models.CCloudGaming_TimeRemaining>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::BD.SteamClient.Primitives.Models.CCloudGaming_TimeRemaining> Entries {
+    public pbc::RepeatedField<global::BD.SteamClient.Models.CCloudGaming_TimeRemaining> Entries {
       get { return entries_; }
     }
 
