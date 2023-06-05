@@ -57,7 +57,7 @@
 		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\bin\**" />
 		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\obj\**" />
 		<Compile Remove="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Properties\**" />-->
-		<Compile Include="..\..\ref\Steam4NET\Steam4NET\**\*.cs">
+		<!--<Compile Include="..\..\ref\Steam4NET\Steam4NET\**\*.cs">
 			<LinkBase>ThirdParty\Steam4NET</LinkBase>
 		</Compile>
 		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\bin\**" />
@@ -66,7 +66,7 @@
 		<Compile Remove="..\..\ref\Steam4NET\Steam4NET\autogen\CGameID.cs" />
 		<None Include="..\..\ref\Steam4NET\Steam4NET\autogen\CGameID.cs">
 			<LinkBase>ThirdParty\Steam4NET\autogen</LinkBase>
-		</None>
+		</None>-->
 		<Compile Include="..\..\ref\SteamAchievementManager\SAM.API\**\*.cs">
 			<LinkBase>ThirdParty\SAM.API</LinkBase>
 		</Compile>
