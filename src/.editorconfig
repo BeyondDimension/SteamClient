@@ -482,3 +482,8 @@ dotnet_diagnostic.CS8604.severity = error
 # CA1829: 在可用时使用 Length/Count 属性而不是 Count()
 dotnet_diagnostic.CA1829.severity = error
 
+# CA1846: 首选 “AsSpan” 而不是 “Substring”
+dotnet_diagnostic.CA1846.severity = error
+
+# IDE0057: 使用范围运算符
+dotnet_diagnostic.IDE0057.severity = error
