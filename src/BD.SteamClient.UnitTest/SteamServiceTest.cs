@@ -1,3 +1,4 @@
+#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 using System.IO;
 using ValveKeyValue;
 
@@ -109,3 +110,4 @@ public sealed class SteamServiceTest
         protected override string? GetString(string name) => default;
     }
 }
+#endif

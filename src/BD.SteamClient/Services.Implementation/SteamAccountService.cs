@@ -32,7 +32,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
     public SteamAccountService(
         IServiceProvider s,
-        Func<CookieContainer, SocketsHttpHandler> func) : base(func, s.GetRequiredService<ILogger<SteamAccountService>>())
+        Func<CookieContainer, HttpHandlerType> func) : base(func, s.GetRequiredService<ILogger<SteamAccountService>>())
     {
         uas = s.GetRequiredService<IRandomGetUserAgentService>();
     }
