@@ -25,9 +25,16 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     public SteamAccountService(
         Func<HttpHandlerType, HttpClient>? func,
         IRandomGetUserAgentService uas,
-        ILogger logger) : base(func, logger)
+        ILogger<SteamAccountService> logger) : base(func, logger)
     {
         this.uas = uas;
+    }
+
+    public SteamAccountService(
+        IServiceProvider s,
+        Func<CookieContainer, SocketsHttpHandler> func) : base(func, s.GetRequiredService<ILogger<SteamAccountService>>())
+    {
+        uas = s.GetRequiredService<IRandomGetUserAgentService>();
     }
 
     public bool UseRetry { get; set; } = true;

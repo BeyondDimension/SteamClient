@@ -55,4 +55,21 @@ public static partial class ServiceCollectionExtensions
         services.AddSingleton<ISteamworksWebApiService, SteamworksWebApiServiceImpl>();
         return services;
     }
+
+    /// <summary>
+    /// 添加 Steam 账号服务
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="getHandler"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddSteamAccountService(this IServiceCollection services,
+        Func<CookieContainer, HttpHandlerType>? getHandler = null)
+    {
+        if (getHandler == null)
+            services.AddSingleton<ISteamAccountService, SteamAccountService>();
+        else
+            services.AddSingleton<ISteamAccountService>(s => new SteamAccountService(s, getHandler));
+        return services;
+    }
 }
