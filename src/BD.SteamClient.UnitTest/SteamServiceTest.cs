@@ -1,5 +1,4 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-using System.IO;
 using ValveKeyValue;
 
 namespace BD.SteamClient.UnitTest;
@@ -10,7 +9,7 @@ public sealed class SteamServiceTest
 
     ISteamService Client => service.GetRequiredService<ISteamService>();
 
-    static readonly bool IsCI = Environment.UserName.Contains("runner", StringComparison.OrdinalIgnoreCase); // DOTNET_ROOT: C:\Users\runneradmin\AppData\Local\Microsoft\dotnet
+    static bool IsCI => ProjectUtils.IsCI();
 
     [SetUp]
     public void Setup()
