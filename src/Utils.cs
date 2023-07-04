@@ -16,6 +16,12 @@ public static partial class ProjectUtils
         ProjPath = GetProjectPath();
         // https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
         isCI = bool.TryParse(Environment.GetEnvironmentVariable("CI"), out var result) && result;
+        if (!isCI)
+        {
+            var machineName = Environment.MachineName;
+            if (machineName.Contains("aigio", StringComparison.OrdinalIgnoreCase) && machineName.Contains("vm", StringComparison.OrdinalIgnoreCase))
+                isCI = true;
+        }
     }
 
     /// <summary>
