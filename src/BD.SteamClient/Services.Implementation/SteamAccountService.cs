@@ -570,16 +570,18 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
         }
 
-        var refresh_token = await PollAuthSessionStatusAsync(loginState.ClientId!.Value, loginState.RequestId!);
+        var pollAuthSessionStatusResponse = await PollAuthSessionStatusAsync(loginState.ClientId!.Value, loginState.RequestId!);
+        loginState.AccessToken = pollAuthSessionStatusResponse.AccessToken;
+        loginState.RefreshToken = pollAuthSessionStatusResponse.RefreshToken;
 
-        if (string.IsNullOrEmpty(refresh_token))
+        if (string.IsNullOrEmpty(pollAuthSessionStatusResponse.RefreshToken))
         {
             loginState.Message = "登录失败，请确认令牌是否正确。";
             loginState.ResetStatus();
             return;
         }
 
-        var tokens = await FinalizeLoginAsync(refresh_token, loginState.SeesionId);
+        var tokens = await FinalizeLoginAsync(pollAuthSessionStatusResponse.RefreshToken, loginState.SeesionId);
 
         if (string.IsNullOrEmpty(tokens?.SteamId))
         {
@@ -631,7 +633,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
     }
 
-    async Task<string> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id)
+    async Task<CAuthentication_PollAuthSessionStatus_Response> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id)
     {
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
@@ -656,7 +658,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
 
             var result = CAuthentication_PollAuthSessionStatus_Response.Parser.ParseFrom(await respone.Content.ReadAsStreamAsync());
-            return result.RefreshToken;
+            return result;
         });
         return r;
     }

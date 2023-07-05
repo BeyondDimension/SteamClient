@@ -66,10 +66,11 @@ public static partial class ServiceCollectionExtensions
     public static IServiceCollection AddSteamAccountService(this IServiceCollection services,
         Func<CookieContainer, HttpHandlerType>? getHandler = null)
     {
+        services.TryAddSingleton<IRandomGetUserAgentService, ConsoleRandomGetUserAgentServiceImpl>();
         if (getHandler == null)
-            services.AddSingleton<ISteamAccountService, SteamAccountService>();
+            services.TryAddSingleton<ISteamAccountService, SteamAccountService>();
         else
-            services.AddSingleton<ISteamAccountService>(s => new SteamAccountService(s, getHandler));
+            services.TryAddSingleton<ISteamAccountService>(s => new SteamAccountService(s, getHandler));
         return services;
     }
 }

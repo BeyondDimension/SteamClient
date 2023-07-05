@@ -103,6 +103,12 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
     [MPKey(26), MP2Key(26), JsonPropertyOrder(26)]
     public byte[]? RequestId { get; set; }
 
+    [MPKey(27), MP2Key(27), JsonPropertyOrder(27)]
+    public string? AccessToken { get; set; }
+    
+    [MPKey(28), MP2Key(28), JsonPropertyOrder(28)]
+    public string? RefreshToken { get; set; }
+
     public void ResetStatus()
     {
         Requires2FA = false;
