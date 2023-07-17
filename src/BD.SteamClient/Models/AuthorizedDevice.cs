@@ -62,13 +62,11 @@ public class AuthorizedDevice : ReactiveObject
 
     public string? AvatarIcon { get; set; }
 
-    public string? AvatarMedium { get; set; }
+    string? _AvatarMedium;
 
-    Task<string?>? _AvatarStream;
-
-    public Task<string?>? AvatarStream
+    public string? AvatarMedium
     {
-        get => _AvatarStream;
-        set => this.RaiseAndSetIfChanged(ref _AvatarStream, value);
+        get => _AvatarMedium;
+        set => this.RaiseAndSetIfChanged(ref _AvatarMedium, value);
     }
 }
