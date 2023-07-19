@@ -213,6 +213,18 @@ public class SteamUser : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _MiniProfile, value);
     }
 
+    PersonaState _PersonaState;
+
+    /// <summary>
+    /// 离线模式
+    /// </summary>
+    [XmlIgnore]
+    public PersonaState PersonaState
+    {
+        get => _PersonaState;
+        set => this.RaiseAndSetIfChanged(ref _PersonaState, value);
+    }
+
     ///// <summary>
     ///// 来源 Valve Data File 字符串
     ///// </summary>
