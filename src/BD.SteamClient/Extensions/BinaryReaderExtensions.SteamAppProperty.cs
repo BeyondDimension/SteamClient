@@ -5,7 +5,7 @@ using Color = System.Drawing.Color;
 // ReSharper disable once CheckNamespace
 namespace System;
 
-internal static partial class BinaryReaderExtensions
+public static partial class BinaryReaderExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReadAppInfoString(this BinaryReader reader)
