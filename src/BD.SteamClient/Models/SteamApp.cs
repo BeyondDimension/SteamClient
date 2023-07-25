@@ -583,6 +583,19 @@ public class SteamApp : ReactiveObject
         }
     }
 
+    public void RunOrStopSteamAppProcess()
+    {
+        if (Process != null)
+        {
+            Process.KillEntireProcessTree();
+            Process = null;
+        }
+        else
+        {
+            StartSteamAppProcess();
+        }
+    }
+
     #region Replace DLSS dll files methods
 
     //        public void DetectDLSS()
