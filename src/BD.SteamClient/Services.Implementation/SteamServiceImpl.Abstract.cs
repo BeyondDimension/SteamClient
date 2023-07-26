@@ -122,20 +122,10 @@ abstract partial class SteamServiceImpl
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected virtual void SetSteamCurrentUser(string userName)
     {
+        // override BD.WTTS.Services.Implementation.SteamServiceImpl2.SetSteamCurrentUser
 #if WINDOWS
-        //if (DesktopBridge.IsRunningAsUwp)
-        //{
-        //    var reg = $"Windows Registry Editor Version 5.00{Environment.NewLine}[HKEY_CURRENT_USER\\Software\\Valve\\Steam]{Environment.NewLine}\"AutoLoginUser\"=\"{userName}\"";
-        //    var path = IOPath.GetCacheFilePath(CacheTempDirName, "SwitchSteamUser", FileEx.Reg);
-        //    File.WriteAllText(path, reg, Encoding.UTF8);
-        //    var p = StartProcessRegedit($"/s \"{path}\"");
-        //    IOPath.TryDeleteInDelay(p, path);
-        //}
-        //else
-        //{
         Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "AutoLoginUser", userName, RegistryValueKind.String);
         Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "RememberPassword", 1, RegistryValueKind.DWord);
-        //}
 #elif LINUX || MACOS || MACCATALYST
         try
         {
