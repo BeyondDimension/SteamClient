@@ -319,37 +319,37 @@ public class SteamApp : ReactiveObject
 
     public string DisplayName => string.IsNullOrEmpty(Name) ? AppId.ToString() : Name;
 
-    string? _baseDLSSVersion;
+    //string? _baseDLSSVersion;
 
-    public string? BaseDLSSVersion
-    {
-        get => _baseDLSSVersion;
-        set
-        {
-            if (_baseDLSSVersion != value)
-            {
-                _baseDLSSVersion = value;
-                this.RaisePropertyChanged();
-            }
-        }
-    }
+    //public string? BaseDLSSVersion
+    //{
+    //    get => _baseDLSSVersion;
+    //    set
+    //    {
+    //        if (_baseDLSSVersion != value)
+    //        {
+    //            _baseDLSSVersion = value;
+    //            this.RaisePropertyChanged();
+    //        }
+    //    }
+    //}
 
-    string? _currentDLSSVersion;
+    //string? _currentDLSSVersion;
 
-    public string? CurrentDLSSVersion
-    {
-        get => _currentDLSSVersion;
-        set
-        {
-            if (_currentDLSSVersion != value)
-            {
-                _currentDLSSVersion = value;
-                this.RaisePropertyChanged();
-            }
-        }
-    }
+    //public string? CurrentDLSSVersion
+    //{
+    //    get => _currentDLSSVersion;
+    //    set
+    //    {
+    //        if (_currentDLSSVersion != value)
+    //        {
+    //            _currentDLSSVersion = value;
+    //            this.RaisePropertyChanged();
+    //        }
+    //    }
+    //}
 
-    public bool HasDLSS { get; set; }
+    //public bool HasDLSS { get; set; }
 
     public string? Logo { get; set; }
 
