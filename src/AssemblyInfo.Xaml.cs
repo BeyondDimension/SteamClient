@@ -13,7 +13,6 @@ global using Avalonia.Metadata;
 [assembly: XmlnsDefinition("https://steampp.net/ui", "BD.SteamClient.Enums")]
 [assembly: XmlnsDefinition("https://steampp.net/ui", "BD.SteamClient.Enums.SteamGridDB")]
 [assembly: XmlnsDefinition("https://steampp.net/ui", "BD.SteamClient.Helpers")]
-[assembly: XmlnsDefinition("https://steampp.net/ui", "BD.SteamClient.Helpers")]
 [assembly: XmlnsDefinition("https://steampp.net/ui", "BD.SteamClient.Models.SteamGridDB")]
 [assembly: XmlnsDefinition("https://steampp.net/services", "BD.SteamClient.Services")]
 [assembly: XmlnsDefinition("https://steampp.net/services", "BD.SteamClient.Services.Mvvm")]
