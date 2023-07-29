@@ -44,7 +44,7 @@ public class AchievementInfo : ReactiveObject
     //    STEAMAPP_ICON_URL,
     //    AppId, IconLocked), ImageChannelType.SteamAchievementIcon);
 
-    public Task<ImageSource.ClipStream?> IconStream => ImageSource.GetAsync(IconUrl);
+    //public Task<ImageSource.ClipStream?> IconStream => ImageSource.GetAsync(IconUrl);
 
     public int Permission { get; set; }
 
