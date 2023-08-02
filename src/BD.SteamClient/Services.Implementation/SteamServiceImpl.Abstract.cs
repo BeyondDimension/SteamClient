@@ -39,12 +39,70 @@ abstract partial class SteamServiceImpl
     protected abstract string? GetString(string name);
 
 #if WINDOWS
+    /// <summary>
+    /// 在 Windows 平台中修正从注册表读取的路径大小写与路径分隔符
+    /// </summary>
+    /// <param name="s"></param>
+    /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     static string? GetFullPath(string s)
     {
         if (!string.IsNullOrWhiteSpace(s))
         {
-            return Path.GetFullPath(s);
+            try
+            {
+                var path_splits = s.Split(new[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries); // 按分隔符切割数组
+                StringBuilder builder = new();
+                bool pathExists = true;
+                for (int i = 0; i < path_splits.Length; i++) // 循环路径数组
+                {
+                    var item = path_splits[i];
+                    var is_first = i == 0;
+                    var is_last = !is_first && (i == path_splits.Length - 1);
+                    if (is_first) // 修正盘符
+                    {
+                        if (item.HasLowerLetter())
+                        {
+                            item = item.ToUpperInvariant(); // 盘符大写
+                        }
+                    }
+                    else if (pathExists)
+                    {
+                        try
+                        {
+                            var path = builder.ToString();
+                            var dirInfo = new DirectoryInfo(path);
+                            pathExists = dirInfo.Exists;
+                            if (pathExists)
+                            {
+                                IEnumerable<FileSystemInfo> infos = is_last ? dirInfo.EnumerateFileSystemInfos() : dirInfo.EnumerateDirectories();
+                                foreach (var info in infos)
+                                {
+                                    if (string.Equals(info.Name,
+                                        item, StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        // 修正文件名或文件夹名
+                                        item = info.Name;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            pathExists = false;
+                        }
+                    }
+
+                    builder.Append(item);
+                    if (!is_last) builder.Append(Path.DirectorySeparatorChar);
+                }
+                return builder.ToString();
+            }
+            catch
+            {
+                return Path.GetFullPath(s);
+            }
         }
         return null;
     }
