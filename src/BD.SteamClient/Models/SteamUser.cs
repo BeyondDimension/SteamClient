@@ -3,8 +3,6 @@ namespace BD.SteamClient.Models;
 [XmlRoot("profile")]
 public class SteamUser : ReactiveObject
 {
-    public const long UndefinedId = 76561197960265728;
-
     public SteamUser()
     {
     }

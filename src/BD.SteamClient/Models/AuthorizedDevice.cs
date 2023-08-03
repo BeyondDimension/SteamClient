@@ -2,11 +2,15 @@ namespace BD.SteamClient.Models;
 
 public class AuthorizedDevice : ReactiveObject
 {
-    public const long UndefinedId = 76561197960265728;
-
     public AuthorizedDevice() { }
 
-    public bool Disable { get; set; }
+    bool _Disable;
+
+    public bool Disable
+    {
+        get => _Disable;
+        set => this.RaiseAndSetIfChanged(ref _Disable, value);
+    }
 
     public string ProfileUrl => string.Format(STEAM_PROFILES_URL, SteamId64_Int);
 
@@ -18,7 +22,7 @@ public class AuthorizedDevice : ReactiveObject
 
     public long SteamId3_Int { get; set; }
 
-    public long SteamId64_Int => UndefinedId + SteamId3_Int;
+    public long SteamId64_Int => SteamIdConvert.UndefinedId + SteamId3_Int;
 
     string? _OnlineState;
 
