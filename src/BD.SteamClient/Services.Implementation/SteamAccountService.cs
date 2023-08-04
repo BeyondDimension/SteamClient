@@ -1,5 +1,6 @@
 using AngleSharp;
 using AngleSharp.Dom;
+using AngleSharp.Html;
 using Google.Protobuf;
 using Polly;
 using Polly.Retry;
@@ -13,21 +14,27 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
     readonly IRandomGetUserAgentService uas;
 
+    readonly ISteamSessionService sessions;
+
     [ActivatorUtilitiesConstructor]
     public SteamAccountService(
         IServiceProvider s,
         IRandomGetUserAgentService uas,
+        ISteamSessionService ssession,
         ILogger<SteamAccountService> logger) : base(s, logger)
     {
         this.uas = uas;
+        this.sessions = ssession;
     }
 
     public SteamAccountService(
         Func<HttpHandlerType, HttpClient>? func,
         IRandomGetUserAgentService uas,
+        ISteamSessionService ssession,
         ILogger<SteamAccountService> logger) : base(func, logger)
     {
         this.uas = uas;
+        this.sessions = ssession;
     }
 
     public SteamAccountService(
@@ -35,6 +42,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamAccountService>>())
     {
         uas = s.GetRequiredService<IRandomGetUserAgentService>();
+        sessions = s.GetRequiredService<ISteamSessionService>();
     }
 
     public bool UseRetry { get; set; } = true;
@@ -301,10 +309,14 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             var doLoginRespone = JsonSerializer.Deserialize(jsonObj.ToString(), DoLoginRespone_.Default.DoLoginRespone);
             if (doLoginRespone != null)
             {
+                var session = new SteamSession();
+                session.CookieContainer = cookieContainer;
+                session.SteamId = loginState.SteamId.ToString();
                 loginState.Cookies = cookieContainer.GetAllCookies();
                 //loginState.Cookies.Add(new Cookie("sessionid", "", "/", "steamcommunity.com"));
                 if (doLoginRespone.TransferParameters != null && doLoginRespone.TransferUrls != null)
                 {
+                    session.OAuthToken = doLoginRespone.TransferParameters.Auth;
                     loginState.SteamIdString = doLoginRespone.TransferParameters.Steamid;
 
                     _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
@@ -336,6 +348,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                         }
                     }
                 }
+                sessions.AddOrSetSeesion(session);
             }
         }
     }
@@ -630,6 +643,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             //await client.GetAsync("https://store.steampowered.com/");
             //await client.GetAsync("https://steamcommunity.com/");
             loginState.Cookies = cookieContainer.GetAllCookies();
+            var session = new SteamSession();
+            session.CookieContainer = cookieContainer;
+            session.SteamId = loginState.SteamId.ToString();
+            sessions.AddOrSetSeesion(session);
         }
     }
 
