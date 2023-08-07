@@ -535,7 +535,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
                 loginState.Message = eResult switch
                 {
-                    "5" => "请核对您的密码和帐户名称并重试。",
+                    "5" => "请核对您的密码和账户名称并重试。",
                     "20" => "与 Steam 通信时出现问题。请稍后重试。",
                     "84" => "短期内来自您所在位置的失败登录过多。请15分钟后再试。",
                     _ => $"{eResult} 登录遇到未知错误，请稍后重试。",
