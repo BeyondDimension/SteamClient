@@ -16,7 +16,7 @@ public interface ISteamTradeService
     /// <param name="identity_secret"></param>
     /// <param name="interval"></param>
     /// <param name="tradeTaskEnum"></param>
-    void StartTradeTask(SteamSession steamSession, string api_key, string identity_secret, int interval, TradeTaskEnum tradeTaskEnum);
+    void StartTradeTask(SteamSession steamSession, int interval, TradeTaskEnum tradeTaskEnum);
 
     /// <summary>
     /// 停止交易报价后台任务
@@ -30,7 +30,7 @@ public interface ISteamTradeService
     /// 接受所有礼品类型报价
     /// </summary>
     /// <returns></returns>
-    Task<bool> AcceptAllGiftTradeOfferAsync(SteamSession steamSession, string api_key, string identity_secret);
+    Task<bool> AcceptAllGiftTradeOfferAsync(SteamSession steamSession);
 
     /// <summary>
     /// 批量处理交易报价
@@ -40,19 +40,31 @@ public interface ISteamTradeService
     /// <param name="steam_id"></param>
     /// <param name="identity_secret"></param>
     /// <returns></returns>
-    Task<bool> BatchHandleTradeOfferAsync(SteamSession steamSession, string identity_secret, Dictionary<string, string> trades, bool accept);
+    Task<bool> BatchHandleTradeOfferAsync(SteamSession steamSession, Dictionary<string, string> trades, bool accept);
 
     /// <summary>
     /// 接受交易报价
     /// </summary>
     /// <returns></returns>
-    Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string identity_secret, string trade_offer_id, TradeInfo? tradeInfo);
+    Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo);
 
     /// <summary>
     /// 发送交易报价
     /// </summary>
     /// <returns></returns>
-    Task<bool> SendTradeOfferAsync(SteamSession steamSession, string identity_secret, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message);
+    Task<bool> SendTradeOfferAsync(SteamSession steamSession, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message);
+
+    /// <summary>
+    /// 使用目标第三方Url发送报价
+    /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="identity_secret"></param>
+    /// <param name="trade_offer_url"></param>
+    /// <param name="my_itmes"></param>
+    /// <param name="them_items"></param>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    Task<bool> SendTradeOfferWithUrlAsync(SteamSession steamSession, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message);
 
     /// <summary>
     /// 发送方取消交易报价

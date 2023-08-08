@@ -643,10 +643,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             //await client.GetAsync("https://store.steampowered.com/");
             //await client.GetAsync("https://steamcommunity.com/");
             loginState.Cookies = cookieContainer.GetAllCookies();
-            var session = new SteamSession();
-            session.CookieContainer = cookieContainer;
-            session.SteamId = loginState.SteamId.ToString();
-            sessions.AddOrSetSeesion(session);
         }
     }
 

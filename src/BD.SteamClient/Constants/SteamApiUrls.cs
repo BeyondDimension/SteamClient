@@ -80,7 +80,7 @@ public static class SteamApiUrls
     public const string STEAM_TRADEOFFER_GET_SUMMARY = "https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1?key={0}";
     public const string STEAM_TRADEOFFER_GET_OFFERS = "https://api.steampowered.com/IEconService/GetTradeOffers/v1";
     public const string STEAM_TRADEOFFER_URL = "https://steamcommunity.com/tradeoffer/{0}";
-    public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com//tradeoffer/new/send";
+    public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com/tradeoffer/new/send";
 
     /// <summary>
     /// MOBILECONF 令牌确认API

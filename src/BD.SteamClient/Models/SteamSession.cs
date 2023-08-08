@@ -12,5 +12,11 @@ public class SteamSession
 
     public string MessageId { get; set; } = string.Empty;
 
+    public string APIKey { get; set; } = string.Empty;
+
+    public string IdentitySecret { get; set; } = string.Empty;
+
+    public long ServerTimeDiff { get; set; }
+
     public HttpClient? HttpClient { get; set; }
 }

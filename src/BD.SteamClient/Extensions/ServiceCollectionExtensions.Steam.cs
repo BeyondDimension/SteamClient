@@ -81,9 +81,12 @@ public static partial class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IServiceCollection AddSteamTradeService(this IServiceCollection services)
+    public static IServiceCollection AddSteamTradeService(this IServiceCollection services, Func<CookieContainer, HttpHandlerType>? getHandler = null)
     {
-        services.AddSingleton<ISteamTradeService, SteamTradeServiceImpl>();
+        if (getHandler == null)
+            services.TryAddSingleton<ISteamTradeService, SteamTradeServiceImpl>();
+        else
+            services.TryAddSingleton<ISteamTradeService>(s => new SteamTradeServiceImpl(s, getHandler));
         return services;
     }
 }

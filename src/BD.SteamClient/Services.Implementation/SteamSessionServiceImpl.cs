@@ -29,13 +29,13 @@ public class SteamSessionServiceImpl : ISteamSessionService
 
     public SteamSession? RentSession(string steam_id)
     {
-        _ = _sessions.TryGetValue(steam_id, out var steamSession);
+        _ = _sessions.TryGetValue(SpecialTag(steam_id), out var steamSession);
         return steamSession;
     }
 
     public bool RemoveSession(string steam_id)
     {
-        if (_sessions.TryRemove(steam_id, out var steamSession))
+        if (_sessions.TryRemove(SpecialTag(steam_id), out var steamSession))
         {
             steamSession?.HttpClient?.Dispose();
             return true;
