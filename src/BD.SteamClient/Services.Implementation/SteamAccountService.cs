@@ -551,7 +551,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             {
                 if (result.AllowedConfirmations[0].ConfirmationType == EAuthSessionGuardType.KEauthSessionGuardTypeDeviceCode)
                 {
-                    loginState.Message = "需要手机验证码";
+                    loginState.Message = "需要2FA验证码";
                     loginState.Requires2FA = true;
                     loginState.Success = false;
                     return;

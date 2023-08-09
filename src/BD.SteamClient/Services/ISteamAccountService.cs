@@ -79,7 +79,7 @@ public interface ISteamAccountService
     Task<bool> SetSteamAccountCountry(SteamLoginState loginState, string currencyCode);
 
     /// <summary>
-    /// 获取当前可设置得区域列表
+    /// 获取当前可设置的区域列表
     /// </summary>
     Task<List<CurrencyData>?> GetSteamAccountCountryCodes(SteamLoginState loginState);
 }
