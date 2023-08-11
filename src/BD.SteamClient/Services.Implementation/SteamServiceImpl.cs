@@ -397,7 +397,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             try
             {
                 var v = VdfHelper.Read(UserVdfPath);
-                var users = (IEnumerable<KVObject>)v["users"];
+                var users = v.Children;
                 if (users.Any_Nullable())
                 {
                     var item = users.FirstOrDefault(s => s.Name == user.SteamId64.ToString());
@@ -435,7 +435,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         else
         {
             var v = VdfHelper.Read(UserVdfPath);
-            var models = v["users"] as KVCollectionValue;
+            var models = v.Children;
             if (models.Any_Nullable())
             {
                 foreach (var item in models)
