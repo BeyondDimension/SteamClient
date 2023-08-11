@@ -89,4 +89,31 @@ public static partial class ServiceCollectionExtensions
             services.TryAddSingleton<ISteamTradeService>(s => new SteamTradeServiceImpl(s, getHandler));
         return services;
     }
+
+    /// <summary>
+    /// 添加 Steam 令牌服务
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddSteamAuthenticatorService(this IServiceCollection services, Func<CookieContainer, HttpHandlerType>? getHandler = null)
+    {
+        if (getHandler == null)
+            services.TryAddSingleton<ISteamAuthenticatorService, SteamAuthenticatorServiceImpl>();
+        else
+            services.TryAddSingleton<ISteamAuthenticatorService>(s => new SteamAuthenticatorServiceImpl(s, getHandler));
+        return services;
+    }
+
+    /// <summary>
+    /// 添加 Steam Idle挂卡服务
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddSteamIdleCardService(this IServiceCollection services)
+    {
+        services.TryAddSingleton<ISteamIdleCardService, SteamIdleCardServiceImpl>();
+        return services;
+    }
 }

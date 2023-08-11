@@ -17,8 +17,8 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     }
 
     public SteamTradeServiceImpl(
-    IServiceProvider s,
-    Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
+        IServiceProvider s,
+        Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
     }
@@ -91,23 +91,27 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             if (InvalidAPIKey(contentString))
                 return false;
 
-            var trade_summary = (await response.Content.ReadFromJsonAsync(TradeSummaryResponse_.Default.TradeSummaryResponse)).Response;
+            var trade_summary = (await response.Content.ReadFromJsonAsync(TradeSummaryResponse_.Default.TradeSummaryResponse))?.Response;
             if (trade_summary != null && trade_summary.PendingReceivedCount > 0)
             {
                 response = await GetTradeOffersAsync(steamSession.APIKey);
                 if (response.IsSuccessStatusCode)
                 {
                     var trade_offers_rsp = await response.Content.ReadFromJsonAsync(TradeResponse_.Default.TradeResponse);
-                    var trade_offers = FilterNonActiveOffers(trade_offers_rsp!).Response.TradeOffersReceived;
-                    if (trade_offers.Count > 0)
+                    var trade_offers = FilterNonActiveOffers(trade_offers_rsp!)?.Response?.TradeOffersReceived;
+                    if (trade_offers != null && trade_offers.Count > 0)
                     {
+                        var confirmations = await new ConfirmationExecutor(steamSession).GetComfirmations();
                         foreach (var trade_offer in trade_offers)
                         {
-                            var give_count = trade_offer?.ItemsToGive?.Count ?? 0; // 支出物品数
-                            var receive_count = trade_offer?.ItemsToReceive?.Count ?? 0; // 接收物品数
-                            if (give_count == 0)
+                            if (trade_offer != null)
                             {
-                                await AcceptTradeOfferAsync(steamSession, trade_offer.TradeOfferId, trade_offer); // 接受报价
+                                var give_count = trade_offer.ItemsToGive?.Count ?? 0; // 支出物品数
+                                var receive_count = trade_offer.ItemsToReceive?.Count ?? 0; // 接收物品数
+                                if (give_count == 0)
+                                {
+                                    await AcceptTradeOfferAsync(steamSession, trade_offer.TradeOfferId, trade_offer, confirmations); // 接受报价
+                                }
                             }
                         }
                     }
@@ -125,11 +129,18 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return await new ConfirmationExecutor(steamSession).BatchHandleTradeOffer(trades, accept);
     }
 
-    public async Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo)
+    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
+    public async Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
         if (tradeInfo == null)
         {
-            tradeInfo = new();
+            var trade_rsp = await GetTradeOfferAsync(steamSession.APIKey, trade_offer_id);
+            if (trade_rsp.IsSuccessStatusCode)
+            {
+                tradeInfo = JsonDocument.Parse(await trade_rsp.Content.ReadAsStringAsync()).RootElement.GetProperty("response").GetProperty("offer").Deserialize<TradeInfo>() ?? null;
+                if (tradeInfo == null)
+                    return false;
+            }
         }
 
         if (tradeInfo.TradeOfferState != TradeOfferState.Active)
@@ -158,7 +169,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             var content_string = await response.Content.ReadAsStringAsync();
             var root = JsonDocument.Parse(content_string).RootElement;
             if (root.TryGetProperty("needs_mobile_confirmation", out var _))
-                return await new ConfirmationExecutor(steamSession).SendTradeAllowRequest(trade_offer_id);
+                return await new ConfirmationExecutor(steamSession).SendTradeAllowRequest(trade_offer_id, confirmations);
 
             return true;
         }
@@ -181,6 +192,23 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         var query = string.Join("&", queryString.AllKeys
         .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
         var builder = new UriBuilder(STEAM_TRADEOFFER_GET_OFFERS);
+        builder.Query = query;
+
+        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
+        return await client.SendAsync(httpRequestMessage);
+    }
+
+    public async Task<HttpResponseMessage> GetTradeOfferAsync(string api_key, string trade_offer_id)
+    {
+        var queryString = new NameValueCollection()
+        {
+            { "key", api_key },
+            { "tradeofferid", trade_offer_id },
+            { "language", "english" },
+        };
+        var query = string.Join("&", queryString.AllKeys
+        .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
+        var builder = new UriBuilder(STEAM_TRADEOFFER_GET_OFFER);
         builder.Query = query;
 
         using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
@@ -216,14 +244,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
 
         var response = await client.SendAsync(httpRequestMessage);
-        var bytes = await response.Content.ReadAsByteArrayAsync();
-        var text = Encoding.UTF8.GetString(bytes);
         if (response.IsSuccessStatusCode)
         {
             var content_string = await response.Content.ReadAsStringAsync();
             var root = JsonDocument.Parse(content_string).RootElement;
             if (root.TryGetProperty("needs_mobile_confirmation", out var _))
-                return await new ConfirmationExecutor(steamSession).SendTradeAllowRequest(root.GetProperty("response").GetProperty("tradeofferid").ToString());
+                return await new ConfirmationExecutor(steamSession).SendTradeAllowRequest(root.GetProperty("tradeofferid").ToString());
 
             return true;
         }
@@ -262,8 +288,6 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
 
         var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        var bytes = await response.Content.ReadAsByteArrayAsync();
-        var text = Encoding.UTF8.GetString(bytes);
         if (response.IsSuccessStatusCode)
         {
             var content_string = await response.Content.ReadAsStringAsync();
@@ -276,27 +300,21 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return false;
     }
 
-    public async Task<bool> CancelTradeOfferAsync(SteamSession steamSession)
+    public async Task<bool> CancelTradeOfferAsync(SteamSession steamSession, string trade_offer_id)
     {
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()
         {
             { "sessionid", sessionid }
         };
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_TRADEOFFER_CANCEL);
+        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_TRADEOFFER_CANCEL.Format(trade_offer_id));
         httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
         var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        if (response.IsSuccessStatusCode)
-        {
-            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
-            if (root.TryGetProperty("success", out var success))
-                return success.GetBoolean();
-        }
-        return false;
+        return response.IsSuccessStatusCode;
     }
 
-    public async Task<bool> DeclineTradeOfferAsync(SteamSession steamSession)
+    public async Task<bool> DeclineTradeOfferAsync(SteamSession steamSession, string trade_offer_id)
     {
 
         var sessionid = await FetchSessionId(steamSession);
@@ -304,17 +322,11 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         {
             { "sessionid", sessionid }
         };
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_TRADEOFFER_DECLINE);
+        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_TRADEOFFER_DECLINE.Format(trade_offer_id));
         httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
         var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        if (response.IsSuccessStatusCode)
-        {
-            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
-            if (root.TryGetProperty("success", out var success))
-                return success.GetBoolean();
-        }
-        return false;
+        return response.IsSuccessStatusCode;
     }
     #endregion
 
@@ -393,13 +405,19 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             _steamSession = steamSession;
         }
 
-        public async Task<bool> SendTradeAllowRequest(string trade_offer_id)
+        /// <summary>
+        /// 发送【接收】交易报价确认
+        /// </summary>
+        /// <param name="trade_offer_id"></param>
+        /// <param name="confirmations"></param>
+        /// <returns></returns>
+        public async Task<bool> SendTradeAllowRequest(string trade_offer_id, IEnumerable<Confirmation>? confirmations = null)
         {
-            var confirmations = await GetComfirmations();
+            confirmations ??= await GetComfirmations(); // AcceptAllGiftTradeOfferAsync提前获取Comfirmations, 减少开销
             var confirmation = await SelectTradeOfferConfirmation(confirmations, trade_offer_id);
             if (confirmation != null)
             {
-                var response = await SendConfirmation(confirmation);
+                var response = await SendConfirmation(confirmation, TradeTag.ALLOW);
                 if (response.IsSuccessStatusCode)
                 {
                     var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
@@ -410,6 +428,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             return false;
         }
 
+        /// <summary>
+        /// 批量处理消息确认
+        /// </summary>
+        /// <param name="trades"></param>
+        /// <param name="accept"></param>
+        /// <returns></returns>
         public async Task<bool> BatchHandleTradeOffer(Dictionary<string, string> trades, bool accept)
         {
             var conf = accept ? "accept" : "reject";
@@ -433,34 +457,10 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         }
 
         /// <summary>
-        /// 发送交易确认
+        /// 获取【待确认】交易信息
         /// </summary>
         /// <returns></returns>
-        private async Task<HttpResponseMessage> SendConfirmation(Confirmation confirmation)
-        {
-            var tag = TradeTag.ALLOW.GetDescription()!;
-            var queryString = CreateConfirmationParams(tag);
-            queryString.Add("op", tag);
-            queryString.Add("cid", confirmation.DataConfId);
-            queryString.Add("ck", confirmation.Nonce);
-            var query = string.Join("&", queryString.Keys
-             .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
-
-            using var httpRequestMessage = new HttpRequestMessage();
-            httpRequestMessage.Headers.TryAddWithoutValidation("X-Requested-With", "XMLHttpRequest");
-            var builder = new UriBuilder(STEAM_MOBILECONF_CONFIRMATION);
-            builder.Query = query;
-            httpRequestMessage.RequestUri = builder.Uri;
-            return await _steamSession.HttpClient.SendAsync(httpRequestMessage);
-        }
-
-        #region Private
-
-        /// <summary>
-        /// 获取待确认交易信息
-        /// </summary>
-        /// <returns></returns>
-        private async Task<IEnumerable<Confirmation>> GetComfirmations()
+        public async Task<IEnumerable<Confirmation>> GetComfirmations()
         {
             var response = await FetchConfirmationsPage();
             if (response.IsSuccessStatusCode)
@@ -484,6 +484,30 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             }
             return Enumerable.Empty<Confirmation>();
         }
+
+        /// <summary>
+        /// 发送交易确认
+        /// </summary>
+        /// <returns></returns>
+        private async Task<HttpResponseMessage> SendConfirmation(Confirmation confirmation, TradeTag tradeTag)
+        {
+            var tag = tradeTag.GetDescription()!;
+            var queryString = CreateConfirmationParams(tag);
+            queryString.Add("op", tag);
+            queryString.Add("cid", confirmation.DataConfId);
+            queryString.Add("ck", confirmation.Nonce);
+            var query = string.Join("&", queryString.Keys
+             .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
+
+            using var httpRequestMessage = new HttpRequestMessage();
+            httpRequestMessage.Headers.TryAddWithoutValidation("X-Requested-With", "XMLHttpRequest");
+            var builder = new UriBuilder(STEAM_MOBILECONF_CONFIRMATION);
+            builder.Query = query;
+            httpRequestMessage.RequestUri = builder.Uri;
+            return await _steamSession.HttpClient.SendAsync(httpRequestMessage);
+        }
+
+        #region Private
 
         /// <summary>
         /// 获取待确认交易信息 Confirmations 请求

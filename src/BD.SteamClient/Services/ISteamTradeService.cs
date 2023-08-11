@@ -12,8 +12,6 @@ public interface ISteamTradeService
     /// 启动交易报价后台任务
     /// </summary>
     /// <param name="steamSession"></param>
-    /// <param name="api_key"></param>
-    /// <param name="identity_secret"></param>
     /// <param name="interval"></param>
     /// <param name="tradeTaskEnum"></param>
     void StartTradeTask(SteamSession steamSession, int interval, TradeTaskEnum tradeTaskEnum);
@@ -35,33 +33,40 @@ public interface ISteamTradeService
     /// <summary>
     /// 批量处理交易报价
     /// </summary>
+    /// <param name="steamSession"></param>
     /// <param name="trades"></param>
     /// <param name="accept"></param>
-    /// <param name="steam_id"></param>
-    /// <param name="identity_secret"></param>
     /// <returns></returns>
     Task<bool> BatchHandleTradeOfferAsync(SteamSession steamSession, Dictionary<string, string> trades, bool accept);
 
     /// <summary>
     /// 接受交易报价
     /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="trade_offer_id"></param>
+    /// <param name="tradeInfo"></param>
+    /// <param name="confirmations"></param>
     /// <returns></returns>
-    Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo);
+    Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo, IEnumerable<Confirmation>? confirmations = null);
 
     /// <summary>
-    /// 发送交易报价
+    /// 发送交易报价（需要好友关系）
     /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="my_itmes">将失去的物品</param>
+    /// <param name="them_items">将获得的物品</param>
+    /// <param name="target_steam_id"></param>
+    /// <param name="message"></param>
     /// <returns></returns>
     Task<bool> SendTradeOfferAsync(SteamSession steamSession, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message);
 
     /// <summary>
-    /// 使用目标第三方Url发送报价
+    /// 使用交易连接发送报价
     /// </summary>
     /// <param name="steamSession"></param>
-    /// <param name="identity_secret"></param>
     /// <param name="trade_offer_url"></param>
-    /// <param name="my_itmes"></param>
-    /// <param name="them_items"></param>
+    /// <param name="my_itmes">将失去的物品</param>
+    /// <param name="them_items">将获得的物品</param>
     /// <param name="message"></param>
     /// <returns></returns>
     Task<bool> SendTradeOfferWithUrlAsync(SteamSession steamSession, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message);
@@ -69,23 +74,38 @@ public interface ISteamTradeService
     /// <summary>
     /// 发送方取消交易报价
     /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="trade_offer_id"></param>
     /// <returns></returns>
-    Task<bool> CancelTradeOfferAsync(SteamSession steamSession);
+    Task<bool> CancelTradeOfferAsync(SteamSession steamSession, string trade_offer_id);
 
     /// <summary>
     /// 接收方拒绝交易报价
     /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="trade_offer_id"></param>
     /// <returns></returns>
-    Task<bool> DeclineTradeOfferAsync(SteamSession steamSession);
+    Task<bool> DeclineTradeOfferAsync(SteamSession steamSession, string trade_offer_id);
 
     /// <summary>
     /// 获取发送或接受的交易报价的列表
     /// </summary>
+    /// <param name="api_key"></param>
+    /// <returns></returns>
     Task<HttpResponseMessage> GetTradeOffersAsync(string api_key);
+
+    /// <summary>
+    /// 根据交易报价 ID 获取报价信息
+    /// </summary>
+    /// <param name="api_key"></param>
+    /// <param name="trade_offer_id"></param>
+    /// <returns></returns>
+    Task<HttpResponseMessage> GetTradeOfferAsync(string api_key, string trade_offer_id);
 
     /// <summary>
     /// 获取待处理的交易报价和新交易报价的数量
     /// </summary>
+    /// <param name="api_key"></param>
     /// <returns></returns>
     Task<HttpResponseMessage> GetTradeOffersSummaryAsync(string api_key);
 

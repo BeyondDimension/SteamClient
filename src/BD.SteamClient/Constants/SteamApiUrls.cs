@@ -9,7 +9,8 @@ public static class SteamApiUrls
     public const string STEAM_PROFILES_URL = "https://steamcommunity.com/profiles/{0}";
 
     public const string STEAM_LOGIN_URL = "https://steamcommunity.com/login/home/?goto=my/profile";
-    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/";
+    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/l=schinese&p={1}";
+    public const string STEAM_GAMECARDS_URL = "https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=schinese";
     public const string STEAMAPP_LIST_URL = "https://api.steampowered.com/ISteamApps/GetAppList/v2";
     public const string STEAMAPP_LOGO_URL = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
     public const string STEAMAPP_LIBRARY_URL = "https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_600x900.jpg";
@@ -79,6 +80,7 @@ public static class SteamApiUrls
     public const string STEAM_TRADEOFFER_CANCEL = "https://steamcommunity.com/tradeoffer/{0}/cancel";
     public const string STEAM_TRADEOFFER_GET_SUMMARY = "https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1?key={0}";
     public const string STEAM_TRADEOFFER_GET_OFFERS = "https://api.steampowered.com/IEconService/GetTradeOffers/v1";
+    public const string STEAM_TRADEOFFER_GET_OFFER = "https://api.steampowered.com/IEconService/GetTradeOffer/v1";
     public const string STEAM_TRADEOFFER_URL = "https://steamcommunity.com/tradeoffer/{0}";
     public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com/tradeoffer/new/send";
 
@@ -90,4 +92,15 @@ public static class SteamApiUrls
     public const string STEAM_MOBILECONF_GET_CONFIRMATIONS = "https://steamcommunity.com/mobileconf/getlist";
     public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = "https://steamcommunity.com/mobileconf/details/{0}";
 
+    /// <summary>
+    /// Authenticator
+    /// </summary>
+    public const string STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_ADD_PHONENUMBER = "https://api.steampowered.com/IPhoneService/SetAccountPhoneNumber/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_GET_USERCOUNTRY = "https://api.steampowered.com/IUserAccountService/GetUserCountry/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_TWOFAQUERYTIME = "https://api.steampowered.com/ITwoFactorService/QueryTime/v0001";
+    public const string STEAM_AUTHENTICATOR_ADD = "https://api.steampowered.com/ITwoFactorService/AddAuthenticator/v1/?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_FINALIZEADD = "https://api.steampowered.com/ITwoFactorService/FinalizeAddAuthenticator/v1/?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_REMOVE = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticator/v1?access_token={0}";
 }

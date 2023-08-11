@@ -20,11 +20,11 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     public SteamAccountService(
         IServiceProvider s,
         IRandomGetUserAgentService uas,
-        ISteamSessionService ssession,
+        ISteamSessionService ssessions,
         ILogger<SteamAccountService> logger) : base(s, logger)
     {
         this.uas = uas;
-        this.sessions = ssession;
+        this.sessions = ssessions;
     }
 
     public SteamAccountService(
