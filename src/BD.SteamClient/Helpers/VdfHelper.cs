@@ -29,7 +29,8 @@ public static class VdfHelper
     {
         try
         {
-            using var stream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
+            //不要用 FileMode.OpenOrCreate 文件内容长度不一致会导致结尾内容错误
+            using var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite | FileShare.Delete);
             var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
             kv.Serialize(stream, content);
         }

@@ -191,20 +191,31 @@ abstract partial class SteamServiceImpl
             if (!string.IsNullOrWhiteSpace(registryVdfPath) && File.Exists(registryVdfPath))
             {
                 var v = VdfHelper.Read(registryVdfPath);
-                var kv = v["HKCU"]["Software"]["Valve"]["Steam"]["AutoLoginUser"] as KVObjectValue<string>;
-                if (kv != null)
+
+                var steamItem = v["HKCU"]["Software"]["Valve"]["Steam"] as KVCollectionValue;
+                if (steamItem != null)
                 {
-                    kv.Value = userName;
-                    var rememberPasswordKV = v["HKCU"]["Software"]["Valve"]["Steam"]["RememberPassword"] as KVObjectValue<string>;
-                    if (rememberPasswordKV != null)
+
+                    var kv = steamItem["AutoLoginUser"] as KVObjectValue<string>;
+                    if (kv == null)
+                    {
+                        steamItem.Add(new KVObject("AutoLoginUser", new KVObjectValue<string>(userName, KVValueType.String)));
+                    }
+                    else
+                    {
+                        kv.Value = userName;
+                    }
+                    var rememberPasswordKV = steamItem["RememberPassword"] as KVObjectValue<string>;
+                    if (rememberPasswordKV == null)
+                    {
+                        if (steamItem != null)
+                            steamItem.Add(new KVObject("RememberPassword", new KVObjectValue<string>("1", KVValueType.String)));
+                    }
+                    else
                     {
                         rememberPasswordKV.Value = "1";
                     }
                     VdfHelper.Write(registryVdfPath, v);
-                }
-                else
-                {
-                    Log.Error(TAG, "SetSteamCurrentUser fail(1), AutoLoginUser is null.");
                 }
             }
         }
