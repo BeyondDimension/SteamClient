@@ -364,6 +364,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     public void SetPersonaState(string steamId32, PersonaState ePersonaState)
     {
         if (string.IsNullOrEmpty(SteamDirPath)) return;
+        if (ePersonaState == PersonaState.Default) return;
         // Values:
         // 0: Offline, 1: Online, 2: Busy, 3: Away, 4: Snooze, 5: Looking to Trade, 6: Looking to Play, 7: Invisible
         var localConfigFilePath = Path.Combine(SteamDirPath, UserDataDirectory, steamId32, "config", "localconfig.vdf");

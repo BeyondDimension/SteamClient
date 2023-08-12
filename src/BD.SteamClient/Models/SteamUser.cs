@@ -211,7 +211,7 @@ public class SteamUser : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _MiniProfile, value);
     }
 
-    PersonaState _PersonaState;
+    PersonaState _PersonaState = PersonaState.Default;
 
     /// <summary>
     /// 离线模式
