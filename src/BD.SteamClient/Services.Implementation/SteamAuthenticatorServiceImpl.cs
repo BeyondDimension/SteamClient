@@ -8,19 +8,17 @@ public class SteamAuthenticatorServiceImpl : HttpClientUseCookiesWithDynamicProx
 
     public SteamAuthenticatorServiceImpl(
         IServiceProvider s,
-        ISteamSessionService steamSessionService,
         ILogger<SteamTradeServiceImpl> logger) : base(
             s, logger)
     {
-        _sessionService = steamSessionService;
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
     public SteamAuthenticatorServiceImpl(
         IServiceProvider s,
-        ISteamSessionService steamSessionService,
         Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
     {
-        _sessionService = steamSessionService;
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
     public async Task<string> AccountWaitingForEmailConfirmation(string steam_id)

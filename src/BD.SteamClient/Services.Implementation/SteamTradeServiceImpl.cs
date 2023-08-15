@@ -12,21 +12,19 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
 
     public SteamTradeServiceImpl(
         IServiceProvider s,
-        ISteamSessionService steamSessionService,
         ILogger<SteamTradeServiceImpl> logger) : base(
             s, logger)
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
-        _sessionService = steamSessionService;
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
     public SteamTradeServiceImpl(
         IServiceProvider s,
-        ISteamSessionService steamSessionService,
         Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
-        _sessionService = steamSessionService;
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
     #region Tasks
