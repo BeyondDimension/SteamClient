@@ -7,5 +7,5 @@ public interface ISteamIdleCardService
     /// </summary>
     /// <param name="steamSession"></param>
     /// <returns></returns>
-    Task<IEnumerable<Badge>> GetBadgesAsync(SteamSession steamSession);
+    Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id);
 }

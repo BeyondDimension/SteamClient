@@ -73,4 +73,11 @@ public interface ISteamAuthenticatorService
     /// </summary>
     /// <returns></returns>
     Task<string> TwoFAQueryTime();
+
+    /// <summary>
+    /// 刷新AccessToken
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <returns></returns>
+    Task<string> RefreshAccessToken(string steam_id);
 }

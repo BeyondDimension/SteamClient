@@ -6,7 +6,9 @@ public class SteamSession
 
     public CookieContainer CookieContainer { get; set; } = new();
 
-    public string OAuthToken { get; set; } = string.Empty;
+    public string AccessToken { get; set; } = string.Empty;
+
+    public string RefreshToken { get; set; } = string.Empty;
 
     public string UmqId { get; set; } = string.Empty;
 

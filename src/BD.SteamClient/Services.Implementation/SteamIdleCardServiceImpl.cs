@@ -6,12 +6,19 @@ using AngleSharp.Html.Parser;
 
 public class SteamIdleCardServiceImpl : ISteamIdleCardService
 {
-    public SteamIdleCardServiceImpl()
+    private readonly ISteamSessionService _sessionService;
+
+    public SteamIdleCardServiceImpl(ISteamSessionService steamSessionService)
     {
+        _sessionService = steamSessionService;
     }
 
-    public async Task<IEnumerable<Badge>> GetBadgesAsync(SteamSession steamSession)
+    public async Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
+
         var badges_url = STEAM_BADGES_URL.Format(steamSession.SteamId, 1);
         var pages = new List<string>() { "?p=1" };
         var parser = new HtmlParser();

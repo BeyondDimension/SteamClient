@@ -87,7 +87,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         if (string.IsNullOrEmpty(steamSession.APIKey))
             return false;
@@ -133,7 +133,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         if (!trades.Any())
             return false;
@@ -146,7 +146,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         if (tradeInfo == null)
         {
@@ -240,7 +240,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         var offer_string = GenerateJsonTradeOffer(my_itmes, them_items);
         var sessionid = await FetchSessionId(steamSession);
@@ -280,7 +280,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         var uri = new Uri(trade_offer_url);
         var querys = HttpUtility.ParseQueryString(uri.Query);
@@ -328,7 +328,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()
@@ -346,7 +346,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
-            return false;
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()

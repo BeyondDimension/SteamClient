@@ -316,7 +316,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 //loginState.Cookies.Add(new Cookie("sessionid", "", "/", "steamcommunity.com"));
                 if (doLoginRespone.TransferParameters != null && doLoginRespone.TransferUrls != null)
                 {
-                    session.OAuthToken = doLoginRespone.TransferParameters.Auth;
+                    session.AccessToken = doLoginRespone.TransferParameters.Auth;
                     loginState.SteamIdString = doLoginRespone.TransferParameters.Steamid;
 
                     _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
@@ -646,7 +646,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
         var session = new SteamSession();
         session.SteamId = loginState.SteamId.ToString();
-        session.OAuthToken = loginState.AccessToken;
+        session.AccessToken = loginState.AccessToken;
+        session.RefreshToken = loginState.RefreshToken;
         session.CookieContainer = cookieContainer;
         sessions.AddOrSetSeesion(session);
     }
