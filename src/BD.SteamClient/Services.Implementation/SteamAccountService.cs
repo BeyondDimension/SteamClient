@@ -644,6 +644,11 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             //await client.GetAsync("https://steamcommunity.com/");
             loginState.Cookies = cookieContainer.GetAllCookies();
         }
+        var session = new SteamSession();
+        session.SteamId = loginState.SteamId.ToString();
+        session.OAuthToken = loginState.AccessToken;
+        session.CookieContainer = cookieContainer;
+        sessions.AddOrSetSeesion(session);
     }
 
     async Task<CAuthentication_PollAuthSessionStatus_Response> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id)

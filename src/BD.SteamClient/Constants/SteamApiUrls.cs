@@ -103,4 +103,6 @@ public static class SteamApiUrls
     public const string STEAM_AUTHENTICATOR_ADD = "https://api.steampowered.com/ITwoFactorService/AddAuthenticator/v1/?access_token={0}";
     public const string STEAM_AUTHENTICATOR_FINALIZEADD = "https://api.steampowered.com/ITwoFactorService/FinalizeAddAuthenticator/v1/?access_token={0}";
     public const string STEAM_AUTHENTICATOR_REMOVE = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticator/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeStart/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeContinue/v1?access_token={0}";
 }

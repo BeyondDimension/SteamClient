@@ -275,120 +275,162 @@ namespace BD.SteamClient.Models {
             "aW5pbmcSDQoFYXBwaWQYASABKA0SGQoRbWludXRlc19yZW1haW5pbmcYAiAB",
             "KA0iXwomQ0Nsb3VkR2FtaW5nX0dldFRpbWVSZW1haW5pbmdfUmVzcG9uc2US",
             "NQoHZW50cmllcxgCIAMoCzIkLnR1dG9yaWFsLkNDbG91ZEdhbWluZ19UaW1l",
-            "UmVtYWluaW5nKrkBChZFQXV0aFRva2VuUGxhdGZvcm1UeXBlEiQKIGtfRUF1",
-            "dGhUb2tlblBsYXRmb3JtVHlwZV9Vbmtub3duEAASKAoka19FQXV0aFRva2Vu",
-            "UGxhdGZvcm1UeXBlX1N0ZWFtQ2xpZW50EAESJwoja19FQXV0aFRva2VuUGxh",
-            "dGZvcm1UeXBlX1dlYkJyb3dzZXIQAhImCiJrX0VBdXRoVG9rZW5QbGF0Zm9y",
-            "bVR5cGVfTW9iaWxlQXBwEAMqtgIKFUVBdXRoU2Vzc2lvbkd1YXJkVHlwZRIj",
-            "Ch9rX0VBdXRoU2Vzc2lvbkd1YXJkVHlwZV9Vbmtub3duEAASIAoca19FQXV0",
-            "aFNlc3Npb25HdWFyZFR5cGVfTm9uZRABEiUKIWtfRUF1dGhTZXNzaW9uR3Vh",
-            "cmRUeXBlX0VtYWlsQ29kZRACEiYKImtfRUF1dGhTZXNzaW9uR3VhcmRUeXBl",
-            "X0RldmljZUNvZGUQAxIuCiprX0VBdXRoU2Vzc2lvbkd1YXJkVHlwZV9EZXZp",
-            "Y2VDb25maXJtYXRpb24QBBItCilrX0VBdXRoU2Vzc2lvbkd1YXJkVHlwZV9F",
-            "bWFpbENvbmZpcm1hdGlvbhAFEigKJGtfRUF1dGhTZXNzaW9uR3VhcmRUeXBl",
-            "X01hY2hpbmVUb2tlbhAGKqwBChtFQXV0aFNlc3Npb25TZWN1cml0eUhpc3Rv",
-            "cnkSKQola19FQXV0aFNlc3Npb25TZWN1cml0eUhpc3RvcnlfSW52YWxpZBAA",
-            "EjAKLGtfRUF1dGhTZXNzaW9uU2VjdXJpdHlIaXN0b3J5X1VzZWRQcmV2aW91",
-            "c2x5EAESMAosa19FQXV0aFNlc3Npb25TZWN1cml0eUhpc3RvcnlfTm9Qcmlv",
-            "ckhpc3RvcnkQAiqWAQoWRUF1dGhUb2tlblJldm9rZUFjdGlvbhIcChhrX0VB",
-            "dXRoVG9rZW5SZXZva2VMb2dvdXQQABIfChtrX0VBdXRoVG9rZW5SZXZva2VQ",
-            "ZXJtYW5lbnQQARIeChprX0VBdXRoVG9rZW5SZXZva2VSZXBsYWNlZBACEh0K",
-            "GWtfRUF1dGhUb2tlblJldm9rZVN1cHBvcnQQAyroAQoPRUF1dGhUb2tlblN0",
-            "YXRlEh0KGWtfRUF1dGhUb2tlblN0YXRlX0ludmFsaWQQABIZChVrX0VBdXRo",
-            "VG9rZW5TdGF0ZV9OZXcQARIfChtrX0VBdXRoVG9rZW5TdGF0ZV9Db25maXJt",
-            "ZWQQAhIcChhrX0VBdXRoVG9rZW5TdGF0ZV9Jc3N1ZWQQAxIcChhrX0VBdXRo",
-            "VG9rZW5TdGF0ZV9EZW5pZWQQBBIfChtrX0VBdXRoVG9rZW5TdGF0ZV9Mb2dn",
-            "ZWRPdXQQBRIdChlrX0VBdXRoVG9rZW5TdGF0ZV9SZXZva2VkEGMygxUKDkF1",
-            "dGhlbnRpY2F0aW9uEuEBChdHZXRQYXNzd29yZFJTQVB1YmxpY0tleRI5LnR1",
-            "dG9yaWFsLkNBdXRoZW50aWNhdGlvbl9HZXRQYXNzd29yZFJTQVB1YmxpY0tl",
-            "eV9SZXF1ZXN0GjoudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX0dldFBhc3N3",
-            "b3JkUlNBUHVibGljS2V5X1Jlc3BvbnNlIk+CtRhLRmV0Y2hlcyBSU0EgcHVi",
-            "bGljIGtleSB0byB1c2UgdG8gZW5jcnlwdCBwYXNzd29yZHMgZm9yIGEgZ2l2",
-            "ZW4gYWNjb3VudCBuYW1lEqwBChVCZWdpbkF1dGhTZXNzaW9uVmlhUVISNy50",
-            "dXRvcmlhbC5DQXV0aGVudGljYXRpb25fQmVnaW5BdXRoU2Vzc2lvblZpYVFS",
-            "X1JlcXVlc3QaOC50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fQmVnaW5BdXRo",
-            "U2Vzc2lvblZpYVFSX1Jlc3BvbnNlIiCCtRgcc3RhcnQgYXV0aGVudGljYXRp",
-            "b24gcHJvY2VzcxLHAQoeQmVnaW5BdXRoU2Vzc2lvblZpYUNyZWRlbnRpYWxz",
-            "EkAudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX0JlZ2luQXV0aFNlc3Npb25W",
-            "aWFDcmVkZW50aWFsc19SZXF1ZXN0GkEudHV0b3JpYWwuQ0F1dGhlbnRpY2F0",
-            "aW9uX0JlZ2luQXV0aFNlc3Npb25WaWFDcmVkZW50aWFsc19SZXNwb25zZSIg",
-            "grUYHHN0YXJ0IGF1dGhlbnRpY2F0aW9uIHByb2Nlc3MSsgEKFVBvbGxBdXRo",
-            "U2Vzc2lvblN0YXR1cxI3LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvbl9Qb2xs",
-            "QXV0aFNlc3Npb25TdGF0dXNfUmVxdWVzdBo4LnR1dG9yaWFsLkNBdXRoZW50",
-            "aWNhdGlvbl9Qb2xsQXV0aFNlc3Npb25TdGF0dXNfUmVzcG9uc2UiJoK1GCJw",
-            "b2xsIGR1cmluZyBhdXRoZW50aWNhdGlvbiBwcm9jZXNzEuABChJHZXRBdXRo",
-            "U2Vzc2lvbkluZm8SNC50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fR2V0QXV0",
-            "aFNlc3Npb25JbmZvX1JlcXVlc3QaNS50dXRvcmlhbC5DQXV0aGVudGljYXRp",
-            "b25fR2V0QXV0aFNlc3Npb25JbmZvX1Jlc3BvbnNlIl2CtRhZZ2V0IG1ldGFk",
-            "YXRhIG9mIHNwZWNpZmljIGF1dGggc2Vzc2lvbiwgdGhpcyB3aWxsIGFsc28g",
-            "aW1wbGljaXRseSBiaW5kIHRoZSBjYWxsaW5nIGFjY291bnQS9gEKJ1VwZGF0",
-            "ZUF1dGhTZXNzaW9uV2l0aE1vYmlsZUNvbmZpcm1hdGlvbhJJLnR1dG9yaWFs",
-            "LkNBdXRoZW50aWNhdGlvbl9VcGRhdGVBdXRoU2Vzc2lvbldpdGhNb2JpbGVD",
-            "b25maXJtYXRpb25fUmVxdWVzdBpKLnR1dG9yaWFsLkNBdXRoZW50aWNhdGlv",
-            "bl9VcGRhdGVBdXRoU2Vzc2lvbldpdGhNb2JpbGVDb25maXJtYXRpb25fUmVz",
-            "cG9uc2UiNIK1GDBhcHByb3ZlIGFuIGF1dGhlbnRpY2F0aW9uIHNlc3Npb24g",
-            "dmlhIG1vYmlsZSAyZmES8AEKI1VwZGF0ZUF1dGhTZXNzaW9uV2l0aFN0ZWFt",
-            "R3VhcmRDb2RlEkUudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX1VwZGF0ZUF1",
-            "dGhTZXNzaW9uV2l0aFN0ZWFtR3VhcmRDb2RlX1JlcXVlc3QaRi50dXRvcmlh",
-            "bC5DQXV0aGVudGljYXRpb25fVXBkYXRlQXV0aFNlc3Npb25XaXRoU3RlYW1H",
-            "dWFyZENvZGVfUmVzcG9uc2UiOoK1GDZhcHByb3ZlIGFuIGF1dGhlbnRpY2F0",
-            "aW9uIHNlc3Npb24gdmlhIHN0ZWFtIGd1YXJkIGNvZGUSjQIKGUdlbmVyYXRl",
-            "QWNjZXNzVG9rZW5Gb3JBcHASPC50dXRvcmlhbC5DQXV0aGVudGljYXRpb25f",
-            "QWNjZXNzVG9rZW5fR2VuZXJhdGVGb3JBcHBfUmVxdWVzdBo9LnR1dG9yaWFs",
-            "LkNBdXRoZW50aWNhdGlvbl9BY2Nlc3NUb2tlbl9HZW5lcmF0ZUZvckFwcF9S",
-            "ZXNwb25zZSJzgrUYb0dpdmVuIGEgcmVmcmVzaCB0b2tlbiBmb3IgYSBjbGll",
-            "bnQgYXBwIGF1ZGllbmNlIChlLmcuIGRlc2t0b3AgY2xpZW50IC8gbW9iaWxl",
-            "IGNsaWVudCksIGdlbmVyYXRlIGFuIGFjY2VzcyB0b2tlbhLMAQoPRW51bWVy",
-            "YXRlVG9rZW5zEjgudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX1JlZnJlc2hU",
-            "b2tlbl9FbnVtZXJhdGVfUmVxdWVzdBo5LnR1dG9yaWFsLkNBdXRoZW50aWNh",
-            "dGlvbl9SZWZyZXNoVG9rZW5fRW51bWVyYXRlX1Jlc3BvbnNlIkSCtRhARW51",
-            "bWVyYXRlIGR1cmFibGUgKHJlZnJlc2gpIHRva2VucyBmb3IgdGhlIGdpdmVu",
-            "IHN1YmplY3QgYWNjb3VudBLoAQoZR2V0QXV0aFNlc3Npb25zRm9yQWNjb3Vu",
-            "dBI7LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvbl9HZXRBdXRoU2Vzc2lvbnNG",
-            "b3JBY2NvdW50X1JlcXVlc3QaPC50dXRvcmlhbC5DQXV0aGVudGljYXRpb25f",
-            "R2V0QXV0aFNlc3Npb25zRm9yQWNjb3VudF9SZXNwb25zZSJQgrUYTEdldHMg",
-            "YWxsIGFjdGl2ZSBhdXRoIHNlc3Npb25zIGZvciBhbiBhY2NvdW50IGZvciBy",
-            "ZWZlcmVuY2UgYnkgdGhlIG1vYmlsZSBhcHAS9gEKFE1pZ3JhdGVNb2JpbGVT",
-            "ZXNzaW9uEjYudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX01pZ3JhdGVNb2Jp",
-            "bGVTZXNzaW9uX1JlcXVlc3QaNy50dXRvcmlhbC5DQXV0aGVudGljYXRpb25f",
-            "TWlncmF0ZU1vYmlsZVNlc3Npb25fUmVzcG9uc2UibYK1GGlNaWdyYXRlcyBh",
-            "IFdHIHRva2VuIHRvIGFuIGFjY2VzcyBhbmQgcmVmcmVzaCB0b2tlbiB1c2lu",
-            "ZyBhIHNpZ25hdHVyZSBnZW5lcmF0ZWQgd2l0aCB0aGUgdXNlcidzIDJGQSBz",
-            "ZWNyZXQSsAEKElJldm9rZVJlZnJlc2hUb2tlbhI1LnR1dG9yaWFsLkNBdXRo",
-            "ZW50aWNhdGlvbl9SZWZyZXNoVG9rZW5fUmV2b2tlX1JlcXVlc3QaNi50dXRv",
-            "cmlhbC5DQXV0aGVudGljYXRpb25fUmVmcmVzaFRva2VuX1Jldm9rZV9SZXNw",
-            "b25zZSIrgrUYJ01hcmsgdGhlIGdpdmVuIHJlZnJlc2ggdG9rZW4gYXMgcmV2",
-            "b2tlZBoagrUYFkF1dGhlbnRpY2F0aW9uIFNlcnZpY2Uy+AYKFUF1dGhlbnRp",
-            "Y2F0aW9uU3VwcG9ydBL3AQobUXVlcnlSZWZyZXNoVG9rZW5zQnlBY2NvdW50",
-            "EkQudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uU3VwcG9ydF9RdWVyeVJlZnJl",
-            "c2hUb2tlbnNCeUFjY291bnRfUmVxdWVzdBpFLnR1dG9yaWFsLkNBdXRoZW50",
-            "aWNhdGlvblN1cHBvcnRfUXVlcnlSZWZyZXNoVG9rZW5zQnlBY2NvdW50X1Jl",
-            "c3BvbnNlIkuCtRhHQXNrcyB0aGUgc2VydmVyIGZvciBhIGxpc3Qgb2YgcmVm",
-            "cmVzaCB0b2tlbnMgYXNzb2NpYXRlZCB3aXRoIGFuIGFjY291bnQS5QEKFVF1",
-            "ZXJ5UmVmcmVzaFRva2VuQnlJRBI+LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlv",
-            "blN1cHBvcnRfUXVlcnlSZWZyZXNoVG9rZW5CeUlEX1JlcXVlc3QaPy50dXRv",
-            "cmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0X1F1ZXJ5UmVmcmVzaFRva2Vu",
-            "QnlJRF9SZXNwb25zZSJLgrUYR0Fza3MgdGhlIHNlcnZlciBmb3IgYSBsaXN0",
-            "IG9mIHJlZnJlc2ggdG9rZW5zIGFzc29jaWF0ZWQgd2l0aCBhbiBhY2NvdW50",
-            "EpsBCgtSZXZva2VUb2tlbhI0LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvblN1",
-            "cHBvcnRfUmV2b2tlVG9rZW5fUmVxdWVzdBo1LnR1dG9yaWFsLkNBdXRoZW50",
-            "aWNhdGlvblN1cHBvcnRfUmV2b2tlVG9rZW5fUmVzcG9uc2UiH4K1GBtSZXZv",
-            "a2VzIGEgdXNlcidzIGF1dGggdG9rZW4SugEKD0dldFRva2VuSGlzdG9yeRI4",
-            "LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvblN1cHBvcnRfR2V0VG9rZW5IaXN0",
-            "b3J5X1JlcXVlc3QaOS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0",
-            "X0dldFRva2VuSGlzdG9yeV9SZXNwb25zZSIygrUYLkdldHMgdGhlIGF1ZGl0",
-            "IGhpc3RvcnkgZm9yIGEgdXNlcidzIGF1dGggdG9rZW4aIoK1GB5BdXRoZW50",
-            "aWNhdGlvbiBTdXBwb3J0IFNlcnZpY2UylgMKC0Nsb3VkR2FtaW5nEp0BCgtD",
-            "cmVhdGVOb25jZRIqLnR1dG9yaWFsLkNDbG91ZEdhbWluZ19DcmVhdGVOb25j",
-            "ZV9SZXF1ZXN0GisudHV0b3JpYWwuQ0Nsb3VkR2FtaW5nX0NyZWF0ZU5vbmNl",
-            "X1Jlc3BvbnNlIjWCtRgxQ3JlYXRlIGEgbm9uY2UgZm9yIGEgY2xvdWQgZ2Ft",
-            "aW5nIHNlcnZpY2Ugc2Vzc2lvbhK3AQoQR2V0VGltZVJlbWFpbmluZxIvLnR1",
-            "dG9yaWFsLkNDbG91ZEdhbWluZ19HZXRUaW1lUmVtYWluaW5nX1JlcXVlc3Qa",
-            "MC50dXRvcmlhbC5DQ2xvdWRHYW1pbmdfR2V0VGltZVJlbWFpbmluZ19SZXNw",
-            "b25zZSJAgrUYPEdldCB0aGUgYW1vdW50IG9mIHN0cmVhbWluZyB0aW1lIHJl",
-            "bWFpbmluZyBmb3IgYSBzZXQgb2YgYXBwcxotgrUYKU1ldGhvZHMgZm9yIFN0",
-            "ZWFtIGNsb3VkIGdhbWluZyBvcGVyYXRpb25zQhuAAQGqAhVCRC5TdGVhbUNs",
-            "aWVudC5Nb2RlbHM="));
+            "UmVtYWluaW5nIjkKN0NUd29GYWN0b3JfUmVtb3ZlQXV0aGVudGljYXRvclZp",
+            "YUNoYWxsZW5nZVN0YXJ0X1JlcXVlc3QikQEKOENUd29GYWN0b3JfUmVtb3Zl",
+            "QXV0aGVudGljYXRvclZpYUNoYWxsZW5nZVN0YXJ0X1Jlc3BvbnNlElUKB3N1",
+            "Y2Nlc3MYASABKAhCRIK1GEBUcnVlIGlmIHN1Y2NlZWRlZCwgb3Igd2FudCBt",
+            "b3JlIHRyaWVzIHdpdGggYW4gYXV0aGVudGljYXRvcl9jb2RlIrMBCjpDVHdv",
+            "RmFjdG9yX1JlbW92ZUF1dGhlbnRpY2F0b3JWaWFDaGFsbGVuZ2VDb250aW51",
+            "ZV9SZXF1ZXN0EiMKCHNtc19jb2RlGAEgASgJQhGCtRgNQ29kZSBmcm9tIFNN",
+            "UxJQChJnZW5lcmF0ZV9uZXdfdG9rZW4YAiABKAhCNIK1GDBHZW5lcmF0ZSBu",
+            "ZXcgdG9rZW4gKGluc3RlYWQgb2YgcmVtb3Zpbmcgb2xkIG9uZSkijQYKOkNS",
+            "ZW1vdmVBdXRoZW50aWNhdG9yVmlhQ2hhbGxlbmdlQ29udGludWVfUmVwbGFj",
+            "ZW1lbnRfVG9rZW4SSQoNc2hhcmVkX3NlY3JldBgBIAEoDEIygrUYLlNoYXJl",
+            "ZCBzZWNyZXQgYmV0d2VlbiBzZXJ2ZXIgYW5kIGF1dGhlbnRpY2F0b3ISSQoN",
+            "c2VyaWFsX251bWJlchgCIAEoBkIygrUYLkF1dGhlbnRpY2F0b3Igc2VyaWFs",
+            "IG51bWJlciAodW5pcXVlIHBlciB0b2tlbikSPgoPcmV2b2NhdGlvbl9jb2Rl",
+            "GAMgASgJQiWCtRghY29kZSB1c2VkIHRvIHJldm9rZSBhdXRoZW50aWNhdG9y",
+            "EisKA3VyaRgEIAEoCUIegrUYGlVSSSBmb3IgUVIgY29kZSBnZW5lcmF0aW9u",
+            "EiwKC3NlcnZlcl90aW1lGAUgASgEQheCtRgTQ3VycmVudCBzZXJ2ZXIgdGlt",
+            "ZRJBCgxhY2NvdW50X25hbWUYBiABKAlCK4K1GCdBY2NvdW50IG5hbWUgdG8g",
+            "ZGlzcGxheSBvbiB0b2tlbiBjbGllbnQSMwoJdG9rZW5fZ2lkGAcgASgJQiCC",
+            "tRgcVG9rZW4gR0lEIGFzc2lnbmVkIGJ5IHNlcnZlchJWCg9pZGVudGl0eV9z",
+            "ZWNyZXQYCCABKAxCPYK1GDlTZWNyZXQgdXNlZCBmb3IgaWRlbnRpdHkgYXR0",
+            "ZXN0YXRpb24gKGUuZy4sIGZvciBldmVudGluZykSKQoIc2VjcmV0XzEYCSAB",
+            "KAxCF4K1GBNTcGFyZSBzaGFyZWQgc2VjcmV0Eh8KBnN0YXR1cxgKIAEoBUIP",
+            "grUYC1Jlc3VsdCBjb2RlEk8KEXN0ZWFtZ3VhcmRfc2NoZW1lGAsgASgNQjSC",
+            "tRgwVHlwZSBvZiBTdGVhbSBHdWFyZCB0byB1c2Ugb25jZSB0b2tlbiBpcyBy",
+            "ZW1vdmVkEjEKB3N0ZWFtaWQYDCABKAZCIIK1GBxzdGVhbWlkIHRoYXQgb3du",
+            "cyB0aGUgc2VjcmV0IpICCjtDVHdvRmFjdG9yX1JlbW92ZUF1dGhlbnRpY2F0",
+            "b3JWaWFDaGFsbGVuZ2VDb250aW51ZV9SZXNwb25zZRJVCgdzdWNjZXNzGAEg",
+            "ASgIQkSCtRhAVHJ1ZSBpZiBzdWNjZWVkZWQsIG9yIHdhbnQgbW9yZSB0cmll",
+            "cyB3aXRoIGFuIGF1dGhlbnRpY2F0b3JfY29kZRJ8ChFyZXBsYWNlbWVudF90",
+            "b2tlbhgCIAEoCzJELnR1dG9yaWFsLkNSZW1vdmVBdXRoZW50aWNhdG9yVmlh",
+            "Q2hhbGxlbmdlQ29udGludWVfUmVwbGFjZW1lbnRfVG9rZW5CG4K1GBdGcmVz",
+            "aCBzZWNyZXQgdG8gaW5zdGFsbCq5AQoWRUF1dGhUb2tlblBsYXRmb3JtVHlw",
+            "ZRIkCiBrX0VBdXRoVG9rZW5QbGF0Zm9ybVR5cGVfVW5rbm93bhAAEigKJGtf",
+            "RUF1dGhUb2tlblBsYXRmb3JtVHlwZV9TdGVhbUNsaWVudBABEicKI2tfRUF1",
+            "dGhUb2tlblBsYXRmb3JtVHlwZV9XZWJCcm93c2VyEAISJgoia19FQXV0aFRv",
+            "a2VuUGxhdGZvcm1UeXBlX01vYmlsZUFwcBADKrYCChVFQXV0aFNlc3Npb25H",
+            "dWFyZFR5cGUSIwofa19FQXV0aFNlc3Npb25HdWFyZFR5cGVfVW5rbm93bhAA",
+            "EiAKHGtfRUF1dGhTZXNzaW9uR3VhcmRUeXBlX05vbmUQARIlCiFrX0VBdXRo",
+            "U2Vzc2lvbkd1YXJkVHlwZV9FbWFpbENvZGUQAhImCiJrX0VBdXRoU2Vzc2lv",
+            "bkd1YXJkVHlwZV9EZXZpY2VDb2RlEAMSLgoqa19FQXV0aFNlc3Npb25HdWFy",
+            "ZFR5cGVfRGV2aWNlQ29uZmlybWF0aW9uEAQSLQopa19FQXV0aFNlc3Npb25H",
+            "dWFyZFR5cGVfRW1haWxDb25maXJtYXRpb24QBRIoCiRrX0VBdXRoU2Vzc2lv",
+            "bkd1YXJkVHlwZV9NYWNoaW5lVG9rZW4QBiqsAQobRUF1dGhTZXNzaW9uU2Vj",
+            "dXJpdHlIaXN0b3J5EikKJWtfRUF1dGhTZXNzaW9uU2VjdXJpdHlIaXN0b3J5",
+            "X0ludmFsaWQQABIwCixrX0VBdXRoU2Vzc2lvblNlY3VyaXR5SGlzdG9yeV9V",
+            "c2VkUHJldmlvdXNseRABEjAKLGtfRUF1dGhTZXNzaW9uU2VjdXJpdHlIaXN0",
+            "b3J5X05vUHJpb3JIaXN0b3J5EAIqlgEKFkVBdXRoVG9rZW5SZXZva2VBY3Rp",
+            "b24SHAoYa19FQXV0aFRva2VuUmV2b2tlTG9nb3V0EAASHwoba19FQXV0aFRv",
+            "a2VuUmV2b2tlUGVybWFuZW50EAESHgoaa19FQXV0aFRva2VuUmV2b2tlUmVw",
+            "bGFjZWQQAhIdChlrX0VBdXRoVG9rZW5SZXZva2VTdXBwb3J0EAMq6AEKD0VB",
+            "dXRoVG9rZW5TdGF0ZRIdChlrX0VBdXRoVG9rZW5TdGF0ZV9JbnZhbGlkEAAS",
+            "GQoVa19FQXV0aFRva2VuU3RhdGVfTmV3EAESHwoba19FQXV0aFRva2VuU3Rh",
+            "dGVfQ29uZmlybWVkEAISHAoYa19FQXV0aFRva2VuU3RhdGVfSXNzdWVkEAMS",
+            "HAoYa19FQXV0aFRva2VuU3RhdGVfRGVuaWVkEAQSHwoba19FQXV0aFRva2Vu",
+            "U3RhdGVfTG9nZ2VkT3V0EAUSHQoZa19FQXV0aFRva2VuU3RhdGVfUmV2b2tl",
+            "ZBBjMtEYCg5BdXRoZW50aWNhdGlvbhLhAQoXR2V0UGFzc3dvcmRSU0FQdWJs",
+            "aWNLZXkSOS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fR2V0UGFzc3dvcmRS",
+            "U0FQdWJsaWNLZXlfUmVxdWVzdBo6LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlv",
+            "bl9HZXRQYXNzd29yZFJTQVB1YmxpY0tleV9SZXNwb25zZSJPgrUYS0ZldGNo",
+            "ZXMgUlNBIHB1YmxpYyBrZXkgdG8gdXNlIHRvIGVuY3J5cHQgcGFzc3dvcmRz",
+            "IGZvciBhIGdpdmVuIGFjY291bnQgbmFtZRKsAQoVQmVnaW5BdXRoU2Vzc2lv",
+            "blZpYVFSEjcudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX0JlZ2luQXV0aFNl",
+            "c3Npb25WaWFRUl9SZXF1ZXN0GjgudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9u",
+            "X0JlZ2luQXV0aFNlc3Npb25WaWFRUl9SZXNwb25zZSIggrUYHHN0YXJ0IGF1",
+            "dGhlbnRpY2F0aW9uIHByb2Nlc3MSxwEKHkJlZ2luQXV0aFNlc3Npb25WaWFD",
+            "cmVkZW50aWFscxJALnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvbl9CZWdpbkF1",
+            "dGhTZXNzaW9uVmlhQ3JlZGVudGlhbHNfUmVxdWVzdBpBLnR1dG9yaWFsLkNB",
+            "dXRoZW50aWNhdGlvbl9CZWdpbkF1dGhTZXNzaW9uVmlhQ3JlZGVudGlhbHNf",
+            "UmVzcG9uc2UiIIK1GBxzdGFydCBhdXRoZW50aWNhdGlvbiBwcm9jZXNzErIB",
+            "ChVQb2xsQXV0aFNlc3Npb25TdGF0dXMSNy50dXRvcmlhbC5DQXV0aGVudGlj",
+            "YXRpb25fUG9sbEF1dGhTZXNzaW9uU3RhdHVzX1JlcXVlc3QaOC50dXRvcmlh",
+            "bC5DQXV0aGVudGljYXRpb25fUG9sbEF1dGhTZXNzaW9uU3RhdHVzX1Jlc3Bv",
+            "bnNlIiaCtRgicG9sbCBkdXJpbmcgYXV0aGVudGljYXRpb24gcHJvY2VzcxLg",
+            "AQoSR2V0QXV0aFNlc3Npb25JbmZvEjQudHV0b3JpYWwuQ0F1dGhlbnRpY2F0",
+            "aW9uX0dldEF1dGhTZXNzaW9uSW5mb19SZXF1ZXN0GjUudHV0b3JpYWwuQ0F1",
+            "dGhlbnRpY2F0aW9uX0dldEF1dGhTZXNzaW9uSW5mb19SZXNwb25zZSJdgrUY",
+            "WWdldCBtZXRhZGF0YSBvZiBzcGVjaWZpYyBhdXRoIHNlc3Npb24sIHRoaXMg",
+            "d2lsbCBhbHNvIGltcGxpY2l0bHkgYmluZCB0aGUgY2FsbGluZyBhY2NvdW50",
+            "EvYBCidVcGRhdGVBdXRoU2Vzc2lvbldpdGhNb2JpbGVDb25maXJtYXRpb24S",
+            "SS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fVXBkYXRlQXV0aFNlc3Npb25X",
+            "aXRoTW9iaWxlQ29uZmlybWF0aW9uX1JlcXVlc3QaSi50dXRvcmlhbC5DQXV0",
+            "aGVudGljYXRpb25fVXBkYXRlQXV0aFNlc3Npb25XaXRoTW9iaWxlQ29uZmly",
+            "bWF0aW9uX1Jlc3BvbnNlIjSCtRgwYXBwcm92ZSBhbiBhdXRoZW50aWNhdGlv",
+            "biBzZXNzaW9uIHZpYSBtb2JpbGUgMmZhEvABCiNVcGRhdGVBdXRoU2Vzc2lv",
+            "bldpdGhTdGVhbUd1YXJkQ29kZRJFLnR1dG9yaWFsLkNBdXRoZW50aWNhdGlv",
+            "bl9VcGRhdGVBdXRoU2Vzc2lvbldpdGhTdGVhbUd1YXJkQ29kZV9SZXF1ZXN0",
+            "GkYudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX1VwZGF0ZUF1dGhTZXNzaW9u",
+            "V2l0aFN0ZWFtR3VhcmRDb2RlX1Jlc3BvbnNlIjqCtRg2YXBwcm92ZSBhbiBh",
+            "dXRoZW50aWNhdGlvbiBzZXNzaW9uIHZpYSBzdGVhbSBndWFyZCBjb2RlEo0C",
+            "ChlHZW5lcmF0ZUFjY2Vzc1Rva2VuRm9yQXBwEjwudHV0b3JpYWwuQ0F1dGhl",
+            "bnRpY2F0aW9uX0FjY2Vzc1Rva2VuX0dlbmVyYXRlRm9yQXBwX1JlcXVlc3Qa",
+            "PS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fQWNjZXNzVG9rZW5fR2VuZXJh",
+            "dGVGb3JBcHBfUmVzcG9uc2Uic4K1GG9HaXZlbiBhIHJlZnJlc2ggdG9rZW4g",
+            "Zm9yIGEgY2xpZW50IGFwcCBhdWRpZW5jZSAoZS5nLiBkZXNrdG9wIGNsaWVu",
+            "dCAvIG1vYmlsZSBjbGllbnQpLCBnZW5lcmF0ZSBhbiBhY2Nlc3MgdG9rZW4S",
+            "zAEKD0VudW1lcmF0ZVRva2VucxI4LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlv",
+            "bl9SZWZyZXNoVG9rZW5fRW51bWVyYXRlX1JlcXVlc3QaOS50dXRvcmlhbC5D",
+            "QXV0aGVudGljYXRpb25fUmVmcmVzaFRva2VuX0VudW1lcmF0ZV9SZXNwb25z",
+            "ZSJEgrUYQEVudW1lcmF0ZSBkdXJhYmxlIChyZWZyZXNoKSB0b2tlbnMgZm9y",
+            "IHRoZSBnaXZlbiBzdWJqZWN0IGFjY291bnQS6AEKGUdldEF1dGhTZXNzaW9u",
+            "c0ZvckFjY291bnQSOy50dXRvcmlhbC5DQXV0aGVudGljYXRpb25fR2V0QXV0",
+            "aFNlc3Npb25zRm9yQWNjb3VudF9SZXF1ZXN0GjwudHV0b3JpYWwuQ0F1dGhl",
+            "bnRpY2F0aW9uX0dldEF1dGhTZXNzaW9uc0ZvckFjY291bnRfUmVzcG9uc2Ui",
+            "UIK1GExHZXRzIGFsbCBhY3RpdmUgYXV0aCBzZXNzaW9ucyBmb3IgYW4gYWNj",
+            "b3VudCBmb3IgcmVmZXJlbmNlIGJ5IHRoZSBtb2JpbGUgYXBwEvYBChRNaWdy",
+            "YXRlTW9iaWxlU2Vzc2lvbhI2LnR1dG9yaWFsLkNBdXRoZW50aWNhdGlvbl9N",
+            "aWdyYXRlTW9iaWxlU2Vzc2lvbl9SZXF1ZXN0GjcudHV0b3JpYWwuQ0F1dGhl",
+            "bnRpY2F0aW9uX01pZ3JhdGVNb2JpbGVTZXNzaW9uX1Jlc3BvbnNlIm2CtRhp",
+            "TWlncmF0ZXMgYSBXRyB0b2tlbiB0byBhbiBhY2Nlc3MgYW5kIHJlZnJlc2gg",
+            "dG9rZW4gdXNpbmcgYSBzaWduYXR1cmUgZ2VuZXJhdGVkIHdpdGggdGhlIHVz",
+            "ZXIncyAyRkEgc2VjcmV0ErABChJSZXZva2VSZWZyZXNoVG9rZW4SNS50dXRv",
+            "cmlhbC5DQXV0aGVudGljYXRpb25fUmVmcmVzaFRva2VuX1Jldm9rZV9SZXF1",
+            "ZXN0GjYudHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uX1JlZnJlc2hUb2tlbl9S",
+            "ZXZva2VfUmVzcG9uc2UiK4K1GCdNYXJrIHRoZSBnaXZlbiByZWZyZXNoIHRv",
+            "a2VuIGFzIHJldm9rZWQS3gEKJFJlbW92ZUF1dGhlbnRpY2F0b3JWaWFDaGFs",
+            "bGVuZ2VTdGFydBJBLnR1dG9yaWFsLkNUd29GYWN0b3JfUmVtb3ZlQXV0aGVu",
+            "dGljYXRvclZpYUNoYWxsZW5nZVN0YXJ0X1JlcXVlc3QaQi50dXRvcmlhbC5D",
+            "VHdvRmFjdG9yX1JlbW92ZUF1dGhlbnRpY2F0b3JWaWFDaGFsbGVuZ2VTdGFy",
+            "dF9SZXNwb25zZSIvgrUYK1N0YXJ0IGNoYWxsZW5nZS1iYXNlZCBhdXRoZW50",
+            "aWNhdG9yIHJlbW92YWwS6gEKJ1JlbW92ZUF1dGhlbnRpY2F0b3JWaWFDaGFs",
+            "bGVuZ2VDb250aW51ZRJELnR1dG9yaWFsLkNUd29GYWN0b3JfUmVtb3ZlQXV0",
+            "aGVudGljYXRvclZpYUNoYWxsZW5nZUNvbnRpbnVlX1JlcXVlc3QaRS50dXRv",
+            "cmlhbC5DVHdvRmFjdG9yX1JlbW92ZUF1dGhlbnRpY2F0b3JWaWFDaGFsbGVu",
+            "Z2VDb250aW51ZV9SZXNwb25zZSIygrUYLkNvbnRpbnVlIGNoYWxsZW5nZS1i",
+            "YXNlZCBhdXRoZW50aWNhdG9yIHJlbW92YWwaGoK1GBZBdXRoZW50aWNhdGlv",
+            "biBTZXJ2aWNlMvgGChVBdXRoZW50aWNhdGlvblN1cHBvcnQS9wEKG1F1ZXJ5",
+            "UmVmcmVzaFRva2Vuc0J5QWNjb3VudBJELnR1dG9yaWFsLkNBdXRoZW50aWNh",
+            "dGlvblN1cHBvcnRfUXVlcnlSZWZyZXNoVG9rZW5zQnlBY2NvdW50X1JlcXVl",
+            "c3QaRS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0X1F1ZXJ5UmVm",
+            "cmVzaFRva2Vuc0J5QWNjb3VudF9SZXNwb25zZSJLgrUYR0Fza3MgdGhlIHNl",
+            "cnZlciBmb3IgYSBsaXN0IG9mIHJlZnJlc2ggdG9rZW5zIGFzc29jaWF0ZWQg",
+            "d2l0aCBhbiBhY2NvdW50EuUBChVRdWVyeVJlZnJlc2hUb2tlbkJ5SUQSPi50",
+            "dXRvcmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0X1F1ZXJ5UmVmcmVzaFRv",
+            "a2VuQnlJRF9SZXF1ZXN0Gj8udHV0b3JpYWwuQ0F1dGhlbnRpY2F0aW9uU3Vw",
+            "cG9ydF9RdWVyeVJlZnJlc2hUb2tlbkJ5SURfUmVzcG9uc2UiS4K1GEdBc2tz",
+            "IHRoZSBzZXJ2ZXIgZm9yIGEgbGlzdCBvZiByZWZyZXNoIHRva2VucyBhc3Nv",
+            "Y2lhdGVkIHdpdGggYW4gYWNjb3VudBKbAQoLUmV2b2tlVG9rZW4SNC50dXRv",
+            "cmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0X1Jldm9rZVRva2VuX1JlcXVl",
+            "c3QaNS50dXRvcmlhbC5DQXV0aGVudGljYXRpb25TdXBwb3J0X1Jldm9rZVRv",
+            "a2VuX1Jlc3BvbnNlIh+CtRgbUmV2b2tlcyBhIHVzZXIncyBhdXRoIHRva2Vu",
+            "EroBCg9HZXRUb2tlbkhpc3RvcnkSOC50dXRvcmlhbC5DQXV0aGVudGljYXRp",
+            "b25TdXBwb3J0X0dldFRva2VuSGlzdG9yeV9SZXF1ZXN0GjkudHV0b3JpYWwu",
+            "Q0F1dGhlbnRpY2F0aW9uU3VwcG9ydF9HZXRUb2tlbkhpc3RvcnlfUmVzcG9u",
+            "c2UiMoK1GC5HZXRzIHRoZSBhdWRpdCBoaXN0b3J5IGZvciBhIHVzZXIncyBh",
+            "dXRoIHRva2VuGiKCtRgeQXV0aGVudGljYXRpb24gU3VwcG9ydCBTZXJ2aWNl",
+            "MpYDCgtDbG91ZEdhbWluZxKdAQoLQ3JlYXRlTm9uY2USKi50dXRvcmlhbC5D",
+            "Q2xvdWRHYW1pbmdfQ3JlYXRlTm9uY2VfUmVxdWVzdBorLnR1dG9yaWFsLkND",
+            "bG91ZEdhbWluZ19DcmVhdGVOb25jZV9SZXNwb25zZSI1grUYMUNyZWF0ZSBh",
+            "IG5vbmNlIGZvciBhIGNsb3VkIGdhbWluZyBzZXJ2aWNlIHNlc3Npb24StwEK",
+            "EEdldFRpbWVSZW1haW5pbmcSLy50dXRvcmlhbC5DQ2xvdWRHYW1pbmdfR2V0",
+            "VGltZVJlbWFpbmluZ19SZXF1ZXN0GjAudHV0b3JpYWwuQ0Nsb3VkR2FtaW5n",
+            "X0dldFRpbWVSZW1haW5pbmdfUmVzcG9uc2UiQIK1GDxHZXQgdGhlIGFtb3Vu",
+            "dCBvZiBzdHJlYW1pbmcgdGltZSByZW1haW5pbmcgZm9yIGEgc2V0IG9mIGFw",
+            "cHMaLYK1GClNZXRob2RzIGZvciBTdGVhbSBjbG91ZCBnYW1pbmcgb3BlcmF0",
+            "aW9uc0IbgAEBqgIVQkQuU3RlYW1DbGllbnQuTW9kZWxz"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::BD.SteamClient.Models.SteammessagesBaseReflection.Descriptor, global::BD.SteamClient.Models.SteammessagesUnifiedBaseSteamclientReflection.Descriptor, global::BD.SteamClient.Models.EnumsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::BD.SteamClient.Models.EAuthTokenPlatformType), typeof(global::BD.SteamClient.Models.EAuthSessionGuardType), typeof(global::BD.SteamClient.Models.EAuthSessionSecurityHistory), typeof(global::BD.SteamClient.Models.EAuthTokenRevokeAction), typeof(global::BD.SteamClient.Models.EAuthTokenState), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -433,7 +475,12 @@ namespace BD.SteamClient.Models {
             new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Response), global::BD.SteamClient.Models.CCloudGaming_CreateNonce_Response.Parser, new[]{ "Nonce", "Expiry" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Request), global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Request.Parser, new[]{ "Platform", "AppidList" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_TimeRemaining), global::BD.SteamClient.Models.CCloudGaming_TimeRemaining.Parser, new[]{ "Appid", "MinutesRemaining" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response), global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response.Parser, new[]{ "Entries" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response), global::BD.SteamClient.Models.CCloudGaming_GetTimeRemaining_Response.Parser, new[]{ "Entries" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request), global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response), global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.Parser, new[]{ "Success" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request), global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request.Parser, new[]{ "SmsCode", "GenerateNewToken" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token), global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token.Parser, new[]{ "SharedSecret", "SerialNumber", "RevocationCode", "Uri", "ServerTime", "AccountName", "TokenGid", "IdentitySecret", "Secret1", "Status", "SteamguardScheme", "Steamid" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response), global::BD.SteamClient.Models.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response.Parser, new[]{ "Success", "ReplacementToken" }, null, null, null, null)
           }));
     }
     #endregion
@@ -13165,6 +13212,1644 @@ namespace BD.SteamClient.Models {
             break;
           case 18: {
             entries_.AddEntriesFrom(ref input, _repeated_entries_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request : pb::IMessage<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request> _parser = new pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request>(() => new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[41]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request other) : this() {
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request Clone() {
+      return new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request other) {
+      if (other == null) {
+        return;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response : pb::IMessage<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response> _parser = new pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response>(() => new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[42]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response other) : this() {
+      _hasBits0 = other._hasBits0;
+      success_ = other.success_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response Clone() {
+      return new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response(this);
+    }
+
+    /// <summary>Field number for the "success" field.</summary>
+    public const int SuccessFieldNumber = 1;
+    private readonly static bool SuccessDefaultValue = false;
+
+    private bool success_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Success {
+      get { if ((_hasBits0 & 1) != 0) { return success_; } else { return SuccessDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        success_ = value;
+      }
+    }
+    /// <summary>Gets whether the "success" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSuccess {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "success" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSuccess() {
+      _hasBits0 &= ~1;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Success != other.Success) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasSuccess) hash ^= Success.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasSuccess) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasSuccess) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasSuccess) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasSuccess) {
+        Success = other.Success;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request : pb::IMessage<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request> _parser = new pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request>(() => new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[43]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request other) : this() {
+      _hasBits0 = other._hasBits0;
+      smsCode_ = other.smsCode_;
+      generateNewToken_ = other.generateNewToken_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request Clone() {
+      return new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request(this);
+    }
+
+    /// <summary>Field number for the "sms_code" field.</summary>
+    public const int SmsCodeFieldNumber = 1;
+    private readonly static string SmsCodeDefaultValue = "";
+
+    private string smsCode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SmsCode {
+      get { return smsCode_ ?? SmsCodeDefaultValue; }
+      set {
+        smsCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "sms_code" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSmsCode {
+      get { return smsCode_ != null; }
+    }
+    /// <summary>Clears the value of the "sms_code" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSmsCode() {
+      smsCode_ = null;
+    }
+
+    /// <summary>Field number for the "generate_new_token" field.</summary>
+    public const int GenerateNewTokenFieldNumber = 2;
+    private readonly static bool GenerateNewTokenDefaultValue = false;
+
+    private bool generateNewToken_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool GenerateNewToken {
+      get { if ((_hasBits0 & 1) != 0) { return generateNewToken_; } else { return GenerateNewTokenDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        generateNewToken_ = value;
+      }
+    }
+    /// <summary>Gets whether the "generate_new_token" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasGenerateNewToken {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "generate_new_token" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearGenerateNewToken() {
+      _hasBits0 &= ~1;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SmsCode != other.SmsCode) return false;
+      if (GenerateNewToken != other.GenerateNewToken) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasSmsCode) hash ^= SmsCode.GetHashCode();
+      if (HasGenerateNewToken) hash ^= GenerateNewToken.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasSmsCode) {
+        output.WriteRawTag(10);
+        output.WriteString(SmsCode);
+      }
+      if (HasGenerateNewToken) {
+        output.WriteRawTag(16);
+        output.WriteBool(GenerateNewToken);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasSmsCode) {
+        output.WriteRawTag(10);
+        output.WriteString(SmsCode);
+      }
+      if (HasGenerateNewToken) {
+        output.WriteRawTag(16);
+        output.WriteBool(GenerateNewToken);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasSmsCode) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SmsCode);
+      }
+      if (HasGenerateNewToken) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasSmsCode) {
+        SmsCode = other.SmsCode;
+      }
+      if (other.HasGenerateNewToken) {
+        GenerateNewToken = other.GenerateNewToken;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            SmsCode = input.ReadString();
+            break;
+          }
+          case 16: {
+            GenerateNewToken = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            SmsCode = input.ReadString();
+            break;
+          }
+          case 16: {
+            GenerateNewToken = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class CRemoveAuthenticatorViaChallengeContinue_Replacement_Token : pb::IMessage<CRemoveAuthenticatorViaChallengeContinue_Replacement_Token>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CRemoveAuthenticatorViaChallengeContinue_Replacement_Token> _parser = new pb::MessageParser<CRemoveAuthenticatorViaChallengeContinue_Replacement_Token>(() => new CRemoveAuthenticatorViaChallengeContinue_Replacement_Token());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CRemoveAuthenticatorViaChallengeContinue_Replacement_Token> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[44]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CRemoveAuthenticatorViaChallengeContinue_Replacement_Token() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CRemoveAuthenticatorViaChallengeContinue_Replacement_Token(CRemoveAuthenticatorViaChallengeContinue_Replacement_Token other) : this() {
+      _hasBits0 = other._hasBits0;
+      sharedSecret_ = other.sharedSecret_;
+      serialNumber_ = other.serialNumber_;
+      revocationCode_ = other.revocationCode_;
+      uri_ = other.uri_;
+      serverTime_ = other.serverTime_;
+      accountName_ = other.accountName_;
+      tokenGid_ = other.tokenGid_;
+      identitySecret_ = other.identitySecret_;
+      secret1_ = other.secret1_;
+      status_ = other.status_;
+      steamguardScheme_ = other.steamguardScheme_;
+      steamid_ = other.steamid_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CRemoveAuthenticatorViaChallengeContinue_Replacement_Token Clone() {
+      return new CRemoveAuthenticatorViaChallengeContinue_Replacement_Token(this);
+    }
+
+    /// <summary>Field number for the "shared_secret" field.</summary>
+    public const int SharedSecretFieldNumber = 1;
+    private readonly static pb::ByteString SharedSecretDefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString sharedSecret_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString SharedSecret {
+      get { return sharedSecret_ ?? SharedSecretDefaultValue; }
+      set {
+        sharedSecret_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "shared_secret" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSharedSecret {
+      get { return sharedSecret_ != null; }
+    }
+    /// <summary>Clears the value of the "shared_secret" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSharedSecret() {
+      sharedSecret_ = null;
+    }
+
+    /// <summary>Field number for the "serial_number" field.</summary>
+    public const int SerialNumberFieldNumber = 2;
+    private readonly static ulong SerialNumberDefaultValue = 0UL;
+
+    private ulong serialNumber_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong SerialNumber {
+      get { if ((_hasBits0 & 1) != 0) { return serialNumber_; } else { return SerialNumberDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        serialNumber_ = value;
+      }
+    }
+    /// <summary>Gets whether the "serial_number" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSerialNumber {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "serial_number" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSerialNumber() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "revocation_code" field.</summary>
+    public const int RevocationCodeFieldNumber = 3;
+    private readonly static string RevocationCodeDefaultValue = "";
+
+    private string revocationCode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string RevocationCode {
+      get { return revocationCode_ ?? RevocationCodeDefaultValue; }
+      set {
+        revocationCode_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "revocation_code" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasRevocationCode {
+      get { return revocationCode_ != null; }
+    }
+    /// <summary>Clears the value of the "revocation_code" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearRevocationCode() {
+      revocationCode_ = null;
+    }
+
+    /// <summary>Field number for the "uri" field.</summary>
+    public const int UriFieldNumber = 4;
+    private readonly static string UriDefaultValue = "";
+
+    private string uri_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Uri {
+      get { return uri_ ?? UriDefaultValue; }
+      set {
+        uri_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "uri" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasUri {
+      get { return uri_ != null; }
+    }
+    /// <summary>Clears the value of the "uri" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearUri() {
+      uri_ = null;
+    }
+
+    /// <summary>Field number for the "server_time" field.</summary>
+    public const int ServerTimeFieldNumber = 5;
+    private readonly static ulong ServerTimeDefaultValue = 0UL;
+
+    private ulong serverTime_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong ServerTime {
+      get { if ((_hasBits0 & 2) != 0) { return serverTime_; } else { return ServerTimeDefaultValue; } }
+      set {
+        _hasBits0 |= 2;
+        serverTime_ = value;
+      }
+    }
+    /// <summary>Gets whether the "server_time" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasServerTime {
+      get { return (_hasBits0 & 2) != 0; }
+    }
+    /// <summary>Clears the value of the "server_time" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearServerTime() {
+      _hasBits0 &= ~2;
+    }
+
+    /// <summary>Field number for the "account_name" field.</summary>
+    public const int AccountNameFieldNumber = 6;
+    private readonly static string AccountNameDefaultValue = "";
+
+    private string accountName_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AccountName {
+      get { return accountName_ ?? AccountNameDefaultValue; }
+      set {
+        accountName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "account_name" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasAccountName {
+      get { return accountName_ != null; }
+    }
+    /// <summary>Clears the value of the "account_name" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearAccountName() {
+      accountName_ = null;
+    }
+
+    /// <summary>Field number for the "token_gid" field.</summary>
+    public const int TokenGidFieldNumber = 7;
+    private readonly static string TokenGidDefaultValue = "";
+
+    private string tokenGid_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TokenGid {
+      get { return tokenGid_ ?? TokenGidDefaultValue; }
+      set {
+        tokenGid_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "token_gid" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTokenGid {
+      get { return tokenGid_ != null; }
+    }
+    /// <summary>Clears the value of the "token_gid" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTokenGid() {
+      tokenGid_ = null;
+    }
+
+    /// <summary>Field number for the "identity_secret" field.</summary>
+    public const int IdentitySecretFieldNumber = 8;
+    private readonly static pb::ByteString IdentitySecretDefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString identitySecret_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString IdentitySecret {
+      get { return identitySecret_ ?? IdentitySecretDefaultValue; }
+      set {
+        identitySecret_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "identity_secret" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasIdentitySecret {
+      get { return identitySecret_ != null; }
+    }
+    /// <summary>Clears the value of the "identity_secret" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearIdentitySecret() {
+      identitySecret_ = null;
+    }
+
+    /// <summary>Field number for the "secret_1" field.</summary>
+    public const int Secret1FieldNumber = 9;
+    private readonly static pb::ByteString Secret1DefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString secret1_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString Secret1 {
+      get { return secret1_ ?? Secret1DefaultValue; }
+      set {
+        secret1_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "secret_1" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSecret1 {
+      get { return secret1_ != null; }
+    }
+    /// <summary>Clears the value of the "secret_1" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSecret1() {
+      secret1_ = null;
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 10;
+    private readonly static int StatusDefaultValue = 0;
+
+    private int status_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Status {
+      get { if ((_hasBits0 & 4) != 0) { return status_; } else { return StatusDefaultValue; } }
+      set {
+        _hasBits0 |= 4;
+        status_ = value;
+      }
+    }
+    /// <summary>Gets whether the "status" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasStatus {
+      get { return (_hasBits0 & 4) != 0; }
+    }
+    /// <summary>Clears the value of the "status" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearStatus() {
+      _hasBits0 &= ~4;
+    }
+
+    /// <summary>Field number for the "steamguard_scheme" field.</summary>
+    public const int SteamguardSchemeFieldNumber = 11;
+    private readonly static uint SteamguardSchemeDefaultValue = 0;
+
+    private uint steamguardScheme_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public uint SteamguardScheme {
+      get { if ((_hasBits0 & 8) != 0) { return steamguardScheme_; } else { return SteamguardSchemeDefaultValue; } }
+      set {
+        _hasBits0 |= 8;
+        steamguardScheme_ = value;
+      }
+    }
+    /// <summary>Gets whether the "steamguard_scheme" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSteamguardScheme {
+      get { return (_hasBits0 & 8) != 0; }
+    }
+    /// <summary>Clears the value of the "steamguard_scheme" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSteamguardScheme() {
+      _hasBits0 &= ~8;
+    }
+
+    /// <summary>Field number for the "steamid" field.</summary>
+    public const int SteamidFieldNumber = 12;
+    private readonly static ulong SteamidDefaultValue = 0UL;
+
+    private ulong steamid_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ulong Steamid {
+      get { if ((_hasBits0 & 16) != 0) { return steamid_; } else { return SteamidDefaultValue; } }
+      set {
+        _hasBits0 |= 16;
+        steamid_ = value;
+      }
+    }
+    /// <summary>Gets whether the "steamid" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSteamid {
+      get { return (_hasBits0 & 16) != 0; }
+    }
+    /// <summary>Clears the value of the "steamid" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSteamid() {
+      _hasBits0 &= ~16;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CRemoveAuthenticatorViaChallengeContinue_Replacement_Token);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CRemoveAuthenticatorViaChallengeContinue_Replacement_Token other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (SharedSecret != other.SharedSecret) return false;
+      if (SerialNumber != other.SerialNumber) return false;
+      if (RevocationCode != other.RevocationCode) return false;
+      if (Uri != other.Uri) return false;
+      if (ServerTime != other.ServerTime) return false;
+      if (AccountName != other.AccountName) return false;
+      if (TokenGid != other.TokenGid) return false;
+      if (IdentitySecret != other.IdentitySecret) return false;
+      if (Secret1 != other.Secret1) return false;
+      if (Status != other.Status) return false;
+      if (SteamguardScheme != other.SteamguardScheme) return false;
+      if (Steamid != other.Steamid) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasSharedSecret) hash ^= SharedSecret.GetHashCode();
+      if (HasSerialNumber) hash ^= SerialNumber.GetHashCode();
+      if (HasRevocationCode) hash ^= RevocationCode.GetHashCode();
+      if (HasUri) hash ^= Uri.GetHashCode();
+      if (HasServerTime) hash ^= ServerTime.GetHashCode();
+      if (HasAccountName) hash ^= AccountName.GetHashCode();
+      if (HasTokenGid) hash ^= TokenGid.GetHashCode();
+      if (HasIdentitySecret) hash ^= IdentitySecret.GetHashCode();
+      if (HasSecret1) hash ^= Secret1.GetHashCode();
+      if (HasStatus) hash ^= Status.GetHashCode();
+      if (HasSteamguardScheme) hash ^= SteamguardScheme.GetHashCode();
+      if (HasSteamid) hash ^= Steamid.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasSharedSecret) {
+        output.WriteRawTag(10);
+        output.WriteBytes(SharedSecret);
+      }
+      if (HasSerialNumber) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(SerialNumber);
+      }
+      if (HasRevocationCode) {
+        output.WriteRawTag(26);
+        output.WriteString(RevocationCode);
+      }
+      if (HasUri) {
+        output.WriteRawTag(34);
+        output.WriteString(Uri);
+      }
+      if (HasServerTime) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(ServerTime);
+      }
+      if (HasAccountName) {
+        output.WriteRawTag(50);
+        output.WriteString(AccountName);
+      }
+      if (HasTokenGid) {
+        output.WriteRawTag(58);
+        output.WriteString(TokenGid);
+      }
+      if (HasIdentitySecret) {
+        output.WriteRawTag(66);
+        output.WriteBytes(IdentitySecret);
+      }
+      if (HasSecret1) {
+        output.WriteRawTag(74);
+        output.WriteBytes(Secret1);
+      }
+      if (HasStatus) {
+        output.WriteRawTag(80);
+        output.WriteInt32(Status);
+      }
+      if (HasSteamguardScheme) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(SteamguardScheme);
+      }
+      if (HasSteamid) {
+        output.WriteRawTag(97);
+        output.WriteFixed64(Steamid);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasSharedSecret) {
+        output.WriteRawTag(10);
+        output.WriteBytes(SharedSecret);
+      }
+      if (HasSerialNumber) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(SerialNumber);
+      }
+      if (HasRevocationCode) {
+        output.WriteRawTag(26);
+        output.WriteString(RevocationCode);
+      }
+      if (HasUri) {
+        output.WriteRawTag(34);
+        output.WriteString(Uri);
+      }
+      if (HasServerTime) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(ServerTime);
+      }
+      if (HasAccountName) {
+        output.WriteRawTag(50);
+        output.WriteString(AccountName);
+      }
+      if (HasTokenGid) {
+        output.WriteRawTag(58);
+        output.WriteString(TokenGid);
+      }
+      if (HasIdentitySecret) {
+        output.WriteRawTag(66);
+        output.WriteBytes(IdentitySecret);
+      }
+      if (HasSecret1) {
+        output.WriteRawTag(74);
+        output.WriteBytes(Secret1);
+      }
+      if (HasStatus) {
+        output.WriteRawTag(80);
+        output.WriteInt32(Status);
+      }
+      if (HasSteamguardScheme) {
+        output.WriteRawTag(88);
+        output.WriteUInt32(SteamguardScheme);
+      }
+      if (HasSteamid) {
+        output.WriteRawTag(97);
+        output.WriteFixed64(Steamid);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasSharedSecret) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(SharedSecret);
+      }
+      if (HasSerialNumber) {
+        size += 1 + 8;
+      }
+      if (HasRevocationCode) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(RevocationCode);
+      }
+      if (HasUri) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Uri);
+      }
+      if (HasServerTime) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(ServerTime);
+      }
+      if (HasAccountName) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountName);
+      }
+      if (HasTokenGid) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TokenGid);
+      }
+      if (HasIdentitySecret) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(IdentitySecret);
+      }
+      if (HasSecret1) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Secret1);
+      }
+      if (HasStatus) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      if (HasSteamguardScheme) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SteamguardScheme);
+      }
+      if (HasSteamid) {
+        size += 1 + 8;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CRemoveAuthenticatorViaChallengeContinue_Replacement_Token other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasSharedSecret) {
+        SharedSecret = other.SharedSecret;
+      }
+      if (other.HasSerialNumber) {
+        SerialNumber = other.SerialNumber;
+      }
+      if (other.HasRevocationCode) {
+        RevocationCode = other.RevocationCode;
+      }
+      if (other.HasUri) {
+        Uri = other.Uri;
+      }
+      if (other.HasServerTime) {
+        ServerTime = other.ServerTime;
+      }
+      if (other.HasAccountName) {
+        AccountName = other.AccountName;
+      }
+      if (other.HasTokenGid) {
+        TokenGid = other.TokenGid;
+      }
+      if (other.HasIdentitySecret) {
+        IdentitySecret = other.IdentitySecret;
+      }
+      if (other.HasSecret1) {
+        Secret1 = other.Secret1;
+      }
+      if (other.HasStatus) {
+        Status = other.Status;
+      }
+      if (other.HasSteamguardScheme) {
+        SteamguardScheme = other.SteamguardScheme;
+      }
+      if (other.HasSteamid) {
+        Steamid = other.Steamid;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            SharedSecret = input.ReadBytes();
+            break;
+          }
+          case 17: {
+            SerialNumber = input.ReadFixed64();
+            break;
+          }
+          case 26: {
+            RevocationCode = input.ReadString();
+            break;
+          }
+          case 34: {
+            Uri = input.ReadString();
+            break;
+          }
+          case 40: {
+            ServerTime = input.ReadUInt64();
+            break;
+          }
+          case 50: {
+            AccountName = input.ReadString();
+            break;
+          }
+          case 58: {
+            TokenGid = input.ReadString();
+            break;
+          }
+          case 66: {
+            IdentitySecret = input.ReadBytes();
+            break;
+          }
+          case 74: {
+            Secret1 = input.ReadBytes();
+            break;
+          }
+          case 80: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            SteamguardScheme = input.ReadUInt32();
+            break;
+          }
+          case 97: {
+            Steamid = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            SharedSecret = input.ReadBytes();
+            break;
+          }
+          case 17: {
+            SerialNumber = input.ReadFixed64();
+            break;
+          }
+          case 26: {
+            RevocationCode = input.ReadString();
+            break;
+          }
+          case 34: {
+            Uri = input.ReadString();
+            break;
+          }
+          case 40: {
+            ServerTime = input.ReadUInt64();
+            break;
+          }
+          case 50: {
+            AccountName = input.ReadString();
+            break;
+          }
+          case 58: {
+            TokenGid = input.ReadString();
+            break;
+          }
+          case 66: {
+            IdentitySecret = input.ReadBytes();
+            break;
+          }
+          case 74: {
+            Secret1 = input.ReadBytes();
+            break;
+          }
+          case 80: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            SteamguardScheme = input.ReadUInt32();
+            break;
+          }
+          case 97: {
+            Steamid = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response : pb::IMessage<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response> _parser = new pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response>(() => new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response());
+    private pb::UnknownFieldSet _unknownFields;
+    private int _hasBits0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::BD.SteamClient.Models.SteammessagesAuthSteamclientReflection.Descriptor.MessageTypes[45]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response other) : this() {
+      _hasBits0 = other._hasBits0;
+      success_ = other.success_;
+      replacementToken_ = other.replacementToken_ != null ? other.replacementToken_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response Clone() {
+      return new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response(this);
+    }
+
+    /// <summary>Field number for the "success" field.</summary>
+    public const int SuccessFieldNumber = 1;
+    private readonly static bool SuccessDefaultValue = false;
+
+    private bool success_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Success {
+      get { if ((_hasBits0 & 1) != 0) { return success_; } else { return SuccessDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        success_ = value;
+      }
+    }
+    /// <summary>Gets whether the "success" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSuccess {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "success" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSuccess() {
+      _hasBits0 &= ~1;
+    }
+
+    /// <summary>Field number for the "replacement_token" field.</summary>
+    public const int ReplacementTokenFieldNumber = 2;
+    private global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token replacementToken_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token ReplacementToken {
+      get { return replacementToken_; }
+      set {
+        replacementToken_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Success != other.Success) return false;
+      if (!object.Equals(ReplacementToken, other.ReplacementToken)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (HasSuccess) hash ^= Success.GetHashCode();
+      if (replacementToken_ != null) hash ^= ReplacementToken.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (HasSuccess) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (replacementToken_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ReplacementToken);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (HasSuccess) {
+        output.WriteRawTag(8);
+        output.WriteBool(Success);
+      }
+      if (replacementToken_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ReplacementToken);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (HasSuccess) {
+        size += 1 + 1;
+      }
+      if (replacementToken_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ReplacementToken);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response other) {
+      if (other == null) {
+        return;
+      }
+      if (other.HasSuccess) {
+        Success = other.Success;
+      }
+      if (other.replacementToken_ != null) {
+        if (replacementToken_ == null) {
+          ReplacementToken = new global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token();
+        }
+        ReplacementToken.MergeFrom(other.ReplacementToken);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (replacementToken_ == null) {
+              ReplacementToken = new global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token();
+            }
+            input.ReadMessage(ReplacementToken);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Success = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (replacementToken_ == null) {
+              ReplacementToken = new global::BD.SteamClient.Models.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token();
+            }
+            input.ReadMessage(ReplacementToken);
             break;
           }
         }

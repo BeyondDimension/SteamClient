@@ -8,25 +8,31 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
 {
     private readonly ConcurrentDictionary<string, CancellationTokenSource> _tasks;
 
+    private readonly ISteamSessionService _sessionService;
+
     public SteamTradeServiceImpl(
         IServiceProvider s,
+        ISteamSessionService steamSessionService,
         ILogger<SteamTradeServiceImpl> logger) : base(
             s, logger)
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
+        _sessionService = steamSessionService;
     }
 
     public SteamTradeServiceImpl(
         IServiceProvider s,
+        ISteamSessionService steamSessionService,
         Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
+        _sessionService = steamSessionService;
     }
 
     #region Tasks
-    public void StartTradeTask(SteamSession steamSession, int interval, TradeTaskEnum tradeTaskEnum)
+    public void StartTradeTask(string steam_id, int interval, TradeTaskEnum tradeTaskEnum)
     {
-        var taskName = $"{steamSession.SteamId}_{tradeTaskEnum.ToString()}";
+        var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
         if (!_tasks.ContainsKey(taskName))
         {
 
@@ -36,7 +42,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
                 case TradeTaskEnum.None:
                     return;
                 case TradeTaskEnum.AutoAcceptGitTrade:
-                    action = async () => { await AcceptAllGiftTradeOfferAsync(steamSession); };
+                    action = async () => { await AcceptAllGiftTradeOfferAsync(steam_id); };
                     break;
                 default:
                     return;
@@ -48,9 +54,9 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         }
     }
 
-    public void StopTask(SteamSession steamSession, TradeTaskEnum tradeTaskEnum)
+    public void StopTask(string steam_id, TradeTaskEnum tradeTaskEnum)
     {
-        var taskName = $"{steamSession.SteamId}_{tradeTaskEnum.ToString()}";
+        var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
         if (_tasks.TryGetValue(taskName, out var cancellationTokenSource))
         {
             cancellationTokenSource.Cancel();
@@ -79,8 +85,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
 
     #region Public
 
-    public async Task<bool> AcceptAllGiftTradeOfferAsync(SteamSession steamSession)
+    public async Task<bool> AcceptAllGiftTradeOfferAsync(string steam_id)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         if (string.IsNullOrEmpty(steamSession.APIKey))
             return false;
 
@@ -110,7 +120,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
                                 var receive_count = trade_offer.ItemsToReceive?.Count ?? 0; // 接收物品数
                                 if (give_count == 0)
                                 {
-                                    await AcceptTradeOfferAsync(steamSession, trade_offer.TradeOfferId, trade_offer, confirmations); // 接受报价
+                                    await AcceptTradeOfferAsync(steam_id, trade_offer.TradeOfferId, trade_offer, confirmations); // 接受报价
                                 }
                             }
                         }
@@ -121,8 +131,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return false;
     }
 
-    public async Task<bool> BatchHandleTradeOfferAsync(SteamSession steamSession, Dictionary<string, string> trades, bool accept)
+    public async Task<bool> BatchHandleTradeOfferAsync(string steam_id, Dictionary<string, string> trades, bool accept)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         if (!trades.Any())
             return false;
 
@@ -130,8 +144,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     }
 
     [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
-    public async Task<bool> AcceptTradeOfferAsync(SteamSession steamSession, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
+    public async Task<bool> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         if (tradeInfo == null)
         {
             var trade_rsp = await GetTradeOfferAsync(steamSession.APIKey, trade_offer_id);
@@ -220,8 +238,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return await client.GetAsync(STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key));
     }
 
-    public async Task<bool> SendTradeOfferAsync(SteamSession steamSession, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message)
+    public async Task<bool> SendTradeOfferAsync(string steam_id, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         var offer_string = GenerateJsonTradeOffer(my_itmes, them_items);
         var sessionid = await FetchSessionId(steamSession);
         var server_id = 1;
@@ -256,8 +278,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return false;
     }
 
-    public async Task<bool> SendTradeOfferWithUrlAsync(SteamSession steamSession, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message)
+    public async Task<bool> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         var uri = new Uri(trade_offer_url);
         var querys = HttpUtility.ParseQueryString(uri.Query);
         var partner = querys["partner"];
@@ -300,8 +326,12 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return false;
     }
 
-    public async Task<bool> CancelTradeOfferAsync(SteamSession steamSession, string trade_offer_id)
+    public async Task<bool> CancelTradeOfferAsync(string steam_id, string trade_offer_id)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
+
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()
         {
@@ -314,8 +344,11 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return response.IsSuccessStatusCode;
     }
 
-    public async Task<bool> DeclineTradeOfferAsync(SteamSession steamSession, string trade_offer_id)
+    public async Task<bool> DeclineTradeOfferAsync(string steam_id, string trade_offer_id)
     {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            return false;
 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()
