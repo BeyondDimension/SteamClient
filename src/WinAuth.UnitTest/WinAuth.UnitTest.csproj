@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Product>WinAuth.Library 单元测试</Product>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+		<DefineConstants>TEST_PROJ;$(DefineConstants)</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\ImplicitUsings.Common.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+		<Compile Include="..\ImplicitUsings.UnitTest.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" />
+		<PackageReference Include="NUnit" />
+		<PackageReference Include="NUnit3TestAdapter" />
+		<PackageReference Include="NUnit.Analyzers" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\WinAuth\WinAuth.csproj" />
+	</ItemGroup>
+
+	<Import Project="..\TFM_NETX_SINGLE.props" />
+
+</Project>
