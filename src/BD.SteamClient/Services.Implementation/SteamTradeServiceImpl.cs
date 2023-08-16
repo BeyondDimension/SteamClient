@@ -379,7 +379,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return Enumerable.Empty<Confirmation>();
     }
 
-    public async Task<(string[] my_items, string[] them_items)> GetComfirmationImages(string steam_id, Confirmation confirmation)
+    public async Task<(string[] my_items, string[] them_items)> GetConfirmationImages(string steam_id, Confirmation confirmation)
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)

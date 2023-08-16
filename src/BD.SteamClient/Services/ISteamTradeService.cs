@@ -128,7 +128,7 @@ public interface ISteamTradeService
     /// <param name="steam_id"></param>
     /// <param name="confirmation"></param>
     /// <returns></returns>
-    Task<(string[] my_items, string[] them_items)> GetComfirmationImages(string steam_id, Confirmation confirmation);
+    Task<(string[] my_items, string[] them_items)> GetConfirmationImages(string steam_id, Confirmation confirmation);
 
     /// <summary>
     /// 交易确认发送
