@@ -79,8 +79,9 @@ public static class SteamApiUrls
     public const string STEAM_TRADEOFFER_DECLINE = "https://steamcommunity.com/tradeoffer/{0}/decline";
     public const string STEAM_TRADEOFFER_CANCEL = "https://steamcommunity.com/tradeoffer/{0}/cancel";
     public const string STEAM_TRADEOFFER_GET_SUMMARY = "https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1?key={0}";
-    public const string STEAM_TRADEOFFER_GET_OFFERS = "https://api.steampowered.com/IEconService/GetTradeOffers/v1";
-    public const string STEAM_TRADEOFFER_GET_OFFER = "https://api.steampowered.com/IEconService/GetTradeOffer/v1";
+    public const string STEAM_TRADEOFFER_GET_OFFERS = "https://api.steampowered.com/IEconService/GetTradeOffers/v1/";
+    public const string STEAM_TRADEOFFER_GET_OFFER = "https://api.steampowered.com/IEconService/GetTradeOffer/v1/";
+    public const string STEAM_TRADEOFFER_GET_HISTORY = "https://api.steampowered.com/IEconService/GetTradeHistory/v1/";
     public const string STEAM_TRADEOFFER_URL = "https://steamcommunity.com/tradeoffer/{0}";
     public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com/tradeoffer/new/send";
 
@@ -90,7 +91,7 @@ public static class SteamApiUrls
     public const string STEAM_MOBILECONF_CONFIRMATION = "https://steamcommunity.com/mobileconf/ajaxop";
     public const string STEAM_MOBILECONF_BATCH_CONFIRMATION = "https://steamcommunity.com/mobileconf/multiajaxop";
     public const string STEAM_MOBILECONF_GET_CONFIRMATIONS = "https://steamcommunity.com/mobileconf/getlist";
-    public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = "https://steamcommunity.com/mobileconf/details/{0}";
+    public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = "https://steamcommunity.com/mobileconf/details/{0}?l=schinese";
 
     /// <summary>
     /// Authenticator
