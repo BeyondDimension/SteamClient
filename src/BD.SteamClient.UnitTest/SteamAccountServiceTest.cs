@@ -64,9 +64,13 @@ public sealed class SteamAccountServiceTest
         {
 
             string path = $"{AppDomain.CurrentDomain.BaseDirectory}/state.json";
-            using FileStream fs = new FileStream(path, FileMode.Open);
 
-            globalState = JsonSerializer.Deserialize<SteamLoginState>(fs);
+            if (File.Exists(path))
+            {
+                using FileStream fs = new FileStream(path, FileMode.Open);
+
+                globalState = JsonSerializer.Deserialize<SteamLoginState>(fs);
+            }
 
             // if (true)
             // {
