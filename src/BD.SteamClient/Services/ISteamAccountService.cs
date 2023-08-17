@@ -1,3 +1,5 @@
+using BD.SteamClient.Models.Profile;
+
 namespace BD.SteamClient.Services;
 
 public interface ISteamAccountService
@@ -82,4 +84,61 @@ public interface ISteamAccountService
     /// 获取当前可设置的区域列表
     /// </summary>
     Task<List<CurrencyData>?> GetSteamAccountCountryCodes(SteamLoginState loginState);
+
+    /// <summary>
+    /// 获取 api key
+    /// </summary>
+    /// <param name="steamLoginState">登录状态</param>
+    /// <returns></returns>
+    Task<string?> GetApiKey(SteamLoginState steamLoginState);
+
+    /// <summary>
+    /// 注册api key
+    /// </summary>
+    /// <param name="steamLoginState">登录状态</param>
+    /// <returns></returns>
+    Task<string?> RegisterApiKey(SteamLoginState steamLoginState, string? domain = null);
+
+    /// <summary>
+    /// 获取库存信息 (有频率限制 间隔3分钟)
+    /// </summary>
+    /// <param name="steamId">用户 Steam Id</param>
+    /// <param name="appId">应用 Id</param>
+    /// <param name="contextId">上下文 Id</param>
+    /// <param name="count">获取数量</param>
+    /// <param name="startAssetId">开始物品 Id(用于分页)</param>
+    /// <param name="language">语言(默认简体中文)</param>
+    /// <returns></returns>
+    Task<InventoryPageResponse> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese");
+
+    /// <summary>
+    /// 获取库存交易历史
+    /// </summary>
+    /// <param name="loginState">登录状态</param>
+    /// <param name="appFilter">筛选的appId列表</param>
+    /// <param name="cursor">分页游标(响应会返回下一次请求的游标)</param>
+    /// <returns></returns>
+    Task<InventoryTradeHistoryRenderPageResponse> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null);
+
+    /// <summary>
+    /// 解析库存交易历史html
+    /// </summary>
+    /// <param name="html">交易历史html</param>
+    /// <param name="cultureInfo">网页语言信息(目前只有时间按照语言解析)</param>
+    /// <returns></returns>
+    IAsyncEnumerable<InventoryTradeHistoryRow> ParseInventoryTradeHistory(string html, CultureInfo? cultureInfo = null);
+
+    /// <summary>
+    /// 获取发送礼物记录
+    /// </summary>
+    /// <param name="loginState">登录状态</param>
+    /// <returns></returns>
+    Task<IEnumerable<SendGiftHisotryItem>> GetSendGiftHisotries(SteamLoginState loginState);
+
+    /// <summary>
+    /// 获取登录历史记录
+    /// </summary>
+    /// <param name="loginState"></param>
+    /// <returns></returns>
+    IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState);
 }
