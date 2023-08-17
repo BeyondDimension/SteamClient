@@ -1,19 +1,34 @@
 namespace BD.SteamClient.Services.Implementation;
 
+using AngleSharp.Common;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
+using BD.SteamClient.Models.Idle;
+using Nito.Comparers.Linq;
+using System.Linq;
 
-public class SteamIdleCardServiceImpl : ISteamIdleCardService
+public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServiceImpl, ISteamIdleCardService
 {
     private readonly ISteamSessionService _sessionService;
 
-    public SteamIdleCardServiceImpl(ISteamSessionService steamSessionService)
+    public SteamIdleCardServiceImpl(
+        IServiceProvider s,
+        ILogger<SteamTradeServiceImpl> logger) : base(
+            s, logger)
     {
-        _sessionService = steamSessionService;
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
-    public async Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id)
+    public SteamIdleCardServiceImpl(
+        IServiceProvider s,
+        Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
+    {
+        _sessionService = s.GetRequiredService<ISteamSessionService>();
+    }
+
+    #region Public
+    public async Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
@@ -57,8 +72,84 @@ public class SteamIdleCardServiceImpl : ISteamIdleCardService
             await FetchBadgesOnPage(document, badges, cardpage_func);
         }
 
+        if (need_price)
+        {
+            var avg_prices = (await GetAppCradsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency)).ToDictionary(x => x.AppId, x => x);
+            foreach (var badge in badges)
+            {
+                if (avg_prices.TryGetValue(badge.AppId, out var avg))
+                {
+                    badge.RegularAvgPrice = avg.Regular;
+                    badge.FoilAvgPrice = avg.Foil;
+                }
+                if (badge.Cards != null && badge.Cards.Any())
+                {
+                    var card_prices = (await GetCardsMarketPrice(badge.AppId, currency)).ToDictionary(x => x.CardName, x => x.Price);
+                    if (card_prices.Any())
+                    {
+                        foreach (var card in badge.Cards)
+                        {
+                            var key_cardname = card.Name.Contains("Foil") || card.Name.Contains("闪亮") ? $"{card.Name} (Foil)" : card.Name;
+                            if (card_prices.TryGetValue(key_cardname, out var price))
+                                card.Price = price;
+                        }
+                    }
+                }
+            }
+        }
+
         return badges;
     }
+
+    public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(int[] appIds, string currency)
+    {
+        var url = STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        using var response = await client.SendAsync(request);
+        var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+        if (document.RootElement.TryGetProperty("result", out var result)
+            && result.ToString() == "success"
+            && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
+        {
+            var avgs = new List<AppCardsAvgPrice>();
+            foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+            {
+                var avg = new AppCardsAvgPrice();
+                avg.AppId = int.Parse(item.Name);
+                avg.Regular = item.Value.GetProperty("regular").GetDecimal();
+                avg.Foil = item.Value.GetProperty("foil").GetDecimal();
+                avgs.Add(avg);
+            }
+            return avgs;
+        }
+        return Enumerable.Empty<AppCardsAvgPrice>();
+    }
+
+    public async Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(int appId, string currency)
+    {
+        var url = STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
+        using var request = new HttpRequestMessage(HttpMethod.Get, url);
+        using var response = await client.SendAsync(request);
+        var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+        if (document.RootElement.TryGetProperty("result", out var result)
+            && result.ToString() == "success"
+            && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
+        {
+            var cardPrices = new List<CardsMarketPrice>();
+            foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+            {
+                var cardPrice = new CardsMarketPrice();
+                cardPrice.CardName = item.Name;
+                cardPrice.IsFoil = cardPrice.CardName.Contains("(Foil)");
+                cardPrice.MarketUrl = item.Value.GetProperty("url").ToString();
+                cardPrice.Price = item.Value.GetProperty("price").GetDecimal();
+                cardPrices.Add(cardPrice);
+            }
+            return cardPrices;
+        }
+        return Enumerable.Empty<CardsMarketPrice>();
+    }
+    #endregion
 
     #region Private
     private async Task FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func)

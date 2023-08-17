@@ -10,7 +10,7 @@ public static class SteamApiUrls
 
     public const string STEAM_LOGIN_URL = "https://steamcommunity.com/login/home/?goto=my/profile";
     public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/l=schinese&p={1}";
-    public const string STEAM_GAMECARDS_URL = "https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=schinese";
+    public const string STEAM_GAMECARDS_URL = "https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=english";
     public const string STEAMAPP_LIST_URL = "https://api.steampowered.com/ISteamApps/GetAppList/v2";
     public const string STEAMAPP_LOGO_URL = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
     public const string STEAMAPP_LIBRARY_URL = "https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_600x900.jpg";
@@ -86,7 +86,7 @@ public static class SteamApiUrls
     public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com/tradeoffer/new/send";
 
     /// <summary>
-    /// MOBILECONF 令牌确认API
+    /// MOBILECONF 令牌交易确认API
     /// </summary>
     public const string STEAM_MOBILECONF_CONFIRMATION = "https://steamcommunity.com/mobileconf/ajaxop";
     public const string STEAM_MOBILECONF_BATCH_CONFIRMATION = "https://steamcommunity.com/mobileconf/multiajaxop";
@@ -94,7 +94,7 @@ public static class SteamApiUrls
     public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = "https://steamcommunity.com/mobileconf/details/{0}?l=schinese";
 
     /// <summary>
-    /// Authenticator
+    /// Authenticator 令牌
     /// </summary>
     public const string STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_ADD_PHONENUMBER = "https://api.steampowered.com/IPhoneService/SetAccountPhoneNumber/v1?access_token={0}";
@@ -107,4 +107,10 @@ public static class SteamApiUrls
     public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeStart/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeContinue/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN = "https://api.steampowered.com/IAuthenticationService/GenerateAccessTokenForApp/v1/";
+
+    /// <summary>
+    /// Idle 挂卡
+    /// </summary>
+    public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/v2/market/cards/average-prices/?appids={0}&currency={1}";
+    public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/v2/market/cards/?appid={0}&currency={1}";
 }

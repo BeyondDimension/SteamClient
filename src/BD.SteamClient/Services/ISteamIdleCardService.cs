@@ -1,3 +1,5 @@
+using BD.SteamClient.Models.Idle;
+
 namespace BD.SteamClient.Services;
 
 public interface ISteamIdleCardService
@@ -7,5 +9,21 @@ public interface ISteamIdleCardService
     /// </summary>
     /// <param name="steamSession"></param>
     /// <returns></returns>
-    Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id);
+    Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY");
+
+    /// <summary>
+    /// 获取游戏卡组卡片平均价格
+    /// </summary>
+    /// <param name="appIds"></param>
+    /// <param name="currency"></param>
+    /// <returns></returns>
+    Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(int[] appIds, string currency);
+
+    /// <summary>
+    /// 获取游戏卡片价格
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <param name="currency"></param>
+    /// <returns></returns>
+    Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(int appId, string currency);
 }

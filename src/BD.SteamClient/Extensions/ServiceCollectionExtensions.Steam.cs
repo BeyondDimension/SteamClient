@@ -111,9 +111,12 @@ public static partial class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IServiceCollection AddSteamIdleCardService(this IServiceCollection services)
+    public static IServiceCollection AddSteamIdleCardService(this IServiceCollection services, Func<CookieContainer, HttpHandlerType>? getHandler = null)
     {
-        services.TryAddSingleton<ISteamIdleCardService, SteamIdleCardServiceImpl>();
+        if (getHandler == null)
+            services.TryAddSingleton<ISteamIdleCardService, SteamIdleCardServiceImpl>();
+        else
+            services.TryAddSingleton<ISteamIdleCardService>(s => new SteamIdleCardServiceImpl(s, getHandler));
         return services;
     }
 }
