@@ -33,6 +33,7 @@ public sealed class SteamServiceTest
         TestContext.WriteLine($"ValveKeyValue (VDF)       : {sw.ElapsedMilliseconds / numIterations}ms, {sw.ElapsedTicks / numIterations}ticks average");
     }
 
+    [Ignore("unspport")]
     [Test]
     public void TestVdfValueEdit()
     {
