@@ -1,6 +1,9 @@
+using System;
+using System.Text;
 using AngleSharp;
 using AngleSharp.Dom;
-using AngleSharp.Html;
+using AngleSharp.Html.Parser;
+using BD.SteamClient.Models.Profile;
 using Google.Protobuf;
 using Polly;
 using Polly.Retry;
@@ -1249,5 +1252,435 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             return Convert.ToBase64String(response);
         });
         return r;
+    }
+
+    public async Task<InventoryTradeHistoryRenderPageResponse> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null)
+    {
+        StringBuilder urlBuilder = new StringBuilder($"{STEAM_COMMUNITY_URL}/profiles/{loginState.SteamId}/inventoryhistory/?ajax=1&sessionid={loginState.SeesionId}");
+
+        if (cursor != null)
+        {
+            urlBuilder.Append($"&cursor%5Btime%5D={cursor.Value.Time}&cursor%5Btime_frac%5D={cursor.Value.TimeFrac}&cursor%5Bs%5D={cursor.Value.S}");
+        }
+
+        if (appFilter != null && appFilter.Any())
+        {
+            foreach (var app in appFilter)
+            {
+                urlBuilder.Append($"&app%5B%5D={app}");
+            }
+        }
+        cookieContainer.Add(loginState.Cookies!);
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "Steam_Language",
+            Value = loginState.Language ?? "schinese",
+            Domain = new Uri(STEAM_COMMUNITY_URL).Host,
+            Secure = true,
+            Path = "/",
+        });
+
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "timezoneOffset",
+            Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
+            Domain = new Uri(STEAM_COMMUNITY_URL).Host
+        });
+
+        var resp = await client.GetAsync(urlBuilder.ToString());
+
+        resp.EnsureSuccessStatusCode();
+
+        var result = await resp.Content.ReadFromJsonAsync<InventoryTradeHistoryRenderPageResponse>();
+
+        return result;
+    }
+
+    public async IAsyncEnumerable<InventoryTradeHistoryRow> ParseInventoryTradeHistory(string html, CultureInfo? cultureInfo = null)
+    {
+        IBrowsingContext context = BrowsingContext.New();
+
+        var htmlParser = context.GetService<IHtmlParser>();
+
+        if (htmlParser == null)
+            throw new ArgumentNullException("获取Html解析器失败");
+
+        var document = await htmlParser.ParseDocumentAsync(html);
+
+        var rowElements = document.QuerySelectorAll("div.tradehistoryrow");
+
+        cultureInfo ??= new CultureInfo("zh");
+
+        foreach (var rowElement in rowElements)
+        {
+            var (date, timeOfDate) = await ParseDateTimePart(rowElement);
+
+            var (desc, groups) = await ParseContentPart(rowElement);
+
+            yield return new InventoryTradeHistoryRow()
+            {
+                Date = date,
+                TimeOfDate = timeOfDate,
+                Desc = desc,
+                Groups = groups
+            };
+        }
+
+        Task<(DateTime date, TimeSpan timeOfDate)> ParseDateTimePart(IElement rowElement)
+        {
+            DateTime date = default;
+            TimeSpan time = default;
+
+            var timeElement = rowElement.QuerySelector("div.tradehistory_timestamp");
+
+            if (!DateTime.TryParse(timeElement?.TextContent?.Trim(), cultureInfo, out var timeDate))
+            {
+                throw new ArgumentException("日期转换失败!");
+            }
+
+            time = timeDate.TimeOfDay;
+
+            var dateElement = timeElement.ParentElement;
+            if (dateElement != null)
+            {
+                dateElement.RemoveElement(timeElement);
+
+                string? dateText = dateElement.TextContent?.Trim();
+
+                if (!DateTime.TryParse(dateText?.Trim(), CultureInfo.GetCultureInfo("zh-CN"), out date))
+                {
+                    throw new ArgumentException("日期转换失败!");
+                }
+            }
+
+            return Task.FromResult((date, time));
+        }
+
+        Task<(string desc, IEnumerable<InventoryTradeHistoryGroup> groups)> ParseContentPart(IElement rowElement)
+        {
+            var emptyResult = Task.FromResult((string.Empty, Enumerable.Empty<InventoryTradeHistoryGroup>()));
+
+            var contentElement = rowElement.QuerySelector("div.tradehistory_content");
+
+            if (contentElement == null || !contentElement.HasChildNodes)
+                return emptyResult;
+
+            string desc = contentElement.QuerySelector("div.tradehistory_event_description")?.TextContent ?? string.Empty;
+
+            var items = contentElement.QuerySelectorAll("div.tradehistory_items");
+
+            if (items == null || !items.Any())
+            {
+                return emptyResult;
+            }
+
+            List<InventoryTradeHistoryGroup> groups = new(items.Length);
+
+            foreach (var item in items)
+            {
+                string plusminus = item.QuerySelector("div.tradehistory_items_plusminus")?.TextContent ?? string.Empty;
+
+                var itemGroupElement = item.QuerySelector("div.tradehistory_items_group");
+
+                if (itemGroupElement == null || !itemGroupElement.HasChildNodes)
+                    continue;
+
+                List<InventoryTradeHistoryItem> groupItems = new(itemGroupElement.ChildElementCount);
+
+                foreach (var groupItem in itemGroupElement.Children)
+                {
+                    if (groupItem == null)
+                        continue;
+
+                    bool previewInInventoryPage = string.Equals(groupItem.TagName, "a", StringComparison.OrdinalIgnoreCase);
+
+                    InventoryTradeHistoryItem rowItem = new()
+                    {
+                        Amount = groupItem.GetAttribute("data-amount") ?? string.Empty,
+                        AppId = groupItem.GetAttribute("data-appid") ?? string.Empty,
+                        ContextId = groupItem.GetAttribute("data-contextid") ?? string.Empty,
+                        InstanceId = groupItem.GetAttribute("data-instanceid") ?? string.Empty,
+                        ClassId = groupItem.GetAttribute("data-classid") ?? string.Empty,
+                        ProfilePreviewPageUrl = previewInInventoryPage ? groupItem.GetAttribute("href") ?? string.Empty : string.Empty,
+                    };
+
+                    if (groupItem.HasChildNodes)
+                    {
+                        rowItem.ItemImgUrl = groupItem.FirstElementChild?.GetAttribute("src") ?? string.Empty;
+                        rowItem.ItemName = groupItem.LastElementChild?.TextContent?.Trim() ?? string.Empty;
+                    }
+
+                    groupItems.Add(rowItem);
+                }
+
+                groups.Add(new()
+                {
+                    PlusMinus = plusminus,
+                    Items = groupItems
+                });
+            }
+
+            return Task.FromResult<(string, IEnumerable<InventoryTradeHistoryGroup>)>((desc, groups));
+        }
+    }
+
+    public async Task<InventoryPageResponse> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese")
+    {
+        string url = string.Format("{0}/inventory/{1}/{2}/{3}?l={4}&count={5}{6}",
+            STEAM_COMMUNITY_URL,
+            steamId,
+            appId,
+            contextId,
+            language,
+            count,
+            !string.IsNullOrEmpty(startAssetId) ? $"&start_assetid={startAssetId}" : string.Empty);
+
+        InventoryPageResponse inventories = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        {
+            var resp = await client.GetAsync(url);
+
+            return await resp.Content.ReadFromJsonAsync<InventoryPageResponse>();
+        });
+
+        return inventories;
+    }
+
+    public async Task<string?> GetApiKey(SteamLoginState loginState)
+    {
+        const string url = "https://steamcommunity.com/dev/apikey";
+
+        var request = new HttpRequestMessage(HttpMethod.Get, url);
+
+        request.Headers.UserAgent.Clear();
+        request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
+        cookieContainer.Add(loginState.Cookies!);
+
+        var resp = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        {
+            var resp = await client.SendAsync(request);
+
+            return resp.Content;
+        });
+
+        return await ParseApiKeyFromHttpContent(resp);
+    }
+
+    public async Task<string?> RegisterApiKey(SteamLoginState loginState, string? domain = null)
+    {
+        if (string.IsNullOrEmpty(loginState.SeesionId))
+            throw new ArgumentException(nameof(loginState.SeesionId));
+
+        const string url = "https://steamcommunity.com/dev/registerkey";
+
+        Dictionary<string, string> data = new Dictionary<string, string>()
+        {
+            { "domain", domain ?? Guid.NewGuid().ToString("N") },
+            { "agreeToTerms", "agreed" },
+            { "sessionid", loginState.SeesionId },
+            { "Submit", "注册" },
+        };
+
+        var request = new HttpRequestMessage(HttpMethod.Post, url)
+        {
+            Content = new FormUrlEncodedContent(data)
+        };
+
+        request.Headers.UserAgent.Clear();
+        request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
+
+        request.Headers.Add("origin", "https://steamcommunity.com");
+        request.Headers.Add("authority", "steamcommunity.com");
+        request.Headers.Add("referer", "https://steamcommunity.com/dev/revokekey");
+        request.Headers.Add("accept-language", "zh-CN");
+
+        cookieContainer.Add(loginState.Cookies!);
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "sessionid",
+            Value = loginState.SeesionId,
+            Domain = new Uri(STEAM_COMMUNITY_URL).Host,
+            Secure = true,
+            Path = "/"
+        });
+
+        var resp = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        {
+            var resp = await client.SendAsync(request);
+
+            return resp.Content;
+        });
+
+        string xx = await resp.ReadAsStringAsync();
+
+        return await ParseApiKeyFromHttpContent(resp);
+    }
+
+    public async Task<IEnumerable<SendGiftHisotryItem>> GetSendGiftHisotries(SteamLoginState loginState)
+    {
+        cookieContainer.Add(loginState.Cookies!);
+
+        var resp = await client.GetAsync("https://steamcommunity.com/gifts/0/history/");
+
+        resp.EnsureSuccessStatusCode();
+
+        using Stream respStream = await resp.Content.ReadAsStreamAsync();
+
+        IBrowsingContext context = BrowsingContext.New();
+
+        var htmlParser = context.GetService<IHtmlParser>();
+
+        if (htmlParser == null)
+            throw new ArgumentNullException("获取Html解析器失败");
+
+        var document = await htmlParser.ParseDocumentAsync(respStream);
+
+        List<SendGiftHisotryItem> result = new();
+
+        var rowElements = document.QuerySelectorAll("div.sent_gift");
+
+        if (rowElements != null && rowElements.Any())
+        {
+            foreach (var rowElement in rowElements)
+            {
+                var giftItemElement = rowElement.QuerySelector("div.gift_item");
+                var giftStatusElement = rowElement.QuerySelector("div.gift_status_area");
+
+                SendGiftHisotryItem giftHisotryItem = new SendGiftHisotryItem()
+                {
+                    Name = giftItemElement?.QuerySelector("div.gift_item_details > b")?.TextContent?.Trim() ?? string.Empty,
+                    ImgUrl = giftItemElement?.QuerySelector("div.item_icon > img")?.GetAttribute("src") ?? string.Empty,
+                    RedeemedGiftStatusText = giftItemElement?.QuerySelector("div.sent_gift_actions > span")?.TextContent?.Trim() ?? string.Empty,
+                    GiftStatusText = giftStatusElement?.TextContent?.Trim() ?? string.Empty
+                };
+
+                result.Add(giftHisotryItem);
+            }
+        }
+
+        return result;
+    }
+
+    public async IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState)
+    {
+        const string url = "https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory";
+
+        cookieContainer.Add(loginState.Cookies!);
+
+        cookieContainer.Add(new Cookie("sessionid", loginState.SeesionId, "/", $".{new Uri(url).Host}"));
+        cookieContainer.Add(new Cookie("steamLoginSecure", cookieContainer.GetCookieValue(new Uri(STEAM_COMMUNITY_URL), "steamLoginSecure"), "/", $".{new Uri(url).Host}"));
+
+        var resp = await client.GetAsync(url);
+
+        resp.EnsureSuccessStatusCode();
+
+        using var respStream = await resp.Content.ReadAsStreamAsync();
+
+        var result = await ParseHtmlResponseStream(respStream, (doc) => Task.FromResult(doc));
+
+        var tableElement = result.QuerySelector("table");
+
+        if (tableElement == null || !tableElement.HasChildNodes)
+        {
+            yield break;
+        }
+
+        await foreach (var item in ParseSimpleTable(tableElement, false, ParseLoginHistoryRow))
+        {
+            yield return item;
+        }
+
+        ValueTask<LoginHistoryItem> ParseLoginHistoryRow(IElement trElement)
+        {
+            return ValueTask.FromResult(new LoginHistoryItem()
+            {
+                LogInDateTime = trElement.Children[0].TextContent?.Trim() ?? string.Empty,
+                LogOutDateTime = trElement.Children[1].TextContent?.Trim() ?? string.Empty,
+                OsType = int.TryParse(trElement.Children[2].TextContent, out int parsedOsType) ? parsedOsType : -1,
+                CountryOrRegion = trElement.Children[3].TextContent?.Trim() ?? string.Empty,
+                City = trElement.Children[4].TextContent?.Trim() ?? string.Empty,
+                State = trElement.Children[5].TextContent?.Trim() ?? string.Empty,
+            });
+        }
+    }
+
+    /// <summary>
+    /// 解析开发密钥信息
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    private async Task<string?> ParseApiKeyFromHttpContent(HttpContent content)
+    {
+        const string selector = "#bodyContents_ex > p";
+        const string revokeKeyUrl = "https://steamcommunity.com/dev/revokekey";
+
+        using Stream respStream = await content.ReadAsStreamAsync();
+
+        IBrowsingContext context = BrowsingContext.New();
+
+        var htmlParser = context.GetService<IHtmlParser>();
+
+        if (htmlParser == null)
+            throw new ArgumentNullException("获取Html解析器失败");
+
+        var document = htmlParser.ParseDocument(respStream);
+
+        var form = document.QuerySelector("#editForm");
+        if (form == null)
+        {
+            return string.Empty;
+        }
+
+        if (form.GetAttribute("action") != revokeKeyUrl)
+        {
+            return string.Empty;
+        }
+
+        var paramList = document.QuerySelectorAll(selector);
+
+        if (paramList == null || !paramList.Any())
+            return string.Empty;
+
+        string keyParam = paramList.First().TextContent.Trim().Replace(" ", string.Empty);
+
+        return keyParam[(keyParam.LastIndexOf(":") + 1)..];
+    }
+
+    private async Task<T> ParseHtmlResponseStream<T>(Stream stream, Func<IDocument, Task<T>> parseFunc)
+    {
+        using (stream)
+        {
+            IBrowsingContext context = BrowsingContext.New();
+
+            var htmlParser = context.GetService<IHtmlParser>();
+
+            if (htmlParser == null)
+                throw new ArgumentNullException("获取Html解析器失败");
+
+            var document = await htmlParser.ParseDocumentAsync(stream);
+
+            return await parseFunc(document);
+        }
+    }
+
+    private async IAsyncEnumerable<TTableRow> ParseSimpleTable<TTableRow>(IElement? tableElement, bool includeThead, Func<IElement, ValueTask<TTableRow>> parseFunc)
+    {
+        if (tableElement == null)
+            throw new ArgumentNullException(nameof(tableElement));
+
+        if (!tableElement.HasChildNodes)
+            throw new ArgumentException("表格元素不包含子元素");
+
+        var rows = includeThead
+        ? tableElement.QuerySelectorAll("tr")
+        : tableElement.QuerySelectorAll("tbody > tr");
+
+        if (rows == null || !rows.Any())
+            throw new ArgumentException("表格元素不包含行元素");
+
+        foreach (var item in rows)
+        {
+            yield return await parseFunc(item);
+        }
     }
 }
