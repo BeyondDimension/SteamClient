@@ -41,4 +41,6 @@ public interface ISteamMarketService
     /// <param name="count" >获取多少条 ( 最大:500)</param>
     /// <returns></returns>
     IAsyncEnumerable<MarketTradingHisotryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100);
+
+    Task<MarketListings> GetMarketListing(SteamLoginState loginState);
 }

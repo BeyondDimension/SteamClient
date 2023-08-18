@@ -168,6 +168,123 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
         }
     }
 
+    public async Task<MarketListings> GetMarketListing(SteamLoginState loginState)
+    {
+        const string activeListingRowIdPrefix = "mylisting_";
+        const string buyorderRowIdPrefix = "mybuyorder_";
+
+        string requestUrl = $"{STEAM_COMMUNITY_URL}/market/";
+
+        cookieContainer.Add(loginState.Cookies!);
+
+        var resp = await client.GetAsync(requestUrl);
+
+        resp.EnsureSuccessStatusCode();
+
+        var respStream = await resp.Content.ReadAsStreamAsync();
+
+        var activeListings = HtmlParseHelper.ParseSimpleTable(respStream,
+         tableSelector: "#tabContentsMyActiveMarketListingsRows",
+         rowSelector: $"div[id^='{activeListingRowIdPrefix}']",
+         ParseActiveListingRow);
+
+        var buyorders = HtmlParseHelper.ParseSimpleTable(respStream,
+         tableSelector: "#tabContentsMyListings > div:last-child",
+         rowSelector: $"div[id^='{buyorderRowIdPrefix}']",
+         ParseBuyorderRow);
+
+        return new MarketListings
+        {
+            ActiveListings = activeListings.ToBlockingEnumerable(),
+            Buyorders = buyorders.ToBlockingEnumerable(),
+        };
+
+        // 解析正在出售的物品行
+        ValueTask<MarketListings.ActiveListingItem> ParseActiveListingRow(IElement rowElement)
+        {
+            string rowId = rowElement.Id?.Trim() ?? string.Empty;
+
+            MarketListings.ActiveListingItem item = default;
+
+            item.Id = rowId.Replace(activeListingRowIdPrefix, string.Empty).ToString();
+            item.ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty;
+
+            var priceElement = rowElement.QuerySelector("div.market_listing_my_price")
+                ?.FirstElementChild
+                ?.FirstElementChild
+                ?.FirstElementChild
+                ?.Children;
+
+            if (priceElement != null)
+            {
+                item.Payment = priceElement
+                    .First().TextContent?.Trim() ?? string.Empty;
+
+                item.Received = priceElement
+                    .LastOrDefault()?.TextContent?.Trim()?.TrimStart('(')?.TrimEnd(')') ?? string.Empty;
+            }
+
+            item.ListingDate = rowElement.QuerySelector("div.market_listing_listed_date")?.TextContent?.Trim() ?? string.Empty;
+
+            var listingItemElement = rowElement.QuerySelector("div.market_listing_item_name_block");
+            if (listingItemElement != null)
+            {
+                var linkElement = listingItemElement.QuerySelector($"#{rowId}_name")?.FirstElementChild;
+
+                item.ItemName = linkElement?.TextContent?.Trim() ?? string.Empty;
+                item.ItemMarketUrl = linkElement?.GetAttribute("href") ?? string.Empty;
+                item.GameName = rowElement.QuerySelector("span.market_listing_game_name")?.TextContent?.Trim() ?? string.Empty;
+            }
+
+            return ValueTask.FromResult(item);
+        }
+
+        ValueTask<MarketListings.BuyorderItem> ParseBuyorderRow(IElement rowElement)
+        {
+            // 不知道是不是steam bug,这里的id前缀是mybuyorder_而不是mbuyorder_
+            const string rowProfix = "mbuyorder_";
+
+            string rowId = rowElement.Id?.Trim() ?? string.Empty;
+
+            MarketListings.BuyorderItem item = default;
+
+            item.Id = rowId.Replace(buyorderRowIdPrefix, string.Empty).ToString();
+            item.ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty;
+
+            var priceElement = rowElement.QuerySelector("div.market_listing_my_price")
+                ?.FirstElementChild
+                ?.FirstElementChild
+                ?.FirstElementChild;
+
+            if (priceElement != null)
+            {
+                var parent = priceElement.ParentElement;
+                priceElement.RemoveFromParent();
+
+                item.Price = parent?.TextContent?.Trim() ?? string.Empty;
+            }
+
+            string amountText = rowElement
+            .QuerySelector("div.market_listing_buyorder_qty > span.market_table_value > span.market_listing_price")
+            ?.TextContent?.Trim() ?? string.Empty;
+
+            if (int.TryParse(amountText, out int parsedAmount))
+                item.Amount = parsedAmount;
+
+            var listingItemElement = rowElement.QuerySelector("div.market_listing_item_name_block");
+            if (listingItemElement != null)
+            {
+                var linkElement = listingItemElement.QuerySelector($"#{rowProfix}{item.Id}_name")?.FirstElementChild;
+
+                item.ItemName = linkElement?.TextContent?.Trim() ?? string.Empty;
+                item.ItemMarketUrl = linkElement?.GetAttribute("href") ?? string.Empty;
+                item.GameName = rowElement.QuerySelector("span.market_listing_game_name")?.TextContent?.Trim() ?? string.Empty;
+            }
+
+            return ValueTask.FromResult(item);
+        }
+    }
+
     private DateTime? ParseDateTimeText(string? text)
     {
         if (string.IsNullOrEmpty(text))
@@ -189,5 +306,4 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
             _ => null
         };
     }
-
 }
