@@ -8,26 +8,29 @@ internal static class HtmlParseHelper
 {
     public static async IAsyncEnumerable<TTableRow> ParseSimpleTable<TTableRow>(Stream stream, string tableSelector, string rowSelector, Func<IElement, ValueTask<TTableRow>> rowParseFunc)
     {
-        IBrowsingContext browsingContext = BrowsingContext.New();
-
-        var htmlParser = browsingContext.GetService<IHtmlParser>();
-
-        if (htmlParser == null)
-            throw new ArgumentException(nameof(htmlParser));
-
-        IDocument document = await htmlParser.ParseDocumentAsync(stream);
-
-        var tableElement = document.QuerySelector(tableSelector);
-        if (tableElement == null)
-            yield break;
-
-        var rowsElement = tableElement.QuerySelectorAll(rowSelector);
-        if (rowsElement == null || !rowsElement.Any())
-            yield break;
-
-        foreach (var rowElement in rowsElement)
+        using (stream)
         {
-            yield return await rowParseFunc(rowElement);
+            IBrowsingContext browsingContext = BrowsingContext.New();
+
+            var htmlParser = browsingContext.GetService<IHtmlParser>();
+
+            if (htmlParser == null)
+                throw new ArgumentException(nameof(htmlParser));
+
+            IDocument document = await htmlParser.ParseDocumentAsync(stream);
+
+            var tableElement = document.QuerySelector(tableSelector);
+            if (tableElement == null)
+                yield break;
+
+            var rowsElement = tableElement.QuerySelectorAll(rowSelector);
+            if (rowsElement == null || !rowsElement.Any())
+                yield break;
+
+            foreach (var rowElement in rowsElement)
+            {
+                yield return await rowParseFunc(rowElement);
+            }
         }
     }
 
@@ -36,7 +39,6 @@ internal static class HtmlParseHelper
         MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(html));
 
         return ParseSimpleTable(stream, tableSelector, rowSelector, rowParseFunc);
-
     }
 
     /// <summary>

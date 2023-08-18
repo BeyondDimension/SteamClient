@@ -1276,22 +1276,25 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 urlBuilder.Append($"&app%5B%5D={app}");
             }
         }
-        cookieContainer.Add(loginState.Cookies!);
-        cookieContainer.Add(new Cookie()
-        {
-            Name = "Steam_Language",
-            Value = loginState.Language ?? "schinese",
-            Domain = new Uri(STEAM_COMMUNITY_URL).Host,
-            Secure = true,
-            Path = "/",
-        });
 
-        cookieContainer.Add(new Cookie()
-        {
-            Name = "timezoneOffset",
-            Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
-            Domain = new Uri(STEAM_COMMUNITY_URL).Host
-        });
+        SetDefaultCookie(loginState);
+
+        //cookieContainer.Add(loginState.Cookies!);
+        // cookieContainer.Add(new Cookie()
+        // {
+        //     Name = "Steam_Language",
+        //     Value = loginState.Language ?? "schinese",
+        //     Domain = new Uri(STEAM_COMMUNITY_URL).Host,
+        //     Secure = true,
+        //     Path = "/",
+        // });
+
+        // cookieContainer.Add(new Cookie()
+        // {
+        //     Name = "timezoneOffset",
+        //     Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
+        //     Domain = new Uri(STEAM_COMMUNITY_URL).Host
+        // });
 
         var resp = await client.GetAsync(urlBuilder.ToString());
 
@@ -1371,7 +1374,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             if (contentElement == null || !contentElement.HasChildNodes)
                 return emptyResult;
 
-            string desc = contentElement.QuerySelector("div.tradehistory_event_description")?.TextContent ?? string.Empty;
+            string desc = contentElement.QuerySelector("div.tradehistory_event_description")?.TextContent?.Trim() ?? string.Empty;
 
             var items = contentElement.QuerySelectorAll("div.tradehistory_items");
 
@@ -1459,7 +1462,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         request.Headers.UserAgent.Clear();
         request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-        cookieContainer.Add(loginState.Cookies!);
+        // cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
 
         var resp = await WaitAndRetryAsync().ExecuteAsync(async () =>
         {
@@ -1499,7 +1503,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         request.Headers.Add("referer", "https://steamcommunity.com/dev/revokekey");
         request.Headers.Add("accept-language", "zh-CN");
 
-        cookieContainer.Add(loginState.Cookies!);
+        //cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
         cookieContainer.Add(new Cookie()
         {
             Name = "sessionid",
@@ -1516,14 +1521,13 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             return resp.Content;
         });
 
-        string xx = await resp.ReadAsStringAsync();
-
         return await ParseApiKeyFromHttpContent(resp);
     }
 
     public async Task<IEnumerable<SendGiftHisotryItem>> GetSendGiftHisotries(SteamLoginState loginState)
     {
-        cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
+        //cookieContainer.Add(loginState.Cookies!);
 
         var resp = await client.GetAsync("https://steamcommunity.com/gifts/0/history/");
 
@@ -1570,7 +1574,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     {
         const string url = "https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory";
 
-        cookieContainer.Add(loginState.Cookies!);
+        //cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
 
         cookieContainer.Add(new Cookie("sessionid", loginState.SeesionId, "/", $".{new Uri(url).Host}"));
         cookieContainer.Add(new Cookie("steamLoginSecure", cookieContainer.GetCookieValue(new Uri(STEAM_COMMUNITY_URL), "steamLoginSecure"), "/", $".{new Uri(url).Host}"));
@@ -1667,5 +1672,31 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             return await parseFunc(document);
         }
+    }
+
+    private void SetDefaultCookie(SteamLoginState? loginState = null)
+    {
+        if (loginState != null && loginState.Cookies != null)
+        {
+            cookieContainer.Add(loginState.Cookies);
+        }
+
+        Uri uri = new(STEAM_COMMUNITY_URL);
+
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "Steam_Language",
+            Value = "schinese",
+            Domain = uri.Host,
+            Secure = true,
+            Path = "/",
+        });
+
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "timezoneOffset",
+            Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
+            Domain = uri.Host
+        });
     }
 }
