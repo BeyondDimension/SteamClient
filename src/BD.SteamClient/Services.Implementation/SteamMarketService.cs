@@ -52,7 +52,8 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         requestMsg.Content = new FormUrlEncodedContent(data);
 
-        cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
+        //cookieContainer.Add(loginState.Cookies!);
         cookieContainer.Add(new Cookie()
         {
             Name = "sessionid",
@@ -74,15 +75,17 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
            start,
            count);
 
-        cookieContainer.Add(loginState.Cookies!);
-        cookieContainer.Add(new Cookie()
-        {
-            Name = "Steam_Language",
-            Value = loginState.Language,
-            Domain = new Uri(STEAM_COMMUNITY_URL).Host,
-            Secure = true,
-            Path = "/",
-        });
+        SetDefaultCookie(loginState);
+
+        // cookieContainer.Add(loginState.Cookies!);
+        // cookieContainer.Add(new Cookie()
+        // {
+        //     Name = "Steam_Language",
+        //     Value = loginState.Language,
+        //     Domain = new Uri(STEAM_COMMUNITY_URL).Host,
+        //     Secure = true,
+        //     Path = "/",
+        // });
 
         var resp = await client.GetAsync(requestUrl);
 
@@ -175,20 +178,20 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         string requestUrl = $"{STEAM_COMMUNITY_URL}/market/";
 
-        cookieContainer.Add(loginState.Cookies!);
+        SetDefaultCookie(loginState);
 
         var resp = await client.GetAsync(requestUrl);
 
         resp.EnsureSuccessStatusCode();
 
-        var respStream = await resp.Content.ReadAsStreamAsync();
+        var html = await resp.Content.ReadAsStringAsync();
 
-        var activeListings = HtmlParseHelper.ParseSimpleTable(respStream,
+        var activeListings = HtmlParseHelper.ParseSimpleTable(html,
          tableSelector: "#tabContentsMyActiveMarketListingsRows",
          rowSelector: $"div[id^='{activeListingRowIdPrefix}']",
          ParseActiveListingRow);
 
-        var buyorders = HtmlParseHelper.ParseSimpleTable(respStream,
+        var buyorders = HtmlParseHelper.ParseSimpleTable(html,
          tableSelector: "#tabContentsMyListings > div:last-child",
          rowSelector: $"div[id^='{buyorderRowIdPrefix}']",
          ParseBuyorderRow);
@@ -305,5 +308,31 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
             "schinese" => DateTime.TryParse(text, CultureInfo.GetCultureInfo("zh-CN"), out var parsedDate) ? parsedDate : null,
             _ => null
         };
+    }
+
+    private void SetDefaultCookie(SteamLoginState? loginState = null)
+    {
+        if (loginState != null && loginState.Cookies != null)
+        {
+            cookieContainer.Add(loginState.Cookies);
+        }
+
+        Uri uri = new(STEAM_COMMUNITY_URL);
+
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "Steam_Language",
+            Value = "schinese",
+            Domain = uri.Host,
+            Secure = true,
+            Path = "/",
+        });
+
+        cookieContainer.Add(new Cookie()
+        {
+            Name = "timezoneOffset",
+            Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
+            Domain = uri.Host
+        });
     }
 }
