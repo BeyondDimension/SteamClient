@@ -4,6 +4,8 @@ namespace BD.SteamClient.Services;
 
 public interface ISteamIdleCardService
 {
+    static ISteamIdleCardService Instance => Ioc.Get<ISteamIdleCardService>();
+
     /// <summary>
     /// 获取用户徽章和卡片数据
     /// </summary>
