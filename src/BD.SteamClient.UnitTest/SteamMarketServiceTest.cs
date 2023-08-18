@@ -72,6 +72,18 @@ public class SteamMarketServiceTest
 
                 globalState = JsonSerializer.Deserialize<SteamLoginState>(fs);
             }
+
+            // if (true)
+            // {
+            //     globalState = new SteamLoginState()
+            //     {
+            //         Username = globalState!.Username,
+            //         Password = globalState!.Password,
+            //     };
+            //     AccountService.DoLoginV2Async(globalState!).GetAwaiter().GetResult();
+            //     AccountService.DoLoginV2Async(globalState!).GetAwaiter().GetResult();
+            //     string x = JsonSerializer.Serialize(globalState);
+            // }
         }
     }
 
@@ -93,5 +105,19 @@ public class SteamMarketServiceTest
         .GetMarketItemPriceOverview(appId, marketHashName, currency);
 
         Assert.That(overview.Success, Is.True);
+    }
+
+    [Test]
+    public async Task TestGetMyListings()
+    {
+        if (globalState != null)
+        {
+            var listings = await SteamMarketService.GetMarketListing(globalState!);
+
+            var activeListings = listings.ActiveListings.ToList();
+            var buyorders = listings.Buyorders.ToList();
+
+            Assert.That(listings.ActiveListings, Is.Not.Null);
+        }
     }
 }

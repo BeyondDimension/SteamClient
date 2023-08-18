@@ -1590,7 +1590,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             yield break;
         }
 
-        await foreach (var item in ParseSimpleTable(tableElement, false, ParseLoginHistoryRow))
+        await foreach (var item in HtmlParseHelper.ParseSimpleTable(tableElement, false, ParseLoginHistoryRow))
         {
             yield return item;
         }
@@ -1666,27 +1666,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             var document = await htmlParser.ParseDocumentAsync(stream);
 
             return await parseFunc(document);
-        }
-    }
-
-    private async IAsyncEnumerable<TTableRow> ParseSimpleTable<TTableRow>(IElement? tableElement, bool includeThead, Func<IElement, ValueTask<TTableRow>> parseFunc)
-    {
-        if (tableElement == null)
-            throw new ArgumentNullException(nameof(tableElement));
-
-        if (!tableElement.HasChildNodes)
-            throw new ArgumentException("表格元素不包含子元素");
-
-        var rows = includeThead
-        ? tableElement.QuerySelectorAll("tr")
-        : tableElement.QuerySelectorAll("tbody > tr");
-
-        if (rows == null || !rows.Any())
-            throw new ArgumentException("表格元素不包含行元素");
-
-        foreach (var item in rows)
-        {
-            yield return await parseFunc(item);
         }
     }
 }
