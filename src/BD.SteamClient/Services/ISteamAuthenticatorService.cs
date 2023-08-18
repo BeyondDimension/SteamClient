@@ -2,6 +2,9 @@ namespace BD.SteamClient.Services;
 
 public interface ISteamAuthenticatorService
 {
+
+    static ISteamAuthenticatorService Instance => Ioc.Get<ISteamAuthenticatorService>();
+
     /// <summary>
     /// 添加令牌
     /// </summary>
