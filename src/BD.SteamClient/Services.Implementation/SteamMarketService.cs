@@ -241,7 +241,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         ValueTask<MarketListings.BuyorderItem> ParseBuyorderRow(IElement rowElement)
         {
-            // 不知道是不是steam bug,这里的id前缀是mybuyorder_而不是mbuyorder_
+            // 不知道是不是steam bug,这里的内层id前缀是 mbuyorder_而不是 mybuyorder_
             const string rowProfix = "mbuyorder_";
 
             string rowId = rowElement.Id?.Trim() ?? string.Empty;
