@@ -43,13 +43,25 @@ public class AuthorizedDevice : ReactiveObject
         set => this.RaiseAndSetIfChanged(ref _Remark, value);
     }
 
-    public string? SteamID { get; set; }
+    string? _SteamID;
+
+    public string? SteamID
+    {
+        get => _SteamID;
+        set => this.RaiseAndSetIfChanged(ref _SteamID, value);
+    }
 
     public string? ShowName { get; set; }
 
     public SteamMiniProfile? MiniProfile { get; set; }
 
-    public string? SteamNickName { get; set; }
+    string? _SteamNickName;
+
+    public string? SteamNickName
+    {
+        get => _SteamNickName;
+        set => this.RaiseAndSetIfChanged(ref _SteamNickName, value);
+    }
 
     /// <summary>
     /// 用户名
