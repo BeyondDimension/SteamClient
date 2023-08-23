@@ -35,7 +35,10 @@ public static class SteamApiUrls
 
     public const string STEAM_INSTALL_URL = "steam://install/{0}";
     public const string STEAM_RUNGAME_URL = "steam://rungameid/{0}";
+    public const string STEAM_NAVGAMEPAGE_URL = "steam://nav/games";
+    public const string STEAM_NAVCONSOLE_URL = "steam://nav/console";
     public const string STEAM_NAVGAME_URL = "steam://nav/games/details/{0}";
+    public const string STEAM_NAVGAMESCREENSHOTS_URL = "steam://open/screenshots/{0}";
     public const string STEAM_OPENURL = "steam://openurl/{0}";
 
     public const string STEAMDB_USERINFO_URL = "https://api.steamdb.ml/v1/users/{0}";
