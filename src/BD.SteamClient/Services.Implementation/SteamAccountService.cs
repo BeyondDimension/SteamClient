@@ -592,7 +592,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         if (string.IsNullOrEmpty(pollAuthSessionStatusResponse.RefreshToken))
         {
-            loginState.Message = "登录失败，请确认令牌是否正确。";
+            loginState.Message = "登录失败，请确认输入验证码是否正确。";
             loginState.ResetStatus();
             return;
         }
