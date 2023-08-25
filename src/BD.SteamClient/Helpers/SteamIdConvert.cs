@@ -7,7 +7,7 @@ public class SteamIdConvert
     //   string Steam64 = sid.Id64;
 
 #pragma warning disable SA1132 // Do not combine fields
-    private string? Id = "STEAM_0:", Id3 = "U:1:", Id32, Id64;
+    public string Id = "STEAM_0:", Id3 = "U:1:", Id32 = string.Empty, Id64 = string.Empty;
 
     private string? _input;
     private byte _inputType;

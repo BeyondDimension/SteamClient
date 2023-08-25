@@ -41,11 +41,21 @@ public static class SteamApiUrls
     public const string STEAM_NAVGAMESCREENSHOTS_URL = "steam://open/screenshots/{0}";
     public const string STEAM_OPENURL = "steam://openurl/{0}";
 
+    #region 第三方链接
     public const string STEAMDB_USERINFO_URL = "https://api.steamdb.ml/v1/users/{0}";
     public const string STEAMDB_APPINFO_URL = "https://api.steamdb.ml/v1/apps/{0}";
     public const string STEAMSTORE_APP_URL = "https://store.steampowered.com/app/{0}";
     public const string STEAMDBINFO_APP_URL = "https://steamdb.info/app/{0}";
     public const string STEAMCARDEXCHANGE_APP_URL = "https://www.steamcardexchange.net/index.php?gamepage-appid-{0}";
+
+    public const string STEAMREP_USER_URL = "https://steamrep.com/search?q={0}";
+    public const string STEAMREPCN_USER_URL = "https://steamrepcn.com/profiles/{0}";
+    public const string STEAMDB_USER_CALC_URL = "https://steamdb.info/calculator/?player={0}";
+    public const string STEAMGIFTS_USER_URL = "https://www.steamgifts.com/go/user/{0}";
+    public const string STEAMTRADES_USER_URL = "https://www.steamtrades.com/user/{0}";
+    public const string STEAMACHIEVEMENT_STATS_USER_URL = "https://www.achievementstats.com/index.php?action=profile&playerId={0}";
+    public const string STEAMBACKPACK_USER_URL = "https://backpack.tf/profiles/{0}";
+    #endregion
 
     /// <summary>
     /// 这里需要 steamid3 而不是 id64
