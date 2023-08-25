@@ -10,10 +10,6 @@ namespace BD.SteamClient.UnitTest;
 
 public sealed class SteamTradeServiceTest
 {
-    private string _steamId = "76561199079758512";
-
-    private string _identitySecret = "dF7d1PLbB3p49Y303v0ecrpEDHI=";
-
     IServiceProvider service;
 
     ISteamTradeService Client => service.GetRequiredService<ISteamTradeService>();
