@@ -694,8 +694,8 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public async Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default)
     {
-        //var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
-        var mostRecentUser = Conn.CurrentSteamUser;
+        var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
+        //var mostRecentUser = Conn.CurrentSteamUser;
         if (mostRecentUser != null)
         {
             var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
