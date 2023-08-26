@@ -118,7 +118,7 @@ public partial interface ISteamService
     /// </summary>
     Task<bool> SaveAppInfosToSteam();
 
-    Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type);
+    Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default);
 
     ValueTask LoadAppImageAsync(SteamApp app);
 

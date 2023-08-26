@@ -692,9 +692,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
-    public async Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type)
+    public async Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default)
     {
-        var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
+        //var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
+        var mostRecentUser = Conn.CurrentSteamUser;
         if (mostRecentUser != null)
         {
             var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
@@ -717,9 +718,9 @@ public abstract partial class SteamServiceImpl : ISteamService
             _ => null,
         };
 
-        if (url == default)
+        if (string.IsNullOrEmpty(url))
             return default;
-        var value = await ImageSource.GetAsync(url);
+        var value = await ImageSource.GetAsync(url, cache: true, cancellationToken: token);
 
         return value;
     }
