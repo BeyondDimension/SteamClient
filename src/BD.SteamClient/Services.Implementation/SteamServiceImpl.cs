@@ -731,7 +731,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// <returns></returns>
     public async Task<bool> SaveAppImageToSteamFile(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType)
     {
-        if (!string.IsNullOrEmpty(SteamDirPath) && imageObject != null)
+        if (!string.IsNullOrEmpty(SteamDirPath))
         {
             var path = Path.Combine(SteamDirPath, UserDataDirectory,
                 user.SteamId32.ToString(), "config", "grid");
@@ -750,6 +750,16 @@ public abstract partial class SteamServiceImpl : ISteamService
             };
             try
             {
+                if (imageObject == null)
+                {
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                        return true;
+                    }
+                    return false;
+                }
+
                 if (imageObject is Stream imageStream)
                 {
                     using FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
