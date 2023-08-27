@@ -571,7 +571,21 @@ public class SteamApp : ReactiveObject
         }
         else
         {
-            return Process = Process2.Start(
+            if (OperatingSystem.IsLinux())
+            {
+                var psi = new ProcessStartInfo
+                {
+                    Arguments = arguments,
+                    FileName = Path.Combine(AppContext.BaseDirectory, "Steam++.sh"),
+                    UseShellExecute = true,
+                };
+                Console.WriteLine(psi.FileName);
+                psi.Environment.Add("SteamAppId", AppId.ToString());
+                return Process = Process.Start(psi);
+            }
+            else
+            {
+                return Process = Process2.Start(
                 processPath,
                 arguments,
                 environment: new Dictionary<string, string>() {
@@ -580,6 +594,7 @@ public class SteamApp : ReactiveObject
                         AppId.ToString()
                     }
                 });
+            }
         }
     }
 
