@@ -446,7 +446,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         var resp = await steamSession.HttpClient!.SendAsync(httpRequestMessage);
 
         resp.EnsureSuccessStatusCode();
-        string sb = await resp.Content.ReadAsStringAsync();
+
         var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync()).RootElement.GetProperty("html").GetString();
 
         if (string.IsNullOrEmpty(html))
