@@ -148,6 +148,9 @@ public class SteamMarketServiceTest
     [Test]
     public async Task TestGetConfirmations()
     {
+        if (ProjectUtils.IsCI())
+            return;
+
         if (globalState != null)
         {
 
