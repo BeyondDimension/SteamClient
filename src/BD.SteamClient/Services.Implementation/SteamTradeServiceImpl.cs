@@ -539,7 +539,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             param.Add(new("ck[]", trade.Value));
         }
 
-        string str = string.Join("&", param.Select(x => $"{Uri.EscapeDataString(x.Key)}={Uri.EscapeDataString(x.Value)}"));
+        //string str = string.Join("&", param.Select(x => $"{Uri.EscapeDataString(x.Key)}={Uri.EscapeDataString(x.Value)}"));
 
         using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_MOBILECONF_BATCH_CONFIRMATION);
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
