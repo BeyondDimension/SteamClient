@@ -115,6 +115,9 @@ public class SteamMarketServiceTest
     [Test]
     public async Task TestGetMarketItemOrdersHistogram(long marketItemNameId)
     {
+        if (ProjectUtils.IsCI())
+            return;
+
         var histogram = await SteamMarketService
         .GetMarketItemOrdersHistogram(2384364);
 
@@ -125,8 +128,11 @@ public class SteamMarketServiceTest
     [Test]
     public async Task TestGetMarketItemPriceOverview(string appId, string marketHashName, int currency)
     {
+        if (ProjectUtils.IsCI())
+            return;
+
         var overview = await SteamMarketService
-        .GetMarketItemPriceOverview(appId, marketHashName, currency);
+    .GetMarketItemPriceOverview(appId, marketHashName, currency);
 
         Assert.That(overview.Success, Is.True);
     }
@@ -145,25 +151,25 @@ public class SteamMarketServiceTest
         }
     }
 
-    // [Test]
-    // public async Task TestGetConfirmations()
-    // {
-    //     if (ProjectUtils.IsCI())
-    //         return;
+    [Test]
+    public async Task TestGetConfirmations()
+    {
+        if (ProjectUtils.IsCI())
+            return;
 
-    //     if (globalState != null)
-    //     {
+        if (globalState != null)
+        {
 
-    //         // 需要  IdentitySecret !!!!!
-    //         var confirmations = await TradeService.GetConfirmations(globalState.SteamId.ToString()!);
+            // 需要  IdentitySecret !!!!!
+            var confirmations = await TradeService.GetConfirmations(globalState.SteamId.ToString()!);
 
-    //         Dictionary<string, string> param = new Dictionary<string, string>(confirmations.Select(x => new KeyValuePair<string, string>(x.Id, x.Nonce)));
+            Dictionary<string, string> param = new Dictionary<string, string>(confirmations.Select(x => new KeyValuePair<string, string>(x.Id, x.Nonce)));
 
-    //         if (param.Any())
-    //         {
-    //             //var res = await TradeService.SendConfirmation(globalState.SteamId.ToString()!, confirmations.First(), true);
-    //             var sendResult = await TradeService.BatchSendConfirmation(globalState.SteamId.ToString()!, param, true);
-    //         }
-    //     }
-    // }
+            if (param.Any())
+            {
+                //var res = await TradeService.SendConfirmation(globalState.SteamId.ToString()!, confirmations.First(), true);
+                var sendResult = await TradeService.BatchSendConfirmation(globalState.SteamId.ToString()!, param, true);
+            }
+        }
+    }
 }
