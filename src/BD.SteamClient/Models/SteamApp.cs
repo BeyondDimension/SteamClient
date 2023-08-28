@@ -600,7 +600,7 @@ public class SteamApp : ReactiveObject
 
     public void RunOrStopSteamAppProcess()
     {
-        if (Process != null)
+        if (Process != null && !Process.HasExited)
         {
             Process.KillEntireProcessTree();
             Process = null;
