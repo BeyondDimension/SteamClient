@@ -1,3 +1,4 @@
+using System.Net;
 using static System.Net.Http.HttpClientUseCookiesWithProxyServiceImpl;
 
 namespace BD.SteamClient.UnitTest;
@@ -11,6 +12,10 @@ public class SteamMarketServiceTest
     ISteamAccountService AccountService => service.GetRequiredService<ISteamAccountService>();
 
     ISteamMarketService SteamMarketService => service.GetRequiredService<ISteamMarketService>();
+
+    ISteamTradeService TradeService => service.GetRequiredService<ISteamTradeService>();
+
+    ISteamSessionService Session => service.GetRequiredService<ISteamSessionService>();
 
     internal class TestRandomGetUserAgentService : IRandomGetUserAgentService
     {
@@ -52,7 +57,10 @@ public class SteamMarketServiceTest
         services.AddTransient<ISteamMarketService, SteamMarketService>();
         services.AddTransient<IRandomGetUserAgentService, TestRandomGetUserAgentService>();
         services.AddTransient<IOptionsMonitor<IAppSettings>, TestAppSettings>();
-
+        services.AddSingleton<ISteamSessionService>(new SteamSessionServiceImpl());
+        services.AddSingleton<ISteamIdleCardService, SteamIdleCardServiceImpl>();
+        services.AddTransient<ISteamTradeService, SteamTradeServiceImpl>();
+        services.AddSteamAuthenticatorService();
         services.AddLogging();
 
         service = services.BuildServiceProvider();
@@ -82,9 +90,25 @@ public class SteamMarketServiceTest
             //     };
             //     AccountService.DoLoginV2Async(globalState!).GetAwaiter().GetResult();
             //     AccountService.DoLoginV2Async(globalState!).GetAwaiter().GetResult();
-            //     string x = JsonSerializer.Serialize(globalState);
+            //     string bbbs = JsonSerializer.Serialize(globalState);
             // }
         }
+
+        CookieContainer c = new CookieContainer();
+        c.Add(globalState.Cookies!);
+
+        var s = service.GetRequiredService<ISteamSessionService>();
+        var serverTimeStr = service.GetRequiredService<ISteamAuthenticatorService>().TwoFAQueryTime().GetAwaiter().GetResult();
+        var serverTime = JsonDocument.Parse(serverTimeStr).RootElement.GetProperty("response").GetProperty("server_time").GetString();
+        var diff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        bool x = s.AddOrSetSeesion(new SteamSession()
+        {
+            CookieContainer = c,
+            SteamId = globalState.SteamId.ToString(),
+            ServerTimeDiff = diff,
+            //IdentitySecret = "XXXXXXXXXXXX"
+        });
+
     }
 
     [TestCase(2384364)]
@@ -118,6 +142,25 @@ public class SteamMarketServiceTest
             var buyorders = listings.Buyorders.ToList();
 
             Assert.That(listings.ActiveListings, Is.Not.Null);
+        }
+    }
+
+    [Test]
+    public async Task TestGetConfirmations()
+    {
+        if (globalState != null)
+        {
+
+            // 需要  IdentitySecret !!!!!
+            var confirmations = await TradeService.GetConfirmations(globalState.SteamId.ToString()!);
+
+            Dictionary<string, string> param = new Dictionary<string, string>(confirmations.Select(x => new KeyValuePair<string, string>(x.Id, x.Nonce)));
+
+            if (param.Any())
+            {
+                //var res = await TradeService.SendConfirmation(globalState.SteamId.ToString()!, confirmations.First(), true);
+                var sendResult = await TradeService.BatchSendConfirmation(globalState.SteamId.ToString()!, param, true);
+            }
         }
     }
 }
