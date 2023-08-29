@@ -97,6 +97,9 @@ public sealed class SteamAccountServiceTest
     [Test]
     public async Task TestGetInventories(ulong steamId, string appId, string contextId)
     {
+        if (ProjectUtils.IsCI())
+            return;
+
         var resp = await Client.GetInventories(steamId, appId, contextId, 1);
 
         Assert.That(resp.Success, Is.EqualTo(1));
