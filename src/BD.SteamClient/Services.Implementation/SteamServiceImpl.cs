@@ -689,6 +689,14 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
 
         var filePath = Path.Combine(LibrarycacheDirPath, fileName);
+
+        if (Conn.SteamLanguageString != null && !File.Exists(filePath))
+        {
+            //默认图没找到情况下尝试查找当前Steam客户端语言图片
+            var lang = $"_{Conn.SteamLanguageString}";
+            filePath = filePath.Insert(filePath.LastIndexOf('.'), lang);
+        }
+
         return filePath;
     }
 

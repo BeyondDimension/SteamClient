@@ -7,6 +7,8 @@ public interface ISteamConnectService
     /// </summary>
     bool IsConnectToSteam { get; set; }
 
+    string? SteamLanguageString { get; }
+
     SourceCache<SteamApp, uint> SteamApps { get; }
 
     SourceCache<SteamApp, uint> DownloadApps { get; }
