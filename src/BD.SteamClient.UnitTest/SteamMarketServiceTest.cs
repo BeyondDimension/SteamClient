@@ -51,9 +51,6 @@ public class SteamMarketServiceTest
     [SetUp]
     public void Setup()
     {
-        if (ProjectUtils.IsCI())
-            return;
-
         var services = new ServiceCollection();
         services.AddTransient<ISteamAccountService, SteamAccountService>();
         services.AddTransient<ISteamSessionService, SteamSessionServiceImpl>();
@@ -97,20 +94,23 @@ public class SteamMarketServiceTest
             // }
         }
 
-        CookieContainer c = new CookieContainer();
-        c.Add(globalState.Cookies!);
-
-        var s = service.GetRequiredService<ISteamSessionService>();
-        var serverTimeStr = service.GetRequiredService<ISteamAuthenticatorService>().TwoFAQueryTime().GetAwaiter().GetResult();
-        var serverTime = JsonDocument.Parse(serverTimeStr).RootElement.GetProperty("response").GetProperty("server_time").GetString();
-        var diff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        bool x = s.AddOrSetSeesion(new SteamSession()
+        if (!ProjectUtils.IsCI())
         {
-            CookieContainer = c,
-            SteamId = globalState.SteamId.ToString(),
-            ServerTimeDiff = diff,
-            //IdentitySecret = "XXXXXXXXXXXX"
-        });
+            CookieContainer c = new CookieContainer();
+            c.Add(globalState.Cookies!);
+
+            var s = service.GetRequiredService<ISteamSessionService>();
+            var serverTimeStr = service.GetRequiredService<ISteamAuthenticatorService>().TwoFAQueryTime().GetAwaiter().GetResult();
+            var serverTime = JsonDocument.Parse(serverTimeStr).RootElement.GetProperty("response").GetProperty("server_time").GetString();
+            var diff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            bool x = s.AddOrSetSeesion(new SteamSession()
+            {
+                CookieContainer = c,
+                SteamId = globalState.SteamId.ToString(),
+                ServerTimeDiff = diff,
+                IdentitySecret = "XXXXXXXXXXXX="
+            });
+        }
 
     }
 
@@ -162,7 +162,6 @@ public class SteamMarketServiceTest
 
         if (globalState != null)
         {
-
             // 需要  IdentitySecret !!!!!
             var confirmations = await TradeService.GetConfirmations(globalState.SteamId.ToString()!);
 
