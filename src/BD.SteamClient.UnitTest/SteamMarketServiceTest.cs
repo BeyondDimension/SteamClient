@@ -51,6 +51,9 @@ public class SteamMarketServiceTest
     [SetUp]
     public void Setup()
     {
+        if (ProjectUtils.IsCI())
+            return;
+
         var services = new ServiceCollection();
         services.AddTransient<ISteamAccountService, SteamAccountService>();
         services.AddTransient<ISteamSessionService, SteamSessionServiceImpl>();
