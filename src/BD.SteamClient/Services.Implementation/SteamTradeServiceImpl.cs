@@ -379,52 +379,114 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return Enumerable.Empty<Confirmation>();
     }
 
+    // public async Task<(string[] my_items, string[] them_items)> GetConfirmationImages(string steam_id, Confirmation confirmation)
+    // {
+    //     var steamSession = _sessionService.RentSession(steam_id);
+    //     if (steamSession == null)
+    //         throw new Exception($"Unable to find session for {steam_id}, pelese login first");
+
+    //     var tag = "details" + confirmation.Id;
+    //     var queryString = CreateConfirmationParams(tag, steamSession);
+    //     var query = string.Join("&", queryString.Keys
+    //     .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
+
+    //     using var httpRequestMessage = new HttpRequestMessage();
+    //     var builder = new UriBuilder(STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS.Format(confirmation.Id));
+    //     builder.Query = query;
+    //     httpRequestMessage.RequestUri = builder.Uri;
+    //     var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
+    //     var html = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement.GetProperty("html").ToString();
+
+    //     var parser = new HtmlParser();
+    //     var document = await parser.ParseDocumentAsync(html);
+    //     var tradeoffer_items_list = document.QuerySelectorAll("div.tradeoffer_items");
+    //     var my_items = new List<string>();
+    //     var them_items = new List<string>();
+    //     foreach (var trade_offer_items in tradeoffer_items_list)
+    //     {
+    //         var header = HttpUtility.UrlDecode(trade_offer_items.QuerySelector("div.tradeoffer_items_header")?.TextContent)?.Trim() ?? string.Empty;
+    //         if (header.Contains("You offered") || header.Contains("你的报价"))
+    //         {
+    //             foreach (var trade_item in trade_offer_items.QuerySelectorAll("div.trade_item"))
+    //             {
+    //                 var img = trade_item.QuerySelector("img")?.Attributes["src"]?.Value.ToString() ?? string.Empty;
+    //                 if (!string.IsNullOrEmpty(img))
+    //                     my_items.Add(img);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             foreach (var trade_item in trade_offer_items.QuerySelectorAll("div.trade_item"))
+    //             {
+    //                 var img = trade_item.QuerySelector(".img")?.Attributes["src"]?.Value.ToString() ?? string.Empty;
+    //                 if (!string.IsNullOrEmpty(img))
+    //                     them_items.Add(img);
+    //             }
+    //         }
+    //     }
+    //     return (my_items.ToArray(), them_items.ToArray());
+    // }
     public async Task<(string[] my_items, string[] them_items)> GetConfirmationImages(string steam_id, Confirmation confirmation)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
+        // 获取登陆状态
+        var steamSession = _sessionService.RentSession(steam_id) ?? throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
-        var tag = "details" + confirmation.Id;
-        var queryString = CreateConfirmationParams(tag, steamSession);
-        var query = string.Join("&", queryString.Keys
-        .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
+        // 构建请求参数
+        var tag = $"details{confirmation.Id}";
+        var queryParams = CreateConfirmationParams(tag, steamSession);
+        var query = string.Join("&",
+            queryParams.Keys
+                .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryParams[key]!)}"));
 
-        using var httpRequestMessage = new HttpRequestMessage();
         var builder = new UriBuilder(STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS.Format(confirmation.Id));
         builder.Query = query;
-        httpRequestMessage.RequestUri = builder.Uri;
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        var html = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement.GetProperty("html").ToString();
 
+        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
+
+        var resp = await steamSession.HttpClient!.SendAsync(httpRequestMessage);
+
+        resp.EnsureSuccessStatusCode();
+
+        var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync()).RootElement.GetProperty("html").GetString();
+
+        if (string.IsNullOrEmpty(html))
+            throw new ArgumentException("获取报价图片响应错误");
+
+        // 解析html
         var parser = new HtmlParser();
         var document = await parser.ParseDocumentAsync(html);
-        var tradeoffer_items_list = document.QuerySelectorAll("div.tradeoffer_items");
-        var my_items = new List<string>();
-        var them_items = new List<string>();
-        foreach (var trade_offer_items in tradeoffer_items_list)
+
+        var tradeofferItemsGroup = document.QuerySelectorAll("div.tradeoffer_items");
+
+        // 遍历交易中自己的物品,对方的物品
+        if (tradeofferItemsGroup != null && tradeofferItemsGroup.Any())
         {
-            var header = HttpUtility.UrlDecode(trade_offer_items.QuerySelector("div.tradeoffer_items_header")?.TextContent)?.Trim() ?? string.Empty;
-            if (header.Contains("You offered") || header.Contains("你的报价"))
+            var myItems = new List<string>();
+            var themItems = new List<string>();
+
+            // 获取物品
+            foreach (var itemGroup in tradeofferItemsGroup)
             {
-                foreach (var trade_item in trade_offer_items.QuerySelectorAll("div.trade_item"))
+                // 通过 div 上的 class 中是否有primary/secondary判断是自己的物品还是对方的物品(没有primary/secondary说明只有自己的物品)
+                bool addToThemItems = itemGroup.ClassList.Any(x => string.Equals(x, "secondary", StringComparison.Ordinal));
+                if (itemGroup.HasChildNodes)
                 {
-                    var img = trade_item.QuerySelector("img")?.Attributes["src"]?.Value.ToString() ?? string.Empty;
-                    if (!string.IsNullOrEmpty(img))
-                        my_items.Add(img);
+                    var items = itemGroup.QuerySelectorAll("div.trade_item");
+                    foreach (var item in items)
+                    {
+                        var img = item.QuerySelector("img")?.Attributes["src"]?.Value.ToString() ?? string.Empty;
+
+                        if (addToThemItems)
+                            themItems.Add(img);
+                        else
+                            myItems.Add(img);
+                    }
                 }
             }
-            else
-            {
-                foreach (var trade_item in trade_offer_items.QuerySelectorAll("div.trade_item"))
-                {
-                    var img = trade_item.QuerySelector(".img")?.Attributes["src"]?.Value.ToString() ?? string.Empty;
-                    if (!string.IsNullOrEmpty(img))
-                        them_items.Add(img);
-                }
-            }
+            return (myItems.ToArray(), themItems.ToArray());
         }
-        return (my_items.ToArray(), them_items.ToArray());
+
+        return (Array.Empty<string>(), Array.Empty<string>());
     }
 
     public async Task<bool> SendConfirmation(string steam_id, Confirmation confirmation, bool accept)
@@ -467,13 +529,18 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             return false;
 
         var conf = accept ? "accept" : "reject";
-        var cids = string.Join(",", trades.Select(s => s.Key));
-        var cks = string.Join(",", trades.Select(s => s.Value));
 
-        var param = CreateConfirmationParams(conf, steamSession);
-        param.Add("op", accept ? "allow" : "cancel");
-        param.Add("cid[]", cids);
-        param.Add("ck[]", cks);
+        var param = CreateConfirmationParams(conf, steamSession).ToList();
+        param.Add(new("op", accept ? "allow" : "cancel"));
+
+        foreach (var trade in trades)
+        {
+            param.Add(new("cid[]", trade.Key));
+            param.Add(new("ck[]", trade.Value));
+        }
+
+        //string str = string.Join("&", param.Select(x => $"{Uri.EscapeDataString(x.Key)}={Uri.EscapeDataString(x.Value)}"));
+
         using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, STEAM_MOBILECONF_BATCH_CONFIRMATION);
         httpRequestMessage.Content = new FormUrlEncodedContent(param);
         var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
@@ -485,6 +552,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         }
         return false;
     }
+
     #endregion
 
     #endregion
