@@ -728,7 +728,7 @@ public abstract partial class SteamServiceImpl : ISteamService
 
         if (string.IsNullOrEmpty(url))
             return default;
-        var value = await ImageSource.GetAsync(url, cache: true, cancellationToken: token);
+        var value = await ImageSource.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
 
         return value;
     }
