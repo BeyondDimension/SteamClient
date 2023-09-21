@@ -91,7 +91,7 @@ public partial interface ISteamService
     /// 设置下次登录 Steam 用户
     /// </summary>
     /// <param name="userName"></param>
-    void SetCurrentUser(string userName);
+    ValueTask SetSteamCurrentUserAsync(string userName);
 
     /// <summary>
     /// Sets whether the user is invisible or not

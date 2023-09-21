@@ -176,9 +176,9 @@ abstract partial class SteamServiceImpl
 #endif
     }
 
-    /// <inheritdoc cref="ISteamService.SetCurrentUser(string)"/>
+    /// <inheritdoc cref="ISteamService.SetSteamCurrentUserAsync(string)(string)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    protected virtual void SetSteamCurrentUser(string userName)
+    public virtual ValueTask SetSteamCurrentUserAsync(string userName)
     {
         // override BD.WTTS.Services.Implementation.SteamServiceImpl2.SetSteamCurrentUser
 #if WINDOWS
@@ -224,6 +224,7 @@ abstract partial class SteamServiceImpl
             Log.Error(TAG, e, "SetSteamCurrentUser fail(0).");
         }
 #endif
+        return ValueTask.CompletedTask;
     }
 
 #endif

@@ -5,9 +5,9 @@ namespace BD.SteamClient.Services.Implementation;
 
 public abstract partial class SteamServiceImpl : ISteamService
 {
-    const string TAG = "SteamS";
+    protected const string TAG = "SteamS";
 
-    const string ModifiedFileName = "modifications.vdf";
+    protected const string ModifiedFileName = "modifications.vdf";
 
     /// <summary>
     /// <list type="bullet">
@@ -22,15 +22,15 @@ public abstract partial class SteamServiceImpl : ISteamService
     ///   </item>
     /// </list>
     /// </summary>
-    readonly string? UserVdfPath;
-    readonly string? ConfigVdfPath;
-    readonly string? AppInfoPath;
-    readonly string? LibrarycacheDirPath;
-    const string UserDataDirectory = "userdata";
-    readonly string? mSteamDirPath;
-    readonly string? mSteamProgramPath;
-    readonly string? mRegistryVdfPath;
-    readonly string[] steamProcess = new[] {
+    protected readonly string? UserVdfPath;
+    protected readonly string? ConfigVdfPath;
+    protected readonly string? AppInfoPath;
+    protected readonly string? LibrarycacheDirPath;
+    protected const string UserDataDirectory = "userdata";
+    protected readonly string? mSteamDirPath;
+    protected readonly string? mSteamProgramPath;
+    protected readonly string? mRegistryVdfPath;
+    protected readonly string[] steamProcess = new[] {
 #if MACCATALYST || MACOS
         "steam_osx",
 #else
@@ -41,9 +41,9 @@ public abstract partial class SteamServiceImpl : ISteamService
         "GameOverlayUI",
     };
 
-    readonly ILogger logger;
+    protected readonly ILogger logger;
 
-    List<FileSystemWatcher>? steamDownloadingWatchers;
+    protected List<FileSystemWatcher>? steamDownloadingWatchers;
 
     public SteamServiceImpl(ILoggerFactory loggerFactory)
     {
@@ -75,18 +75,26 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public bool IsRunningSteamProcess => GetSteamProcesses().Any();
 
-    public void KillSteamProcess()
+    public virtual void KillSteamProcess()
     {
         foreach (var p in steamProcess)
         {
-            var process = Process.GetProcessesByName(p);
-            foreach (var item in process)
+            try
             {
-                if (!item.HasExited)
+                var process = Process.GetProcessesByName(p);
+                foreach (var item in process)
                 {
-                    item.Kill();
-                    item.WaitForExit();
+                    if (!item.HasExited)
+                    {
+                        item.Kill();
+                        item.WaitForExit();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, ex,
+                    "KillSteamProcess fail, name: {name}", p);
             }
         }
     }
@@ -352,9 +360,6 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         return authorizeds;
     }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void SetCurrentUser(string userName) => SetSteamCurrentUser(userName);
 
     /// <summary>
     /// Sets whether the user is invisible or not
