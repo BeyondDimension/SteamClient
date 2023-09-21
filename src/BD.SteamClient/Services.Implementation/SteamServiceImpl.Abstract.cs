@@ -192,12 +192,9 @@ abstract partial class SteamServiceImpl
             {
                 var v = VdfHelper.Read(registryVdfPath);
 
-                var steamItem = v["HKCU"]["Software"]["Valve"]["Steam"] as KVCollectionValue;
-                if (steamItem != null)
+                if (v["HKCU"]["Software"]["Valve"]["Steam"] is KVCollectionValue steamItem)
                 {
-
-                    var kv = steamItem["AutoLoginUser"] as KVObjectValue<string>;
-                    if (kv == null)
+                    if (steamItem["AutoLoginUser"] is not KVObjectValue<string> kv)
                     {
                         steamItem.Add(new KVObject("AutoLoginUser", new KVObjectValue<string>(userName, KVValueType.String)));
                     }
@@ -205,11 +202,9 @@ abstract partial class SteamServiceImpl
                     {
                         kv.Value = userName;
                     }
-                    var rememberPasswordKV = steamItem["RememberPassword"] as KVObjectValue<string>;
-                    if (rememberPasswordKV == null)
+                    if (steamItem["RememberPassword"] is not KVObjectValue<string> rememberPasswordKV)
                     {
-                        if (steamItem != null)
-                            steamItem.Add(new KVObject("RememberPassword", new KVObjectValue<string>("1", KVValueType.String)));
+                        steamItem?.Add(new KVObject("RememberPassword", new KVObjectValue<string>("1", KVValueType.String)));
                     }
                     else
                     {
