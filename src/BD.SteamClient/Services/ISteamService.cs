@@ -39,7 +39,7 @@ public partial interface ISteamService
     /// 尝试结束 Steam 进程
     /// </summary>
     /// <returns></returns>
-    bool TryKillSteamProcess();
+    ValueTask<bool> TryKillSteamProcess();
 
     /// <summary>
     /// Steam 进程是否正在运行，如果正在运行，返回进程PID提示用户去任务管理器中结束进程

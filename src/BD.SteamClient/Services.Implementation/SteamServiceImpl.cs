@@ -75,36 +75,84 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public bool IsRunningSteamProcess => GetSteamProcesses().Any();
 
-    public virtual void KillSteamProcess()
+    protected virtual ValueTask<bool> KillSteamProcess()
     {
-        foreach (var p in steamProcess)
+        var r = KillSteamProcessCore();
+        return ValueTask.FromResult(r);
+    }
+
+    bool KillSteamProcessCore()
+    {
+        var processNames = steamProcess;
+        var processes = processNames.Select(static x =>
         {
             try
             {
-                var process = Process.GetProcessesByName(p);
-                foreach (var item in process)
+                var process = Process.GetProcessesByName(x);
+                return process;
+            }
+            catch
+            {
+                return Array.Empty<Process>();
+            }
+        }).SelectMany(static x => x).ToArray();
+
+        static ApplicationException? KillProcess(Process? process)
+        {
+            if (process == null)
+                return default;
+            try
+            {
+                if (!process.HasExited)
                 {
-                    if (!item.HasExited)
-                    {
-                        item.Kill();
-                        item.WaitForExit();
-                    }
+                    process.Kill();
+                    process.WaitForExit();
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(TAG, ex,
-                    "KillSteamProcess fail, name: {name}", p);
+                return new ApplicationException(
+                    $"KillProcesses fail, name: {process?.ProcessName}", ex);
+            }
+            return default;
+        }
+
+        try
+        {
+            if (processes.Any())
+            {
+                var tasks = processes.Select(x =>
+                {
+                    return Task.Run(() =>
+                    {
+                        return KillProcess(x);
+                    });
+                }).ToArray();
+                Task.WaitAll(tasks);
+
+                var innerExceptions = tasks.Select(x => x.Result!)
+                    .Where(x => x != null).ToArray();
+                if (innerExceptions.Any())
+                {
+                    throw new AggregateException(
+                        "KillProcess fail", innerExceptions);
+                }
             }
         }
+        catch (Exception ex)
+        {
+            Log.Error(TAG, ex, "KillSteamProcess fail");
+            throw;
+        }
+
+        return true;
     }
 
-    public bool TryKillSteamProcess()
+    public async ValueTask<bool> TryKillSteamProcess()
     {
         try
         {
-            KillSteamProcess();
-            return true;
+            return await KillSteamProcess();
             //if (IsRunningSteamProcess)
             //{
             //    Process closeProc = Process.Start(new ProcessStartInfo(SteamProgramPath, "-shutdown"));
@@ -113,9 +161,8 @@ public abstract partial class SteamServiceImpl : ISteamService
             //}
             //return false;
         }
-        catch (Exception e)
+        catch
         {
-            logger.LogError(e, "KillSteamProcess fail.");
             return false;
         }
         finally
