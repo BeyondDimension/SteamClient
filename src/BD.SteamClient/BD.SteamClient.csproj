@@ -89,11 +89,11 @@
 		<PackageReference Include="AngleSharp" />
 		<PackageReference Include="ReactiveUI" />
 		<PackageReference Include="ReactiveUI.Fody" />
+		<PackageReference Include="SteamKit2" />
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
 		<!-- Desktop Only -->
-		<PackageReference Include="SteamKit2" />
 		<ProjectReference Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj" />
 		<!--<ProjectReference Include="..\..\ref\Gameloop.Vdf\Gameloop.Vdf\Gameloop.Vdf.csproj" />-->
 		<!--<ProjectReference Include="..\..\ref\Steam4NET\Steam4NET\Steam4NET.csproj" />-->

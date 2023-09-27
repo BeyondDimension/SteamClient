@@ -1,5 +1,3 @@
-#if WINDOWS || MACCATALYST || MACOS || LINUX
-
 // ReSharper disable once CheckNamespace
 namespace SteamKit2;
 
@@ -13,5 +11,3 @@ public static partial class ECurrencyCodeEnumExtensions
             .FirstOrDefault(culture => new RegionInfo(culture.LCID).ISOCurrencySymbol == eCurrencyCode.ToString());
     }
 }
-
-#endif
