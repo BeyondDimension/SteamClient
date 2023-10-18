@@ -43,5 +43,33 @@ public class SteamSessionServiceImpl : ISteamSessionService
         return false;
     }
 
+    public async Task<bool> SaveSession(SteamSession steamSession)
+    {
+        try
+        {
+            await ISecureStorage.Instance.SetAsync("CurrentSteamUserSession", Serializable.SJSON(steamSession));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            ex.LogAndShowT();
+        }
+        return false;
+    }
+
+    public async Task<SteamSession?> LoadSession(string filePath)
+    {
+        try
+        {
+            var text = await ISecureStorage.Instance.GetAsync("CurrentSteamUserSession");
+            return Serializable.DJSON<SteamSession>(text!);
+        }
+        catch (Exception ex)
+        {
+            ex.LogAndShowT();
+        }
+        return null;
+    }
+
     private static string SpecialTag(string steam_id) => $"SteamSession_{steam_id}";
 }

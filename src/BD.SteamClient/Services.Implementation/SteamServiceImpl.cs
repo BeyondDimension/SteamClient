@@ -501,6 +501,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                             item["MostRecent"] = 0;
                             continue;
                         }
+                        item["AllowAutoLogin"] = 1;
                         item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
                         item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
                         item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);

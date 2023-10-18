@@ -8,5 +8,9 @@ public interface ISteamSessionService
 
     SteamSession? RentSession(string steam_id);
 
+    Task<SteamSession?> LoadSession(string filePath);
+
+    Task<bool> SaveSession(SteamSession steamSession);
+
     bool RemoveSession(string steam_id);
 }
