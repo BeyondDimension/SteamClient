@@ -17,10 +17,14 @@ public static class VdfHelper
     /// <param name="filePath"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static KVObject Read(string filePath, bool isBinary = false)
+    public static KVObject Read(string filePath, bool isBinary = false, bool isHasEscapeSequences = true)
     {
+        var options = new KVSerializerOptions
+        {
+            HasEscapeSequences = isHasEscapeSequences,
+        };
         var kv = KVSerializer.Create(isBinary ? KVSerializationFormat.KeyValues1Binary : KVSerializationFormat.KeyValues1Text);
-        var data = kv.Deserialize(IOPath.OpenRead(filePath));
+        var data = kv.Deserialize(IOPath.OpenRead(filePath), options);
         return data;
     }
 
