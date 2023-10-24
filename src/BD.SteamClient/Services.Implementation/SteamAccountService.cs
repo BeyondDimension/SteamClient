@@ -5,6 +5,7 @@ using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using BD.SteamClient.Models.Profile;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 using Polly;
 using Polly.Retry;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -1667,5 +1668,17 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             return await parseFunc(document);
         }
+    }
+
+    public async Task<bool> CheckAccessTokenValidation(string accesstoken)
+    {
+        var rsp = await client.GetAsync(string.Format(AccountGetSteamNotificationsUrl, accesstoken));
+
+        if (rsp.IsSuccessStatusCode)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

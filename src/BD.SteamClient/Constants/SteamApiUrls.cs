@@ -85,6 +85,8 @@ public static class SteamApiUrls
     public const string SteamStoreAccountSetCountryUrl = $"{STEAM_STORE_URL}/account/setcountry";
     public const string SteamStoreAddFundsUrl = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
 
+    public const string AccountGetSteamNotificationsUrl = "https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}";
+
     /// <summary>
     /// TradeOffer 交易报价API
     /// </summary>

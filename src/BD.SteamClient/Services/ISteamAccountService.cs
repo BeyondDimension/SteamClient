@@ -141,4 +141,11 @@ public interface ISteamAccountService
     /// <param name="loginState"></param>
     /// <returns></returns>
     IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState);
+
+    /// <summary>
+    /// 效验当前登录的accesstoken是否有效
+    /// </summary>
+    /// <param name="accesstoken"></param>
+    /// <returns></returns>
+    Task<bool> CheckAccessTokenValidation(string accesstoken);
 }

@@ -47,7 +47,8 @@ public class SteamSessionServiceImpl : ISteamSessionService
     {
         try
         {
-            await ISecureStorage.Instance.SetAsync("CurrentSteamUserSession", Serializable.SJSON(steamSession));
+            var temp = Serializable.SJSON(steamSession);
+            await ISecureStorage.Instance.SetAsync("CurrentSteamUserSession", temp);
             return true;
         }
         catch (Exception ex)
@@ -62,7 +63,16 @@ public class SteamSessionServiceImpl : ISteamSessionService
         try
         {
             var text = await ISecureStorage.Instance.GetAsync("CurrentSteamUserSession");
-            return Serializable.DJSON<SteamSession>(text!);
+            if (text != null)
+            {
+                var session = Serializable.DJSON<SteamSession>(text);
+                if (session != null && await Ioc.Get<ISteamAccountService>().CheckAccessTokenValidation(session.AccessToken))
+                {
+                    session.GenerateSetCookie();
+                    AddOrSetSeesion(session);
+                    return session;
+                }
+            }
         }
         catch (Exception ex)
         {
