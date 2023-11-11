@@ -11,7 +11,7 @@ public interface ISteamIdleCardService
     /// </summary>
     /// <param name="steamSession"></param>
     /// <returns></returns>
-    Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY");
+    Task<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY");
 
     /// <summary>
     /// 获取游戏卡组卡片平均价格

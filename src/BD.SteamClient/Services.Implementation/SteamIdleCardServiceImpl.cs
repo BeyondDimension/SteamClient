@@ -14,7 +14,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
     public SteamIdleCardServiceImpl(
         IServiceProvider s,
-        ILogger<SteamTradeServiceImpl> logger) : base(
+        ILogger<SteamIdleCardServiceImpl> logger) : base(
             s, logger)
     {
         _sessionService = s.GetRequiredService<ISteamSessionService>();
@@ -22,13 +22,13 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
     public SteamIdleCardServiceImpl(
         IServiceProvider s,
-        Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamTradeServiceImpl>>())
+        Func<CookieContainer, HttpMessageHandler> func) : base(func, s.GetRequiredService<ILogger<SteamIdleCardServiceImpl>>())
     {
         _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
 
     #region Public
-    public async Task<IEnumerable<Badge>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
+    public async Task<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
@@ -58,7 +58,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             return await steamSession.HttpClient.GetStringAsync(STEAM_GAMECARDS_URL.Format(steamSession.SteamId, app_id));
         };
         var badges = new List<Badge>();
-        await FetchBadgesOnPage(document, badges, cardpage_func);
+        await FetchBadgesOnPage(document, badges, cardpage_func, need_price);
 
         // 获取其他页的徽章数据
         for (var i = 2; i <= pagesCount; i++)
@@ -69,7 +69,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
             document = parser.ParseDocument(page);
 
-            await FetchBadgesOnPage(document, badges, cardpage_func);
+            await FetchBadgesOnPage(document, badges, cardpage_func, need_price);
         }
 
         if (need_price)
@@ -98,7 +98,14 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             }
         }
 
-        return badges;
+        var userIdle = new UserIdleInfo();
+        userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
+        userIdle.CurrentExp = int.TryParse(document.QuerySelector(".profile_xp_block_xp").TextContent, out var after_currentExp) ? after_currentExp : default;
+        var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"[0-9]+");
+        if (matchs.Count >= 2)
+            userIdle.UpExp = int.TryParse(matchs[0].Value, out var after_upExp) ? after_upExp : default;
+
+        return (userIdle, badges);
     }
 
     public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(int[] appIds, string currency)
@@ -152,12 +159,13 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
     #endregion
 
     #region Private
-    private async Task FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func)
+    private async Task FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
     {
         var parser = new HtmlParser();
         IHtmlDocument? card_document = null;
         var card_page = string.Empty;
-        foreach (var badge in document.QuerySelectorAll("div.badge_row.is_link"))
+        var badges_rows = document.QuerySelectorAll("div.badge_row.is_link");
+        foreach (var badge in badges_rows)
         {
             var appIdNode = badge.QuerySelector("a.badge_row_overlay")?.Attributes["href"]?.Value ?? "";
             var appid = Regex.Match(appIdNode, @"gamecards/(\d+)/").Groups[1].Value;
@@ -176,20 +184,61 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             var badgeNameNode = badge.QuerySelector("div.badge_info_title") ?? badge.QuerySelector("div.badge_empty_name");
             var badgeName = WebUtility.HtmlDecode(badgeNameNode?.FirstChild?.TextContent)?.Trim() ?? "";
 
-            var cardNode = badge.QuerySelector("span.progress_info_bold");
-            var remaining_cards = cardNode == null ? string.Empty : Regex.Match(cardNode.TextContent, @"[0-9]+").Value;
+            var badgeInfo = badge.QuerySelector("div.badge_info");
+            byte level = 0; short exp = 0;
+            var badgeImageUrl = string.Empty;
+            if (badgeInfo != null)
+            {
+                badgeImageUrl = badgeInfo.QuerySelector("img.badge_icon")?.Attributes["src"]?.Value ?? string.Empty;
+                var level_expCards = badgeInfo.QuerySelector("div.badge_info_description")?.Children[1];
+                var matchs = Regex.Matches(level_expCards?.TextContent ?? string.Empty, @"[0-9]+");
+                if (matchs.Count == 2)
+                {
+                    level = byte.Parse(matchs[0].Value);
+                    exp = short.Parse(matchs[1].Value);
+                }
+            }
+
+            var cardRemainingNode = badge.QuerySelector("span.progress_info_bold");
+            var remaining_cards = cardRemainingNode == null ? string.Empty : Regex.Match(cardRemainingNode.TextContent, @"[0-9]+").Value;
+
+            var cardGathering = badge.QuerySelector("div.badge_progress_info");
+            int collected = 0, gathering = 0;
+            if (cardGathering != null)
+            {
+                var matchs = Regex.Matches(cardGathering.TextContent, @"[0-9]+");
+
+                if (matchs.Count == 2)
+                {
+                    collected = int.TryParse(matchs[0].Value, out var after_collected) ? after_collected : default;
+                    gathering = int.TryParse(matchs[1].Value, out var after_gathering) ? after_gathering : default;
+                }
+                else if (matchs.Count == 3)
+                {
+                    collected = int.TryParse(matchs[2].Value, out var after_collected) ? after_collected : default;
+                    gathering = int.TryParse(matchs[1].Value, out var after_gathering) ? after_gathering : default;
+                }
+            }
 
             var badge_item = new Badge();
             badge_item.AppId = int.TryParse(appid, out var after_appid) ? after_appid : 0;
             badge_item.AppName = name;
             badge_item.BadgeName = badgeName;
+            badge_item.BadgeImageUrl = badgeImageUrl;
+            badge_item.BadgeLevel = level;
+            badge_item.BadgeCurrentExp = exp;
             badge_item.MinutesPlayed = double.TryParse(hours, out var after_hours) ? Math.Round(after_hours * 60D) : 0D;
             badge_item.CardsRemaining = int.TryParse(remaining_cards, out var after_remaining_cards) ? after_remaining_cards : 0;
+            badge_item.CardsCollected = collected;
+            badge_item.CardsGathering = gathering;
 
-            card_page = await func(appid);
-            card_document = parser.ParseDocument(card_page);
-            var cards = FetchCardsOnPage(card_document);
-            badge_item.Cards = cards.ToList();
+            if (need_price)
+            {
+                card_page = await func(appid);
+                card_document = parser.ParseDocument(card_page);
+                var cards = FetchCardsOnPage(card_document);
+                badge_item.Cards = cards.ToList();
+            }
 
             badges.Add(badge_item);
 
