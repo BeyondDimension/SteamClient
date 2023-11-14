@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
@@ -9,5 +10,26 @@
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\SAM.API\**\*.cs">
+			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
+		</Compile>
+		<Compile Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\**\*.cs">
+			<LinkBase>_SourceReference\ValveKeyValue</LinkBase>
+		</Compile>
+		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\obj\**\*.cs" />
+		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\Properties\AssemblyInfo.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Services\Implementation\" />
+	</ItemGroup>
 
 </Project>
