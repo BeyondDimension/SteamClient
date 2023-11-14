@@ -1,0 +1,5 @@
+<Project>
+
+	<Import Project="..\ref\Common\src\Directory.Build.targets" />
+
+</Project>

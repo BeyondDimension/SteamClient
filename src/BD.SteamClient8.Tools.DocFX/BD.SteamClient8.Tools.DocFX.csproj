@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<UseProjectUtils>true</UseProjectUtils>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\ref\Common\src\BD.Common8.Tools.DocFX\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.DocFX\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.DocFX\obj\**\*.cs" />
+	</ItemGroup>
+
+</Project>

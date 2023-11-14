@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net$(DotNet_Version)</TargetFramework>
+		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseProjectUtils>true</UseProjectUtils>
+		<UseSystemCommandLine>true</UseSystemCommandLine>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="..\..\ref\Common\src\Shared\GlobalUsings.BD.Common8.Tools.Build.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\..\ref\Common\src\BD.Common8.Tools.Build\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Build\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Build\obj\**\*.cs" />
+	</ItemGroup>
+
+</Project>
