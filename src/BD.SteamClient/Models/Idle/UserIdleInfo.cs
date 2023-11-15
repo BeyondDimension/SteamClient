@@ -2,8 +2,6 @@ namespace BD.SteamClient.Models.Idle;
 
 public class UserIdleInfo
 {
-    public ushort NextLevel => (ushort)(UserLevel + 1);
-
     /// <summary>
     /// 用户等级
     /// </summary>
@@ -12,7 +10,7 @@ public class UserIdleInfo
     /// <summary>
     /// 用户下一等级
     /// </summary>
-    public ushort NextLevel { get { return (ushort)(UserLevel + 1); } }
+    public ushort NextLevel => (ushort)(UserLevel + 1);
 
     /// <summary>
     /// 用户当前经验
