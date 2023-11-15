@@ -100,10 +100,10 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
         var userIdle = new UserIdleInfo();
         userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
-        userIdle.CurrentExp = int.TryParse(document.QuerySelector(".profile_xp_block_xp").TextContent, out var after_currentExp) ? after_currentExp : default;
-        var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"[0-9]+");
+        userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
+        var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
         if (matchs.Count >= 2)
-            userIdle.UpExp = int.TryParse(matchs[0].Value, out var after_upExp) ? after_upExp : default;
+            userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
 
         return (userIdle, badges);
     }
@@ -162,8 +162,6 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
     private async Task FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
     {
         var parser = new HtmlParser();
-        IHtmlDocument? card_document = null;
-        var card_page = string.Empty;
         var badges_rows = document.QuerySelectorAll("div.badge_row.is_link");
         foreach (var badge in badges_rows)
         {
@@ -234,14 +232,13 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
             if (need_price)
             {
-                card_page = await func(appid);
-                card_document = parser.ParseDocument(card_page);
+                var card_page = await func(appid);
+                var card_document = parser.ParseDocument(card_page);
                 var cards = FetchCardsOnPage(card_document);
                 badge_item.Cards = cards.ToList();
             }
 
             badges.Add(badge_item);
-
         }
     }
 
