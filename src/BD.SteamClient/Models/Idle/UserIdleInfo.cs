@@ -13,6 +13,11 @@ public class UserIdleInfo
     public ushort NextLevel => (ushort)(UserLevel + 1);
 
     /// <summary>
+    /// 用户下一等级所需经验百分比
+    /// </summary>
+    public short NextLevelExpPercentage { get; set; }
+
+    /// <summary>
     /// 用户当前经验
     /// </summary>
     public int CurrentExp { get; set; }

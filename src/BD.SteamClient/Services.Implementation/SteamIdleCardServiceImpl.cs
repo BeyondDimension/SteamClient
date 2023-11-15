@@ -99,16 +99,27 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         }
 
         var userIdle = new UserIdleInfo();
-        userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
-        userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
-        var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
-        if (matchs.Count >= 2)
-            userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
+        try
+        {
+            userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
+            userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
+
+            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
+            if (matchs.Count >= 2)
+                userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
+
+            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress").OuterHtml, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
+
+        }
+        catch (Exception ex)
+        {
+            ex.LogAndShowT();
+        }
 
         return (userIdle, badges);
     }
 
-    public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(int[] appIds, string currency)
+    public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(uint[] appIds, string currency)
     {
         var url = STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -121,10 +132,12 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             var avgs = new List<AppCardsAvgPrice>();
             foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
             {
-                var avg = new AppCardsAvgPrice();
-                avg.AppId = int.Parse(item.Name);
-                avg.Regular = item.Value.GetProperty("regular").GetDecimal();
-                avg.Foil = item.Value.GetProperty("foil").GetDecimal();
+                var avg = new AppCardsAvgPrice
+                {
+                    AppId = uint.Parse(item.Name),
+                    Regular = item.Value.GetProperty("regular").GetDecimal(),
+                    Foil = item.Value.GetProperty("foil").GetDecimal()
+                };
                 avgs.Add(avg);
             }
             return avgs;
@@ -132,7 +145,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         return Enumerable.Empty<AppCardsAvgPrice>();
     }
 
-    public async Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(int appId, string currency)
+    public async Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(uint appId, string currency)
     {
         var url = STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
         using var request = new HttpRequestMessage(HttpMethod.Get, url);
@@ -218,17 +231,19 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
                 }
             }
 
-            var badge_item = new Badge();
-            badge_item.AppId = int.TryParse(appid, out var after_appid) ? after_appid : 0;
-            badge_item.AppName = name;
-            badge_item.BadgeName = badgeName;
-            badge_item.BadgeImageUrl = badgeImageUrl;
-            badge_item.BadgeLevel = level;
-            badge_item.BadgeCurrentExp = exp;
-            badge_item.MinutesPlayed = double.TryParse(hours, out var after_hours) ? Math.Round(after_hours * 60D) : 0D;
-            badge_item.CardsRemaining = int.TryParse(remaining_cards, out var after_remaining_cards) ? after_remaining_cards : 0;
-            badge_item.CardsCollected = collected;
-            badge_item.CardsGathering = gathering;
+            var badge_item = new Badge
+            {
+                AppId = uint.TryParse(appid, out var after_appid) ? after_appid : 0,
+                AppName = name,
+                BadgeName = badgeName,
+                BadgeImageUrl = badgeImageUrl,
+                BadgeLevel = level,
+                BadgeCurrentExp = exp,
+                MinutesPlayed = double.TryParse(hours, out var after_hours) ? Math.Round(after_hours * 60D) : 0D,
+                CardsRemaining = int.TryParse(remaining_cards, out var after_remaining_cards) ? after_remaining_cards : 0,
+                CardsCollected = collected,
+                CardsGathering = gathering
+            };
 
             if (need_price)
             {

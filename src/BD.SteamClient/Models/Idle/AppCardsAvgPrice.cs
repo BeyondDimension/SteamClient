@@ -2,7 +2,7 @@ namespace BD.SteamClient.Models.Idle;
 
 public class AppCardsAvgPrice
 {
-    public int AppId { get; set; }
+    public uint AppId { get; set; }
 
     /// <summary>
     /// 常规卡片平均价格

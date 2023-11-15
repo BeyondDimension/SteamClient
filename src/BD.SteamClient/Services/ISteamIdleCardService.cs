@@ -19,7 +19,7 @@ public interface ISteamIdleCardService
     /// <param name="appIds"></param>
     /// <param name="currency"></param>
     /// <returns></returns>
-    Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(int[] appIds, string currency);
+    Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(uint[] appIds, string currency);
 
     /// <summary>
     /// 获取游戏卡片价格
@@ -27,5 +27,5 @@ public interface ISteamIdleCardService
     /// <param name="appId"></param>
     /// <param name="currency"></param>
     /// <returns></returns>
-    Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(int appId, string currency);
+    Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(uint appId, string currency);
 }

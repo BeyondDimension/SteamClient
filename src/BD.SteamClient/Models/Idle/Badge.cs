@@ -9,7 +9,7 @@ public class Badge
 
     public string BadgeImageUrl { get; set; } = string.Empty;
 
-    public int AppId { get; set; }
+    public uint AppId { get; set; }
 
     public string AppName { get; set; } = string.Empty;
 
