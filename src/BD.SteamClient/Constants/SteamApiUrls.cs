@@ -9,7 +9,7 @@ public static class SteamApiUrls
     public const string STEAM_PROFILES_URL = "https://steamcommunity.com/profiles/{0}";
 
     public const string STEAM_LOGIN_URL = "https://steamcommunity.com/login/home/?goto=my/profile";
-    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/?l=schinese&sort=p&p={1}";
+    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/?l=schinese&p={1}";
     public const string STEAM_GAMECARDS_URL = "https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=english";
     public const string STEAMAPP_LIST_URL = "https://api.steampowered.com/ISteamApps/GetAppList/v2";
     public const string STEAMAPP_LOGO_URL = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";

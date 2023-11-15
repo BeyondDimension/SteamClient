@@ -50,8 +50,15 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         }
 
         // 读取总页数
-        string lastpage = pages.Last().ToString().Replace("?p=", "");
-        pagesCount = Convert.ToInt32(lastpage);
+        string lastpagestr = Regex.Match(pages.Last().ToString(), @"p=\s*(\d+)").Groups[1].Value;
+        if (int.TryParse(lastpagestr, out var lastpage))
+        {
+            pagesCount = lastpage;
+        }
+        else
+        {
+            pagesCount = pages.Count;
+        }
 
         Func<string, Task<string>> cardpage_func = async (app_id) =>
         {
