@@ -12,9 +12,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.SteamAchievementManager.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.ValveKeyValue.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 		<Compile Include="..\SAM.API\**\*.cs">
 			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
 		</Compile>
+		<Compile Remove="..\SAM.API\bin\**\*.cs" />
+		<Compile Remove="..\SAM.API\obj\**\*.cs" />
 		<Compile Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\**\*.cs">
 			<LinkBase>_SourceReference\ValveKeyValue</LinkBase>
 		</Compile>

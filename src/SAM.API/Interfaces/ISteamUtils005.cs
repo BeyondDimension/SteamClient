@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,30 +20,30 @@
  *    distribution.
  */
 
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Interfaces;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct ISteamUtils005
 {
-    public IntPtr GetSecondsSinceAppActive;
-    public IntPtr GetSecondsSinceComputerActive;
-    public IntPtr GetConnectedUniverse;
-    public IntPtr GetServerRealTime;
-    public IntPtr GetIPCountry;
-    public IntPtr GetImageSize;
-    public IntPtr GetImageRGBA;
-    public IntPtr GetCSERIPPort;
-    public IntPtr GetCurrentBatteryPower;
-    public IntPtr GetAppID;
-    public IntPtr SetOverlayNotificationPosition;
-    public IntPtr IsAPICallCompleted;
-    public IntPtr GetAPICallFailureReason;
-    public IntPtr GetAPICallResult;
-    public IntPtr RunFrame;
-    public IntPtr GetIPCCallCount;
-    public IntPtr SetWarningMessageHook;
-    public IntPtr IsOverlayEnabled;
-    public IntPtr OverlayNeedsPresent;
+    public nint GetSecondsSinceAppActive;
+    public nint GetSecondsSinceComputerActive;
+    public nint GetConnectedUniverse;
+    public nint GetServerRealTime;
+    public nint GetIPCountry;
+    public nint GetImageSize;
+    public nint GetImageRGBA;
+    public nint GetCSERIPPort;
+    public nint GetCurrentBatteryPower;
+    public nint GetAppID;
+    public nint SetOverlayNotificationPosition;
+    public nint IsAPICallCompleted;
+    public nint GetAPICallFailureReason;
+    public nint GetAPICallResult;
+    public nint RunFrame;
+    public nint GetIPCCallCount;
+    public nint SetWarningMessageHook;
+    public nint IsOverlayEnabled;
+    public nint OverlayNeedsPresent;
 }

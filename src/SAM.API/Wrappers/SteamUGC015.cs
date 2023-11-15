@@ -20,9 +20,9 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamUGC015 : NativeWrapper<ISteamUGC015>
 {

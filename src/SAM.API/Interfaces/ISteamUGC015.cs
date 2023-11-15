@@ -20,43 +20,43 @@
  *    distribution.
  */
 
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Interfaces;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct ISteamUGC015
 {
-    public IntPtr CreateQueryUserUGCRequest0;
-    public IntPtr CreateQueryAllUGCRequest1;
-    public IntPtr SendQueryUGCRequest2;
-    public IntPtr GetQueryUGCResult3;
-    public IntPtr ReleaseQueryUGCRequest4;
-    public IntPtr AddRequiredTag5;
-    public IntPtr AddExcludedTag6;
-    public IntPtr SetReturnLongDescription7;
-    public IntPtr SetReturnTotalOnly8;
-    public IntPtr SetAllowCachedResponse9;
-    public IntPtr SetCloudFileNameFilter10;
-    public IntPtr SetMatchAnyTag11;
-    public IntPtr SetSearchText12;
-    public IntPtr SetRankedByTrendDays13;
-    public IntPtr RequestUGCDetails14;
-    public IntPtr CreateItem15;
-    public IntPtr StartItemUpdate16;
-    public IntPtr SetItemTitle17;
-    public IntPtr SetItemDescription18;
-    public IntPtr SetItemVisibility19;
-    public IntPtr SetItemTags20;
-    public IntPtr SetItemContent21;
-    public IntPtr SetItemPreview22;
-    public IntPtr SubmitItemUpdate23;
-    public IntPtr GetItemUpdateProgress24;
-    public IntPtr SubscribeItem25;
-    public IntPtr UnsubscribeItem26;
-    public IntPtr GetNumSubscribedItems27;
-    public IntPtr GetSubscribedItems28;
-    public IntPtr GetItemInstallInfo29;
-    public IntPtr GetItemUpdateInfo30;
-    private IntPtr DTorISteamUGC00331;
+    public nint CreateQueryUserUGCRequest0;
+    public nint CreateQueryAllUGCRequest1;
+    public nint SendQueryUGCRequest2;
+    public nint GetQueryUGCResult3;
+    public nint ReleaseQueryUGCRequest4;
+    public nint AddRequiredTag5;
+    public nint AddExcludedTag6;
+    public nint SetReturnLongDescription7;
+    public nint SetReturnTotalOnly8;
+    public nint SetAllowCachedResponse9;
+    public nint SetCloudFileNameFilter10;
+    public nint SetMatchAnyTag11;
+    public nint SetSearchText12;
+    public nint SetRankedByTrendDays13;
+    public nint RequestUGCDetails14;
+    public nint CreateItem15;
+    public nint StartItemUpdate16;
+    public nint SetItemTitle17;
+    public nint SetItemDescription18;
+    public nint SetItemVisibility19;
+    public nint SetItemTags20;
+    public nint SetItemContent21;
+    public nint SetItemPreview22;
+    public nint SubmitItemUpdate23;
+    public nint GetItemUpdateProgress24;
+    public nint SubscribeItem25;
+    public nint UnsubscribeItem26;
+    public nint GetNumSubscribedItems27;
+    public nint GetSubscribedItems28;
+    public nint GetItemInstallInfo29;
+    public nint GetItemUpdateInfo30;
+    private nint DTorISteamUGC00331;
 }

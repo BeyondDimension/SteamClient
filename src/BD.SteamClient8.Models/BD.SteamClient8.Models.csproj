@@ -11,6 +11,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
 	</ItemGroup>
 

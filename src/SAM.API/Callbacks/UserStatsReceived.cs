@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -22,15 +22,11 @@
 
 namespace SAM.API.Callbacks;
 
+#pragma warning disable SA1600 // Elements should be documented
+
 public sealed class UserStatsReceived : Callback<Types.UserStatsReceived>
 {
-    public override int Id
-    {
-        get { return 1101; }
-    }
+    public override int Id => 1101;
 
-    public override bool IsServer
-    {
-        get { return false; }
-    }
+    public override bool IsServer => false;
 }

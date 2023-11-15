@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,39 +20,36 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamApps001 : NativeWrapper<ISteamApps001>
 {
     #region GetAppData
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate int NativeGetAppData(
-        IntPtr self,
+        nint self,
         uint appId,
-        IntPtr key,
-        IntPtr value,
+        nint key,
+        nint value,
         int valueLength);
 
     public string GetAppData(uint appId, string key)
     {
-        using (var nativeHandle = NativeStrings.StringToStringHandle(key))
-        {
-            const int valueLength = 1024;
-            var valuePointer = Marshal.AllocHGlobal(valueLength);
-            int result = Call<int, NativeGetAppData>(
-                Functions.GetAppData,
-                ObjectAddress,
-                appId,
-                nativeHandle.Handle,
-                valuePointer,
-                valueLength);
-            var value = result == 0 ? null : NativeStrings.PointerToString(valuePointer, valueLength);
-            Marshal.FreeHGlobal(valuePointer);
-            return value;
-        }
+        using var nativeHandle = NativeStrings.StringToStringHandle(key);
+        const int valueLength = 1024;
+        var valuePointer = Marshal.AllocHGlobal(valueLength);
+        int result = Call<int, NativeGetAppData>(
+            Functions.GetAppData,
+            ObjectAddress,
+            appId,
+            nativeHandle.Handle,
+            valuePointer,
+            valueLength);
+        var value = result == 0 ? null : NativeStrings.PointerToString(valuePointer, valueLength);
+        Marshal.FreeHGlobal(valuePointer);
+        return value;
     }
     #endregion
 }

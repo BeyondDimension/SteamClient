@@ -30,5 +30,5 @@ public interface ICallback
 
     bool IsServer { get; }
 
-    void Run(IntPtr param);
+    void Run(nint param);
 }

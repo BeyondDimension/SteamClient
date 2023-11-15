@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34302.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{7B87D11D-B726-471E-A72C-F3B76C6553B5}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.GitHub", "0.GitHub", "{1BE12CAB-B227-4099-863E-A7617CECEAB9}"
 EndProject
@@ -21,6 +24,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Doc", "1.Doc", "{0D3AF3F5-C3C3-4068-8B3E-EA1947B1093E}"
+	ProjectSection(SolutionItems) = preProject
+		articles\Protobuf.md = articles\Protobuf.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Src", "2.Src", "{9AA2E622-F320-45CA-BF70-9290780FFCC4}"
 EndProject
@@ -38,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Tools", "3.Tools", "{DD64
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.UnitTest", "4.UnitTest", "{FC370DF5-C59F-4463-B287-798679F6AC25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient8", "src\BD.SteamClient8\BD.SteamClient8.csproj", "{D43C1445-8222-4223-B59B-08AC9D859F1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8", "src\BD.SteamClient8\BD.SteamClient8.csproj", "{D43C1445-8222-4223-B59B-08AC9D859F1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8.Tools.Build", "src\BD.SteamClient8.Tools.Build\BD.SteamClient8.Tools.Build.csproj", "{B1059059-F554-4CC4-8C6F-7D8F4AF44B8B}"
 EndProject
@@ -52,11 +58,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Bcl", "ref\Common\src\BD.Common8.Bcl\BD.Common8.Bcl.csproj", "{4D5A4471-0865-4407-84FA-04350D41E29B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient8.UnitTest", "src\BD.SteamClient8.UnitTest\BD.SteamClient8.UnitTest.csproj", "{2A0FE23E-44F7-4911-8A22-31782DB22242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8.UnitTest", "src\BD.SteamClient8.UnitTest\BD.SteamClient8.UnitTest.csproj", "{2A0FE23E-44F7-4911-8A22-31782DB22242}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient8.Models", "src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj", "{8E4F5BCC-BBAC-4412-9303-25138D6191E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8.Models", "src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj", "{8E4F5BCC-BBAC-4412-9303-25138D6191E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD.SteamClient8.Primitives", "src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj", "{DAEB53D3-7B6F-44D3-94A3-D9695E5D7197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8.Primitives", "src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj", "{DAEB53D3-7B6F-44D3-94A3-D9695E5D7197}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValveKeyValue", "ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj", "{FF904629-87CF-440D-A888-CD69DB2D2D88}"
 EndProject

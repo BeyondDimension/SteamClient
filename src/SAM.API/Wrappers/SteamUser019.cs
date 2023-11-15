@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,40 +20,39 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamUser017 : NativeWrapper<ISteamUser019>
 {
     #region GetSteamID
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void NativeGetSteamId(IntPtr self, out ulong steamId);
+    private delegate void NativeGetSteamId(nint self, out ulong steamId);
 
     public ulong GetSteamId()
     {
         var call = GetFunction<NativeGetSteamId>(Functions.GetSteamID);
-        ulong steamId;
-        call(ObjectAddress, out steamId);
+        call(ObjectAddress, out var steamId);
         return steamId;
     }
+
     public ulong GetSteamId3()
     {
         var call = GetFunction<NativeGetSteamId>(Functions.GetSteamID);
-        ulong steamId;
-        call(ObjectAddress, out steamId);
-        steamId = ((steamId >> (ushort)0) & 0xFFFFFFFF);
+        call(ObjectAddress, out var steamId);
+        steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
         return steamId;
     }
     #endregion
 
     #region GetPlayerSteamLevel
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetPlayerSteamLevel(IntPtr self);
-    public IntPtr GetPlayerSteamLevel()
+    private delegate nint NativeGetPlayerSteamLevel(nint self);
+
+    public nint GetPlayerSteamLevel()
     {
-        var result = Call<IntPtr, NativeGetPlayerSteamLevel>(Functions.GetPlayerSteamLevel, ObjectAddress);
+        var result = Call<nint, NativeGetPlayerSteamLevel>(Functions.GetPlayerSteamLevel, ObjectAddress);
         return result;
     }
     #endregion

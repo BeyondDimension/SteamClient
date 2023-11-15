@@ -20,16 +20,15 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamClient018 : NativeWrapper<ISteamClient018>
 {
     #region CreateSteamPipe
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeCreateSteamPipe(IntPtr self);
+    private delegate int NativeCreateSteamPipe(nint self);
 
     public int CreateSteamPipe()
     {
@@ -40,7 +39,7 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
     #region ReleaseSteamPipe
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeReleaseSteamPipe(IntPtr self, int pipe);
+    private delegate bool NativeReleaseSteamPipe(nint self, int pipe);
 
     public bool ReleaseSteamPipe(int pipe)
     {
@@ -50,9 +49,9 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region CreateLocalUser
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeCreateLocalUser(IntPtr self, ref int pipe, Types.AccountType type);
+    private delegate int NativeCreateLocalUser(nint self, ref int pipe, AccountType type);
 
-    public int CreateLocalUser(ref int pipe, Types.AccountType type)
+    public int CreateLocalUser(ref int pipe, AccountType type)
     {
         var call = GetFunction<NativeCreateLocalUser>(Functions.CreateLocalUser);
         return call(ObjectAddress, ref pipe, type);
@@ -61,7 +60,7 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region ConnectToGlobalUser
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeConnectToGlobalUser(IntPtr self, int pipe);
+    private delegate int NativeConnectToGlobalUser(nint self, int pipe);
 
     public int ConnectToGlobalUser(int pipe)
     {
@@ -74,7 +73,7 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region ReleaseUser
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void NativeReleaseUser(IntPtr self, int pipe, int user);
+    private delegate void NativeReleaseUser(nint self, int pipe, int user);
 
     public void ReleaseUser(int pipe, int user)
     {
@@ -84,7 +83,7 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region SetLocalIPBinding
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void NativeSetLocalIPBinding(IntPtr self, uint host, ushort port);
+    private delegate void NativeSetLocalIPBinding(nint self, uint host, ushort port);
 
     public void SetLocalIPBinding(uint host, ushort port)
     {
@@ -94,23 +93,21 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region GetISteamUser
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetISteamUser(IntPtr self, int user, int pipe, IntPtr version);
+    private delegate nint NativeGetISteamUser(nint self, int user, int pipe, nint version);
 
     private TClass GetISteamUser<TClass>(int user, int pipe, string version)
         where TClass : INativeWrapper, new()
     {
-        using (var nativeVersion = NativeStrings.StringToStringHandle(version))
-        {
-            IntPtr address = Call<IntPtr, NativeGetISteamUser>(
-                Functions.GetISteamUser,
-                ObjectAddress,
-                user,
-                pipe,
-                nativeVersion.Handle);
-            var result = new TClass();
-            result.SetupFunctions(address);
-            return result;
-        }
+        using var nativeVersion = NativeStrings.StringToStringHandle(version);
+        nint address = Call<nint, NativeGetISteamUser>(
+            Functions.GetISteamUser,
+            ObjectAddress,
+            user,
+            pipe,
+            nativeVersion.Handle);
+        var result = new TClass();
+        result.SetupFunctions(address);
+        return result;
     }
     #endregion
 
@@ -123,23 +120,21 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region GetISteamUserStats
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetISteamUserStats(IntPtr self, int user, int pipe, IntPtr version);
+    private delegate nint NativeGetISteamUserStats(nint self, int user, int pipe, nint version);
 
     private TClass GetISteamUserStats<TClass>(int user, int pipe, string version)
         where TClass : INativeWrapper, new()
     {
-        using (var nativeVersion = NativeStrings.StringToStringHandle(version))
-        {
-            IntPtr address = Call<IntPtr, NativeGetISteamUserStats>(
-                Functions.GetISteamUserStats,
-                ObjectAddress,
-                user,
-                pipe,
-                nativeVersion.Handle);
-            var result = new TClass();
-            result.SetupFunctions(address);
-            return result;
-        }
+        using var nativeVersion = NativeStrings.StringToStringHandle(version);
+        nint address = Call<nint, NativeGetISteamUserStats>(
+            Functions.GetISteamUserStats,
+            ObjectAddress,
+            user,
+            pipe,
+            nativeVersion.Handle);
+        var result = new TClass();
+        result.SetupFunctions(address);
+        return result;
     }
     #endregion
 
@@ -152,22 +147,20 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region GetISteamUtils
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetISteamUtils(IntPtr self, int pipe, IntPtr version);
+    private delegate nint NativeGetISteamUtils(nint self, int pipe, nint version);
 
     public TClass GetISteamUtils<TClass>(int pipe, string version)
         where TClass : INativeWrapper, new()
     {
-        using (var nativeVersion = NativeStrings.StringToStringHandle(version))
-        {
-            IntPtr address = Call<IntPtr, NativeGetISteamUtils>(
-                Functions.GetISteamUtils,
-                ObjectAddress,
-                pipe,
-                nativeVersion.Handle);
-            var result = new TClass();
-            result.SetupFunctions(address);
-            return result;
-        }
+        using var nativeVersion = NativeStrings.StringToStringHandle(version);
+        nint address = Call<nint, NativeGetISteamUtils>(
+            Functions.GetISteamUtils,
+            ObjectAddress,
+            pipe,
+            nativeVersion.Handle);
+        var result = new TClass();
+        result.SetupFunctions(address);
+        return result;
     }
     #endregion
 
@@ -180,23 +173,21 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region GetISteamApps
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetISteamApps(IntPtr self, int user, int pipe, IntPtr version);
+    private delegate nint NativeGetISteamApps(nint self, int user, int pipe, nint version);
 
     private TClass GetISteamApps<TClass>(int user, int pipe, string version)
         where TClass : INativeWrapper, new()
     {
-        using (var nativeVersion = NativeStrings.StringToStringHandle(version))
-        {
-            IntPtr address = Call<IntPtr, NativeGetISteamApps>(
-                Functions.GetISteamApps,
-                ObjectAddress,
-                user,
-                pipe,
-                nativeVersion.Handle);
-            var result = new TClass();
-            result.SetupFunctions(address);
-            return result;
-        }
+        using var nativeVersion = NativeStrings.StringToStringHandle(version);
+        nint address = Call<nint, NativeGetISteamApps>(
+            Functions.GetISteamApps,
+            ObjectAddress,
+            user,
+            pipe,
+            nativeVersion.Handle);
+        var result = new TClass();
+        result.SetupFunctions(address);
+        return result;
     }
     #endregion
 
@@ -216,23 +207,21 @@ public class SteamClient018 : NativeWrapper<ISteamClient018>
 
     #region GetISteamRemoteStorage
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetISteamRemoteStorage(IntPtr self, int user, int pipe, IntPtr version);
+    private delegate nint NativeGetISteamRemoteStorage(nint self, int user, int pipe, nint version);
 
     private TClass GetISteamRemoteStorage<TClass>(int user, int pipe, string version)
         where TClass : INativeWrapper, new()
     {
-        using (var nativeVersion = NativeStrings.StringToStringHandle(version))
-        {
-            IntPtr address = Call<IntPtr, NativeGetISteamRemoteStorage>(
-                Functions.GetISteamRemoteStorage,
-                ObjectAddress,
-                user,
-                pipe,
-                nativeVersion.Handle);
-            var result = new TClass();
-            result.SetupFunctions(address);
-            return result;
-        }
+        using var nativeVersion = NativeStrings.StringToStringHandle(version);
+        nint address = Call<nint, NativeGetISteamRemoteStorage>(
+            Functions.GetISteamRemoteStorage,
+            ObjectAddress,
+            user,
+            pipe,
+            nativeVersion.Handle);
+        var result = new TClass();
+        result.SetupFunctions(address);
+        return result;
     }
     #endregion
 

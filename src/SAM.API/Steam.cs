@@ -26,14 +26,14 @@ namespace SAM.API;
 
 public static class Steam
 {
-    static TDelegate? GetExportFunction<TDelegate>(IntPtr module, string name)
+    static TDelegate? GetExportFunction<TDelegate>(nint module, string name)
       where TDelegate : class
     {
-        IntPtr address = NativeLibrary.GetExport(module, name);
-        return address == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<TDelegate>(address);
+        nint address = NativeLibrary.GetExport(module, name);
+        return address == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<TDelegate>(address);
     }
 
-    static IntPtr _Handle;
+    static nint _Handle;
 
     public static Func<string?>? GetInstallPathDelegate { private get; set; }
 
@@ -48,16 +48,16 @@ public static class Steam
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
-    private delegate IntPtr NativeCreateInterface(string version, IntPtr returnCode);
+    private delegate nint NativeCreateInterface(string version, nint returnCode);
 
     static NativeCreateInterface? _CallCreateInterface;
 
     public static TClass? CreateInterface<TClass>(string version)
         where TClass : INativeWrapper, new()
     {
-        var address = _CallCreateInterface!(version, IntPtr.Zero);
+        var address = _CallCreateInterface!(version, nint.Zero);
 
-        if (address == IntPtr.Zero)
+        if (address == nint.Zero)
         {
             return default;
         }
@@ -69,11 +69,11 @@ public static class Steam
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [return: MarshalAs(UnmanagedType.I1)]
-    delegate bool NativeSteamGetCallback(int pipe, out Types.CallbackMessage message, out int call);
+    delegate bool NativeSteamGetCallback(int pipe, out CallbackMessage message, out int call);
 
     static NativeSteamGetCallback? _CallSteamBGetCallback;
 
-    public static bool GetCallback(int pipe, out Types.CallbackMessage message, out int call)
+    public static bool GetCallback(int pipe, out CallbackMessage message, out int call)
     {
         return _CallSteamBGetCallback!(pipe, out message, out call);
     }
@@ -93,7 +93,7 @@ public static class Steam
     {
         try
         {
-            if (_Handle != IntPtr.Zero)
+            if (_Handle != nint.Zero)
             {
                 return true;
             }
@@ -131,7 +131,7 @@ public static class Steam
             }
 
             var module = NativeLibrary.Load(path);
-            if (module == IntPtr.Zero)
+            if (module == nint.Zero)
             {
                 return false;
             }

@@ -20,17 +20,16 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamApps008 : NativeWrapper<ISteamApps008>
 {
     #region IsSubscribed
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSubscribedApp(IntPtr self, uint appID);
+    private delegate bool NativeIsSubscribedApp(nint self, uint appID);
 
     public bool IsSubscribedApp(uint appID)
     {
@@ -40,11 +39,11 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
 
     #region GetCurrentGameLanguage
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetCurrentGameLanguage(IntPtr self);
+    private delegate nint NativeGetCurrentGameLanguage(nint self);
 
     public string GetCurrentGameLanguage()
     {
-        var languagePointer = Call<IntPtr, NativeGetCurrentGameLanguage>(
+        var languagePointer = Call<nint, NativeGetCurrentGameLanguage>(
             Functions.GetCurrentGameLanguage,
             ObjectAddress);
         return NativeStrings.PointerToString(languagePointer);
@@ -53,11 +52,11 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
 
     #region GetAvailableGameLanguages
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetAvailableGameLanguages(IntPtr self);
+    private delegate nint NativeGetAvailableGameLanguages(nint self);
 
     public string GetAvailableGameLanguages()
     {
-        var languagePointer = Call<IntPtr, NativeGetAvailableGameLanguages>(
+        var languagePointer = Call<nint, NativeGetAvailableGameLanguages>(
             Functions.GetAvailableGameLanguages,
             ObjectAddress);
         return NativeStrings.PointerToString(languagePointer);
@@ -68,7 +67,8 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     #region IsDlcInstalled
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsDlcInstalled(IntPtr self, uint appid);
+    private delegate bool NativeIsDlcInstalled(nint self, uint appid);
+
     public bool IsDlcInstalled(uint appid)
     {
         return Call<bool, NativeIsDlcInstalled>(Functions.IsDlcInstalled, ObjectAddress, appid);
@@ -78,7 +78,8 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     #region IsAppInstalled
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsAppInstalled(IntPtr self, uint appid);
+    private delegate bool NativeIsAppInstalled(nint self, uint appid);
+
     public bool IsAppInstalled(uint appid)
     {
         return Call<bool, NativeIsAppInstalled>(Functions.IsAppInstalled, ObjectAddress, appid);
@@ -88,7 +89,8 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     #region IsSubscribedFromFamilySharing
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSubscribedFromFamilySharing(IntPtr self);
+    private delegate bool NativeIsSubscribedFromFamilySharing(nint self);
+
     public bool IsSubscribedFromFamilySharing()
     {
         return Call<bool, NativeIsSubscribedFromFamilySharing>(Functions.IsSubscribedFromFamilySharing, ObjectAddress);
@@ -98,7 +100,8 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     #region IsSubscribedFromFreeWeekend
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSubscribedFromFreeWeekend(IntPtr self);
+    private delegate bool NativeIsSubscribedFromFreeWeekend(nint self);
+
     public bool IsSubscribedFromFreeWeekend()
     {
         return Call<bool, NativeIsSubscribedFromFreeWeekend>(Functions.IsSubscribedFromFreeWeekend, ObjectAddress);
@@ -107,12 +110,13 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
 
     #region GetAppInstallDir
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetAppInstallDir(IntPtr self, uint appid, IntPtr pchFolder, uint cchFolderBufferSize);
+    private delegate nint NativeGetAppInstallDir(nint self, uint appid, nint pchFolder, uint cchFolderBufferSize);
+
     public string GetAppInstallDir(uint appID)
     {
-        IntPtr mempchFolder = Helpers.TakeMemory();
+        nint mempchFolder = Helpers.TakeMemory();
         string pchFolder;
-        GetFunction<NativeGetAppInstallDir>(Functions.GetAppInstallDir)(ObjectAddress, appID, mempchFolder, (1024 * 32));
+        GetFunction<NativeGetAppInstallDir>(Functions.GetAppInstallDir)(ObjectAddress, appID, mempchFolder, 1024 * 32);
         pchFolder = Helpers.MemoryToString(mempchFolder);
         return pchFolder;
     }

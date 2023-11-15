@@ -20,18 +20,16 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using SAM.API.Types;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 {
     #region FileWrite
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFileWriteSBI(IntPtr self, IntPtr pchFile, Byte[] pvData, int cubData);
+    private delegate bool NativeFileWriteSBI(nint self, nint pchFile, Byte[] pvData, int cubData);
 
     public bool FileWrite(string pchFile, Byte[] pvData)
     {
@@ -43,7 +41,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region FileWrite
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeFileReadSBI(IntPtr thisptr, IntPtr pchFile, Byte[] pvData, int cubDataToRead);
+    private delegate int NativeFileReadSBI(nint thisptr, nint pchFile, Byte[] pvData, int cubDataToRead);
 
     public int FileRead(string pchFile, Byte[] pvData)
     {
@@ -56,7 +54,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region FileForget
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFileForgetS(IntPtr thisptr, IntPtr pchFile);
+    private delegate bool NativeFileForgetS(nint thisptr, nint pchFile);
 
     public bool FileForget(string pchFile)
     {
@@ -68,7 +66,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region FileDelete
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFileDeleteS(IntPtr thisptr, IntPtr pchFile);
+    private delegate bool NativeFileDeleteS(nint thisptr, nint pchFile);
 
     public bool FileDelete(string pchFile)
     {
@@ -80,7 +78,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region SetSyncPlatforms
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeSetSyncPlatformsSE(IntPtr thisptr, IntPtr pchFile, ERemoteStoragePlatform eRemoteStoragePlatform);
+    private delegate bool NativeSetSyncPlatformsSE(nint thisptr, nint pchFile, ERemoteStoragePlatform eRemoteStoragePlatform);
 
     public bool SetSyncPlatforms(string pchFile, ERemoteStoragePlatform eRemoteStoragePlatform)
     {
@@ -92,7 +90,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region FileExists
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFileExistsS(IntPtr thisptr, IntPtr pchFile);
+    private delegate bool NativeFileExistsS(nint thisptr, nint pchFile);
 
     public bool FileExists(string pchFile)
     {
@@ -104,7 +102,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region FilePersisted
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFilePersistedS(IntPtr thisptr, IntPtr pchFile);
+    private delegate bool NativeFilePersistedS(nint thisptr, nint pchFile);
 
     public bool FilePersisted(string pchFile)
     {
@@ -115,7 +113,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region GetFileSize
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeGetFileSizeS(IntPtr thisptr, IntPtr pchFile);
+    private delegate int NativeGetFileSizeS(nint thisptr, nint pchFile);
 
     public int GetFileSize(string pchFile)
     {
@@ -126,7 +124,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region GetFileTimestamp
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate long NativeGetFileTimestampS(IntPtr thisptr, IntPtr pchFile);
+    private delegate long NativeGetFileTimestampS(nint thisptr, nint pchFile);
 
     public long GetFileTimestamp(string pchFile)
     {
@@ -137,7 +135,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region GetSyncPlatforms
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate ERemoteStoragePlatform NativeGetSyncPlatformsS(IntPtr thisptr, IntPtr pchFile);
+    private delegate ERemoteStoragePlatform NativeGetSyncPlatformsS(nint thisptr, nint pchFile);
 
     public ERemoteStoragePlatform GetSyncPlatforms(string pchFile)
     {
@@ -148,7 +146,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region GetFileCount
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeGetFileCount(IntPtr thisptr);
+    private delegate int NativeGetFileCount(nint thisptr);
 
     public int GetFileCount()
     {
@@ -158,7 +156,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region GetFileNameAndSize
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetFileNameAndSizeII(IntPtr thisptr, int iFile, out int pnFileSizeInBytes);
+    private delegate nint NativeGetFileNameAndSizeII(nint thisptr, int iFile, out int pnFileSizeInBytes);
 
     public string GetFileNameAndSize(int iFile, out int pnFileSizeInBytes)
     {
@@ -171,7 +169,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region GetQuota
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeGetQuota(IntPtr thisptr, out ulong pnTotalBytes, out ulong puAvailableBytes);
+    private delegate bool NativeGetQuota(nint thisptr, out ulong pnTotalBytes, out ulong puAvailableBytes);
 
     public bool GetQuota(out ulong pnTotalBytes, out ulong puAvailableBytes)
     {
@@ -182,8 +180,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region IsCloudEnabledForAccount
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeIsCloudEnabledForAccount(IntPtr thisptr);
-
+    private delegate bool NativeIsCloudEnabledForAccount(nint thisptr);
 
     public bool IsCloudEnabledForAccount()
     {
@@ -194,7 +191,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region IsCloudEnabledForApp
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeIsCloudEnabledForApp(IntPtr thisptr);
+    private delegate bool NativeIsCloudEnabledForApp(nint thisptr);
 
     public bool IsCloudEnabledForApp()
     {
@@ -204,7 +201,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 
     #region SetCloudEnabledForApp
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void NativeSetCloudEnabledForAppB(IntPtr thisptr, [MarshalAs(UnmanagedType.I1)] bool bEnabled);
+    private delegate void NativeSetCloudEnabledForAppB(nint thisptr, [MarshalAs(UnmanagedType.I1)] bool bEnabled);
 
     public void SetCloudEnabledForApp(bool bEnabled)
     {

@@ -26,7 +26,7 @@ namespace SAM.API;
 
 public abstract class Callback : ICallback
 {
-    public delegate void CallbackFunction(IntPtr param);
+    public delegate void CallbackFunction(nint param);
 
     public event CallbackFunction? OnRun;
 
@@ -34,7 +34,7 @@ public abstract class Callback : ICallback
 
     public abstract bool IsServer { get; }
 
-    public void Run(IntPtr param)
+    public void Run(nint param)
     {
         OnRun?.Invoke(param);
     }
@@ -51,7 +51,7 @@ public abstract class Callback<[DynamicallyAccessedMembers(DynamicallyAccessedMe
 
     public abstract bool IsServer { get; }
 
-    public void Run(IntPtr pvParam)
+    public void Run(nint pvParam)
     {
         var data = Marshal.PtrToStructure<TParameter>(pvParam);
         OnRun?.Invoke(data);

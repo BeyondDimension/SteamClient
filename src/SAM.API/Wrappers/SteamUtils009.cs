@@ -20,10 +20,9 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// https://partner.steamgames.com/doc/api/ISteamUtils?language=english
@@ -32,7 +31,7 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
 {
     #region GetConnectedUniverse
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeGetConnectedUniverse(IntPtr self);
+    private delegate int NativeGetConnectedUniverse(nint self);
 
     public int GetConnectedUniverse()
     {
@@ -42,11 +41,11 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
 
     #region GetIPCountry
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetIPCountry(IntPtr self);
+    private delegate nint NativeGetIPCountry(nint self);
 
     public string GetIPCountry()
     {
-        var result = Call<IntPtr, NativeGetIPCountry>(Functions.GetIPCountry, ObjectAddress);
+        var result = Call<nint, NativeGetIPCountry>(Functions.GetIPCountry, ObjectAddress);
         return NativeStrings.PointerToString(result);
     }
     #endregion
@@ -54,7 +53,8 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
     #region IsSteamChinaLauncher
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSteamChinaLauncher(IntPtr self);
+    private delegate bool NativeIsSteamChinaLauncher(nint self);
+
     public bool IsSteamChinaLauncher()
     {
         var result = Call<bool, NativeIsSteamChinaLauncher>(Functions.IsSteamChinaLauncher, ObjectAddress);
@@ -66,7 +66,8 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
 
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSteamRunningInVR(IntPtr self);
+    private delegate bool NativeIsSteamRunningInVR(nint self);
+
     public bool IsSteamRunningInVR()
     {
         return Call<bool, NativeIsSteamRunningInVR>(Functions.IsSteamRunningInVR, ObjectAddress);
@@ -77,7 +78,7 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
     #region GetImageSize
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeGetImageSize(IntPtr self, int index, out int width, out int height);
+    private delegate bool NativeGetImageSize(nint self, int index, out int width, out int height);
 
     public bool GetImageSize(int index, out int width, out int height)
     {
@@ -89,14 +90,11 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
     #region GetImageRGBA
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeGetImageRGBA(IntPtr self, int index, byte[] buffer, int length);
+    private delegate bool NativeGetImageRGBA(nint self, int index, byte[] buffer, int length);
 
     public bool GetImageRGBA(int index, byte[] data)
     {
-        if (data == null)
-        {
-            throw new ArgumentNullException("data");
-        }
+        ArgumentNullException.ThrowIfNull(data);
         var call = GetFunction<NativeGetImageRGBA>(Functions.GetImageRGBA);
         return call(ObjectAddress, index, data, data.Length);
     }
@@ -104,17 +102,17 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
 
     #region GetAppID
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate uint NativeGetAppId(IntPtr self);
+    private delegate uint NativeGetAppId(nint self);
 
     public uint GetAppId()
     {
         return Call<uint, NativeGetAppId>(Functions.GetAppID, ObjectAddress);
     }
     #endregion
-    
+
     #region GetServerRealTime
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate uint NativeGetServerRealTime(IntPtr self);
+    private delegate uint NativeGetServerRealTime(nint self);
 
     public uint GetServerRealTime()
     {
@@ -124,18 +122,18 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
 
     #region GetSecondsSinceAppActive
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate uint NativeGetSecondsSinceAppActive(IntPtr self);
+    private delegate uint NativeGetSecondsSinceAppActive(nint self);
 
     public uint GetSecondsSinceAppActive()
     {
         return Call<uint, NativeGetSecondsSinceAppActive>(Functions.GetSecondsSinceAppActive, ObjectAddress);
     }
     #endregion
-    
+
     #region IsSteamInBigPictureMode
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeIsSteamInBigPictureMode(IntPtr self);
+    private delegate bool NativeIsSteamInBigPictureMode(nint self);
 
     public bool IsSteamInBigPictureMode()
     {

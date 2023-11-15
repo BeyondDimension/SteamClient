@@ -20,12 +20,12 @@
  *    distribution.
  */
 
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Interfaces;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct ISteamApps001
 {
-    public IntPtr GetAppData;
+    public nint GetAppData;
 }

@@ -26,19 +26,19 @@ namespace SAM.API;
 
 public class Client : IDisposable
 {
-    public Wrappers.SteamClient018 SteamClient { get; set; } = null!;
+    public SteamClient018 SteamClient { get; set; } = null!;
 
-    public Wrappers.SteamUser017 SteamUser { get; set; } = null!;
+    public SteamUser017 SteamUser { get; set; } = null!;
 
-    public Wrappers.SteamUserStats011 SteamUserStats { get; set; } = null!;
+    public SteamUserStats011 SteamUserStats { get; set; } = null!;
 
-    public Wrappers.SteamUtils007 SteamUtils { get; set; } = null!;
+    public SteamUtils007 SteamUtils { get; set; } = null!;
 
-    public Wrappers.SteamApps001 SteamApps001 { get; set; } = null!;
+    public SteamApps001 SteamApps001 { get; set; } = null!;
 
-    public Wrappers.SteamApps008 SteamApps008 { get; set; } = null!;
+    public SteamApps008 SteamApps008 { get; set; } = null!;
 
-    public Wrappers.SteamRemoteStorage012 SteamRemoteStorage { get; set; } = null!;
+    public SteamRemoteStorage012 SteamRemoteStorage { get; set; } = null!;
 
     public bool IsConnectToSteam { get; set; }
 
@@ -86,7 +86,7 @@ public class Client : IDisposable
                 }
             }
 
-            SteamClient = Steam.CreateInterface<Wrappers.SteamClient018>("SteamClient018")!;
+            SteamClient = Steam.CreateInterface<SteamClient018>("SteamClient018")!;
             if (SteamClient == null)
             {
                 throw new ClientInitializeException(ClientInitializeFailure.CreateSteamClient, "failed to create ISteamClient017");
@@ -189,7 +189,7 @@ public class Client : IDisposable
 
         _RunningCallbacks = true;
 
-        while (Steam.GetCallback(_Pipe, out Types.CallbackMessage message, out int call) == true)
+        while (Steam.GetCallback(_Pipe, out CallbackMessage message, out int call) == true)
         {
             var callbackId = message.Id;
             foreach (ICallback callback in _Callbacks.Where(

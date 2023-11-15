@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
+/* Copyright (c) 2019 Rick (rick 'at' gibbed 'dot' us)
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
@@ -20,16 +20,15 @@
  *    distribution.
  */
 
-using SAM.API.Interfaces;
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Wrappers;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamUtils005 : NativeWrapper<ISteamUtils005>
 {
     #region GetConnectedUniverse
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeGetConnectedUniverse(IntPtr self);
+    private delegate int NativeGetConnectedUniverse(nint self);
 
     public int GetConnectedUniverse()
     {
@@ -39,11 +38,11 @@ public class SteamUtils005 : NativeWrapper<ISteamUtils005>
 
     #region GetIPCountry
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate IntPtr NativeGetIPCountry(IntPtr self);
+    private delegate nint NativeGetIPCountry(nint self);
 
     public string GetIPCountry()
     {
-        var result = Call<IntPtr, NativeGetIPCountry>(Functions.GetIPCountry, ObjectAddress);
+        var result = Call<nint, NativeGetIPCountry>(Functions.GetIPCountry, ObjectAddress);
         return NativeStrings.PointerToString(result);
     }
     #endregion
@@ -51,7 +50,7 @@ public class SteamUtils005 : NativeWrapper<ISteamUtils005>
     #region GetImageSize
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeGetImageSize(IntPtr self, int index, out int width, out int height);
+    private delegate bool NativeGetImageSize(nint self, int index, out int width, out int height);
 
     public bool GetImageSize(int index, out int width, out int height)
     {
@@ -63,14 +62,11 @@ public class SteamUtils005 : NativeWrapper<ISteamUtils005>
     #region GetImageRGBA
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     [return: MarshalAs(UnmanagedType.I1)]
-    private delegate bool NativeGetImageRGBA(IntPtr self, int index, byte[] buffer, int length);
+    private delegate bool NativeGetImageRGBA(nint self, int index, byte[] buffer, int length);
 
     public bool GetImageRGBA(int index, byte[] data)
     {
-        if (data == null)
-        {
-            throw new ArgumentNullException("data");
-        }
+        ArgumentNullException.ThrowIfNull(data);
         var call = GetFunction<NativeGetImageRGBA>(Functions.GetImageRGBA);
         return call(ObjectAddress, index, data, data.Length);
     }
@@ -78,7 +74,7 @@ public class SteamUtils005 : NativeWrapper<ISteamUtils005>
 
     #region GetAppID
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate uint NativeGetAppId(IntPtr self);
+    private delegate uint NativeGetAppId(nint self);
 
     public uint GetAppId()
     {

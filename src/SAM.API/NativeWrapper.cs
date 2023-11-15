@@ -26,7 +26,7 @@ namespace SAM.API;
 
 public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TNativeFunctions> : INativeWrapper
 {
-    protected IntPtr ObjectAddress;
+    protected nint ObjectAddress;
     protected TNativeFunctions? Functions;
 
     public override string ToString()
@@ -38,7 +38,7 @@ public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAcces
             ObjectAddress.ToInt32());
     }
 
-    public void SetupFunctions(IntPtr objectAddress)
+    public void SetupFunctions(nint objectAddress)
     {
         ObjectAddress = objectAddress;
 
@@ -49,9 +49,9 @@ public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAcces
             iface.VirtualTable);
     }
 
-    readonly Dictionary<IntPtr, Delegate> _FunctionCache = [];
+    readonly Dictionary<nint, Delegate> _FunctionCache = [];
 
-    protected TDelegate GetDelegate<TDelegate>(IntPtr pointer) where TDelegate : Delegate
+    protected TDelegate GetDelegate<TDelegate>(nint pointer) where TDelegate : Delegate
     {
         TDelegate function;
 
@@ -68,13 +68,13 @@ public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAcces
         return function;
     }
 
-    protected TDelegate GetFunction<TDelegate>(IntPtr pointer)
+    protected TDelegate GetFunction<TDelegate>(nint pointer)
         where TDelegate : Delegate
     {
         return GetDelegate<TDelegate>(pointer);
     }
 
-    protected void Call<TDelegate>(IntPtr pointer, params object[] args) where TDelegate : Delegate
+    protected void Call<TDelegate>(nint pointer, params object[] args) where TDelegate : Delegate
     {
         try
         {
@@ -86,7 +86,7 @@ public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAcces
         }
     }
 
-    protected TReturn? Call<TReturn, TDelegate>(IntPtr pointer, params object[] args) where TDelegate : Delegate
+    protected TReturn? Call<TReturn, TDelegate>(nint pointer, params object[] args) where TDelegate : Delegate
     {
         try
         {

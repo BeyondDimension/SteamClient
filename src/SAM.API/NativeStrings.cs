@@ -28,23 +28,20 @@ internal sealed class NativeStrings
 {
     public sealed class StringHandle : SafeHandleZeroOrMinusOneIsInvalid
     {
-        internal StringHandle(IntPtr preexistingHandle, bool ownsHandle)
+        internal StringHandle(nint preexistingHandle, bool ownsHandle)
             : base(ownsHandle)
         {
             SetHandle(preexistingHandle);
         }
 
-        public IntPtr Handle
-        {
-            get { return handle; }
-        }
+        public nint Handle => handle;
 
         protected override bool ReleaseHandle()
         {
-            if (handle != IntPtr.Zero)
+            if (handle != nint.Zero)
             {
                 Marshal.FreeHGlobal(handle);
-                handle = IntPtr.Zero;
+                handle = nint.Zero;
                 return true;
             }
 
@@ -56,7 +53,7 @@ internal sealed class NativeStrings
     {
         if (value == null)
         {
-            return new StringHandle(IntPtr.Zero, true);
+            return new StringHandle(nint.Zero, true);
         }
 
         var bytes = Encoding.UTF8.GetBytes(value);
@@ -96,7 +93,7 @@ internal sealed class NativeStrings
         return PointerToString((sbyte*)bytes);
     }
 
-    public static unsafe string PointerToString(IntPtr nativeData)
+    public static unsafe string PointerToString(nint nativeData)
     {
         return PointerToString((sbyte*)nativeData.ToPointer());
     }
@@ -130,7 +127,7 @@ internal sealed class NativeStrings
         return PointerToString((sbyte*)bytes, length);
     }
 
-    public static unsafe string PointerToString(IntPtr nativeData, int length)
+    public static unsafe string PointerToString(nint nativeData, int length)
     {
         return PointerToString((sbyte*)nativeData.ToPointer(), length);
     }

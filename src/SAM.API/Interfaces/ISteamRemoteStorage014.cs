@@ -20,64 +20,64 @@
  *    distribution.
  */
 
-using System.Runtime.InteropServices;
-
 namespace SAM.API.Interfaces;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 [StructLayout(LayoutKind.Sequential, Pack = 1)]
 public struct ISteamRemoteStorage014
 {
-    public IntPtr FileWrite;
-    public IntPtr FileRead;
-    public IntPtr FileForget;
-    public IntPtr FileDelete;
-    public IntPtr FileShare4;
-    public IntPtr SetSyncPlatforms;
-    public IntPtr FileWriteStreamOpen6;
-    public IntPtr FileWriteStreamWriteChunk7;
-    public IntPtr FileWriteStreamClose8;
-    public IntPtr FileWriteStreamCancel9;
-    public IntPtr FileExists;
-    public IntPtr FilePersisted;
-    public IntPtr GetFileSize;
-    public IntPtr GetFileTimestamp;
-    public IntPtr GetSyncPlatforms;
-    public IntPtr GetFileCount;
-    public IntPtr GetFileNameAndSize;
-    public IntPtr GetQuota;
-    public IntPtr IsCloudEnabledForAccount;
-    public IntPtr IsCloudEnabledForApp;
-    public IntPtr SetCloudEnabledForApp;
-    public IntPtr UGCDownload;
-    public IntPtr GetUGCDownloadProgress;
-    public IntPtr GetUGCDetails;
-    public IntPtr UGCRead;
-    public IntPtr GetCachedUGCCount25;
-    public IntPtr GetCachedUGCHandle26;
-    public IntPtr PublishWorkshopFile27;
-    public IntPtr CreatePublishedFileUpdateRequest28;
-    public IntPtr UpdatePublishedFileFile29;
-    public IntPtr UpdatePublishedFilePreviewFile30;
-    public IntPtr UpdatePublishedFileTitle31;
-    public IntPtr UpdatePublishedFileDescription32;
-    public IntPtr UpdatePublishedFileVisibility33;
-    public IntPtr UpdatePublishedFileTags34;
-    public IntPtr CommitPublishedFileUpdate35;
-    public IntPtr GetPublishedFileDetails36;
-    public IntPtr DeletePublishedFile37;
-    public IntPtr EnumerateUserPublishedFiles38;
-    public IntPtr SubscribePublishedFile39;
-    public IntPtr EnumerateUserSubscribedFiles40;
-    public IntPtr UnsubscribePublishedFile41;
-    public IntPtr UpdatePublishedFileSetChangeDescription42;
-    public IntPtr GetPublishedItemVoteDetails43;
-    public IntPtr UpdateUserPublishedItemVote44;
-    public IntPtr GetUserPublishedItemVoteDetails45;
-    public IntPtr EnumerateUserSharedWorkshopFiles46;
-    public IntPtr PublishVideo47;
-    public IntPtr SetUserPublishedFileAction48;
-    public IntPtr EnumeratePublishedFilesByUserAction49;
-    public IntPtr EnumeratePublishedWorkshopFiles50;
-    public IntPtr UGCDownloadToLocation51;
-    private IntPtr DTorISteamRemoteStorage01252;
+    public nint FileWrite;
+    public nint FileRead;
+    public nint FileForget;
+    public nint FileDelete;
+    public nint FileShare4;
+    public nint SetSyncPlatforms;
+    public nint FileWriteStreamOpen6;
+    public nint FileWriteStreamWriteChunk7;
+    public nint FileWriteStreamClose8;
+    public nint FileWriteStreamCancel9;
+    public nint FileExists;
+    public nint FilePersisted;
+    public nint GetFileSize;
+    public nint GetFileTimestamp;
+    public nint GetSyncPlatforms;
+    public nint GetFileCount;
+    public nint GetFileNameAndSize;
+    public nint GetQuota;
+    public nint IsCloudEnabledForAccount;
+    public nint IsCloudEnabledForApp;
+    public nint SetCloudEnabledForApp;
+    public nint UGCDownload;
+    public nint GetUGCDownloadProgress;
+    public nint GetUGCDetails;
+    public nint UGCRead;
+    public nint GetCachedUGCCount25;
+    public nint GetCachedUGCHandle26;
+    public nint PublishWorkshopFile27;
+    public nint CreatePublishedFileUpdateRequest28;
+    public nint UpdatePublishedFileFile29;
+    public nint UpdatePublishedFilePreviewFile30;
+    public nint UpdatePublishedFileTitle31;
+    public nint UpdatePublishedFileDescription32;
+    public nint UpdatePublishedFileVisibility33;
+    public nint UpdatePublishedFileTags34;
+    public nint CommitPublishedFileUpdate35;
+    public nint GetPublishedFileDetails36;
+    public nint DeletePublishedFile37;
+    public nint EnumerateUserPublishedFiles38;
+    public nint SubscribePublishedFile39;
+    public nint EnumerateUserSubscribedFiles40;
+    public nint UnsubscribePublishedFile41;
+    public nint UpdatePublishedFileSetChangeDescription42;
+    public nint GetPublishedItemVoteDetails43;
+    public nint UpdateUserPublishedItemVote44;
+    public nint GetUserPublishedItemVoteDetails45;
+    public nint EnumerateUserSharedWorkshopFiles46;
+    public nint PublishVideo47;
+    public nint SetUserPublishedFileAction48;
+    public nint EnumeratePublishedFilesByUserAction49;
+    public nint EnumeratePublishedWorkshopFiles50;
+    public nint UGCDownloadToLocation51;
+    private nint DTorISteamRemoteStorage01252;
 }

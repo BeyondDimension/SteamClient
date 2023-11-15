@@ -6,7 +6,7 @@ internal static class Helpers
 {
     public const int MemoryBufferSize = 1024 * 32;
 
-    static readonly IntPtr[] MemoryPool =
+    static readonly nint[] MemoryPool =
         [
             Marshal.AllocHGlobal(MemoryBufferSize),
             Marshal.AllocHGlobal(MemoryBufferSize),
@@ -16,7 +16,7 @@ internal static class Helpers
 
     static int MemoryPoolIndex;
 
-    public static unsafe IntPtr TakeMemory()
+    public static unsafe nint TakeMemory()
     {
         lock (MemoryPool)
         {
@@ -61,7 +61,7 @@ internal static class Helpers
         }
     }
 
-    internal static unsafe string MemoryToString(IntPtr ptr)
+    internal static unsafe string MemoryToString(nint ptr)
     {
         var len = 0;
 

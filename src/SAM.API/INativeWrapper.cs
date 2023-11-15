@@ -26,5 +26,5 @@ namespace SAM.API;
 
 public interface INativeWrapper
 {
-    void SetupFunctions(IntPtr objectAddress);
+    void SetupFunctions(nint objectAddress);
 }
