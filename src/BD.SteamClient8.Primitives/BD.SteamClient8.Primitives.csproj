@@ -11,7 +11,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Enums\" />
+	  <Folder Include="Enums\PInvoke\" />
+	  <Folder Include="Enums\WebApi\" />
 	</ItemGroup>
 
 </Project>

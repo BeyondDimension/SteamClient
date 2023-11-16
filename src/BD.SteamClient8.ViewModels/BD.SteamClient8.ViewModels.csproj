@@ -14,19 +14,14 @@
 		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Primitives.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Models.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
 		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="PInvoke\" />
-	  <Folder Include="WebApi\" />
 	</ItemGroup>
 
 </Project>

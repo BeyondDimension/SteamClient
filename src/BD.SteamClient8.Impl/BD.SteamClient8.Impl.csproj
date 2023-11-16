@@ -18,17 +18,9 @@
 		<Compile Include="..\Shared\GlobalUsings.ValveKeyValue.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\SAM.API\**\*.cs">
-			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Remove="..\SAM.API\bin\**\*.cs" />
-		<Compile Remove="..\SAM.API\obj\**\*.cs" />
-		<Compile Include="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\**\*.cs">
-			<LinkBase>_SourceReference\ValveKeyValue</LinkBase>
-		</Compile>
-		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\bin\**\*.cs" />
-		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\obj\**\*.cs" />
-		<Compile Remove="..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\Properties\AssemblyInfo.cs" />
 		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Primitives.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
@@ -37,15 +29,13 @@
 		</Compile>
 	</ItemGroup>
 
-
 	<ItemGroup>
-		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+	  <ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
 	</ItemGroup>
 
-
 	<ItemGroup>
-	  <Folder Include="Services\PInvoke\" />
-	  <Folder Include="Services\WebApi\" />
+	  <Folder Include="PInvoke\" />
+	  <Folder Include="WebApi\" />
 	</ItemGroup>
 
 </Project>
