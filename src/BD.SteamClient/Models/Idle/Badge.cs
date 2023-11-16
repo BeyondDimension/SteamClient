@@ -24,9 +24,9 @@ public class Badge
     public short BadgeCurrentExp { get; set; }
 
     /// <summary>
-    /// 游戏时长
+    /// 游戏时长(小时)
     /// </summary>
-    public double MinutesPlayed { get; set; }
+    public double HoursPlayed { get; set; }
 
     /// <summary>
     /// 剩余可掉落卡片数量

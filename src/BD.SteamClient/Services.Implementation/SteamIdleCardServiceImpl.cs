@@ -139,13 +139,18 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             var avgs = new List<AppCardsAvgPrice>();
             foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
             {
-                var avg = new AppCardsAvgPrice
+                try
                 {
-                    AppId = uint.Parse(item.Name),
-                    Regular = item.Value.GetProperty("regular").GetDecimal(),
-                    Foil = item.Value.GetProperty("foil").GetDecimal()
-                };
-                avgs.Add(avg);
+                    var avg = new AppCardsAvgPrice();
+                    avg.AppId = uint.Parse(item.Name);
+                    avg.Regular = item.Value.GetProperty("regular").GetDecimal();
+                    avg.Foil = item.Value.GetProperty("foil").GetDecimal();
+                    avgs.Add(avg);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warn(nameof(GetAppCradsAvgPrice), ex, "获取卡片价格数据出错");
+                }
             }
             return avgs;
         }
@@ -246,19 +251,19 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
                 BadgeImageUrl = badgeImageUrl,
                 BadgeLevel = level,
                 BadgeCurrentExp = exp,
-                MinutesPlayed = double.TryParse(hours, out var after_hours) ? Math.Round(after_hours * 60D) : 0D,
+                HoursPlayed = double.TryParse(hours, out var after_hours) ? after_hours : 0D,
                 CardsRemaining = int.TryParse(remaining_cards, out var after_remaining_cards) ? after_remaining_cards : 0,
                 CardsCollected = collected,
                 CardsGathering = gathering
             };
 
-            if (need_price)
-            {
-                var card_page = await func(appid);
-                var card_document = parser.ParseDocument(card_page);
-                var cards = FetchCardsOnPage(card_document);
-                badge_item.Cards = cards.ToList();
-            }
+            //if (need_price)
+            //{
+            //    var card_page = await func(appid);
+            //    var card_document = parser.ParseDocument(card_page);
+            //    var cards = FetchCardsOnPage(card_document);
+            //    badge_item.Cards = cards.ToList();
+            //}
 
             badges.Add(badge_item);
         }
