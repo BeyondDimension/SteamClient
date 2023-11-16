@@ -4,6 +4,7 @@
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Crawler>true</UseCommon8Crawler>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
@@ -30,12 +31,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
+		<PackageReference Include="AngleSharp" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="PInvoke\" />
-	  <Folder Include="WebApi\" />
+		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="PInvoke\" />
+		<Folder Include="WebApi\" />
 	</ItemGroup>
 
 </Project>

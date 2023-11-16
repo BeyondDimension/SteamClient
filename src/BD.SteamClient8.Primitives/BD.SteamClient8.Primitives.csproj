@@ -11,8 +11,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Enums\PInvoke\" />
-	  <Folder Include="Enums\WebApi\" />
+		<PackageReference Include="SteamKit2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Enums\PInvoke\" />
+		<Folder Include="Enums\WebApi\" />
 	</ItemGroup>
 
 </Project>
