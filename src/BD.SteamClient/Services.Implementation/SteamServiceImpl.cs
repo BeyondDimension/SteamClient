@@ -514,6 +514,36 @@ public abstract partial class SteamServiceImpl : ISteamService
 
                 VdfHelper.Write(UserVdfPath, v);
             }
+            //关闭 Steam 询问
+            UpdateAlwaysShowUserChooser();
+        }
+    }
+
+    /// <summary>
+    /// 关闭 Steam 每次启动 Steam 时询问使用哪个账户
+    /// </summary>
+    public void UpdateAlwaysShowUserChooser()
+    {
+        try
+        {
+            if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
+            {
+                var v = VdfHelper.Read(ConfigVdfPath);
+                var webStorage = v.Children.FirstOrDefault(x => x.Name == "WebStorage");
+                if (webStorage != null)
+                {
+                    var auth = webStorage.Children.FirstOrDefault(x => x.Name == "Auth");
+                    if (auth != null)
+                    {
+                        auth.Set("AlwaysShowUserChooser", 0);
+                        VdfHelper.Write(ConfigVdfPath, v);
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "UpdateAlwaysShowUserChooser fail(0).");
         }
     }
 
