@@ -7,3 +7,8 @@
 
 global using BD.SteamClient8.Primitives;
 global using BD.SteamClient8.Primitives.Constants;
+global using BD.SteamClient8.Primitives.Enums.WebApi;
+global using BD.SteamClient8.Primitives.Enums.WebApi.Market;
+global using BD.SteamClient8.Primitives.Enums.WebApi.Trade;
+global using BD.SteamClient8.Primitives.Enums.WebApi.SteamApp;
+global using BD.SteamClient8.Primitives.Enums.WebApi.SteamGridDB;

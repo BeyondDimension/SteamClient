@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
@@ -18,15 +19,12 @@
 
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<PackageReference Include="SteamKit2" />
 		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="PInvoke\" />
-	  <Folder Include="WebApi\" />
 	</ItemGroup>
-
+	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 </Project>

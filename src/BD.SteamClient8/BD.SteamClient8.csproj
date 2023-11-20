@@ -4,7 +4,11 @@
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
+		<UseReactiveUI>true</UseReactiveUI>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
@@ -45,7 +49,9 @@
 
 	<ItemGroup>
 	  <Folder Include="Services\PInvoke\" />
-	  <Folder Include="Services\WebApi\" />
 	</ItemGroup>
+
+	
+	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 
 </Project>

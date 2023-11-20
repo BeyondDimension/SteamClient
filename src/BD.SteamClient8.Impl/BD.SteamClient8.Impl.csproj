@@ -4,7 +4,10 @@
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseCommon8Crawler>true</UseCommon8Crawler>
+		<UseReactiveUI>true</UseReactiveUI>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
@@ -32,9 +35,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="AngleSharp" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
 	</ItemGroup>
 
@@ -43,4 +43,5 @@
 		<Folder Include="WebApi\" />
 	</ItemGroup>
 
+	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 </Project>
