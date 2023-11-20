@@ -139,17 +139,21 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             var avgs = new List<AppCardsAvgPrice>();
             foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
             {
+                var avg = new AppCardsAvgPrice();
                 try
                 {
-                    var avg = new AppCardsAvgPrice();
                     avg.AppId = uint.Parse(item.Name);
                     avg.Regular = item.Value.GetProperty("regular").GetDecimal();
                     avg.Foil = item.Value.GetProperty("foil").GetDecimal();
-                    avgs.Add(avg);
                 }
                 catch (Exception ex)
                 {
                     Log.Warn(nameof(GetAppCradsAvgPrice), ex, "获取卡片价格数据出错");
+                }
+                finally
+                {
+                    if (avg.AppId > 0)
+                        avgs.Add(avg);
                 }
             }
             return avgs;
