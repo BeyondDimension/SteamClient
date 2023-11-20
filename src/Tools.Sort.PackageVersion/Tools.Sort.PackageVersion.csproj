@@ -8,9 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\ref\Common\src\BD.Common8.Tools.Sort.PackageVersion\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Sort.PackageVersion\bin\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Sort.PackageVersion\obj\**\*.cs" />
+		<Compile Include="..\..\ref\Common\src\Tools.Sort.PackageVersion\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.Sort.PackageVersion\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.Sort.PackageVersion\obj\**\*.cs" />
 	</ItemGroup>
 
 </Project>

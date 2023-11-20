@@ -9,12 +9,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\ref\Common\src\Shared\GlobalUsings.BD.Common8.Tools.Build.cs">
+		<Compile Include="..\..\ref\Common\src\Shared\GlobalUsings.Tools.Build.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\..\ref\Common\src\BD.Common8.Tools.Build\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Build\bin\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.Build\obj\**\*.cs" />
+		<Compile Include="..\..\ref\Common\src\Tools.Build\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.Build\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.Build\obj\**\*.cs" />
 	</ItemGroup>
 
 </Project>

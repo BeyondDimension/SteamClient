@@ -1,8 +1,3 @@
 <Project>
 	<Import Project="..\ref\Common\src\Directory.Packages.props" />
-	
-	<!-- NuGet 错误 NU1011 PackageVersion 项不能包含浮动版本。 -->
-	<ItemGroup>
-		<PackageVersion Include="SteamKit2" Version="2.5.0" />
-	</ItemGroup>
 </Project>

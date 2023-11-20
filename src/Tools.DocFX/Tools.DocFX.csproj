@@ -7,9 +7,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\ref\Common\src\BD.Common8.Tools.DocFX\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.DocFX\bin\**\*.cs" />
-		<Compile Remove="..\..\ref\Common\src\BD.Common8.Tools.DocFX\obj\**\*.cs" />
+		<Compile Include="..\..\ref\Common\src\Tools.DocFX\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.DocFX\bin\**\*.cs" />
+		<Compile Remove="..\..\ref\Common\src\Tools.DocFX\obj\**\*.cs" />
 	</ItemGroup>
 
 </Project>
