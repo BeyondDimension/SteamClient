@@ -48,7 +48,7 @@ public class SteamSessionServiceImpl : ISteamSessionService
         try
         {
             var temp = Serializable.SJSON(steamSession);
-            await ISecureStorage.Instance.SetAsync("CurrentSteamUserSession", temp);
+            await ISecureStorage.Instance.SetAsync(ISteamSessionService.CurrentSteamUserKey, temp);
             return true;
         }
         catch (Exception ex)
@@ -58,11 +58,11 @@ public class SteamSessionServiceImpl : ISteamSessionService
         return false;
     }
 
-    public async Task<SteamSession?> LoadSession(string filePath)
+    public async Task<SteamSession?> LoadSession()
     {
         try
         {
-            var text = await ISecureStorage.Instance.GetAsync("CurrentSteamUserSession");
+            var text = await ISecureStorage.Instance.GetAsync(ISteamSessionService.CurrentSteamUserKey);
             if (text != null)
             {
                 var session = Serializable.DJSON<SteamSession>(text);
