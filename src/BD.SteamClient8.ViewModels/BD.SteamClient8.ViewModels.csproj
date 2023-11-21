@@ -3,7 +3,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseSourceGeneratorBcl>true</UseSourceGeneratorBcl>
 		<UseReactiveUI>true</UseReactiveUI>
+		<UseReactiveUIFody>true</UseReactiveUIFody>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
@@ -29,5 +31,4 @@
 		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 </Project>
