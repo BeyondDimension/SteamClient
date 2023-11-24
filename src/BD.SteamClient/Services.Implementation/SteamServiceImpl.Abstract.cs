@@ -119,7 +119,7 @@ abstract partial class SteamServiceImpl
 #elif MACCATALYST || MACOS
         return $"/Users/{Environment.UserName}/Library/Application Support/Steam";
 #elif LINUX
-        return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/.steam/steam";
+        return $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/.steam/steam";
 #else
         return null;
 #endif
