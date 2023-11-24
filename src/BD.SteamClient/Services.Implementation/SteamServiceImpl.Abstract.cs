@@ -160,7 +160,7 @@ abstract partial class SteamServiceImpl
 #if MACCATALYST || MACOS
         return $"/Users/{Environment.UserName}/Library/Application Support/Steam/registry.vdf";
 #elif LINUX
-        return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/.steam/registry.vdf";
+        return $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}/.steam/registry.vdf";
 #else
         return null;
 #endif
