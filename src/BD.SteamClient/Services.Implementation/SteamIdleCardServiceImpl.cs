@@ -108,6 +108,8 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         var userIdle = new UserIdleInfo();
         try
         {
+            userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium").LastElementChild.GetAttribute("src");
+            userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content").TextContent.Trim();
             userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
             userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
 

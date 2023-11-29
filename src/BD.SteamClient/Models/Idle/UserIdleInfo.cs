@@ -3,6 +3,16 @@ namespace BD.SteamClient.Models.Idle;
 public class UserIdleInfo
 {
     /// <summary>
+    /// 用户昵称
+    /// </summary>
+    public string? UserName { get; set; }
+
+    /// <summary>
+    /// 用户头像
+    /// </summary>
+    public string? AvatarUrl { get; set; }
+
+    /// <summary>
     /// 用户等级
     /// </summary>
     public ushort UserLevel { get; set; }
