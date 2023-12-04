@@ -79,7 +79,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             await FetchBadgesOnPage(document, badges, cardpage_func, need_price);
         }
 
-        if (need_price)
+        if (need_price && badges.Count > 0)
         {
             var avg_prices = (await GetAppCradsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency)).ToDictionary(x => x.AppId, x => x);
             foreach (var badge in badges)
@@ -130,60 +130,74 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
 
     public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(uint[] appIds, string currency)
     {
-        var url = STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
-        using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        using var response = await client.SendAsync(request);
-        var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
-        if (document.RootElement.TryGetProperty("result", out var result)
-            && result.ToString() == "success"
-            && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
+        try
         {
-            var avgs = new List<AppCardsAvgPrice>();
-            foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+            var url = STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+            using var response = await client.SendAsync(request);
+            var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+            if (document.RootElement.TryGetProperty("result", out var result)
+                && result.ToString() == "success"
+                && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
             {
-                var avg = new AppCardsAvgPrice();
-                try
+                var avgs = new List<AppCardsAvgPrice>();
+                foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
                 {
-                    avg.AppId = uint.Parse(item.Name);
-                    avg.Regular = item.Value.GetProperty("regular").GetDecimal();
-                    avg.Foil = item.Value.GetProperty("foil").GetDecimal();
+                    var avg = new AppCardsAvgPrice();
+                    try
+                    {
+                        avg.AppId = uint.Parse(item.Name);
+                        avg.Regular = item.Value.GetProperty("regular").GetDecimal();
+                        avg.Foil = item.Value.GetProperty("foil").GetDecimal();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Warn(nameof(GetAppCradsAvgPrice), ex, "获取卡片价格数据出错");
+                    }
+                    finally
+                    {
+                        if (avg.AppId > 0)
+                            avgs.Add(avg);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Log.Warn(nameof(GetAppCradsAvgPrice), ex, "获取卡片价格数据出错");
-                }
-                finally
-                {
-                    if (avg.AppId > 0)
-                        avgs.Add(avg);
-                }
+                return avgs;
             }
-            return avgs;
+        }
+        catch (Exception ex)
+        {
+            Log.Warn(nameof(GetAppCradsAvgPrice), ex, "获取卡片平均价格接口出错");
         }
         return Enumerable.Empty<AppCardsAvgPrice>();
     }
 
     public async Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(uint appId, string currency)
     {
-        var url = STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
-        using var request = new HttpRequestMessage(HttpMethod.Get, url);
-        using var response = await client.SendAsync(request);
-        var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
-        if (document.RootElement.TryGetProperty("result", out var result)
-            && result.ToString() == "success"
-            && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
+        try
         {
-            var cardPrices = new List<CardsMarketPrice>();
-            foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+            var url = STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
+            using var request = new HttpRequestMessage(HttpMethod.Get, url);
+            using var response = await client.SendAsync(request);
+            var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+            if (document.RootElement.TryGetProperty("result", out var result)
+                && result.ToString() == "success"
+                && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
             {
-                var cardPrice = new CardsMarketPrice();
-                cardPrice.CardName = item.Name;
-                cardPrice.IsFoil = cardPrice.CardName.Contains("(Foil)");
-                cardPrice.MarketUrl = item.Value.GetProperty("url").ToString();
-                cardPrice.Price = item.Value.GetProperty("price").GetDecimal();
-                cardPrices.Add(cardPrice);
+                var cardPrices = new List<CardsMarketPrice>();
+                foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+                {
+                    var cardPrice = new CardsMarketPrice();
+                    cardPrice.CardName = item.Name;
+                    cardPrice.IsFoil = cardPrice.CardName.Contains("(Foil)");
+                    cardPrice.MarketUrl = item.Value.GetProperty("url").ToString();
+                    cardPrice.Price = item.Value.GetProperty("price").GetDecimal();
+                    cardPrices.Add(cardPrice);
+                }
+                return cardPrices;
             }
-            return cardPrices;
+        }
+        catch (Exception ex)
+        {
+            Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
         }
         return Enumerable.Empty<CardsMarketPrice>();
     }
