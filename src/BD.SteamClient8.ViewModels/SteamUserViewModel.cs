@@ -4,7 +4,7 @@ namespace BD.SteamClient8.ViewModels;
 /// <see cref="SteamUser"/> 模型绑定类型
 /// </summary>
 [XmlRoot("profile")]
-public class SteamUserViewModel : ReactiveObject
+public sealed partial class SteamUserViewModel(SteamUser model) : ReactiveObject
 {
     /// <summary>
     /// SteamId 3 格式
@@ -250,38 +250,6 @@ public class SteamUserViewModel : ReactiveObject
     /// <see cref="SteamUser"/> 隐式转换 <see cref="SteamUserViewModel"/>
     /// </summary>
     /// <param name="steamUser"></param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator SteamUserViewModel(SteamUser steamUser) => new(steamUser);
-
-    /// <summary>
-    /// <see cref="SteamUser"/> 构造实例 <see cref="SteamUserViewModel"/>
-    /// </summary>
-    /// <param name="steamUser"></param>
-    public SteamUserViewModel(SteamUser steamUser)
-    {
-        SteamId64 = steamUser.SteamId64;
-        OnlineState = steamUser.OnlineState;
-        Level = steamUser.Level;
-        IPCountry = steamUser.IPCountry;
-        PrivacyState = steamUser.PrivacyState;
-        AvatarIcon = steamUser.AvatarIcon;
-        AvatarMedium = steamUser.AvatarMedium;
-        AvatarFull = steamUser.AvatarFull;
-        MemberSince = steamUser.MemberSince;
-        VacBanned = steamUser.VacBanned;
-        Summary = steamUser.Summary;
-        SteamID = steamUser.SteamID;
-        PersonaName = steamUser.PersonaName;
-        AllowAutoLogin = steamUser.AllowAutoLogin;
-        AccountName = steamUser.AccountName;
-        RememberPassword = steamUser.RememberPassword;
-        PassWord = steamUser.PassWord;
-        Timestamp = steamUser.Timestamp;
-        LastLoginTime = steamUser.LastLoginTime;
-        MostRecent = steamUser.MostRecent;
-        WantsOfflineMode = steamUser.WantsOfflineMode;
-        SkipOfflineModeWarning = steamUser.SkipOfflineModeWarning;
-        Remark = steamUser.Remark;
-        MiniProfile = steamUser.MiniProfile;
-        PersonaState = steamUser.PersonaState;
-    }
 }

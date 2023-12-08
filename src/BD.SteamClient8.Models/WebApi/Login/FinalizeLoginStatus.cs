@@ -29,8 +29,3 @@ public sealed class FinalizeLoginStatus : JsonModel
     [SystemTextJsonProperty("primary_domain")]
     public string? PrimaryDomain { get; set; }
 }
-
-[SystemTextJsonSerializable(typeof(FinalizeLoginStatus))]
-public partial class FinalizeLoginStatus_ : SystemTextJsonSerializerContext
-{
-}

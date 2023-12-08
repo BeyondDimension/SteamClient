@@ -28,31 +28,54 @@ public class SteamUser017 : NativeWrapper<ISteamUser019>
 {
     #region GetSteamID
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate void NativeGetSteamId(nint self, out ulong steamId);
+    private delegate ulong NativeGetSteamId(IntPtr self);
+
+    [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
+    private delegate void NativeGetSteamId2(IntPtr self, out ulong steamId);
 
     public ulong GetSteamId()
     {
-        var call = GetFunction<NativeGetSteamId>(Functions.GetSteamID);
-        call(ObjectAddress, out var steamId);
-        return steamId;
+        if (OperatingSystem.IsWindows())
+        {
+            var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
+            ulong steamId;
+            call(ObjectAddress, out steamId);
+            return steamId;
+        }
+        else
+        {
+            var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
+            return steamId;
+        }
     }
 
     public ulong GetSteamId3()
     {
-        var call = GetFunction<NativeGetSteamId>(Functions.GetSteamID);
-        call(ObjectAddress, out var steamId);
-        steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
-        return steamId;
+        if (OperatingSystem.IsWindows())
+        {
+            var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
+            ulong steamId;
+            call(ObjectAddress, out steamId);
+            steamId = ((steamId >> (ushort)0) & 0xFFFFFFFF);
+            return steamId;
+        }
+        else
+        {
+            var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
+            steamId = ((steamId >> (ushort)0) & 0xFFFFFFFF);
+            return steamId;
+        }
     }
+
     #endregion
 
     #region GetPlayerSteamLevel
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate nint NativeGetPlayerSteamLevel(nint self);
+    private delegate IntPtr NativeGetPlayerSteamLevel(IntPtr self);
 
-    public nint GetPlayerSteamLevel()
+    public IntPtr GetPlayerSteamLevel()
     {
-        var result = Call<nint, NativeGetPlayerSteamLevel>(Functions.GetPlayerSteamLevel, ObjectAddress);
+        var result = Call<IntPtr, NativeGetPlayerSteamLevel>(Functions.GetPlayerSteamLevel, ObjectAddress);
         return result;
     }
     #endregion

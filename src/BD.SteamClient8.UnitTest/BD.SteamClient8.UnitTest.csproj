@@ -16,4 +16,29 @@
 		</Compile>
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Include="..\Shared\GlobalUsings.SteamAchievementManager.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.ValveKeyValue.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Impl.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Primitives.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Models.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
+	</ItemGroup>
+
 </Project>

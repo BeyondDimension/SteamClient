@@ -91,7 +91,7 @@ public record class TradeInfo
 }
 
 /// <summary>
-/// 交易报价放回
+/// 交易报价返回
 /// </summary>
 public partial class TradeResponse : JsonModel
 {
@@ -124,9 +124,4 @@ public record class TradeResponseInfo
     /// </summary>
     [SystemTextJsonProperty("next_cursor")]
     public int NextCursor { get; set; }
-}
-
-[SystemTextJsonSerializable(typeof(TradeResponse))]
-internal partial class TradeResponse_ : SystemTextJsonSerializerContext
-{
 }

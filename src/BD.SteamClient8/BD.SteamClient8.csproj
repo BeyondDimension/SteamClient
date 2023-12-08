@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
@@ -50,8 +51,5 @@
 	<ItemGroup>
 	  <Folder Include="Services\PInvoke\" />
 	</ItemGroup>
-
-	
-	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 
 </Project>

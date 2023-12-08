@@ -35,8 +35,3 @@ public sealed class DoLoginResponse : JsonModel
     [SystemTextJsonProperty("transfer_parameters")]
     public TransferParameters? TransferParameters { get; set; }
 }
-
-[SystemTextJsonSerializable(typeof(DoLoginResponse))]
-public partial class DoLoginResponse_ : SystemTextJsonSerializerContext
-{
-}

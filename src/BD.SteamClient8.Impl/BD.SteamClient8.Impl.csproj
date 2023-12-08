@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
 		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
 		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseCommon8Crawler>true</UseCommon8Crawler>
+		<UseCommon8PrimitivesToast>true</UseCommon8PrimitivesToast>
 		<UseReactiveUI>true</UseReactiveUI>
+		<UseCommon8Toast>true</UseCommon8Toast>
+		<UseCommon8HttpClientFactory>true</UseCommon8HttpClientFactory>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 	</PropertyGroup>
 
@@ -33,15 +37,14 @@
 		</Compile>
 	</ItemGroup>
 
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<!-- Windows Only -->
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+	
 	<ItemGroup>
 		<PackageReference Include="AngleSharp" />
 		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="PInvoke\" />
-		<Folder Include="WebApi\" />
-	</ItemGroup>
-
-	<Import Project="..\TFM_NETX_WITH_ALL.props" />
 </Project>

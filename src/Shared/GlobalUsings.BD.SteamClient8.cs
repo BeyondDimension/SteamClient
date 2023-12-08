@@ -8,3 +8,4 @@ global using BD.SteamClient8;
 global using BD.SteamClient8.Services;
 global using BD.SteamClient8.Services.WebApi;
 global using BD.SteamClient8.Services.WebApi.Mvvm;
+global using BD.SteamClient8.Helpers;

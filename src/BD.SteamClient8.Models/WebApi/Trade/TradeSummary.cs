@@ -75,9 +75,3 @@ public partial class TradeSummaryResponse : JsonModel
     public TradeSummary? Response { get; set; }
 }
 
-[SystemTextJsonSerializable(typeof(TradeSummaryResponse))]
-internal partial class TradeSummaryResponse_ : SystemTextJsonSerializerContext
-{
-}
-
-

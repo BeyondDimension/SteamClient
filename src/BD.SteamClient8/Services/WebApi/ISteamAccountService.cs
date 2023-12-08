@@ -94,7 +94,7 @@ public interface ISteamAccountService
     Task<ApiRspImpl<string?>> GetApiKey(SteamLoginState steamLoginState);
 
     /// <summary>
-    /// 注册api key
+    /// 注册 api key
     /// </summary>
     /// <param name="steamLoginState">登录状态</param>
     /// <param name="domain"></param>
@@ -117,7 +117,7 @@ public interface ISteamAccountService
     /// 获取库存交易历史
     /// </summary>
     /// <param name="loginState">登录状态</param>
-    /// <param name="appFilter">筛选的appId列表</param>
+    /// <param name="appFilter">筛选的 appId 列表</param>
     /// <param name="cursor">分页游标(响应会返回下一次请求的游标)</param>
     /// <returns></returns>
     Task<ApiRspImpl<InventoryTradeHistoryRenderPageResponse>> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null);
@@ -125,7 +125,7 @@ public interface ISteamAccountService
     /// <summary>
     /// 解析库存交易历史html
     /// </summary>
-    /// <param name="html">交易历史html</param>
+    /// <param name="html">交易历史 html</param>
     /// <param name="cultureInfo">网页语言信息(目前只有时间按照语言解析)</param>
     /// <returns></returns>
     IAsyncEnumerable<InventoryTradeHistoryRow> ParseInventoryTradeHistory(string html, CultureInfo? cultureInfo = null);
@@ -135,7 +135,7 @@ public interface ISteamAccountService
     /// </summary>
     /// <param name="loginState">登录状态</param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>>> GetSendGiftHisotries(SteamLoginState loginState);
+    Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>>> GetSendGiftHistories(SteamLoginState loginState);
 
     /// <summary>
     /// 获取登录历史记录
@@ -145,7 +145,7 @@ public interface ISteamAccountService
     IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState);
 
     /// <summary>
-    /// 效验当前登录的accesstoken是否有效
+    /// 效验当前登录的 accesstoken 是否有效
     /// </summary>
     /// <param name="accesstoken"></param>
     /// <returns></returns>

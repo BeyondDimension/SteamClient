@@ -63,7 +63,7 @@ public sealed partial class SteamSession
     public HttpClient? HttpClient { get; set; }
 
     /// <summary>
-    /// 设置 Cooki 信息
+    /// 设置 Cookie 信息
     /// </summary>
     /// <returns></returns>
     public bool GenerateSetCookie()

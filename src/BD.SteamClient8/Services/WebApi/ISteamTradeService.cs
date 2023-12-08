@@ -18,14 +18,14 @@ public interface ISteamTradeService
     /// <param name="steam_id"></param>
     /// <param name="interval"></param>
     /// <param name="tradeTaskEnum"></param>
-    Task<ApiRspImpl> StartTradeTask(string steam_id, int interval, TradeTaskEnum tradeTaskEnum);
+    ApiRspImpl StartTradeTask(string steam_id, int interval, TradeTaskEnum tradeTaskEnum);
 
     /// <summary>
     /// 停止交易报价后台任务
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="tradeTaskEnum"></param>
-    Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum);
+    ApiRspImpl StopTask(string steam_id, TradeTaskEnum tradeTaskEnum);
     #endregion
 
     #region Trade 交易报价

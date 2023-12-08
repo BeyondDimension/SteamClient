@@ -17,8 +17,3 @@ public sealed class RedeemWalletResponse : JsonModel
     [SystemTextJsonProperty("detail")]
     public PurchaseResultDetail Detail { get; set; }
 }
-
-[SystemTextJsonSerializable(typeof(RedeemWalletResponse))]
-public partial class RedeemWalletResponse_ : SystemTextJsonSerializerContext
-{
-}
