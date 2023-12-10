@@ -7,7 +7,12 @@
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<UseProjectUtils>true</UseProjectUtils>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseDotNextThreading>true</UseDotNextThreading>
+		<UseSystemSecurityCryptographyProtectedData>true</UseSystemSecurityCryptographyProtectedData>
+		<UseMicrosoftExtensionsLoggingConsole>true</UseMicrosoftExtensionsLoggingConsole>
+		<UserSecretsId>51922236-4771-4648-8755-76d97bcfa849</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -36,9 +41,9 @@
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>
-	
+
 	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
+		<ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 namespace BD.SteamClient8.Impl.PInvoke;
 
 #pragma warning disable SA1600
-abstract partial class SteamServiceImpl
+public abstract partial class SteamServiceImpl
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 

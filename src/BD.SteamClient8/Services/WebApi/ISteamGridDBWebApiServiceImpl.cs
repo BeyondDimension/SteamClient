@@ -16,14 +16,14 @@ public interface ISteamGridDBWebApiServiceImpl
     static ISteamGridDBWebApiServiceImpl Instance => Ioc.Get<ISteamGridDBWebApiServiceImpl>();
 
     /// <summary>
-    /// 通过 appId 获取 SteamGridApp 信息
+    /// 通过 AppId 获取 SteamGridApp 信息
     /// </summary>
     /// <param name="appId"></param>
     /// <returns></returns>
     Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId);
 
     /// <summary>
-    /// 通过 gameId 获取 SteamGrid 详情列表
+    /// 通过 GameId 获取 SteamGrid 详情列表
     /// </summary>
     /// <param name="gameId"></param>
     /// <param name="type"></param>

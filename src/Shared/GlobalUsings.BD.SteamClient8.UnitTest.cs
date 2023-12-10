@@ -5,4 +5,9 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
+global using BD.SteamClient8;
 global using BD.SteamClient8.UnitTest;
+global using BD.SteamClient8.UnitTest.Abstractions;
+global using BD.SteamClient8.UnitTest.Helpers;
+
+global using static BD.SteamClient8.UnitTest.Helpers.SteamLoginStateHelper;

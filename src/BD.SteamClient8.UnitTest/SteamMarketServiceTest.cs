@@ -1,91 +1,89 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 /// <summary>
-/// <see cref="SteamMarketService"/> 单元测试
+/// <see cref="steamMarketService"/> 单元测试
 /// </summary>
-public class SteamMarketServiceTest
+sealed class SteamMarketServiceTest : ServiceTestBase
 {
-    IServiceProvider service;
+    SteamLoginState steamLoginState = null!;
+    ISteamAccountService steamAccountService = null!;
+    IConfiguration configuration = null!;
+    ISteamMarketService steamMarketService = null!;
+    ISteamTradeService steamTradeService = null!;
 
-    SteamLoginState? loginState;
-
-    ISteamAccountService AccountService => service.GetRequiredService<ISteamAccountService>();
-
-    ISteamMarketService SteamMarketService => service.GetRequiredService<ISteamMarketService>();
-
-    ISteamTradeService TradeService => service.GetRequiredService<ISteamTradeService>();
-
-    public SteamMarketServiceTest()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.TryAddHttpPlatformHelper();
-        services.AddLogging();
+        base.ConfigureServices(services);
+
         services.AddSteamAccountService();
         services.AddSteamTradeService();
         services.AddSteamMarketService();
-        service = services.BuildServiceProvider();
-
-        if (loginState == null)
-        {
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/state.json";
-
-            if (File.Exists(path))
-            {
-                using FileStream fs = new FileStream(path, FileMode.Open);
-
-                loginState = SystemTextJsonSerializer.Deserialize<SteamLoginState>(fs);
-            }
-            else
-            {
-                var localPath = @"C:\Users\CYCY\Desktop\session.json";
-                var json = JsonDocument.Parse(File.ReadAllText(localPath)).RootElement;
-                loginState = new SteamLoginState()
-                {
-                    Username = json.GetProperty("userName").ToString(),
-                    Password = json.GetProperty("passWord").ToString()
-                };
-                AccountService.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                AccountService.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                string x = SystemTextJsonSerializer.Serialize(loginState);
-                File.WriteAllText(path, x);
-            }
-        }
     }
 
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
+
+        steamTradeService = GetRequiredService<ISteamTradeService>();
+        steamMarketService = GetRequiredService<ISteamMarketService>();
+        steamAccountService = GetRequiredService<ISteamAccountService>();
+        configuration = GetRequiredService<IConfiguration>();
+
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService);
+    }
+
+    /// <summary>
+    /// 测试获取市场订单柱状图数据
+    /// </summary>
+    /// <param name="marketItemNameId"></param>
+    /// <returns></returns>
     [TestCase(2384364)]
     [Test]
     public async Task TestGetMarketItemOrdersHistogram(long marketItemNameId)
     {
-        var histogram = await SteamMarketService
-        .GetMarketItemOrdersHistogram(marketItemNameId);
+        var histogram = await steamMarketService
+            .GetMarketItemOrdersHistogram(marketItemNameId);
 
-        Assert.IsTrue(histogram.IsSuccess && histogram.Content is not null);
-        Assert.That(histogram.Content.Success, Is.EqualTo(1));
+        Assert.That(histogram.IsSuccess && histogram.Content is not null);
+        Assert.That(histogram.Content?.Success, Is.EqualTo(1));
     }
 
+    /// <summary>
+    /// 测试获取市场物品价格概述
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <param name="marketHashName"></param>
+    /// <param name="currency"></param>
+    /// <returns></returns>
     [TestCase("730", "AK-47%20%7C%20Safari%20Mesh%20%28Field-Tested%29", 23)]
     [Test]
     public async Task TestGetMarketItemPriceOverview(string appId, string marketHashName, int currency)
     {
-        var overview = await SteamMarketService
+        var overview = await steamMarketService
             .GetMarketItemPriceOverview(appId, marketHashName, currency);
 
-        Assert.IsTrue(overview.IsSuccess && overview.Content is not null);
-        Assert.That(overview.Content.Success, Is.True);
+        Assert.That(overview.IsSuccess && overview.Content is not null);
+        Assert.That(overview.Content?.Success, Is.True);
     }
 
+    /// <summary>
+    /// 测试获取市场出售信息
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetMyListings()
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
-            var rsp = await SteamMarketService.GetMarketListing(loginState!);
+            var rsp = await steamMarketService.GetMarketListing(steamLoginState!);
 
-            Assert.IsTrue(rsp.IsSuccess && rsp.Content is not null);
+            Assert.That(rsp.IsSuccess && rsp.Content is not null);
 
             var listings = rsp.Content;
+            listings.ThrowIsNull();
             var activeListings = listings.ActiveListings.ToList();
             var buyorders = listings.Buyorders.ToList();
 
@@ -93,22 +91,26 @@ public class SteamMarketServiceTest
         }
     }
 
+    /// <summary>
+    /// 测试获取交易确认列表
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetConfirmations()
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
-            // 需要  IdentitySecret !!!!!
-            var rsp = await TradeService.GetConfirmations(loginState.SteamId.ToString()!);
+            // 需要 IdentitySecret !!!!!
+            var rsp = await steamTradeService.GetConfirmations(steamLoginState.SteamId.ToString()!);
 
-            Assert.IsTrue(rsp.IsSuccess && rsp.Content is not null);
+            Assert.That(rsp.IsSuccess && rsp.Content is not null);
             var confirmations = rsp.Content!;
             Dictionary<string, string> param = new Dictionary<string, string>(confirmations.Select(x => new KeyValuePair<string, string>(x.Id, x.Nonce)));
 
             if (param.Count > 0)
             {
                 //var res = await TradeService.SendConfirmation(loginState.SteamId.ToString()!, confirmations.First(), true);
-                var sendResult = await TradeService.BatchSendConfirmation(loginState.SteamId.ToString()!, param, true);
+                var sendResult = await steamTradeService.BatchSendConfirmation(steamLoginState.SteamId.ToString()!, param, true);
             }
         }
     }

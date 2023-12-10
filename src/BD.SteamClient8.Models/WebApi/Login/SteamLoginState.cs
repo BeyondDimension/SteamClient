@@ -1,6 +1,6 @@
 namespace BD.SteamClient8.Models.WebApi.Login;
 
-[MPObj, MP2Obj(SerializeLayout.Explicit)]
+[MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
 public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
 {
     /// <summary>

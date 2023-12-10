@@ -1,42 +1,54 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-
 /// <summary>
 /// <see cref="SteamGridDBWebApiServiceImpl"/> 单元测试
 /// </summary>
-class SteamGridDBWebApiTest
+sealed class SteamGridDBWebApiTest : ServiceTestBase
 {
-    IServiceProvider service;
+    ISteamGridDBWebApiServiceImpl steamGridDBWebApiService = null!;
 
-    ISteamGridDBWebApiServiceImpl SteamGridDB => service.GetRequiredService<ISteamGridDBWebApiServiceImpl>();
-
-    [SetUp]
-    public void SetUp()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.TryAddHttpPlatformHelper();
-        services.AddFusilladeHttpClientFactory();
-        services.AddLogging();
+        base.ConfigureServices(services);
+
         services.AddSteamGridDBWebApiService();
-        service = services.BuildServiceProvider();
     }
 
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
+
+        steamGridDBWebApiService = GetRequiredService<ISteamGridDBWebApiServiceImpl>();
+    }
+
+    /// <summary>
+    /// 测试通过 AppId 获取 SteamGridApp 信息
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <returns></returns>
     [TestCase(730)]
     [Test]
     public async Task TestGetSteamGridAppBySteamAppId(long appId)
     {
-        var rsp = await SteamGridDB.GetSteamGridAppBySteamAppId(appId);
+        var rsp = await steamGridDBWebApiService.GetSteamGridAppBySteamAppId(appId);
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsNotEmpty(rsp.Content.Name);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content?.Name, Is.Not.Empty);
+        });
 
-        var gridItems = await SteamGridDB.GetSteamGridItemsByGameId(rsp.Content.Id);
+        var gridItems = await steamGridDBWebApiService.GetSteamGridItemsByGameId(rsp.Content.Id);
 
-        Assert.IsNotNull(gridItems);
-        Assert.IsTrue(gridItems.IsSuccess);
-        Assert.IsTrue(gridItems.Content.Count > 0);
+        Assert.That(gridItems, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(gridItems.IsSuccess);
+            Assert.That(gridItems.Content, Is.Not.Empty);
+        });
     }
 }

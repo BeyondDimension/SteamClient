@@ -25,7 +25,7 @@ public interface ISteamDbWebApiService
     Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s);
 
     /// <summary>
-    /// 通过 APPId 获取游戏详情
+    /// 通过 AppId 获取游戏详情
     /// </summary>
     /// <param name="appId"></param>
     /// <returns></returns>

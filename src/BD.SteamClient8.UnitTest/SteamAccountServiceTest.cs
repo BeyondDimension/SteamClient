@@ -1,56 +1,32 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 /// <summary>
 /// <see cref="SteamAccountService"/> 单元测试
 /// </summary>
-public class SteamAccountServiceTest
+sealed class SteamAccountServiceTest : ServiceTestBase
 {
-    IServiceProvider service;
+    SteamLoginState? steamLoginState;
+    ISteamAccountService steamAccountService = null!;
+    IConfiguration configuration = null!;
 
-    ISteamAccountService Client => service.GetRequiredService<ISteamAccountService>();
-
-    SteamLoginState? loginState;
-
-    /// <summary>
-    /// Setup 函数的注释
-    /// </summary>
-    [SetUp]
-    public void Setup()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.AddLogging();
-        services.AddFusilladeHttpClientFactory();
+        base.ConfigureServices(services);
+
         services.AddSteamAccountService();
+    }
 
-        service = services.BuildServiceProvider();
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
 
-        if (loginState == null)
-        {
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/state.json";
+        steamAccountService = GetRequiredService<ISteamAccountService>();
+        configuration = GetRequiredService<IConfiguration>();
 
-            if (File.Exists(path))
-            {
-                using FileStream fs = new FileStream(path, FileMode.Open);
-
-                loginState = SystemTextJsonSerializer.Deserialize<SteamLoginState>(fs);
-            }
-            else
-            {
-                var localPath = @"C:\Users\CYCY\Desktop\session.json";
-                var json = JsonDocument.Parse(File.ReadAllText(localPath)).RootElement;
-                loginState = new SteamLoginState()
-                {
-                    Username = json.GetProperty("userName").ToString(),
-                    Password = json.GetProperty("passWord").ToString()
-                };
-                Client.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                Client.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                string x = SystemTextJsonSerializer.Serialize(loginState);
-                File.WriteAllText(path, x);
-            }
-        }
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService);
     }
 
     /// <summary>
@@ -64,47 +40,57 @@ public class SteamAccountServiceTest
     [Test]
     public async Task TestGetInventories(ulong steamId, string appId, string contextId)
     {
-        var resp = (await Client.GetInventories(steamId, appId, contextId, 1)).Content;
+        var rsp = await steamAccountService.GetInventories(steamId, appId, contextId, 1);
 
-        Assert.That(resp.Success, Is.EqualTo(1));
+        Assert.That(rsp.Content.ThrowIsNull().Success, Is.EqualTo(1));
     }
 
+    /// <summary>
+    /// 测试获取库存交易历史
+    /// </summary>
+    /// <param name="appFilter"></param>
+    /// <returns></returns>
     [TestCase(null)]
-    [TestCase(new[] { 754, 730, 570 })]
+#pragma warning disable CA1861 // 不要将常量数组作为参数
+    [TestCase(new int[] { 754, 730, 570 })]
+#pragma warning restore CA1861 // 不要将常量数组作为参数
     [Test]
     public async Task TestGetAndParseInventoryTradingHistory(int[]? appFilter)
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
             InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null;
 
-            var page = (await Client.GetInventoryTradeHistory(loginState!, appFilter, cursor)).Content;
+            var rsp = await steamAccountService.GetInventoryTradeHistory(steamLoginState!, appFilter, cursor);
 
-            Assert.That(page, Is.Not.Null);
-            Assert.That(page.Success, Is.True);
+            Assert.Multiple(() =>
+            {
+                Assert.That(rsp?.Content, Is.Not.Null);
+                Assert.That(rsp!.Content!.Success, Is.True);
+            });
 
-            var parsedRows = Client.ParseInventoryTradeHistory(page.Html)
+            var parsedRows = steamAccountService.ParseInventoryTradeHistory(rsp.Content.Html)
                 .ToBlockingEnumerable()
-                .ToList();
+                .ToArray();
 
             Assert.That(parsedRows, Is.Not.Null);
         }
     }
 
     /// <summary>
-    /// 测试获取开发api key
+    /// 测试获取开发 ApiKey
     /// </summary>
     /// <returns></returns>
     [Test]
     public async Task TestGetApiKey()
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
-            string? apiKey = (await Client.GetApiKey(loginState!)).Content;
+            string? apiKey = (await steamAccountService.GetApiKey(steamLoginState!)).Content;
 
             if (string.IsNullOrEmpty(apiKey))
             {
-                apiKey = (await Client.RegisterApiKey(loginState!)).Content;
+                apiKey = (await steamAccountService.RegisterApiKey(steamLoginState!)).Content;
             }
 
             Assert.That(apiKey, Is.Not.Null);
@@ -112,31 +98,38 @@ public class SteamAccountServiceTest
         }
     }
 
+    /// <summary>
+    /// 测试获取发送礼物记录
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetSendGiftHistory()
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
-            var history = await Client.GetSendGiftHistories(loginState!);
+            var history = await steamAccountService.GetSendGiftHistories(steamLoginState!);
 
             Assert.That(history, Is.Not.Null);
         }
     }
 
+    /// <summary>
+    /// 测试获取登录历史记录
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetLoginHistory()
     {
-        if (loginState != null)
+        if (steamLoginState != null)
         {
-            var result = Client.GetLoginHistory(loginState!);
+            var result = steamAccountService.GetLoginHistory(steamLoginState);
+
+            Assert.That(result, Is.Not.Null);
 
             await foreach (var item in result)
             {
                 Console.WriteLine(item.City);
             }
-
-            Assert.That(result, Is.Not.Null);
         }
-        await Task.CompletedTask;
     }
 }

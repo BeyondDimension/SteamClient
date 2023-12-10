@@ -1,88 +1,96 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-
 /// <summary>
 /// <see cref="SteamIdleCardServiceImpl"/> 单元测试
 /// </summary>
-class SteamIdleServiceTest
+sealed class SteamIdleServiceTest : ServiceTestBase
 {
-    IServiceProvider service;
+    SteamLoginState steamLoginState = null!; // ?未引用？
+    ISteamIdleCardService steamIdleCardService = null!;
+    ISteamAccountService steamAccountService = null!;
+    IConfiguration configuration = null!;
 
-    SteamLoginState loginState = null;
-
-    ISteamIdleCardService Idle => service.GetRequiredService<ISteamIdleCardService>();
-
-    ISteamAccountService Client => service.GetRequiredService<ISteamAccountService>();
-
-    [SetUp]
-    public void SetUp()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.TryAddHttpPlatformHelper();
-        services.AddLogging();
+        base.ConfigureServices(services);
+
         services.AddSteamAccountService();
         services.AddSteamIdleCardService();
-        service = services.BuildServiceProvider();
-
-        if (loginState == null)
-        {
-            string path = $"{AppDomain.CurrentDomain.BaseDirectory}/state.json";
-
-            if (File.Exists(path))
-            {
-                using FileStream fs = new FileStream(path, FileMode.Open);
-
-                loginState = SystemTextJsonSerializer.Deserialize<SteamLoginState>(fs);
-            }
-            else
-            {
-                var localPath = @"C:\Users\CYCY\Desktop\session.json";
-                var json = JsonDocument.Parse(File.ReadAllText(localPath)).RootElement;
-                loginState = new SteamLoginState()
-                {
-                    Username = json.GetProperty("userName").ToString(),
-                    Password = json.GetProperty("passWord").ToString()
-                };
-                Client.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                Client.DoLoginV2Async(loginState!).GetAwaiter().GetResult();
-                string x = SystemTextJsonSerializer.Serialize(loginState);
-                File.WriteAllText(path, x);
-            }
-        }
     }
 
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
+
+        steamIdleCardService = GetRequiredService<ISteamIdleCardService>();
+        steamAccountService = GetRequiredService<ISteamAccountService>();
+        configuration = GetRequiredService<IConfiguration>();
+
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService);
+    }
+
+    /// <summary>
+    /// 测试获取用户徽章和卡片数据
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <returns></returns>
     [TestCase("76561198425787706")]
     [Test]
     public async Task TestsGetBadgesAsync(string steam_id)
     {
-        var badges = await Idle.GetBadgesAsync(steam_id);
+        var rsp = await steamIdleCardService.GetBadgesAsync(steam_id);
 
-        Assert.IsTrue(badges.IsSuccess);
-        Assert.IsNotNull(badges.Content.idleInfo);
-        Assert.IsNotNull(badges.Content.badges);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content.idleInfo, Is.Not.Null);
+            Assert.That(rsp.Content.badges, Is.Not.Null);
+        });
     }
 
+    /// <summary>
+    /// 测试获取游戏卡组卡片平均价格
+    /// </summary>
+    /// <param name="appIds"></param>
+    /// <param name="currency"></param>
+    /// <returns></returns>
     [TestCase(new uint[] { 730, 580 }, "CNY")]
     [Test]
     public async Task TestGetAppCardsAvgPrice(uint[] appIds, string currency)
     {
-        var avgPrices = await Idle.GetAppCardsAvgPrice(appIds, currency);
+        var rsp = await steamIdleCardService.GetAppCardsAvgPrice(appIds, currency);
 
-        Assert.IsTrue(avgPrices.IsSuccess);
-        Assert.IsNotNull(avgPrices.Content);
-        Assert.IsTrue(avgPrices.Content.Count() > 0);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content, Is.Not.Null);
+            Assert.That(rsp.Content, Is.Not.Empty);
+        });
     }
 
+    /// <summary>
+    /// 测试获取游戏卡片价格
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <param name="currency"></param>
+    /// <returns></returns>
     [TestCase(730U, "CNY")]
     [Test]
     public async Task TestGetAppCardsAvgPrice(uint appId, string currency)
     {
-        var avgPrices = await Idle.GetCardsMarketPrice(appId, currency);
+        var rsp = await steamIdleCardService.GetCardsMarketPrice(appId, currency);
 
-        Assert.IsTrue(avgPrices.IsSuccess);
-        Assert.IsNotNull(avgPrices.Content);
-        Assert.IsTrue(avgPrices.Content.Count() > 0);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content, Is.Not.Null);
+            Assert.That(rsp.Content, Is.Not.Empty);
+        });
     }
 }

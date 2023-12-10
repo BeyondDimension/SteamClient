@@ -1,58 +1,85 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
-
 /// <summary>
 /// <see cref="SteamDbWebApiServiceImpl"/> 单元测试
 /// </summary>
-public class SteamDBWebApiTest
+sealed class SteamDBWebApiTest : ServiceTestBase
 {
-    IServiceProvider service;
+    ISteamDbWebApiService steamDbWebApiService = null!;
 
-    ISteamDbWebApiService SteamDB => service.GetRequiredService<ISteamDbWebApiService>();
-
-    [SetUp]
-    public void SetUp()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.TryAddHttpPlatformHelper();
-        services.AddFusilladeHttpClientFactory();
-        services.AddLogging();
+        base.ConfigureServices(services);
+
         services.AddSteamDbWebApiService();
-        service = services.BuildServiceProvider();
     }
 
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
+
+        steamDbWebApiService = GetRequiredService<ISteamDbWebApiService>();
+    }
+
+    /// <summary>
+    /// 测试获取用户详情
+    /// </summary>
+    /// <param name="steamId"></param>
+    /// <returns></returns>
     [TestCase(76561198425787706)]
     [Test]
     public async Task TestGetUserInfo(long steamId)
     {
-        var rsp = await SteamDB.GetUserInfo(steamId);
+        var rsp = await steamDbWebApiService.GetUserInfo(steamId);
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsNotEmpty(rsp.Content.ProfileUrl);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content?.ProfileUrl, Is.Not.Empty);
+        });
     }
 
+    /// <summary>
+    /// 测试批量获取用户详情
+    /// </summary>
+    /// <param name="steamIds"></param>
+    /// <returns></returns>
+#pragma warning disable CA1861 // 不要将常量数组作为参数
     [TestCase(new long[] { 76561198425787706, 76561198409610315 })]
+#pragma warning restore CA1861 // 不要将常量数组作为参数
     [Test]
     public async Task TestGetUserInfos(long[] steamIds)
     {
-        var rsp = await SteamDB.GetUserInfo(steamIds);
+        var rsp = await steamDbWebApiService.GetUserInfo(steamIds);
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsTrue(rsp.Content.Count > 0);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content?.Count, Is.Not.Empty);
+        });
     }
 
+    /// <summary>
+    /// 测试通过 AppId 获取游戏详情
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <returns></returns>
     [TestCase(730)]
     [Test]
     public async Task GetAppInfo(int appId)
     {
-        var rsp = await SteamDB.GetAppInfo(appId);
+        var rsp = await steamDbWebApiService.GetAppInfo(appId);
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsNotEmpty(rsp.Content.Name);
+        Assert.That(rsp, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content?.Name, Is.Not.Empty);
+        });
     }
 }

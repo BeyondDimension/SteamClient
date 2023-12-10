@@ -1,53 +1,69 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600
-#pragma warning disable NUnit1032 // An IDisposable field/property should be Disposed in a TearDown method
 /// <summary>
 /// <see cref="SteamworksWebApiServiceImpl"/> 单元测试
 /// </summary>
-class SteamworksWebApiTest
+sealed class SteamworksWebApiTest : ServiceTestBase
 {
-    IServiceProvider service;
+    ISteamworksWebApiService steamworksWebApiService = null!;
 
-    ISteamworksWebApiService Steamworks => service.GetRequiredService<ISteamworksWebApiService>();
-
-    [SetUp]
-    public void SetUp()
+    /// <inheritdoc/>
+    protected override void ConfigureServices(IServiceCollection services)
     {
-        var services = new ServiceCollection();
-        services.AddFusilladeHttpClientFactory();
-        services.AddLogging();
+        base.ConfigureServices(services);
+
         services.AddSteamworksWebApiService();
-        service = services.BuildServiceProvider();
     }
 
+    /// <inheritdoc/>
+    [SetUp]
+    public override async ValueTask Setup()
+    {
+        await base.Setup();
+
+        steamworksWebApiService = GetRequiredService<ISteamworksWebApiService>();
+    }
+
+    /// <summary>
+    /// 测试获取所有游戏 JSON 字符串
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetAllSteamAppsString()
     {
-        var rsp = await Steamworks.GetAllSteamAppsString();
+        var rsp = await steamworksWebApiService.GetAllSteamAppsString();
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsNotEmpty(rsp.Content);
+        Assert.That(rsp, Is.Not.EqualTo(null));
+        Assert.That(rsp.IsSuccess);
+        Assert.That(rsp.Content, Is.Not.Empty);
     }
 
+    /// <summary>
+    /// 测试获取所有 Steam 游戏列表
+    /// </summary>
+    /// <returns></returns>
     [Test]
     public async Task TestGetAllSteamAppList()
     {
-        var rsp = await Steamworks.GetAllSteamAppList();
+        var rsp = await steamworksWebApiService.GetAllSteamAppList();
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess && rsp.Content.Count > 0);
+        Assert.That(rsp, Is.Not.EqualTo(null));
+        Assert.That(rsp.IsSuccess && rsp.Content != null && rsp.Content.Count > 0);
     }
 
+    /// <summary>
+    /// 测试获取 Steam 个人资料
+    /// </summary>
+    /// <param name="steamId64"></param>
+    /// <returns></returns>
     [TestCase(76561198425787706L)]
     [Test]
     public async Task GetUserInfo(long steamId64)
     {
-        var rsp = await Steamworks.GetUserInfo(steamId64);
+        var rsp = await steamworksWebApiService.GetUserInfo(steamId64);
 
-        Assert.IsNotNull(rsp);
-        Assert.IsTrue(rsp.IsSuccess);
-        Assert.IsNotEmpty(rsp.Content.AvatarFull);
+        Assert.That(rsp, Is.Not.EqualTo(null));
+        Assert.That(rsp.IsSuccess);
+        Assert.That(rsp.Content?.AvatarFull, Is.Not.Empty);
     }
 }
