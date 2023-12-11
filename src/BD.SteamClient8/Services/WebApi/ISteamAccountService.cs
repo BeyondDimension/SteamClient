@@ -12,19 +12,22 @@ public interface ISteamAccountService
     /// <param name="password"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
+    [Obsolete("use GetRSAkeyV2Async")]
     Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(
         string username,
-        string password);
+        string password,
+        CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 新版登录时获取 RSAkey
+    /// 获取新版 Steam 登录所需的 RSAkey 来加密 password
     /// </summary>
     /// <param name="username"></param>
     /// <param name="password"></param>
     /// <returns></returns>
     Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(
         string username,
-        string password);
+        string password,
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 执行请求 Steam 登录，返回登录状态
@@ -32,7 +35,8 @@ public interface ISteamAccountService
     /// <param name="loginState">登录状态</param>
     /// <param name="isTransfer"></param>
     /// <param name="isDownloadCaptchaImage"></param>
-    Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false);
+    [Obsolete("use DoLoginV2Async")]
+    Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 执行新版请求 Steam 登录，返回登录状态

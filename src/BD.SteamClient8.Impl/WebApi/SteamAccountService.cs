@@ -1,17 +1,14 @@
-namespace BD.SteamClient8.Impl.WebApi;
-
 using Google.Protobuf;
 using Polly.Retry;
-using JsonSerializer = SystemTextJsonSerializer;
+
+namespace BD.SteamClient8.Impl.WebApi;
 
 #pragma warning disable SA1600
 public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {
-    #region Override
     protected sealed override string ClientName => TAG;
 
     protected sealed override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
-    #endregion
 
     public const string TAG = "SteamAccountWebApiS";
 
@@ -23,25 +20,25 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
     [ActivatorUtilitiesConstructor]
     public SteamAccountService(
-        IClientHttpClientFactory clientFactory,
         IRandomGetUserAgentService uas,
         ISteamSessionService sessions,
-        IHttpPlatformHelperService http_helper,
-        ILoggerFactory loggerFactory) : base(
+        ILoggerFactory loggerFactory,
+        IServiceProvider serviceProvider) : base(
             loggerFactory.CreateLogger(TAG),
-            http_helper,
-            clientFactory)
+            serviceProvider)
     {
         this.uas = uas;
         this.sessions = sessions;
     }
 
+    [Obsolete("根据业务而定")]
     public bool UseRetry { get; set; } = true;
 
     /// <summary>
     /// 等待一个时间并且重试
     /// </summary>
     /// <returns></returns>
+    [Obsolete("使用 sleepDurations")]
     AsyncRetryPolicy WaitAndRetryAsync(
         [CallerMemberName] string memberName = "",
         [CallerFilePath] string sourceFilePath = "",
@@ -50,56 +47,386 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             logger.LogError(ex, "第 {i} 次重试，MemberName：{memberName}，FilePath：{sourceFilePath}，LineNumber：{sourceLineNumber}", i, memberName, sourceFilePath, sourceLineNumber);
         });
 
-    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
-    public async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(string username, string password)
+    /// <summary>
+    /// 重试间隔
+    /// </summary>
+    static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
+
+    async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyCoreAsync(string username, string password, Dictionary<string, string> stm_login_getrsakey_req_form, CancellationToken cancellationToken = default)
     {
-        var data = new Dictionary<string, string>()
+        const string error_prefix = "获取 RSAKey 出现错误: ";
+
+        using WebApiClientSendArgs args = new(SteamApiUrls.GetRSAkeyUrl)
         {
-            { "donotache", default_donotache },
-            { "username", username },
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
         };
-        [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
-        async Task<(string encryptedPassword64, string timestamp)> GetRSAkeyAsync()
+        try
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.GetRSAkeyUrl)
-            {
-                Content = new FormUrlEncodedContent(data),
-            };
-            request.Headers.UserAgent.Clear();
-            request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-            var result = await CreateClient().SendAsync(request);
+            var client = CreateClient(username);
+            args.SetHttpClient(client);
 
-            if (!result.IsSuccessStatusCode)
-                throw new Exception($"获取 RSAKey 出现错误: {result.StatusCode}");
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+            // SystemTextJsonObject 与 Dictionary 应配置为跳过裁剪所以忽略警告
+            var stm_login_getrsakey_rsp_jobj = await SendAsync<SystemTextJsonObject, Dictionary<string, string>>(args, stm_login_getrsakey_req_form, cancellationToken);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
 
-            var jsonObj = await ReadFromSJsonAsync<SystemTextJsonObject>(result.Content, null);
+            if (stm_login_getrsakey_rsp_jobj is null)
+                return $"{error_prefix}stm_login_getrsakey_rsp_jobj is null.";
 
-            if (jsonObj == null)
-                throw new Exception($"获取 RSAKey 出现错误: 无效的{nameof(jsonObj)}");
-
-            var success = jsonObj["success"]?.GetValue<bool>();
-            var publickey_exp = jsonObj["publickey_exp"]?.GetValue<string>();
-            var publickey_mod = jsonObj["publickey_mod"]?.GetValue<string>();
-            var timestamp = jsonObj["timestamp"]?.GetValue<string>();
+            var success = stm_login_getrsakey_rsp_jobj["success"]?.GetValue<bool>();
+            var publickey_exp = stm_login_getrsakey_rsp_jobj["publickey_exp"]?.GetValue<string>();
+            var publickey_mod = stm_login_getrsakey_rsp_jobj["publickey_mod"]?.GetValue<string>();
+            var timestamp = stm_login_getrsakey_rsp_jobj["timestamp"]?.GetValue<string>();
             if (!(success.HasValue && success.Value) ||
                 string.IsNullOrEmpty(publickey_exp) ||
                 string.IsNullOrEmpty(publickey_mod) ||
                 string.IsNullOrEmpty(timestamp))
-                throw new Exception($"获取 RSAKey 出现错误: " + jsonObj.ToJsonString());
+                return $"{error_prefix} stm_login_getrsakey_rsp_jobj value incorrect.";
 
             // 使用 RSA 密钥加密密码
-            using var rsa = new RSACryptoServiceProvider();
+            using var rsa = RSA.Create();
             var passwordBytes = Encoding.ASCII.GetBytes(password);
             var p = rsa.ExportParameters(false);
             p.Exponent = Convert.FromHexString(publickey_exp);
             p.Modulus = Convert.FromHexString(publickey_mod);
             rsa.ImportParameters(p);
-            byte[] encryptedPassword = rsa.Encrypt(passwordBytes, false);
+            byte[] encryptedPassword = rsa.Encrypt(passwordBytes, RSAEncryptionPadding.Pkcs1);
             var encryptedPassword64 = Convert.ToBase64String(encryptedPassword);
             return (encryptedPassword64, timestamp);
         }
-        var result = UseRetry ? await WaitAndRetryAsync().ExecuteAsync(GetRSAkeyAsync) : await GetRSAkeyAsync();
+        catch (Exception ex)
+        {
+            var errorResult = OnErrorReApiRspBase<ApiRspImpl<(string encryptedPassword64, string timestamp)>>(ex, args);
+            return errorResult;
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(string username, string password, CancellationToken cancellationToken = default)
+    {
+        var stm_login_getrsakey_req_form = new Dictionary<string, string>()
+        {
+            { "donotache", default_donotache },
+            { "username", username },
+        };
+        async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(CancellationToken cancellationToken = default)
+        {
+            var result = await GetRSAkeyCoreAsync(username, password, stm_login_getrsakey_req_form, cancellationToken);
+            return result;
+        }
+        bool HasValue(ApiRspImpl<(string encryptedPassword64, string timestamp)>? result)
+        {
+            if (result is null)
+                return false;
+            if (!result.IsSuccess)
+                return false;
+            if (string.IsNullOrWhiteSpace(result.Content.encryptedPassword64))
+                return false;
+            if (string.IsNullOrWhiteSpace(result.Content.timestamp))
+                return false;
+            return true;
+        }
+        var result = await Policy.HandleResult<ApiRspImpl<(string encryptedPassword64, string timestamp)>>(HasValue).WaitAndRetryAsync(sleepDurations).ExecuteAsync(GetRSAkeyAsync, cancellationToken);
         return result;
+    }
+
+    async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2CoreAsync(string username, string password, Uri requestUri, string requestUriString, CancellationToken cancellationToken = default)
+    {
+        using WebApiClientSendArgs args = new(requestUri, requestUriString)
+        {
+            Method = HttpMethod.Get,
+        };
+        try
+        {
+            var client = CreateClient(username);
+            args.SetHttpClient(client);
+
+            using var stm_login_getrsakey_rsp_stream = await SendAsync<Stream>(args, cancellationToken);
+            var result = CAuthentication_GetPasswordRSAPublicKey_Response.Parser.ParseFrom(stm_login_getrsakey_rsp_stream);
+
+            // 使用 RSA 密钥加密密码
+            using var rsa = RSA.Create();
+            var passwordBytes = Encoding.ASCII.GetBytes(password);
+            var p = rsa.ExportParameters(false);
+            p.Exponent = Convert.FromHexString(result.PublickeyExp);
+            p.Modulus = Convert.FromHexString(result.PublickeyMod);
+            rsa.ImportParameters(p);
+            byte[] encryptedPassword = rsa.Encrypt(passwordBytes, RSAEncryptionPadding.Pkcs1);
+            var encryptedPassword64 = Convert.ToBase64String(encryptedPassword);
+            return (encryptedPassword64, result.Timestamp);
+        }
+        catch (Exception ex)
+        {
+            var errorResult = OnErrorReApiRspBase<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>>(ex, args);
+            return errorResult;
+        }
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(string username, string password, CancellationToken cancellationToken = default)
+    {
+        var input_protobuf_encoded = UrlEncoder.Default.Encode(new CAuthentication_GetPasswordRSAPublicKey_Request()
+        {
+            AccountName = username,
+        }.ToByteString().ToBase64());
+        var requestUriString = $"https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={input_protobuf_encoded}";
+        var requestUri = new Uri(requestUriString);
+
+        async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(CancellationToken cancellationToken = default)
+        {
+            var result = await GetRSAkeyV2CoreAsync(username, password, requestUri, requestUriString, cancellationToken);
+            return result;
+        }
+        bool HasValue(ApiRspImpl<(string encryptedPassword64, ulong timestamp)>? result)
+        {
+            if (result is null)
+                return false;
+            if (!result.IsSuccess)
+                return false;
+            if (string.IsNullOrWhiteSpace(result.Content.encryptedPassword64))
+                return false;
+            return true;
+        }
+        var result = await Policy.HandleResult<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>>(HasValue).WaitAndRetryAsync(sleepDurations).ExecuteAsync(GetRSAkeyV2Async, cancellationToken);
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false, CancellationToken cancellationToken = default)
+    {
+        loginState.Success = false;
+
+        if (string.IsNullOrEmpty(loginState.Username) ||
+            string.IsNullOrEmpty(loginState.Password))
+        {
+            return loginState.Message = "请填写正确的 Steam 用户名密码";
+        }
+
+        loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
+        loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
+
+        if (string.IsNullOrEmpty(loginState.Cookies?["sessionid"]?.Value))
+        {
+            // 访问一次登录页获取 SessionId
+            using WebApiClientSendArgs args = new(SteamApiUrls.SteamLoginUrl)
+            {
+                Method = HttpMethod.Get,
+            };
+            var client = CreateClient(loginState.Username);
+            args.SetHttpClient(client);
+            await SendAsync<string>(args, cancellationToken);
+        }
+
+        var rsaKey = await GetRSAkeyAsync(loginState.Username, loginState.Password, cancellationToken);
+        if (!rsaKey.IsSuccess)
+            return rsaKey.GetMessage();
+
+        var (encryptedPassword64, timestamp) = rsaKey.Content;
+
+        var data = new Dictionary<string, string>()
+        {
+            { "password", encryptedPassword64 },
+            { "username", loginState.Username },
+            { "twofactorcode", loginState.TwofactorCode ?? string.Empty },
+            { "emailauth", loginState.EmailCode ?? string.Empty },
+            { "loginfriendlyname", string.Empty },
+            { "captchagid", string.IsNullOrEmpty(loginState.CaptchaId) == false ? loginState.CaptchaId : "-1" },
+            { "captcha_text", string.IsNullOrEmpty(loginState.CaptchaText) == false ? loginState.CaptchaText : string.Empty },
+            { "emailsteamid", (string.IsNullOrEmpty(loginState.EmailCode) == false ? loginState.SteamIdString ?? string.Empty : string.Empty) },
+            { "rsatimestamp", timestamp.ToString() },
+            { "remember_login", "false" },
+            { "donotache", default_donotache },
+        };
+
+        async Task<ApiRspImpl<SystemTextJsonObject?>> DoLoginCoreAsync(CancellationToken cancellationToken = default)
+        {
+            using WebApiClientSendArgs args = new(SteamApiUrls.DologinUrl)
+            {
+                Method = HttpMethod.Post,
+            };
+            try
+            {
+                var client = CreateClient(loginState.Username);
+                args.SetHttpClient(client);
+                using var dologinRspMsg = await SendAsync<HttpResponseMessage>(args, cancellationToken);
+                dologinRspMsg.ThrowIsNull();
+                if (dologinRspMsg.StatusCode == HttpStatusCode.TooManyRequests)
+                {
+                    loginState.Requires2FA = false;
+                    loginState.RequiresCaptcha = false;
+                    loginState.RequiresEmailAuth = false;
+                    loginState.Success = false;
+                    return loginState.Message = $"{HttpStatusCode.TooManyRequests} 请求过于频繁，请稍后再试";
+                }
+
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                // SystemTextJsonObject 应配置为跳过裁剪所以忽略警告
+                var dologinRspJObj = await ReadFromSJsonAsync<SystemTextJsonObject>(dologinRspMsg.Content, null, cancellationToken);
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+                if (dologinRspJObj is null)
+                {
+                    loginState.Success = false;
+                    return loginState.Message = $"登录错误: 无效的 {nameof(dologinRspJObj)}";
+                }
+
+                return dologinRspJObj;
+            }
+            catch (Exception ex)
+            {
+                var errorResult = OnErrorReApiRspBase<ApiRspImpl<SystemTextJsonObject?>>(ex, args);
+                loginState.Message = $"登录错误: " + errorResult.GetMessage();
+                return errorResult;
+            }
+        }
+
+        bool HasValue(ApiRspImpl<SystemTextJsonObject?>? result)
+        {
+            if (result is null)
+                return false;
+            if (!result.IsSuccess)
+                return false;
+            if (result.Content == null)
+                return false;
+            return true;
+        }
+
+        var result = await Policy.HandleResult<ApiRspImpl<SystemTextJsonObject?>>(HasValue).WaitAndRetryAsync(sleepDurations).ExecuteAsync(DoLoginCoreAsync, cancellationToken);
+        var dologinRspJObj = result.Content;
+        if (dologinRspJObj == null)
+        {
+            return result.GetMessage();
+        }
+
+        var message = dologinRspJObj["message"]?.GetValue<string>();
+
+        var emailsteamid = dologinRspJObj["emailsteamid"]?.GetValue<string>();
+        if (!string.IsNullOrEmpty(emailsteamid))
+        {
+            loginState.SteamIdString = emailsteamid;
+        }
+
+        var captcha_needed = dologinRspJObj["captcha_needed"]?.GetValue<bool>();
+        loginState.RequiresCaptcha = captcha_needed.HasValue && captcha_needed.Value;
+        if (loginState.RequiresCaptcha)
+        {
+            if (message?.Contains("验证码中的字符", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                loginState.CaptchaId = dologinRspJObj["captcha_gid"]?.GetValue<string>();
+                loginState.CaptchaUrl = SteamApiUrls.CaptchaImageUrl + loginState.CaptchaId;
+                if (isDownloadCaptchaImage && !string.IsNullOrEmpty(loginState.CaptchaId))
+                {
+                    loginState.CaptchaImageBase64 = await GetCaptchaImageBase64(loginState.CaptchaId);
+                }
+                return loginState.Message = $"登录错误: " + message;
+            }
+            else
+            {
+                loginState.RequiresCaptcha = false;
+                loginState.CaptchaId = null;
+                loginState.CaptchaUrl = null;
+                loginState.CaptchaText = null;
+                return loginState.Message = $"登录错误: " + message;
+            }
+        }
+        else
+        {
+            loginState.RequiresCaptcha = false;
+            loginState.CaptchaId = null;
+            loginState.CaptchaUrl = null;
+            loginState.CaptchaText = null;
+        }
+
+        // require email auth
+        var emailauth_needed = dologinRspJObj["emailauth_needed"]?.GetValue<bool>();
+        loginState.RequiresEmailAuth = emailauth_needed.HasValue && emailauth_needed.Value;
+        if (loginState.RequiresEmailAuth)
+        {
+            var emaildomain = dologinRspJObj["emaildomain"]?.GetValue<string>();
+            if (!string.IsNullOrEmpty(emaildomain))
+            {
+                loginState.EmailDomain = emaildomain;
+            }
+            loginState.Message = $"登录错误: 需要邮箱验证码";
+        }
+        else
+        {
+            loginState.EmailDomain = null;
+        }
+
+        // require 2fa auth
+        var requires_twofactor = dologinRspJObj["requires_twofactor"]?.GetValue<bool>();
+        loginState.Requires2FA = requires_twofactor.HasValue && requires_twofactor.Value;
+        if (loginState.Requires2FA)
+        {
+            return loginState.Message = $"登录错误: 需要输入令牌";
+        }
+
+        // 登录因为其它原因失败
+        var login_complete = dologinRspJObj["login_complete"]?.GetValue<bool>();
+        loginState.Success = login_complete.HasValue && login_complete.Value;
+        if (!loginState.Success)
+        {
+            if (!string.IsNullOrEmpty(message))
+            {
+                return loginState.Message = $"登录错误: " + message;
+            }
+        }
+        else
+        {
+            // 登录成功
+            DoLoginResponse? dologinRspObj = null;
+            try
+            {
+                dologinRspObj = SystemTextJsonSerializer.Deserialize(dologinRspJObj, DefaultJsonSerializerContext_.Default.DoLoginResponse);
+            }
+            catch (Exception ex)
+            {
+                var errorResult = OnSerializerErrorReApiRspBase<ApiRspImpl>(ex, isSerializeOrDeserialize: false, typeof(DoLoginResponse));
+                loginState.Message = $"登录错误: " + errorResult.GetMessage();
+                return errorResult;
+            }
+            if (dologinRspObj != null)
+            {
+                var cookieContainer = GetCookieContainer(loginState.Username);
+                var session = new SteamSession
+                {
+                    CookieContainer = cookieContainer,
+                    SteamId = loginState.SteamId.ToString(),
+                };
+                loginState.Cookies = cookieContainer.GetAllCookies();
+                if (dologinRspObj.TransferParameters != null && dologinRspObj.TransferUrls != null)
+                {
+                    session.AccessToken = dologinRspObj.TransferParameters.Auth;
+                    loginState.SteamIdString = dologinRspObj.TransferParameters.Steamid;
+
+                    _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
+                    loginState.SteamId = steamid;
+
+                    if (isTransfer)
+                    {
+                        foreach (var transferUrl in dologinRspObj.TransferUrls)
+                        {
+                            await Policy.Handle<Exception>().WaitAndRetryAsync(sleepDurations).ExecuteAsync(async (cancellationToken) =>
+                            {
+                                using WebApiClientSendArgs args = new(transferUrl)
+                                {
+                                    Method = HttpMethod.Post,
+                                };
+                                var client = CreateClient(loginState.Username);
+                                args.SetHttpClient(client);
+                                using var transferUrlRsp = await SendAsync<HttpResponseMessage>(args, cancellationToken);
+                                transferUrlRsp.ThrowIsNull();
+                                transferUrlRsp.EnsureSuccessStatusCode();
+                            }, cancellationToken);
+                        }
+                    }
+                }
+                sessions.AddOrSetSession(session);
+                return ApiRspHelper.Ok();
+            }
+        }
+        return loginState.Message = "登录错误: 出现未知错误";
     }
 
     /// <summary>
@@ -108,253 +435,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     /// <returns></returns>
     [GeneratedRegex("[^\\u0000-\\u007F]")]
     private static partial Regex SteamUNPWDRegex();
-
-    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
-    public async Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false)
-    {
-        var result = ApiRspHelper.Fail();
-        var cookieContainer = new CookieContainer();
-        var isolated = new IsolatedCookieContainer(cookieContainer);
-        var client = isolated.Client;
-        loginState.Success = false;
-        try
-        {
-            if (string.IsNullOrEmpty(loginState.Username) ||
-                string.IsNullOrEmpty(loginState.Password))
-            {
-                loginState.Message = "请填写正确的 Steam 用户名密码";
-                return result;
-            }
-
-            loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
-            loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
-
-            if (string.IsNullOrEmpty(loginState?.Cookies["sessionid"]?.Value))
-            {
-                // 访问一次登录页获取SessionId
-                await client.GetAsync(SteamApiUrls.SteamLoginUrl);
-            }
-
-            var (encryptedPassword64, timestamp) = (await GetRSAkeyAsync(loginState.Username, loginState.Password)).Content;
-
-            var data = new Dictionary<string, string>()
-            {
-                { "password", encryptedPassword64 },
-                { "username", loginState.Username },
-                { "twofactorcode", loginState.TwofactorCode ?? string.Empty },
-                { "emailauth", loginState.EmailCode ?? string.Empty },
-                { "loginfriendlyname", string.Empty },
-                { "captchagid", string.IsNullOrEmpty(loginState.CaptchaId) == false ? loginState.CaptchaId : "-1" },
-                { "captcha_text", string.IsNullOrEmpty(loginState.CaptchaText) == false ? loginState.CaptchaText : string.Empty },
-                { "emailsteamid", (string.IsNullOrEmpty(loginState.EmailCode) == false ? loginState.SteamIdString ?? string.Empty : string.Empty) },
-                { "rsatimestamp", timestamp.ToString() },
-                { "remember_login", "false" },
-                { "donotache", default_donotache },
-            };
-
-            var response = await WaitAndRetryAsync().ExecuteAsync(async () =>
-            {
-                var request = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.DologinUrl)
-                {
-                    Content = new FormUrlEncodedContent(data),
-                };
-
-                request.Headers.UserAgent.Clear();
-                request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-
-                if (loginState.Cookies != null)
-                    cookieContainer.Add(loginState.Cookies);
-
-                var response = await client.SendAsync(request);
-                return response;
-            });
-
-            if (response.StatusCode == HttpStatusCode.TooManyRequests)
-            {
-                var retryAfter = response.Headers.RetryAfter?.ToString();
-                loginState.Message = $"{HttpStatusCode.TooManyRequests} 请求过于频繁，请稍后再试，{retryAfter}";
-                logger.LogError(loginState.Message);
-                loginState.Requires2FA = false;
-                loginState.RequiresCaptcha = false;
-                loginState.RequiresEmailAuth = false;
-                loginState.Success = false;
-                return result;
-            }
-
-            SystemTextJsonObject? jsonObj = null;
-            if (response.IsSuccessStatusCode)
-                jsonObj = await ReadFromSJsonAsync<SystemTextJsonObject>(response.Content, null);
-
-            if (jsonObj == null)
-            {
-                try
-                {
-                    var errorStr = await response.Content.ReadAsStringAsync();
-                    logger.LogError("login fail, error: {errorStr}, statusCode: {statusCode}.", errorStr, response.StatusCode);
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, "login fail, statusCode: {statusCode}.", response.StatusCode);
-                }
-                loginState.Message = $"登录错误: 无效的 {nameof(jsonObj)}";
-                loginState.Success = false;
-                return result;
-            }
-
-            var message = jsonObj["message"]?.GetValue<string>();
-
-            //var success = jsonObj["success"]?.GetValue<bool>();
-            //loginState.Success = success.HasValue && success.Value;
-            //if (loginState.Success)
-            //{
-            //    throw new Exception($"doLogin 出现错误: 无效的用户名");
-            //}
-
-            var emailsteamid = jsonObj["emailsteamid"]?.GetValue<string>();
-            if (!string.IsNullOrEmpty(emailsteamid))
-            {
-                loginState.SteamIdString = emailsteamid;
-            }
-
-            var captcha_needed = jsonObj["captcha_needed"]?.GetValue<bool>();
-            loginState.RequiresCaptcha = captcha_needed.HasValue && captcha_needed.Value;
-            if (loginState.RequiresCaptcha)
-            {
-                if (message?.Contains("验证码中的字符", StringComparison.OrdinalIgnoreCase) == true)
-                {
-                    loginState.CaptchaId = jsonObj["captcha_gid"]?.GetValue<string>();
-                    loginState.CaptchaUrl = SteamApiUrls.CaptchaImageUrl + loginState.CaptchaId;
-                    if (isDownloadCaptchaImage && !string.IsNullOrEmpty(loginState.CaptchaId))
-                    {
-                        loginState.CaptchaImageBase64 = await GetCaptchaImageBase64(loginState.CaptchaId);
-                    }
-                    loginState.Message = $"登录错误: " + message;
-                    return result;
-                }
-                else
-                {
-                    loginState.RequiresCaptcha = false;
-                    loginState.CaptchaId = null;
-                    loginState.CaptchaUrl = null;
-                    loginState.CaptchaText = null;
-                    loginState.Message = $"登录错误: " + message;
-                    return result;
-                }
-            }
-            else
-            {
-                loginState.RequiresCaptcha = false;
-                loginState.CaptchaId = null;
-                loginState.CaptchaUrl = null;
-                loginState.CaptchaText = null;
-            }
-
-            // require email auth
-            var emailauth_needed = jsonObj["emailauth_needed"]?.GetValue<bool>();
-            loginState.RequiresEmailAuth = emailauth_needed.HasValue && emailauth_needed.Value;
-            if (loginState.RequiresEmailAuth)
-            {
-                var emaildomain = jsonObj["emaildomain"]?.GetValue<string>();
-                if (!string.IsNullOrEmpty(emaildomain))
-                {
-                    loginState.EmailDomain = emaildomain;
-                }
-                loginState.Message = $"登录错误: 需要邮箱验证码";
-            }
-            else
-            {
-                loginState.EmailDomain = null;
-            }
-
-            // require 2fa auth
-            var requires_twofactor = jsonObj["requires_twofactor"]?.GetValue<bool>();
-            loginState.Requires2FA = requires_twofactor.HasValue && requires_twofactor.Value;
-            if (loginState.Requires2FA)
-            {
-                loginState.Message = $"登录错误: 需要输入令牌";
-                return result;
-            }
-
-            // 登录因为其它原因失败
-            var login_complete = jsonObj["login_complete"]?.GetValue<bool>();
-            //var oauth = jsonObj["oauth"]?.GetValue<string>();
-            loginState.Success = login_complete.HasValue && login_complete.Value;
-            if (!loginState.Success)
-            {
-                //if (string.IsNullOrEmpty(oauth))
-                //{
-                //    throw new Exception($"doLogin 出现错误: Invalid response from Steam (No OAuth token)");
-                //}
-                if (!string.IsNullOrEmpty(message))
-                {
-                    loginState.Message = $"登录错误: " + message;
-                    return result;
-                }
-            }
-            else
-            {
-                // oauth登录成功
-                //var oauthjson = JObject.Parse(oauth);
-                //loginState.OAuthToken = SelectTokenValueNotNull<string>(oauth, oauthjson, "oauth_token");
-                //if (oauthjson.SelectToken("steamid") != null)
-                //{
-                //    loginState.SteamId = SelectTokenValueNotNull<string>(oauth, oauthjson, "steamid");
-                //}
-
-                // 登录成功
-                var doLoginRespone = JsonSerializer.Deserialize(jsonObj.ToString(), DefaultJsonSerializerContext_.Default.DoLoginResponse);
-                if (doLoginRespone != null)
-                {
-                    var session = new SteamSession();
-                    session.CookieContainer = cookieContainer;
-                    session.SteamId = loginState.SteamId.ToString();
-                    loginState.Cookies = cookieContainer.GetAllCookies();
-                    //loginState.Cookies.Add(new Cookie("sessionid", "", "/", "steamcommunity.com"));
-                    if (doLoginRespone.TransferParameters != null && doLoginRespone.TransferUrls != null)
-                    {
-                        session.AccessToken = doLoginRespone.TransferParameters.Auth;
-                        loginState.SteamIdString = doLoginRespone.TransferParameters.Steamid;
-
-                        _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
-                        loginState.SteamId = steamid;
-
-                        if (isTransfer)
-                        {
-                            foreach (var url in doLoginRespone.TransferUrls)
-                            {
-                                await WaitAndRetryAsync().ExecuteAsync(async () =>
-                                {
-                                    var req = new HttpRequestMessage(HttpMethod.Post, url)
-                                    {
-                                        Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                                    {
-                                          { "steamid", doLoginRespone.TransferParameters.Steamid },
-                                          { "token_secure", doLoginRespone.TransferParameters.TokenSecure },
-                                          { "auth", doLoginRespone.TransferParameters.Auth },
-                                          { "remember_login", doLoginRespone.TransferParameters.RememberLogin.ToString() },
-                                          { "webcookie", doLoginRespone.TransferParameters.Webcookie },
-                                    }),
-                                    };
-
-                                    req.Headers.UserAgent.Clear();
-                                    req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-
-                                    (await client.SendAsync(req)).EnsureSuccessStatusCode();
-                                });
-                            }
-                        }
-                    }
-                    sessions.AddOrSetSession(session);
-                    result = ApiRspHelper.Ok();
-                }
-            }
-            return result;
-        }
-        finally
-        {
-            isolated.Dispose();
-        }
-    }
 
     [GeneratedRegex("<input type=\"hidden\" name=\"(.*?)\" value=\"(.*?)\" />")]
     private static partial Regex OpenIdLoginRegex();
@@ -414,58 +494,12 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
-    public async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(string username, string password)
-    {
-        var data = UrlEncoder.Default.Encode(new CAuthentication_GetPasswordRSAPublicKey_Request()
-        {
-            AccountName = username,
-        }.ToByteString().ToBase64());
-
-        var requestUri = new Uri("https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded=" + data);
-
-        var result = await WaitAndRetryAsync().ExecuteAsync(async () =>
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-
-            var respone = await CreateClient().SendAsync(request);
-
-            if (!respone.IsSuccessStatusCode)
-            {
-                throw new Exception($"获取 RSAKey 出现错误: {respone.StatusCode}");
-            }
-
-            var result = CAuthentication_GetPasswordRSAPublicKey_Response.Parser.ParseFrom(
-                await respone.Content.ReadAsStreamAsync());
-            try
-            {
-                // 使用 RSA 密钥加密密码
-                using var rsa = new RSACryptoServiceProvider();
-                var passwordBytes = Encoding.ASCII.GetBytes(password);
-                var p = rsa.ExportParameters(false);
-                p.Exponent = Convert.FromHexString(result.PublickeyExp);
-                p.Modulus = Convert.FromHexString(result.PublickeyMod);
-                rsa.ImportParameters(p);
-                byte[] encryptedPassword = rsa.Encrypt(passwordBytes, false);
-                var encryptedPassword64 = Convert.ToBase64String(encryptedPassword);
-                return (encryptedPassword64, result.Timestamp);
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "RSA 加密密码失败");
-                throw;
-            }
-        });
-
-        return result;
-    }
-
     public async Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState)
     {
         var apiRsp = ApiRspHelper.Fail();
         loginState.Success = false;
-        var cookieContainer = new CookieContainer();
-        var isolated = new IsolatedCookieContainer(cookieContainer);
-        var client = isolated.Client;
+
+        var client = CreateClient(loginState.Username.ThrowIsNull());
         try
         {
             if (loginState.ClientId != null)
