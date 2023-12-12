@@ -10,6 +10,7 @@ public interface ISteamAccountService
     /// </summary>
     /// <param name="username"></param>
     /// <param name="password"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
     [Obsolete("use GetRSAkeyV2Async")]
@@ -23,6 +24,7 @@ public interface ISteamAccountService
     /// </summary>
     /// <param name="username"></param>
     /// <param name="password"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(
         string username,
@@ -35,6 +37,7 @@ public interface ISteamAccountService
     /// <param name="loginState">登录状态</param>
     /// <param name="isTransfer"></param>
     /// <param name="isDownloadCaptchaImage"></param>
+    /// <param name="cancellationToken"></param>
     [Obsolete("use DoLoginV2Async")]
     Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false, CancellationToken cancellationToken = default);
 

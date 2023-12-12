@@ -74,7 +74,7 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
     public string? EmailCode { get; set; }
 
     /// <summary>
-    /// 2FA验证码
+    /// 2FA 验证码
     /// </summary>
     [MPKey(9), MP2Key(9), JsonPropertyOrder(9)]
     public string? TwofactorCode { get; set; }

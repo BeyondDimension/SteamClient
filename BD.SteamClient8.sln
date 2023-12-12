@@ -88,6 +88,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Toast", "ref\Com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.Primitives.Essentials", "ref\Common\src\BD.Common8.Primitives.Essentials\BD.Common8.Primitives.Essentials.csproj", "{D4C41EB4-6743-4441-BD9E-2125A21561C3}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.Common8.SourceGenerator.Bcl", "ref\Common\src\BD.Common8.SourceGenerator.Bcl\BD.Common8.SourceGenerator.Bcl.csproj", "{43C1EF31-FDC1-425D-B36D-740AB01A8F30}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -178,6 +180,10 @@ Global
 		{D4C41EB4-6743-4441-BD9E-2125A21561C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4C41EB4-6743-4441-BD9E-2125A21561C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4C41EB4-6743-4441-BD9E-2125A21561C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43C1EF31-FDC1-425D-B36D-740AB01A8F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43C1EF31-FDC1-425D-B36D-740AB01A8F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43C1EF31-FDC1-425D-B36D-740AB01A8F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43C1EF31-FDC1-425D-B36D-740AB01A8F30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -212,6 +218,7 @@ Global
 		{D8C98EBB-1DAB-4B50-81DA-49C237958FCF} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
 		{06C6C545-0524-4174-AA12-9594A6145AC2} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
 		{D4C41EB4-6743-4441-BD9E-2125A21561C3} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
+		{43C1EF31-FDC1-425D-B36D-740AB01A8F30} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F80A561-CAE0-4797-B779-42B29CA75687}

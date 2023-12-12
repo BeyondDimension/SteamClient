@@ -1,11 +1,12 @@
 #pragma warning disable SA1600
+
 namespace BD.SteamClient8.Impl.WebApi;
 
 public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, ISteamTradeService
 {
     const string TAG = "SteamTradeWebApiS";
 
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
 
@@ -15,12 +16,9 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public SteamTradeServiceImpl(
         IServiceProvider s,
-        IClientHttpClientFactory clientFactory,
-        IHttpPlatformHelperService platformHelperService,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            platformHelperService,
-            clientFactory)
+            s)
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
         _sessionService = s.GetRequiredService<ISteamSessionService>();
@@ -142,15 +140,20 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             { "partner", partner },
             { "captcha", "" }
         };
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_TRADEOFFER_ACCPET.Format(trade_offer_id))
-        {
-            Content = new FormUrlEncodedContent(param)
-        };
-        httpRequestMessage.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id));
-        httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
 
-        return response.IsSuccessStatusCode;
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_ACCPET.Format(trade_offer_id))
+        {
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ConfigureRequestMessage = (req, args, token) =>
+            {
+                req.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id));
+            }
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        return response?.IsSuccessStatusCode ?? false;
     }
 
     public async Task<ApiRspImpl<TradeResponse?>> GetTradeOffersAsync(string api_key)
@@ -171,9 +174,9 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var builder = new UriBuilder(SteamApiUrls.STEAM_TRADEOFFER_GET_OFFERS);
         builder.Query = query;
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
-        var response = await CreateClient().SendAsync(httpRequestMessage);
-        return await response.Content.ReadFromJsonAsync(DefaultJsonSerializerContext_.Default.TradeResponse);
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
+        sendArgs.SetHttpClient(CreateClient());
+        return await SendAsync<TradeResponse>(sendArgs);
     }
 
     [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
@@ -190,25 +193,38 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var builder = new UriBuilder(SteamApiUrls.STEAM_TRADEOFFER_GET_OFFER);
         builder.Query = query;
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
-        var response = await CreateClient().SendAsync(httpRequestMessage);
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
+        sendArgs.SetHttpClient(CreateClient());
+        var json = await SendAsync<string>(sendArgs);
 
-        return JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement
-            .GetProperty("response")
-            .GetProperty("offer")
-            .Deserialize<TradeInfo>() ?? null;
+        using (var document = JsonDocument.Parse(json.ThrowIsNull()))
+        {
+            try
+            {
+                return document.RootElement
+                    .GetProperty("response")
+                    .GetProperty("offer")
+                    .Deserialize<TradeInfo>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 
     public async Task<ApiRspImpl<TradeSummary?>> GetTradeOffersSummaryAsync(string api_key)
     {
-        var response = await CreateClient().GetAsync(SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key));
-        if (response.IsSuccessStatusCode)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key)) { Method = HttpMethod.Get };
+        sendArgs.SetHttpClient(CreateClient());
+        var response = await SendAsync<HttpResponseMessage>(sendArgs);
+        if (response.ThrowIsNull().IsSuccessStatusCode)
         {
             var contentString = await response.Content.ReadAsStringAsync();
             if (InvalidAPIKey(contentString))
                 throw new Exception("the steam api_key is invalid!");
 
-            return (await response.Content.ReadFromJsonAsync(DefaultJsonSerializerContext_.Default.TradeSummaryResponse))?.Response;
+            return (await ReadFromSJsonAsync<TradeSummaryResponse>(response.Content, null))?.Response;
         }
         return null;
     }
@@ -244,21 +260,18 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var builder = new UriBuilder(SteamApiUrls.STEAM_TRADEOFFER_GET_HISTORY);
         builder.Query = query;
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
-
-        var response = await CreateClient().SendAsync(httpRequestMessage);
-        var result = await ReadFromSJsonAsync<TradeHistory>(response.Content, null);
-
-        return result?.Response;
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
+        sendArgs.SetHttpClient(CreateClient());
+        return (await SendAsync<TradeHistory>(sendArgs))?.Response;
     }
 
-    public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message)
+    public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message)
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
             throw new Exception($"Unable to find session for {steam_id}, please login first");
 
-        var offer_string = GenerateJsonTradeOffer(my_itmes, them_items);
+        var offer_string = GenerateJsonTradeOffer(my_items, them_items);
         var sessionid = await FetchSessionId(steamSession);
         var server_id = 1;
         var param = new Dictionary<string, string>
@@ -275,14 +288,20 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var partner_account_id = ToSteamId32(target_steam_id);
         var tradeoffer_url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/tradeoffer/new/?partner={partner_account_id}";
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_TRADEOFFER_SEND);
-        httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        httpRequestMessage.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
-        httpRequestMessage.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
-        httpRequestMessage.Content = new FormUrlEncodedContent(param);
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_SEND)
+        {
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ConfigureRequestMessage = (req, args, token) =>
+            {
+                req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
+                req.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
+            }
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        return response.IsSuccessStatusCode;
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        return response?.IsSuccessStatusCode ?? false;
     }
 
     public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message)
@@ -316,14 +335,20 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         var tradeoffer_url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/tradeoffer/new/{uri.Query}";
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_TRADEOFFER_SEND);
-        httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        httpRequestMessage.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
-        httpRequestMessage.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
-        httpRequestMessage.Content = new FormUrlEncodedContent(param);
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_SEND)
+        {
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ConfigureRequestMessage = (req, args, token) =>
+            {
+                req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
+                req.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
+            }
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        return response.IsSuccessStatusCode;
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        return response?.IsSuccessStatusCode ?? false;
     }
 
     public async Task<ApiRspImpl<bool>> CancelTradeOfferAsync(string steam_id, string trade_offer_id)
@@ -333,15 +358,16 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             throw new Exception($"Unable to find session for {steam_id}, please login first");
 
         var sessionid = await FetchSessionId(steamSession);
-        var param = new Dictionary<string, string>()
+        var param = new Dictionary<string, string>() { { "sessionid", sessionid } };
+
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_CANCEL.Format(trade_offer_id))
         {
-            { "sessionid", sessionid }
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
         };
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_TRADEOFFER_CANCEL.Format(trade_offer_id));
-        httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        httpRequestMessage.Content = new FormUrlEncodedContent(param);
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        return response.IsSuccessStatusCode;
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        return response?.IsSuccessStatusCode ?? false;
     }
 
     public async Task<ApiRspImpl<bool>> DeclineTradeOfferAsync(string steam_id, string trade_offer_id)
@@ -351,15 +377,16 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             throw new Exception($"Unable to find session for {steam_id}, please login first");
 
         var sessionid = await FetchSessionId(steamSession);
-        var param = new Dictionary<string, string>()
+        var param = new Dictionary<string, string>() { { "sessionid", sessionid } };
+
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_DECLINE.Format(trade_offer_id))
         {
-            { "sessionid", sessionid }
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
         };
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_TRADEOFFER_DECLINE.Format(trade_offer_id));
-        httpRequestMessage.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        httpRequestMessage.Content = new FormUrlEncodedContent(param);
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        return response.IsSuccessStatusCode;
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        return response?.IsSuccessStatusCode ?? false;
     }
     #endregion
 
@@ -375,22 +402,29 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var query = string.Join("&", queryString.Keys
         .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
 
-        using var httpRequestMessage = new HttpRequestMessage();
-        httpRequestMessage.Headers.TryAddWithoutValidation("X-Requested-With", "'com.valvesoftware.android.steam.community'");
         var builder = new UriBuilder(SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATIONS);
         builder.Query = query;
-        httpRequestMessage.RequestUri = builder.Uri;
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
+
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri)
+        {
+            Method = HttpMethod.Get,
+            ConfigureRequestMessage = (req, args, token) =>
+            {
+                req.Headers.TryAddWithoutValidation("X-Requested-With", "'com.valvesoftware.android.steam.community'");
+            }
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var response = await SendAsync<HttpResponseMessage>(sendArgs);
 
         List<Confirmation> failed = [];
-        if (response.IsSuccessStatusCode)
+        if (response != null && response.IsSuccessStatusCode)
         {
             var contentString = await response.Content.ReadAsStringAsync();
-            var confirmations_page = JsonDocument.Parse(contentString).RootElement;
+            using var confirmations_page = JsonDocument.Parse(contentString);
             if (contentString.Contains("Steam Guard Mobile Authenticator is providing incorrect Steam Guard codes."))
                 return failed!;
 
-            var confirmations = confirmations_page.GetProperty("conf").Deserialize<IEnumerable<Confirmation>>();
+            var confirmations = confirmations_page.RootElement.GetProperty("conf").Deserialize<IEnumerable<Confirmation>>();
             confirmations ??= failed;
             return ApiRspHelper.Ok(confirmations)!;
         }
@@ -459,11 +493,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var builder = new UriBuilder(SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS.Format(confirmation.Id));
         builder.Query = query;
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri);
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var resp = await SendAsync<HttpResponseMessage>(sendArgs);
 
-        var resp = await steamSession.HttpClient!.SendAsync(httpRequestMessage);
-
-        resp.EnsureSuccessStatusCode();
+        resp.ThrowIsNull().EnsureSuccessStatusCode();
 
         var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync()).RootElement.GetProperty("html").GetString();
 
@@ -521,14 +555,21 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var query = string.Join("&", queryString.Keys
          .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
 
-        using var httpRequestMessage = new HttpRequestMessage();
-        httpRequestMessage.Headers.TryAddWithoutValidation("X-Requested-With", "XMLHttpRequest");
         var builder = new UriBuilder(SteamApiUrls.STEAM_MOBILECONF_CONFIRMATION);
         builder.Query = query;
-        httpRequestMessage.RequestUri = builder.Uri;
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
 
-        if (response.IsSuccessStatusCode)
+        using var sendArgs = new WebApiClientSendArgs(builder.Uri)
+        {
+            ConfigureRequestMessage = (req, args, token) =>
+            {
+                req.Headers.TryAddWithoutValidation("X-Requested-With", "XMLHttpRequest");
+            }
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+
+        var response = await SendAsync<HttpResponseMessage>(sendArgs);
+
+        if (response != null && response.IsSuccessStatusCode)
         {
             var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
             if (root.TryGetProperty("success", out var success))
@@ -559,10 +600,15 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         //string str = string.Join("&", param.Select(x => $"{Uri.EscapeDataString(x.Key)}={Uri.EscapeDataString(x.Value)}"));
 
-        using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_MOBILECONF_BATCH_CONFIRMATION);
-        httpRequestMessage.Content = new FormUrlEncodedContent(param);
-        var response = await steamSession.HttpClient.SendAsync(httpRequestMessage);
-        if (response.IsSuccessStatusCode)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_MOBILECONF_BATCH_CONFIRMATION)
+        {
+            Method = HttpMethod.Post,
+            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+
+        var response = await SendAsync<HttpResponseMessage, List<KeyValuePair<string, string>>>(sendArgs, param);
+        if (response != null && response.IsSuccessStatusCode)
         {
             var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
             if (root.TryGetProperty("success", out var success))
@@ -630,11 +676,13 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return page_text[start..end];
     }
 
-    private static async Task<string> FetchSessionId(SteamSession steamSession)
+    private async Task<string> FetchSessionId(SteamSession steamSession)
     {
         if (string.IsNullOrEmpty(steamSession.CookieContainer.GetCookieValue(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL), "sessionid")))
         {
-            await steamSession.HttpClient.GetAsync(SteamApiUrls.STEAM_LOGIN_URL);
+            using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_URL);
+            sendArgs.SetHttpClient(steamSession.HttpClient!);
+            await SendAsync<string>(sendArgs);
         }
         return steamSession.CookieContainer.GetCookieValue(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL), "sessionid")!;
     }
@@ -659,7 +707,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
                 Ready = false
             }
         };
-        return SystemTextJsonSerializer.Serialize(offer, options: new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        return SystemTextJsonSerializer.Serialize(offer, options: new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
     }
     #endregion
 

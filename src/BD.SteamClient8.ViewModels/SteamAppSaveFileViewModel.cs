@@ -5,45 +5,23 @@ using SysIOPath = System.IO.Path;
 namespace BD.SteamClient8.ViewModels;
 
 #pragma warning disable SA1600
-public class SteamAppSaveFileViewModel : ReactiveObject
+[ViewModelWrapperGenerated(typeof(SteamAppSaveFile)
+#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#pragma warning disable SA1115// Parameter should follow comma
+#pragma warning disable SA1001 // Commas should be spaced correctly
+#pragma warning disable SA1113 // Comma should be on the same line as previous parameter
+    , Properties = [
+        nameof(SteamAppSaveFile.FormatDirPath),
+        nameof(SteamAppSaveFile.FormatFilePath),
+    ]
+#pragma warning restore SA1113 // Comma should be on the same line as previous parameter
+#pragma warning restore SA1001 // Commas should be spaced correctly
+#pragma warning restore SA1115 // Parameter should follow comma
+#endif
+)]
+public partial class SteamAppSaveFileViewModel
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-
-    public SteamAppSaveFileViewModel(uint appid, string? root, string? path, string? pattern)
-    {
-        ParentAppId = appid;
-        Root = root;
-        Path = path;
-        Pattern = pattern;
-    }
-
-    public uint ParentAppId { get; set; }
-
-    public string? Root { get; set; }
-
-    public string? Path { get; set; }
-
-    public string? Pattern { get; set; }
-
-    string? _FormatDirPath;
-
-    public string? FormatDirPath
-    {
-        get => _FormatDirPath;
-        set => this.RaiseAndSetIfChanged(ref _FormatDirPath, value);
-    }
-
-    string? _FormatFilePath;
-
-    public string? FormatFilePath
-    {
-        get => _FormatFilePath;
-        set => this.RaiseAndSetIfChanged(ref _FormatFilePath, value);
-    }
-
-    public bool Recursive { get; set; }
-
-    public string? Platforms { get; set; }
 
     public void FormatPathGenerate()
     {
@@ -96,28 +74,5 @@ public class SteamAppSaveFileViewModel : ReactiveObject
 
         FormatFilePath = SysIOPath.GetFullPath(SysIOPath.Combine(path, Pattern));
     }
-
-    /// <summary>
-    /// <see cref="SteamAppSaveFile"/> 隐式转换 <see cref="SteamAppSaveFileViewModel"/>
-    /// </summary>
-    /// <param name="steamAppSaveFile"></param>
-    public static implicit operator SteamAppSaveFileViewModel(SteamAppSaveFile steamAppSaveFile) => new(steamAppSaveFile);
-
-    /// <summary>
-    /// <see cref="SteamAppSaveFile"/> 构造实例 <see cref="SteamAppSaveFileViewModel"/>
-    /// </summary>
-    /// <param name="steamAppSaveFile"></param>
-    public SteamAppSaveFileViewModel(SteamAppSaveFile steamAppSaveFile)
-    {
-        ParentAppId = steamAppSaveFile.ParentAppId;
-        Root = steamAppSaveFile.Root;
-        Path = steamAppSaveFile.Path;
-        Pattern = steamAppSaveFile.Pattern;
-        FormatDirPath = steamAppSaveFile.FormatDirPath;
-        FormatFilePath = steamAppSaveFile.FormatFilePath;
-        Recursive = steamAppSaveFile.Recursive;
-        Platforms = steamAppSaveFile.Platforms;
-    }
-
 #endif
 }

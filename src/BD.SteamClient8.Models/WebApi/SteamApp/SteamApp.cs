@@ -7,52 +7,52 @@ public class SteamApp
 #endif
 {
     [SystemTextJsonIgnore]
-    public string NodeAppInfo { get; private init; } = "appinfo";
+    public string NodeAppInfo { get; } = "appinfo";
 
     [SystemTextJsonIgnore]
-    public string NodeAppType { get; private init; } = "type";
+    public string NodeAppType { get; } = "type";
 
     [SystemTextJsonIgnore]
-    public string NodeCommon { get; private init; } = "common";
+    public string NodeCommon { get; } = "common";
 
     [SystemTextJsonIgnore]
-    public string NodeConfig { get; private init; } = "config";
+    public string NodeConfig { get; } = "config";
 
     [SystemTextJsonIgnore]
-    public string NodeExtended { get; private init; } = "extended";
+    public string NodeExtended { get; } = "extended";
 
     [SystemTextJsonIgnore]
-    public string NodeId { get; private init; } = "gameid";
+    public string NodeId { get; } = "gameid";
 
     [SystemTextJsonIgnore]
-    public string NodeName { get; private init; } = "name";
+    public string NodeName { get; } = "name";
 
     [SystemTextJsonIgnore]
-    public string NodeParentId { get; private init; } = "parent";
+    public string NodeParentId { get; } = "parent";
 
     [SystemTextJsonIgnore]
-    public string NodePlatforms { get; private init; } = "oslist";
+    public string NodePlatforms { get; } = "oslist";
 
     [SystemTextJsonIgnore]
-    public string NodePlatformsLinux { get; private init; } = "linux";
+    public string NodePlatformsLinux { get; } = "linux";
 
     [SystemTextJsonIgnore]
-    public string NodePlatformsMac { get; private init; } = "mac";
+    public string NodePlatformsMac { get; } = "mac";
 
     [SystemTextJsonIgnore]
-    public string NodePlatformsWindows { get; private init; } = "windows";
+    public string NodePlatformsWindows { get; } = "windows";
 
     [SystemTextJsonIgnore]
-    public string NodeSortAs { get; private init; } = "sortas";
+    public string NodeSortAs { get; } = "sortas";
 
     [SystemTextJsonIgnore]
-    public string NodeDeveloper { get; private init; } = "developer";
+    public string NodeDeveloper { get; } = "developer";
 
     [SystemTextJsonIgnore]
-    public string NodePublisher { get; private init; } = "publisher";
+    public string NodePublisher { get; } = "publisher";
 
     [SystemTextJsonIgnore]
-    public string NodeLaunch { get; private init; } = "launch";
+    public string NodeLaunch { get; } = "launch";
 
     public SteamApp() { }
 
@@ -221,7 +221,7 @@ public class SteamApp
     public uint ParentId { get; set; }
 
     /// <summary>
-    /// 是否支持Steam云存档
+    /// 是否支持 Steam 云存档
     /// </summary>
     public bool IsCloudArchive => CloudQuota > 0;
 
@@ -236,7 +236,7 @@ public class SteamApp
     public int CloudMaxnumFiles { get; set; }
 
     /// <summary>
-    /// 最后运行用户SteamId64
+    /// 最后运行用户 SteamId64
     /// </summary>
     public long LastOwner { get; set; }
 

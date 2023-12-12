@@ -15,27 +15,32 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
     private readonly IHttpPlatformHelperService http_helper;
 
     public SteamDbWebApiServiceImpl(
-        IClientHttpClientFactory clientFactory,
+        IServiceProvider serviceProvider,
         IHttpPlatformHelperService http_helper,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            http_helper,
-            clientFactory)
+            serviceProvider)
     {
         this.http_helper = http_helper;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    async Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
+    async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
         try
         {
             var client = CreateClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Accept.ParseAdd(accept);
-            request.Headers.TryAddWithoutValidation("User-Agent", http_helper.UserAgent);
-            var response = await client.SendAsync(request, cancellationToken);
-            return await ReadFromSJsonAsync<T>(response.Content, null);
+            var sendArgs = new WebApiClientSendArgs(requestUri)
+            {
+                Method = HttpMethod.Get,
+                ConfigureRequestMessage = (req, args, token) =>
+                {
+                    req.Headers.Accept.ParseAdd(accept);
+                    req.Headers.TryAddWithoutValidation("User-Agent", http_helper.UserAgent);
+                }
+            };
+            sendArgs.SetHttpClient(client);
+            return await SendAsync<T>(sendArgs, cancellationToken);
         }
         catch
         {

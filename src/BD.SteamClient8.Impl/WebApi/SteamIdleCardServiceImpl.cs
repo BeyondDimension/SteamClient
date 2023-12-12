@@ -1,30 +1,23 @@
-namespace BD.SteamClient8.Impl.WebApi;
-
 using AngleSharp.Common;
-using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
-using BD.Common8.Toast.Helpers;
 using Nito.Comparers.Linq;
-using System.Linq;
+
+namespace BD.SteamClient8.Impl.WebApi;
 
 #pragma warning disable SA1600
 public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCardService
 {
     const string TAG = "SteamIdleS";
 
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     private readonly ISteamSessionService _sessionService;
 
     public SteamIdleCardServiceImpl(
         IServiceProvider s,
-        IClientHttpClientFactory clientFactory,
-        IHttpPlatformHelperService platformHelperService,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            platformHelperService,
-            clientFactory)
+            s)
     {
         _sessionService = s.GetRequiredService<ISteamSessionService>();
     }
@@ -41,13 +34,13 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         var parser = new HtmlParser();
         int pagesCount = 1;
 
-        var page = await steamSession.HttpClient.GetStringAsync(badges_url);
+        var page = await steamSession.HttpClient!.GetStringAsync(badges_url);
         var document = parser.ParseDocument(page);
 
         var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
         if (pageNodes != null)
         {
-            pages.AddRange(pageNodes.Select(p => p.Attributes["href"].Value).Distinct());
+            pages.AddRange(pageNodes.Where(x => x.HasAttribute("href")).Select(p => p.GetAttribute("href")!).Distinct());
             pages = pages.Distinct().ToList();
         }
 
@@ -109,16 +102,16 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         var userIdle = new UserIdleInfo();
         try
         {
-            userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium").LastElementChild.GetAttribute("src");
-            userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content").TextContent.Trim();
-            userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
-            userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
+            userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium")?.LastElementChild?.GetAttribute("src");
+            userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content")?.TextContent.Trim();
+            userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum")?.TextContent, out var after_userLevel) ? after_userLevel : default;
+            userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
 
-            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
+            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
             if (matchs.Count >= 2)
                 userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
 
-            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress").OuterHtml, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
+            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress")?.OuterHtml ?? string.Empty, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
         }
         catch (Exception ex)
         {

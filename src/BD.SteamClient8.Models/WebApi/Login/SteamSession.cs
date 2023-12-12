@@ -12,7 +12,7 @@ public sealed partial class SteamSession
     /// 登录 Token
     /// </summary>
     [MPKey(1), SystemTextJsonProperty("access_token")]
-    public string? AccessToken { get; set; }
+    public string AccessToken { get; set; } = string.Empty;
 
     /// <summary>
     /// 刷新 Token 所需密钥

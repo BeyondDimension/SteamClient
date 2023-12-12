@@ -12,7 +12,7 @@ public sealed class DoLoginResponse : JsonModel
     public bool Success { get; set; }
 
     /// <summary>
-    /// 是否需要2FA验证码
+    /// 是否需要 2FA 验证码
     /// </summary>
     [SystemTextJsonProperty("requires_twofactor")]
     public bool RequiresTwofactor { get; set; }
@@ -24,7 +24,7 @@ public sealed class DoLoginResponse : JsonModel
     public bool LoginComplete { get; set; }
 
     /// <summary>
-    /// 跳转 urls
+    /// 跳转 Urls
     /// </summary>
     [SystemTextJsonProperty("transfer_urls")]
     public List<string>? TransferUrls { get; set; }

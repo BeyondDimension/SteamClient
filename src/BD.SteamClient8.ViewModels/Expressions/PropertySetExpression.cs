@@ -11,7 +11,9 @@ public static class PropertySetExpression
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TTarget"></typeparam>
     /// <returns></returns>
-    public static Expression<Action<TSource, TTarget>> CreateCopyExpression<TSource, TTarget>()
+    public static Expression<Action<TSource, TTarget>> CreateCopyExpression<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TSource,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TTarget>()
     {
         var sourceParameter = Expression.Parameter(typeof(TSource), "source");
         var targetParameter = Expression.Parameter(typeof(TTarget), "target");

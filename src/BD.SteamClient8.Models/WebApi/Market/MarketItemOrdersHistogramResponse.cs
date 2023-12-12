@@ -24,7 +24,7 @@ public record class MarketItemOrdersHistogramResponse
     public string SellOrderSummary { get; set; } = string.Empty;
 
     /// <summary>
-    /// 订购单Html table 标签字符串
+    /// 订购单 Html table 标签字符串
     /// </summary>
     [SystemTextJsonProperty("buy_order_table")]
     public string BuyOrderTable { get; set; } = string.Empty;

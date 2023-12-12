@@ -1,13 +1,20 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
 #pragma warning disable SA1600
-public class SteamSessionServiceImpl : ISteamSessionService
+public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSessionService
 {
     private const string TAG = "SteamSessionS";
 
+    protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+
+    protected sealed override string ClientName => TAG;
+
     private readonly ConcurrentDictionary<string, SteamSession> _sessions;
 
-    public SteamSessionServiceImpl()
+    public SteamSessionServiceImpl(
+        IServiceProvider serviceProvider,
+        ILoggerFactory loggerFactory) : base(loggerFactory.CreateLogger(TAG),
+            serviceProvider)
     {
         _sessions = new ConcurrentDictionary<string, SteamSession>();
     }
@@ -18,12 +25,8 @@ public class SteamSessionServiceImpl : ISteamSessionService
             return false;
 
         var tag = SpecialTag(steamSession.SteamId);
-        var handler = new HttpClientHandler()
-        {
-            UseCookies = true,
-            CookieContainer = steamSession.CookieContainer,
-        };
-        steamSession.HttpClient = new HttpClient(handler);
+        steamSession.HttpClient = CreateClient(tag);
+        steamSession.CookieContainer = GetCookieContainer(tag);
         _sessions[tag] = steamSession;
         return true;
     }

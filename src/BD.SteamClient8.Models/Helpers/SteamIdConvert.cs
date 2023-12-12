@@ -8,7 +8,14 @@ public class SteamIdConvert
     //   string Steam64 = sid.Id64;
 
 #pragma warning disable SA1132 // Do not combine fields
-    public string Id = "STEAM_0:", Id3 = "U:1:", Id32 = string.Empty, Id64 = string.Empty;
+    const string Default_Id = "STEAM_0:";
+    const string Default_Id3 = "U:1:";
+
+    public string
+        Id = Default_Id,
+        Id3 = Default_Id3,
+        Id32 = string.Empty,
+        Id64 = string.Empty;
 
     private string? _input;
     private byte _inputType;
@@ -71,7 +78,7 @@ public class SteamIdConvert
     {
         if (_inputType == SteamId)
         {
-            Id = _input;
+            Id = _input ?? Default_Id;
         }
         else
         {
@@ -90,7 +97,7 @@ public class SteamIdConvert
     private void CalcSteamId3()
     {
         if (_inputType == SteamId3)
-            Id3 = _input;
+            Id3 = _input ?? Default_Id3;
         else
             Id3 += CalcSteamId32();
         Id3 = $"[{Id3}]";
@@ -100,7 +107,7 @@ public class SteamIdConvert
     {
         if (_inputType == SteamId32)
         {
-            Id32 = _input;
+            Id32 = _input ?? string.Empty;
         }
         else
         {
@@ -119,7 +126,7 @@ public class SteamIdConvert
     private void CalcSteamId64()
     {
         if (_inputType == SteamId64)
-            Id64 = _input;
+            Id64 = _input ?? string.Empty;
         else
             Id64 = _inputType switch
             {

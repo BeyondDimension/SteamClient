@@ -60,7 +60,7 @@ public static class SteamAppExtensions
             {
                 steamApp.Name = appInfo.Name;
 
-                SteamAppPropertyTable propertyValue2 = steamApp._properties.GetPropertyValue<SteamAppPropertyTable>(null, steamApp.NodeAppInfo, steamApp.NodeCommon, "name_localized");
+                SteamAppPropertyTable? propertyValue2 = steamApp._properties.GetPropertyValue<SteamAppPropertyTable>(null, steamApp.NodeAppInfo, steamApp.NodeCommon, "name_localized");
                 if (propertyValue2 != null)
                 {
                     steamApp._properties.SetPropertyValue(SteamAppPropertyType.Table, propertyValue2, steamApp.NodeAppInfo, "steam_edit", "base_name_localized");
@@ -269,7 +269,7 @@ public static class SteamAppExtensions
                                           Arguments = table.GetPropertyValue<string?>("arguments"),
                                           WorkingDir = table.GetPropertyValue<string?>("workingdir"),
                                           Platform = table.TryGetPropertyValue<SteamAppPropertyTable>(steamApp.NodeConfig, out var propertyTable) ?
-                                          propertyTable.TryGetPropertyValue<string>(steamApp.NodePlatforms, out var os) ? os : null : null,
+                                          propertyTable!.TryGetPropertyValue<string>(steamApp.NodePlatforms, out var os) ? os : null : null,
                                       };
 
                     steamApp.LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());

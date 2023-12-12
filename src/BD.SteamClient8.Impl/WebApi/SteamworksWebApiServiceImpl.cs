@@ -8,12 +8,10 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
     protected override string? ClientName => TAG;
 
     public SteamworksWebApiServiceImpl(
-        IClientHttpClientFactory clientFactory,
-        IHttpPlatformHelperService platformHelperService,
+        IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            platformHelperService,
-            clientFactory)
+            serviceProvider)
     {
     }
 

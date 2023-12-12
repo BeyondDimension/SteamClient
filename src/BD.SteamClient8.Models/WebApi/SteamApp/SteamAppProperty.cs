@@ -53,7 +53,7 @@ public class SteamAppProperty
         set
         {
             _value = null;
-            if (ValueType.IsAssignableFrom(value.GetType()))
+            if (ValueType != null && ValueType.IsAssignableFrom(value?.GetType()))
             {
                 _value = value;
             }

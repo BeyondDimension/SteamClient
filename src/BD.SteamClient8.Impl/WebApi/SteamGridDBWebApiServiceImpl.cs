@@ -12,33 +12,38 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
     private readonly IHttpPlatformHelperService http_helper;
 
     public SteamGridDBWebApiServiceImpl(
-        IClientHttpClientFactory clientFactory,
+        IServiceProvider serviceProvider,
         IHttpPlatformHelperService http_helper,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            http_helper,
-            clientFactory)
+            serviceProvider)
     {
         this.http_helper = http_helper;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    async Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
+    async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
         try
         {
-            var client = CreateClient(); ;
+            var client = CreateClient();
             var apiKeySteamGridDB = ISteamGridDBWebApiServiceImpl.ApiKey;
             apiKeySteamGridDB.ThrowIsNull();
-            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
-            request.Headers.Accept.ParseAdd(accept);
-            var userAgent = http_helper.UserAgent;
-            if (userAgent != null)
-                request.Headers.UserAgent.ParseAdd(userAgent);
 
-            var rsp = await client.SendAsync(request);
-            return await ReadFromSJsonAsync<T>(rsp.Content, null);
+            var sendArgs = new WebApiClientSendArgs(requestUri)
+            {
+                Method = HttpMethod.Get,
+                ConfigureRequestMessage = (req, args, token) =>
+                {
+                    req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
+                    req.Headers.Accept.ParseAdd(accept);
+                    var userAgent = http_helper.UserAgent;
+                    if (userAgent != null)
+                        req.Headers.UserAgent.ParseAdd(userAgent);
+                }
+            };
+            sendArgs.SetHttpClient(client);
+            return await SendAsync<T>(sendArgs, cancellationToken);
         }
         catch (Exception)
         {

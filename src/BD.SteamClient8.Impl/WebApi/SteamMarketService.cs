@@ -8,16 +8,14 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     /// <summary>
     /// HttpClient 标识名称
     /// </summary>
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
 
-    public SteamMarketService(IClientHttpClientFactory clientFactory,
-        IHttpPlatformHelperService platformHelperService,
+    public SteamMarketService(IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
-            platformHelperService,
-            clientFactory)
+            serviceProvider)
     {
     }
 
@@ -68,13 +66,12 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 Path = "/"
             }
         };
-        var container = new CookieContainer();
+        var client = CreateClient(loginState.Username.ThrowIsNull());
+        var container = GetCookieContainer(loginState.Username);
         container.Add(cookieCollection);
-        var isolated = new IsolatedCookieContainer(container);
         var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Post,
-            IsolatedCookie = isolated,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
             ConfigureRequestMessage = (req, args, token) =>
             {
@@ -82,9 +79,9 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 req.Content = new FormUrlEncodedContent(data);
             },
         };
+        sendArgs.SetHttpClient(client);
 
         var resp = await SendAsync<SellItemToMarketResponse>(sendArgs);
-        isolated.Dispose();
         return resp!;
     }
 
@@ -107,15 +104,15 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 Path = "/",
             }
         };
-        var container = new CookieContainer();
+        var client = CreateClient(loginState.Username.ThrowIsNull());
+        var container = GetCookieContainer(loginState.Username);
         container.Add(cookieCollection);
-        var isolated = new IsolatedCookieContainer(container);
         var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Get,
-            IsolatedCookie = isolated,
             JsonImplType = Serializable.JsonImplType.SystemTextJson
         };
+        sendArgs.SetHttpClient(client);
 
         var result = await SendAsync<MarketTradingHistoryRenderPageResponse>(sendArgs);
 
@@ -123,7 +120,6 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
             yield break;
 
         var l = container.GetCookieValue(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL), "Steam_Language");
-        isolated.Dispose();
 
         IBrowsingContext browsingContext = BrowsingContext.New();
 
@@ -207,18 +203,17 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
         string requestUrl = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/";
 
-        var container = new CookieContainer();
+        var client = CreateClient(loginState.Username.ThrowIsNull());
+        var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        var isolated = new IsolatedCookieContainer(container);
         var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            IsolatedCookie = isolated,
         };
+        sendArgs.SetHttpClient(client);
 
         var respStream = await SendAsync<Stream>(sendArgs);
-        isolated.Dispose();
 
         if (respStream == null)
             return ApiRspHelper.Fail<MarketListings>($"{requestUrl} request error")!;
@@ -244,7 +239,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         {
             string rowId = rowElement.Id?.Trim() ?? string.Empty;
 
-            MarketListings.ActiveListingItem item = default;
+            MarketListings.ActiveListingItem item = new();
 
             item.Id = rowId.Replace(activeListingRowIdPrefix, string.Empty).ToString();
             item.ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty;
@@ -286,7 +281,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
             string rowId = rowElement.Id?.Trim() ?? string.Empty;
 
-            MarketListings.BuyorderItem item = default;
+            MarketListings.BuyorderItem item = new();
 
             item.Id = rowId.Replace(buyorderRowIdPrefix, string.Empty).ToString();
             item.ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty;
