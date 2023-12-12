@@ -627,17 +627,20 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
             var result = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1")
+                using var sendArgs = new WebApiClientSendArgs("https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1")
                 {
-                    Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                    {
-                        { "input_protobuf_encoded", input_protobuf_encoded },
-                    }),
+                    Method = HttpMethod.Post,
+                    ContentType = MediaTypeNames.FormUrlEncoded
+                };
+                sendArgs.SetHttpClient(client);
+                var param = new Dictionary<string, string?>()
+                {
+                    { "input_protobuf_encoded", input_protobuf_encoded },
                 };
 
-                var response = await client.SendAsync(request);
+                var response = await SendAsync<HttpResponseMessage, Dictionary<string, string?>>(sendArgs, param);
 
-                if (!response.IsSuccessStatusCode)
+                if (response != null && !response.IsSuccessStatusCode)
                 {
                     return true;
                 }
@@ -652,24 +655,27 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://login.steampowered.com/jwt/finalizelogin")
+                using var sendArgs = new WebApiClientSendArgs("https://login.steampowered.com/jwt/finalizelogin")
                 {
-                    Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                    {
-                        { "nonce", nonce },
-                        { "sessionid", sessionid },
-                        { "redir", "https://steamcommunity.com/login/home/?goto=" },
-                    }),
+                    Method = HttpMethod.Post,
+                    ContentType = MediaTypeNames.FormUrlEncoded
+                };
+                sendArgs.SetHttpClient(client);
+                var param = new Dictionary<string, string?>()
+                {
+                    { "nonce", nonce },
+                    { "sessionid", sessionid },
+                    { "redir", "https://steamcommunity.com/login/home/?goto=" },
                 };
 
-                var respone = await client.SendAsync(request);
+                var response = await SendAsync<HttpResponseMessage, Dictionary<string, string?>>(sendArgs, param);
 
-                if (!respone.IsSuccessStatusCode)
+                if (!response.ThrowIsNull().IsSuccessStatusCode)
                 {
-                    throw new Exception($"FinalizeLoginAsync 出现错误: {respone.StatusCode}");
+                    throw new Exception($"FinalizeLoginAsync 出现错误: {response.StatusCode}");
                 }
 
-                var result = await ReadFromSJsonAsync<FinalizeLoginStatus>(respone.Content, null);
+                var result = await ReadFromSJsonAsync<FinalizeLoginStatus>(response.Content, null);
 
                 if (result == null)
                 {

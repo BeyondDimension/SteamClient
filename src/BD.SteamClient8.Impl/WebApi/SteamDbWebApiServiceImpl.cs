@@ -8,7 +8,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
     /// <summary>
     /// HttpClient 标识名称
     /// </summary>
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
 
@@ -30,7 +30,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
         try
         {
             var client = CreateClient();
-            var sendArgs = new WebApiClientSendArgs(requestUri)
+            using var sendArgs = new WebApiClientSendArgs(requestUri)
             {
                 Method = HttpMethod.Get,
                 ConfigureRequestMessage = (req, args, token) =>

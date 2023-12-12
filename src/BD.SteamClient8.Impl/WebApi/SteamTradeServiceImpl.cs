@@ -199,17 +199,10 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using (var document = JsonDocument.Parse(json.ThrowIsNull()))
         {
-            try
-            {
-                return document.RootElement
-                    .GetProperty("response")
-                    .GetProperty("offer")
-                    .Deserialize<TradeInfo>();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            return document.RootElement
+                .GetProperty("response")
+                .GetProperty("offer")
+                .Deserialize<TradeInfo>().ThrowIsNull();
         }
     }
 
@@ -217,16 +210,23 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     {
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key)) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
-        var response = await SendAsync<HttpResponseMessage>(sendArgs);
-        if (response.ThrowIsNull().IsSuccessStatusCode)
+        try
         {
-            var contentString = await response.Content.ReadAsStringAsync();
-            if (InvalidAPIKey(contentString))
-                throw new Exception("the steam api_key is invalid!");
+            var response = await SendAsync<HttpResponseMessage>(sendArgs);
+            if (response.ThrowIsNull().IsSuccessStatusCode)
+            {
+                var contentString = await response.Content.ReadAsStringAsync();
+                if (InvalidAPIKey(contentString))
+                    throw new Exception("the steam api_key is invalid!");
 
-            return (await ReadFromSJsonAsync<TradeSummaryResponse>(response.Content, null))?.Response;
+                return (await ReadFromSJsonAsync<TradeSummaryResponse>(response.Content, null))?.Response;
+            }
+            return "GetTradeOffersSummaryAsync Response IsSuccessStatusCode false";
         }
-        return null;
+        catch (Exception ex)
+        {
+            return OnErrorReApiRspBase<ApiRspImpl<TradeSummary?>>(ex, sendArgs);
+        }
     }
 
     public async Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false)
@@ -658,15 +658,18 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         if (tradeResponse?.Response?.TradeOffersReceived != null)
             tradeResponse.Response.TradeOffersReceived = tradeResponse.Response.TradeOffersReceived.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
 
-        return tradeResponse;
+        return tradeResponse!;
     }
 
     private static string GetTradeOfferUrl(string trade_offer_id) => SteamApiUrls.STEAM_TRADEOFFER_URL.Format(trade_offer_id);
 
-    private static async Task<string> FetchTradePartnerId(SteamSession steamSession, string trade_offer_id)
+    private async Task<string> FetchTradePartnerId(SteamSession steamSession, string trade_offer_id)
     {
         var url = GetTradeOfferUrl(trade_offer_id);
-        var page_text = await steamSession.HttpClient.GetStringAsync(url);
+        using var sendArgs = new WebApiClientSendArgs(url);
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+
+        var page_text = await SendAsync<string>(sendArgs) ?? string.Empty;
         if (page_text.Contains("You have logged in from a new device. In order to protect the items"))
             return string.Empty;
 

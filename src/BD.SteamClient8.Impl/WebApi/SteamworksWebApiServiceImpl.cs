@@ -5,7 +5,7 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
 {
     const string TAG = "SteamworksWebApiS";
 
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     public SteamworksWebApiServiceImpl(
         IServiceProvider serviceProvider,
@@ -16,15 +16,19 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    async Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
+    async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
         try
         {
-            var client = CreateClient();
-            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-            request.Headers.TryAddWithoutValidation("accept", accept);
-            var response = await client.SendAsync(request, cancellationToken);
-            return await ReadFromSJsonAsync<T>(response.Content, null);
+            using var sendArgs = new WebApiClientSendArgs(requestUri)
+            {
+                ConfigureRequestMessage = (req, args, token) =>
+                {
+                    req.Headers.TryAddWithoutValidation("accept", accept);
+                }
+            };
+            sendArgs.SetHttpClient(CreateClient());
+            return await SendAsync<T>(sendArgs, cancellationToken);
         }
         catch
         {

@@ -56,13 +56,13 @@ public class SteamUser017 : NativeWrapper<ISteamUser019>
             var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
             ulong steamId;
             call(ObjectAddress, out steamId);
-            steamId = ((steamId >> (ushort)0) & 0xFFFFFFFF);
+            steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
             return steamId;
         }
         else
         {
             var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
-            steamId = ((steamId >> (ushort)0) & 0xFFFFFFFF);
+            steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
             return steamId;
         }
     }

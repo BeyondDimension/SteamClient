@@ -49,7 +49,7 @@ public class SteamApps001 : NativeWrapper<ISteamApps001>
             valueLength);
         var value = result == 0 ? null : NativeStrings.PointerToString(valuePointer, valueLength);
         Marshal.FreeHGlobal(valuePointer);
-        return value;
+        return value ?? string.Empty;
     }
     #endregion
 }

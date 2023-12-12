@@ -34,74 +34,82 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         var parser = new HtmlParser();
         int pagesCount = 1;
 
-        var page = await steamSession.HttpClient!.GetStringAsync(badges_url);
-        var document = parser.ParseDocument(page);
-
-        var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
-        if (pageNodes != null)
-        {
-            pages.AddRange(pageNodes.Where(x => x.HasAttribute("href")).Select(p => p.GetAttribute("href")!).Distinct());
-            pages = pages.Distinct().ToList();
-        }
-
-        // 读取总页数
-        string lastpagestr = Regex.Match(pages.Last().ToString(), @"p=\s*(\d+)").Groups[1].Value;
-        if (int.TryParse(lastpagestr, out var lastpage))
-        {
-            pagesCount = lastpage;
-        }
-        else
-        {
-            pagesCount = pages.Count;
-        }
-
-        Func<string, Task<string>> cardpage_func = async (app_id) =>
-        {
-            return await steamSession.HttpClient.GetStringAsync(SteamApiUrls.STEAM_GAMECARDS_URL.Format(steamSession.SteamId, app_id));
-        };
+        var userIdle = new UserIdleInfo();
         var badges = new List<Badge>();
-        FetchBadgesOnPage(document, badges, cardpage_func, need_price);
-
-        // 获取其他页的徽章数据
-        for (var i = 2; i <= pagesCount; i++)
+        try
         {
-            badges_url = SteamApiUrls.STEAM_BADGES_URL.Format(steamSession.SteamId, i);
-            page = await steamSession.HttpClient.GetStringAsync(badges_url);
+            using var sendArgs = new WebApiClientSendArgs(badges_url);
+            sendArgs.SetHttpClient(steamSession.HttpClient!);
+            var page = await SendAsync<string>(sendArgs);
+            using var document = parser.ParseDocument(page.ThrowIsNull());
 
-            document = parser.ParseDocument(page);
+            var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
+            if (pageNodes != null)
+            {
+                pages.AddRange(pageNodes.Where(x => x.HasAttribute("href")).Select(p => p.GetAttribute("href")!).Distinct());
+                pages = pages.Distinct().ToList();
+            }
+
+            // 读取总页数
+            string lastpagestr = Regex.Match(pages.Last().ToString(), @"p=\s*(\d+)").Groups[1].Value;
+            if (int.TryParse(lastpagestr, out var lastpage))
+            {
+                pagesCount = lastpage;
+            }
+            else
+            {
+                pagesCount = pages.Count;
+            }
+
+            Func<string, Task<string>> cardpage_func = async (app_id) =>
+            {
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_GAMECARDS_URL.Format(steamSession.SteamId, app_id));
+                sendArgs.SetHttpClient(steamSession.HttpClient!);
+                return await SendAsync<string>(sendArgs) ?? string.Empty;
+            };
 
             FetchBadgesOnPage(document, badges, cardpage_func, need_price);
-        }
 
-        if (need_price)
-        {
-            var avg_prices = (await GetAppCardsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency))?.Content?.ToDictionary(x => x.AppId, x => x);
-            foreach (var badge in badges)
+            // 获取其他页的徽章数据
+            for (var i = 2; i <= pagesCount; i++)
             {
-                if (avg_prices != null && avg_prices.TryGetValue(badge.AppId, out var avg))
+                badges_url = SteamApiUrls.STEAM_BADGES_URL.Format(steamSession.SteamId, i);
+                using (var otherPageSendArgs = new WebApiClientSendArgs(badges_url))
                 {
-                    badge.RegularAvgPrice = avg.Regular;
-                    badge.FoilAvgPrice = avg.Foil;
-                }
-                if (badge.Cards != null && badge.Cards.Count > 0)
-                {
-                    var card_prices = (await GetCardsMarketPrice(badge.AppId, currency))?.Content?.ToDictionary(x => x.CardName, x => x.Price);
-                    if (card_prices != null && card_prices.Count > 0)
+                    otherPageSendArgs.SetHttpClient(steamSession.HttpClient!);
+                    using (var otherDocument = parser.ParseDocument(page))
                     {
-                        foreach (var card in badge.Cards)
+                        FetchBadgesOnPage(otherDocument, badges, cardpage_func, need_price);
+                    }
+                }
+            }
+
+            if (need_price)
+            {
+                var avg_prices = (await GetAppCardsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency))?.Content?.ToDictionary(x => x.AppId, x => x);
+                foreach (var badge in badges)
+                {
+                    if (avg_prices != null && avg_prices.TryGetValue(badge.AppId, out var avg))
+                    {
+                        badge.RegularAvgPrice = avg.Regular;
+                        badge.FoilAvgPrice = avg.Foil;
+                    }
+                    if (badge.Cards != null && badge.Cards.Count > 0)
+                    {
+                        var card_prices = (await GetCardsMarketPrice(badge.AppId, currency))?.Content?.ToDictionary(x => x.CardName, x => x.Price);
+                        if (card_prices != null && card_prices.Count > 0)
                         {
-                            var key_cardname = card.Name.Contains("Foil") || card.Name.Contains("闪亮") ? $"{card.Name} (Foil)" : card.Name;
-                            if (card_prices.TryGetValue(key_cardname, out var price))
-                                card.Price = price;
+                            foreach (var card in badge.Cards)
+                            {
+                                var key_cardname = card.Name.Contains("Foil") || card.Name.Contains("闪亮") ? $"{card.Name} (Foil)" : card.Name;
+                                if (card_prices.TryGetValue(key_cardname, out var price))
+                                    card.Price = price;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        var userIdle = new UserIdleInfo();
-        try
-        {
             userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium")?.LastElementChild?.GetAttribute("src");
             userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content")?.TextContent.Trim();
             userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum")?.TextContent, out var after_userLevel) ? after_userLevel : default;
@@ -126,9 +134,10 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
-            using var request = new HttpRequestMessage(HttpMethod.Get, url);
-            using var response = await CreateClient().SendAsync(request);
-            var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+            using var sendArgs = new WebApiClientSendArgs(url);
+            sendArgs.SetHttpClient(CreateClient());
+            using var response = await SendAsync<Stream>(sendArgs);
+            using var document = JsonDocument.Parse(response.ThrowIsNull());
             if (document.RootElement.TryGetProperty("result", out var result)
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
@@ -168,9 +177,10 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
-            using var request = new HttpRequestMessage(HttpMethod.Get, url);
-            using var response = await CreateClient().SendAsync(request);
-            var document = JsonDocument.Parse(await response.Content.ReadAsStreamAsync());
+            using var sendArgs = new WebApiClientSendArgs(url);
+            sendArgs.SetHttpClient(CreateClient());
+            using var response = await SendAsync<Stream>(sendArgs);
+            using var document = JsonDocument.Parse(response.ThrowIsNull());
             if (document.RootElement.TryGetProperty("result", out var result)
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)

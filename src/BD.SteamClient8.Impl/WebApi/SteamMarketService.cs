@@ -19,20 +19,41 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     {
     }
 
+    /// <summary>
+    /// 重试间隔
+    /// </summary>
+    static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
+
     public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1)
     {
         var url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/priceoverview/?appid={appId}&currency={currency}&market_hash_name={marketHashName}";
 
-        var resp = await CreateClient().GetAsync(url);
-        return (await ReadFromSJsonAsync<MarketItemPriceOverviewResponse>(resp.Content, null))!;
+        using var sendArgs = new WebApiClientSendArgs(url);
+        try
+        {
+            sendArgs.SetHttpClient(CreateClient());
+            return (await SendAsync<MarketItemPriceOverviewResponse>(sendArgs))!;
+        }
+        catch (Exception ex)
+        {
+            return OnErrorReApiRspBase<ApiRspImpl<MarketItemPriceOverviewResponse>>(ex, sendArgs);
+        }
     }
 
     public async Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese")
     {
         string url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/itemordershistogram?country={country}&language={language}&currency={currency}&item_nameid={marketItemNameId}";
 
-        var resp = await CreateClient().GetAsync(url);
-        return (await ReadFromSJsonAsync<MarketItemOrdersHistogramResponse>(resp.Content, null))!;
+        using var sendArgs = new WebApiClientSendArgs(url);
+        try
+        {
+            sendArgs.SetHttpClient(CreateClient());
+            return (await SendAsync<MarketItemOrdersHistogramResponse>(sendArgs))!;
+        }
+        catch (Exception ex)
+        {
+            return OnErrorReApiRspBase<ApiRspImpl<MarketItemOrdersHistogramResponse>>(ex, sendArgs);
+        }
     }
 
     public async Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price)
@@ -69,7 +90,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(cookieCollection);
-        var sendArgs = new WebApiClientSendArgs(requestUrl)
+        using var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -107,7 +128,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(cookieCollection);
-        var sendArgs = new WebApiClientSendArgs(requestUrl)
+        using var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson
@@ -147,7 +168,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 continue;
             }
 
-            MarketTradingHistoryRenderItem renderItem = default;
+            MarketTradingHistoryRenderItem renderItem = new();
 
             MarketTradingHistoryRowType rowType = rowId[(rowId.LastIndexOf('_') + 1)..] switch
             {
@@ -206,7 +227,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        var sendArgs = new WebApiClientSendArgs(requestUrl)
+        using var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,

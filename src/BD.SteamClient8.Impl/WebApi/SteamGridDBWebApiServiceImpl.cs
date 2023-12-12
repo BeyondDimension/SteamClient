@@ -5,7 +5,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
 {
     const string TAG = "SteamGridDBWebApiS";
 
-    protected override string? ClientName => TAG;
+    protected override string ClientName => TAG;
 
     protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
 
@@ -30,7 +30,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
             var apiKeySteamGridDB = ISteamGridDBWebApiServiceImpl.ApiKey;
             apiKeySteamGridDB.ThrowIsNull();
 
-            var sendArgs = new WebApiClientSendArgs(requestUri)
+            using var sendArgs = new WebApiClientSendArgs(requestUri)
             {
                 Method = HttpMethod.Get,
                 ConfigureRequestMessage = (req, args, token) =>
@@ -67,7 +67,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
                 Log.Error(nameof(GetSteamGridAppBySteamAppId), string.Join(",", rsp.Errors));
             }
         }
-        return null;
+        return ApiRspHelper.Ok<SteamGridApp>();
     }
 
     public async Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid)
@@ -112,7 +112,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
                     new LogStrJoin(rsp.Errors));
             }
         }
-        return null;
+        return ApiRspHelper.Ok<List<SteamGridItem>?>();
     }
 
     readonly struct LogStrJoin
