@@ -4,7 +4,8 @@ using SysIOPath = System.IO.Path;
 
 namespace BD.SteamClient8.ViewModels;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 [ViewModelWrapperGenerated(typeof(SteamAppSaveFile)
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 #pragma warning disable SA1115// Parameter should follow comma

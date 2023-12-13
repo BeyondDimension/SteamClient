@@ -24,7 +24,7 @@ public sealed partial class SteamSession
     /// Cookie容器
     /// </summary>
     [SystemTextJsonIgnore]
-    public CookieContainer CookieContainer { get; set; } = new();
+    public CookieCollection Cookies { get; set; } = [];
 
     /// <summary>
     /// 聊天消息队列唯一标识符
@@ -75,10 +75,10 @@ public sealed partial class SteamSession
 
         var steamLoginSecure = this.SteamId + "%7C%7C" + this.AccessToken;
         var sessionid = GetRandomHexNumber(32);
-        CookieContainer.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steamcommunity.com"));
-        CookieContainer.Add(new Cookie("sessionid", sessionid, "/", "steamcommunity.com"));
-        CookieContainer.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steampowered.com"));
-        CookieContainer.Add(new Cookie("sessionid", sessionid, "/", "steampowered.com"));
+        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steamcommunity.com"));
+        Cookies.Add(new Cookie("sessionid", sessionid, "/", "steamcommunity.com"));
+        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steampowered.com"));
+        Cookies.Add(new Cookie("sessionid", sessionid, "/", "steampowered.com"));
 
         return true;
     }

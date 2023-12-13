@@ -29,6 +29,6 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         steamAccountService = GetRequiredService<ISteamAccountService>();
         configuration = GetRequiredService<IConfiguration>();
 
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService);
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
     }
 }

@@ -1,6 +1,7 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSessionService
 {
     private const string TAG = "SteamSessionS";
@@ -26,7 +27,8 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
 
         var tag = SpecialTag(steamSession.SteamId);
         steamSession.HttpClient = CreateClient(tag);
-        steamSession.CookieContainer = GetCookieContainer(tag);
+        var container = GetCookieContainer(tag);
+        container.Add(steamSession.Cookies);
         _sessions[tag] = steamSession;
         return true;
     }

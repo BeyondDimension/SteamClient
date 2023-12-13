@@ -72,27 +72,48 @@ public static partial class SteamApiUrls
     public const string STEAM_COMMUNITY_URL = "https://steamcommunity.com";
     public const string STEAM_STORE_URL = "https://store.steampowered.com";
 
+    public const string CaptchaImageUrl = $"{STEAM_STORE_URL}/login/rendercaptcha/?gid=";
+
+    /// <summary>
+    /// Login 登录操作相关 API
+    /// </summary>
+    #region OpenIdLogin
+    public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
+    #endregion
+
+    #region LoginV1
     public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
     public const string DologinUrl = $"{STEAM_STORE_URL}/login/dologin?l=schinese";
     public const string SteamLoginUrl = $"{STEAM_STORE_URL}/login?oldauth=1";
+    #endregion
 
-    public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
-
-    public const string CaptchaImageUrl = $"{STEAM_STORE_URL}/login/rendercaptcha/?gid=";
-
-    public const string SteamStoreRedeemWalletCodelUrl = $"{STEAM_STORE_URL}/account/ajaxredeemwalletcode?l=schinese";
-
-    public const string SteamStoreAccountlUrl = $"{STEAM_STORE_URL}/account?l=schinese";
-    public const string SteamStoreAccountHistoryDetailUrl = $"{STEAM_STORE_URL}/account/history?l=schinese";
-    public const string SteamStoreAccountHistoryAjaxlUrl = $"{STEAM_STORE_URL}/AjaxLoadMoreHistory?l=schinese";
-
-    public const string SteamStoreAccountSetCountryUrl = $"{STEAM_STORE_URL}/account/setcountry";
-    public const string SteamStoreAddFundsUrl = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
-
-    public const string AccountGetSteamNotificationsUrl = "https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}";
+    #region LoginV2
+    public const string GetRSAkeyV2Url = "https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={0}";
+    public const string STEAM_LOGIN_CHECKDEVICE = "https://login.steampowered.com/jwt/checkdevice/{0}";
+    public const string STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS = "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1";
+    public const string STEAM_LOGIN_POLLAUTHSESSIONSTATUS = "https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1";
+    public const string STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE = "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1";
+    public const string STEAM_LOGIN_FINALIZELOGIN = "https://login.steampowered.com/jwt/finalizelogin";
+    #endregion
 
     /// <summary>
-    /// TradeOffer 交易报价API
+    /// Account 账号相关信息
+    /// </summary>
+    public const string STEAM_ACCOUNT_REDEEMWALLETCODE = $"{STEAM_STORE_URL}/account/ajaxredeemwalletcode?l=schinese";
+    public const string STEAM_ACCOUNT_HISTORY_LOGIN = "https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory";
+    public const string STEAM_ACCOUNT_APIKEY_REGISTER = "https://steamcommunity.com/dev/registerkey";
+    public const string STEAM_ACCOUNT_APIKEY_GET = "https://steamcommunity.com/dev/apikey";
+    public const string STEAM_ACCOUNT = $"{STEAM_STORE_URL}/account?l=schinese";
+    public const string STEAM_ACCOUNT_HISTORY_DETAIL = $"{STEAM_STORE_URL}/account/history?l=schinese";
+    public const string STEAM_ACCOUNT_HISTORY_AJAX = $"{STEAM_STORE_URL}/AjaxLoadMoreHistory?l=schinese";
+
+    public const string STEAM_ACCOUNT_SETCOUNTRY = $"{STEAM_STORE_URL}/account/setcountry";
+    public const string STEAM_ACCOUNT_ADD_FUNDS = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
+    public const string STEAM_ACCOUNT_SENDGIFTHISTORIES = "https://steamcommunity.com/gifts/0/history/";
+    public const string STEAM_ACCOUNT_GET_STEAMNOTIFICATION = "https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}";
+
+    /// <summary>
+    /// TradeOffer 交易报价 API
     /// </summary>
     public const string STEAM_TRADEOFFER_ACCPET = "https://steamcommunity.com/tradeoffer/{0}/accept";
     public const string STEAM_TRADEOFFER_DECLINE = "https://steamcommunity.com/tradeoffer/{0}/decline";
@@ -105,7 +126,7 @@ public static partial class SteamApiUrls
     public const string STEAM_TRADEOFFER_SEND = "https://steamcommunity.com/tradeoffer/new/send";
 
     /// <summary>
-    /// MOBILECONF 令牌交易确认API
+    /// MOBILECONF 令牌交易确认 API
     /// </summary>
     public const string STEAM_MOBILECONF_CONFIRMATION = "https://steamcommunity.com/mobileconf/ajaxop";
     public const string STEAM_MOBILECONF_BATCH_CONFIRMATION = "https://steamcommunity.com/mobileconf/multiajaxop";

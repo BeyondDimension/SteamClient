@@ -8,6 +8,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     SteamLoginState steamLoginState = null!; // ?未引用？
     ISteamIdleCardService steamIdleCardService = null!;
     ISteamAccountService steamAccountService = null!;
+    ISteamSessionService steamSessionService = null!;
     IConfiguration configuration = null!;
 
     /// <inheritdoc/>
@@ -27,9 +28,10 @@ sealed class SteamIdleServiceTest : ServiceTestBase
 
         steamIdleCardService = GetRequiredService<ISteamIdleCardService>();
         steamAccountService = GetRequiredService<ISteamAccountService>();
+        steamSessionService = GetRequiredService<ISteamSessionService>();
         configuration = GetRequiredService<IConfiguration>();
 
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService);
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
     }
 
     /// <summary>

@@ -3,7 +3,8 @@ using Polly.Retry;
 
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {
     protected sealed override string ClientName => TAG;
@@ -90,7 +91,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             AccountName = username,
         }.ToByteString().ToBase64());
-        var requestUriString = $"https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={input_protobuf_encoded}";
+        var requestUriString = SteamApiUrls.GetRSAkeyV2Url.Format(input_protobuf_encoded);
         var requestUri = new Uri(requestUriString);
 
         async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(CancellationToken cancellationToken = default)
@@ -312,13 +313,13 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 var cookieContainer = GetCookieContainer(loginState.Username);
                 var session = new SteamSession
                 {
-                    CookieContainer = cookieContainer,
+                    Cookies = cookieContainer.GetAllCookies(),
                     SteamId = loginState.SteamId.ToString(),
                 };
                 loginState.Cookies = cookieContainer.GetAllCookies();
                 if (dologinRspObj.TransferParameters != null && dologinRspObj.TransferUrls != null)
                 {
-                    session.AccessToken = dologinRspObj.TransferParameters.Auth;
+                    session.AccessToken = dologinRspObj.TransferParameters.Auth.ThrowIsNull();
                     loginState.SteamIdString = dologinRspObj.TransferParameters.Steamid;
 
                     _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
@@ -350,7 +351,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return loginState.Message = "登录错误: 出现未知错误";
     }
 
-    public async Task<ApiRspImpl<CookieCollection?>> OpenIdLoginAsync(string openidparams, string nonce, CookieCollection cookie) => throw new NotImplementedException();
+    public Task<ApiRspImpl<CookieCollection?>> OpenIdLoginAsync(string openidparams, string nonce, CookieCollection cookie) => throw new NotImplementedException();
 
     public async Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState)
     {
@@ -507,7 +508,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         session.SteamId = loginState.SteamId.ToString();
         session.AccessToken = loginState.AccessToken;
         session.RefreshToken = loginState.RefreshToken;
-        session.CookieContainer = cookieContainer;
+        session.Cookies = cookieContainer.GetAllCookies();
         sessions.AddOrSetSession(session);
         return ApiRspHelper.Ok();
 
@@ -515,7 +516,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                using var sendArgs = new WebApiClientSendArgs("https://login.steampowered.com/jwt/checkdevice/" + loginState.SteamId)
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_CHECKDEVICE.Format(loginState.SteamId))
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded,
@@ -557,7 +558,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     { "input_protobuf_encoded", input_protobuf_encoded },
                 };
 
-                using var sendArgs = new WebApiClientSendArgs("https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1")
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS)
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded,
@@ -583,7 +584,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                using var sendArgs = new WebApiClientSendArgs("https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1")
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_POLLAUTHSESSIONSTATUS)
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded,
@@ -627,7 +628,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
             var result = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                using var sendArgs = new WebApiClientSendArgs("https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1")
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE)
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded
@@ -655,7 +656,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
             {
-                using var sendArgs = new WebApiClientSendArgs("https://login.steampowered.com/jwt/finalizelogin")
+                using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_FINALIZELOGIN)
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded
@@ -700,7 +701,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies);
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.SteamStoreAccountHistoryDetailUrl)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_HISTORY_DETAIL)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -722,7 +723,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
                 //var historyCursor = JsonSerializer.Deserialize<CursorData>(historyCursorString);
 
-                //var request1 = new HttpRequestMessage(HttpMethod.Post, SteamStoreAccountHistoryAjaxlUrl)
+                //var request1 = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_ACCOUNT_HISTORY_AJAX)
                 //{
                 //    Content = new FormUrlEncodedContent(new Dictionary<string, string>()
                 //    {
@@ -767,7 +768,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies);
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.SteamStoreAccountlUrl)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -832,7 +833,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.SteamStoreAccountSetCountryUrl)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_SETCOUNTRY)
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -875,7 +876,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.SteamStoreAddFundsUrl)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_ADD_FUNDS)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -1114,14 +1115,10 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
     public async Task<ApiRspImpl<string?>> GetApiKey(SteamLoginState loginState)
     {
-        const string url = "https://steamcommunity.com/dev/apikey";
-
-        var request = new HttpRequestMessage(HttpMethod.Get, url);
-
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        using var sendArgs = new WebApiClientSendArgs(url)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_APIKEY_GET)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -1143,8 +1140,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     {
         if (string.IsNullOrEmpty(loginState.SeesionId))
             throw new ArgumentException(nameof(loginState.SeesionId));
-
-        const string url = "https://steamcommunity.com/dev/registerkey";
 
         Dictionary<string, string> data = new Dictionary<string, string>()
         {
@@ -1169,7 +1164,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(cookieCollection);
-        using var sendArgs = new WebApiClientSendArgs(url)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_APIKEY_REGISTER)
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -1197,7 +1192,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        using var sendArgs = new WebApiClientSendArgs("https://steamcommunity.com/gifts/0/history/")
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_SENDGIFTHISTORIES)
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
@@ -1245,7 +1240,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
     public async IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState)
     {
-        const string url = "https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory";
+        const string url = SteamApiUrls.STEAM_ACCOUNT_HISTORY_LOGIN;
 
         var cookieCollection = new CookieCollection
         {
@@ -1299,7 +1294,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
     public async Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string accesstoken)
     {
-        var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.AccountGetSteamNotificationsUrl, accesstoken));
+        var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, accesstoken));
 
         if (rsp.IsSuccessStatusCode)
         {
@@ -1638,7 +1633,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
         container.Add(loginState.Cookies!);
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.SteamStoreRedeemWalletCodelUrl)
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_ACCOUNT_REDEEMWALLETCODE)
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,

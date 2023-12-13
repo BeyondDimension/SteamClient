@@ -8,31 +8,37 @@ public record class InventoryTradeHistoryRenderPageResponse
     /// <summary>
     /// 是否成功
     /// </summary>
+    [SystemTextJsonProperty("success")]
     public bool Success { get; set; }
 
     /// <summary>
     /// Html 数据
     /// </summary>
+    [SystemTextJsonProperty("html")]
     public string Html { get; set; } = string.Empty;
 
     /// <summary>
     /// 数量
     /// </summary>
+    [SystemTextJsonProperty("num")]
     public int Num { get; set; }
 
     /// <summary>
     /// 库存所属游戏列表
     /// </summary>
+    [SystemTextJsonProperty("apps")]
     public IEnumerable<InventoryTradeHistoryApp> Apps { get; set; } = Enumerable.Empty<InventoryTradeHistoryApp>();
 
     /// <summary>
     /// 描述
     /// </summary>
+    [SystemTextJsonProperty("descriptions")]
     public JsonElement Descriptions { get; set; }
 
     /// <summary>
     /// 历史记录请求标记
     /// </summary>
+    [SystemTextJsonProperty("cursor")]
     public InventoryTradeHistoryCursor? Cursor { get; set; }
 
     /// <summary>
@@ -69,21 +75,25 @@ public record class InventoryTradeHistoryRenderPageResponse
         /// <summary>
         /// 游戏 AppId
         /// </summary>
+        [SystemTextJsonProperty("appid")]
         public int AppId { get; set; }
 
         /// <summary>
         /// 游戏名称
         /// </summary>
+        [SystemTextJsonProperty("name")]
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// 游戏图标
         /// </summary>
+        [SystemTextJsonProperty("icon")]
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
         /// 链接
         /// </summary>
+        [SystemTextJsonProperty("link")]
         public string Link { get; set; } = string.Empty;
     }
 }

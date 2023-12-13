@@ -1,6 +1,7 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService, ISteamGridDBWebApiServiceImpl
 {
     const string TAG = "SteamGridDBWebApiS";

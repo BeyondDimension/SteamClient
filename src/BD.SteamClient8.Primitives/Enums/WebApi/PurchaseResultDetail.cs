@@ -1,6 +1,6 @@
 namespace BD.SteamClient8.Primitives.Enums.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
 public enum PurchaseResultDetail
 {
     NoDetail = 0,

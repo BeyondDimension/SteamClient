@@ -1,7 +1,7 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 namespace BD.SteamClient8.Models.WebApi.SteamApp;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
 /// <summary>
 /// 移动过的游戏 App
 /// </summary>

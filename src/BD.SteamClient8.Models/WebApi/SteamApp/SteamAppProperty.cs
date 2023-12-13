@@ -2,7 +2,8 @@
 
 namespace BD.SteamClient8.Models.WebApi.SteamApp;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 public class SteamAppProperty
 {
     private static readonly Type?[] _types =

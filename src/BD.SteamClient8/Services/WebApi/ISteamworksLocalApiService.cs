@@ -1,6 +1,7 @@
 namespace BD.SteamClient8.Services.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 /// <summary>
 /// Steamworks 本地 API 服务
 /// </summary>

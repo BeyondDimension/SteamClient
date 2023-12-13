@@ -2,7 +2,8 @@ using static System.String2;
 
 namespace BD.SteamClient8.Services.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 /// <summary>
 /// Steam 相关助手、工具类服务
 /// </summary>

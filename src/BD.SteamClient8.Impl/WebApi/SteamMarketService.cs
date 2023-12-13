@@ -1,6 +1,7 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 public class SteamMarketService : WebApiClientFactoryService, ISteamMarketService
 {
     const string TAG = "SteamMarketWebApiS";
@@ -48,6 +49,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         try
         {
             sendArgs.SetHttpClient(CreateClient());
+            var str = await SendAsync<string>(sendArgs);
             return (await SendAsync<MarketItemOrdersHistogramResponse>(sendArgs))!;
         }
         catch (Exception ex)

@@ -2,7 +2,7 @@
 
 namespace BD.SteamClient8.Impl.PInvoke;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
 public abstract partial class SteamServiceImpl : ISteamService
 {
     protected const string TAG = "SteamS";

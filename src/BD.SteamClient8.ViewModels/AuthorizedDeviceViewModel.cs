@@ -1,6 +1,5 @@
 namespace BD.SteamClient8.ViewModels;
 
-#pragma warning disable SA1600
 /// <summary>
 /// <see cref="AuthorizedDevice"/> 视图模型
 /// </summary>

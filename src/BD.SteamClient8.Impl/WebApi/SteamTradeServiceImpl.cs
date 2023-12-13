@@ -1,6 +1,6 @@
-#pragma warning disable SA1600
-
 namespace BD.SteamClient8.Impl.WebApi;
+
+#pragma warning disable SA1600 // Elements should be documented
 
 public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, ISteamTradeService
 {
@@ -681,13 +681,13 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     private async Task<string> FetchSessionId(SteamSession steamSession)
     {
-        if (string.IsNullOrEmpty(steamSession.CookieContainer.GetCookieValue(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL), "sessionid")))
+        if (string.IsNullOrEmpty(steamSession.Cookies?["sessionid"].Value))
         {
             using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_URL);
             sendArgs.SetHttpClient(steamSession.HttpClient!);
             await SendAsync<string>(sendArgs);
         }
-        return steamSession.CookieContainer.GetCookieValue(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL), "sessionid")!;
+        return steamSession.Cookies?["sessionid"].Value!;
     }
 
     [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]

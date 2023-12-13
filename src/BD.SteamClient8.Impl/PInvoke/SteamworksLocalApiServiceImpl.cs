@@ -5,7 +5,8 @@ using UserStatsReceived = SAM.API.Types.UserStatsReceived;
 using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
 #endif
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
+
 namespace BD.SteamClient8.Impl.PInvoke;
 
 public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService

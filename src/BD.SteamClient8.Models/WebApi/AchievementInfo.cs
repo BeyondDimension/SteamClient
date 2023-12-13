@@ -1,6 +1,6 @@
 namespace BD.SteamClient8.Models.WebApi;
 
-#pragma warning disable SA1600
+#pragma warning disable SA1600 // Elements should be documented
 
 /// <summary>
 /// Steam 成就
