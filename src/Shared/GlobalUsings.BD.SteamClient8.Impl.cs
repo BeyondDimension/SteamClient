@@ -10,6 +10,8 @@ global using System.Management;
 #endif
 global using System.Net.Http.Json;
 
+global using Google.Protobuf;
+global using Polly.Retry;
 global using BD.SteamClient8.Impl;
 global using BD.SteamClient8.Impl.WebApi;
 global using BD.SteamClient8.Impl.PInvoke;

@@ -153,4 +153,13 @@ public static partial class SteamApiUrls
     /// </summary>
     public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/v2/market/cards/average-prices/?appids={0}&currency={1}";
     public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/v2/market/cards/?appid={0}&currency={1}";
+
+    /// <summary>
+    /// Market 市场交易
+    /// </summary>
+    public const string STEAM_MARKET_ITEMPRICEOVERVIEW_GET = "https://steamcommunity.com/market/priceoverview/?appid={0}&currency={1}&market_hash_name={2}";
+    public const string STEAM_MARKET_ITEMORDERHISTOGRAM_GET = "https://steamcommunity.com/market/itemordershistogram?country={0}&language={1}&currency={2}&item_nameid={3}";
+    public const string STEAM_MARKET_SELLITEM = "https://steamcommunity.com/market/sellitem/";
+    public const string STEAM_MARKET_TRADING_HISTORY_GET = "https://steamcommunity.com/market/myhistory/render/?query=&start={0}&count={1}";
+    public const string STEAM_MARKET = "https://steamcommunity.com/market/";
 }

@@ -61,6 +61,22 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(TradeSummary))]
 [SystemTextJsonSerializable(typeof(TradeResponse))]
 [SystemTextJsonSerializable(typeof(TradeSummaryResponse))]
+//// Authenticator
+[SystemTextJsonSerializable(typeof(GetUserCountryResponse))]
+[SystemTextJsonSerializable(typeof(SteamAddPhoneNumberResponse))]
+[SystemTextJsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
+[SystemTextJsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamDoLoginJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamDoLoginOauthJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamDoLoginHasPhoneJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamDoLoginTfaJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamDoLoginFinalizeJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamSyncStruct))]
+[SystemTextJsonSerializable(typeof(SteamConvertSteamDataJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamMobileDologinJsonStruct))]
+[SystemTextJsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
+[SystemTextJsonSerializable(typeof(RemoveAuthenticatorResponse))]
+[SystemTextJsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
 public partial class DefaultJsonSerializerContext_ : SystemTextJsonSerializerContext
 {
 }

@@ -8,6 +8,7 @@
 global using BD.SteamClient8.Models;
 global using BD.SteamClient8.Models.Helpers;
 global using BD.SteamClient8.Models.Protobuf;
+global using BD.SteamClient8.Models.Converter;
 global using BD.SteamClient8.Models.WebApi;
 global using BD.SteamClient8.Models.WebApi.Idle;
 global using BD.SteamClient8.Models.WebApi.Market;
@@ -16,6 +17,8 @@ global using BD.SteamClient8.Models.WebApi.SteamGridDB;
 global using BD.SteamClient8.Models.WebApi.Trade;
 global using BD.SteamClient8.Models.WebApi.SteamApp;
 global using BD.SteamClient8.Models.WebApi.Login;
+global using BD.SteamClient8.Models.WebApi.Authenticator;
+global using BD.SteamClient8.Models.WebApi.Authenticator.PhoneNumber;
 
 global using SteamUser = BD.SteamClient8.Models.WebApi.SteamUser;
 global using SteamApps = BD.SteamClient8.Models.WebApi.SteamApp.SteamApps;

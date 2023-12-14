@@ -108,15 +108,13 @@ public static partial class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
-    //[MethodImpl(MethodImplOptions.AggressiveInlining)]
-    //public static IServiceCollection AddSteamAuthenticatorService(this IServiceCollection services, Func<CookieContainer, HttpHandlerType>? getHandler = null)
-    //{
-    //    if (getHandler == null)
-    //        services.TryAddSingleton<ISteamAuthenticatorService, SteamAuthenticatorServiceImpl>();
-    //    else
-    //        services.TryAddSingleton<ISteamAuthenticatorService>(s => new SteamAuthenticatorServiceImpl(s, getHandler));
-    //    return services;
-    //}
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddSteamAuthenticatorService(this IServiceCollection services)
+    {
+        services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
+        services.TryAddSingleton<ISteamAuthenticatorService, SteamAuthenticatorServiceImpl>();
+        return services;
+    }
 
     /// <summary>
     /// 添加 Steam Idle挂卡服务

@@ -1,6 +1,3 @@
-using Google.Protobuf;
-using Polly.Retry;
-
 namespace BD.SteamClient8.Impl.WebApi;
 
 #pragma warning disable SA1600 // Elements should be documented

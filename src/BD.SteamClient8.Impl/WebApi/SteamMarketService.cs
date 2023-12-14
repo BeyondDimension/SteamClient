@@ -27,7 +27,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
     public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1)
     {
-        var url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/priceoverview/?appid={appId}&currency={currency}&market_hash_name={marketHashName}";
+        var url = SteamApiUrls.STEAM_MARKET_ITEMPRICEOVERVIEW_GET.Format(appId, currency, marketHashName);
 
         using var sendArgs = new WebApiClientSendArgs(url);
         try
@@ -43,7 +43,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
     public async Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese")
     {
-        string url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/itemordershistogram?country={country}&language={language}&currency={currency}&item_nameid={marketItemNameId}";
+        string url = SteamApiUrls.STEAM_MARKET_ITEMORDERHISTOGRAM_GET.Format(country, language, currency, marketItemNameId);
 
         using var sendArgs = new WebApiClientSendArgs(url);
         try
@@ -60,7 +60,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
     public async Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price)
     {
-        string requestUrl = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/sellitem/";
+        string requestUrl = SteamApiUrls.STEAM_MARKET_SELLITEM;
 
         if (string.IsNullOrEmpty(loginState.SeesionId))
             throw new InvalidOperationException("获取会话信息失败,请稍后重试!");
@@ -110,10 +110,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
     public async IAsyncEnumerable<MarketTradingHistoryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100)
     {
-        string requestUrl = string.Format("{0}/market/myhistory/render/?query=&start={1}&count={2}",
-           SteamApiUrls.STEAM_COMMUNITY_URL,
-           start,
-           count);
+        string requestUrl = SteamApiUrls.STEAM_MARKET_TRADING_HISTORY_GET.Format(start, count);
 
         var cookieCollection = new CookieCollection
         {
@@ -224,7 +221,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         const string activeListingRowIdPrefix = "mylisting_";
         const string buyorderRowIdPrefix = "mybuyorder_";
 
-        string requestUrl = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/market/";
+        string requestUrl = SteamApiUrls.STEAM_MARKET;
 
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
