@@ -276,7 +276,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
         var jwt = SystemTextJsonSerializer.Deserialize<SteamAccessToken>(System.Text.Encoding.UTF8.GetString(payloadBytes));
 
         // Compare expire time of the token to the current time
-        return DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
+        return jwt is null ? false : DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
     }
 
     private class SteamAccessToken

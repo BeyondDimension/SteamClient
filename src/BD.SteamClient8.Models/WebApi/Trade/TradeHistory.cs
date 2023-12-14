@@ -1,5 +1,10 @@
 namespace BD.SteamClient8.Models.WebApi.Trade;
 
+// https://partner.steamgames.com/doc/webapi/IEconService
+
+/// <summary>
+/// 交易历史记录
+/// </summary>
 public record class TradeHistory
 {
     /// <summary>

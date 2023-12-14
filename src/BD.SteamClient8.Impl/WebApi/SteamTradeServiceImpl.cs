@@ -78,7 +78,6 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #endregion
 
     #region Trade 交易报价
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<ApiRspImpl<bool>> AcceptAllGiftTradeOfferAsync(string steam_id)
     {
         var steamSession = _sessionService.RentSession(steam_id);
@@ -113,7 +112,6 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return false;
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
         var steamSession = _sessionService.RentSession(steam_id);
@@ -134,10 +132,10 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>()
         {
-            { "sessionid", sessionid },
+            { "sessionid", sessionid.ThrowIsNull() },
             { "tradeofferid", trade_offer_id },
             { "serverid", "1" },
-            { "partner", partner },
+            { "partner", partner.ThrowIsNull() },
             { "captcha", "" }
         };
 
@@ -179,7 +177,6 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return await SendAsync<TradeResponse>(sendArgs);
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<ApiRspImpl<TradeInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id)
     {
         var queryString = new NameValueCollection()
@@ -199,10 +196,9 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using (var document = JsonDocument.Parse(json.ThrowIsNull()))
         {
-            return document.RootElement
+            return SystemTextJsonSerializer.Deserialize(document.RootElement
                 .GetProperty("response")
-                .GetProperty("offer")
-                .Deserialize<TradeInfo>().ThrowIsNull();
+                .GetProperty("offer"), DefaultJsonSerializerContext_.Default.TradeInfo);
         }
     }
 
@@ -276,7 +272,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         var server_id = 1;
         var param = new Dictionary<string, string>
         {
-            { "sessionid", sessionid },
+            { "sessionid", sessionid.ThrowIsNull() },
             { "serverid", server_id.ToString() },
             { "partner", target_steam_id },
             { "tradeoffermessage", message },
@@ -324,7 +320,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         var param = new Dictionary<string, string>
         {
-            { "sessionid", sessionid },
+            { "sessionid", sessionid.ThrowIsNull() },
             { "serverid", server_id.ToString() },
             { "partner", target_steam64_id.ToString() },
             { "tradeoffermessage", message },
@@ -358,7 +354,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             throw new Exception($"Unable to find session for {steam_id}, please login first");
 
         var sessionid = await FetchSessionId(steamSession);
-        var param = new Dictionary<string, string>() { { "sessionid", sessionid } };
+        var param = new Dictionary<string, string>() { { "sessionid", sessionid.ThrowIsNull() } };
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_CANCEL.Format(trade_offer_id))
         {
@@ -377,7 +373,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             throw new Exception($"Unable to find session for {steam_id}, please login first");
 
         var sessionid = await FetchSessionId(steamSession);
-        var param = new Dictionary<string, string>() { { "sessionid", sessionid } };
+        var param = new Dictionary<string, string>() { { "sessionid", sessionid.ThrowIsNull() } };
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_DECLINE.Format(trade_offer_id))
         {
@@ -664,7 +660,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// <param name="steamSession"></param>
     /// <param name="trade_offer_id"></param>
     /// <returns></returns>
-    private async Task<string> FetchTradePartnerId(SteamSession steamSession, string trade_offer_id)
+    private async Task<string?> FetchTradePartnerId(SteamSession steamSession, string trade_offer_id)
     {
         var url = GetTradeOfferUrl(trade_offer_id);
         using var sendArgs = new WebApiClientSendArgs(url);
@@ -672,12 +668,19 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         var page_text = await SendAsync<string>(sendArgs) ?? string.Empty;
         if (page_text.Contains("You have logged in from a new device. In order to protect the items"))
-            return string.Empty;
+            return null;
 
-        var find_text = "var g_ulTradePartnerSteamID = '";
-        var start = page_text.IndexOf(find_text) + find_text.Length;
-        var end = page_text.IndexOf("';", start);
-        return page_text[start..end];
+        try
+        {
+            var find_text = "var g_ulTradePartnerSteamID = '";
+            var start = page_text.IndexOf(find_text) + find_text.Length;
+            var end = page_text.IndexOf("';", start);
+            return page_text[start..end];
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
     }
 
     /// <summary>
@@ -685,19 +688,18 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// </summary>
     /// <param name="steamSession"></param>
     /// <returns></returns>
-    private async Task<string> FetchSessionId(SteamSession steamSession)
+    private async Task<string?> FetchSessionId(SteamSession steamSession)
     {
-        if (string.IsNullOrEmpty(steamSession.Cookies?["sessionid"].Value))
+        if (string.IsNullOrEmpty(steamSession.Cookies?["sessionid"]?.Value))
         {
             using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_URL);
             sendArgs.SetHttpClient(steamSession.HttpClient!);
             await SendAsync<string>(sendArgs);
         }
-        return steamSession.Cookies?["sessionid"].Value!;
+        return steamSession.Cookies?["sessionid"]?.Value;
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
-    private static string GenerateJsonTradeOffer(List<Asset> my_itmes, List<Asset> them_items)
+    private static string GenerateJsonTradeOffer(List<Asset> my_items, List<Asset> them_items)
     {
         var offer = new
         {
@@ -705,7 +707,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             Version = 4,
             Me = new
             {
-                Assets = my_itmes,
+                Assets = my_items,
                 Currency = Array.Empty<int>(),
                 Ready = false
             },
@@ -716,7 +718,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
                 Ready = false
             }
         };
+#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
+#pragma warning disable IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
         return SystemTextJsonSerializer.Serialize(offer, options: new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+#pragma warning restore IL3050 // Calling members annotated with 'RequiresDynamicCodeAttribute' may break functionality when AOT compiling.
+#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
     }
     #endregion
 
@@ -751,7 +757,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// <returns></returns>
     private static string GetConfirmationTradeOfferId(string confirmation_details_page)
     {
-        var parser = new AngleSharp.Html.Parser.HtmlParser();
+        var parser = new HtmlParser();
         var document = parser.ParseDocument(confirmation_details_page);
         var full_id = document.QuerySelectorAll(".tradeoffer").Select(s => s.Id).FirstOrDefault();
         document.Dispose();

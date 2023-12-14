@@ -1,5 +1,7 @@
 namespace BD.SteamClient8.Models.WebApi.Idle;
 
+// https://github.com/IsThereAnyDeal/AugmentedSteam_Server/blob/master/src/Controllers/MarketController.php
+
 /// <summary>
 /// Steam 游戏卡片市场价格
 /// </summary>

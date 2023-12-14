@@ -1,5 +1,7 @@
 namespace BD.SteamClient8.Models.WebApi.Trade;
 
+// https://partner.steamgames.com/doc/webapi/IEconService
+
 /// <summary>
 /// 未处理和新的交易报价汇总
 /// </summary>
