@@ -99,5 +99,7 @@ public interface ISteamAuthenticatorService
     /// </summary>
     /// <param name="steam_id"></param>
     /// <returns></returns>
+    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
+    [RequiresDynamicCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
     Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id);
 }

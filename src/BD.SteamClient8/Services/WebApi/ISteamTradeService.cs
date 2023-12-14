@@ -18,7 +18,7 @@ public interface ISteamTradeService
     /// <param name="steam_id"></param>
     /// <param name="interval"></param>
     /// <param name="tradeTaskEnum"></param>
-    ApiRspImpl StartTradeTask(string steam_id, int interval, TradeTaskEnum tradeTaskEnum);
+    ApiRspImpl StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum);
 
     /// <summary>
     /// 停止交易报价后台任务
@@ -50,23 +50,23 @@ public interface ISteamTradeService
     /// 发送交易报价（需要好友关系）
     /// </summary>
     /// <param name="steam_id"></param>
-    /// <param name="my_itmes">将失去的物品</param>
+    /// <param name="my_items">将失去的物品</param>
     /// <param name="them_items">将获得的物品</param>
     /// <param name="target_steam_id"></param>
     /// <param name="message"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_itmes, List<Asset> them_items, string target_steam_id, string message);
+    Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message);
 
     /// <summary>
     /// 使用交易连接发送报价
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="trade_offer_url"></param>
-    /// <param name="my_itmes">将失去的物品</param>
+    /// <param name="my_items">将失去的物品</param>
     /// <param name="them_items">将获得的物品</param>
     /// <param name="message"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message);
+    Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message);
 
     /// <summary>
     /// 发送方取消交易报价
@@ -116,6 +116,22 @@ public interface ISteamTradeService
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
     Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false);
+
+    /// <summary>
+    /// 过滤出有状态活跃的 交易报价进行操作
+    /// </summary>
+    /// <param name="tradeResponse"></param>
+    /// <returns></returns>
+    public static TradeResponse FilterNonActiveOffers(TradeResponse tradeResponse)
+    {
+        if (tradeResponse?.Response?.TradeOffersSent != null)
+            tradeResponse.Response.TradeOffersSent = tradeResponse.Response.TradeOffersSent.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
+
+        if (tradeResponse?.Response?.TradeOffersReceived != null)
+            tradeResponse.Response.TradeOffersReceived = tradeResponse.Response.TradeOffersReceived.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
+
+        return tradeResponse!;
+    }
     #endregion
 
     #region Confirmation 交易确认

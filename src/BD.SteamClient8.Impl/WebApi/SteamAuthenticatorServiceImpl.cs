@@ -221,6 +221,8 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
         return await SendAsync<SteamSyncStruct>(sendArgs);
     }
 
+    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
+    [RequiresDynamicCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
     public async Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id)
     {
         var steamSession = _sessionService.RentSession(steam_id);

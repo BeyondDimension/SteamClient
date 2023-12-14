@@ -27,7 +27,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Public
 
     #region Tasks 后台任务
-    public ApiRspImpl StartTradeTask(string steam_id, int interval, TradeTaskEnum tradeTaskEnum)
+    public ApiRspImpl StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum)
     {
         try
         {
@@ -92,7 +92,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         if (trade_summary != null && trade_summary.PendingReceivedCount > 0)
         {
             var trade_offers_rsp = await GetTradeOffersAsync(steamSession.APIKey);
-            var trade_offers = trade_offers_rsp.IsSuccess ? FilterNonActiveOffers(trade_offers_rsp.Content!)?.Response?.TradeOffersReceived : null; // 获取活跃状态的交易报价
+            var trade_offers = trade_offers_rsp.IsSuccess ? ISteamTradeService.FilterNonActiveOffers(trade_offers_rsp.Content!)?.Response?.TradeOffersReceived : null; // 获取活跃状态的交易报价
             if (trade_offers != null && trade_offers.Count > 0)
             {
                 var confirmations = (await GetConfirmations(steam_id)).Content;
@@ -100,8 +100,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
                 {
                     if (trade_offer != null)
                     {
-                        var give_count = trade_offer.ItemsToGive?.Count ?? 0; // 支出物品数
-                        var receive_count = trade_offer.ItemsToReceive?.Count ?? 0; // 接收物品数
+                        var give_count = trade_offer.ItemsToGive?.Count ?? -1; // 支出物品数
+                        var receive_count = trade_offer.ItemsToReceive?.Count ?? -1; // 接收物品数
                         if (give_count == 0)
                         {
                             await AcceptTradeOfferAsync(steam_id, trade_offer.TradeOfferId, trade_offer, confirmations); // 接受报价
@@ -304,7 +304,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return response?.IsSuccessStatusCode ?? false;
     }
 
-    public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_itmes, List<Asset> them_items, string message)
+    public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message)
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
@@ -318,7 +318,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             return false;
 
         var target_steam64_id = ToSteamId64(partner!);
-        var offer_string = GenerateJsonTradeOffer(my_itmes, them_items);
+        var offer_string = GenerateJsonTradeOffer(my_items, them_items);
         var sessionid = await FetchSessionId(steamSession);
         var server_id = 1;
 
@@ -624,7 +624,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Private
 
     #region Tasks 后台任务
-    private async Task RunTask(Action action, int interval, CancellationToken cancellationToken)
+    private async Task RunTask(Action action, TimeSpan interval, CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
         {
@@ -632,7 +632,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             {
                 // 执行后台任务
                 action();
-                await Task.Delay(TimeSpan.FromSeconds(interval), cancellationToken);
+                await Task.Delay(interval, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -644,25 +644,26 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #endregion
 
     #region Trade 交易报价
+
+    /// <summary>
+    /// 检验 APIKey 是否有效
+    /// </summary>
+    /// <param name="content"></param>
+    /// <returns></returns>
     private static bool InvalidAPIKey(string content) => content.Contains("Access is denied. Retrying will not help. Please verify your <pre>key=</pre> parameter");
 
     private static ulong ToSteamId64(string steam_id) => 76561197960265728ul + ulong.Parse(steam_id);
 
     private static int ToSteamId32(string steam_id) => Convert.ToInt32((long.Parse(steam_id) >> 0) & 0xFFFFFFFF);
 
-    private static TradeResponse FilterNonActiveOffers(TradeResponse tradeResponse)
-    {
-        if (tradeResponse?.Response?.TradeOffersSent != null)
-            tradeResponse.Response.TradeOffersSent = tradeResponse.Response.TradeOffersSent.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
-
-        if (tradeResponse?.Response?.TradeOffersReceived != null)
-            tradeResponse.Response.TradeOffersReceived = tradeResponse.Response.TradeOffersReceived.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
-
-        return tradeResponse!;
-    }
-
     private static string GetTradeOfferUrl(string trade_offer_id) => SteamApiUrls.STEAM_TRADEOFFER_URL.Format(trade_offer_id);
 
+    /// <summary>
+    /// 获取交易报价 PartnerId
+    /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="trade_offer_id"></param>
+    /// <returns></returns>
     private async Task<string> FetchTradePartnerId(SteamSession steamSession, string trade_offer_id)
     {
         var url = GetTradeOfferUrl(trade_offer_id);
@@ -679,6 +680,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return page_text[start..end];
     }
 
+    /// <summary>
+    /// 获取 SessionId
+    /// </summary>
+    /// <param name="steamSession"></param>
+    /// <returns></returns>
     private async Task<string> FetchSessionId(SteamSession steamSession)
     {
         if (string.IsNullOrEmpty(steamSession.Cookies?["sessionid"].Value))
@@ -725,7 +731,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     private Dictionary<string, string> CreateConfirmationParams(string tag, SteamSession steamSession)
     {
         var servertime = (DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() + steamSession.ServerTimeDiff) / 1000L;
-        var timehash = CteateTimeHash(steamSession.IdentitySecret, tag, servertime);
+        var timehash = CreateTimeHash(steamSession.IdentitySecret, tag, servertime);
         var android_id = GenerateDeviceId(steamSession.SteamId);
         return new Dictionary<string, string>
             {
@@ -752,7 +758,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return full_id?.Split('_')[1] ?? string.Empty;
     }
 
-    private static string CteateTimeHash(string identitySecret, string tag, long timestamp)
+    private static string CreateTimeHash(string identitySecret, string tag, long timestamp)
     {
         long bigEndianTimestamp = IPAddress.HostToNetworkOrder(timestamp);
         byte[] timestampBytes = BitConverter.GetBytes(bigEndianTimestamp);
