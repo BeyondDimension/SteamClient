@@ -6,7 +6,8 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 {
     protected sealed override string ClientName => TAG;
 
-    protected sealed override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+        DefaultJsonSerializerContext_.Default.Options;
 
     public const string TAG = "SteamAccountWebApiS";
 
@@ -181,7 +182,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
 #pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                 // SystemTextJsonObject 应配置为跳过裁剪所以忽略警告
-                var dologinRspJObj = await ReadFromSJsonAsync<SystemTextJsonObject>(dologinRspMsg.Content, null, cancellationToken);
+                var dologinRspJObj = await ReadFromSJsonAsync<SystemTextJsonObject>(dologinRspMsg.Content, cancellationToken);
 #pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
                 if (dologinRspJObj is null)
                 {
@@ -673,7 +674,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     throw new Exception($"FinalizeLoginAsync 出现错误: {response.StatusCode}");
                 }
 
-                var result = await ReadFromSJsonAsync<FinalizeLoginStatus>(response.Content, null);
+                var result = await ReadFromSJsonAsync<FinalizeLoginStatus>(response.Content);
 
                 if (result == null)
                 {
@@ -1104,7 +1105,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             var resp = await CreateClient().GetAsync(url);
 
-            return await ReadFromSJsonAsync<InventoryPageResponse>(resp.Content, null);
+            return await ReadFromSJsonAsync<InventoryPageResponse>(resp.Content);
         });
 
         return inventories!;

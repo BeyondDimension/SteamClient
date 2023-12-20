@@ -6,7 +6,8 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
 {
     private const string TAG = "SteamSessionS";
 
-    protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+        DefaultJsonSerializerContext_.Default.Options;
 
     protected sealed override string ClientName => TAG;
 

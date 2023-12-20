@@ -26,6 +26,7 @@ abstract class ServiceTestBase
         var services = new ServiceCollection();
         ConfigureServices(services);
         serviceProvider = services.BuildServiceProvider();
+        Ioc.ConfigureServices(serviceProvider);
         return default;
     }
 

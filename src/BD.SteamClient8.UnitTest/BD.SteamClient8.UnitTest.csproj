@@ -40,10 +40,14 @@
 		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Models.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
+		<Compile Include="..\Shared\GlobalUsings.WinAuth.cs">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
+		<ProjectReference Include="..\WinAuth\WinAuth.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -11,7 +11,8 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     /// </summary>
     protected override string ClientName => TAG;
 
-    protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+        DefaultJsonSerializerContext_.Default.Options;
 
     public SteamMarketService(IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(

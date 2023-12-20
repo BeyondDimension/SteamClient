@@ -8,7 +8,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     protected override string ClientName => TAG;
 
-    protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+        DefaultJsonSerializerContext_.Default.Options;
 
     private readonly ConcurrentDictionary<string, CancellationTokenSource> _tasks;
 
@@ -215,7 +216,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
                 if (InvalidAPIKey(contentString))
                     throw new Exception("the steam api_key is invalid!");
 
-                return (await ReadFromSJsonAsync<TradeSummaryResponse>(response.Content, null))?.Response;
+                return (await ReadFromSJsonAsync<TradeSummaryResponse>(response.Content))?.Response;
             }
             return "GetTradeOffersSummaryAsync Response IsSuccessStatusCode false";
         }
@@ -412,19 +413,22 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         sendArgs.SetHttpClient(steamSession.HttpClient!);
         var response = await SendAsync<HttpResponseMessage>(sendArgs);
 
-        List<Confirmation> failed = [];
+        List<Confirmation> confirmations = [];
         if (response != null && response.IsSuccessStatusCode)
         {
             var contentString = await response.Content.ReadAsStringAsync();
             using var confirmations_page = JsonDocument.Parse(contentString);
             if (contentString.Contains("Steam Guard Mobile Authenticator is providing incorrect Steam Guard codes."))
-                return failed!;
+                return confirmations!;
 
-            var confirmations = confirmations_page.RootElement.GetProperty("conf").Deserialize<IEnumerable<Confirmation>>();
-            confirmations ??= failed;
-            return ApiRspHelper.Ok(confirmations)!;
+            foreach (var conf in confirmations_page.RootElement.GetProperty("conf").EnumerateArray())
+            {
+                var confirmation = SystemTextJsonSerializer.Deserialize(conf, DefaultJsonSerializerContext_.Default.Confirmation);
+                if (confirmation is not null)
+                    confirmations.Add(confirmation);
+            }
         }
-        return failed!;
+        return confirmations!;
     }
 
     // public async Task<(string[] my_items, string[] them_items)> GetConfirmationImages(string steam_id, Confirmation confirmation)
@@ -677,7 +681,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             var end = page_text.IndexOf("';", start);
             return page_text[start..end];
         }
-        catch (Exception ex)
+        catch
         {
             return null;
         }

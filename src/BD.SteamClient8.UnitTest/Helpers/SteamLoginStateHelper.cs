@@ -28,6 +28,8 @@ public static partial class SteamLoginStateHelper
                             steamLoginStateCache, null, DataProtectionScope.LocalMachine);
                     steamLoginState = Serializable.DMP2<SteamLoginState>(steamLoginStateCache);
                     steamLoginState.ThrowIsNull();
+                    if (steamLoginState.Username != configuration["steamUsername"])
+                        throw new ArgumentException();
 
                     var session = new SteamSession();
                     session.SteamId = steamLoginState.SteamId.ToString();

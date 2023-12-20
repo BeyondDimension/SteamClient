@@ -8,7 +8,8 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
 
     protected override string ClientName => TAG;
 
-    protected override SystemTextJsonSerializerContext? JsonSerializerContext => DefaultJsonSerializerContext_.Default;
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+        DefaultJsonSerializerContext_.Default.Options;
 
     private readonly IHttpPlatformHelperService http_helper;
 

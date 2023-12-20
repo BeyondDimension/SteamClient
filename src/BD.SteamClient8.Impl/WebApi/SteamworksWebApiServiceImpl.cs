@@ -8,6 +8,9 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
 
     protected override string ClientName => TAG;
 
+    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
+    DefaultJsonSerializerContext_.Default.Options;
+
     public SteamworksWebApiServiceImpl(
         IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(
