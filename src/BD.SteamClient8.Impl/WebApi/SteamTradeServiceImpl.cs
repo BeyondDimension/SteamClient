@@ -143,7 +143,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_ACCPET.Format(trade_offer_id))
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id));
@@ -288,7 +288,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_SEND)
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
@@ -335,7 +335,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_SEND)
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
@@ -360,7 +360,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_CANCEL.Format(trade_offer_id))
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
         var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
@@ -379,7 +379,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_DECLINE.Format(trade_offer_id))
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
         var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
@@ -603,7 +603,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_MOBILECONF_BATCH_CONFIRMATION)
         {
             Method = HttpMethod.Post,
-            ContentType = "application/x-www-form-urlencoded; charset=UTF-8",
+            ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
