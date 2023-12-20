@@ -27,9 +27,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<IsAccountWaitingForEmailConfirmationResponse?>> AccountWaitingForEmailConfirmation(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF.Format(steamSession.AccessToken))
         {
@@ -43,9 +41,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<SteamDoLoginTfaJsonStruct?>> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1")
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var data = new Dictionary<string, string>
         {
@@ -67,9 +63,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var data = new Dictionary<string, string>
         {
@@ -88,9 +82,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1")
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var data = new Dictionary<string, string>
         {
@@ -111,9 +103,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<GetUserCountryResponse?>> GetUserCountry(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var param = new Dictionary<string, string>
         {
@@ -130,9 +120,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<RemoveAuthenticatorResponse?>> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1")
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var param = new Dictionary<string, string>
         {
@@ -152,9 +140,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?>> RemoveAuthenticatorViaChallengeStartSync(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var base64string = UrlEncoder.Default.Encode(new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request().ToByteString().ToBase64());
         var data = new Dictionary<string, string>()
@@ -169,19 +155,13 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        //var req = new HttpRequestMessage(HttpMethod.Post, SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC.Format(steamSession.AccessToken));
-        //req.Headers.TryAddWithoutValidation("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        //req.Content = new FormUrlEncodedContent(data);
-        //var re = await (await steamSession.HttpClient!.SendAsync(req)).Content.ReadAsStringAsync();
         var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data);
         return CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.Parser.ParseFrom(response);
     }
 
     public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var base64string = UrlEncoder.Default.Encode(new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request
         {
@@ -206,9 +186,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> SendPhoneVerificationCode(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            return string.Empty;
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE.Format(steamSession.AccessToken))
         {
@@ -230,9 +208,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
     [RequiresDynamicCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
     public async Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (string.IsNullOrEmpty(steamSession.RefreshToken))
             throw new Exception("Refresh token is empty");

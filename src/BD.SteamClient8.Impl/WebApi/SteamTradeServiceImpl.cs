@@ -81,9 +81,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Trade 交易报价
     public async Task<ApiRspImpl<bool>> AcceptAllGiftTradeOfferAsync(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (string.IsNullOrEmpty(steamSession.APIKey))
             return false;
@@ -115,9 +113,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (tradeInfo == null)
         {
@@ -264,9 +260,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var offer_string = GenerateJsonTradeOffer(my_items, them_items);
         var sessionid = await FetchSessionId(steamSession);
@@ -282,7 +276,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             { "trade_offer_create_params", "{}" }
         };
 
-        var partner_account_id = ToSteamId32(target_steam_id);
+        var partner_account_id = new SteamIdConvert(target_steam_id).Id32;
         var tradeoffer_url = $"{SteamApiUrls.STEAM_COMMUNITY_URL}/tradeoffer/new/?partner={partner_account_id}";
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_SEND)
@@ -303,9 +297,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var uri = new Uri(trade_offer_url);
         var querys = HttpUtility.ParseQueryString(uri.Query);
@@ -314,7 +306,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         if (string.IsNullOrEmpty(partner) && string.IsNullOrEmpty(token))
             return false;
 
-        var target_steam64_id = ToSteamId64(partner!);
+        var target_steam64_id = new SteamIdConvert(partner!).Id64;
         var offer_string = GenerateJsonTradeOffer(my_items, them_items);
         var sessionid = await FetchSessionId(steamSession);
         var server_id = 1;
@@ -350,9 +342,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> CancelTradeOfferAsync(string steam_id, string trade_offer_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>() { { "sessionid", sessionid.ThrowIsNull() } };
@@ -369,9 +359,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> DeclineTradeOfferAsync(string steam_id, string trade_offer_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var sessionid = await FetchSessionId(steamSession);
         var param = new Dictionary<string, string>() { { "sessionid", sessionid.ThrowIsNull() } };
@@ -390,9 +378,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Confirmation 交易确认
     public async Task<ApiRspImpl<IEnumerable<Confirmation>>> GetConfirmations(string steam_id)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var tag = TradeTag.CONF.GetDescription();
         var queryString = CreateConfirmationParams(tag!, steamSession);
@@ -481,7 +467,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     public async Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, Confirmation confirmation)
     {
         // 获取登陆状态
-        var steamSession = _sessionService.RentSession(steam_id) ?? throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         // 构建请求参数
         var tag = $"details{confirmation.Id}";
@@ -543,9 +529,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, Confirmation confirmation, bool accept)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var tag = accept ? TradeTag.ALLOW.GetDescription() : TradeTag.CANCEL.GetDescription();
         var queryString = CreateConfirmationParams(tag!, steamSession);
@@ -580,9 +564,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     public async Task<ApiRspImpl<bool>> BatchSendConfirmation(string steam_id, Dictionary<string, string> trades, bool accept)
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, please login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (!(trades.Count > 0))
             return false;
@@ -636,7 +618,6 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             }
             catch (Exception ex)
             {
-                // 处理异常，也可以选择记录日志等操作
                 Console.WriteLine($"Exception occurred in background task: {ex.Message}");
             }
         }
@@ -651,10 +632,6 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// <param name="content"></param>
     /// <returns></returns>
     private static bool InvalidAPIKey(string content) => content.Contains("Access is denied. Retrying will not help. Please verify your <pre>key=</pre> parameter");
-
-    private static ulong ToSteamId64(string steam_id) => 76561197960265728ul + ulong.Parse(steam_id);
-
-    private static int ToSteamId32(string steam_id) => Convert.ToInt32((long.Parse(steam_id) >> 0) & 0xFFFFFFFF);
 
     private static string GetTradeOfferUrl(string trade_offer_id) => SteamApiUrls.STEAM_TRADEOFFER_URL.Format(trade_offer_id);
 

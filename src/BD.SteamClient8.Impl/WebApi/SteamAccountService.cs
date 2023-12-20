@@ -1290,9 +1290,9 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
-    public async Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string accesstoken)
+    public async Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string access_token)
     {
-        var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, accesstoken));
+        var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, access_token));
 
         if (rsp.IsSuccessStatusCode)
         {

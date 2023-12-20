@@ -25,9 +25,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     #region Public
     public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
     {
-        var steamSession = _sessionService.RentSession(steam_id);
-        if (steamSession == null)
-            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
+        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         var badges_url = SteamApiUrls.STEAM_BADGES_URL.Format(steamSession.SteamId, 1);
         var pages = new List<string>() { "?p=1" };
@@ -115,9 +113,9 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum")?.TextContent, out var after_userLevel) ? after_userLevel : default;
             userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
 
-            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
-            if (matchs.Count >= 2)
-                userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
+            var matches = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
+            if (matches.Count >= 2)
+                userIdle.UpExp = int.TryParse(matches[1].Value, out var after_upExp) ? after_upExp : default;
 
             userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress")?.OuterHtml ?? string.Empty, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
         }
