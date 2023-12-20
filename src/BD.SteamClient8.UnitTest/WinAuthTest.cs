@@ -11,7 +11,7 @@ sealed class WinAuthTest : ServiceTestBase
     ISteamAuthenticatorService steamAuthenticatorService = null!;
     IConfiguration configuration = null!;
 
-    SteamAuthenticator steamAuthenticator;
+    SteamAuthenticator? steamAuthenticator;
     SteamAuthenticator.EnrollState enrollState;
 
     /// <inheritdoc/>
@@ -36,7 +36,7 @@ sealed class WinAuthTest : ServiceTestBase
         steamAuthenticatorService = GetRequiredService<ISteamAuthenticatorService>();
         steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
 
-        steamAuthenticator ??= new();
+        steamAuthenticator ??= await SteamAuthenticatorHelper.GetSteamAuthenticatorAsync();
         enrollState ??= new();
     }
 
@@ -54,8 +54,10 @@ sealed class WinAuthTest : ServiceTestBase
             Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
 
             // 账号是否已添加令牌
-            Assert.That(steamLoginState.Requires2FA, Is.Not.False);
+            Assert.That(steamAuthenticator, Is.Null);
         });
+        steamAuthenticator = new();
+
         enrollState.AccessToken = steamLoginState.AccessToken;
         enrollState.RefreshToken = steamLoginState.RefreshToken;
         enrollState.SteamId = (long)steamLoginState.SteamId;
@@ -101,6 +103,8 @@ sealed class WinAuthTest : ServiceTestBase
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
             Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
+
+            Assert.That(steamAuthenticator, Is.Not.Null);
         });
         enrollState.AccessToken ??= steamLoginState.AccessToken;
         enrollState.RefreshToken ??= steamLoginState.RefreshToken;
@@ -126,13 +130,13 @@ sealed class WinAuthTest : ServiceTestBase
     [Test]
     public async Task UnBindingAuthenticator()
     {
+        Assert.That(steamAuthenticator, Is.Not.Null);
         Assert.Multiple(() =>
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
             Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
 
-            // 账号需要已添加令牌
-            Assert.That(steamLoginState.Requires2FA);
+            Assert.That(!string.IsNullOrEmpty(steamAuthenticator.RecoveryCode));
         });
 
         var remove_result = await steamAuthenticator.RemoveAuthenticatorAsync(steamLoginState.AccessToken);
