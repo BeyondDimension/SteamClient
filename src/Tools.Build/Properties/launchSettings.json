@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "BD.SteamClient8.Tools.Build": {
-      "commandName": "Project",
-      "commandLineArgs": "b"
-    }
-  }
-}

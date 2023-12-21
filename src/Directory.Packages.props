@@ -1,6 +1,0 @@
-<Project>
-  <Import Project="..\ref\Common\src\Directory.Packages.props" />
-  <ItemGroup>
-    <PackageVersion Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
-  </ItemGroup>
-</Project>
