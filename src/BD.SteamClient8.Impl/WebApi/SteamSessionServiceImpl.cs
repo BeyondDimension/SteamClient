@@ -1,18 +1,26 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamSessionService"/> Steam 登录会话信息服务实现
+/// </summary>
 public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSessionService
 {
     private const string TAG = "SteamSessionS";
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
+    /// <inheritdoc/>
     protected sealed override string ClientName => TAG;
 
     private readonly ConcurrentDictionary<string, SteamSession> _sessions;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamSessionServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="loggerFactory"></param>
     public SteamSessionServiceImpl(
         IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(loggerFactory.CreateLogger(TAG),
@@ -21,6 +29,7 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
         _sessions = new ConcurrentDictionary<string, SteamSession>();
     }
 
+    /// <inheritdoc/>
     public bool AddOrSetSession(SteamSession steamSession)
     {
         if (string.IsNullOrEmpty(steamSession.SteamId))
@@ -34,12 +43,14 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
         return true;
     }
 
+    /// <inheritdoc/>
     public SteamSession? RentSession(string steam_id)
     {
         _ = _sessions.TryGetValue(SpecialTag(steam_id), out var steamSession);
         return steamSession;
     }
 
+    /// <inheritdoc/>
     public bool RemoveSession(string steam_id)
     {
         if (_sessions.TryRemove(SpecialTag(steam_id), out var steamSession))
@@ -50,6 +61,7 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
         return false;
     }
 
+    /// <inheritdoc/>
     public async Task<bool> SaveSession(SteamSession steamSession)
     {
         try
@@ -65,6 +77,7 @@ public class SteamSessionServiceImpl : WebApiClientFactoryService, ISteamSession
         return false;
     }
 
+    /// <inheritdoc/>
     public async Task<SteamSession?> LoadSession(string filePath)
     {
         try

@@ -15,23 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace WinAuth.WinAuth;
 
+/// <summary>
+/// HOTP 身份认证
+/// </summary>
 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
 [MessagePackObject(keyAsPropertyName: true)]
 public sealed class HOTPAuthenticator : AuthenticatorValueDTO
 {
     /// <summary>
-    /// Create a new Authenticator object optionally with a specified number of digits
+    /// 创建一个新的 Authenticator 对象，可选地使用指定的位数
     /// </summary>
     [SerializationConstructor]
     public HOTPAuthenticator() : base(DEFAULT_CODE_DIGITS)
     {
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -43,19 +44,19 @@ public sealed class HOTPAuthenticator : AuthenticatorValueDTO
     public override AuthenticatorPlatform Platform => default;
 
     /// <summary>
-    /// Counter for authenticator input
+    /// 用于验证器输入的计数器
     /// </summary>
     public long Counter { get; set; }
 
     /// <summary>
-    /// Create a new Authenticator object optionally with a specified number of digits
+    /// 创建一个新的 Authenticator 对象，可选地使用指定的位数
     /// </summary>
     public HOTPAuthenticator(int digits) : base(digits)
     {
     }
 
     /// <summary>
-    /// Get/set the combined secret data value
+    /// 获取/设置组合的秘密数据值
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -91,7 +92,7 @@ public sealed class HOTPAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Set the private key for the authenticator
+    /// 设置验证者的私钥
     /// </summary>
     /// <param name="b32key">base32 encoded key</param>
     /// <param name="counter"></param>
@@ -102,14 +103,14 @@ public sealed class HOTPAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Synchronise this authenticator
+    /// 同步此身份验证器
     /// </summary>
     public override void Sync()
     {
     }
 
     /// <summary>
-    /// Calculate the current code for the authenticator.
+    /// 计算验证器的当前代码
     /// </summary>
     /// <returns>authenticator code</returns>
     protected override string CalculateCode(bool sync = false, long counter = -1)

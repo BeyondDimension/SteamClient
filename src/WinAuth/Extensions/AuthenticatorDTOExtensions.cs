@@ -84,8 +84,8 @@ public static partial class AuthenticatorDTOExtensions
     }
 
     /// <summary>
-    /// Create a KeyUriFormat compatible URL
-    /// See https://code.google.com/p/google-authenticator/wiki/KeyUriFormat
+    /// 创建密钥 Uri 格式兼容的URL
+    /// <para>https://code.google.com/p/google-authenticator/wiki/KeyUriFormat</para>
     /// </summary>
     /// <param name="this"></param>
     /// <param name="compat"></param>

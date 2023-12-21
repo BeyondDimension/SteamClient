@@ -16,8 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma warning disable SA1600 // Elements should be documented
-
 using Exception = System.Exception;
 
 namespace WinAuth.WinAuth;
@@ -27,17 +25,17 @@ namespace WinAuth.WinAuth;
 public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
 {
     /// <summary>
-    /// Number of characters in code
+    /// 代码中的字符数
     /// </summary>
     const int CODE_DIGITS = 5;
 
     /// <summary>
-    /// Steam issuer for KeyUri
+    /// KeyUri 的 Steam 发行者
     /// </summary>
     const string STEAM_ISSUER = "Steam";
 
     /// <summary>
-    /// Create a new Authenticator object
+    /// 创建一个新的 Authenticator 对象
     /// </summary>
     [MPConstructor]
     public SteamAuthenticator() : base(CODE_DIGITS)
@@ -48,6 +46,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         AccountService = Ioc.Get<ISteamAccountService>();
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -59,22 +58,22 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     public override AuthenticatorPlatform Platform => AuthenticatorPlatform.Steam;
 
     /// <summary>
-    /// Returned serial number of authenticator
+    /// 返回验证器的序列号
     /// </summary>
     public string? Serial { get; set; }
 
     /// <summary>
-    /// Random device ID we created and registered
+    /// 创建并注册的随机设备ID
     /// </summary>
     public string? DeviceId { get; set; }
 
     /// <summary>
-    /// JSON steam data
+    /// Steam Json 数据
     /// </summary>
     public string? SteamData { get; set; }
 
     /// <summary>
-    /// revocation_code
+    /// 撤销代码
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -90,7 +89,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
             ?.RevocationCode;
 
     /// <summary>
-    /// account_name
+    /// 帐户名称
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -105,7 +104,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         : SystemTextJsonSerializer.Deserialize(SteamData, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct)?.AccountName;
 
     /// <summary>
-    /// steamid64
+    /// steamId (64 位)
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -120,10 +119,11 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         : SystemTextJsonSerializer.Deserialize(SteamData, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct)?.SteamId ?? 0;
 
     /// <summary>
-    /// JSON session data
+    /// JSON 会话数据
     /// </summary>
     public string? SessionData { get; set; }
 
+    /// <inheritdoc/>
     protected override bool ExplicitHasValue()
     {
         return base.ExplicitHasValue() && Serial != null && DeviceId != null && SteamData != null &&
@@ -131,22 +131,22 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Number of minutes to ignore syncing if network error
+    /// 如果网络错误，忽略同步的分钟数
     /// </summary>
     const int SYNC_ERROR_MINUTES = 60;
 
     /// <summary>
-    /// Number of attempts to activate
+    /// 尝试激活的次数
     /// </summary>
     const int ENROLL_ACTIVATE_RETRIES = 30;
 
     /// <summary>
-    /// Incorrect activation code
+    /// 激活码不正确
     /// </summary>
     const int INVALID_ACTIVATION_CODE = 89;
 
     /// <summary>
-    /// Character set for authenticator code
+    /// 验证器代码的字符集
     /// </summary>
     static readonly char[] STEAMCHARS = new char[]
     {
@@ -155,15 +155,24 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     };
 
     /// <summary>
-    /// Enrolling state
+    /// 注册状态
     /// </summary>
     [MPObj(keyAsPropertyName: true)]
     public sealed class EnrollState
     {
+        /// <summary>
+        /// 语言
+        /// </summary>
         public string? Language { get; set; }
 
+        /// <summary>
+        /// 用户名
+        /// </summary>
         public string? Username { get; set; }
 
+        /// <summary>
+        /// 密码
+        /// </summary>
         public string? Password { get; set; }
 
         // public string? CaptchaId { get; set; }
@@ -172,21 +181,45 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         //
         // public string? CaptchaText { get; set; }
 
+        /// <summary>
+        /// 电子邮件域
+        /// </summary>
         public string? EmailDomain { get; set; }
 
+        /// <summary>
+        /// 电子邮件认证文本
+        /// </summary>
         public string? EmailAuthText { get; set; }
 
+        /// <summary>
+        /// 激活代码
+        /// </summary>
         public string? ActivationCode { get; set; }
 
+        /// <summary>
+        /// Cookies
+        /// </summary>
         [MessagePackFormatter(typeof(CookieFormatter))]
         public CookieContainer? Cookies { get; set; }
 
+        /// <summary>
+        /// SteamId
+        /// </summary>
         public long SteamId { get; set; }
 
+        /// <summary>
+        /// 电话号码
+        /// </summary>
         public string? PhoneNumber { get; set; }
 
+        /// <summary>
+        /// 电话号码是否存在
+        /// </summary>
         public bool NoPhoneNumber { get; set; }
 
+        /// <summary>
+        /// 是否更换身份验证方式
+        /// </summary>
         public bool ReplaceAuth { get; set; }
 
         //public string? OAuthToken { get; set; }
@@ -199,32 +232,56 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         //
         // public bool RequiresEmailAuth { get; set; }
 
+        /// <summary>
+        /// 需要邮箱确认电话
+        /// </summary>
         public bool RequiresEmailConfirmPhone { get; set; }
 
+        /// <summary>
+        /// 需要激活
+        /// </summary>
         public bool RequiresActivation { get; set; }
 
+        /// <summary>
+        /// 撤销代码
+        /// </summary>
         public string? RevocationCode { get; set; }
 
+        /// <summary>
+        /// 秘密密钥
+        /// </summary>
         public string? SecretKey { get; set; }
 
+        /// <summary>
+        /// Success
+        /// </summary>
         public bool Success { get; set; }
 
+        /// <summary>
+        /// Error
+        /// </summary>
         public string? Error { get; set; }
 
+        /// <summary>
+        /// 访问令牌
+        /// </summary>
         public string? AccessToken { get; set; }
 
+        /// <summary>
+        /// 刷新令牌
+        /// </summary>
         public string? RefreshToken { get; set; }
     }
 
     #region Authenticator data
 
     /// <summary>
-    /// Time of last Sync error
+    /// 上次同步时间错误
     /// </summary>
     static DateTime _lastSyncError = DateTime.MinValue;
 
     /// <summary>
-    /// Current Steam client instance
+    /// 当前 Steam 客户端实例
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -238,7 +295,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     public SteamClient Client { get; private set; }
 
     /// <summary>
-    /// Current AuthenticatorService instance
+    /// 当前的 AuthenticatorService 实例
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -251,7 +308,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     public ISteamAuthenticatorService AuthenticatorService { get; private set; }
 
     /// <summary>
-    /// Current AccountService instance
+    /// 当前 AccountService 实例
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -266,12 +323,12 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     #endregion
 
     /// <summary>
-    /// Expanding offsets to retry when creating first code
+    /// 扩展偏移量以在创建第一个代码时重试
     /// </summary>
     readonly int[] ENROLL_OFFSETS = new int[] { 0, -30, 30, -60, 60, -90, 90, -120, 120 };
 
     /// <summary>
-    /// Get/set the combined secret data value
+    /// 获取/设置组合的秘密数据值
     /// </summary>
     [MPIgnore, NewtonsoftJsonIgnore, SystemTextJsonIgnore]
     public override string? SecretData
@@ -335,7 +392,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Get (or create) the current Steam client for this Authenticator
+    /// 获取(或创建)此认证器的当前 Steam 客户端
     /// </summary>
     /// <returns>current or new SteamClient</returns>
     public SteamClient GetClient(string? language = null)
@@ -348,6 +405,12 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         }
     }
 
+    /// <summary>
+    /// 获取 Rsa 密钥和加密密码
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    /// <exception cref="WinAuthInvalidEnrollResponseException"></exception>
     public async Task<(string encryptedPassword, ulong timestamp)> GetRsaKeyAndEncryptedPasswordAsync(
         EnrollState state)
     {
@@ -368,7 +431,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// 调用Steam添加令牌接口
+    /// 调用 Steam 添加令牌接口
     /// </summary>
     /// <param name="state"></param>
     /// <returns>调用成功返回true</returns>
@@ -448,6 +511,12 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         return true;
     }
 
+    /// <summary>
+    /// 完成添加认证器
+    /// </summary>
+    /// <param name="state"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     public async Task<bool> FinalizeAddAuthenticatorAsync(EnrollState state)
     {
         if (string.IsNullOrEmpty(state.AccessToken)) throw new Exception(Strings.Error_InvalidLoginInfo);
@@ -523,6 +592,11 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
         return true;
     }
 
+    /// <summary>
+    /// 获取用户所在国家
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <returns></returns>
     public async Task<string?> GetUserCountry(string steam_id)
     {
         var jsonObj = (await AuthenticatorService.GetUserCountry(steam_id)).Content;
@@ -530,7 +604,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Steam账户添加绑定手机号
+    /// Steam 账户添加绑定手机号
     /// </summary>
     /// <param name="state"></param>
     /// <param name="phoneNumber"></param>
@@ -572,7 +646,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Steam移除安全防护
+    /// Steam 移除安全防护
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="scheme">1 = 移除令牌验证器但保留邮箱验证，2 = 移除所有防护</param>
@@ -595,7 +669,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Steam替换安全防护令牌
+    /// Steam 替换安全防护令牌
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="sms_code"></param>
@@ -640,7 +714,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Enroll the authenticator with the server
+    /// 向服务器注册身份验证器
     /// </summary>
     [Obsolete("use AddAuthenticatorAsync")]
     public async Task EnrollAsync(EnrollState state)
@@ -863,7 +937,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Synchronise this authenticator's time with Steam.
+    /// 与 Steam 同步验证者的时间
     /// </summary>
     public override async void Sync()
     {
@@ -902,11 +976,11 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Calculate the current code for the authenticator.
+    /// 计算验证器的当前代码
     /// </summary>
-    /// <param name="resyncTime">flag to resync time</param>
+    /// <param name="resyncTime">重新同步时间标志</param>
     /// <param name="interval"></param>
-    /// <returns>authenticator code</returns>
+    /// <returns>身份验证代码</returns>
     protected override string CalculateCode(bool resyncTime = false, long interval = -1)
     {
         // sync time if required
@@ -949,9 +1023,9 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Create a random Device ID string for Enrolling
+    /// 为注册创建一个随机的设备 ID 字符串
     /// </summary>
-    /// <returns>Random string</returns>
+    /// <returns>随机字符串</returns>
     static string BuildRandomId() => "android:" + Guid.NewGuid().ToString();
 
     SteamConvertSteamDataJsonStruct? SteamDataDeserialize()
@@ -962,13 +1036,13 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Log an exception from a Request
+    /// 记录来自请求的异常
     /// </summary>
-    /// <param name="method">Get or POST</param>
-    /// <param name="url">Request URL</param>
-    /// <param name="cookies">cookie container</param>
-    /// <param name="request">Request data</param>
-    /// <param name="ex">Thrown exception</param>
+    /// <param name="method">Get 或 POST</param>
+    /// <param name="url">请求 URL</param>
+    /// <param name="cookies">cookie 容器</param>
+    /// <param name="request">请求数据</param>
+    /// <param name="ex">抛出异常</param>
     [Conditional("DEBUG")]
     static void LogException(string? method, string url, CookieContainer? cookies, NameValueCollection? request,
         Exception ex)
@@ -1007,12 +1081,12 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Log a normal response
+    /// 记录一个正常的响应
     /// </summary>
-    /// <param name="method">Get or POST</param>
-    /// <param name="url">Request URL</param>
-    /// <param name="cookies">cookie container</param>
-    /// <param name="request">Request data</param>
+    /// <param name="method">Get 或 POST</param>
+    /// <param name="url">请求 URL</param>
+    /// <param name="cookies">cookie 容器</param>
+    /// <param name="request">请求数据</param>
     /// <param name="response">response body</param>
     [Conditional("DEBUG")]
     static void LogRequest(string? method, string url, CookieContainer? cookies, NameValueCollection? request,

@@ -1,0 +1,71 @@
+{
+  "metadata": [
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8/**/BD.SteamClient8.dll"]}],
+      "dest": "api/BD.SteamClient8"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.Impl/**/BD.SteamClient8.Impl.dll"]}],
+      "dest": "api/BD.SteamClient8.Impl"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.Models/**/BD.SteamClient8.Models.dll"]}],
+      "dest": "api/BD.SteamClient8.Models"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.Primitives/**/BD.SteamClient8.Primitives.dll"]}],
+      "dest": "api/BD.SteamClient8.Primitives"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.ViewModels/**/BD.SteamClient8.ViewModels.dll"]}],
+      "dest": "api/BD.SteamClient8.ViewModels"
+    },
+    {
+      "src": [{ "files": ["src/artifacts/bin/WinAuth/**/WinAuth.dll"]}],
+      "dest": "api/WinAuth"
+    } 
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "**/*.{md,yml}",
+          "toc.yml",
+          "*.html",
+          "*.md",
+          "api/**.yml",
+          "api/index.md",
+          "api/**/**.yml"
+        ],
+        "exclude": [
+          "_site/**",
+          "ref/Common/"
+        ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**",
+          "res/DocFXIcon.png"
+        ]
+      }
+    ],
+    "output": "_site",
+    "template": [
+      "default",
+      "modern"
+    ],
+    "globalMetadata": {
+      "_appName": "SteamClient 文档",
+      "_appTitle": "SteamClient",
+      "_appLogoPath": "res/DocFXIcon.png",
+      "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved.",
+      "_disableBreadcrumb": true,
+      "_enableSearch": false,
+      "pdf": false
+    },
+    "keepFileLink": false,
+    "disableGitFeatures": false
+  }
+}

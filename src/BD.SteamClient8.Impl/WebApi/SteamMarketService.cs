@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamMarketService"/> Steam 市场交易相关服务实现
+/// </summary>
 public class SteamMarketService : WebApiClientFactoryService, ISteamMarketService
 {
     const string TAG = "SteamMarketWebApiS";
@@ -11,9 +12,15 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     /// </summary>
     protected override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamMarketService"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="loggerFactory"></param>
     public SteamMarketService(IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
@@ -26,6 +33,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     /// </summary>
     static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1)
     {
         var url = SteamApiUrls.STEAM_MARKET_ITEMPRICEOVERVIEW_GET.Format(appId, currency, marketHashName);
@@ -42,6 +50,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese")
     {
         string url = SteamApiUrls.STEAM_MARKET_ITEMORDERHISTOGRAM_GET.Format(country, language, currency, marketItemNameId);
@@ -59,6 +68,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price)
     {
         string requestUrl = SteamApiUrls.STEAM_MARKET_SELLITEM;
@@ -109,6 +119,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         return resp!;
     }
 
+    /// <inheritdoc/>
     public async IAsyncEnumerable<MarketTradingHistoryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100)
     {
         string requestUrl = SteamApiUrls.STEAM_MARKET_TRADING_HISTORY_GET.Format(start, count);
@@ -217,6 +228,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<MarketListings>> GetMarketListing(SteamLoginState loginState)
     {
         const string activeListingRowIdPrefix = "mylisting_";

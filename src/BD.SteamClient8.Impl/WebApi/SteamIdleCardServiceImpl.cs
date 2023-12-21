@@ -4,15 +4,23 @@ using Nito.Comparers.Linq;
 
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// <see cref="ISteamIdleCardService"/> Steam 挂卡相关服务实现
+/// </summary>
 public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCardService
 {
     const string TAG = "SteamIdleS";
 
+    /// <inheritdoc/>
     protected override string ClientName => TAG;
 
     private readonly ISteamSessionService _sessionService;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamIdleCardServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="loggerFactory"></param>
     public SteamIdleCardServiceImpl(
         IServiceProvider s,
         ILoggerFactory loggerFactory) : base(
@@ -23,6 +31,8 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     }
 
     #region Public
+
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -127,6 +137,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         return (userIdle, badges);
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency)
     {
         try
@@ -170,6 +181,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         return ApiRspHelper.Ok(Enumerable.Empty<AppCardsAvgPrice>())!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency)
     {
         try

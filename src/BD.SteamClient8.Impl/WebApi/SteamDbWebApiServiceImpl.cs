@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamDbWebApiService"/> SteamDb WebApi 服务实现
+/// </summary>
 internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISteamDbWebApiService
 {
     const string TAG = "SteamDbWebApiS";
@@ -11,11 +12,18 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
     /// </summary>
     protected override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
     private readonly IHttpPlatformHelperService http_helper;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamDbWebApiServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="http_helper"></param>
+    /// <param name="loggerFactory"></param>
     public SteamDbWebApiServiceImpl(
         IServiceProvider serviceProvider,
         IHttpPlatformHelperService http_helper,
@@ -50,6 +58,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_USERINFO_URL, steamId64);
@@ -57,6 +66,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
         return user!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s)
     {
         List<SteamUser> users = [];
@@ -65,6 +75,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
         return users!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamApp>> GetAppInfo(int appId)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_APPINFO_URL, appId);

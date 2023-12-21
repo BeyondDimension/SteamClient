@@ -16,19 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace WinAuth.WinAuth;
 
+/// <summary>
+/// 微软身份验证
+/// </summary>
 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
 [MessagePackObject(keyAsPropertyName: true)]
 public sealed class MicrosoftAuthenticator : GoogleAuthenticator
 {
+    /// <summary>
+    /// 初始化 <see cref="MicrosoftAuthenticator"/> 类的新实例
+    /// </summary>
     [SerializationConstructor]
     public MicrosoftAuthenticator() : base()
     {
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__

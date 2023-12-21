@@ -2,11 +2,19 @@
 
 namespace BD.SteamClient8.Impl.PInvoke;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// <see cref="ISteamService"/> 类实现
+/// </summary>
 public abstract partial class SteamServiceImpl : ISteamService
 {
+    /// <summary>
+    /// 用于标识和记录日志信息
+    /// </summary>
     protected const string TAG = "SteamS";
 
+    /// <summary>
+    /// 修改的文件名
+    /// </summary>
     protected const string ModifiedFileName = "modifications.vdf";
 
     /// <summary>
@@ -23,13 +31,45 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// </list>
     /// </summary>
     protected readonly string? UserVdfPath;
+
+    /// <summary>
+    /// 配置 Vdf 文件路径
+    /// </summary>
     protected readonly string? ConfigVdfPath;
+
+    /// <summary>
+    /// 应用程序信息文件的路径
+    /// </summary>
     protected readonly string? AppInfoPath;
+
+    /// <summary>
+    /// 程序库缓存目录的路径
+    /// </summary>
     protected readonly string? LibrarycacheDirPath;
+
+    /// <summary>
+    /// 用户数据目录名称
+    /// </summary>
     protected const string UserDataDirectory = "userdata";
+
+    /// <summary>
+    /// Steam 目录的路径
+    /// </summary>
     protected readonly string? mSteamDirPath;
+
+    /// <summary>
+    /// Steam 程序的路径
+    /// </summary>
     protected readonly string? mSteamProgramPath;
+
+    /// <summary>
+    /// 注册表信息文件的路径
+    /// </summary>
     protected readonly string? mRegistryVdfPath;
+
+    /// <summary>
+    /// Steam 相关进程的列表
+    /// </summary>
     protected readonly string[] steamProcess = new[] {
 #if MACCATALYST || MACOS
         "steam_osx",
@@ -41,10 +81,20 @@ public abstract partial class SteamServiceImpl : ISteamService
         "GameOverlayUI",
     };
 
+    /// <summary>
+    /// 日志记录器
+    /// </summary>
     protected readonly ILogger logger;
 
+    /// <summary>
+    /// Steam 下载文件的监听器列表
+    /// </summary>
     protected List<FileSystemWatcher>? steamDownloadingWatchers;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="loggerFactory"></param>
     public SteamServiceImpl(ILoggerFactory loggerFactory)
     {
         logger = loggerFactory.CreateLogger(TAG);
@@ -64,6 +114,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         if (!Directory.Exists(LibrarycacheDirPath)) LibrarycacheDirPath = null;
     }
 
+    /// <inheritdoc/>
     public string? SteamDirPath => mSteamDirPath;
 
     /// <summary>
@@ -71,10 +122,18 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// </summary>
     public string? RegistryVdfPath => mRegistryVdfPath;
 
+    /// <inheritdoc/>
     public string? SteamProgramPath => mSteamProgramPath;
 
+    /// <summary>
+    /// 检测 Steam 是否正在运行
+    /// </summary>
     public bool IsRunningSteamProcess => GetSteamProcesses().Length > 0;
 
+    /// <summary>
+    /// 结束 Steam 进程
+    /// </summary>
+    /// <returns></returns>
     protected virtual ValueTask<bool> KillSteamProcess()
     {
         var r = KillSteamProcessCore();
@@ -148,6 +207,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return true;
     }
 
+    /// <inheritdoc/>
     public async ValueTask<bool> TryKillSteamProcess()
     {
         try
@@ -171,6 +231,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <summary>
+    /// 获取 Steam 主进程 Id
+    /// </summary>
+    /// <returns></returns>
     public int GetSteamProcessPid()
     {
         var steamProces = GetSteamProces();
@@ -189,6 +253,10 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// <returns></returns>
     private Process? GetSteamProces() => GetSteamProcesses().FirstOrDefault();
 
+    /// <summary>
+    /// 检测是否是中国启动器
+    /// </summary>
+    /// <returns></returns>
     public bool IsSteamChinaLauncher()
     {
 #if WINDOWS
@@ -224,6 +292,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return false;
     }
 
+    /// <inheritdoc/>
     public void StartSteam(string? arguments = null)
     {
         if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
@@ -239,6 +308,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <inheritdoc/>
     public async Task ShutdownSteamAsync(CancellationToken cancellationToken = default)
     {
         if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
@@ -252,8 +322,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <inheritdoc/>
     public string GetLastLoginUserName() => GetLastSteamLoginUserName();
 
+    /// <inheritdoc/>
     public List<SteamUser> GetRememberUserList()
     {
         var users = new List<SteamUser>();
@@ -310,6 +382,9 @@ public abstract partial class SteamServiceImpl : ISteamService
         return users;
     }
 
+    /// <summary>
+    /// 更新授权设备列表
+    /// </summary>
     public bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> items)
     {
         var authorizeds = new List<AuthorizedDevice>();
@@ -342,6 +417,11 @@ public abstract partial class SteamServiceImpl : ISteamService
         return false;
     }
 
+    /// <summary>
+    /// 从授权设备列表中移除指定的授权设备
+    /// </summary>
+    /// <param name="model">要移除的授权设备模型</param>
+    /// <returns>如果成功移除授权设备，则返回 <see langword="true"/>；否则返回 <see langword="true"/></returns>
     public bool RemoveAuthorizedDeviceList(AuthorizedDevice model)
     {
         try
@@ -367,6 +447,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         return false;
     }
 
+    /// <summary>
+    /// 获取授权设备列表
+    /// </summary>
+    /// <returns></returns>
     public List<AuthorizedDevice> GetAuthorizedDeviceList()
     {
         var authorizeds = new List<AuthorizedDevice>();
@@ -409,10 +493,10 @@ public abstract partial class SteamServiceImpl : ISteamService
     }
 
     /// <summary>
-    /// Sets whether the user is invisible or not
+    /// 设置用户是否不可见
     /// </summary>
-    /// <param name="steamId32">SteamID of user to update</param>
-    /// <param name="ePersonaState">Persona state enum for user (0-7)</param>
+    /// <param name="steamId32">要更新的用户的 SteamID </param>
+    /// <param name="ePersonaState">用户的 Persona 状态枚举（0-7）</param>
     public void SetPersonaState(string steamId32, PersonaState ePersonaState)
     {
         if (string.IsNullOrEmpty(SteamDirPath)) return;
@@ -439,6 +523,11 @@ public abstract partial class SteamServiceImpl : ISteamService
         File.WriteAllText(localConfigFilePath, localConfigText);
     }
 
+    /// <summary>
+    /// 删除本地用户数据
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="isDeleteUserData"></param>
     public void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || string.IsNullOrWhiteSpace(SteamDirPath))
@@ -478,6 +567,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <summary>
+    /// 更新本地用户数据
+    /// </summary>
+    /// <param name="users"></param>
     public void UpdateLocalUserData(IEnumerable<SteamUser> users)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || !File.Exists(UserVdfPath))
@@ -546,6 +639,11 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <summary>
+    /// 监视本地用户数据更改
+    /// </summary>
+    /// <param name="changedAction"></param>
+    /// <exception cref="Exception"></exception>
     public void WatchLocalUserDataChange(Action changedAction)
     {
         if (string.IsNullOrWhiteSpace(SteamDirPath))
@@ -639,6 +737,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    /// <summary>
+    /// 获取修改的应用程序
+    /// </summary>
+    /// <returns></returns>
     public List<ModifiedApp>? GetModifiedApps()
     {
         try
@@ -721,6 +823,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         return true;
     }
 
+    /// <summary>
+    /// 获取已安装程序的 AppId
+    /// </summary>
+    /// <returns></returns>
     public uint[] GetInstalledAppIds()
     {
         return GetDownloadingAppList().Where(x => x.IsInstalled).Select(x => x.AppId).ToArray();
@@ -782,6 +888,13 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
+    /// <summary>
+    /// 获取应用程序图片源
+    /// </summary>
+    /// <param name="app"></param>
+    /// <param name="type"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
     public async Task<CommonImageSource?> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default)
     {
         var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
@@ -876,6 +989,11 @@ public abstract partial class SteamServiceImpl : ISteamService
         return false;
     }
 
+    /// <summary>
+    /// 加载应用程序图片
+    /// </summary>
+    /// <param name="app"></param>
+    /// <returns></returns>
     public /*async*/ ValueTask LoadAppImageAsync(SteamApp app)
     {
         return default(ValueTask);

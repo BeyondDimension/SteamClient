@@ -1,20 +1,27 @@
 // ReSharper disable once CheckNamespace
 namespace WinAuth.Services.Implementation;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="IBattleNetService"/> 战网令牌相关服务实现
+/// </summary>
 public sealed class BattleNetService : WebApiClientFactoryService, IBattleNetService
 {
     private const string Tag = "BattleNetService";
 
+    /// <inheritdoc/>
     protected override string ClientName => Tag;
 
+    /// <summary>
+    /// 初始化 <see cref="BattleNetService"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="loggerFactory"></param>
     public BattleNetService(IServiceProvider serviceProvider, ILoggerFactory loggerFactory) : base(loggerFactory.CreateLogger(Tag), serviceProvider)
     {
     }
 
     /// <summary>
-    /// URLs for all mobile services
+    /// 所有移动服务的 URL
     /// </summary>
     const string REGION_US = "US";
     const string REGION_EU = "EU";
@@ -22,7 +29,7 @@ public sealed class BattleNetService : WebApiClientFactoryService, IBattleNetSer
     const string REGION_CN = "CN";
 
     /// <summary>
-    /// URLS for mobile service
+    /// 用于移动服务的 URLS
     /// </summary>
     public static Dictionary<string, string> MOBILE_URLS = new()
     {
@@ -38,15 +45,15 @@ public sealed class BattleNetService : WebApiClientFactoryService, IBattleNetSer
     const string RESTOREVALIDATE_PATH = "/enrollment/validatePaperRestore.htm";
 
     /// <summary>
-    /// URL for GEO IP lookup to determine region
+    /// 用于 GEO IP 查找以确定区域的 URL
     /// </summary>
     static readonly string GEOIPURL = "http://geoiplookup.wikimedia.org";
 
     /// <summary>
-    /// Get the base mobil url based on the region
+    /// 获取基于区域的基本 mobil url
     /// </summary>
-    /// <param name="region">two letter region code, i.e US or CN</param>
-    /// <returns>string of Url for region</returns>
+    /// <param name="region">两个字母的地区代码，即美国或中国</param>
+    /// <returns>区域的 Url 字符串</returns>
     private static string GetMobileUrl(string region)
     {
         var upperregion = region.ToUpper();
@@ -81,6 +88,7 @@ public sealed class BattleNetService : WebApiClientFactoryService, IBattleNetSer
         return await SendAsync<HttpResponseMessage>(sendArgs);
     }
 
+    /// <inheritdoc/>
     public async Task<HttpResponseMessage?> EnRoll(string region, byte[] encrypted)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(region) + ENROLL_PATH)
@@ -129,6 +137,7 @@ public sealed class BattleNetService : WebApiClientFactoryService, IBattleNetSer
         return await SendAsync<HttpResponseMessage>(sendArgs);
     }
 
+    /// <inheritdoc/>
     public async Task<HttpResponseMessage?> ReStoreValidate(string serial, byte[] postbytes)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(serial) + RESTOREVALIDATE_PATH)

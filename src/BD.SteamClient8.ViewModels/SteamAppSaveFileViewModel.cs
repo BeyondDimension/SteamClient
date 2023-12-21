@@ -4,8 +4,9 @@ using SysIOPath = System.IO.Path;
 
 namespace BD.SteamClient8.ViewModels;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="SteamAppSaveFile"/> 模型绑定类型
+/// </summary>
 [ViewModelWrapperGenerated(typeof(SteamAppSaveFile)
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 #pragma warning disable SA1115// Parameter should follow comma
@@ -24,6 +25,9 @@ public partial class SteamAppSaveFileViewModel
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
+    /// <summary>
+    /// 生成格式化路径
+    /// </summary>
     public void FormatPathGenerate()
     {
         if (string.IsNullOrEmpty(Root) || string.IsNullOrEmpty(Path) || string.IsNullOrEmpty(Pattern))

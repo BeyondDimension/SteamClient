@@ -1,13 +1,16 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamTradeService"/> Steam 交易报价相关服实现
+/// </summary>
 public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, ISteamTradeService
 {
     const string TAG = "SteamTradeWebApiS";
 
+    /// <inheritdoc/>
     protected override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
@@ -15,6 +18,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
     private readonly ISteamSessionService _sessionService;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamTradeServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="loggerFactory"></param>
     public SteamTradeServiceImpl(
         IServiceProvider s,
         ILoggerFactory loggerFactory) : base(
@@ -28,6 +36,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Public
 
     #region Tasks 后台任务
+
+    /// <inheritdoc/>
     public ApiRspImpl StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum)
     {
         try
@@ -59,6 +69,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         }
     }
 
+    /// <inheritdoc/>
     public ApiRspImpl StopTask(string steam_id, TradeTaskEnum tradeTaskEnum)
     {
         try
@@ -79,6 +90,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #endregion
 
     #region Trade 交易报价
+
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> AcceptAllGiftTradeOfferAsync(string steam_id)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -111,6 +124,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -151,6 +165,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return response?.IsSuccessStatusCode ?? false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<TradeResponse?>> GetTradeOffersAsync(string api_key)
     {
         var queryString = new NameValueCollection()
@@ -174,6 +189,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return await SendAsync<TradeResponse>(sendArgs);
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<TradeInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id)
     {
         var queryString = new NameValueCollection()
@@ -199,6 +215,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<TradeSummary?>> GetTradeOffersSummaryAsync(string api_key)
     {
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key)) { Method = HttpMethod.Get };
@@ -222,6 +239,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false)
     {
         const string Language = "schinese";
@@ -258,6 +276,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return (await SendAsync<TradeHistory>(sendArgs))?.Response;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -295,6 +314,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return response?.IsSuccessStatusCode ?? false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -340,6 +360,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return response?.IsSuccessStatusCode ?? false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> CancelTradeOfferAsync(string steam_id, string trade_offer_id)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -357,6 +378,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return response?.IsSuccessStatusCode ?? false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> DeclineTradeOfferAsync(string steam_id, string trade_offer_id)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -376,6 +398,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #endregion
 
     #region Confirmation 交易确认
+
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<IEnumerable<Confirmation>>> GetConfirmations(string steam_id)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -464,6 +488,8 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     //     }
     //     return (my_items.ToArray(), them_items.ToArray());
     // }
+
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, Confirmation confirmation)
     {
         // 获取登陆状态
@@ -527,6 +553,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return (Array.Empty<string>(), Array.Empty<string>());
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, Confirmation confirmation, bool accept)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -562,6 +589,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         return false;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> BatchSendConfirmation(string steam_id, Dictionary<string, string> trades, bool accept)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);

@@ -16,9 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma warning disable SA1313 // Parameter names should begin with lower-case letter
-#pragma warning disable SA1600 // Elements should be documented
-
 using static BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO;
 
 // ReSharper disable once CheckNamespace
@@ -27,17 +24,17 @@ namespace BD.WTTS.Models;
 partial class AuthenticatorValueDTO
 {
     /// <summary>
-    /// Default number of digits in code
+    /// 代码中的默认位数
     /// </summary>
     public const int DEFAULT_CODE_DIGITS = 6;
 
     /// <summary>
-    /// Default period of 30s
+    /// 默认期限为 30s
     /// </summary>
     public const int DEFAULT_PERIOD = 30;
 
     /// <summary>
-    /// Create a new Authenticator object
+    /// 创建新的 Authenticator 对象
     /// </summary>
     public AuthenticatorValueDTO(
         int codeDigits = DEFAULT_CODE_DIGITS,
@@ -49,6 +46,7 @@ partial class AuthenticatorValueDTO
         Period = period;
     }
 
+    /// <inheritdoc cref="AuthenticatorPlatform"/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -59,6 +57,7 @@ partial class AuthenticatorValueDTO
 #endif
     public virtual AuthenticatorPlatform Platform { get; }
 
+    /// <inheritdoc cref="AuthenticatorPlatform"/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -69,42 +68,50 @@ partial class AuthenticatorValueDTO
 #endif
     public virtual string? Issuer { get; set; }
 
+    /// <inheritdoc/>
     public long ServerTimeDiff { get; set; }
 
+    /// <inheritdoc/>
     public long LastServerTime { get; set; }
 
+    /// <inheritdoc/>
     public byte[]? SecretKey { get; set; }
 
+    /// <inheritdoc/>
     public int CodeDigits { get; set; }
 
+    /// <inheritdoc/>
     public HMACTypes HMACType { get; set; }
 
+    /// <inheritdoc/>
     public int Period { get; set; }
 
     /// <summary>
-    /// Number of bytes making up the salt
+    /// 盐值所占的字节数
     /// </summary>
     const int SALT_LENGTH = 8;
 
     /// <summary>
-    /// Number of iterations in PBKDF2 key generation
+    /// PBKDF2 密钥生成的迭代次数
     /// </summary>
     const int PBKDF2_ITERATIONS = 2000;
 
     /// <summary>
-    /// Size of derived PBKDF2 key
+    /// 衍生的 PBKDF2 密钥大小
     /// </summary>
     const int PBKDF2_KEYSIZE = 256;
 
     /// <summary>
-    /// Version for encrpytion changes
+    /// 加密变更的版本号
     /// </summary>
     static readonly string ENCRYPTION_HEADER
         = "57494E4155544833";
     //= ByteArrayToString(Encoding.UTF8.GetBytes("WINAUTH3"));
 
+    /// <inheritdoc cref="HMACTypes"/>
     public const HMACTypes DEFAULT_HMAC_TYPE = HMACTypes.SHA1;
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -115,6 +122,7 @@ partial class AuthenticatorValueDTO
 #endif
     public string? EncryptedData { get; set; }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -163,6 +171,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -174,7 +183,7 @@ partial class AuthenticatorValueDTO
     public PasswordTypes PasswordType { get; set; }
 
     /// <summary>
-    /// Password used to encrypt secretdata (if PasswordType == Explict)
+    /// 用于加密 secretdata 的密码（如果 PasswordType==Explict）
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -187,7 +196,7 @@ partial class AuthenticatorValueDTO
     protected string? Password { get; set; }
 
     /// <summary>
-    /// Hash of secret data to detect changes
+    /// 哈希秘密数据以检测更改
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -199,6 +208,7 @@ partial class AuthenticatorValueDTO
 #endif
     protected byte[]? SecretHash { get; private set; }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -209,6 +219,7 @@ partial class AuthenticatorValueDTO
 #endif
     public bool RequiresPassword { get; private set; }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -225,6 +236,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -242,6 +254,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -264,7 +277,7 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Calculate the current code for the authenticator.
+    /// 计算验证器的当前代码
     /// </summary>
     /// <param name="resync"></param>
     /// <param name="interval"></param>
@@ -323,12 +336,19 @@ partial class AuthenticatorValueDTO
         return code;
     }
 
+    /// <inheritdoc/>
     public virtual void Sync()
     {
     }
 
     #region Load / Save
 
+    /// <summary>
+    /// 从 <see cref="XmlReader"/> 中读取 <see cref="AuthenticatorValueDTO"/> 对象
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <param name="password"></param>
+    /// <returns></returns>
     public static AuthenticatorValueDTO? ReadXmlv2(XmlReader reader, string? password = null)
     {
         AuthenticatorValueDTO? authenticator = null;
@@ -406,16 +426,22 @@ partial class AuthenticatorValueDTO
         return authenticator;
     }
 
+    /// <summary>
+    /// 读取额外的 Xml 内容
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public virtual bool ReadExtraXml(XmlReader reader, string name)
     {
         return false;
     }
 
     /// <summary>
-    /// Convert the string password types into the PasswordTypes type
+    /// 将字符串密码类型转换为 <see cref="PasswordTypes"/> 类型
     /// </summary>
-    /// <param name="passwordTypes">string version of password types</param>
-    /// <returns>PasswordTypes value</returns>
+    /// <param name="passwordTypes">密码类型的字符串版本</param>
+    /// <returns></returns>
     public static PasswordTypes DecodePasswordTypes(string? passwordTypes)
     {
         var passwordType = PasswordTypes.None;
@@ -454,7 +480,7 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Encode the PasswordTypes type into a string for storing in config
+    /// 将 PasswordTypes 类型编码为字符串以存储在配置中
     /// </summary>
     /// <param name="passwordType">PasswordTypes value</param>
     /// <returns>string version</returns>
@@ -477,6 +503,11 @@ partial class AuthenticatorValueDTO
         return encryptedTypes.ToString();
     }
 
+    /// <summary>
+    /// 设置加密方式和密码
+    /// </summary>
+    /// <param name="passwordType">密码类型</param>
+    /// <param name="password">密码</param>
     public void SetEncryption(PasswordTypes passwordType, string? password = null)
     {
         // check if still encrpyted
@@ -533,6 +564,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     public void Protect()
     {
         if (PasswordType != PasswordTypes.None)
@@ -557,6 +589,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     public bool Unprotect(string? password)
     {
         var passwordType = PasswordType;
@@ -619,6 +652,7 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <inheritdoc/>
     public bool ReadXml(XmlReader reader, string? password = null)
     {
         // decode the password type
@@ -712,7 +746,7 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Write this authenticator into an XmlWriter
+    /// 将此验证器写入 XmlWriter
     /// </summary>
     /// <param name="writer">XmlWriter to receive authenticator</param>
     public void WriteToWriter(XmlWriter writer)
@@ -821,9 +855,9 @@ partial class AuthenticatorValueDTO
     */
 
     /// <summary>
-    /// Virtual function to write any class specific xml nodes into the writer
+    /// 将任何特定于类的 xml 节点写入编写器的虚拟函数
     /// </summary>
-    /// <param name="writer">XmlWriter to write data</param>
+    /// <param name="writer">XmlWriter 写入数据</param>
     protected virtual void WriteExtraXml(XmlWriter writer)
     {
     }
@@ -833,10 +867,10 @@ partial class AuthenticatorValueDTO
     #region Utility functions
 
     /// <summary>
-    /// Create a one-time pad by generating a random block and then taking a hash of that block as many times as needed.
+    /// 通过生成一个随机块，然后根据需要多次对该块进行哈希，创建一个一次性填充
     /// </summary>
-    /// <param name="length">desired pad length</param>
-    /// <returns>array of bytes conatining random data</returns>
+    /// <param name="length">所需长度</param>
+    /// <returns>包含随机数据的字节数组</returns>
     protected internal static byte[] CreateOneTimePad(int length)
     {
         // There is a MITM vulnerability from using the standard Random call
@@ -868,34 +902,34 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Get the milliseconds since 1/1/70 (same as Java currentTimeMillis)
+    /// 获取自1/1/70以来的毫秒数（与 Java currentTimeMillis 相同）
     /// </summary>
     public static long CurrentTime => DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
     /// <summary>
-    /// Convert a hex string into a byte array. E.g. "001f406a" -> byte[] {0x00, 0x1f, 0x40, 0x6a}
+    /// 将十六进制字符串转换为字节数组。例如“001f406a”->byte[]｛0x00，0x1f，0x40，0x6a｝
     /// </summary>
-    /// <param name="hex">hex string to convert</param>
-    /// <returns>byte[] of hex string</returns>
+    /// <param name="hex">要转换的十六进制字符串</param>
+    /// <returns>十六进制字符串的 byte[]</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static byte[] StringToByteArray(string hex) => Convert2.FromHexString(hex);
 
     /// <summary>
-    /// Convert a byte array into a ascii hex string, e.g. byte[]{0x00,0x1f,0x40,ox6a} -> "001f406a"
+    /// 将字节数组转换为 ascii 十六进制字符串，例如 byte[]｛0x00,0x1f，0x40，ox6a｝->“001f406a”
     /// </summary>
-    /// <param name="bytes">byte array to convert</param>
-    /// <returns>string version of byte array</returns>
+    /// <param name="bytes">要转换的字节数组</param>
+    /// <returns>字节数组的字符串版本</returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ByteArrayToString(byte[] bytes) => bytes.ToHexString();
 
     /// <summary>
-    /// Decrypt a string sequence using the selected encryption types
+    /// 使用选定的加密类型解密字符串序列
     /// </summary>
-    /// <param name="data">hex coded string sequence to decrypt</param>
-    /// <param name="encryptedTypes">Encryption types</param>
-    /// <param name="password">optional password</param>
+    /// <param name="data">要解密的十六进制编码字符串序列</param>
+    /// <param name="encryptedTypes">加密类型</param>
+    /// <param name="password">可选密码</param>
     /// <param name="decode"></param>
-    /// <returns>decrypted string sequence</returns>
+    /// <returns>解密字符串序列</returns>
     public static string DecryptSequence(string data, PasswordTypes encryptedTypes, string? password, bool decode = false)
     {
         // check for encrpytion header
@@ -931,11 +965,11 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Decrypt a string sequence using the selected encryption types
+    /// 使用选定的加密类型解密字符串序列
     /// </summary>
-    /// <param name="data">hex coded string sequence to decrypt</param>
-    /// <param name="encryptedTypes">Encryption types</param>
-    /// <param name="password">optional password</param>
+    /// <param name="data">要解密的十六进制编码字符串序列</param>
+    /// <param name="encryptedTypes">加密类型</param>
+    /// <param name="password">可选密码</param>
     /// <param name="decode"></param>
     /// <returns>decrypted string sequence</returns>
     private static string DecryptSequenceNoHash(string data, PasswordTypes encryptedTypes, string? password, bool decode = false)
@@ -1031,6 +1065,13 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <summary>
+    /// 将数据进行加密处理，并返回加密后的结果字符串
+    /// </summary>
+    /// <param name="data">需要加密的原始数据</param>
+    /// <param name="passwordType">密码类型枚举</param>
+    /// <param name="password">加密所需的密码</param>
+    /// <returns>加密后的结果字符串</returns>
     public static string EncryptSequence(string data, PasswordTypes passwordType, string? password)
     {
         // get hash of original
@@ -1115,11 +1156,11 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Encrypt a string with a given key
+    /// 用给定的密钥加密字符串
     /// </summary>
-    /// <param name="plain">data to encrypt - hex representation of byte array</param>
-    /// <param name="password">key to use to encrypt</param>
-    /// <returns>hex coded encrypted string</returns>
+    /// <param name="plain">要加密的数据-字节数组的十六进制表示</param>
+    /// <param name="password">用于加密的密钥</param>
+    /// <returns>十六进制编码加密字符串</returns>
     public static string Encrypt(string plain, string? password)
     {
         var passwordBytes = Encoding.UTF8.GetBytes(password.ThrowIsNull(nameof(password)));
@@ -1138,11 +1179,11 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Encrypt a string with a byte array key
+    /// 使用字节数组密钥加密字符串
     /// </summary>
-    /// <param name="plain">data to encrypt - hex representation of byte array</param>
-    /// <param name="key">key to use to encrypt</param>
-    /// <returns>hex coded encrypted string</returns>
+    /// <param name="plain">要加密的数据-字节数组的十六进制表示</param>
+    /// <param name="key">用于加密的密钥</param>
+    /// <returns>十六进制编码加密字符串</returns>
     public static string Encrypt(string plain, byte[] key)
     {
         var inBytes = StringToByteArray(plain);
@@ -1168,12 +1209,12 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Decrypt a hex-coded string using our MD5 or PBKDF2 generated key
+    /// 使用 MD5 或 PBKDF2 生成的密钥解密十六进制编码的字符串
     /// </summary>
-    /// <param name="data">data string to be decrypted</param>
+    /// <param name="data">要解密的数据字符串</param>
     /// <param name="password"></param>
-    /// <param name="PBKDF2">flag to indicate we are using PBKDF2 to generate derived key</param>
-    /// <returns>hex coded decrypted string</returns>
+    /// <param name="PBKDF2">标志，指示我们正在使用PBKDF2生成派生密钥</param>
+    /// <returns>十六进制编码解密字符串</returns>
     public static string Decrypt(string data, string? password, bool PBKDF2)
     {
         byte[] key;
@@ -1235,11 +1276,11 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Decrypt a hex-encoded string with a byte array key
+    /// 使用字节数组密钥解密十六进制编码的字符串
     /// </summary>
-    /// <param name="data">hex-encoded string</param>
-    /// <param name="key">key for decryption</param>
-    /// <returns>hex-encoded plain text</returns>
+    /// <param name="data">十六进制编码字符串</param>
+    /// <param name="key">解密密钥</param>
+    /// <returns>十六进制编码的纯文本</returns>
     public static string Decrypt(string data, byte[] key)
     {
         // the actual data to be decrypted
@@ -1274,22 +1315,32 @@ partial class AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Wrapped TryParse for compatibility with NETCF35 to simulate long.TryParse
+    /// 为了与 NETCF35 兼容，包装了 TryParse 来转换 long
     /// </summary>
-    /// <param name="s">string of value to parse</param>
-    /// <param name="val">out long value</param>
-    /// <returns>true if value was parsed</returns>
+    /// <param name="s">要分析的值字符串</param>
+    /// <param name="val">返回值</param>
+    /// <returns>如果值已解析，则为 <see langword="true"/></returns>
     protected internal static bool LongTryParse(string s, out long val)
     {
         return long.TryParse(s, out val);
     }
 
+    /// <summary>
+    /// 获取 Web 异常的状态码
+    /// </summary>
+    /// <param name="webException"></param>
+    /// <returns>状态码</returns>
     protected static int GetStatusCode(WebException webException)
     {
         var webResponse = webException.Response;
         return GetStatusCode(webResponse.ThrowIsNull(nameof(webResponse)));
     }
 
+    /// <summary>
+    /// 获取 WebResponse 的状态码
+    /// </summary>
+    /// <param name="webResponse"></param>
+    /// <returns>状态码</returns>
     protected static int GetStatusCode(WebResponse webResponse)
     {
         if (webResponse is HttpWebResponse httpWebResponse)
@@ -1302,12 +1353,22 @@ partial class AuthenticatorValueDTO
         }
     }
 
+    /// <summary>
+    /// 获取Web异常的状态描述
+    /// </summary>
+    /// <param name="webException"></param>
+    /// <returns>状态描述</returns>
     protected static string GetStatusDescription(WebException webException)
     {
         var webResponse = webException.Response;
         return GetStatusDescription(webResponse.ThrowIsNull(nameof(webResponse)));
     }
 
+    /// <summary>
+    /// 获取 WebResponse 的状态描述
+    /// </summary>
+    /// <param name="webResponse"></param>
+    /// <returns>状态描述</returns>
     protected static string GetStatusDescription(WebResponse webResponse)
     {
         if (webResponse is HttpWebResponse httpWebResponse)

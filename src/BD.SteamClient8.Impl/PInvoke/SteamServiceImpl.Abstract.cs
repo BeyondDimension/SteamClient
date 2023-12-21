@@ -7,6 +7,7 @@ public abstract partial class SteamServiceImpl
 
     public abstract ISteamConnectService Conn { get; }
 
+    /// <inheritdoc/>
     public virtual void StartSteamWithParameter() => StartSteam(StratSteamDefaultParameter);
 
     /// <summary>

@@ -5,31 +5,39 @@ using UserStatsReceived = SAM.API.Types.UserStatsReceived;
 using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
 #endif
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace BD.SteamClient8.Impl.PInvoke;
 
+/// <inheritdoc cref="ISteamworksLocalApiService "/>
 public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
+    /// <summary>
+    /// <see cref="SAMAPIClient"/> 实例
+    /// </summary>
     public SAMAPIClient SteamClient { get; }
 
     UserStatsReceivedCallback? UserStatsReceivedCallback;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamworksLocalApiServiceImpl"/> 类的新实例
+    /// </summary>
     public SteamworksLocalApiServiceImpl()
     {
         Steam.GetInstallPathDelegate = SteamServiceImpl.GetSteamDynamicLinkLibraryPath;
         SteamClient = new SAMAPIClient();
     }
 
+    /// <inheritdoc/>
     public bool IsSupported => RuntimeInformation.ProcessArchitecture.IsX86OrX64();
 
+    /// <inheritdoc/>
     public void DisposeSteamClient()
     {
         SteamClient.Dispose();
     }
 
+    /// <inheritdoc/>
     public bool Initialize()
     {
         try
@@ -44,6 +52,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         return true;
     }
 
+    /// <inheritdoc/>
     public bool Initialize(int appid)
     {
         try
@@ -58,6 +67,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         return true;
     }
 
+    /// <inheritdoc/>
     public long GetSteamId64()
     {
         if (SteamClient.SteamUser == null)
@@ -65,6 +75,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         return (long)SteamClient.SteamUser.GetSteamId();
     }
 
+    /// <inheritdoc/>
     public bool OwnsApps(uint appid)
     {
         if (SteamClient.SteamApps008 == null)
@@ -72,6 +83,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         return SteamClient.SteamApps008.IsSubscribedApp(appid);
     }
 
+    /// <inheritdoc/>
     public IEnumerable<SteamApp> OwnsApps(IEnumerable<SteamApp> apps)
     {
         if (!apps.Any_Nullable())
@@ -98,82 +110,99 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
             });
     }
 
+    /// <inheritdoc/>
     public string GetAppData(uint appid, string key)
     {
         return SteamClient.SteamApps001.GetAppData(appid, key);
     }
 
+    /// <inheritdoc/>
     public bool IsSteamChinaLauncher()
     {
         return SteamClient.SteamUtils.IsSteamChinaLauncher();
     }
 
+    /// <inheritdoc/>
     public bool IsSteamInBigPictureMode()
     {
         return SteamClient.SteamUtils.IsSteamInBigPictureMode();
     }
 
+    /// <inheritdoc/>
     public uint GetSecondsSinceAppActive()
     {
         return SteamClient.SteamUtils.GetSecondsSinceAppActive();
     }
 
+    /// <inheritdoc/>
     public uint GetServerRealTime()
     {
         return SteamClient.SteamUtils.GetServerRealTime();
     }
 
+    /// <inheritdoc/>
     public bool IsAppInstalled(uint appid)
     {
         return SteamClient.SteamApps008.IsAppInstalled(appid);
     }
 
+    /// <inheritdoc/>
     public string GetAppInstallDir(uint appid)
     {
         return SteamClient.SteamApps008.GetAppInstallDir(appid);
     }
 
+    /// <inheritdoc/>
     public string GetIPCountry()
     {
         return SteamClient.SteamUtils.GetIPCountry();
     }
 
+    /// <inheritdoc/>
     public string GetCurrentGameLanguage()
     {
         return SteamClient.SteamApps008.GetCurrentGameLanguage();
     }
 
+    /// <inheritdoc/>
     public string GetAvailableGameLanguages()
     {
         return SteamClient.SteamApps008.GetAvailableGameLanguages();
     }
 
     #region SteamUserStats
+
+    /// <inheritdoc/>
     public bool GetStatValue(string name, out int value)
     {
         return SteamClient.SteamUserStats.GetStatValue(name, out value);
     }
 
+    /// <inheritdoc/>
     public bool GetStatValue(string name, out float value)
     {
         return SteamClient.SteamUserStats.GetStatValue(name, out value);
     }
 
+    /// <inheritdoc/>
     public bool GetAchievementState(string name, out bool isAchieved)
     {
         return SteamClient.SteamUserStats.GetAchievementState(name, out isAchieved);
     }
 
+    /// <inheritdoc/>
     public bool GetAchievementAndUnlockTime(string name, out bool isAchieved, out long unlockTime)
     {
         return SteamClient.SteamUserStats.GetAchievementAndUnlockTime(name, out isAchieved, out unlockTime);
     }
 
+    /// <inheritdoc/>
     public bool GetAchievementAchievedPercent(string name, out float percent)
     {
         return SteamClient.SteamUserStats.GetAchievementAchievedPercent(name, out percent);
     }
 
+    /// <inheritdoc/>
     public void AddUserStatsReceivedCallback(Action<IUserStatsReceived> action)
     {
         UserStatsReceivedCallback = SteamClient.CreateAndRegisterCallback<UserStatsReceivedCallback>();
@@ -198,42 +227,50 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         public int Result => userStatsReceived.Result;
     }
 
+    /// <inheritdoc/>
     public bool RequestCurrentStats()
     {
         return SteamClient.SteamUserStats.RequestCurrentStats();
     }
 
+    /// <inheritdoc/>
     public bool ResetAllStats(bool achievementsToo)
     {
         return SteamClient.SteamUserStats.ResetAllStats(achievementsToo);
     }
 
+    /// <inheritdoc/>
     public bool SetAchievement(string name, bool state)
     {
         return SteamClient.SteamUserStats.SetAchievement(name, state);
     }
 
+    /// <inheritdoc/>
     public bool SetStatValue(string name, int value)
     {
         return SteamClient.SteamUserStats.SetStatValue(name, value);
     }
 
+    /// <inheritdoc/>
     public bool SetStatValue(string name, float value)
     {
         return SteamClient.SteamUserStats.SetStatValue(name, value);
     }
 
+    /// <inheritdoc/>
     public bool StoreStats()
     {
         return SteamClient.SteamUserStats.StoreStats();
     }
 
+    /// <inheritdoc/>
     public void RequestGlobalAchievementPercentages()
     {
         SteamClient.SteamUserStats.RequestGlobalAchievementPercentages();
     }
     #endregion
 
+    /// <inheritdoc/>
     public void RunCallbacks(bool server)
     {
         SteamClient.RunCallbacks(server);
@@ -241,11 +278,13 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 
     #region SteamRemoteStorage
 
+    /// <inheritdoc/>
     public bool GetCloudArchiveQuota(out ulong totalBytes, out ulong availableBytes)
     {
         return SteamClient.SteamRemoteStorage.GetQuota(out totalBytes, out availableBytes);
     }
 
+    /// <inheritdoc/>
     public List<SteamRemoteFile>? GetCloudArchiveFiles()
     {
         List<SteamRemoteFile> files = [];
@@ -265,21 +304,25 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         return files;
     }
 
+    /// <inheritdoc/>
     public int FileRead(string name, byte[] buffer)
     {
         return SteamClient.SteamRemoteStorage.FileRead(name, buffer);
     }
 
+    /// <inheritdoc/>
     public bool FileWrite(string name, byte[] buffer)
     {
         return SteamClient.SteamRemoteStorage.FileWrite(name, buffer);
     }
 
+    /// <inheritdoc/>
     public bool FileForget(string name)
     {
         return SteamClient.SteamRemoteStorage.FileForget(name);
     }
 
+    /// <inheritdoc/>
     public bool FileDelete(string name)
     {
         return SteamClient.SteamRemoteStorage.FileDelete(name);

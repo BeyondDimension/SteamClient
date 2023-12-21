@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.ViewModels;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="SteamApp"/> 模型绑定类型
+/// </summary>
 [ViewModelWrapperGenerated(typeof(SteamApp),
     Properties = [
         nameof(SteamApp.SortAs),
@@ -32,6 +33,9 @@ public partial class SteamAppViewModel
 
     private Stream? _EditLibraryGridStream;
 
+    /// <summary>
+    /// 编辑时用于展示游戏库网格封面的流
+    /// </summary>
     public Stream? EditLibraryGridStream
     {
         get => _EditLibraryGridStream;
@@ -40,6 +44,9 @@ public partial class SteamAppViewModel
 
     private Stream? _EditLibraryHeroStream;
 
+    /// <summary>
+    /// 编辑时用于展示游戏库英雄封面的流
+    /// </summary>
     public Stream? EditLibraryHeroStream
     {
         get => _EditLibraryHeroStream;
@@ -48,6 +55,9 @@ public partial class SteamAppViewModel
 
     private Stream? _EditLibraryLogoStream;
 
+    /// <summary>
+    /// 编辑时用于展示游戏库 Logo 的流
+    /// </summary>
     public Stream? EditLibraryLogoStream
     {
         get => _EditLibraryLogoStream;
@@ -56,6 +66,9 @@ public partial class SteamAppViewModel
 
     private Stream? _EditHeaderLogoStream;
 
+    /// <summary>
+    /// 编辑时用于展示头部 Logo 的流
+    /// </summary>
     public Stream? EditHeaderLogoStream
     {
         get => _EditHeaderLogoStream;
@@ -64,14 +77,29 @@ public partial class SteamAppViewModel
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
+    /// <summary>
+    /// 获取游戏库网格封面的异步任务
+    /// </summary>
     public Task<CommonImageSource?> LibraryGridStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Library_Grid);
 
+    /// <summary>
+    /// 获取游戏库英雄封面的异步任务
+    /// </summary>
     public Task<CommonImageSource?> LibraryHeroStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Library_Hero);
 
+    /// <summary>
+    /// 获取游戏库英雄模糊封面的异步任务
+    /// </summary>
     public Task<CommonImageSource?> LibraryHeroBlurStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Library_Hero_Blur);
 
+    /// <summary>
+    /// 获取游戏库Logo的异步任务
+    /// </summary>
     public Task<CommonImageSource?> LibraryLogoStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Logo);
 
+    /// <summary>
+    /// 获取头部Logo的异步任务
+    /// </summary>
     public Task<CommonImageSource?> HeaderLogoStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Header);
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -84,6 +112,9 @@ public partial class SteamAppViewModel
         return null;
     }
 
+    /// <summary>
+    /// 刷新编辑时的图像流
+    /// </summary>
     public async void RefreshEditImage()
     {
         EditLibraryGridStream = await GetStreamAsync(LibraryGridStream);

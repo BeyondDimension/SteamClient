@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Services.WebApi.Mvvm;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// Steam 连接服务
+/// </summary>
 public interface ISteamConnectService
 {
     /// <summary>

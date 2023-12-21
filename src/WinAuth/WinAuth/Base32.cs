@@ -19,17 +19,17 @@
 namespace WinAuth.WinAuth;
 
 /// <summary>
-/// Class that implements conversion to Base32 RFC3548
+/// 实现向 Base32 RFC3548 转换的类
 /// </summary>
 public sealed partial class Base32
 {
     /// <summary>
-    /// Default base32 character set as per RFC 4648/3548
+    /// 默认 base32 字符集，按照 RFC 4648/3548
     /// </summary>
     const string DefaultAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
     /// <summary>
-    /// Lookup for the number of zero bits on the right (e.g. 0100 = 2)
+    /// 查找右边的零位数(例如 0100 = 2)
     /// </summary>
     static readonly int[] NumberTrailingZerosLookup =
     {
@@ -38,12 +38,12 @@ public sealed partial class Base32
     };
 
     /// <summary>
-    /// Singleton instance
+    /// 单例实例
     /// </summary>
     static readonly Base32 _instance = new(DefaultAlphabet);
 
     /// <summary>
-    /// Get an instance of a Base32 object, either the standard singleton or for a custom alphabet
+    /// 获取一个 Base32 对象的实例，可以是标准的单例对象，也可以是自定义字母
     /// </summary>
     /// <param name="alphabet"></param>
     /// <returns></returns>
@@ -53,27 +53,27 @@ public sealed partial class Base32
     }
 
     /// <summary>
-    /// array of alaphabet chars
+    /// 字母表字符的数组
     /// </summary>
     readonly char[] _digits;
 
     /// <summary>
-    /// bit mask used
+    /// 使用的位掩码
     /// </summary>
     readonly int _mask;
 
     /// <summary>
-    /// shifting value
+    /// 变化的值
     /// </summary>
     readonly int _shift;
 
     /// <summary>
-    /// map of chars to position
+    /// 字符到位置的映射
     /// </summary>
     readonly Dictionary<char, int> _map;
 
     /// <summary>
-    /// Create a new Base32 object with a specified alphabet
+    /// 用指定的字母表创建一个新的 Base32 对象
     /// </summary>
     /// <param name="alphabet"></param>
     Base32(string alphabet)
@@ -88,7 +88,7 @@ public sealed partial class Base32
     }
 
     /// <summary>
-    /// Calculate the number of zero trailing bits on the right (e.g. 0100 = 2)
+    /// 计算右侧尾位为零的位数(例如 0100 = 2)
     /// http://graphics.stanford.edu/~seander/bithacks.html#ZerosOnRightModLookup
     /// </summary>
     /// <param name="i"></param>

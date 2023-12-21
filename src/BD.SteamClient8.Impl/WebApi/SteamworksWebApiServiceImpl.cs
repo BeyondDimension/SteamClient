@@ -1,16 +1,24 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamworksWebApiService"/> Steamworks WebApi 服务实现
+/// </summary>
 internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebApiService
 {
     const string TAG = "SteamworksWebApiS";
 
+    /// <inheritdoc/>
     protected override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
     DefaultJsonSerializerContext_.Default.Options;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamworksWebApiServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="loggerFactory"></param>
     public SteamworksWebApiServiceImpl(
         IServiceProvider serviceProvider,
         ILoggerFactory loggerFactory) : base(
@@ -40,18 +48,21 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<string>> GetAllSteamAppsString()
     {
         var rsp = await GetAsync<string>(SteamApiUrls.STEAMAPP_LIST_URL);
         return ApiRspHelper.Ok(rsp ?? string.Empty)!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<List<SteamApp>>> GetAllSteamAppList()
     {
         var rsp = await GetAsync<SteamApps>(SteamApiUrls.STEAMAPP_LIST_URL);
         return (rsp?.AppList?.Apps ?? [])!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64)
     {
         //因为某些原因放弃从社区页链接获取详细资料
@@ -70,6 +81,7 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
         return data!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamMiniProfile?>> GetUserMiniProfile(long steamId3)
     {
         var requestUri = string.Format(SteamApiUrls.STEAM_MINIPROFILE_URL, steamId3);

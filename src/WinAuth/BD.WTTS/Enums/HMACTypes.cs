@@ -3,7 +3,7 @@
 namespace BD.WTTS.Enums;
 
 /// <summary>
-/// HMAC hashing algorithm types
+/// HMAC 哈希算法类型
 /// </summary>
 public enum HMACTypes
 {

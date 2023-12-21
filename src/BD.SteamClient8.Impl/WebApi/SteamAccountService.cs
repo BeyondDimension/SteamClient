@@ -1,22 +1,35 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {
+    /// <inheritdoc/>
     protected sealed override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
+    /// <summary>
+    /// 用于标识和记录日志信息
+    /// </summary>
     public const string TAG = "SteamAccountWebApiS";
 
-    public const string default_donotache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
+    /// <summary>
+    /// 此标志表示不应缓存从此查询检索到的名称
+    /// </summary>
+    public const string default_donotcache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
 
     readonly IRandomGetUserAgentService uas;
 
     readonly ISteamSessionService sessions;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamAccountService"/> 类的新实例
+    /// </summary>
+    /// <param name="uas"></param>
+    /// <param name="sessions"></param>
+    /// <param name="loggerFactory"></param>
+    /// <param name="serviceProvider"></param>
     [ActivatorUtilitiesConstructor]
     public SteamAccountService(
         IRandomGetUserAgentService uas,
@@ -30,6 +43,9 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         this.sessions = sessions;
     }
 
+    /// <summary>
+    /// 是否使用重试机制
+    /// </summary>
     [Obsolete("根据业务而定")]
     public bool UseRetry { get; set; } = true;
 
@@ -58,7 +74,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     {
         var stm_login_getrsakey_req_form = new Dictionary<string, string>()
         {
-            { "donotache", default_donotache },
+            { "donotache", default_donotcache },
             { "username", username },
         };
         async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(CancellationToken cancellationToken = default)
@@ -157,7 +173,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 { "emailsteamid", (string.IsNullOrEmpty(loginState.EmailCode) == false ? loginState.SteamIdString ?? string.Empty : string.Empty) },
                 { "rsatimestamp", timestamp.ToString() },
                 { "remember_login", "false" },
-                { "donotache", default_donotache },
+                { "donotache", default_donotcache },
             };
 
             using WebApiClientSendArgs args = new(SteamApiUrls.DologinUrl)
@@ -349,8 +365,10 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return loginState.Message = "登录错误: 出现未知错误";
     }
 
+    /// <inheritdoc/>
     public Task<ApiRspImpl<CookieCollection?>> OpenIdLoginAsync(string openidparams, string nonce, CookieCollection cookie) => throw new NotImplementedException();
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState)
     {
         loginState.Success = false;
@@ -687,6 +705,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<(bool IsSuccess, string? Message, HistoryParseResponse? History)>> GetAccountHistoryDetail(SteamLoginState loginState)
     {
         (bool IsSuccess, string? Message, HistoryParseResponse? History) result = (false, "获取 Steam 账号消费历史记录出现错误", null);
@@ -756,6 +775,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return r;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> GetWalletBalance(SteamLoginState loginState)
     {
         if (loginState.Cookies == null)
@@ -811,6 +831,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return r;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<(SteamResult Result, PurchaseResultDetail? Detail)?>> RedeemWalletCode(SteamLoginState loginState, string walletCode, bool isRetry = false)
     {
         if (loginState.Cookies == null || string.IsNullOrEmpty(loginState.Cookies?["sessionid"]?.Value))
@@ -822,6 +843,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             return await RedeemWalletCodeCore(loginState, walletCode);
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> SetSteamAccountCountry(SteamLoginState loginState, string? currencyCode)
     {
         if (loginState.Cookies == null)
@@ -864,6 +886,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return r;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<List<CurrencyData>?>> GetSteamAccountCountryCodes(SteamLoginState loginState)
     {
         if (loginState.Cookies == null)
@@ -913,6 +936,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return r;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<InventoryTradeHistoryRenderPageResponse>> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null)
     {
         StringBuilder urlBuilder = new StringBuilder($"{SteamApiUrls.STEAM_COMMUNITY_URL}/profiles/{loginState.SteamId}/inventoryhistory/?ajax=1&sessionid={loginState.SeesionId}");
@@ -962,6 +986,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return result!;
     }
 
+    /// <inheritdoc/>
     public async IAsyncEnumerable<InventoryTradeHistoryRow> ParseInventoryTradeHistory(string html, CultureInfo? cultureInfo = null)
     {
         IBrowsingContext context = BrowsingContext.New();
@@ -1090,6 +1115,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<InventoryPageResponse>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese")
     {
         string url = string.Format("{0}/inventory/{1}/{2}/{3}?l={4}&count={5}{6}",
@@ -1111,6 +1137,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return inventories!;
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<string?>> GetApiKey(SteamLoginState loginState)
     {
         var client = CreateClient(loginState.Username.ThrowIsNull());
@@ -1134,6 +1161,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return ApiRspHelper.Ok(ParseApiKeyFromHttpContent(stream));
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<string?>> RegisterApiKey(SteamLoginState loginState, string? domain = null)
     {
         if (string.IsNullOrEmpty(loginState.SeesionId))
@@ -1185,6 +1213,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return ApiRspHelper.Ok(ParseApiKeyFromHttpContent(stream));
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>>> GetSendGiftHistories(SteamLoginState loginState)
     {
         var client = CreateClient(loginState.Username.ThrowIsNull());
@@ -1236,6 +1265,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return result!;
     }
 
+    /// <inheritdoc/>
     public async IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState)
     {
         const string url = SteamApiUrls.STEAM_ACCOUNT_HISTORY_LOGIN;
@@ -1290,6 +1320,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string access_token)
     {
         var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, access_token));

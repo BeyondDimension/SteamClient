@@ -14,7 +14,7 @@ partial interface IAuthenticatorValueDTO
     long ServerTime { get; }
 
     /// <summary>
-    /// Type of password to use to encrypt secret data
+    /// 用于加密机密数据的密码类型
     /// </summary>
     public enum PasswordTypes
     {

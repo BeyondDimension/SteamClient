@@ -1,18 +1,27 @@
 namespace BD.SteamClient8.Impl.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// <see cref="ISteamGridDBWebApiServiceImpl"/> SteamGridDB WebApi 服务实现
+/// </summary>
 internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService, ISteamGridDBWebApiServiceImpl
 {
     const string TAG = "SteamGridDBWebApiS";
 
+    /// <inheritdoc/>
     protected override string ClientName => TAG;
 
+    /// <inheritdoc/>
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
     private readonly IHttpPlatformHelperService http_helper;
 
+    /// <summary>
+    /// 初始化 <see cref="SteamGridDBWebApiServiceImpl"/> 类的新实例
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    /// <param name="http_helper"></param>
+    /// <param name="loggerFactory"></param>
     public SteamGridDBWebApiServiceImpl(
         IServiceProvider serviceProvider,
         IHttpPlatformHelperService http_helper,
@@ -53,6 +62,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
         }
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId)
     {
         var url = string.Format(SteamGridDBApiUrls.RetrieveGameBySteamAppId_Url, appId);
@@ -72,6 +82,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
         return ApiRspHelper.Ok<SteamGridApp>();
     }
 
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid)
     {
         var url = type switch

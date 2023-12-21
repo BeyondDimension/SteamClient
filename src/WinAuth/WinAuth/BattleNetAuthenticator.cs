@@ -17,7 +17,6 @@
  */
 
 #pragma warning disable CA2211 // Non-constant fields should not be visible
-#pragma warning disable SA1600 // Elements should be documented
 
 namespace WinAuth.WinAuth;
 
@@ -32,14 +31,14 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     private static partial Regex CountryRegex();
 
     /// <summary>
-    /// Number of digits in code
+    /// 代码中的位数
     /// </summary>
     const int CODE_DIGITS = 8;
 
     const string BATTLENET_ISSUER = "BattleNet";
 
     /// <summary>
-    /// Create a new Authenticator object
+    /// 创建一个新的 Authenticator 对象
     /// </summary>
     [SerializationConstructor]
     public BattleNetAuthenticator() : base(CODE_DIGITS)
@@ -47,6 +46,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
         Issuer = BATTLENET_ISSUER;
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -57,55 +57,59 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
 #endif
     public override AuthenticatorPlatform Platform => AuthenticatorPlatform.BattleNet;
 
+    /// <summary>
+    /// 获取或设置序列号
+    /// </summary>
     public string? Serial { get; set; }
 
     /// <summary>
-    /// We can check if the restore code is valid and rememeber so don't have to do it again
+    /// 获取或设置恢复码是否已验证
     /// </summary>
     public bool RestoreCodeVerified { get; set; }
 
+    /// <inheritdoc/>
     protected override bool ExplicitHasValue()
     {
         return base.ExplicitHasValue() && Serial != null;
     }
 
     /// <summary>
-    /// Size of model string
+    /// 模型管柱尺寸
     /// </summary>
     const int MODEL_SIZE = 16;
 
     /// <summary>
-    /// String of possible chars we use in our random model string
+    /// 我们在随机模型字符串中使用的可能字符的字符串
     /// </summary>
     const string MODEL_CHARS = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890";
 
     /// <summary>
-    /// Buffer size used on Http responses
+    /// Http 响应中使用的缓冲区大小
     /// </summary>
     const int RESPONSE_BUFFER_SIZE = 64;
 
     /// <summary>
-    /// Expect size of return data from enroll
+    /// 期望从登记返回数据的大小
     /// </summary>
     const int ENROLL_RESPONSE_SIZE = 45;
 
     /// <summary>
-    /// Expected size of return data from time sync
+    /// 时间同步返回数据的预期大小
     /// </summary>
     const int SYNC_RESPONSE_SIZE = 8;
 
     /// <summary>
-    /// Buffer size used on Restore call
+    /// 恢复调用时使用的缓冲区大小
     /// </summary>
     const int RESTOREINIT_BUFFER_SIZE = 32;
 
     /// <summary>
-    /// Buffer size used on Restore Validation call
+    /// 用于恢复验证调用的缓冲区大小
     /// </summary>
     const int RESTOREVALIDATE_BUFFER_SIZE = 20;
 
     /// <summary>
-    /// The public key modulus used to encrypt our data
+    /// 用于加密数据的公钥模数
     /// </summary>
     const string ENROLL_MODULUS =
       "955e4bd989f3917d2f15544a7e0504eb9d7bb66b6f8a2fe470e453c779200e5e" +
@@ -114,18 +118,18 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
       "e72626b48bd8b5b0b7f3acf9ea3c9e0005fee59e19136cdb7c83f2ab8b0a2a99";
 
     /// <summary>
-    /// Public key exponent used to encrypt our data
+    /// 用于加密数据的公钥指数
     /// </summary>
     const string ENROLL_EXPONENT =
       "0101";
 
     /// <summary>
-    /// Number of minutes to ignore syncing if network error
+    /// 如果网络错误，忽略同步的分钟数
     /// </summary>
     const int SYNC_ERROR_MINUTES = 5;
 
     /// <summary>
-    /// URLs for all mobile services
+    /// 所有移动服务的 url
     /// </summary>
     const string REGION_US = "US";
     const string REGION_EU = "EU";
@@ -133,7 +137,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     const string REGION_CN = "CN";
 
     /// <summary>
-    /// Set of ISO3166 EU countries
+    /// 套欧盟国家 ISO3166
     /// </summary>
     static readonly string[] EU_COUNTRIES = new[]
     {
@@ -191,7 +195,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     };
 
     /// <summary>
-    /// Set of ISO3166 KR countries
+    /// 一套 ISO3166 KR 国家/地区
     /// </summary>
     static readonly string[] KR_COUNTRIES = new[]
     {
@@ -203,12 +207,12 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     };
 
     /// <summary>
-    /// Time of last Sync error
+    /// 上次同步错误的时间
     /// </summary>
     static DateTime _lastSyncError = DateTime.MinValue;
 
     /// <summary>
-    /// Enroll the authenticator with the server.
+    /// 向服务器注册验证器
     /// </summary>
     public async void EnrollAsync()
     {
@@ -473,10 +477,10 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Restore an authenticator from the serial number and restore code.
+    /// 根据序列号和还原代码还原验证器
     /// </summary>
-    /// <param name="serial">serial code, e.g. US-1234-5678-1234</param>
-    /// <param name="restoreCode">restore code given on enroll, 10 chars.</param>
+    /// <param name="serial">序列码，例如 US-1234-5678-1234</param>
+    /// <param name="restoreCode">恢复注册时给定的代码，10个字符</param>
     public async void RestoreAsync(string serial, string restoreCode)
     {
         // get the serial data
@@ -630,11 +634,11 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Read any extra tags from the Xml
+    /// 从 Xml 中读取任何额外的标记
     /// </summary>
-    /// <param name="reader">XmlReader</param>
-    /// <param name="name">name of tag</param>
-    /// <returns>true if read and processed the tag</returns>
+    /// <param name="reader"></param>
+    /// <param name="name">标签的名称</param>
+    /// <returns>如果读取并处理了标记，则为<see langword="true"/></returns>
     public override bool ReadExtraXml(XmlReader reader, string name)
     {
         switch (name)
@@ -648,9 +652,9 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Add extra tags into the XmlWriter
+    /// 向 XmlWriter 中添加额外的标记
     /// </summary>
-    /// <param name="writer">XmlWriter to write data</param>
+    /// <param name="writer">XmlWriter 写入数据</param>
     protected override void WriteExtraXml(XmlWriter writer)
     {
         if (RestoreCodeVerified)
@@ -662,10 +666,9 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Calculate the restore code for an authenticator. This is taken from the last 10 bytes of a digest of the serial and secret key,
-    /// which is then specially encoded to alphanumerics.
+    /// 计算验证器的还原代码。这是从序列号和密钥摘要的最后10个字节中提取的，然后将其特别编码为字母数字
     /// </summary>
-    /// <returns>restore code for authenticator (always 10 chars)</returns>
+    /// <returns>还原验证器代码(总是10个字符)</returns>
     string BuildRestoreCode()
     {
         // return if not set
@@ -701,9 +704,9 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Create a random Model string for initialization to armor the init string sent over the wire
+    /// 创建一个随机的Model字符串用于初始化，以保护通过网络发送的init字符串
     /// </summary>
-    /// <returns>Random model string</returns>
+    /// <returns>随机模型串</returns>
     private static string GeneralRandomModel()
     {
         // seed a new RNG
@@ -725,10 +728,10 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     #region Utility functions
 
     /// <summary>
-    /// Convert a char to a byte but with appropriate mapping to exclude I,L,O and S. E.g. A=10 but J=18 not 19 (as I is missing)
+    /// 将一个字符转换为字节，但使用适当的映射来排除 I,L,O 和 s，例如 a =10 但 J=18 而不是 19 (因为缺少 I)
     /// </summary>
-    /// <param name="c">char to convert.</param>
-    /// <returns>byte value of restore code char</returns>
+    /// <param name="c">要转换的字符</param>
+    /// <returns>还原码字符的字节值</returns>
     private static byte ConvertRestoreCodeCharToByte(char c)
     {
         if (c >= '0' && c <= '9')
@@ -760,10 +763,10 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Convert a byte to a char but with appropriate mapping to exclude I,L,O and S.
+    /// 将字节转换为字符，但使用适当的映射来排除 I,L,O 和 S
     /// </summary>
-    /// <param name="b">byte to convert.</param>
-    /// <returns>char value of restore code value</returns>
+    /// <param name="b">要转换的字节</param>
+    /// <returns>恢复码值的字符值</returns>
     private static char ConvertRestoreCodeByteToChar(byte b)
     {
         var index = b & 0x1f;
@@ -797,7 +800,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     #endregion
 
     /// <summary>
-    /// Region for authenticator taken from first 2 chars of serial
+    /// 从序列号的前 2 个字符中获取验证者的区域
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -816,7 +819,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Get/set the combined secret data value
+    /// 获取/设置组合的秘密数据值
     /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
@@ -868,7 +871,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Get the restore code for an authenticator used to recover a lost authenticator along with the serial number.
+    /// 获取用于恢复丢失的身份验证器的身份验证器的还原代码以及序列号
     /// </summary>
     /// <returns>restore code (10 chars)</returns>
     [IgnoreDataMember]

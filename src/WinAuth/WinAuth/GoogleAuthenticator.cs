@@ -16,27 +16,29 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace WinAuth.WinAuth;
 
+/// <summary>
+/// 提供谷歌身份验证
+/// </summary>
 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
 [MessagePackObject(keyAsPropertyName: true)]
 public class GoogleAuthenticator : AuthenticatorValueDTO
 {
     /// <summary>
-    /// Number of digits in code
+    /// 代码中的位数
     /// </summary>
     const int CODE_DIGITS = 6;
 
     /// <summary>
-    /// Create a new Authenticator object
+    /// 创建一个新的 Authenticator 对象
     /// </summary>
     [SerializationConstructor]
     public GoogleAuthenticator() : base(CODE_DIGITS)
     {
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -48,15 +50,18 @@ public class GoogleAuthenticator : AuthenticatorValueDTO
     public override AuthenticatorPlatform Platform => AuthenticatorPlatform.Google;
 
     /// <summary>
-    /// Number of minutes to ignore syncing if network error
+    /// 如果网络错误，忽略同步的分钟数
     /// </summary>
     const int SYNC_ERROR_MINUTES = 5;
 
     /// <summary>
-    /// Time of last Sync error
+    /// 上次同步时间错误
     /// </summary>
     static DateTime _lastSyncError = DateTime.MinValue;
 
+    /// <summary>
+    /// 获取序列号
+    /// </summary>
     [IgnoreDataMember]
     [MPIgnore]
 #if __HAVE_N_JSON__
@@ -74,7 +79,7 @@ public class GoogleAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Enroll the authenticator with the server.
+    /// 向服务器注册身份验证器
     /// </summary>
     /// <param name="b32key"></param>
     public void Enroll(string b32key)
@@ -84,7 +89,7 @@ public class GoogleAuthenticator : AuthenticatorValueDTO
     }
 
     /// <summary>
-    /// Synchronise this authenticator's time with Google. We update our data record with the difference from our UTC time.
+    /// 将验证者的时间与 Google 同步，我们用与 UTC 时间的差异来更新数据记录
     /// </summary>
     public override async void Sync()
     {
