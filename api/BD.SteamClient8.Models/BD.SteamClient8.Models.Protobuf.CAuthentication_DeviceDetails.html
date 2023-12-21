@@ -1,0 +1,1094 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CAuthentication_DeviceDetails
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CAuthentication_DeviceDetails
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails" class="text-break">
+    Class CAuthentication_DeviceDetails
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.html">Protobuf</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CAuthentication_DeviceDetails : IMessage&lt;CAuthentication_DeviceDetails&gt;, IEquatable&lt;CAuthentication_DeviceDetails&gt;, IDeepCloneable&lt;CAuthentication_DeviceDetails&gt;, IBufferMessage, IMessage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CAuthentication_DeviceDetails</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IMessage</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a>&gt;</div>
+      <div><span class="xref">IDeepCloneable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a>&gt;</div>
+      <div><span class="xref">IBufferMessage</span></div>
+      <div><span class="xref">IMessage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails__ctor" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.#ctor">
+  CAuthentication_DeviceDetails()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_DeviceDetails()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails__ctor_BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.#ctor(BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails)">
+  CAuthentication_DeviceDetails(CAuthentication_DeviceDetails)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_DeviceDetails(CAuthentication_DeviceDetails other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_DeviceFriendlyNameFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.DeviceFriendlyNameFieldNumber">
+  DeviceFriendlyNameFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;device_friendly_name&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DeviceFriendlyNameFieldNumber = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_GamingDeviceTypeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.GamingDeviceTypeFieldNumber">
+  GamingDeviceTypeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;gaming_device_type&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int GamingDeviceTypeFieldNumber = 4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_OsTypeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.OsTypeFieldNumber">
+  OsTypeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;os_type&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int OsTypeFieldNumber = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_PlatformTypeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.PlatformTypeFieldNumber">
+  PlatformTypeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;platform_type&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PlatformTypeFieldNumber = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Descriptor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Descriptor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Descriptor" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Descriptor">
+  Descriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageDescriptor Descriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageDescriptor</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_DeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.DeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_DeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.DeviceFriendlyName">
+  DeviceFriendlyName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DeviceFriendlyName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_GamingDeviceType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.GamingDeviceType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_GamingDeviceType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.GamingDeviceType">
+  GamingDeviceType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GamingDeviceType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasDeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasDeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasDeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasDeviceFriendlyName">
+  HasDeviceFriendlyName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;device_friendly_name&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDeviceFriendlyName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasGamingDeviceType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasGamingDeviceType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasGamingDeviceType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasGamingDeviceType">
+  HasGamingDeviceType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;gaming_device_type&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGamingDeviceType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasOsType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasOsType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasOsType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasOsType">
+  HasOsType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;os_type&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasOsType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasPlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasPlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_HasPlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.HasPlatformType">
+  HasPlatformType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;platform_type&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPlatformType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_OsType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.OsType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_OsType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.OsType">
+  OsType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int OsType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Parser_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Parser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Parser" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Parser">
+  Parser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageParser&lt;CAuthentication_DeviceDetails&gt; Parser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageParser</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_PlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.PlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_PlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.PlatformType">
+  PlatformType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAuthTokenPlatformType PlatformType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.EAuthTokenPlatformType.html">EAuthTokenPlatformType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_CalculateSize_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.CalculateSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_CalculateSize" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.CalculateSize">
+  CalculateSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the size of this message in Protocol Buffer wire format, in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes required to write this message
+to a coded output stream.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearDeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearDeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearDeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearDeviceFriendlyName">
+  ClearDeviceFriendlyName()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;device_friendly_name&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearDeviceFriendlyName()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearGamingDeviceType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearGamingDeviceType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearGamingDeviceType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearGamingDeviceType">
+  ClearGamingDeviceType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;gaming_device_type&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearGamingDeviceType()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearOsType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearOsType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearOsType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearOsType">
+  ClearOsType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;os_type&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearOsType()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearPlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearPlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ClearPlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ClearPlatformType">
+  ClearPlatformType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;platform_type&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPlatformType()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Clone_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Clone*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Clone" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_DeviceDetails Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a></dt>
+    <dd><p>A deep clone of this object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Equals_BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Equals(BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails)">
+  Equals(CAuthentication_DeviceDetails)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CAuthentication_DeviceDetails other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_Equals_System_Object_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_GetHashCode_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_GetHashCode" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.MergeFrom(BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails)">
+  MergeFrom(CAuthentication_DeviceDetails)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the given message into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CAuthentication_DeviceDetails other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html">CAuthentication_DeviceDetails</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_Google_Protobuf_CodedInputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.MergeFrom(Google.Protobuf.CodedInputStream)">
+  MergeFrom(CodedInputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the data from the specified coded input stream with the current message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CodedInputStream input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <span class="xref">CodedInputStream</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_MergeFrom_Google_Protobuf_CodedInputStream__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ToString_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_ToString" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_WriteTo_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.WriteTo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_DeviceDetails_WriteTo_Google_Protobuf_CodedOutputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.WriteTo(Google.Protobuf.CodedOutputStream)">
+  WriteTo(CodedOutputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the data to the given coded output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteTo(CodedOutputStream output)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <span class="xref">CodedOutputStream</span></dt>
+    <dd><p>Coded output stream to write the data to. Must not be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

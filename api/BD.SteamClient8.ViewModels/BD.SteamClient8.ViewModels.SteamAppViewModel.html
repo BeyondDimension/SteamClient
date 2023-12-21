@@ -1,0 +1,2606 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SteamAppViewModel
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SteamAppViewModel
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel">
+
+
+
+  <h1 id="BD_SteamClient8_ViewModels_SteamAppViewModel" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel" class="text-break">
+    Class SteamAppViewModel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.ViewModels.html">ViewModels</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.ViewModels.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p><a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamApp.html">SteamApp</a> 模型绑定类型</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SteamAppViewModel : ReactiveObject, IReactiveNotifyPropertyChanged&lt;IReactiveObject&gt;, IHandleObservableErrors, IReactiveObject, INotifyPropertyChanged, INotifyPropertyChanging, IEnableLogger</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ReactiveObject</span></div>
+      <div><span class="xref">SteamAppViewModel</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IReactiveNotifyPropertyChanged</span>&lt;<span class="xref">IReactiveObject</span>&gt;</div>
+      <div><span class="xref">IHandleObservableErrors</span></div>
+      <div><span class="xref">IReactiveObject</span></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanging">INotifyPropertyChanging</a></div>
+      <div><span class="xref">IEnableLogger</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <span class="xref">ReactiveObject.SuppressChangeNotifications()</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.AreChangeNotificationsEnabled()</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.DelayChangeNotifications()</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.Changing</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.Changed</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.ThrownExceptions</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.PropertyChanging</span>
+    </div>
+    <div>
+      <span class="xref">ReactiveObject.PropertyChanged</span>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel__ctor_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel__ctor_BD_SteamClient8_Models_WebApi_SteamApp_SteamApp_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.#ctor(BD.SteamClient8.Models.WebApi.SteamApp.SteamApp)">
+  SteamAppViewModel(SteamApp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamAppViewModel(SteamApp model)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>model</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_AppId_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.AppId*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_AppId" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.AppId">
+  AppId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AppId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_BaseName_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BaseName*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_BaseName" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BaseName">
+  BaseName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? BaseName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesDownloaded_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesDownloaded*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesDownloaded" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesDownloaded">
+  BytesDownloaded
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>已下载字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BytesDownloaded { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesStaged_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesStaged*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesStaged" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesStaged">
+  BytesStaged
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>已安装字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BytesStaged { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesToDownload_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesToDownload*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesToDownload" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesToDownload">
+  BytesToDownload
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>需要下载字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BytesToDownload { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesToStage_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesToStage*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_BytesToStage" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.BytesToStage">
+  BytesToStage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>需要安装字节数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long BytesToStage { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_CAPSULELogoUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CAPSULELogoUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_CAPSULELogoUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CAPSULELogoUrl">
+  CAPSULELogoUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string CAPSULELogoUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_ChangesData_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ChangesData*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_ChangesData" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ChangesData">
+  ChangesData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamAppPropertyTable? ChangesData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamAppPropertyTable.html">SteamAppPropertyTable</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_ChildApp_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ChildApp*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_ChildApp" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ChildApp">
+  ChildApp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IList&lt;uint&gt; ChildApp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_CloudMaxnumFiles_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CloudMaxnumFiles*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_CloudMaxnumFiles" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CloudMaxnumFiles">
+  CloudMaxnumFiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>云存档文件数量上限</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CloudMaxnumFiles { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_CloudQuota_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CloudQuota*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_CloudQuota" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.CloudQuota">
+  CloudQuota
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>云存档字节大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long CloudQuota { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Developer_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Developer*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Developer" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Developer">
+  Developer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Developer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_DisplayName_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.DisplayName*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_DisplayName" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.DisplayName">
+  DisplayName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DisplayName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditHeaderLogoStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditHeaderLogoStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditHeaderLogoStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditHeaderLogoStream">
+  EditHeaderLogoStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编辑时用于展示头部 Logo 的流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream? EditHeaderLogoStream { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryGridStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryGridStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryGridStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryGridStream">
+  EditLibraryGridStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编辑时用于展示游戏库网格封面的流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream? EditLibraryGridStream { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryHeroStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryHeroStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryHeroStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryHeroStream">
+  EditLibraryHeroStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编辑时用于展示游戏库英雄封面的流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream? EditLibraryHeroStream { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryLogoStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryLogoStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_EditLibraryLogoStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.EditLibraryLogoStream">
+  EditLibraryLogoStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>编辑时用于展示游戏库 Logo 的流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream? EditLibraryLogoStream { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_HeaderLogoStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.HeaderLogoStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_HeaderLogoStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.HeaderLogoStream">
+  HeaderLogoStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取头部Logo的异步任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;CommonImageSource?&gt; HeaderLogoStream { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Drawing/CommonImageSource.cs">CommonImageSource</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_HeaderLogoUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.HeaderLogoUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_HeaderLogoUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.HeaderLogoUrl">
+  HeaderLogoUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string HeaderLogoUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Icon_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Icon*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Icon" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Icon">
+  Icon
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Icon { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IconUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IconUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IconUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IconUrl">
+  IconUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? IconUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Index_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Index*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Index" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Index">
+  Index
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Index { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_InstalledDir_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.InstalledDir*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_InstalledDir" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.InstalledDir">
+  InstalledDir
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? InstalledDir { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_InstalledDrive_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.InstalledDrive*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_InstalledDrive" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.InstalledDrive">
+  InstalledDrive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? InstalledDrive { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsCloudArchive_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsCloudArchive*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsCloudArchive" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsCloudArchive">
+  IsCloudArchive
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否支持 Steam 云存档</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCloudArchive { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsDownloading_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsDownloading*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsDownloading" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsDownloading">
+  IsDownloading
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsDownloading { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsEdited_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsEdited*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsEdited" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsEdited">
+  IsEdited
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEdited { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsInstalled_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsInstalled*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsInstalled" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsInstalled">
+  IsInstalled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsInstalled { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsWatchDownloading_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsWatchDownloading*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_IsWatchDownloading" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.IsWatchDownloading">
+  IsWatchDownloading
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsWatchDownloading { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LastOwner_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LastOwner*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LastOwner" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LastOwner">
+  LastOwner
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最后运行用户 SteamId64</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LastOwner { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LastUpdated_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LastUpdated*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LastUpdated" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LastUpdated">
+  LastUpdated
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最后更新日期</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime LastUpdated { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LaunchItems_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LaunchItems*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LaunchItems" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LaunchItems">
+  LaunchItems
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObservableCollection&lt;SteamAppLaunchItem&gt;? LaunchItems { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1">ObservableCollection</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/SteamApp/SteamAppLaunchItem.cs">SteamAppLaunchItem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryGridStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryGridStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryGridStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryGridStream">
+  LibraryGridStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取游戏库网格封面的异步任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;CommonImageSource?&gt; LibraryGridStream { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Drawing/CommonImageSource.cs">CommonImageSource</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryGridUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryGridUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryGridUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryGridUrl">
+  LibraryGridUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LibraryGridUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroBlurStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroBlurStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroBlurStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroBlurStream">
+  LibraryHeroBlurStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取游戏库英雄模糊封面的异步任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;CommonImageSource?&gt; LibraryHeroBlurStream { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Drawing/CommonImageSource.cs">CommonImageSource</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroBlurUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroBlurUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroBlurUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroBlurUrl">
+  LibraryHeroBlurUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LibraryHeroBlurUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroStream">
+  LibraryHeroStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取游戏库英雄封面的异步任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;CommonImageSource?&gt; LibraryHeroStream { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Drawing/CommonImageSource.cs">CommonImageSource</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryHeroUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryHeroUrl">
+  LibraryHeroUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LibraryHeroUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryLogoStream_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryLogoStream*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryLogoStream" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryLogoStream">
+  LibraryLogoStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取游戏库Logo的异步任务</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;CommonImageSource?&gt; LibraryLogoStream { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Drawing/CommonImageSource.cs">CommonImageSource</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryLogoUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryLogoUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LibraryLogoUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LibraryLogoUrl">
+  LibraryLogoUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LibraryLogoUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Logo_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Logo*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Logo" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Logo">
+  Logo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Logo { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_LogoUrl_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LogoUrl*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_LogoUrl" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.LogoUrl">
+  LogoUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? LogoUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Model_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Model*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Model" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Model">
+  Model
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamApp Model { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Name_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Name*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Name" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/SteamAppViewModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeAppInfo_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeAppInfo*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeAppInfo" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeAppInfo">
+  NodeAppInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeAppInfo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeAppType_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeAppType*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeAppType" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeAppType">
+  NodeAppType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeAppType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeCommon_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeCommon*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeCommon" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeCommon">
+  NodeCommon
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeCommon { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeConfig_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeConfig*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeConfig" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeConfig">
+  NodeConfig
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeConfig { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeDeveloper_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeDeveloper*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeDeveloper" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeDeveloper">
+  NodeDeveloper
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeDeveloper { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeExtended_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeExtended*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeExtended" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeExtended">
+  NodeExtended
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeExtended { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeId_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeId*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeId" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeId">
+  NodeId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeLaunch_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeLaunch*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeLaunch" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeLaunch">
+  NodeLaunch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeLaunch { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeName_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeName*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeName" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeName">
+  NodeName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeParentId_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeParentId*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeParentId" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeParentId">
+  NodeParentId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeParentId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatforms_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatforms*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatforms" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatforms">
+  NodePlatforms
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodePlatforms { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsLinux_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsLinux*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsLinux" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsLinux">
+  NodePlatformsLinux
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodePlatformsLinux { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsMac_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsMac*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsMac" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsMac">
+  NodePlatformsMac
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodePlatformsMac { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsWindows_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsWindows*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePlatformsWindows" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePlatformsWindows">
+  NodePlatformsWindows
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodePlatformsWindows { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePublisher_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePublisher*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodePublisher" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodePublisher">
+  NodePublisher
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodePublisher { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeSortAs_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeSortAs*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_NodeSortAs" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.NodeSortAs">
+  NodeSortAs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string NodeSortAs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_OSList_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OSList*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_OSList" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OSList">
+  OSList
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? OSList { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_OriginReleaseDate_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OriginReleaseDate*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_OriginReleaseDate" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OriginReleaseDate">
+  OriginReleaseDate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint? OriginReleaseDate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_OriginalData_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OriginalData*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_OriginalData" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.OriginalData">
+  OriginalData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[]? OriginalData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_ParentId_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ParentId*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_ParentId" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.ParentId">
+  ParentId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ParentId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Process_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Process*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Process" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Process">
+  Process
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Process? Process { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.process">Process</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Publisher_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Publisher*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Publisher" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Publisher">
+  Publisher
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Publisher { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_SaveFiles_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SaveFiles*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_SaveFiles" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SaveFiles">
+  SaveFiles
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ObservableCollection&lt;SteamAppSaveFile&gt;? SaveFiles { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.observablecollection-1">ObservableCollection</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/SteamApp/SteamAppSaveFile.cs">SteamAppSaveFile</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_SizeOnDisk_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SizeOnDisk*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_SizeOnDisk" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SizeOnDisk">
+  SizeOnDisk
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>占用硬盘字节大小</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long SizeOnDisk { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_SortAs_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SortAs*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_SortAs" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SortAs">
+  SortAs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SortAs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_State_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.State*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_State" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.State">
+  State
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int State { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_SteamReleaseDate_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SteamReleaseDate*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_SteamReleaseDate" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.SteamReleaseDate">
+  SteamReleaseDate
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint? SteamReleaseDate { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_Type_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Type*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_Type" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.Type">
+  Type
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamAppType Type { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.Enums.WebApi.SteamApp.SteamAppType.html">SteamAppType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_RefreshEditImage_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.RefreshEditImage*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_RefreshEditImage" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.RefreshEditImage">
+  RefreshEditImage()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>刷新编辑时的图像流</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RefreshEditImage()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_op_Implicit_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.op_Implicit*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_op_Implicit_BD_SteamClient8_Models_WebApi_SteamApp_SteamApp__BD_SteamClient8_ViewModels_SteamAppViewModel" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.op_Implicit(BD.SteamClient8.Models.WebApi.SteamApp.SteamApp)~BD.SteamClient8.ViewModels.SteamAppViewModel">
+  implicit operator SteamAppViewModel(SteamApp)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Model =&gt; ViewModel</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator SteamAppViewModel(SteamApp model)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>model</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.ViewModels.SteamAppViewModel.html">SteamAppViewModel</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_ViewModels_SteamAppViewModel_op_Implicit_" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.op_Implicit*"></a>
+
+  <h3 id="BD_SteamClient8_ViewModels_SteamAppViewModel_op_Implicit_BD_SteamClient8_ViewModels_SteamAppViewModel__BD_SteamClient8_Models_WebApi_SteamApp_SteamApp" data-uid="BD.SteamClient8.ViewModels.SteamAppViewModel.op_Implicit(BD.SteamClient8.ViewModels.SteamAppViewModel)~BD.SteamClient8.Models.WebApi.SteamApp.SteamApp">
+  implicit operator SteamApp(SteamAppViewModel)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>ViewModel =&gt; Model</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator SteamApp(SteamAppViewModel vm)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>vm</code> <a class="xref" href="BD.SteamClient8.ViewModels.SteamAppViewModel.html">SteamAppViewModel</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApp.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.ViewModels/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.Templates.ViewModelWrapperTemplate/BD.SteamClient8.ViewModels.SteamAppViewModel.ViewModelWrapper.g.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

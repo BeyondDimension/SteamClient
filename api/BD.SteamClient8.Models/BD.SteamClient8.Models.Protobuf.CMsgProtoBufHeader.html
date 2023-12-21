@@ -1,0 +1,4117 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CMsgProtoBufHeader
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CMsgProtoBufHeader
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader" class="text-break">
+    Class CMsgProtoBufHeader
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.html">Protobuf</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CMsgProtoBufHeader : IMessage&lt;CMsgProtoBufHeader&gt;, IEquatable&lt;CMsgProtoBufHeader&gt;, IDeepCloneable&lt;CMsgProtoBufHeader&gt;, IBufferMessage, IMessage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CMsgProtoBufHeader</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IMessage</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a>&gt;</div>
+      <div><span class="xref">IDeepCloneable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a>&gt;</div>
+      <div><span class="xref">IBufferMessage</span></div>
+      <div><span class="xref">IMessage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader__ctor" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.#ctor">
+  CMsgProtoBufHeader()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CMsgProtoBufHeader()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader__ctor_BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.#ctor(BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader)">
+  CMsgProtoBufHeader(CMsgProtoBufHeader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CMsgProtoBufHeader(CMsgProtoBufHeader other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AdminSpoofingUserFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AdminSpoofingUserFieldNumber">
+  AdminSpoofingUserFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;admin_spoofing_user&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int AdminSpoofingUserFieldNumber = 23</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AuthAccountFlagsFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AuthAccountFlagsFieldNumber">
+  AuthAccountFlagsFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;auth_account_flags&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int AuthAccountFlagsFieldNumber = 16</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClientSessionidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClientSessionidFieldNumber">
+  ClientSessionidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;client_sessionid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ClientSessionidFieldNumber = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_CmSysidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.CmSysidFieldNumber">
+  CmSysidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;cm_sysid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int CmSysidFieldNumber = 28</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSourceFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSourceFieldNumber">
+  DebugSourceFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;debug_source&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DebugSourceFieldNumber = 34</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSourceStringIndexFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSourceStringIndexFieldNumber">
+  DebugSourceStringIndexFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;debug_source_string_index&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DebugSourceStringIndexFieldNumber = 35</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_EresultFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.EresultFieldNumber">
+  EresultFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;eresult&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int EresultFieldNumber = 13</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ErrorMessageFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ErrorMessageFieldNumber">
+  ErrorMessageFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;error_message&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ErrorMessageFieldNumber = 14</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ForwardToSysidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ForwardToSysidFieldNumber">
+  ForwardToSysidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;forward_to_sysid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ForwardToSysidFieldNumber = 27</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpFieldNumber">
+  IpFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;ip&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int IpFieldNumber = 15</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpV6FieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpV6FieldNumber">
+  IpV6FieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;ip_v6&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int IpV6FieldNumber = 29</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IsFromExternalSourceFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IsFromExternalSourceFieldNumber">
+  IsFromExternalSourceFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;is_from_external_source&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int IsFromExternalSourceFieldNumber = 26</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidSourceFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidSourceFieldNumber">
+  JobidSourceFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;jobid_source&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int JobidSourceFieldNumber = 10</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidTargetFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidTargetFieldNumber">
+  JobidTargetFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;jobid_target&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int JobidTargetFieldNumber = 11</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_LauncherTypeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.LauncherTypeFieldNumber">
+  LauncherTypeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;launcher_type&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int LauncherTypeFieldNumber = 31</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MessageidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.MessageidFieldNumber">
+  MessageidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;messageid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int MessageidFieldNumber = 18</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_PublisherGroupIdFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.PublisherGroupIdFieldNumber">
+  PublisherGroupIdFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;publisher_group_id&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PublisherGroupIdFieldNumber = 19</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_RealmFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.RealmFieldNumber">
+  RealmFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;realm&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int RealmFieldNumber = 32</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_RoutingAppidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.RoutingAppidFieldNumber">
+  RoutingAppidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;routing_appid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int RoutingAppidFieldNumber = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_SeqNumFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.SeqNumFieldNumber">
+  SeqNumFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;seq_num&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int SeqNumFieldNumber = 24</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_SteamidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.SteamidFieldNumber">
+  SteamidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;steamid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int SteamidFieldNumber = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_SysidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.SysidFieldNumber">
+  SysidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;sysid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int SysidFieldNumber = 20</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TargetJobNameFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TargetJobNameFieldNumber">
+  TargetJobNameFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;target_job_name&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TargetJobNameFieldNumber = 12</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TimeoutMsFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TimeoutMsFieldNumber">
+  TimeoutMsFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;timeout_ms&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TimeoutMsFieldNumber = 33</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenIdFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenIdFieldNumber">
+  TokenIdFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;token_id&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TokenIdFieldNumber = 36</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenSourceFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenSourceFieldNumber">
+  TokenSourceFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;token_source&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TokenSourceFieldNumber = 22</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TraceTagFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TraceTagFieldNumber">
+  TraceTagFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;trace_tag&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TraceTagFieldNumber = 21</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TransportErrorFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TransportErrorFieldNumber">
+  TransportErrorFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;transport_error&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TransportErrorFieldNumber = 17</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_WebapiKeyIdFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.WebapiKeyIdFieldNumber">
+  WebapiKeyIdFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;webapi_key_id&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int WebapiKeyIdFieldNumber = 25</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AdminSpoofingUser_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AdminSpoofingUser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AdminSpoofingUser" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AdminSpoofingUser">
+  AdminSpoofingUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AdminSpoofingUser { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AuthAccountFlags_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AuthAccountFlags*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_AuthAccountFlags" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.AuthAccountFlags">
+  AuthAccountFlags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AuthAccountFlags { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClientSessionid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClientSessionid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClientSessionid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClientSessionid">
+  ClientSessionid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ClientSessionid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_CmSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.CmSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_CmSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.CmSysid">
+  CmSysid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint CmSysid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSource">
+  DebugSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DebugSource { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSourceStringIndex_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSourceStringIndex*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_DebugSourceStringIndex" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.DebugSourceStringIndex">
+  DebugSourceStringIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint DebugSourceStringIndex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Descriptor_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Descriptor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Descriptor" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Descriptor">
+  Descriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageDescriptor Descriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageDescriptor</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Eresult_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Eresult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Eresult" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Eresult">
+  Eresult
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Eresult { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ErrorMessage_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ErrorMessage*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ErrorMessage" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ErrorMessage">
+  ErrorMessage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ErrorMessage { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ForwardToSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ForwardToSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ForwardToSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ForwardToSysid">
+  ForwardToSysid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RepeatedField&lt;uint&gt; ForwardToSysid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RepeatedField</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasAdminSpoofingUser_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasAdminSpoofingUser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasAdminSpoofingUser" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasAdminSpoofingUser">
+  HasAdminSpoofingUser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;admin_spoofing_user&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAdminSpoofingUser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasAuthAccountFlags_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasAuthAccountFlags*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasAuthAccountFlags" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasAuthAccountFlags">
+  HasAuthAccountFlags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;auth_account_flags&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasAuthAccountFlags { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasClientSessionid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasClientSessionid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasClientSessionid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasClientSessionid">
+  HasClientSessionid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;client_sessionid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasClientSessionid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasCmSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasCmSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasCmSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasCmSysid">
+  HasCmSysid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;cm_sysid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasCmSysid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasDebugSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasDebugSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasDebugSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasDebugSource">
+  HasDebugSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;debug_source&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDebugSource { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasDebugSourceStringIndex_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasDebugSourceStringIndex*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasDebugSourceStringIndex" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasDebugSourceStringIndex">
+  HasDebugSourceStringIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;debug_source_string_index&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDebugSourceStringIndex { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasEresult_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasEresult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasEresult" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasEresult">
+  HasEresult
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;eresult&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasEresult { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasErrorMessage_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasErrorMessage*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasErrorMessage" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasErrorMessage">
+  HasErrorMessage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;error_message&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasErrorMessage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIp_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIp*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIp" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIp">
+  HasIp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;ip&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasIp { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIpV6_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIpV6*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIpV6" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIpV6">
+  HasIpV6
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;ip_v6&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasIpV6 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIsFromExternalSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIsFromExternalSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasIsFromExternalSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasIsFromExternalSource">
+  HasIsFromExternalSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;is_from_external_source&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasIsFromExternalSource { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasJobidSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasJobidSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasJobidSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasJobidSource">
+  HasJobidSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;jobid_source&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasJobidSource { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasJobidTarget_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasJobidTarget*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasJobidTarget" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasJobidTarget">
+  HasJobidTarget
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;jobid_target&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasJobidTarget { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasLauncherType_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasLauncherType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasLauncherType" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasLauncherType">
+  HasLauncherType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;launcher_type&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasLauncherType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasMessageid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasMessageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasMessageid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasMessageid">
+  HasMessageid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;messageid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasMessageid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasPublisherGroupId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasPublisherGroupId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasPublisherGroupId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasPublisherGroupId">
+  HasPublisherGroupId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;publisher_group_id&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPublisherGroupId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasRealm_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasRealm*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasRealm" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasRealm">
+  HasRealm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;realm&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRealm { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasRoutingAppid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasRoutingAppid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasRoutingAppid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasRoutingAppid">
+  HasRoutingAppid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;routing_appid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRoutingAppid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSeqNum_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSeqNum*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSeqNum" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSeqNum">
+  HasSeqNum
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;seq_num&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSeqNum { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSteamid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSteamid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSteamid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSteamid">
+  HasSteamid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;steamid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSteamid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasSysid">
+  HasSysid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;sysid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasSysid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTargetJobName_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTargetJobName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTargetJobName" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTargetJobName">
+  HasTargetJobName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;target_job_name&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTargetJobName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTimeoutMs_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTimeoutMs*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTimeoutMs" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTimeoutMs">
+  HasTimeoutMs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;timeout_ms&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTimeoutMs { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTokenId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTokenId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTokenId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTokenId">
+  HasTokenId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;token_id&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTokenId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTokenSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTokenSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTokenSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTokenSource">
+  HasTokenSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;token_source&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTokenSource { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTraceTag_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTraceTag*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTraceTag" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTraceTag">
+  HasTraceTag
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;trace_tag&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTraceTag { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTransportError_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTransportError*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasTransportError" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasTransportError">
+  HasTransportError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;transport_error&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTransportError { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasWebapiKeyId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasWebapiKeyId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_HasWebapiKeyId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.HasWebapiKeyId">
+  HasWebapiKeyId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;webapi_key_id&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasWebapiKeyId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Ip_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Ip*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Ip" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Ip">
+  Ip
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Ip { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpAddrCase_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrCase*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpAddrCase" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrCase">
+  IpAddrCase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CMsgProtoBufHeader.IpAddrOneofCase IpAddrCase { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrOneofCase.html">IpAddrOneofCase</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpV6_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpV6*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IpV6" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpV6">
+  IpV6
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ByteString IpV6 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ByteString</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IsFromExternalSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IsFromExternalSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_IsFromExternalSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IsFromExternalSource">
+  IsFromExternalSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFromExternalSource { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidSource">
+  JobidSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong JobidSource { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidTarget_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidTarget*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_JobidTarget" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.JobidTarget">
+  JobidTarget
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong JobidTarget { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_LauncherType_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.LauncherType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_LauncherType" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.LauncherType">
+  LauncherType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint LauncherType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Messageid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Messageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Messageid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Messageid">
+  Messageid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Messageid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Parser_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Parser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Parser" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Parser">
+  Parser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageParser&lt;CMsgProtoBufHeader&gt; Parser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageParser</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_PublisherGroupId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.PublisherGroupId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_PublisherGroupId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.PublisherGroupId">
+  PublisherGroupId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint PublisherGroupId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Realm_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Realm*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Realm" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Realm">
+  Realm
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Realm { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_RoutingAppid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.RoutingAppid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_RoutingAppid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.RoutingAppid">
+  RoutingAppid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint RoutingAppid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_SeqNum_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.SeqNum*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_SeqNum" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.SeqNum">
+  SeqNum
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SeqNum { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Steamid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Steamid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Steamid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Steamid">
+  Steamid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Steamid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Sysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Sysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Sysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Sysid">
+  Sysid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Sysid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TargetJobName_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TargetJobName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TargetJobName" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TargetJobName">
+  TargetJobName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TargetJobName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TimeoutMs_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TimeoutMs*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TimeoutMs" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TimeoutMs">
+  TimeoutMs
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TimeoutMs { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenId">
+  TokenId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong TokenId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TokenSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TokenSource">
+  TokenSource
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TokenSource { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TraceTag_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TraceTag*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TraceTag" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TraceTag">
+  TraceTag
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong TraceTag { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TransportError_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TransportError*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_TransportError" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.TransportError">
+  TransportError
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TransportError { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_WebapiKeyId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.WebapiKeyId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_WebapiKeyId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.WebapiKeyId">
+  WebapiKeyId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint WebapiKeyId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_CalculateSize_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.CalculateSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_CalculateSize" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.CalculateSize">
+  CalculateSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the size of this message in Protocol Buffer wire format, in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes required to write this message
+to a coded output stream.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearAdminSpoofingUser_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearAdminSpoofingUser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearAdminSpoofingUser" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearAdminSpoofingUser">
+  ClearAdminSpoofingUser()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;admin_spoofing_user&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearAdminSpoofingUser()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearAuthAccountFlags_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearAuthAccountFlags*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearAuthAccountFlags" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearAuthAccountFlags">
+  ClearAuthAccountFlags()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;auth_account_flags&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearAuthAccountFlags()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearClientSessionid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearClientSessionid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearClientSessionid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearClientSessionid">
+  ClearClientSessionid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;client_sessionid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearClientSessionid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearCmSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearCmSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearCmSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearCmSysid">
+  ClearCmSysid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;cm_sysid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCmSysid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearDebugSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearDebugSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearDebugSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearDebugSource">
+  ClearDebugSource()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;debug_source&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearDebugSource()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearDebugSourceStringIndex_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearDebugSourceStringIndex*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearDebugSourceStringIndex" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearDebugSourceStringIndex">
+  ClearDebugSourceStringIndex()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;debug_source_string_index&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearDebugSourceStringIndex()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearEresult_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearEresult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearEresult" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearEresult">
+  ClearEresult()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;eresult&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearEresult()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearErrorMessage_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearErrorMessage*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearErrorMessage" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearErrorMessage">
+  ClearErrorMessage()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;error_message&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearErrorMessage()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIp_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIp*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIp" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIp">
+  ClearIp()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the oneof if it's currently set to &quot;ip&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearIp()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIpAddr_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIpAddr*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIpAddr" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIpAddr">
+  ClearIpAddr()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearIpAddr()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIpV6_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIpV6*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIpV6" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIpV6">
+  ClearIpV6()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the oneof if it's currently set to &quot;ip_v6&quot;</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearIpV6()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIsFromExternalSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIsFromExternalSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearIsFromExternalSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearIsFromExternalSource">
+  ClearIsFromExternalSource()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;is_from_external_source&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearIsFromExternalSource()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearJobidSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearJobidSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearJobidSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearJobidSource">
+  ClearJobidSource()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;jobid_source&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearJobidSource()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearJobidTarget_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearJobidTarget*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearJobidTarget" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearJobidTarget">
+  ClearJobidTarget()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;jobid_target&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearJobidTarget()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearLauncherType_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearLauncherType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearLauncherType" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearLauncherType">
+  ClearLauncherType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;launcher_type&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearLauncherType()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearMessageid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearMessageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearMessageid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearMessageid">
+  ClearMessageid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;messageid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearMessageid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearPublisherGroupId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearPublisherGroupId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearPublisherGroupId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearPublisherGroupId">
+  ClearPublisherGroupId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;publisher_group_id&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPublisherGroupId()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearRealm_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearRealm*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearRealm" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearRealm">
+  ClearRealm()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;realm&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearRealm()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearRoutingAppid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearRoutingAppid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearRoutingAppid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearRoutingAppid">
+  ClearRoutingAppid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;routing_appid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearRoutingAppid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSeqNum_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSeqNum*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSeqNum" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSeqNum">
+  ClearSeqNum()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;seq_num&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearSeqNum()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSteamid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSteamid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSteamid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSteamid">
+  ClearSteamid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;steamid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearSteamid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSysid_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSysid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearSysid" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearSysid">
+  ClearSysid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;sysid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearSysid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTargetJobName_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTargetJobName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTargetJobName" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTargetJobName">
+  ClearTargetJobName()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;target_job_name&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTargetJobName()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTimeoutMs_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTimeoutMs*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTimeoutMs" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTimeoutMs">
+  ClearTimeoutMs()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;timeout_ms&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTimeoutMs()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTokenId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTokenId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTokenId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTokenId">
+  ClearTokenId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;token_id&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTokenId()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTokenSource_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTokenSource*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTokenSource" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTokenSource">
+  ClearTokenSource()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;token_source&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTokenSource()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTraceTag_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTraceTag*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTraceTag" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTraceTag">
+  ClearTraceTag()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;trace_tag&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTraceTag()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTransportError_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTransportError*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearTransportError" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearTransportError">
+  ClearTransportError()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;transport_error&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTransportError()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearWebapiKeyId_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearWebapiKeyId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ClearWebapiKeyId" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ClearWebapiKeyId">
+  ClearWebapiKeyId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;webapi_key_id&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearWebapiKeyId()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Clone_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Clone*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Clone" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CMsgProtoBufHeader Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a></dt>
+    <dd><p>A deep clone of this object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Equals_BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Equals(BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader)">
+  Equals(CMsgProtoBufHeader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CMsgProtoBufHeader other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_Equals_System_Object_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_GetHashCode_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_GetHashCode" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.MergeFrom(BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader)">
+  MergeFrom(CMsgProtoBufHeader)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the given message into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CMsgProtoBufHeader other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html">CMsgProtoBufHeader</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_Google_Protobuf_CodedInputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.MergeFrom(Google.Protobuf.CodedInputStream)">
+  MergeFrom(CodedInputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the data from the specified coded input stream with the current message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CodedInputStream input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <span class="xref">CodedInputStream</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_MergeFrom_Google_Protobuf_CodedInputStream__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ToString_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_ToString" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_WriteTo_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.WriteTo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CMsgProtoBufHeader_WriteTo_Google_Protobuf_CodedOutputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.WriteTo(Google.Protobuf.CodedOutputStream)">
+  WriteTo(CodedOutputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the data to the given coded output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteTo(CodedOutputStream output)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <span class="xref">CodedOutputStream</span></dt>
+    <dd><p>Coded output stream to write the data to. Must not be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1578 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CPackageReservationStatus
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CPackageReservationStatus
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus" class="text-break">
+    Class CPackageReservationStatus
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.html">Protobuf</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CPackageReservationStatus : IMessage&lt;CPackageReservationStatus&gt;, IEquatable&lt;CPackageReservationStatus&gt;, IDeepCloneable&lt;CPackageReservationStatus&gt;, IBufferMessage, IMessage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CPackageReservationStatus</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IMessage</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a>&gt;</div>
+      <div><span class="xref">IDeepCloneable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a>&gt;</div>
+      <div><span class="xref">IBufferMessage</span></div>
+      <div><span class="xref">IMessage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus__ctor" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.#ctor">
+  CPackageReservationStatus()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CPackageReservationStatus()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus__ctor_BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.#ctor(BD.SteamClient8.Models.Protobuf.CPackageReservationStatus)">
+  CPackageReservationStatus(CPackageReservationStatus)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CPackageReservationStatus(CPackageReservationStatus other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ExpiredFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ExpiredFieldNumber">
+  ExpiredFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;expired&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ExpiredFieldNumber = 6</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_PackageidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.PackageidFieldNumber">
+  PackageidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;packageid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PackageidFieldNumber = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_QueuePositionFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.QueuePositionFieldNumber">
+  QueuePositionFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;queue_position&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int QueuePositionFieldNumber = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationCountryCodeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationCountryCodeFieldNumber">
+  ReservationCountryCodeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;reservation_country_code&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ReservationCountryCodeFieldNumber = 5</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationStateFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationStateFieldNumber">
+  ReservationStateFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;reservation_state&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ReservationStateFieldNumber = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeExpiresFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeExpiresFieldNumber">
+  TimeExpiresFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;time_expires&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TimeExpiresFieldNumber = 7</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeReservedFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeReservedFieldNumber">
+  TimeReservedFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;time_reserved&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TimeReservedFieldNumber = 8</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TotalQueueSizeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TotalQueueSizeFieldNumber">
+  TotalQueueSizeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;total_queue_size&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TotalQueueSizeFieldNumber = 4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Descriptor_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Descriptor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Descriptor" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Descriptor">
+  Descriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageDescriptor Descriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageDescriptor</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Expired_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Expired*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Expired" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Expired">
+  Expired
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Expired { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasExpired_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasExpired*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasExpired" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasExpired">
+  HasExpired
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;expired&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasExpired { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasPackageid_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasPackageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasPackageid" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasPackageid">
+  HasPackageid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;packageid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPackageid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasQueuePosition_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasQueuePosition*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasQueuePosition" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasQueuePosition">
+  HasQueuePosition
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;queue_position&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasQueuePosition { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasReservationCountryCode_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasReservationCountryCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasReservationCountryCode" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasReservationCountryCode">
+  HasReservationCountryCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;reservation_country_code&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasReservationCountryCode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasReservationState_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasReservationState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasReservationState" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasReservationState">
+  HasReservationState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;reservation_state&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasReservationState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTimeExpires_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTimeExpires*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTimeExpires" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTimeExpires">
+  HasTimeExpires
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;time_expires&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTimeExpires { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTimeReserved_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTimeReserved*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTimeReserved" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTimeReserved">
+  HasTimeReserved
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;time_reserved&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTimeReserved { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTotalQueueSize_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTotalQueueSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_HasTotalQueueSize" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.HasTotalQueueSize">
+  HasTotalQueueSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;total_queue_size&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasTotalQueueSize { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Packageid_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Packageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Packageid" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Packageid">
+  Packageid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Packageid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Parser_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Parser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Parser" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Parser">
+  Parser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageParser&lt;CPackageReservationStatus&gt; Parser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageParser</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_QueuePosition_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.QueuePosition*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_QueuePosition" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.QueuePosition">
+  QueuePosition
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int QueuePosition { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationCountryCode_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationCountryCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationCountryCode" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationCountryCode">
+  ReservationCountryCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ReservationCountryCode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationState_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ReservationState" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ReservationState">
+  ReservationState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ReservationState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeExpires_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeExpires*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeExpires" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeExpires">
+  TimeExpires
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TimeExpires { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeReserved_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeReserved*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TimeReserved" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TimeReserved">
+  TimeReserved
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint TimeReserved { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TotalQueueSize_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TotalQueueSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_TotalQueueSize" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.TotalQueueSize">
+  TotalQueueSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TotalQueueSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_CalculateSize_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.CalculateSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_CalculateSize" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.CalculateSize">
+  CalculateSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the size of this message in Protocol Buffer wire format, in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes required to write this message
+to a coded output stream.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearExpired_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearExpired*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearExpired" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearExpired">
+  ClearExpired()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;expired&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearExpired()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearPackageid_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearPackageid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearPackageid" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearPackageid">
+  ClearPackageid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;packageid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPackageid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearQueuePosition_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearQueuePosition*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearQueuePosition" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearQueuePosition">
+  ClearQueuePosition()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;queue_position&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearQueuePosition()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearReservationCountryCode_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearReservationCountryCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearReservationCountryCode" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearReservationCountryCode">
+  ClearReservationCountryCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;reservation_country_code&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearReservationCountryCode()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearReservationState_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearReservationState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearReservationState" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearReservationState">
+  ClearReservationState()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;reservation_state&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearReservationState()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTimeExpires_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTimeExpires*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTimeExpires" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTimeExpires">
+  ClearTimeExpires()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;time_expires&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTimeExpires()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTimeReserved_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTimeReserved*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTimeReserved" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTimeReserved">
+  ClearTimeReserved()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;time_reserved&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTimeReserved()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTotalQueueSize_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTotalQueueSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ClearTotalQueueSize" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ClearTotalQueueSize">
+  ClearTotalQueueSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;total_queue_size&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearTotalQueueSize()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Clone_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Clone*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Clone" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CPackageReservationStatus Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a></dt>
+    <dd><p>A deep clone of this object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Equals_BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Equals(BD.SteamClient8.Models.Protobuf.CPackageReservationStatus)">
+  Equals(CPackageReservationStatus)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CPackageReservationStatus other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_Equals_System_Object_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_GetHashCode_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_GetHashCode" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.MergeFrom(BD.SteamClient8.Models.Protobuf.CPackageReservationStatus)">
+  MergeFrom(CPackageReservationStatus)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the given message into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CPackageReservationStatus other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html">CPackageReservationStatus</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_BD_SteamClient8_Models_Protobuf_CPackageReservationStatus__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_Google_Protobuf_CodedInputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.MergeFrom(Google.Protobuf.CodedInputStream)">
+  MergeFrom(CodedInputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the data from the specified coded input stream with the current message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CodedInputStream input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <span class="xref">CodedInputStream</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_MergeFrom_Google_Protobuf_CodedInputStream__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ToString_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_ToString" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_WriteTo_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.WriteTo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CPackageReservationStatus_WriteTo_Google_Protobuf_CodedOutputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.WriteTo(Google.Protobuf.CodedOutputStream)">
+  WriteTo(CodedOutputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the data to the given coded output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteTo(CodedOutputStream output)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <span class="xref">CodedOutputStream</span></dt>
+    <dd><p>Coded output stream to write the data to. Must not be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

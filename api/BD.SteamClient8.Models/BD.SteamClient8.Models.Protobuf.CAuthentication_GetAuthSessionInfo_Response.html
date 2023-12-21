@@ -1,0 +1,2062 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CAuthentication_GetAuthSessionInfo_Response
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CAuthentication_GetAuthSessionInfo_Response
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response" class="text-break">
+    Class CAuthentication_GetAuthSessionInfo_Response
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.html">Protobuf</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CAuthentication_GetAuthSessionInfo_Response : IMessage&lt;CAuthentication_GetAuthSessionInfo_Response&gt;, IEquatable&lt;CAuthentication_GetAuthSessionInfo_Response&gt;, IDeepCloneable&lt;CAuthentication_GetAuthSessionInfo_Response&gt;, IBufferMessage, IMessage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CAuthentication_GetAuthSessionInfo_Response</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IMessage</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a>&gt;</div>
+      <div><span class="xref">IDeepCloneable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a>&gt;</div>
+      <div><span class="xref">IBufferMessage</span></div>
+      <div><span class="xref">IMessage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response__ctor" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.#ctor">
+  CAuthentication_GetAuthSessionInfo_Response()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_GetAuthSessionInfo_Response()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response__ctor_BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.#ctor(BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response)">
+  CAuthentication_GetAuthSessionInfo_Response(CAuthentication_GetAuthSessionInfo_Response)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_GetAuthSessionInfo_Response(CAuthentication_GetAuthSessionInfo_Response other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_CityFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.CityFieldNumber">
+  CityFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;city&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int CityFieldNumber = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_CountryFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.CountryFieldNumber">
+  CountryFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;country&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int CountryFieldNumber = 5</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_DeviceFriendlyNameFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.DeviceFriendlyNameFieldNumber">
+  DeviceFriendlyNameFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;device_friendly_name&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DeviceFriendlyNameFieldNumber = 7</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_GeolocFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.GeolocFieldNumber">
+  GeolocFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;geoloc&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int GeolocFieldNumber = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HighUsageLoginFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HighUsageLoginFieldNumber">
+  HighUsageLoginFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;high_usage_login&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int HighUsageLoginFieldNumber = 11</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_IpFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.IpFieldNumber">
+  IpFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;ip&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int IpFieldNumber = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_LoginHistoryFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.LoginHistoryFieldNumber">
+  LoginHistoryFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;login_history&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int LoginHistoryFieldNumber = 9</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_PlatformTypeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.PlatformTypeFieldNumber">
+  PlatformTypeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;platform_type&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PlatformTypeFieldNumber = 6</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestedPersistenceFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestedPersistenceFieldNumber">
+  RequestedPersistenceFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;requested_persistence&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int RequestedPersistenceFieldNumber = 12</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestorLocationMismatchFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestorLocationMismatchFieldNumber">
+  RequestorLocationMismatchFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;requestor_location_mismatch&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int RequestorLocationMismatchFieldNumber = 10</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_StateFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.StateFieldNumber">
+  StateFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;state&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int StateFieldNumber = 4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_VersionFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.VersionFieldNumber">
+  VersionFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;version&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int VersionFieldNumber = 8</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_City_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.City*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_City" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.City">
+  City
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string City { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Country_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Country*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Country" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Country">
+  Country
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Country { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Descriptor_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Descriptor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Descriptor" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Descriptor">
+  Descriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageDescriptor Descriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageDescriptor</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_DeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.DeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_DeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.DeviceFriendlyName">
+  DeviceFriendlyName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DeviceFriendlyName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Geoloc_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Geoloc*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Geoloc" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Geoloc">
+  Geoloc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Geoloc { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasCity_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasCity*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasCity" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasCity">
+  HasCity
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;city&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasCity { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasCountry_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasCountry*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasCountry" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasCountry">
+  HasCountry
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;country&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasCountry { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasDeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasDeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasDeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasDeviceFriendlyName">
+  HasDeviceFriendlyName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;device_friendly_name&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasDeviceFriendlyName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasGeoloc_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasGeoloc*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasGeoloc" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasGeoloc">
+  HasGeoloc
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;geoloc&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGeoloc { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasHighUsageLogin_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasHighUsageLogin*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasHighUsageLogin" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasHighUsageLogin">
+  HasHighUsageLogin
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;high_usage_login&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasHighUsageLogin { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasIp_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasIp*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasIp" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasIp">
+  HasIp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;ip&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasIp { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasLoginHistory_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasLoginHistory*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasLoginHistory" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasLoginHistory">
+  HasLoginHistory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;login_history&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasLoginHistory { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasPlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasPlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasPlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasPlatformType">
+  HasPlatformType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;platform_type&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPlatformType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasRequestedPersistence_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasRequestedPersistence*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasRequestedPersistence" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasRequestedPersistence">
+  HasRequestedPersistence
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;requested_persistence&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRequestedPersistence { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasRequestorLocationMismatch_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasRequestorLocationMismatch*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasRequestorLocationMismatch" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasRequestorLocationMismatch">
+  HasRequestorLocationMismatch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;requestor_location_mismatch&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasRequestorLocationMismatch { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasState_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasState" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasState">
+  HasState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;state&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasState { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasVersion_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasVersion*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HasVersion" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HasVersion">
+  HasVersion
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;version&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasVersion { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HighUsageLogin_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HighUsageLogin*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_HighUsageLogin" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.HighUsageLogin">
+  HighUsageLogin
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HighUsageLogin { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Ip_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Ip*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Ip" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Ip">
+  Ip
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Ip { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_LoginHistory_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.LoginHistory*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_LoginHistory" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.LoginHistory">
+  LoginHistory
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAuthSessionSecurityHistory LoginHistory { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.EAuthSessionSecurityHistory.html">EAuthSessionSecurityHistory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Parser_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Parser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Parser" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Parser">
+  Parser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageParser&lt;CAuthentication_GetAuthSessionInfo_Response&gt; Parser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageParser</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_PlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.PlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_PlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.PlatformType">
+  PlatformType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EAuthTokenPlatformType PlatformType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.EAuthTokenPlatformType.html">EAuthTokenPlatformType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestedPersistence_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestedPersistence*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestedPersistence" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestedPersistence">
+  RequestedPersistence
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ESessionPersistence RequestedPersistence { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.ESessionPersistence.html">ESessionPersistence</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestorLocationMismatch_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestorLocationMismatch*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_RequestorLocationMismatch" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.RequestorLocationMismatch">
+  RequestorLocationMismatch
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RequestorLocationMismatch { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_State_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.State*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_State" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.State">
+  State
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string State { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Version_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Version*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Version" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Version">
+  Version
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Version { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_CalculateSize_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.CalculateSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_CalculateSize" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.CalculateSize">
+  CalculateSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the size of this message in Protocol Buffer wire format, in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes required to write this message
+to a coded output stream.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearCity_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearCity*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearCity" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearCity">
+  ClearCity()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;city&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCity()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearCountry_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearCountry*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearCountry" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearCountry">
+  ClearCountry()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;country&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCountry()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearDeviceFriendlyName_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearDeviceFriendlyName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearDeviceFriendlyName" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearDeviceFriendlyName">
+  ClearDeviceFriendlyName()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;device_friendly_name&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearDeviceFriendlyName()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearGeoloc_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearGeoloc*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearGeoloc" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearGeoloc">
+  ClearGeoloc()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;geoloc&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearGeoloc()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearHighUsageLogin_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearHighUsageLogin*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearHighUsageLogin" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearHighUsageLogin">
+  ClearHighUsageLogin()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;high_usage_login&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearHighUsageLogin()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearIp_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearIp*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearIp" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearIp">
+  ClearIp()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;ip&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearIp()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearLoginHistory_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearLoginHistory*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearLoginHistory" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearLoginHistory">
+  ClearLoginHistory()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;login_history&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearLoginHistory()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearPlatformType_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearPlatformType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearPlatformType" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearPlatformType">
+  ClearPlatformType()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;platform_type&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPlatformType()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearRequestedPersistence_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearRequestedPersistence*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearRequestedPersistence" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearRequestedPersistence">
+  ClearRequestedPersistence()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;requested_persistence&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearRequestedPersistence()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearRequestorLocationMismatch_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearRequestorLocationMismatch*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearRequestorLocationMismatch" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearRequestorLocationMismatch">
+  ClearRequestorLocationMismatch()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;requestor_location_mismatch&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearRequestorLocationMismatch()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearState_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearState" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearState">
+  ClearState()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;state&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearState()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearVersion_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearVersion*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ClearVersion" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ClearVersion">
+  ClearVersion()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;version&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearVersion()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Clone_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Clone*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Clone" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CAuthentication_GetAuthSessionInfo_Response Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a></dt>
+    <dd><p>A deep clone of this object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Equals_BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Equals(BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response)">
+  Equals(CAuthentication_GetAuthSessionInfo_Response)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CAuthentication_GetAuthSessionInfo_Response other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_Equals_System_Object_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_GetHashCode_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_GetHashCode" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.MergeFrom(BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response)">
+  MergeFrom(CAuthentication_GetAuthSessionInfo_Response)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the given message into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CAuthentication_GetAuthSessionInfo_Response other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html">CAuthentication_GetAuthSessionInfo_Response</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_Google_Protobuf_CodedInputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.MergeFrom(Google.Protobuf.CodedInputStream)">
+  MergeFrom(CodedInputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the data from the specified coded input stream with the current message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CodedInputStream input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <span class="xref">CodedInputStream</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_MergeFrom_Google_Protobuf_CodedInputStream__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ToString_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_ToString" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_WriteTo_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.WriteTo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CAuthentication_GetAuthSessionInfo_Response_WriteTo_Google_Protobuf_CodedOutputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.WriteTo(Google.Protobuf.CodedOutputStream)">
+  WriteTo(CodedOutputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the data to the given coded output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteTo(CodedOutputStream output)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <span class="xref">CodedOutputStream</span></dt>
+    <dd><p>Coded output stream to write the data to. Must not be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesAuthSteamClient.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

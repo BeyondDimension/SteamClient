@@ -1,0 +1,2487 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CCommunity_ClanAnnouncementInfo
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CCommunity_ClanAnnouncementInfo
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo" class="text-break">
+    Class CCommunity_ClanAnnouncementInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Protobuf.html">Protobuf</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CCommunity_ClanAnnouncementInfo : IMessage&lt;CCommunity_ClanAnnouncementInfo&gt;, IEquatable&lt;CCommunity_ClanAnnouncementInfo&gt;, IDeepCloneable&lt;CCommunity_ClanAnnouncementInfo&gt;, IBufferMessage, IMessage</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CCommunity_ClanAnnouncementInfo</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IMessage</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a>&gt;</div>
+      <div><span class="xref">IDeepCloneable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a>&gt;</div>
+      <div><span class="xref">IBufferMessage</span></div>
+      <div><span class="xref">IMessage</span></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo__ctor" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.#ctor">
+  CCommunity_ClanAnnouncementInfo()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CCommunity_ClanAnnouncementInfo()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo__ctor_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo__ctor_BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.#ctor(BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo)">
+  CCommunity_ClanAnnouncementInfo(CCommunity_ClanAnnouncementInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CCommunity_ClanAnnouncementInfo(CCommunity_ClanAnnouncementInfo other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_BanCheckResultFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.BanCheckResultFieldNumber">
+  BanCheckResultFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;ban_check_result&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int BanCheckResultFieldNumber = 16</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_BodyFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.BodyFieldNumber">
+  BodyFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;body&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int BodyFieldNumber = 7</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClanidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClanidFieldNumber">
+  ClanidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;clanid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ClanidFieldNumber = 2</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_CommentcountFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.CommentcountFieldNumber">
+  CommentcountFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;commentcount&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int CommentcountFieldNumber = 8</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_EventGidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.EventGidFieldNumber">
+  EventGidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;event_gid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int EventGidFieldNumber = 13</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ForumTopicIdFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ForumTopicIdFieldNumber">
+  ForumTopicIdFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;forum_topic_id&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int ForumTopicIdFieldNumber = 12</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_GidFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.GidFieldNumber">
+  GidFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;gid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int GidFieldNumber = 1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HeadlineFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HeadlineFieldNumber">
+  HeadlineFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;headline&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int HeadlineFieldNumber = 4</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HiddenFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HiddenFieldNumber">
+  HiddenFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;hidden&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int HiddenFieldNumber = 11</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_LanguageFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.LanguageFieldNumber">
+  LanguageFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;language&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int LanguageFieldNumber = 10</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_PosteridFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.PosteridFieldNumber">
+  PosteridFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;posterid&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PosteridFieldNumber = 3</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_PosttimeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.PosttimeFieldNumber">
+  PosttimeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;posttime&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int PosttimeFieldNumber = 5</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_TagsFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.TagsFieldNumber">
+  TagsFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;tags&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int TagsFieldNumber = 9</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_UpdatetimeFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.UpdatetimeFieldNumber">
+  UpdatetimeFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;updatetime&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int UpdatetimeFieldNumber = 6</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_VotedowncountFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.VotedowncountFieldNumber">
+  VotedowncountFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;votedowncount&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int VotedowncountFieldNumber = 15</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_VoteupcountFieldNumber" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.VoteupcountFieldNumber">
+  VoteupcountFieldNumber
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Field number for the &quot;voteupcount&quot; field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int VoteupcountFieldNumber = 14</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_BanCheckResult_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.BanCheckResult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_BanCheckResult" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.BanCheckResult">
+  BanCheckResult
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EBanContentCheckResult BanCheckResult { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.EBanContentCheckResult.html">EBanContentCheckResult</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Body_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Body*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Body" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Body">
+  Body
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Body { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Clanid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Clanid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Clanid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Clanid">
+  Clanid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Clanid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Commentcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Commentcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Commentcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Commentcount">
+  Commentcount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Commentcount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Descriptor_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Descriptor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Descriptor" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Descriptor">
+  Descriptor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageDescriptor Descriptor { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageDescriptor</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_EventGid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.EventGid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_EventGid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.EventGid">
+  EventGid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong EventGid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ForumTopicId_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ForumTopicId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ForumTopicId" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ForumTopicId">
+  ForumTopicId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong ForumTopicId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Gid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Gid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Gid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Gid">
+  Gid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Gid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasBanCheckResult_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasBanCheckResult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasBanCheckResult" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasBanCheckResult">
+  HasBanCheckResult
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;ban_check_result&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasBanCheckResult { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasBody_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasBody*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasBody" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasBody">
+  HasBody
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;body&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasBody { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasClanid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasClanid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasClanid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasClanid">
+  HasClanid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;clanid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasClanid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasCommentcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasCommentcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasCommentcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasCommentcount">
+  HasCommentcount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;commentcount&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasCommentcount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasEventGid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasEventGid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasEventGid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasEventGid">
+  HasEventGid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;event_gid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasEventGid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasForumTopicId_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasForumTopicId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasForumTopicId" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasForumTopicId">
+  HasForumTopicId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;forum_topic_id&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasForumTopicId { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasGid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasGid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasGid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasGid">
+  HasGid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;gid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasGid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasHeadline_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasHeadline*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasHeadline" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasHeadline">
+  HasHeadline
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;headline&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasHeadline { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasHidden_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasHidden*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasHidden" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasHidden">
+  HasHidden
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;hidden&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasHidden { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasLanguage_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasLanguage*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasLanguage" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasLanguage">
+  HasLanguage
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;language&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasLanguage { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasPosterid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasPosterid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasPosterid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasPosterid">
+  HasPosterid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;posterid&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPosterid { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasPosttime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasPosttime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasPosttime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasPosttime">
+  HasPosttime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;posttime&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasPosttime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasUpdatetime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasUpdatetime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasUpdatetime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasUpdatetime">
+  HasUpdatetime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;updatetime&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasUpdatetime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasVotedowncount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasVotedowncount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasVotedowncount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasVotedowncount">
+  HasVotedowncount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;votedowncount&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasVotedowncount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasVoteupcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasVoteupcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_HasVoteupcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.HasVoteupcount">
+  HasVoteupcount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets whether the &quot;voteupcount&quot; field is set</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HasVoteupcount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Headline_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Headline*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Headline" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Headline">
+  Headline
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Headline { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Hidden_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Hidden*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Hidden" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Hidden">
+  Hidden
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Hidden { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Language_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Language*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Language" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Language">
+  Language
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Language { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Parser_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Parser*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Parser" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Parser">
+  Parser
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static MessageParser&lt;CCommunity_ClanAnnouncementInfo&gt; Parser { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">MessageParser</span>&lt;<a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Posterid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Posterid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Posterid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Posterid">
+  Posterid
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong Posterid { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Posttime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Posttime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Posttime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Posttime">
+  Posttime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Posttime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Tags_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Tags*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Tags" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Tags">
+  Tags
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RepeatedField&lt;string&gt; Tags { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RepeatedField</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Updatetime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Updatetime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Updatetime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Updatetime">
+  Updatetime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint Updatetime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Votedowncount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Votedowncount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Votedowncount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Votedowncount">
+  Votedowncount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Votedowncount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Voteupcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Voteupcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Voteupcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Voteupcount">
+  Voteupcount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Voteupcount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_CalculateSize_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.CalculateSize*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_CalculateSize" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.CalculateSize">
+  CalculateSize()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Calculates the size of this message in Protocol Buffer wire format, in bytes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CalculateSize()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>The number of bytes required to write this message
+to a coded output stream.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearBanCheckResult_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearBanCheckResult*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearBanCheckResult" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearBanCheckResult">
+  ClearBanCheckResult()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;ban_check_result&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearBanCheckResult()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearBody_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearBody*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearBody" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearBody">
+  ClearBody()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;body&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearBody()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearClanid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearClanid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearClanid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearClanid">
+  ClearClanid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;clanid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearClanid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearCommentcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearCommentcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearCommentcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearCommentcount">
+  ClearCommentcount()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;commentcount&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCommentcount()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearEventGid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearEventGid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearEventGid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearEventGid">
+  ClearEventGid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;event_gid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearEventGid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearForumTopicId_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearForumTopicId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearForumTopicId" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearForumTopicId">
+  ClearForumTopicId()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;forum_topic_id&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearForumTopicId()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearGid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearGid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearGid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearGid">
+  ClearGid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;gid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearGid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearHeadline_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearHeadline*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearHeadline" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearHeadline">
+  ClearHeadline()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;headline&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearHeadline()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearHidden_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearHidden*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearHidden" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearHidden">
+  ClearHidden()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;hidden&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearHidden()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearLanguage_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearLanguage*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearLanguage" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearLanguage">
+  ClearLanguage()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;language&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearLanguage()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearPosterid_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearPosterid*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearPosterid" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearPosterid">
+  ClearPosterid()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;posterid&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPosterid()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearPosttime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearPosttime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearPosttime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearPosttime">
+  ClearPosttime()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;posttime&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearPosttime()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearUpdatetime_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearUpdatetime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearUpdatetime" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearUpdatetime">
+  ClearUpdatetime()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;updatetime&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearUpdatetime()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearVotedowncount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearVotedowncount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearVotedowncount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearVotedowncount">
+  ClearVotedowncount()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;votedowncount&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearVotedowncount()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearVoteupcount_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearVoteupcount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ClearVoteupcount" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ClearVoteupcount">
+  ClearVoteupcount()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Clears the value of the &quot;voteupcount&quot; field</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearVoteupcount()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Clone_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Clone*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Clone" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Clone">
+  Clone()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Creates a deep clone of this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CCommunity_ClanAnnouncementInfo Clone()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a></dt>
+    <dd><p>A deep clone of this object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Equals_BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Equals(BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo)">
+  Equals(CCommunity_ClanAnnouncementInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(CCommunity_ClanAnnouncementInfo other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Equals_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_Equals_System_Object_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.Equals(System.Object)">
+  Equals(object)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_GetHashCode_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_GetHashCode" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.MergeFrom(BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo)">
+  MergeFrom(CCommunity_ClanAnnouncementInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the given message into this one.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CCommunity_ClanAnnouncementInfo other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html">CCommunity_ClanAnnouncementInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.MergeFrom*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_Google_Protobuf_CodedInputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.MergeFrom(Google.Protobuf.CodedInputStream)">
+  MergeFrom(CodedInputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Merges the data from the specified coded input stream with the current message.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MergeFrom(CodedInputStream input)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>input</code> <span class="xref">CodedInputStream</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_MergeFrom_Google_Protobuf_CodedInputStream__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>See the user guide for precise merge semantics.</p>
+</div>
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ToString_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_ToString" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_WriteTo_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.WriteTo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Protobuf_CCommunity_ClanAnnouncementInfo_WriteTo_Google_Protobuf_CodedOutputStream_" data-uid="BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.WriteTo(Google.Protobuf.CodedOutputStream)">
+  WriteTo(CodedOutputStream)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Writes the data to the given coded output stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteTo(CodedOutputStream output)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>output</code> <span class="xref">CodedOutputStream</span></dt>
+    <dd><p>Coded output stream to write the data to. Must not be null.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/Protobuf/SteamMessagesBase.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

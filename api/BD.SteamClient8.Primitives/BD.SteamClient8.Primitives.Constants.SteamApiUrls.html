@@ -1,0 +1,3186 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SteamApiUrls
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SteamApiUrls
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls">
+
+
+
+  <h1 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls" class="text-break">
+    Class SteamApiUrls
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Primitives.html">Primitives</a>.<a class="xref" href="BD.SteamClient8.Primitives.Constants.html">Constants</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Primitives.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class SteamApiUrls</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SteamApiUrls</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_CaptchaImageUrl" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.CaptchaImageUrl">
+  CaptchaImageUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string CaptchaImageUrl = &quot;https://store.steampowered.com/login/rendercaptcha/?gid=&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_DologinUrl" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.DologinUrl">
+  DologinUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string DologinUrl = &quot;https://store.steampowered.com/login/dologin?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_GetRSAkeyUrl" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.GetRSAkeyUrl">
+  GetRSAkeyUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string GetRSAkeyUrl = &quot;https://store.steampowered.com/login/getrsakey/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_GetRSAkeyV2Url" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.GetRSAkeyV2Url">
+  GetRSAkeyV2Url
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string GetRSAkeyV2Url = &quot;https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_MY_MINIPROFILE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.MY_MINIPROFILE_URL">
+  MY_MINIPROFILE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string MY_MINIPROFILE_URL = &quot;https://steamcommunity.com/miniprofile/329265995&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_MY_PROFILE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.MY_PROFILE_URL">
+  MY_PROFILE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string MY_PROFILE_URL = &quot;https://steamcommunity.com/profiles/76561198289531723/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_MY_WISHLIST_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.MY_WISHLIST_URL">
+  MY_WISHLIST_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string MY_WISHLIST_URL = &quot;https://store.steampowered.com/wishlist/profiles/76561198289531723/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_OpenIdloginUrl" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.OpenIdloginUrl">
+  OpenIdloginUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Login 登录操作相关 API</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string OpenIdloginUrl = &quot;https://steamcommunity.com/openid/login&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMACHIEVEMENT_STATS_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMACHIEVEMENT_STATS_USER_URL">
+  STEAMACHIEVEMENT_STATS_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMACHIEVEMENT_STATS_USER_URL = &quot;https://www.achievementstats.com/index.php?action=profile&amp;playerId={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_CAPSULE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_CAPSULE_URL">
+  STEAMAPP_CAPSULE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_CAPSULE_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/capsule_184x69.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_HEADIMAGE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_HEADIMAGE_URL">
+  STEAMAPP_HEADIMAGE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_HEADIMAGE_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/header.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_ICON_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_ICON_URL">
+  STEAMAPP_ICON_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_ICON_URL = &quot;https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIBRARYHEROBLUR_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIBRARYHEROBLUR_URL">
+  STEAMAPP_LIBRARYHEROBLUR_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIBRARYHEROBLUR_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero_blur.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIBRARYHERO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIBRARYHERO_URL">
+  STEAMAPP_LIBRARYHERO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIBRARYHERO_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_hero.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIBRARYLOGO_LOCALIZED_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIBRARYLOGO_LOCALIZED_URL">
+  STEAMAPP_LIBRARYLOGO_LOCALIZED_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>多语言版本 logo，{1} 传入 steam 多语言名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIBRARYLOGO_LOCALIZED_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/logo_{1}.png&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIBRARYLOGO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIBRARYLOGO_URL">
+  STEAMAPP_LIBRARYLOGO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIBRARYLOGO_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/logo.png&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIBRARY_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIBRARY_URL">
+  STEAMAPP_LIBRARY_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIBRARY_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/library_600x900.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LIST_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LIST_URL">
+  STEAMAPP_LIST_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LIST_URL = &quot;https://api.steampowered.com/ISteamApps/GetAppList/v2&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMAPP_LOGO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMAPP_LOGO_URL">
+  STEAMAPP_LOGO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMAPP_LOGO_URL = &quot;https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMBACKPACK_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMBACKPACK_USER_URL">
+  STEAMBACKPACK_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMBACKPACK_USER_URL = &quot;https://backpack.tf/profiles/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMCARDEXCHANGE_APP_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMCARDEXCHANGE_APP_URL">
+  STEAMCARDEXCHANGE_APP_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMCARDEXCHANGE_APP_URL = &quot;https://www.steamcardexchange.net/index.php?gamepage-appid-{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMCN_USERINFO_XML_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMCN_USERINFO_XML_URL">
+  STEAMCN_USERINFO_XML_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMCN_USERINFO_XML_URL = &quot;https://my.steamchina.com/profiles/76561198289531723?xml=1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMDBINFO_APP_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMDBINFO_APP_URL">
+  STEAMDBINFO_APP_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMDBINFO_APP_URL = &quot;https://steamdb.info/app/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMDB_APPINFO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMDB_APPINFO_URL">
+  STEAMDB_APPINFO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMDB_APPINFO_URL = &quot;https://api.steamdb.ml/v1/apps/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMDB_USERINFO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMDB_USERINFO_URL">
+  STEAMDB_USERINFO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMDB_USERINFO_URL = &quot;https://api.steamdb.ml/v1/users/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMDB_USER_CALC_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMDB_USER_CALC_URL">
+  STEAMDB_USER_CALC_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMDB_USER_CALC_URL = &quot;https://steamdb.info/calculator/?player={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMGIFTS_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMGIFTS_USER_URL">
+  STEAMGIFTS_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMGIFTS_USER_URL = &quot;https://www.steamgifts.com/go/user/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMREPCN_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMREPCN_USER_URL">
+  STEAMREPCN_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMREPCN_USER_URL = &quot;https://steamrepcn.com/profiles/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMREP_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMREP_USER_URL">
+  STEAMREP_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMREP_USER_URL = &quot;https://steamrep.com/search?q={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMSTORE_APP_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMSTORE_APP_URL">
+  STEAMSTORE_APP_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMSTORE_APP_URL = &quot;https://store.steampowered.com/app/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAMTRADES_USER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAMTRADES_USER_URL">
+  STEAMTRADES_USER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAMTRADES_USER_URL = &quot;https://www.steamtrades.com/user/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT">
+  STEAM_ACCOUNT
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT = &quot;https://store.steampowered.com/account?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_ADD_FUNDS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_ADD_FUNDS">
+  STEAM_ACCOUNT_ADD_FUNDS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_ADD_FUNDS = &quot;https://store.steampowered.com/steamaccount/addfunds?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_APIKEY_GET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_APIKEY_GET">
+  STEAM_ACCOUNT_APIKEY_GET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_APIKEY_GET = &quot;https://steamcommunity.com/dev/apikey&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_APIKEY_REGISTER" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_APIKEY_REGISTER">
+  STEAM_ACCOUNT_APIKEY_REGISTER
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_APIKEY_REGISTER = &quot;https://steamcommunity.com/dev/registerkey&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_GET_STEAMNOTIFICATION" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION">
+  STEAM_ACCOUNT_GET_STEAMNOTIFICATION
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_GET_STEAMNOTIFICATION = &quot;https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_HISTORY_AJAX" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_HISTORY_AJAX">
+  STEAM_ACCOUNT_HISTORY_AJAX
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_HISTORY_AJAX = &quot;https://store.steampowered.com/AjaxLoadMoreHistory?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_HISTORY_DETAIL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_HISTORY_DETAIL">
+  STEAM_ACCOUNT_HISTORY_DETAIL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_HISTORY_DETAIL = &quot;https://store.steampowered.com/account/history?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_HISTORY_LOGIN" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_HISTORY_LOGIN">
+  STEAM_ACCOUNT_HISTORY_LOGIN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_HISTORY_LOGIN = &quot;https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_REDEEMWALLETCODE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_REDEEMWALLETCODE">
+  STEAM_ACCOUNT_REDEEMWALLETCODE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Account 账号相关信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_REDEEMWALLETCODE = &quot;https://store.steampowered.com/account/ajaxredeemwalletcode?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_SENDGIFTHISTORIES" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_SENDGIFTHISTORIES">
+  STEAM_ACCOUNT_SENDGIFTHISTORIES
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_SENDGIFTHISTORIES = &quot;https://steamcommunity.com/gifts/0/history/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_ACCOUNT_SETCOUNTRY" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_ACCOUNT_SETCOUNTRY">
+  STEAM_ACCOUNT_SETCOUNTRY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_ACCOUNT_SETCOUNTRY = &quot;https://store.steampowered.com/account/setcountry&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF">
+  STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Authenticator 令牌</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF = &quot;https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_ADD" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_ADD">
+  STEAM_AUTHENTICATOR_ADD
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_ADD = &quot;https://api.steampowered.com/ITwoFactorService/AddAuthenticator/v1/?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_ADD_PHONENUMBER" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_ADD_PHONENUMBER">
+  STEAM_AUTHENTICATOR_ADD_PHONENUMBER
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_ADD_PHONENUMBER = &quot;https://api.steampowered.com/IPhoneService/SetAccountPhoneNumber/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_FINALIZEADD" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_FINALIZEADD">
+  STEAM_AUTHENTICATOR_FINALIZEADD
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_FINALIZEADD = &quot;https://api.steampowered.com/ITwoFactorService/FinalizeAddAuthenticator/v1/?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_GET_USERCOUNTRY" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_GET_USERCOUNTRY">
+  STEAM_AUTHENTICATOR_GET_USERCOUNTRY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_GET_USERCOUNTRY = &quot;https://api.steampowered.com/IUserAccountService/GetUserCountry/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN">
+  STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN = &quot;https://api.steampowered.com/IAuthenticationService/GenerateAccessTokenForApp/v1/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_REMOVE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE">
+  STEAM_AUTHENTICATOR_REMOVE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_REMOVE = &quot;https://api.steampowered.com/ITwoFactorService/RemoveAuthenticator/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC">
+  STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC = &quot;https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeContinue/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC">
+  STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC = &quot;https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeStart/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE">
+  STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE = &quot;https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_AUTHENTICATOR_TWOFAQUERYTIME" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_AUTHENTICATOR_TWOFAQUERYTIME">
+  STEAM_AUTHENTICATOR_TWOFAQUERYTIME
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_AUTHENTICATOR_TWOFAQUERYTIME = &quot;https://api.steampowered.com/ITwoFactorService/QueryTime/v0001&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_BADGES_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_BADGES_URL">
+  STEAM_BADGES_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_BADGES_URL = &quot;https://steamcommunity.com/profiles/{0}/badges/l=schinese&amp;p={1}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_COMMUNITY_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_COMMUNITY_URL">
+  STEAM_COMMUNITY_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_COMMUNITY_URL = &quot;https://steamcommunity.com&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_FRIENDMESSAGESLOG_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_FRIENDMESSAGESLOG_URL">
+  STEAM_FRIENDMESSAGESLOG_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_FRIENDMESSAGESLOG_URL = &quot;https://help.steampowered.com/zh-cn/accountdata/GetFriendMessagesLog&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_GAMECARDS_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_GAMECARDS_URL">
+  STEAM_GAMECARDS_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_GAMECARDS_URL = &quot;https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=english&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_IDLE_APPCARDS_AVG" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_IDLE_APPCARDS_AVG">
+  STEAM_IDLE_APPCARDS_AVG
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Idle 挂卡</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_IDLE_APPCARDS_AVG = &quot;https://api.augmentedsteam.com/v2/market/cards/average-prices/?appids={0}&amp;currency={1}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_IDLE_APPCARDS_MARKETPRICE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_IDLE_APPCARDS_MARKETPRICE">
+  STEAM_IDLE_APPCARDS_MARKETPRICE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_IDLE_APPCARDS_MARKETPRICE = &quot;https://api.augmentedsteam.com/v2/market/cards/?appid={0}&amp;currency={1}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_INSTALL_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_INSTALL_URL">
+  STEAM_INSTALL_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_INSTALL_URL = &quot;steam://install/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_KEY_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_KEY_URL">
+  STEAM_KEY_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_KEY_URL = &quot;https://store.steampowered.com/account/registerkey?key={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS">
+  STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS = &quot;https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_CHECKDEVICE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_CHECKDEVICE">
+  STEAM_LOGIN_CHECKDEVICE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_CHECKDEVICE = &quot;https://login.steampowered.com/jwt/checkdevice/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_FINALIZELOGIN" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_FINALIZELOGIN">
+  STEAM_LOGIN_FINALIZELOGIN
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_FINALIZELOGIN = &quot;https://login.steampowered.com/jwt/finalizelogin&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_POLLAUTHSESSIONSTATUS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_POLLAUTHSESSIONSTATUS">
+  STEAM_LOGIN_POLLAUTHSESSIONSTATUS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_POLLAUTHSESSIONSTATUS = &quot;https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE">
+  STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE = &quot;https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_LOGIN_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_LOGIN_URL">
+  STEAM_LOGIN_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_LOGIN_URL = &quot;https://steamcommunity.com/login/home/?goto=my/profile&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MARKET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MARKET">
+  STEAM_MARKET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MARKET = &quot;https://steamcommunity.com/market/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MARKET_ITEMORDERHISTOGRAM_GET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MARKET_ITEMORDERHISTOGRAM_GET">
+  STEAM_MARKET_ITEMORDERHISTOGRAM_GET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MARKET_ITEMORDERHISTOGRAM_GET = &quot;https://steamcommunity.com/market/itemordershistogram?country={0}&amp;language={1}&amp;currency={2}&amp;item_nameid={3}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MARKET_ITEMPRICEOVERVIEW_GET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MARKET_ITEMPRICEOVERVIEW_GET">
+  STEAM_MARKET_ITEMPRICEOVERVIEW_GET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Market 市场交易</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MARKET_ITEMPRICEOVERVIEW_GET = &quot;https://steamcommunity.com/market/priceoverview/?appid={0}&amp;currency={1}&amp;market_hash_name={2}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MARKET_SELLITEM" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MARKET_SELLITEM">
+  STEAM_MARKET_SELLITEM
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MARKET_SELLITEM = &quot;https://steamcommunity.com/market/sellitem/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MARKET_TRADING_HISTORY_GET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MARKET_TRADING_HISTORY_GET">
+  STEAM_MARKET_TRADING_HISTORY_GET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MARKET_TRADING_HISTORY_GET = &quot;https://steamcommunity.com/market/myhistory/render/?query=&amp;start={0}&amp;count={1}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MEDIA_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MEDIA_URL">
+  STEAM_MEDIA_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MEDIA_URL = &quot;https://steamcdn-a.akamaihd.net/steam/apps/{0}/movie_max.webm&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MINIPROFILE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MINIPROFILE_URL">
+  STEAM_MINIPROFILE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>这里需要 steamid3 而不是 id64</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MINIPROFILE_URL = &quot;https://steam-chat.com/miniprofile/{0}/json&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MOBILECONF_BATCH_CONFIRMATION" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MOBILECONF_BATCH_CONFIRMATION">
+  STEAM_MOBILECONF_BATCH_CONFIRMATION
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MOBILECONF_BATCH_CONFIRMATION = &quot;https://steamcommunity.com/mobileconf/multiajaxop&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MOBILECONF_CONFIRMATION" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MOBILECONF_CONFIRMATION">
+  STEAM_MOBILECONF_CONFIRMATION
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>MOBILECONF 令牌交易确认 API</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MOBILECONF_CONFIRMATION = &quot;https://steamcommunity.com/mobileconf/ajaxop&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MOBILECONF_GET_CONFIRMATIONS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATIONS">
+  STEAM_MOBILECONF_GET_CONFIRMATIONS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MOBILECONF_GET_CONFIRMATIONS = &quot;https://steamcommunity.com/mobileconf/getlist&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS">
+  STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = &quot;https://steamcommunity.com/mobileconf/details/{0}?l=schinese&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_NAVCONSOLE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_NAVCONSOLE_URL">
+  STEAM_NAVCONSOLE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_NAVCONSOLE_URL = &quot;steam://nav/console&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_NAVGAMEPAGE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_NAVGAMEPAGE_URL">
+  STEAM_NAVGAMEPAGE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_NAVGAMEPAGE_URL = &quot;steam://nav/games&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_NAVGAMESCREENSHOTS_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_NAVGAMESCREENSHOTS_URL">
+  STEAM_NAVGAMESCREENSHOTS_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_NAVGAMESCREENSHOTS_URL = &quot;steam://open/screenshots/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_NAVGAME_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_NAVGAME_URL">
+  STEAM_NAVGAME_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_NAVGAME_URL = &quot;steam://nav/games/details/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_OPENURL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_OPENURL">
+  STEAM_OPENURL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_OPENURL = &quot;steam://openurl/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_PROFILES_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_PROFILES_URL">
+  STEAM_PROFILES_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_PROFILES_URL = &quot;https://steamcommunity.com/profiles/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_REGISTERKEY_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_REGISTERKEY_URL">
+  STEAM_REGISTERKEY_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_REGISTERKEY_URL = &quot;https://store.steampowered.com/account/registerkey?key={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_REMOTESTORAGE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_REMOTESTORAGE_URL">
+  STEAM_REMOTESTORAGE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_REMOTESTORAGE_URL = &quot;https://store.steampowered.com/account/remotestorage&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_RUNGAME_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_RUNGAME_URL">
+  STEAM_RUNGAME_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_RUNGAME_URL = &quot;steam://rungameid/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_STORE_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_STORE_URL">
+  STEAM_STORE_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_STORE_URL = &quot;https://store.steampowered.com&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_ACCPET" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_ACCPET">
+  STEAM_TRADEOFFER_ACCPET
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>TradeOffer 交易报价 API</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_ACCPET = &quot;https://steamcommunity.com/tradeoffer/{0}/accept&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_CANCEL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_CANCEL">
+  STEAM_TRADEOFFER_CANCEL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_CANCEL = &quot;https://steamcommunity.com/tradeoffer/{0}/cancel&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_DECLINE" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_DECLINE">
+  STEAM_TRADEOFFER_DECLINE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_DECLINE = &quot;https://steamcommunity.com/tradeoffer/{0}/decline&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_GET_HISTORY" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_GET_HISTORY">
+  STEAM_TRADEOFFER_GET_HISTORY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_GET_HISTORY = &quot;https://api.steampowered.com/IEconService/GetTradeHistory/v1/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_GET_OFFER" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_GET_OFFER">
+  STEAM_TRADEOFFER_GET_OFFER
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_GET_OFFER = &quot;https://api.steampowered.com/IEconService/GetTradeOffer/v1/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_GET_OFFERS" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_GET_OFFERS">
+  STEAM_TRADEOFFER_GET_OFFERS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_GET_OFFERS = &quot;https://api.steampowered.com/IEconService/GetTradeOffers/v1/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_GET_SUMMARY" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY">
+  STEAM_TRADEOFFER_GET_SUMMARY
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_GET_SUMMARY = &quot;https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1?key={0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_SEND" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_SEND">
+  STEAM_TRADEOFFER_SEND
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_SEND = &quot;https://steamcommunity.com/tradeoffer/new/send&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_TRADEOFFER_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_TRADEOFFER_URL">
+  STEAM_TRADEOFFER_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_TRADEOFFER_URL = &quot;https://steamcommunity.com/tradeoffer/{0}&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_USERINFO_XML_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_USERINFO_XML_URL">
+  STEAM_USERINFO_XML_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_USERINFO_XML_URL = &quot;https://steamcommunity.com/profiles/{0}?xml=1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_STEAM_VIDEO_URL" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.STEAM_VIDEO_URL">
+  STEAM_VIDEO_URL
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string STEAM_VIDEO_URL = &quot;https://store.steampowered.com/video/watch/{0}/&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_SteamClient8_Primitives_Constants_SteamApiUrls_SteamLoginUrl" data-uid="BD.SteamClient8.Primitives.Constants.SteamApiUrls.SteamLoginUrl">
+  SteamLoginUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const string SteamLoginUrl = &quot;https://store.steampowered.com/login?oldauth=1&quot;</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Constants/SteamApiUrls.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

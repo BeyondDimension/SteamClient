@@ -1,0 +1,1152 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class KVCollectionValue
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class KVCollectionValue
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ValveKeyValue.KVCollectionValue">
+
+
+
+  <h1 id="ValveKeyValue_KVCollectionValue" data-uid="ValveKeyValue.KVCollectionValue" class="text-break">
+    Class KVCollectionValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ValveKeyValue.html">ValveKeyValue</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class KVCollectionValue : KVValue, IConvertible, IEnumerable&lt;KVObject&gt;, IEnumerable</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="ValveKeyValue.KVValue.html">KVValue</a></div>
+      <div><span class="xref">KVCollectionValue</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iconvertible">IConvertible</a></div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a>&gt;</div>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="ValveKeyValue_KVCollectionValue__ctor_" data-uid="ValveKeyValue.KVCollectionValue.#ctor*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue__ctor" data-uid="ValveKeyValue.KVCollectionValue.#ctor">
+  KVCollectionValue()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KVCollectionValue()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue__ctor_" data-uid="ValveKeyValue.KVCollectionValue.#ctor*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue__ctor_System_Collections_Generic_IEnumerable_ValveKeyValue_KVObject__" data-uid="ValveKeyValue.KVCollectionValue.#ctor(System.Collections.Generic.IEnumerable{ValveKeyValue.KVObject})">
+  KVCollectionValue(IEnumerable&lt;KVObject&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KVCollectionValue(IEnumerable&lt;KVObject&gt; ks)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>ks</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ValveKeyValue_KVCollectionValue_Item_" data-uid="ValveKeyValue.KVCollectionValue.Item*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_Item_System_String_" data-uid="ValveKeyValue.KVCollectionValue.Item(System.String)">
+  this[string]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the child with the given key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override KVValue this[string key] { get; }</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the child to locate.</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ValveKeyValue.KVValue.html">KVValue</a></dt>
+    <dd><p>A <a class="xref" href="ValveKeyValue.KVValue.html">KVValue</a>, or <code>null</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ValueType_" data-uid="ValveKeyValue.KVCollectionValue.ValueType*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ValueType" data-uid="ValveKeyValue.KVCollectionValue.ValueType">
+  ValueType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets the value type of this <a class="xref" href="ValveKeyValue.KVValue.html">KVValue</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override KVValueType ValueType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ValveKeyValue.KVValueType.html">KVValueType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ValveKeyValue_KVCollectionValue_Add_" data-uid="ValveKeyValue.KVCollectionValue.Add*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_Add_ValveKeyValue_KVObject_" data-uid="ValveKeyValue.KVCollectionValue.Add(ValveKeyValue.KVObject)">
+  Add(KVObject)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(KVObject value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>value</code> <a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_AddRange_" data-uid="ValveKeyValue.KVCollectionValue.AddRange*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_AddRange_System_Collections_Generic_IEnumerable_ValveKeyValue_KVObject__" data-uid="ValveKeyValue.KVCollectionValue.AddRange(System.Collections.Generic.IEnumerable{ValveKeyValue.KVObject})">
+  AddRange(IEnumerable&lt;KVObject&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRange(IEnumerable&lt;KVObject&gt; values)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>values</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_Get_" data-uid="ValveKeyValue.KVCollectionValue.Get*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_Get_System_String_" data-uid="ValveKeyValue.KVCollectionValue.Get(System.String)">
+  Get(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KVObject Get(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_GetEnumerator_" data-uid="ValveKeyValue.KVCollectionValue.GetEnumerator*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_GetEnumerator" data-uid="ValveKeyValue.KVCollectionValue.GetEnumerator">
+  GetEnumerator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;KVObject&gt; GetEnumerator()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="ValveKeyValue.KVObject.html">KVObject</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_GetTypeCode_" data-uid="ValveKeyValue.KVCollectionValue.GetTypeCode*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_GetTypeCode" data-uid="ValveKeyValue.KVCollectionValue.GetTypeCode">
+  GetTypeCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override TypeCode GetTypeCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.typecode">TypeCode</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_Remove_" data-uid="ValveKeyValue.KVCollectionValue.Remove*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_Remove_System_String_" data-uid="ValveKeyValue.KVCollectionValue.Remove(System.String)">
+  Remove(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_Set_" data-uid="ValveKeyValue.KVCollectionValue.Set*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_Set_System_String_ValveKeyValue_KVValue_" data-uid="ValveKeyValue.KVCollectionValue.Set(System.String,ValveKeyValue.KVValue)">
+  Set(string, KVValue)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Set(string name, KVValue value)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>value</code> <a class="xref" href="ValveKeyValue.KVValue.html">KVValue</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToBoolean_" data-uid="ValveKeyValue.KVCollectionValue.ToBoolean*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToBoolean_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToBoolean(System.IFormatProvider)">
+  ToBoolean(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ToBoolean(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToByte_" data-uid="ValveKeyValue.KVCollectionValue.ToByte*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToByte_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToByte(System.IFormatProvider)">
+  ToByte(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override byte ToByte(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToChar_" data-uid="ValveKeyValue.KVCollectionValue.ToChar*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToChar_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToChar(System.IFormatProvider)">
+  ToChar(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override char ToChar(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">char</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToDateTime_" data-uid="ValveKeyValue.KVCollectionValue.ToDateTime*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToDateTime_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToDateTime(System.IFormatProvider)">
+  ToDateTime(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override DateTime ToDateTime(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToDecimal_" data-uid="ValveKeyValue.KVCollectionValue.ToDecimal*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToDecimal_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToDecimal(System.IFormatProvider)">
+  ToDecimal(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override decimal ToDecimal(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.decimal">decimal</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToDouble_" data-uid="ValveKeyValue.KVCollectionValue.ToDouble*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToDouble_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToDouble(System.IFormatProvider)">
+  ToDouble(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override double ToDouble(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToInt16_" data-uid="ValveKeyValue.KVCollectionValue.ToInt16*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToInt16_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToInt16(System.IFormatProvider)">
+  ToInt16(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override short ToInt16(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">short</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToInt32_" data-uid="ValveKeyValue.KVCollectionValue.ToInt32*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToInt32_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToInt32(System.IFormatProvider)">
+  ToInt32(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int ToInt32(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToInt64_" data-uid="ValveKeyValue.KVCollectionValue.ToInt64*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToInt64_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToInt64(System.IFormatProvider)">
+  ToInt64(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override long ToInt64(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToSByte_" data-uid="ValveKeyValue.KVCollectionValue.ToSByte*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToSByte_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToSByte(System.IFormatProvider)">
+  ToSByte(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override sbyte ToSByte(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.sbyte">sbyte</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToSingle_" data-uid="ValveKeyValue.KVCollectionValue.ToSingle*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToSingle_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToSingle(System.IFormatProvider)">
+  ToSingle(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override float ToSingle(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">float</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToString_" data-uid="ValveKeyValue.KVCollectionValue.ToString*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToString" data-uid="ValveKeyValue.KVCollectionValue.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToString_" data-uid="ValveKeyValue.KVCollectionValue.ToString*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToString_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToString(System.IFormatProvider)">
+  ToString(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToType_" data-uid="ValveKeyValue.KVCollectionValue.ToType*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToType_System_Type_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToType(System.Type,System.IFormatProvider)">
+  ToType(Type, IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override object ToType(Type conversionType, IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>conversionType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToUInt16_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt16*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToUInt16_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt16(System.IFormatProvider)">
+  ToUInt16(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ushort ToUInt16(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">ushort</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToUInt32_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt32*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToUInt32_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt32(System.IFormatProvider)">
+  ToUInt32(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override uint ToUInt32(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ValveKeyValue_KVCollectionValue_ToUInt64_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt64*"></a>
+
+  <h3 id="ValveKeyValue_KVCollectionValue_ToUInt64_System_IFormatProvider_" data-uid="ValveKeyValue.KVCollectionValue.ToUInt64(System.IFormatProvider)">
+  ToUInt64(IFormatProvider)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override ulong ToUInt64(IFormatProvider provider)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>provider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iformatprovider">IFormatProvider</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint64">ulong</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/ValveKeyValue/blob/main/ValveKeyValue/ValveKeyValue/KVCollectionValue.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

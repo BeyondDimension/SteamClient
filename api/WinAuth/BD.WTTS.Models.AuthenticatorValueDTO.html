@@ -1,0 +1,2050 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class AuthenticatorValueDTO
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class AuthenticatorValueDTO
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.WTTS.Models.AuthenticatorValueDTO">
+
+
+
+  <h1 id="BD_WTTS_Models_AuthenticatorValueDTO" data-uid="BD.WTTS.Models.AuthenticatorValueDTO" class="text-break">
+    Class AuthenticatorValueDTO
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.WTTS.html">WTTS</a>.<a class="xref" href="BD.WTTS.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>WinAuth.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AuthenticatorValueDTO : IAuthenticatorValueDTO, IExplicitHasValue</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">AuthenticatorValueDTO</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/Models/Abstractions/IExplicitHasValue.cs">IExplicitHasValue</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="WinAuth.WinAuth.BattleNetAuthenticator.html">BattleNetAuthenticator</a></div>
+      <div><a class="xref" href="WinAuth.WinAuth.GoogleAuthenticator.html">GoogleAuthenticator</a></div>
+      <div><a class="xref" href="WinAuth.WinAuth.HOTPAuthenticator.html">HOTPAuthenticator</a></div>
+      <div><a class="xref" href="WinAuth.WinAuth.SteamAuthenticator.html">SteamAuthenticator</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO__ctor_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.#ctor*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO__ctor" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.#ctor">
+  AuthenticatorValueDTO()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Construct</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AuthenticatorValueDTO()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO__ctor_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.#ctor*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO__ctor_System_Int32_BD_WTTS_Enums_HMACTypes_System_Int32_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.#ctor(System.Int32,BD.WTTS.Enums.HMACTypes,System.Int32)">
+  AuthenticatorValueDTO(int, HMACTypes, int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建新的 Authenticator 对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AuthenticatorValueDTO(int codeDigits = 6, HMACTypes hmacType = HMACTypes.SHA1, int period = 30)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>codeDigits</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+    <dt><code>hmacType</code> <a class="xref" href="BD.WTTS.Enums.HMACTypes.html">HMACTypes</a></dt>
+    <dd></dd>
+    <dt><code>period</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="fields">Fields
+</h2>
+
+
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_DEFAULT_CODE_DIGITS" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DEFAULT_CODE_DIGITS">
+  DEFAULT_CODE_DIGITS
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>代码中的默认位数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DEFAULT_CODE_DIGITS = 6</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_DEFAULT_HMAC_TYPE" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DEFAULT_HMAC_TYPE">
+  DEFAULT_HMAC_TYPE
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>HMAC 哈希算法类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const HMACTypes DEFAULT_HMAC_TYPE = SHA1</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Enums.HMACTypes.html">HMACTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_DEFAULT_PERIOD" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DEFAULT_PERIOD">
+  DEFAULT_PERIOD
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>默认期限为 30s</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const int DEFAULT_PERIOD = 30</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CodeDigits_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CodeDigits*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CodeDigits" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CodeDigits">
+  CodeDigits
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>代码中返回的位数（默认为 6）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CodeDigits { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CodeInterval_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CodeInterval*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CodeInterval" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CodeInterval">
+  CodeInterval
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据计算的服务器时间计算代码间隔</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public long CodeInterval { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CurrentCode_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CurrentCode*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CurrentCode" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CurrentCode">
+  CurrentCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取验证器的当前代码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public string CurrentCode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CurrentTime_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CurrentTime*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CurrentTime" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CurrentTime">
+  CurrentTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取自1/1/70以来的毫秒数（与 Java currentTimeMillis 相同）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static long CurrentTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_EncryptedData_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncryptedData*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_EncryptedData" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncryptedData">
+  EncryptedData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用当前加密和/或密码保存的当前数据（可能为无）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public string? EncryptedData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_HMACType_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.HMACType*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_HMACType" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.HMACType">
+  HMACType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于 OTP 生成的哈希算法（默认为SHA1）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HMACTypes HMACType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Enums.HMACTypes.html">HMACTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Issuer_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Issuer*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Issuer" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Issuer">
+  Issuer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>令牌平台类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public virtual string? Issuer { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_LastServerTime_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.LastServerTime*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_LastServerTime" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.LastServerTime">
+  LastServerTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>上次同步时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long LastServerTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Password_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Password*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Password" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Password">
+  Password
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于加密 secretdata 的密码（如果 PasswordType==Explict）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+protected string? Password { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_PasswordType_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.PasswordType*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_PasswordType" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.PasswordType">
+  PasswordType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于加密机密数据的密码类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public IAuthenticatorValueDTO.PasswordTypes PasswordType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Period_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Period*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Period" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Period">
+  Period
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>下一个代码的周期（秒）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Period { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Platform_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Platform*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Platform" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Platform">
+  Platform
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>令牌平台类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public virtual AuthenticatorPlatform Platform { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Enums.AuthenticatorPlatform.html">AuthenticatorPlatform</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_RequiresPassword_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.RequiresPassword*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_RequiresPassword" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.RequiresPassword">
+  RequiresPassword
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否必须密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public bool RequiresPassword { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_SecretData_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretData*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_SecretData" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretData">
+  SecretData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取/设置组合的机密数据值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public virtual string? SecretData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_SecretHash_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretHash*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_SecretHash" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretHash">
+  SecretHash
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>哈希秘密数据以检测更改</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+protected byte[]? SecretHash { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_SecretKey_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretKey*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_SecretKey" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SecretKey">
+  SecretKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于身份验证器的密钥</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public byte[]? SecretKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ServerTime_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ServerTime*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ServerTime" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ServerTime">
+  ServerTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务器时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public long ServerTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ServerTimeDiff_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ServerTimeDiff*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ServerTimeDiff" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ServerTimeDiff">
+  ServerTimeDiff
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>本地机器和服务器的时间差（毫秒 ms）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long ServerTimeDiff { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ByteArrayToString_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ByteArrayToString*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ByteArrayToString_System_Byte___" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ByteArrayToString(System.Byte[])">
+  ByteArrayToString(byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字节数组转换为 ascii 十六进制字符串，例如 byte[]｛0x00,0x1f，0x40，ox6a｝-&gt;“001f406a”</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string ByteArrayToString(byte[] bytes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>bytes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>要转换的字节数组</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>字节数组的字符串版本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CalculateCode_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CalculateCode*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CalculateCode_System_Boolean_System_Int64_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CalculateCode(System.Boolean,System.Int64)">
+  CalculateCode(bool, long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>计算验证器的当前代码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string CalculateCode(bool resync = false, long interval = -1)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>resync</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>interval</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>authenticator code</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_CreateOneTimePad_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CreateOneTimePad*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_CreateOneTimePad_System_Int32_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.CreateOneTimePad(System.Int32)">
+  CreateOneTimePad(int)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过生成一个随机块，然后根据需要多次对该块进行哈希，创建一个一次性填充</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static byte[] CreateOneTimePad(int length)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>所需长度</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>包含随机数据的字节数组</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_DecodePasswordTypes_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DecodePasswordTypes*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_DecodePasswordTypes_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DecodePasswordTypes(System.String)">
+  DecodePasswordTypes(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将字符串密码类型转换为 <a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">IAuthenticatorValueDTO.PasswordTypes</a> 类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IAuthenticatorValueDTO.PasswordTypes DecodePasswordTypes(string? passwordTypes)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>passwordTypes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码类型的字符串版本</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Decrypt_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Decrypt*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Decrypt_System_String_System_Byte___" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Decrypt(System.String,System.Byte[])">
+  Decrypt(string, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用字节数组密钥解密十六进制编码的字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Decrypt(string data, byte[] key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>十六进制编码字符串</p>
+</dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>解密密钥</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>十六进制编码的纯文本</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Decrypt_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Decrypt*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Decrypt_System_String_System_String_System_Boolean_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Decrypt(System.String,System.String,System.Boolean)">
+  Decrypt(string, string?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用 MD5 或 PBKDF2 生成的密钥解密十六进制编码的字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Decrypt(string data, string? password, bool PBKDF2)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要解密的数据字符串</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>PBKDF2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>标志，指示我们正在使用PBKDF2生成派生密钥</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>十六进制编码解密字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_DecryptSequence_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DecryptSequence*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_DecryptSequence_System_String_BD_WTTS_Models_Abstractions_IAuthenticatorValueDTO_PasswordTypes_System_String_System_Boolean_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.DecryptSequence(System.String,BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes,System.String,System.Boolean)">
+  DecryptSequence(string, PasswordTypes, string?, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用选定的加密类型解密字符串序列</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string DecryptSequence(string data, IAuthenticatorValueDTO.PasswordTypes encryptedTypes, string? password, bool decode = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要解密的十六进制编码字符串序列</p>
+</dd>
+    <dt><code>encryptedTypes</code> <a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd><p>加密类型</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>可选密码</p>
+</dd>
+    <dt><code>decode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>解密字符串序列</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_EncodePasswordTypes_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncodePasswordTypes*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_EncodePasswordTypes_BD_WTTS_Models_Abstractions_IAuthenticatorValueDTO_PasswordTypes_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncodePasswordTypes(BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes)">
+  EncodePasswordTypes(PasswordTypes)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将 PasswordTypes 类型编码为字符串以存储在配置中</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string EncodePasswordTypes(IAuthenticatorValueDTO.PasswordTypes passwordType)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>passwordType</code> <a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd><p>PasswordTypes value</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>string version</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Encrypt_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Encrypt*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Encrypt_System_String_System_Byte___" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Encrypt(System.String,System.Byte[])">
+  Encrypt(string, byte[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用字节数组密钥加密字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Encrypt(string plain, byte[] key)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>plain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要加密的数据-字节数组的十六进制表示</p>
+</dd>
+    <dt><code>key</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>用于加密的密钥</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>十六进制编码加密字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Encrypt_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Encrypt*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Encrypt_System_String_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Encrypt(System.String,System.String)">
+  Encrypt(string, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用给定的密钥加密字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string Encrypt(string plain, string? password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>plain</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要加密的数据-字节数组的十六进制表示</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>用于加密的密钥</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>十六进制编码加密字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_EncryptSequence_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncryptSequence*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_EncryptSequence_System_String_BD_WTTS_Models_Abstractions_IAuthenticatorValueDTO_PasswordTypes_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.EncryptSequence(System.String,BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes,System.String)">
+  EncryptSequence(string, PasswordTypes, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将数据进行加密处理，并返回加密后的结果字符串</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string EncryptSequence(string data, IAuthenticatorValueDTO.PasswordTypes passwordType, string? password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>data</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>需要加密的原始数据</p>
+</dd>
+    <dt><code>passwordType</code> <a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd><p>密码类型枚举</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>加密所需的密码</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>加密后的结果字符串</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ExplicitHasValue_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ExplicitHasValue*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ExplicitHasValue" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ExplicitHasValue">
+  ExplicitHasValue()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断 <a class="xref" href="BD.WTTS.Models.AuthenticatorValueDTO.html">AuthenticatorValueDTO</a> 实例是否具有值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool ExplicitHasValue()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusCode_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusCode*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusCode_System_Net_WebException_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusCode(System.Net.WebException)">
+  GetStatusCode(WebException)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 Web 异常的状态码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static int GetStatusCode(WebException webException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.webexception">WebException</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>状态码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusCode_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusCode*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusCode_System_Net_WebResponse_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusCode(System.Net.WebResponse)">
+  GetStatusCode(WebResponse)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 WebResponse 的状态码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static int GetStatusCode(WebResponse webResponse)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webResponse</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.webresponse">WebResponse</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>状态码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusDescription_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusDescription*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusDescription_System_Net_WebException_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusDescription(System.Net.WebException)">
+  GetStatusDescription(WebException)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取Web异常的状态描述</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string GetStatusDescription(WebException webException)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webException</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.webexception">WebException</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>状态描述</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusDescription_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusDescription*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_GetStatusDescription_System_Net_WebResponse_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.GetStatusDescription(System.Net.WebResponse)">
+  GetStatusDescription(WebResponse)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取 WebResponse 的状态描述</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static string GetStatusDescription(WebResponse webResponse)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>webResponse</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.net.webresponse">WebResponse</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>状态描述</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_LongTryParse_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.LongTryParse*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_LongTryParse_System_String_System_Int64__" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.LongTryParse(System.String,System.Int64@)">
+  LongTryParse(string, out long)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>为了与 NETCF35 兼容，包装了 TryParse 来转换 long</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected static bool LongTryParse(string s, out long val)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要分析的值字符串</p>
+</dd>
+    <dt><code>val</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd><p>返回值</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果值已解析，则为 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Protect_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Protect*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Protect" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Protect">
+  Protect()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>令牌保护</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Protect()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ReadExtraXml_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadExtraXml*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ReadExtraXml_System_Xml_XmlReader_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadExtraXml(System.Xml.XmlReader,System.String)">
+  ReadExtraXml(XmlReader, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>读取额外的 Xml 内容</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool ReadExtraXml(XmlReader reader, string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">XmlReader</span></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ReadXml_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadXml*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ReadXml_System_Xml_XmlReader_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadXml(System.Xml.XmlReader,System.String)">
+  ReadXml(XmlReader, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Xml 内容读取</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReadXml(XmlReader reader, string? password = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">XmlReader</span></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_ReadXmlv2_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadXmlv2*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_ReadXmlv2_System_Xml_XmlReader_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.ReadXmlv2(System.Xml.XmlReader,System.String)">
+  ReadXmlv2(XmlReader, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从 <span class="xref">System.Xml.XmlReader</span> 中读取 <a class="xref" href="BD.WTTS.Models.AuthenticatorValueDTO.html">AuthenticatorValueDTO</a> 对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AuthenticatorValueDTO? ReadXmlv2(XmlReader reader, string? password = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">XmlReader</span></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.WTTS.Models.AuthenticatorValueDTO.html">AuthenticatorValueDTO</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_SafeHasher_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SafeHasher*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_SafeHasher_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SafeHasher(System.String)">
+  SafeHasher(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Downgrade SHA256 or MD5 to SHA1 to be FIPS compliant</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static HashAlgorithm SafeHasher(string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.security.cryptography.hashalgorithm">HashAlgorithm</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_SetEncryption_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SetEncryption*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_SetEncryption_BD_WTTS_Models_Abstractions_IAuthenticatorValueDTO_PasswordTypes_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.SetEncryption(BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes,System.String)">
+  SetEncryption(PasswordTypes, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>设置加密方式和密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetEncryption(IAuthenticatorValueDTO.PasswordTypes passwordType, string? password = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>passwordType</code> <a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.html">IAuthenticatorValueDTO</a>.<a class="xref" href="BD.WTTS.Models.Abstractions.IAuthenticatorValueDTO.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd><p>密码类型</p>
+</dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>密码</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_StringToByteArray_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.StringToByteArray*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_StringToByteArray_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.StringToByteArray(System.String)">
+  StringToByteArray(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将十六进制字符串转换为字节数组。例如“001f406a”-&gt;byte[]｛0x00，0x1f，0x40，0x6a｝</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] StringToByteArray(string hex)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>hex</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>要转换的十六进制字符串</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd><p>十六进制字符串的 byte[]</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Sync_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Sync*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Sync" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Sync">
+  Sync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将此验证器的时间与服务器时间同步。我们用UTC时间的差值更新数据记录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Sync()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_Unprotect_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Unprotect*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_Unprotect_System_String_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.Unprotect(System.String)">
+  Unprotect(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消令牌保护</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Unprotect(string? password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_WriteExtraXml_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.WriteExtraXml*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_WriteExtraXml_System_Xml_XmlWriter_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.WriteExtraXml(System.Xml.XmlWriter)">
+  WriteExtraXml(XmlWriter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将任何特定于类的 xml 节点写入编写器的虚拟函数</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void WriteExtraXml(XmlWriter writer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>writer</code> <span class="xref">XmlWriter</span></dt>
+    <dd><p>XmlWriter 写入数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_WTTS_Models_AuthenticatorValueDTO_WriteToWriter_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.WriteToWriter*"></a>
+
+  <h3 id="BD_WTTS_Models_AuthenticatorValueDTO_WriteToWriter_System_Xml_XmlWriter_" data-uid="BD.WTTS.Models.AuthenticatorValueDTO.WriteToWriter(System.Xml.XmlWriter)">
+  WriteToWriter(XmlWriter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/WinAuth/Authenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将此验证器写入 XmlWriter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteToWriter(XmlWriter writer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>writer</code> <span class="xref">XmlWriter</span></dt>
+    <dd><p>XmlWriter to receive authenticator</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/WinAuth/BD.WTTS/Models/AuthenticatorValueDTO.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
