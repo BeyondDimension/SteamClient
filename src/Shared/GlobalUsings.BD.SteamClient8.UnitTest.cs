@@ -10,4 +10,5 @@ global using BD.SteamClient8.UnitTest;
 global using BD.SteamClient8.UnitTest.Abstractions;
 global using BD.SteamClient8.UnitTest.Helpers;
 
+global using static BD.SteamClient8.UnitTest.Helpers.SteamAuthenticatorHelper;
 global using static BD.SteamClient8.UnitTest.Helpers.SteamLoginStateHelper;

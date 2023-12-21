@@ -63,7 +63,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             { "authenticator_time", authenticator_time },
             { "authenticator_type", authenticator_type },
             { "device_identifier", device_identifier ?? "" },
-            { "sms_phone_id", sms_phone_id }
+            { "sms_phone_id", sms_phone_id },
         };
 
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ADD.Format(steamSession.AccessToken))
@@ -258,7 +258,13 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             throw new Exception("Failed to refresh token: " + ex.Message);
         }
 
-        return ApiRspHelper.Ok(response.ThrowIsNull()?.Response?.AccessToken ?? string.Empty)!;
+        var accessToken = response.ThrowIsNull()?.Response?.AccessToken ?? string.Empty;
+        if (string.IsNullOrEmpty(accessToken))
+        {
+            steamSession.AccessToken = accessToken;
+            _sessionService.AddOrSetSession(steamSession);
+        }
+        return ApiRspHelper.Ok(accessToken)!;
     }
 
     #region Private

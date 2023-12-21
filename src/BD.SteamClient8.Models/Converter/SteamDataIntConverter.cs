@@ -13,6 +13,10 @@ public class SteamDataIntConverter : System.Text.Json.Serialization.JsonConverte
         {
             return value;
         }
+        else if (reader.TokenType == JsonTokenType.Number)
+        {
+            return reader.GetInt32();
+        }
 
         return 0; // 返回默认值或其他自定义逻辑
     }

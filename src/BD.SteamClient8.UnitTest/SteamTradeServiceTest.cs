@@ -38,13 +38,26 @@ sealed class SteamTradeServiceTest : ServiceTestBase
 
         steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
 
-        var identitySecret = configuration["identitySecret"].ThrowIsNull();
-        var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
-        var diff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-        var session = steamSessionService.RentSession(steamLoginState.SteamId.ToString());
-        if (session != null)
+        var steamAuthenticator = await GetSteamAuthenticatorAsync();
+        var identitySecret = configuration["identitySecret"];
+        long serverTimeDiff;
+        // 本地令牌获取相关信息
+        if (identitySecret is null)
         {
-            session.ServerTimeDiff = diff;
+            var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(steamAuthenticator.ThrowIsNull().SteamData!);
+            identitySecret = steamData!.IdentitySecret;
+            serverTimeDiff = steamAuthenticator.ServerTimeDiff;
+        }
+        else // 用户机密获取 identitySecret 以及临时请求服务器时间
+        {
+            var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
+            serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        }
+
+        var session = steamSessionService.RentSession(steamLoginState.SteamId.ToString());
+        if (session is not null)
+        {
+            session.ServerTimeDiff = serverTimeDiff;
             session.IdentitySecret = identitySecret;
             session.APIKey = ApiKey = (await steamAccountService.GetApiKey(steamLoginState)).Content ?? (await steamAccountService.RegisterApiKey(steamLoginState)).Content.ThrowIsNull();
             steamSessionService.AddOrSetSession(session);

@@ -443,7 +443,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
             await Task.Run(Sync);
         var deviceId = BuildRandomId();
 
-        var response = await AuthenticatorService.AddAuthenticatorAsync(state.SteamId.ToString(), ServerTime.ToString(), deviceId, state.AccessToken);
+        var response = await AuthenticatorService.AddAuthenticatorAsync(state.SteamId.ToString(), ServerTime.ToString(), deviceId);
         var tfaResponse = response.Content;
 
         if (tfaResponse?.Response == null)

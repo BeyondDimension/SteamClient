@@ -28,7 +28,8 @@ public static partial class SteamLoginStateHelper
                             steamLoginStateCache, null, DataProtectionScope.LocalMachine);
                     steamLoginState = Serializable.DMP2<SteamLoginState>(steamLoginStateCache);
                     steamLoginState.ThrowIsNull();
-                    if (steamLoginState.Username != configuration["steamUsername"])
+                    var check = await steamAccountService.CheckAccessTokenValidation(steamLoginState.AccessToken!);
+                    if (steamLoginState.Username != configuration["steamUsername"] || !check.Content)
                         throw new ArgumentException();
 
                     var session = new SteamSession();
@@ -46,10 +47,19 @@ public static partial class SteamLoginStateHelper
                         Password = configuration["steamPassword"],
                     };
                     await steamAccountService.DoLoginV2Async(steamLoginState);
-                    if (!steamLoginState.Success && steamLoginState.Requires2FA)
+                    if (!steamLoginState.Success && (steamLoginState.Requires2FA || steamLoginState.RequiresEmailAuth))
                     {
-                        // input your TwoFactorCode
-                        steamLoginState.TwofactorCode.ThrowIsNull();
+                        if (steamLoginState.Requires2FA)
+                        {
+                            // input your TwoFactorCode
+                            steamLoginState.TwofactorCode.ThrowIsNull();
+                        }
+                        else if (steamLoginState.RequiresEmailAuth)
+                        {
+                            // input your EmailCode
+                            steamLoginState.EmailCode.ThrowIsNull();
+                        }
+
                         await steamAccountService.DoLoginV2Async(steamLoginState);
                     }
                     byte[] steamLoginStateCache = Serializable.SMP2(steamLoginState);

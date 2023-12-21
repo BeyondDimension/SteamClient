@@ -23,7 +23,7 @@ public static partial class SteamAuthenticatorHelper
                     if (OperatingSystem.IsWindows())
                         steamAuthenticatorCache = ProtectedData.Unprotect(
                             steamAuthenticatorCache, null, DataProtectionScope.LocalMachine);
-                    steamAuthenticator = Serializable.DMP2<SteamAuthenticator>(steamAuthenticatorCache);
+                    steamAuthenticator = Serializable.DJSON<SteamAuthenticator>(Serializable.JsonImplType.SystemTextJson, Encoding.UTF8.GetString(steamAuthenticatorCache));
                     steamAuthenticator.ThrowIsNull();
                 }
                 catch
@@ -43,7 +43,7 @@ public static partial class SteamAuthenticatorHelper
                 "..", steamAuthenticatorCacheFileName);
             try
             {
-                byte[] steamAuthenticatorCache = Serializable.SMP2(steamAuthenticator);
+                byte[] steamAuthenticatorCache = Encoding.UTF8.GetBytes(Serializable.SJSON(Serializable.JsonImplType.SystemTextJson, steamAuthenticator));
                 if (OperatingSystem.IsWindows())
                     steamAuthenticatorCache = ProtectedData.Protect(
                         steamAuthenticatorCache, null, DataProtectionScope.LocalMachine);
@@ -51,6 +51,24 @@ public static partial class SteamAuthenticatorHelper
                 return true;
             }
             catch
+            {
+                return false;
+            }
+        }
+    }
+
+    public static async ValueTask<bool> DeleteSteamAuthenticatorAsync()
+    {
+        using (await lock_GetSteamAuthenticatorAsync.AcquireLockAsync(CancellationToken.None))
+        {
+            var steamAuthenticatorCacheFilePath = Path.Combine(ProjPath,
+                "..", steamAuthenticatorCacheFileName);
+            try
+            {
+                File.Delete(steamAuthenticatorCacheFilePath);
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }
