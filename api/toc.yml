@@ -1,0 +1,23 @@
+items:
+- name: SharedLibrary 共享库
+  items:
+  - name: BD.SteamClient8
+    href: BD.SteamClient8/toc.yml
+  - name: BD.SteamClient8.Impl
+    href: BD.SteamClient8.Impl/toc.yml    
+  - name: BD.SteamClient8.Models
+    href: BD.SteamClient8.Models/toc.yml
+  - name: BD.SteamClient8.Primitives
+    href: BD.SteamClient8.Primitives/toc.yml    
+  - name: BD.SteamClient8.ViewModels
+    href: BD.SteamClient8.ViewModels/toc.yml
+  - name: WinAuth
+    href: WinAuth/toc.yml
+- name: Tools 工具
+  items:
+  - name: Tools.Build
+  - name: Tools.DocFX
+  - name: Tools.Sort.PackageVersion
+- name: UnitTest 单元测试
+  items:
+  - name: BD.SteamClient8.UnitTest

@@ -118,7 +118,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     public string? SteamDirPath => mSteamDirPath;
 
     /// <summary>
-    /// 非windows平台 steam 注册表配置路径
+    /// 非 windows 平台 steam 注册表配置路径
     /// </summary>
     public string? RegistryVdfPath => mRegistryVdfPath;
 

@@ -47,7 +47,8 @@
       {
         "files": [
           "images/**",
-          "res/DocFXIcon.png"
+          "res/DocFXIcon.png",
+          "README.md"
         ]
       }
     ],
