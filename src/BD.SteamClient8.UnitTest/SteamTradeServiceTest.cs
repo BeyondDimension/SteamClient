@@ -168,7 +168,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// <param name="context_id"></param>
     /// <returns></returns>
     [Test]
-    [TestCase("https://steamcommunity.com/tradeoffer/new/?partner=1534534291&token=WqVmEmhR", "730", "2")]
+    [TestCase("https://steamcommunity.com/tradeoffer/new/?partner=1534534291&token=WqVmEmhR", "570", "2")]
     public async Task SendTradeOffer_TradeUrl_Test(string trade_url, string app_id, string context_id)
     {
         var queryParams = HttpUtility.ParseQueryString(new Uri(trade_url).Query);
@@ -218,7 +218,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// <param name="context_id"></param>
     /// <returns></returns>
     [Test]
-    [TestCase("76561199495399375", "730", "2")]
+    [TestCase("76561199495399375", "570", "2")]
     public async Task SendTradOffer_Friend_Test(string friend_steam_id, string app_id, string context_id)
     {
         var them_inventories = await steamAccountService.GetInventories(ulong.Parse(friend_steam_id), app_id, context_id);
