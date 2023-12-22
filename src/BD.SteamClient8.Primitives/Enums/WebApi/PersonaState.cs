@@ -1,6 +1,8 @@
 namespace BD.SteamClient8.Primitives.Enums.WebApi;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// 在线状态
+/// </summary>
 public enum PersonaState
 {
     Default = -1,

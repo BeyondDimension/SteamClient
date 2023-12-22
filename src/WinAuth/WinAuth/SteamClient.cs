@@ -147,7 +147,7 @@ public partial class SteamClient : IDisposable
     public sealed class ConfirmationPoller
     {
         /// <summary>
-        /// 民意调查之间的秒数
+        /// 两次轮询之间的秒数
         /// </summary>
         public int Duration { get; set; }
 
@@ -157,19 +157,19 @@ public partial class SteamClient : IDisposable
         public PollerAction Action { get; set; }
 
         /// <summary>
-        /// List of current Confirmations ids
+        /// 当前确认 ID 列表
         /// </summary>
         public List<string>? Ids { get; set; }
 
         /// <summary>
-        /// Create new ConfirmationPoller object
+        /// 创建新的 ConfirmationPoller 对象
         /// </summary>
         public ConfirmationPoller()
         {
         }
 
         /// <summary>
-        /// Create a JSON string of the object
+        /// 创建对象的 JSON 字符串
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -393,7 +393,7 @@ public partial class SteamClient : IDisposable
         /// <summary>
         /// 检查访问令牌是否已过期
         /// </summary>
-        /// <returns>如果访问令牌已过期，则返回true；否则返回false</returns>
+        /// <returns>如果访问令牌已过期，则返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
         public bool IsAccessTokenExpired()
         {
             if (string.IsNullOrEmpty(this.AccessToken))
@@ -403,9 +403,9 @@ public partial class SteamClient : IDisposable
         }
 
         /// <summary>
-        /// 检查刷新令牌是否已过期。
+        /// 检查刷新令牌是否已过期
         /// </summary>
-        /// <returns>如果刷新令牌已过期，则返回true；否则返回false。</returns>
+        /// <returns>如果刷新令牌已过期，则返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
         public bool IsRefreshTokenExpired()
         {
             if (string.IsNullOrEmpty(this.RefreshToken))
@@ -433,9 +433,9 @@ public partial class SteamClient : IDisposable
         }
 
         /// <summary>
-        /// 获取会话的Cookie容器。
+        /// 获取会话的 Cookie 容器
         /// </summary>
-        /// <returns>包含会话Cookie的CookieContainer对象。</returns>
+        /// <returns>包含会话 Cookie 的 CookieContainer 对象</returns>
         public CookieContainer GetCookies()
         {
             if (this.SessionID == null)
@@ -472,9 +472,9 @@ public partial class SteamClient : IDisposable
         }
 
         /// <summary>
-        /// 将当前实例转换为JSON字符串。
+        /// 将当前实例转换为 JSON 字符串
         /// </summary>
-        /// <returns>包含当前实例信息的JSON字符串。</returns>
+        /// <returns>包含当前实例信息的 JSON 字符串</returns>
         public override string ToString()
         {
             return SystemTextJsonSerializer.Serialize(this);
@@ -592,7 +592,7 @@ public partial class SteamClient : IDisposable
     public event ConfirmationErrorDelegate? ConfirmationErrorEvent;
 
     /// <summary>
-    /// 创建一个新的SteamClient
+    /// 创建一个新的 SteamClient
     /// </summary>
     public SteamClient(SteamAuthenticator auth)
     {
@@ -609,7 +609,7 @@ public partial class SteamClient : IDisposable
     }
 
     /// <summary>
-    /// 处理对象
+    /// 释放
     /// </summary>
     public void Dispose()
     {
@@ -618,7 +618,7 @@ public partial class SteamClient : IDisposable
     }
 
     /// <summary>
-    /// 处理此对象
+    /// 释放
     /// </summary>
     /// <param name="disposing"></param>
     protected virtual void Dispose(bool disposing)

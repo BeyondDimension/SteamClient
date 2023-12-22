@@ -7,7 +7,7 @@ using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
 
 namespace BD.SteamClient8.Impl.PInvoke;
 
-/// <inheritdoc cref="ISteamworksLocalApiService "/>
+/// <inheritdoc cref="ISteamworksLocalApiService "/> Steamworks 本地 API 服务实现
 public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)

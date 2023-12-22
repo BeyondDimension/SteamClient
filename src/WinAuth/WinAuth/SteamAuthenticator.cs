@@ -63,7 +63,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     public string? Serial { get; set; }
 
     /// <summary>
-    /// 创建并注册的随机设备ID
+    /// 创建并注册的随机设备 ID
     /// </summary>
     public string? DeviceId { get; set; }
 
@@ -394,7 +394,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueDTO
     /// <summary>
     /// 获取(或创建)此认证器的当前 Steam 客户端
     /// </summary>
-    /// <returns>current or new SteamClient</returns>
+    /// <returns>当前或新的 SteamClient</returns>
     public SteamClient GetClient(string? language = null)
     {
         lock (this)

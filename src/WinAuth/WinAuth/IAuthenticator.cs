@@ -57,7 +57,7 @@ partial interface IAuthenticatorValueDTO
     string CurrentCode { get; }
 
     /// <summary>
-    /// 将此验证器的时间与服务器时间同步。我们用UTC时间的差值更新数据记录
+    /// 将此验证器的时间与服务器时间同步，我们用 UTC 时间的差值更新数据记录
     /// </summary>
     void Sync();
 

@@ -33,13 +33,11 @@
           "toc.yml",
           "*.html",
           "*.md",
-          "api/**.yml",
-          "api/index.md",
-          "api/**/**.yml"
+          "**/**/*.{md,yml}"
         ],
         "exclude": [
           "_site/**",
-          "ref/Common/"
+          "ref/**"
         ]
       }
     ],
@@ -58,7 +56,7 @@
       "modern"
     ],
     "globalMetadata": {
-      "_appName": "SteamClient 文档",
+      "_appName": "SteamClient",
       "_appTitle": "SteamClient",
       "_appLogoPath": "res/DocFXIcon.png",
       "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved.",

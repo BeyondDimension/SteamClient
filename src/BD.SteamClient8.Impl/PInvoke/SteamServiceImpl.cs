@@ -3,7 +3,7 @@
 namespace BD.SteamClient8.Impl.PInvoke;
 
 /// <summary>
-/// <see cref="ISteamService"/> 类实现
+/// <see cref="ISteamService"/> Steam 相关助手、工具类服务实现
 /// </summary>
 public abstract partial class SteamServiceImpl : ISteamService
 {
