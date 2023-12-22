@@ -51,6 +51,7 @@ public static partial class SteamLoginStateHelper
                     {
                         if (steamLoginState.Requires2FA)
                         {
+                            steamLoginState.TwofactorCode = SteamAuthenticatorHelper.SteamAuthenticator?.CurrentCode;
                             // input your TwoFactorCode
                             steamLoginState.TwofactorCode.ThrowIsNull();
                         }

@@ -36,7 +36,7 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     /// <param name="appId"></param>
     /// <param name="contextId"></param>
     /// <returns></returns>
-    [TestCase(76561198425787706UL, "730", "2")]
+    [TestCase(76561199494800019UL, "730", "2")]
     [Test]
     public async Task TestGetInventories(ulong steamId, string appId, string contextId)
     {

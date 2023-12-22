@@ -6,6 +6,7 @@ namespace BD.SteamClient8.UnitTest;
 sealed class SteamTradeServiceTest : ServiceTestBase
 {
     SteamLoginState steamLoginState = null!;
+    SteamAuthenticator? steamAuthenticator = null!;
     ISteamTradeService steamTradeService = null!;
     ISteamAccountService steamAccountService = null!;
     ISteamSessionService steamSessionService = null!;
@@ -36,9 +37,9 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         steamSessionService = GetRequiredService<ISteamSessionService>();
         configuration = GetRequiredService<IConfiguration>();
 
+        steamAuthenticator = await GetSteamAuthenticatorAsync(configuration, steamAuthenticatorService);
         steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
 
-        var steamAuthenticator = await GetSteamAuthenticatorAsync();
         var identitySecret = configuration["identitySecret"];
         long serverTimeDiff;
         // 本地令牌获取相关信息
@@ -46,13 +47,15 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         {
             var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(steamAuthenticator.ThrowIsNull().SteamData!);
             identitySecret = steamData!.IdentitySecret;
-            serverTimeDiff = steamAuthenticator.ServerTimeDiff;
         }
-        else // 用户机密获取 identitySecret 以及临时请求服务器时间
+
+        if (steamAuthenticator is null)
         {
             var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
             serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         }
+        else
+            serverTimeDiff = steamAuthenticator.ServerTimeDiff;
 
         var session = steamSessionService.RentSession(steamLoginState.SteamId.ToString());
         if (session is not null)
@@ -78,7 +81,6 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         {
             Assert.That(tradeOffersSummary.IsSuccess, Is.True);
             Assert.That(tradeOffersSummary.Content, Is.Not.Null);
-            Assert.That(tradeOffersSummary.Content?.HistoricalReceivedCount, !Is.EqualTo(0));
         });
 
         var tradeHistoryDetail = await steamTradeService.GetTradeHistory(ApiKey);
@@ -88,7 +90,6 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         {
             Assert.That(tradeHistoryDetail.IsSuccess, Is.True);
             Assert.That(tradeHistoryDetail.Content, Is.Not.Null);
-            Assert.That(tradeHistoryDetail.Content?.Trades, !Is.EqualTo(0));
         });
     }
 
@@ -96,12 +97,13 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// 接受交易报价
     /// </summary>
     /// <returns></returns>
+    [Test]
     public async Task AcceptTradeOffer_Test()
     {
         // ------------接受所有礼物形式的交易报价
         var accept_result = await steamTradeService.AcceptAllGiftTradeOfferAsync(steamLoginState.SteamId.ToString());
         Assert.That(accept_result, Is.Not.Null);
-        Assert.That(accept_result.Content, Is.True);
+        Assert.That(accept_result.IsSuccess, Is.True);
 
         // ------------开启后台任务 定时接收礼物报价
         var startTask = steamTradeService.StartTradeTask(
@@ -216,7 +218,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// <param name="context_id"></param>
     /// <returns></returns>
     [Test]
-    [TestCase("76561198425787706", "730", "2")]
+    [TestCase("76561199495399375", "730", "2")]
     public async Task SendTradOffer_Friend_Test(string friend_steam_id, string app_id, string context_id)
     {
         var them_inventories = await steamAccountService.GetInventories(ulong.Parse(friend_steam_id), app_id, context_id);

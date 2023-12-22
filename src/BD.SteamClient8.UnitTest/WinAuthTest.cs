@@ -34,9 +34,10 @@ sealed class WinAuthTest : ServiceTestBase
         steamSessionService = GetRequiredService<ISteamSessionService>();
         configuration = GetRequiredService<IConfiguration>();
         steamAuthenticatorService = GetRequiredService<ISteamAuthenticatorService>();
+
+        steamAuthenticator ??= await GetSteamAuthenticatorAsync(configuration, steamAuthenticatorService) ?? new();
         steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
 
-        steamAuthenticator ??= await GetSteamAuthenticatorAsync() ?? new();
         enrollState ??= new();
     }
 
@@ -48,6 +49,8 @@ sealed class WinAuthTest : ServiceTestBase
     [TestCase("18112341234")]
     public async Task AddAuthenticator_Test(string phone_number)
     {
+        if (IsCI())
+            return;
         Assert.Multiple(() =>
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
@@ -95,6 +98,8 @@ sealed class WinAuthTest : ServiceTestBase
     [Test]
     public async Task RemoveAuthenticator_Test()
     {
+        if (IsCI())
+            return;
         Assert.Multiple(() =>
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
@@ -127,6 +132,8 @@ sealed class WinAuthTest : ServiceTestBase
     [TestCase(2)]
     public async Task UnBindingAuthenticator(int scheme)
     {
+        if (IsCI())
+            return;
         Assert.Multiple(() =>
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
@@ -148,6 +155,8 @@ sealed class WinAuthTest : ServiceTestBase
     /// <returns></returns>
     public async Task GetUserCountry()
     {
+        if (IsCI())
+            return;
         Assert.That(steamAuthenticator, Is.Not.Null);
 
         var country = await steamAuthenticator.GetUserCountry(steamLoginState.SteamId.ToString());

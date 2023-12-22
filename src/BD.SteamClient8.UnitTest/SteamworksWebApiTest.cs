@@ -56,7 +56,7 @@ sealed class SteamworksWebApiTest : ServiceTestBase
     /// </summary>
     /// <param name="steamId64"></param>
     /// <returns></returns>
-    [TestCase(76561198425787706L)]
+    [TestCase(76561199494800019L)]
     [Test]
     public async Task GetUserInfo(long steamId64)
     {

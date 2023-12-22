@@ -39,7 +39,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// </summary>
     /// <param name="steam_id"></param>
     /// <returns></returns>
-    [TestCase("76561198425787706")]
+    [TestCase("76561199494800019")]
     [Test]
     public async Task TestsGetBadgesAsync(string steam_id)
     {

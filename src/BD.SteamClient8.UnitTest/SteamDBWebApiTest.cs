@@ -29,7 +29,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
     /// </summary>
     /// <param name="steamId"></param>
     /// <returns></returns>
-    [TestCase(76561198425787706)]
+    [TestCase(76561199494800019L)]
     [Test]
     public async Task TestGetUserInfo(long steamId)
     {
@@ -49,7 +49,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
     /// <param name="steamIds"></param>
     /// <returns></returns>
 #pragma warning disable CA1861 // 不要将常量数组作为参数
-    [TestCase(new long[] { 76561198425787706, 76561198409610315 })]
+    [TestCase(new long[] { 76561199494800019L, 76561199495399375L })]
 #pragma warning restore CA1861 // 不要将常量数组作为参数
     [Test]
     public async Task TestGetUserInfos(long[] steamIds)
