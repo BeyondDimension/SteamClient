@@ -168,7 +168,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// <param name="context_id"></param>
     /// <returns></returns>
     [Test]
-    [TestCase("https://steamcommunity.com/tradeoffer/new/?partner=1551675232&token=j7yIRcwK", "730", "2")]
+    [TestCase("https://steamcommunity.com/tradeoffer/new/?partner=1534534291&token=WqVmEmhR", "730", "2")]
     public async Task SendTradeOffer_TradeUrl_Test(string trade_url, string app_id, string context_id)
     {
         var queryParams = HttpUtility.ParseQueryString(new Uri(trade_url).Query);
