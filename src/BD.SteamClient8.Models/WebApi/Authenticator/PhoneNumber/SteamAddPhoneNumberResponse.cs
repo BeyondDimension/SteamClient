@@ -2,6 +2,9 @@ namespace BD.SteamClient8.Models.WebApi.Authenticator.PhoneNumber;
 
 #pragma warning disable SA1600 // Elements should be documented
 
+/// <summary>
+/// AddPhoneNumberAsync 接口返回模型类
+/// </summary>
 public class SteamAddPhoneNumberResponse
 {
     /// <summary>
@@ -11,6 +14,9 @@ public class SteamAddPhoneNumberResponse
     public SteamAddPhoneNumberResponseResponse? Response { get; set; }
 }
 
+/// <summary>
+/// <see cref="SteamAddPhoneNumberResponse.Response"/> 模型类
+/// </summary>
 public class SteamAddPhoneNumberResponseResponse
 {
     /// <summary>

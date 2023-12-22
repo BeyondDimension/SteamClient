@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Models.WebApi.Authenticator;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// TwoFAQueryTime 接口返回模型类
+/// </summary>
 public sealed class SteamSyncStruct
 {
     /// <summary>
@@ -11,6 +12,9 @@ public sealed class SteamSyncStruct
     public SteamSyncResponseStruct? Response { get; set; }
 }
 
+/// <summary>
+/// <see cref="SteamSyncStruct.Response"/> 详细信息
+/// </summary>
 public sealed class SteamSyncResponseStruct
 {
     /// <summary>

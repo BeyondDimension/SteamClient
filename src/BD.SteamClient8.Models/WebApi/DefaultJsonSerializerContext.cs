@@ -66,8 +66,6 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(SteamAddPhoneNumberResponse))]
 [SystemTextJsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
 [SystemTextJsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamDoLoginJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamDoLoginOauthJsonStruct))]
 [SystemTextJsonSerializable(typeof(SteamDoLoginHasPhoneJsonStruct))]
 [SystemTextJsonSerializable(typeof(SteamDoLoginTfaJsonStruct))]
 [SystemTextJsonSerializable(typeof(SteamDoLoginFinalizeJsonStruct))]

@@ -1,11 +1,19 @@
 #pragma warning disable IDE0130
 namespace BD.SteamClient8.Models.WebApi.SteamApp;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// <see cref="SteamApp"/> 扩展
+/// </summary>
 public static class SteamAppExtensions
 {
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
+    /// <summary>
+    /// 从其他 <see cref="SteamApp"/> 修改内容
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <param name="appInfo"></param>
+    /// <returns></returns>
     public static bool SetEditProperty(this SteamApp steamApp, SteamApp appInfo)
     {
         if (steamApp._properties != null)
@@ -140,12 +148,23 @@ public static class SteamAppExtensions
 
 #endif
 
+    /// <summary>
+    /// 获取Id和名称,使用 | 分割
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <returns></returns>
     public static string GetIdAndName(this SteamApp steamApp)
     {
         return $"{steamApp.AppId} | {steamApp.DisplayName}";
     }
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+    /// <summary>
+    /// 启动 <see cref="SteamApp"/> 进程
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <param name="runType"></param>
+    /// <returns></returns>
     public static Process? StartSteamAppProcess(this SteamApp steamApp, SteamAppRunType runType = SteamAppRunType.Idle)
     {
         var arg = runType switch
@@ -190,6 +209,10 @@ public static class SteamAppExtensions
         }
     }
 
+    /// <summary>
+    /// 启动或停止 App
+    /// </summary>
+    /// <param name="steamApp"></param>
     public static void RunOrStopSteamAppProcess(this SteamApp steamApp)
     {
         if (steamApp.Process != null && !steamApp.Process.HasExited)
@@ -203,6 +226,13 @@ public static class SteamAppExtensions
         }
     }
 
+    /// <summary>
+    /// 将参数 <see cref="SteamAppPropertyTable"/> 内容导出到 <see cref="SteamApp"/>
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <param name="properties"></param>
+    /// <param name="installedAppIds"></param>
+    /// <returns></returns>
     public static SteamApp ExtractReaderProperty(this SteamApp steamApp, SteamAppPropertyTable properties, uint[]? installedAppIds = null)
     {
         if (properties != null)
@@ -310,6 +340,14 @@ public static class SteamAppExtensions
         return steamApp;
     }
 
+    /// <summary>
+    /// 通过 <see cref="BinaryReader"/> 读取实例出 <see cref="SteamApp"/>
+    /// </summary>
+    /// <param name="reader"></param>
+    /// <param name="installedAppIds"></param>
+    /// <param name="isSaveProperties"></param>
+    /// <param name="is0x07564428"></param>
+    /// <returns></returns>
     public static SteamApp? FromReader(BinaryReader reader, uint[]? installedAppIds = null, bool isSaveProperties = false, bool is0x07564428 = true)
     {
         uint id = reader.ReadUInt32();
@@ -352,6 +390,12 @@ public static class SteamAppExtensions
         return app;
     }
 
+    /// <summary>
+    /// 将 <see cref="SteamApp"/> 内容写入 <see cref="BinaryReader"/>
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <param name="writer"></param>
+    /// <exception cref="ArgumentNullException"></exception>
     public static void Write(this SteamApp steamApp, BinaryWriter writer)
     {
         if (steamApp._properties == null)

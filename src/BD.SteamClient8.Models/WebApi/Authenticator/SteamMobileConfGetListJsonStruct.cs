@@ -1,7 +1,5 @@
 namespace BD.SteamClient8.Models.WebApi.Authenticator;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// 获取确认消息返回结果
 /// </summary>

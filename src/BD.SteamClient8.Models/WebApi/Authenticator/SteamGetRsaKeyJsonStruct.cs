@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Models.WebApi.Authenticator;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// SteamGetRsaKey 接口返回类型
+/// </summary>
 public sealed class SteamGetRsaKeyJsonStruct
 {
     /// <summary>
@@ -28,7 +29,9 @@ public sealed class SteamGetRsaKeyJsonStruct
     [SystemTextJsonProperty("timestamp")]
     public string TimeStamp { get; set; } = string.Empty;
 
-    //
+    /// <summary>
+    /// Token Id
+    /// </summary>
     [SystemTextJsonProperty("token_gid")]
     public string TokenGId { get; set; } = string.Empty;
 }

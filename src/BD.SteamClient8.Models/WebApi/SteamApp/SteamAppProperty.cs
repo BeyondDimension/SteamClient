@@ -4,6 +4,9 @@ namespace BD.SteamClient8.Models.WebApi.SteamApp;
 
 #pragma warning disable SA1600 // Elements should be documented
 
+/// <summary>
+/// <see cref="SteamApp"/> Property
+/// </summary>
 public class SteamAppProperty
 {
     private static readonly Type?[] _types =
@@ -25,6 +28,9 @@ public class SteamAppProperty
 
     private object? _value;
 
+    /// <summary>
+    /// 属性类型枚举
+    /// </summary>
     public SteamAppPropertyType PropertyType
     {
         get
@@ -42,6 +48,9 @@ public class SteamAppProperty
         }
     }
 
+    /// <summary>
+    /// 属性类型 <see cref="SteamAppPropertyType"/> => <see cref="Type"/>
+    /// </summary>
     public Type? ValueType => _types[(int)_propType];
 
     internal object? Value
@@ -85,12 +94,23 @@ public class SteamAppProperty
         }
     }
 
+    /// <summary>
+    /// 获取指定类型属性值
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public T? GetValue<T>()
     {
         TryGetValue<T>(out var result);
         return result;
     }
 
+    /// <summary>
+    /// 尝试获取指定类型属性值
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="result"></param>
+    /// <returns></returns>
     public bool TryGetValue<T>(out T? result)
     {
         result = default;
@@ -108,6 +128,10 @@ public class SteamAppProperty
         return result2;
     }
 
+    /// <summary>
+    /// 通过 <see cref="string"/> 属性名称 构造 <see cref="SteamAppProperty"/> 实例
+    /// </summary>
+    /// <param name="name"></param>
     public SteamAppProperty(string name)
     {
         Name = name;
@@ -115,6 +139,12 @@ public class SteamAppProperty
         _value = null;
     }
 
+    /// <summary>
+    /// 通过 <see cref="string"/> 属性名称，<see cref="SteamAppPropertyType"/> 属性数据类型，<see cref="object"/> 属性值 构造 <see cref="SteamAppProperty"/> 实例
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="type"></param>
+    /// <param name="value"></param>
     public SteamAppProperty(string name, SteamAppPropertyType type, object value)
     {
         Name = name;
@@ -122,6 +152,10 @@ public class SteamAppProperty
         _value = value;
     }
 
+    /// <summary>
+    /// 通过其他 <see cref="SteamAppProperty"/> 构造 <see cref="SteamAppProperty"/> 实例
+    /// </summary>
+    /// <param name="other"></param>
     public SteamAppProperty(SteamAppProperty other)
     {
         Name = other.Name;
@@ -136,6 +170,11 @@ public class SteamAppProperty
         }
     }
 
+    /// <summary>
+    /// Equals <see langword="override"/>
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <returns></returns>
     public override bool Equals(object? obj)
     {
         bool result = false;
@@ -146,6 +185,10 @@ public class SteamAppProperty
         return result;
     }
 
+    /// <summary>
+    /// GetHashCode <see langword="override"/>
+    /// </summary>
+    /// <returns></returns>
     public override int GetHashCode()
     {
         return GetType().GetHashCode() ^ Name.GetHashCode() ^ _propType.GetHashCode() ^ _value!.GetHashCode();

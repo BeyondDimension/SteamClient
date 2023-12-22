@@ -1,11 +1,14 @@
 namespace BD.SteamClient8.Models.WebApi.SteamApp;
 
-#pragma warning disable SA1600 // Elements should be documented
+/// <summary>
+/// Steam 游戏
+/// </summary>
 public class SteamApp
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
     : IComparable<SteamApp>
 #endif
 {
+#pragma warning disable SA1600 // Elements should be documented
     [SystemTextJsonIgnore]
     public string NodeAppInfo { get; } = "appinfo";
 
@@ -54,19 +57,37 @@ public class SteamApp
     [SystemTextJsonIgnore]
     public string NodeLaunch { get; } = "launch";
 
+#pragma warning restore SA1600 // Elements should be documented
+
+    /// <summary>
+    /// 无参构造
+    /// </summary>
     public SteamApp() { }
 
-    public SteamApp(uint appid)
+    /// <summary>
+    /// 通过 app_id 构造 <see cref="SteamApp"/> 实例
+    /// </summary>
+    /// <param name="app_id"></param>
+    public SteamApp(uint app_id)
     {
-        AppId = appid;
+        AppId = app_id;
     }
 
+    /// <summary>
+    /// AppId 唯一标识
+    /// </summary>
     public uint AppId { get; set; }
 
+    /// <summary>
+    /// 基础名称
+    /// </summary>
     public string? BaseName { get; set; }
 
     string? _Name;
 
+    /// <summary>
+    /// 名称
+    /// </summary>
     public string? Name
     {
         get => _Name;
@@ -82,6 +103,9 @@ public class SteamApp
 
     string? _SortAs;
 
+    /// <summary>
+    /// 排序字段
+    /// </summary>
     public string? SortAs
     {
         get => _SortAs;
@@ -94,22 +118,49 @@ public class SteamApp
         }
     }
 
+    /// <summary>
+    /// 索引
+    /// </summary>
     public int Index { get; set; }
 
+    /// <summary>
+    /// 状态
+    /// </summary>
     public int State { get; set; }
 
+    /// <summary>
+    /// 安装的驱动器地址
+    /// </summary>
     public string? InstalledDrive => !string.IsNullOrEmpty(InstalledDir) ? Path.GetPathRoot(InstalledDir)?.ToUpper()?.Replace(Path.DirectorySeparatorChar.ToString(), "") : null;
 
+    /// <summary>
+    /// 安装的文件夹
+    /// </summary>
     public string? InstalledDir { get; set; }
 
+    /// <summary>
+    /// 开发者
+    /// </summary>
     public string? Developer { get; set; }
 
+    /// <summary>
+    /// 发布者
+    /// </summary>
     public string? Publisher { get; set; }
 
+    /// <summary>
+    /// Steam 发布日期
+    /// </summary>
     public uint? SteamReleaseDate { get; set; }
 
+    /// <summary>
+    /// 原始发布日期
+    /// </summary>
     public uint? OriginReleaseDate { get; set; }
 
+    /// <summary>
+    /// 支持系统列表
+    /// </summary>
     public string? OSList { get; set; }
 
     #region 暂时不用
@@ -176,8 +227,14 @@ public class SteamApp
 
     #endregion
 
+    /// <summary>
+    /// 是否被编辑
+    /// </summary>
     public bool IsEdited { get; set; }
 
+    /// <summary>
+    /// 展示名称
+    /// </summary>
     public string DisplayName => string.IsNullOrEmpty(Name) ? AppId.ToString() : Name;
 
     //string? _baseDLSSVersion;
@@ -212,12 +269,24 @@ public class SteamApp
 
     //public bool HasDLSS { get; set; }
 
+    /// <summary>
+    /// Logo 地址
+    /// </summary>
     public string? Logo { get; set; }
 
+    /// <summary>
+    /// 图标 地址
+    /// </summary>
     public string? Icon { get; set; }
 
+    /// <summary>
+    /// 游戏类型
+    /// </summary>
     public SteamAppType Type { get; set; }
 
+    /// <summary>
+    /// 父级游戏 AppId
+    /// </summary>
     public uint ParentId { get; set; }
 
     /// <summary>
@@ -270,60 +339,117 @@ public class SteamApp
     /// </summary>
     public long BytesStaged { get; set; }
 
+    /// <summary>
+    /// 子项
+    /// </summary>
     public IList<uint> ChildApp { get; set; } = new List<uint>();
 
+    /// <summary>
+    /// 正在运行的 App 列表
+    /// </summary>
     public ObservableCollection<SteamAppLaunchItem>? LaunchItems { get; set; }
 
+    /// <summary>
+    /// <see cref="SteamAppSaveFile"/> 列表集合
+    /// </summary>
     public ObservableCollection<SteamAppSaveFile>? SaveFiles { get; set; }
 
+    /// <summary>
+    /// Logo 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string? LogoUrl => string.IsNullOrEmpty(Logo) ? null :
         string.Format(SteamApiUrls.STEAMAPP_LOGO_URL, AppId, Logo);
 
+    /// <summary>
+    /// LibraryGrid 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string LibraryGridUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARY_URL, AppId);
 
+    /// <summary>
+    /// LibraryHero 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string LibraryHeroUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYHERO_URL, AppId);
 
+    /// <summary>
+    /// LibraryHeroBlur 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string LibraryHeroBlurUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYHEROBLUR_URL, AppId);
 
+    /// <summary>
+    /// LibraryLogo 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string LibraryLogoUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYLOGO_URL, AppId);
 
+    /// <summary>
+    /// HeaderLogo 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string HeaderLogoUrl => string.Format(SteamApiUrls.STEAMAPP_HEADIMAGE_URL, AppId);
 
+    /// <summary>
+    /// CAPSULELogo 图片路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string CAPSULELogoUrl => string.Format(SteamApiUrls.STEAMAPP_CAPSULE_URL, AppId);
 
+    /// <summary>
+    /// 图标路径
+    /// </summary>
     [SystemTextJsonIgnore]
     public string? IconUrl => string.IsNullOrEmpty(Icon) ? null :
         string.Format(SteamApiUrls.STEAMAPP_LOGO_URL, AppId, Icon);
 
+    /// <summary>
+    /// App 启动进程
+    /// </summary>
     [SystemTextJsonIgnore]
     public Process? Process { get; set; }
 
+    /// <summary>
+    /// 是否正在观测下载
+    /// </summary>
     public bool IsWatchDownloading { get; set; }
 
     //public TradeCard? Card { get; set; }
 
     //public SteamAppInfo? Common { get; set; }
 
+    /// <summary>
+    /// 内容填充前数据块
+    /// </summary>
     internal byte[]? _stuffBeforeHash;
 
+    /// <summary>
+    /// 修改数量
+    /// </summary>
     internal uint _changeNumber;
 
+    /// <summary>
+    /// 原始数据
+    /// </summary>
     internal byte[]? _originalData;
 
+    /// <summary>
+    /// 原始数据
+    /// </summary>
     public byte[]? OriginalData { get => _originalData; set => _originalData = value; }
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
 
+    /// <summary>
+    /// 内部属性集合
+    /// </summary>
     [SystemTextJsonIgnore]
     protected internal SteamAppPropertyTable? _properties;
 
+    /// <summary>
+    /// 修改的属性集合
+    /// </summary>
     [SystemTextJsonIgnore]
     public SteamAppPropertyTable? ChangesData => _properties;
 
@@ -467,10 +593,22 @@ public class SteamApp
 #endif
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+
+    /// <summary>
+    /// 是否正在下载
+    /// </summary>
     public bool IsDownloading => CheckDownloading(State);
 
+    /// <summary>
+    /// 是否已下载
+    /// </summary>
     public bool IsInstalled => IsBitSet(State, 2);
 
+    /// <summary>
+    /// <see cref="SteamApp"/> Compare
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
     public int CompareTo(SteamApp? other) => string.Compare(Name, other?.Name);
 
     static bool IsBitSet(int b, int pos)

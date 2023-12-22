@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Models.WebApi.Authenticator.PhoneNumber;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// AccountWaitingForEmailConfirmation 接口返回模型类
+/// </summary>
 public class IsAccountWaitingForEmailConfirmationResponse
 {
     /// <summary>
@@ -11,6 +12,9 @@ public class IsAccountWaitingForEmailConfirmationResponse
     public IsAccountWaitingForEmailConfirmationResponseResponse? Response { get; set; }
 }
 
+/// <summary>
+/// <see cref="IsAccountWaitingForEmailConfirmationResponse.Response"/> 模型类
+/// </summary>
 public class IsAccountWaitingForEmailConfirmationResponseResponse
 {
     /// <summary>

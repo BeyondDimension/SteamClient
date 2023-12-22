@@ -105,12 +105,27 @@ sealed class SteamMarketServiceTest : ServiceTestBase
 
             Assert.That(rsp.IsSuccess && rsp.Content is not null);
             var confirmations = rsp.Content!;
-            Dictionary<string, string> param = new Dictionary<string, string>(confirmations.Select(x => new KeyValuePair<string, string>(x.Id, x.Nonce)));
-
-            if (param.Count > 0)
+            Confirmation? confirmation = null;
+            if (confirmations.Count() > 0)
             {
+                foreach (var item in confirmations)
+                {
+                    var assets = await steamTradeService.GetConfirmationImages(steamLoginState.SteamId.ToString(), item);
+                    if (assets.Content.my_items.Length == 0)
+                    {
+                        confirmation = item;
+                        break;
+                    }
+                }
+            }
+            if (confirmation is not null)
+            {
+                var param = new Dictionary<string, string>() { { confirmation.Id, confirmation.Nonce } };
                 //var res = await TradeService.SendConfirmation(loginState.SteamId.ToString()!, confirmations.First(), true);
                 var sendResult = await steamTradeService.BatchSendConfirmation(steamLoginState.SteamId.ToString()!, param, true);
+
+                Assert.That(sendResult, Is.Not.Null);
+                Assert.That(sendResult.Content);
             }
         }
     }

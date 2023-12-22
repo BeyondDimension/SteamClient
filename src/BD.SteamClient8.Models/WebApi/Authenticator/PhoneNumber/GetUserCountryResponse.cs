@@ -1,7 +1,8 @@
 namespace BD.SteamClient8.Models.WebApi.Authenticator.PhoneNumber;
 
-#pragma warning disable SA1600 // Elements should be documented
-
+/// <summary>
+/// GetUserCountry 接口返回模型类
+/// </summary>
 public class GetUserCountryResponse
 {
     /// <summary>
@@ -11,6 +12,9 @@ public class GetUserCountryResponse
     public GetUserCountryResponseResponse? Response { get; set; }
 }
 
+/// <summary>
+/// <see cref="GetUserCountryResponse.Response"/> 详细信息
+/// </summary>
 public class GetUserCountryResponseResponse
 {
     /// <summary>

@@ -2,6 +2,9 @@ namespace BD.SteamClient8.Models.WebApi.Authenticator;
 
 #pragma warning disable SA1600 // Elements should be documented
 
+/// <summary>
+/// 刷新 AccessToken 接口返回模型类
+/// </summary>
 public class GenerateAccessTokenForAppResponse
 {
     /// <summary>
@@ -11,6 +14,9 @@ public class GenerateAccessTokenForAppResponse
     public GenerateAccessTokenForAppResponseResponse? Response;
 }
 
+/// <summary>
+/// <see cref="GenerateAccessTokenForAppResponse.Response"/> 模型类
+/// </summary>
 public class GenerateAccessTokenForAppResponseResponse
 {
     /// <summary>

@@ -2,6 +2,9 @@ namespace BD.SteamClient8.Models.WebApi.Authenticator;
 
 #pragma warning disable SA1600 // Elements should be documented
 
+/// <summary>
+/// RemoveAuthenticatorAsync 接口返回模型类
+/// </summary>
 public class RemoveAuthenticatorResponse
 {
     /// <summary>
@@ -11,6 +14,9 @@ public class RemoveAuthenticatorResponse
     public RemoveAuthenticatorResponseResponse? Response { get; set; }
 }
 
+/// <summary>
+/// <see cref="RemoveAuthenticatorResponse.Response"/> 模型类
+/// </summary>
 public class RemoveAuthenticatorResponseResponse
 {
     /// <summary>
