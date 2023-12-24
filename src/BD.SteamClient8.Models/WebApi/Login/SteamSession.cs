@@ -75,11 +75,20 @@ public sealed partial class SteamSession
 
         var steamLoginSecure = this.SteamId + "%7C%7C" + this.AccessToken;
         var sessionid = GetRandomHexNumber(32);
-        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steamcommunity.com"));
-        Cookies.Add(new Cookie("sessionid", sessionid, "/", "steamcommunity.com"));
-        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steampowered.com"));
-        Cookies.Add(new Cookie("sessionid", sessionid, "/", "steampowered.com"));
+        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
+        Cookies.Add(new Cookie("sessionid", sessionid, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
+        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", new Uri(SteamApiUrls.STEAM_STORE_URL).Host));
+        Cookies.Add(new Cookie("sessionid", sessionid, "/", new Uri(SteamApiUrls.STEAM_STORE_URL).Host));
 
+        // Cookie 去重保留最新
+        var deduplicated = new CookieCollection();
+        Cookies.Cast<Cookie>()
+            .GroupBy(cookie => new { cookie.Domain, cookie.Name })
+            .SelectMany(group =>
+            {
+                return group.OrderByDescending(cookie => cookie.TimeStamp).Take(1);
+            }).ForEach(deduplicated.Add);
+        Cookies = deduplicated;
         return true;
     }
 

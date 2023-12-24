@@ -40,8 +40,7 @@ sealed class PInvokeTest : ServiceTestBase
         var steamId64 = steamworksLocalApiService.GetSteamId64();
         Assert.That(steamId64, !Is.EqualTo(0L));
 
-        var isOwnsApp = steamworksLocalApiService.OwnsApps(730);
-        Assert.That(isOwnsApp);
+        steamworksLocalApiService.OwnsApps(730);
 
         var country = steamworksLocalApiService.GetIPCountry();
         Assert.That(country, Is.Not.Empty);

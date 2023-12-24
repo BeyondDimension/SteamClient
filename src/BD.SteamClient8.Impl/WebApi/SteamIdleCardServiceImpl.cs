@@ -20,14 +20,16 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     /// 初始化 <see cref="SteamIdleCardServiceImpl"/> 类的新实例
     /// </summary>
     /// <param name="s"></param>
+    /// <param name="sessions"></param>
     /// <param name="loggerFactory"></param>
     public SteamIdleCardServiceImpl(
         IServiceProvider s,
+        ISteamSessionService sessions,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
             s)
     {
-        _sessionService = s.GetRequiredService<ISteamSessionService>();
+        _sessionService = sessions;
     }
 
     #region Public

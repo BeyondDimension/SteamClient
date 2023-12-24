@@ -76,6 +76,7 @@ public class SteamApp
     /// <summary>
     /// AppId 唯一标识
     /// </summary>
+    [SystemTextJsonProperty("appid")]
     public uint AppId { get; set; }
 
     /// <summary>
@@ -88,6 +89,7 @@ public class SteamApp
     /// <summary>
     /// 名称
     /// </summary>
+    [SystemTextJsonProperty("name")]
     public string? Name
     {
         get => _Name;

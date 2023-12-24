@@ -118,7 +118,7 @@ public interface ISteamAccountService
     /// <param name="startAssetId">开始物品 Id(用于分页)</param>
     /// <param name="language">语言(默认简体中文)</param>
     /// <returns></returns>
-    Task<ApiRspImpl<InventoryPageResponse>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese");
+    Task<ApiRspImpl<InventoryPageResponse?>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese");
 
     /// <summary>
     /// 获取库存交易历史

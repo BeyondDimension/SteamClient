@@ -60,7 +60,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
         Assert.Multiple(() =>
         {
             Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content?.Count, Is.Not.Empty);
+            Assert.That(rsp.Content?.Count > 0);
         });
     }
 

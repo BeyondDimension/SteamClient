@@ -10,5 +10,6 @@ public class SteamApps
     /// <summary>
     /// <see cref="SteamAppList"/> Instance
     /// </summary>
+    [SystemTextJsonProperty("applist")]
     public SteamAppList? AppList { get; set; }
 }

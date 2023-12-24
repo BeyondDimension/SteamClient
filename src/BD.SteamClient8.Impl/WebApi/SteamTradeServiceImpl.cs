@@ -22,15 +22,17 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// 初始化 <see cref="SteamTradeServiceImpl"/> 类的新实例
     /// </summary>
     /// <param name="s"></param>
+    /// <param name="sessions"></param>
     /// <param name="loggerFactory"></param>
     public SteamTradeServiceImpl(
         IServiceProvider s,
+        ISteamSessionService sessions,
         ILoggerFactory loggerFactory) : base(
             loggerFactory.CreateLogger(TAG),
             s)
     {
         _tasks = new ConcurrentDictionary<string, CancellationTokenSource>();
-        _sessionService = s.GetRequiredService<ISteamSessionService>();
+        _sessionService = sessions;
     }
 
     #region Public
@@ -695,6 +697,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     /// <summary>
     /// 获取 SessionId
     /// </summary>
+    /// <param name="domain"></param>
     /// <param name="steamSession"></param>
     /// <returns></returns>
     private async Task<string?> FetchSessionId(SteamSession steamSession)

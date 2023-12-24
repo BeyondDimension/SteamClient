@@ -38,7 +38,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         configuration = GetRequiredService<IConfiguration>();
 
         steamAuthenticator = await GetSteamAuthenticatorAsync(configuration, steamAuthenticatorService);
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
+        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
 
         var identitySecret = configuration["identitySecret"];
         long serverTimeDiff;
@@ -261,6 +261,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     /// 拒绝接收到的报价 和 取消已发送报价
     /// </summary>
     /// <returns></returns>
+    [Test]
     public async Task Decline_Cancel_TradeOffer_Test()
     {
         var trade_summary = await steamTradeService.GetTradeOffersSummaryAsync(ApiKey);
@@ -283,7 +284,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             });
             var fetched = ISteamTradeService.FilterNonActiveOffers(tradeOffers.Content);
 
-            var decline_trade_offer = fetched!.Response!.TradeOffersReceived.ThrowIsNull().FirstOrDefault();
+            var decline_trade_offer = fetched!.Response!.TradeOffersReceived?.FirstOrDefault();
             if (decline_trade_offer != null)
             {
                 var decline_result = await steamTradeService.DeclineTradeOfferAsync(steamLoginState.SteamId.ToString(), decline_trade_offer.TradeOfferId);
@@ -291,12 +292,51 @@ sealed class SteamTradeServiceTest : ServiceTestBase
                 Assert.That(decline_result.IsSuccess && decline_result.Content, Is.True);
             }
 
-            var cancel_trade_offer = fetched!.Response!.TradeOffersSent.ThrowIsNull().FirstOrDefault();
+            var cancel_trade_offer = fetched!.Response!.TradeOffersSent?.FirstOrDefault();
             if (cancel_trade_offer != null)
             {
                 var cancel_result = await steamTradeService.CancelTradeOfferAsync(steamLoginState.SteamId.ToString(), cancel_trade_offer.TradeOfferId);
                 Assert.That(cancel_result, Is.Not.Null);
                 Assert.That(cancel_result.IsSuccess && cancel_result.Content, Is.True);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 测试获取交易确认列表
+    /// </summary>
+    /// <returns></returns>
+    [Test]
+    public async Task TestGetConfirmations()
+    {
+        if (steamLoginState != null)
+        {
+            // 需要 IdentitySecret !!!!!
+            var rsp = await steamTradeService.GetConfirmations(steamLoginState.SteamId.ToString()!);
+
+            Assert.That(rsp.IsSuccess && rsp.Content is not null);
+            var confirmations = rsp.Content!;
+            Confirmation? confirmation = null;
+            if (confirmations.Count() > 0)
+            {
+                foreach (var item in confirmations)
+                {
+                    var assets = await steamTradeService.GetConfirmationImages(steamLoginState.SteamId.ToString(), item);
+                    if (assets.Content.my_items.Length == 0)
+                    {
+                        confirmation = item;
+                        break;
+                    }
+                }
+            }
+            if (confirmation is not null)
+            {
+                var param = new Dictionary<string, string>() { { confirmation.Id, confirmation.Nonce } };
+                //var res = await TradeService.SendConfirmation(loginState.SteamId.ToString()!, confirmations.First(), true);
+                var sendResult = await steamTradeService.BatchSendConfirmation(steamLoginState.SteamId.ToString()!, param, true);
+
+                Assert.That(sendResult, Is.Not.Null);
+                Assert.That(sendResult.Content);
             }
         }
     }

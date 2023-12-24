@@ -5,7 +5,6 @@ namespace BD.SteamClient8.UnitTest;
 /// </summary>
 sealed class SteamIdleServiceTest : ServiceTestBase
 {
-    SteamLoginState steamLoginState = null!; // ?未引用？
     ISteamIdleCardService steamIdleCardService = null!;
     ISteamAccountService steamAccountService = null!;
     ISteamSessionService steamSessionService = null!;
@@ -18,6 +17,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
 
         services.AddSteamAccountService();
         services.AddSteamIdleCardService();
+        services.AddSteamAuthenticatorService();
     }
 
     /// <inheritdoc/>
@@ -31,7 +31,10 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         steamSessionService = GetRequiredService<ISteamSessionService>();
         configuration = GetRequiredService<IConfiguration>();
 
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
+        _ = await GetSteamAuthenticatorAsync(configuration, GetRequiredService<ISteamAuthenticatorService>());
+        _ = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
+
+        Assert.That(steamSessionService.RentSession("76561199494800019"), Is.Not.Null);
     }
 
     /// <summary>
@@ -41,7 +44,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase("76561199494800019")]
     [Test]
-    public async Task TestsGetBadgesAsync(string steam_id)
+    public async Task TestGetBadgesAsync(string steam_id)
     {
         var rsp = await steamIdleCardService.GetBadgesAsync(steam_id);
 
@@ -71,7 +74,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         {
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content, Is.Not.Null);
-            Assert.That(rsp.Content, Is.Not.Empty);
+            Assert.That(rsp.Content?.Count() > 0);
         });
     }
 

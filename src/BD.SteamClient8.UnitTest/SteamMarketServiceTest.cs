@@ -9,7 +9,6 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     ISteamAccountService steamAccountService = null!;
     IConfiguration configuration = null!;
     ISteamMarketService steamMarketService = null!;
-    ISteamTradeService steamTradeService = null!;
 
     /// <inheritdoc/>
     protected override void ConfigureServices(IServiceCollection services)
@@ -27,7 +26,6 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     {
         await base.Setup();
 
-        steamTradeService = GetRequiredService<ISteamTradeService>();
         steamMarketService = GetRequiredService<ISteamMarketService>();
         steamAccountService = GetRequiredService<ISteamAccountService>();
         configuration = GetRequiredService<IConfiguration>();
@@ -88,45 +86,6 @@ sealed class SteamMarketServiceTest : ServiceTestBase
             var buyorders = listings.Buyorders.ToList();
 
             Assert.That(listings.ActiveListings, Is.Not.Null);
-        }
-    }
-
-    /// <summary>
-    /// 测试获取交易确认列表
-    /// </summary>
-    /// <returns></returns>
-    [Test]
-    public async Task TestGetConfirmations()
-    {
-        if (steamLoginState != null)
-        {
-            // 需要 IdentitySecret !!!!!
-            var rsp = await steamTradeService.GetConfirmations(steamLoginState.SteamId.ToString()!);
-
-            Assert.That(rsp.IsSuccess && rsp.Content is not null);
-            var confirmations = rsp.Content!;
-            Confirmation? confirmation = null;
-            if (confirmations.Count() > 0)
-            {
-                foreach (var item in confirmations)
-                {
-                    var assets = await steamTradeService.GetConfirmationImages(steamLoginState.SteamId.ToString(), item);
-                    if (assets.Content.my_items.Length == 0)
-                    {
-                        confirmation = item;
-                        break;
-                    }
-                }
-            }
-            if (confirmation is not null)
-            {
-                var param = new Dictionary<string, string>() { { confirmation.Id, confirmation.Nonce } };
-                //var res = await TradeService.SendConfirmation(loginState.SteamId.ToString()!, confirmations.First(), true);
-                var sendResult = await steamTradeService.BatchSendConfirmation(steamLoginState.SteamId.ToString()!, param, true);
-
-                Assert.That(sendResult, Is.Not.Null);
-                Assert.That(sendResult.Content);
-            }
         }
     }
 }

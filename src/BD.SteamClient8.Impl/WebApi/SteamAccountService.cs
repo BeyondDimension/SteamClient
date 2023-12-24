@@ -358,6 +358,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                         }
                     }
                 }
+                session.GenerateSetCookie();
                 sessions.AddOrSetSession(session);
                 return ApiRspHelper.Ok();
             }
@@ -515,9 +516,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     //var res = data.Content.ReadAsStringAsync();
                 });
             }
-
-            //await client.GetAsync("https://store.steampowered.com/");
-            //await client.GetAsync("https://steamcommunity.com/");
             loginState.Cookies = cookieContainer.GetAllCookies();
         }
         var session = new SteamSession();
@@ -525,6 +523,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         session.AccessToken = loginState.AccessToken;
         session.RefreshToken = loginState.RefreshToken;
         session.Cookies = cookieContainer.GetAllCookies();
+        session.GenerateSetCookie();
         sessions.AddOrSetSession(session);
         return ApiRspHelper.Ok();
 
@@ -1116,7 +1115,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<InventoryPageResponse>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese")
+    public async Task<ApiRspImpl<InventoryPageResponse?>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese")
     {
         string url = string.Format("{0}/inventory/{1}/{2}/{3}?l={4}&count={5}{6}",
             SteamApiUrls.STEAM_COMMUNITY_URL,
@@ -1134,7 +1133,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             return await ReadFromSJsonAsync<InventoryPageResponse>(resp.Content);
         });
 
-        return inventories!;
+        return inventories;
     }
 
     /// <inheritdoc/>

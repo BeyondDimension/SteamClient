@@ -51,7 +51,9 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(SteamAppSaveFile))]
 //// SteamGridDB
 [SystemTextJsonSerializable(typeof(SteamGridApp))]
+[SystemTextJsonSerializable(typeof(SteamGridItemData))]
 [SystemTextJsonSerializable(typeof(SteamGridItem))]
+[SystemTextJsonSerializable(typeof(SteamGridAppData))]
 //// Trade
 [SystemTextJsonSerializable(typeof(Asset))]
 [SystemTextJsonSerializable(typeof(Confirmation))]
