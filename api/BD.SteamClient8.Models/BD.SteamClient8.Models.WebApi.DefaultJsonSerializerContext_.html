@@ -45,8 +45,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../../index.html">
-            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
-            SteamClient 文档
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -139,7 +139,9 @@
 [JsonSerializable(typeof(SteamAppInfo))]
 [JsonSerializable(typeof(SteamAppSaveFile))]
 [JsonSerializable(typeof(SteamGridApp))]
+[JsonSerializable(typeof(SteamGridItemData))]
 [JsonSerializable(typeof(SteamGridItem))]
+[JsonSerializable(typeof(SteamGridAppData))]
 [JsonSerializable(typeof(Asset))]
 [JsonSerializable(typeof(Confirmation))]
 [JsonSerializable(typeof(TradeHistory))]
@@ -152,8 +154,6 @@
 [JsonSerializable(typeof(SteamAddPhoneNumberResponse))]
 [JsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
 [JsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]
-[JsonSerializable(typeof(SteamDoLoginJsonStruct))]
-[JsonSerializable(typeof(SteamDoLoginOauthJsonStruct))]
 [JsonSerializable(typeof(SteamDoLoginHasPhoneJsonStruct))]
 [JsonSerializable(typeof(SteamDoLoginTfaJsonStruct))]
 [JsonSerializable(typeof(SteamDoLoginFinalizeJsonStruct))]
@@ -2109,6 +2109,38 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListSteamGridItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListSteamGridItem*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListSteamGridItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListSteamGridItem">
+  ListSteamGridItem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListSteamGridItem.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;SteamGridItem&gt;&gt; ListSteamGridItem { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItem.html">SteamGridItem</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListString_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListString*"></a>
 
   <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListString" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListString">
@@ -3581,70 +3613,6 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginJsonStruct_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginJsonStruct*"></a>
-
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginJsonStruct" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginJsonStruct">
-  SteamDoLoginJsonStruct
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.SteamDoLoginJsonStruct.g.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;SteamDoLoginJsonStruct&gt; SteamDoLoginJsonStruct { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginJsonStruct.html">SteamDoLoginJsonStruct</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginOauthJsonStruct_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginOauthJsonStruct*"></a>
-
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginOauthJsonStruct" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginOauthJsonStruct">
-  SteamDoLoginOauthJsonStruct
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.SteamDoLoginOauthJsonStruct.g.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;SteamDoLoginOauthJsonStruct&gt; SteamDoLoginOauthJsonStruct { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginOauthJsonStruct.html">SteamDoLoginOauthJsonStruct</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginTfaJsonStruct_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginTfaJsonStruct*"></a>
 
   <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamDoLoginTfaJsonStruct" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamDoLoginTfaJsonStruct">
@@ -3741,6 +3709,38 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridAppData_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridAppData*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridAppData" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridAppData">
+  SteamGridAppData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.SteamGridAppData.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;SteamGridAppData&gt; SteamGridAppData { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridAppData.html">SteamGridAppData</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItem*"></a>
 
   <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItem">
@@ -3805,11 +3805,11 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItemType_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItemType*"></a>
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItemData_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItemData*"></a>
 
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItemType" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItemType">
-  SteamGridItemType
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.SteamGridItemType.g.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__SteamGridItemData" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.SteamGridItemData">
+  SteamGridItemData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.SteamGridItemData.g.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
@@ -3817,7 +3817,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;SteamGridItemType&gt; SteamGridItemType { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;SteamGridItemData&gt; SteamGridItemData { get; }</code></pre>
   </div>
 
 
@@ -3826,7 +3826,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Primitives/Enums/WebApi/SteamGridDB/SteamGridItemType.cs">SteamGridItemType</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItemData.html">SteamGridItemData</a>&gt;</dt>
     <dd></dd>
   </dl>
 

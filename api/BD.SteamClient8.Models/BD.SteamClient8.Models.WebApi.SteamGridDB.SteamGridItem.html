@@ -45,8 +45,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../../index.html">
-            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
-            SteamClient 文档
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -220,7 +220,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SteamGridItemAuthor Author { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;author&quot;)]
+public SteamGridItemAuthor Author { get; set; }</code></pre>
   </div>
 
 
@@ -283,7 +284,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SteamGridItemType GridType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public SteamGridItemType GridType { get; set; }</code></pre>
   </div>
 
 
@@ -315,7 +317,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;id&quot;)]
+public int Id { get; set; }</code></pre>
   </div>
 
 
@@ -347,7 +350,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Score { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;score&quot;)]
+public int Score { get; set; }</code></pre>
   </div>
 
 
@@ -379,7 +383,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Style { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;style&quot;)]
+public string Style { get; set; }</code></pre>
   </div>
 
 
@@ -411,7 +416,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; Tags { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;tags&quot;)]
+public List&lt;string&gt; Tags { get; set; }</code></pre>
   </div>
 
 
@@ -442,7 +448,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Thumb { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;thumb&quot;)]
+public string Thumb { get; set; }</code></pre>
   </div>
 
 
@@ -474,7 +481,8 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Url { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;url&quot;)]
+public string Url { get; set; }</code></pre>
   </div>
 
 

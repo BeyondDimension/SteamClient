@@ -45,8 +45,8 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="../../index.html">
-            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
-            SteamClient 文档
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-three-dots"></i>
@@ -325,7 +325,7 @@ Task&lt;ApiRspImpl&gt; DoLoginAsync(SteamLoginState loginState, bool isTransfer 
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;InventoryPageResponse&gt;&gt; GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = &quot;schinese&quot;)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;InventoryPageResponse?&gt;&gt; GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = &quot;schinese&quot;)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

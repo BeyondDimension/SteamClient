@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -1651,26 +1651,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginHasPhoneJsonStruct.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginJsonStruct.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginJsonStruct.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginOauthJsonStruct.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticator.SteamDoLoginOauthJsonStruct.html"
         }
       },
       "version": ""
@@ -4612,16 +4592,6 @@
       "output": {
         ".html": {
           "relative_path": "index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "ref/ValveKeyValue/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "ref/ValveKeyValue/README.html"
         }
       },
       "version": ""
