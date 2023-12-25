@@ -1126,11 +1126,13 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             count,
             !string.IsNullOrEmpty(startAssetId) ? $"&start_assetid={startAssetId}" : string.Empty);
 
+        using var sendArgs = new WebApiClientSendArgs(url);
         InventoryPageResponse? inventories = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
-            var resp = await CreateClient().GetAsync(url);
-
-            return await ReadFromSJsonAsync<InventoryPageResponse>(resp.Content);
+            var result = await SendAsync<InventoryPageResponse>(sendArgs);
+            if (result is null)
+                throw new NullReferenceException("GetInventories 429 too many requests");
+            return result;
         });
 
         return inventories;

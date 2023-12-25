@@ -44,7 +44,7 @@ public interface ISteamTradeService
     /// <param name="tradeInfo"></param>
     /// <param name="confirmations"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo, IEnumerable<Confirmation>? confirmations = null);
+    Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo, IEnumerable<Confirmation>? confirmations = null);
 
     /// <summary>
     /// 发送交易报价（需要好友关系）
@@ -89,7 +89,7 @@ public interface ISteamTradeService
     /// </summary>
     /// <param name="api_key"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<TradeResponse?>> GetTradeOffersAsync(string api_key);
+    Task<ApiRspImpl<TradeOffersResponse?>> GetTradeOffersAsync(string api_key);
 
     /// <summary>
     /// 根据交易报价 ID 获取报价信息
@@ -97,7 +97,7 @@ public interface ISteamTradeService
     /// <param name="api_key"></param>
     /// <param name="trade_offer_id"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<TradeInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id);
+    Task<ApiRspImpl<TradeOffersInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id);
 
     /// <summary>
     /// 获取待处理的交易报价和新交易报价的数量
@@ -122,7 +122,7 @@ public interface ISteamTradeService
     /// </summary>
     /// <param name="tradeResponse"></param>
     /// <returns></returns>
-    public static TradeResponse FilterNonActiveOffers(TradeResponse tradeResponse)
+    public static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse)
     {
         if (tradeResponse?.Response?.TradeOffersSent != null)
             tradeResponse.Response.TradeOffersSent = tradeResponse.Response.TradeOffersSent.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();

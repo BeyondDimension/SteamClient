@@ -127,7 +127,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
+    public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -168,7 +168,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeResponse?>> GetTradeOffersAsync(string api_key)
+    public async Task<ApiRspImpl<TradeOffersResponse?>> GetTradeOffersAsync(string api_key)
     {
         var queryString = new NameValueCollection()
         {
@@ -188,11 +188,13 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
-        return await SendAsync<TradeResponse>(sendArgs);
+
+        var re = await SendAsync<string>(sendArgs);
+        return await SendAsync<TradeOffersResponse>(sendArgs);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id)
+    public async Task<ApiRspImpl<TradeOffersInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id)
     {
         var queryString = new NameValueCollection()
         {
@@ -213,7 +215,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         {
             return SystemTextJsonSerializer.Deserialize(document.RootElement
                 .GetProperty("response")
-                .GetProperty("offer"), DefaultJsonSerializerContext_.Default.TradeInfo);
+                .GetProperty("offer"), DefaultJsonSerializerContext_.Default.TradeOffersInfo);
         }
     }
 
@@ -433,11 +435,14 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             if (contentString.Contains("Steam Guard Mobile Authenticator is providing incorrect Steam Guard codes."))
                 return confirmations!;
 
-            foreach (var conf in confirmations_page.RootElement.GetProperty("conf").EnumerateArray())
+            if (confirmations_page.RootElement.TryGetProperty("conf", out var confs))
             {
-                var confirmation = SystemTextJsonSerializer.Deserialize(conf, DefaultJsonSerializerContext_.Default.Confirmation);
-                if (confirmation is not null)
-                    confirmations.Add(confirmation);
+                foreach (var conf in confs.EnumerateArray())
+                {
+                    var confirmation = SystemTextJsonSerializer.Deserialize(conf, DefaultJsonSerializerContext_.Default.Confirmation);
+                    if (confirmation is not null)
+                        confirmations.Add(confirmation);
+                }
             }
         }
         return confirmations!;

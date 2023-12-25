@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models.WebApi.Trade;
 /// <summary>
 /// 交易报价物品信息
 /// </summary>
-public record class TradeItem
+public record class TradeOffersItem
 {
     /// <summary>
     /// 游戏 AppId

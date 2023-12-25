@@ -5,7 +5,7 @@ namespace BD.SteamClient8.Models.WebApi.Trade;
 /// <summary>
 /// 交易详情
 /// </summary>
-public record class TradeInfo
+public record class TradeOffersInfo
 {
     /// <summary>
     /// 交易报价 Id
@@ -41,13 +41,13 @@ public record class TradeInfo
     /// 失去的物品集合
     /// </summary>
     [SystemTextJsonProperty("items_to_give")]
-    public List<TradeItem>? ItemsToGive { get; set; }
+    public List<TradeOffersItem>? ItemsToGive { get; set; }
 
     /// <summary>
     /// 接收到的物品集合
     /// </summary>
     [SystemTextJsonProperty("items_to_receive")]
-    public List<TradeItem>? ItemsToReceive { get; set; }
+    public List<TradeOffersItem>? ItemsToReceive { get; set; }
 
     /// <summary>
     /// 是否自己的交易报价
@@ -95,31 +95,31 @@ public record class TradeInfo
 /// <summary>
 /// 交易报价返回
 /// </summary>
-public partial class TradeResponse : JsonModel
+public partial class TradeOffersResponse : JsonModel
 {
     /// <summary>
     /// 交易报价返回信息详情
     /// </summary>
     [SystemTextJsonProperty("response")]
-    public TradeResponseInfo? Response { get; set; }
+    public TradeOffersResponseInfo? Response { get; set; }
 }
 
 /// <summary>
 /// 交易报价返回信息详情
 /// </summary>
-public record class TradeResponseInfo
+public record class TradeOffersResponseInfo
 {
     /// <summary>
     /// 失去的物品集合
     /// </summary>
     [SystemTextJsonProperty("trade_offers_sent")]
-    public List<TradeInfo>? TradeOffersSent { get; set; }
+    public List<TradeOffersInfo>? TradeOffersSent { get; set; }
 
     /// <summary>
     /// 收到的物品集合
     /// </summary>
     [SystemTextJsonProperty("trade_offers_received")]
-    public List<TradeInfo>? TradeOffersReceived { get; set; }
+    public List<TradeOffersInfo>? TradeOffersReceived { get; set; }
 
     /// <summary>
     /// 下一个光标
