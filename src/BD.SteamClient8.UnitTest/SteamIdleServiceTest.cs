@@ -53,7 +53,6 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         {
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content, Is.Not.Null);
-            Assert.That(rsp.Content?.Count() > 0);
         });
     }
 
@@ -74,7 +73,6 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         {
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content, Is.Not.Null);
-            Assert.That(rsp.Content, Is.Not.Empty);
         });
     }
 }

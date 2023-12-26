@@ -63,10 +63,10 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId)
+    public async Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId, CancellationToken cancellationToken = default)
     {
         var url = string.Format(SteamGridDBApiUrls.RetrieveGameBySteamAppId_Url, appId);
-        var rsp = await GetAsync<SteamGridAppData>(url, MediaTypeNames.JSON, default);
+        var rsp = await GetAsync<SteamGridAppData>(url, MediaTypeNames.JSON, cancellationToken);
 
         if (rsp != null)
         {
@@ -83,7 +83,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid)
+    public async Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid, CancellationToken cancellationToken = default)
     {
         var url = type switch
         {
@@ -107,7 +107,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
             url += "&dimensions=600x900";
         }
 
-        var rsp = await GetAsync<SteamGridItemData>(url, MediaTypeNames.JSON, default);
+        var rsp = await GetAsync<SteamGridItemData>(url, MediaTypeNames.JSON, cancellationToken);
 
         if (rsp != null)
         {

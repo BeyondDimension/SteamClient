@@ -91,7 +91,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         Assert.That(accept_result.IsSuccess, Is.True);
 
         // ------------开启后台任务 定时接收礼物报价
-        var startTask = steamTradeService.StartTradeTask(
+        var startTask = await steamTradeService.StartTradeTask(
             steam_id: SteamLoginState.SteamId.ToString(),
             interval: TimeSpan.FromMinutes(3),
             tradeTaskEnum: TradeTaskEnum.AutoAcceptGitTrade);
@@ -140,7 +140,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         }
 
         // ------------停止后台任务
-        var stopTask = steamTradeService.StopTask(SteamLoginState.SteamId.ToString(), TradeTaskEnum.AutoAcceptGitTrade);
+        var stopTask = await steamTradeService.StopTask(SteamLoginState.SteamId.ToString(), TradeTaskEnum.AutoAcceptGitTrade);
         Assert.That(stopTask, Is.Not.Null);
         Assert.That(stopTask.IsSuccess, Is.True);
     }

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
@@ -45,11 +45,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <Folder Include="Services\PInvoke\" />
 	</ItemGroup>
 
 </Project>

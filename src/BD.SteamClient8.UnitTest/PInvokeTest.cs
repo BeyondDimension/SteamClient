@@ -23,18 +23,20 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试本机库初始化
     /// </summary>
     [Test]
-    public void Test_SteamworksLocal()
+    public async Task Test_SteamworksLocal()
     {
-        var init_result = steamworksLocalApiService.Initialize();
-        Assert.That(init_result);
+        var init_result = await steamworksLocalApiService.Initialize();
+        Assert.That(init_result.IsSuccess);
 
-        var steamId64 = steamworksLocalApiService.GetSteamId64();
-        Assert.That(steamId64, !Is.EqualTo(0L));
+        var steamId64 = await steamworksLocalApiService.GetSteamId64();
+        Assert.That(steamId64.IsSuccess);
+        Assert.That(steamId64.Content, !Is.EqualTo(0L));
 
-        steamworksLocalApiService.OwnsApps(730);
+        await steamworksLocalApiService.OwnsApps(730);
 
-        var country = steamworksLocalApiService.GetIPCountry();
-        Assert.That(country, Is.Not.Empty);
+        var country = await steamworksLocalApiService.GetIPCountry();
+        Assert.That(country.IsSuccess);
+        Assert.That(country.Content, Is.Not.Empty);
     }
 
     /// <summary>
@@ -107,9 +109,13 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试获取记住的用户列表
     /// </summary>
     [Test]
-    public void TestGetRememberUserList()
+    public async Task TestGetRememberUserList()
     {
-        var list = steamService.GetRememberUserList();
+        var list_rsp = await steamService.GetRememberUserList();
+        Assert.That(list_rsp.IsSuccess);
+        Assert.That(list_rsp.Content, Is.Not.Null);
+
+        var list = list_rsp.Content;
         list.ForEach(x =>
         {
             TestContext.WriteLine($"{x.SteamId64}   {x.SteamID}");
@@ -121,9 +127,14 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试获取下载的游戏列表
     /// </summary>
     [Test]
-    public void TestGetDownloadingAppList()
+    public async Task TestGetDownloadingAppList()
     {
-        var list = steamService.GetDownloadingAppList();
+        var list_rsp = await steamService.GetDownloadingAppList();
+
+        Assert.That(list_rsp.IsSuccess);
+        Assert.That(list_rsp.Content, Is.Not.Null);
+
+        var list = list_rsp.Content;
         list.ForEach(x =>
         {
             TestContext.WriteLine($"{x.Name}   {x.AppId}");

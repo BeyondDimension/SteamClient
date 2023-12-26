@@ -16,22 +16,25 @@ public interface ISteamIdleCardService
     /// <param name="steam_id"></param>
     /// <param name="need_price"></param>
     /// <param name="currency"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY");
+    Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取游戏卡组卡片平均价格
     /// </summary>
     /// <param name="appIds"></param>
     /// <param name="currency"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency);
+    Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取游戏卡片价格
     /// </summary>
     /// <param name="appId"></param>
     /// <param name="currency"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency);
+    Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default);
 }

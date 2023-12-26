@@ -35,7 +35,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     #region Public
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
+    public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -50,8 +50,8 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         {
             using var sendArgs = new WebApiClientSendArgs(badges_url);
             sendArgs.SetHttpClient(steamSession.HttpClient!);
-            var page = await SendAsync<string>(sendArgs);
-            using var document = parser.ParseDocument(page.ThrowIsNull());
+            var page = await SendAsync<string>(sendArgs, cancellationToken);
+            using var document = await parser.ParseDocumentAsync(page.ThrowIsNull(), cancellationToken);
 
             var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
             if (pageNodes != null)
@@ -75,7 +75,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             {
                 using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_GAMECARDS_URL.Format(steamSession.SteamId, app_id));
                 sendArgs.SetHttpClient(steamSession.HttpClient!);
-                return await SendAsync<string>(sendArgs) ?? string.Empty;
+                return await SendAsync<string>(sendArgs, cancellationToken) ?? string.Empty;
             };
 
             FetchBadgesOnPage(document, badges, cardpage_func, need_price);
@@ -87,7 +87,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
                 using (var otherPageSendArgs = new WebApiClientSendArgs(badges_url))
                 {
                     otherPageSendArgs.SetHttpClient(steamSession.HttpClient!);
-                    using (var otherDocument = parser.ParseDocument(page))
+                    using (var otherDocument = await parser.ParseDocumentAsync(page, cancellationToken))
                     {
                         FetchBadgesOnPage(otherDocument, badges, cardpage_func, need_price);
                     }
@@ -96,7 +96,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
 
             if (need_price)
             {
-                var avg_prices = (await GetAppCardsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency))?.Content?.ToDictionary(x => x.AppId, x => x);
+                var avg_prices = (await GetAppCardsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency, cancellationToken))?.Content?.ToDictionary(x => x.AppId, x => x);
                 foreach (var badge in badges)
                 {
                     if (avg_prices != null && avg_prices.TryGetValue(badge.AppId, out var avg))
@@ -106,7 +106,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
                     }
                     if (badge.Cards != null && badge.Cards.Count > 0)
                     {
-                        var card_prices = (await GetCardsMarketPrice(badge.AppId, currency))?.Content?.ToDictionary(x => x.CardName, x => x.Price);
+                        var card_prices = (await GetCardsMarketPrice(badge.AppId, currency, cancellationToken))?.Content?.ToDictionary(x => x.CardName, x => x.Price);
                         if (card_prices != null && card_prices.Count > 0)
                         {
                             foreach (var card in badge.Cards)
@@ -140,15 +140,15 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency)
+    public async Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
     {
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
             using var sendArgs = new WebApiClientSendArgs(url);
             sendArgs.SetHttpClient(CreateClient());
-            using var response = await SendAsync<Stream>(sendArgs);
-            using var document = JsonDocument.Parse(response.ThrowIsNull());
+            using var response = await SendAsync<Stream>(sendArgs, cancellationToken);
+            using var document = await JsonDocument.ParseAsync(response.ThrowIsNull(), cancellationToken: cancellationToken);
             if (document.RootElement.TryGetProperty("result", out var result)
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
@@ -184,15 +184,15 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency)
+    public async Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)
     {
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
             using var sendArgs = new WebApiClientSendArgs(url);
             sendArgs.SetHttpClient(CreateClient());
-            using var response = await SendAsync<Stream>(sendArgs);
-            using var document = JsonDocument.Parse(response.ThrowIsNull());
+            using var response = await SendAsync<Stream>(sendArgs, cancellationToken);
+            using var document = await JsonDocument.ParseAsync(response.ThrowIsNull(), cancellationToken: cancellationToken);
             if (document.RootElement.TryGetProperty("result", out var result)
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
@@ -221,7 +221,6 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
     #region Private
     private void FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
     {
-        var parser = new HtmlParser();
         var badges_rows = document.QuerySelectorAll("div.badge_row.is_link");
         foreach (var badge in badges_rows)
         {
@@ -294,6 +293,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
 
             //if (need_price)
             //{
+            //    var parser = new HtmlParser();
             //    var card_page = await func(appid);
             //    var card_document = parser.ParseDocument(card_page);
             //    var cards = FetchCardsOnPage(card_document);

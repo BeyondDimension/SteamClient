@@ -13,26 +13,30 @@ public interface ISteamworksWebApiService
     /// <summary>
     /// 获取所有游戏 JSON 字符串
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetAllSteamAppsString();
+    Task<ApiRspImpl<string>> GetAllSteamAppsString(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取所有 Steam 游戏列表
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<SteamApp>>> GetAllSteamAppList();
+    Task<ApiRspImpl<List<SteamApp>>> GetAllSteamAppList(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Steam 个人资料
     /// </summary>
     /// <param name="steamId64"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64);
+    Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Mini 资料
     /// </summary>
     /// <param name="steamId3"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamMiniProfile?>> GetUserMiniProfile(long steamId3);
+    Task<ApiRspImpl<SteamMiniProfile?>> GetUserMiniProfile(long steamId3, CancellationToken cancellationToken = default);
 }

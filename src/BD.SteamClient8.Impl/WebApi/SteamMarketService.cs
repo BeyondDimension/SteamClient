@@ -34,7 +34,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1)
+    public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1, CancellationToken cancellationToken = default)
     {
         var url = SteamApiUrls.STEAM_MARKET_ITEMPRICEOVERVIEW_GET.Format(appId, currency, marketHashName);
 
@@ -42,7 +42,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         try
         {
             sendArgs.SetHttpClient(CreateClient());
-            return (await SendAsync<MarketItemPriceOverviewResponse>(sendArgs))!;
+            return (await SendAsync<MarketItemPriceOverviewResponse>(sendArgs, cancellationToken))!;
         }
         catch (Exception ex)
         {
@@ -51,7 +51,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese")
+    public async Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese", CancellationToken cancellationToken = default)
     {
         string url = SteamApiUrls.STEAM_MARKET_ITEMORDERHISTOGRAM_GET.Format(country, language, currency, marketItemNameId);
 
@@ -59,7 +59,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         try
         {
             sendArgs.SetHttpClient(CreateClient());
-            var str = await SendAsync<string>(sendArgs);
+            var str = await SendAsync<string>(sendArgs, cancellationToken);
             return (await SendAsync<MarketItemOrdersHistogramResponse>(sendArgs))!;
         }
         catch (Exception ex)
@@ -69,7 +69,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price)
+    public async Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price, CancellationToken cancellationToken = default)
     {
         string requestUrl = SteamApiUrls.STEAM_MARKET_SELLITEM;
 
@@ -115,12 +115,12 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         };
         sendArgs.SetHttpClient(client);
 
-        var resp = await SendAsync<SellItemToMarketResponse>(sendArgs);
+        var resp = await SendAsync<SellItemToMarketResponse>(sendArgs, cancellationToken);
         return resp!;
     }
 
     /// <inheritdoc/>
-    public async IAsyncEnumerable<MarketTradingHistoryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100)
+    public async IAsyncEnumerable<MarketTradingHistoryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         string requestUrl = SteamApiUrls.STEAM_MARKET_TRADING_HISTORY_GET.Format(start, count);
 
@@ -146,7 +146,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         };
         sendArgs.SetHttpClient(client);
 
-        var result = await SendAsync<MarketTradingHistoryRenderPageResponse>(sendArgs);
+        var result = await SendAsync<MarketTradingHistoryRenderPageResponse>(sendArgs, cancellationToken);
 
         if (result == null || !result.Success)
             yield break;
@@ -160,7 +160,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         if (htmlParser == null)
             throw new ArgumentException(nameof(htmlParser));
 
-        IDocument document = await htmlParser.ParseDocumentAsync(result.ResultsHtml);
+        IDocument document = await htmlParser.ParseDocumentAsync(result.ResultsHtml, cancellationToken);
 
         var rowsElement = document.QuerySelectorAll("div[id^='history_row_']");
 
@@ -229,7 +229,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<MarketListings>> GetMarketListing(SteamLoginState loginState)
+    public async Task<ApiRspImpl<MarketListings>> GetMarketListing(SteamLoginState loginState, CancellationToken cancellationToken = default)
     {
         const string activeListingRowIdPrefix = "mylisting_";
         const string buyorderRowIdPrefix = "mybuyorder_";
@@ -246,7 +246,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         };
         sendArgs.SetHttpClient(client);
 
-        var respStream = await SendAsync<Stream>(sendArgs);
+        var respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
 
         if (respStream == null)
             return ApiRspHelper.Fail<MarketListings>($"{requestUrl} request error")!;

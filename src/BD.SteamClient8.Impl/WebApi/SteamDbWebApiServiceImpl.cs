@@ -59,27 +59,27 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64)
+    public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_USERINFO_URL, steamId64);
-        var user = await GetAsync<SteamUser>(requestUri) ?? new SteamUser() { SteamId64 = steamId64 };
+        var user = await GetAsync<SteamUser>(requestUri, cancellationToken: cancellationToken) ?? new SteamUser() { SteamId64 = steamId64 };
         return user!;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s)
+    public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default)
     {
         List<SteamUser> users = [];
         foreach (var i in steamId64s)
-            users.Add((await GetUserInfo(i)).Content!);
+            users.Add((await GetUserInfo(i, cancellationToken: cancellationToken)).Content!);
         return users!;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamApp>> GetAppInfo(int appId)
+    public async Task<ApiRspImpl<SteamApp>> GetAppInfo(int appId, CancellationToken cancellationToken = default)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_APPINFO_URL, appId);
-        var app = await GetAsync<SteamApp>(requestUri) ?? new SteamApp() { AppId = (uint)appId };
+        var app = await GetAsync<SteamApp>(requestUri, cancellationToken: cancellationToken) ?? new SteamApp() { AppId = (uint)appId };
         return app!;
     }
 }

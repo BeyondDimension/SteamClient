@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Services.WebApi;
+namespace BD.SteamClient8.Services.PInvoke;
 
 /// <summary>
 /// Steamworks 本地 API 服务
@@ -24,125 +24,132 @@ public interface ISteamworksLocalApiService
     /// <summary>
     /// 释放 Steam 客户端资源
     /// </summary>
-    void DisposeSteamClient() { }
+    Task<ApiRspImpl> DisposeSteamClient(CancellationToken cancellationToken = default) { return Task.FromResult(ApiRspHelper.Ok()); }
 
     /// <summary>
     /// 初始化 Steamworks 本地 API 服务
     /// </summary>
     /// <returns>初始化是否成功</returns>
-    bool Initialize() => default;
+    Task<ApiRspImpl> Initialize(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 初始化 Steamworks 本地 API 服务并设置 App Id
     /// </summary>
     /// <param name="appid">要使用的 App ID</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>初始化是否成功</returns>
-    bool Initialize(int appid) => default;
+    Task<ApiRspImpl> Initialize(int appid, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 获取当前用户的 Steam ID（64 位）
     /// </summary>
     /// <returns>当前用户的 Steam ID</returns>
-    long GetSteamId64() => default;
+    Task<ApiRspImpl<long>> GetSteamId64(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 检查用户是否拥有指定的应用程序
     /// </summary>
     /// <param name="appid">AppId</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>如果用户拥有该应用程序，则返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    bool OwnsApps(uint appid) => default;
+    Task<ApiRspImpl> OwnsApps(uint appid, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 检查用户是否拥有指定的应用程序列表
     /// </summary>
     /// <param name="apps">Steam 应用程序列表</param>
-    IEnumerable<SteamApp> OwnsApps(IEnumerable<SteamApp> apps) => Array.Empty<SteamApp>();
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl<IEnumerable<SteamApp>>> OwnsApps(IEnumerable<SteamApp> apps, CancellationToken cancellationToken = default) => Task.FromResult((ApiRspImpl<IEnumerable<SteamApp>>)Array.Empty<SteamApp>()!);
 
     /// <summary>
     /// 获取应用程序的指定数据
     /// </summary>
     /// <param name="appid"></param>
     /// <param name="key"></param>
-    string GetAppData(uint appid, string key) => string.Empty;
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl<string>> GetAppData(uint appid, string key, CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(string.Empty))!;
 
     /// <summary>
     /// 检查 Steam 是否是中国版本的启动器
     /// </summary>
     /// <returns></returns>
-    bool IsSteamChinaLauncher() => default;
+    Task<ApiRspImpl> IsSteamChinaLauncher(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 检查Steam是否处于大图模式
     /// </summary>
     /// <returns></returns>
-    bool IsSteamInBigPictureMode() => default;
+    Task<ApiRspImpl> IsSteamInBigPictureMode(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 获取应用程序的活跃时间（单位：秒）
     /// </summary>
     /// <returns></returns>
-    uint GetSecondsSinceAppActive() => default;
+    Task<ApiRspImpl<uint>> GetSecondsSinceAppActive(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 获取服务器实时时间
     /// </summary>
     /// <returns></returns>
-    uint GetServerRealTime() => default;
+    Task<ApiRspImpl<uint>> GetServerRealTime(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 检查应用程序是否已安装
     /// </summary>
     /// <param name="appid"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    bool IsAppInstalled(uint appid) => default;
+    Task<ApiRspImpl> IsAppInstalled(uint appid, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 获取应用程序的安装目录
     /// </summary>
     /// <param name="appid"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    string GetAppInstallDir(uint appid) => string.Empty;
+    Task<ApiRspImpl<string>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(string.Empty))!;
 
     /// <summary>
     /// 获取IP所属国家
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    string GetIPCountry() => string.Empty;
+    Task<ApiRspImpl<string>> GetIPCountry(CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(string.Empty))!;
 
     /// <summary>
     /// 获取当前游戏语言
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    string GetCurrentGameLanguage() => string.Empty;
+    Task<ApiRspImpl<string>> GetCurrentGameLanguage(CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(string.Empty))!;
 
     /// <summary>
     /// 获取可用的游戏语言
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    string GetAvailableGameLanguages() => string.Empty;
+    Task<ApiRspImpl<string>> GetAvailableGameLanguages(CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(string.Empty))!;
 
     /// <summary>
     /// 获取指定统计数据的整数值
     /// </summary>
     /// <param name="name">统计数据的名称</param>
-    /// <param name="value">返回获取到的整数值</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到统计数据的整数值</returns>
-    bool GetStatValue(string name, out int value)
+    Task<ApiRspImpl<int>> GetStatValueInt(string name, CancellationToken cancellationToken = default)
     {
-        value = default;
-        return default;
+        return Task.FromResult(ApiRspHelper.Fail<int>());
     }
 
     /// <summary>
     /// 获取指定统计数据的浮点数值
     /// </summary>
     /// <param name="name">统计数据的名称</param>
-    /// <param name="value">返回获取到的浮点数值</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到统计数据的浮点数值</returns>
-    bool GetStatValue(string name, out float value)
+    Task<ApiRspImpl<float>> GetStatValueFloat(string name, CancellationToken cancellationToken = default)
     {
-        value = default;
-        return default;
+        return Task.FromResult(ApiRspHelper.Fail<float>());
     }
 
     /// <summary>
@@ -150,11 +157,11 @@ public interface ISteamworksLocalApiService
     /// </summary>
     /// <param name="name">成就的名称</param>
     /// <param name="isAchieved">返回是否完成该成就</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成状态</returns>
-    bool GetAchievementState(string name, out bool isAchieved)
+    Task<ApiRspImpl<bool>> GetAchievementState(string name, CancellationToken cancellationToken = default)
     {
-        isAchieved = default;
-        return default;
+        return Task.FromResult(ApiRspHelper.Fail<bool>());
     }
 
     /// <summary>
@@ -163,12 +170,11 @@ public interface ISteamworksLocalApiService
     /// <param name="name">成就的名称</param>
     /// <param name="isAchieved">返回是否完成该成就</param>
     /// <param name="unlockTime">返回解锁该成就的时间</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成状态和解锁时间</returns>
-    bool GetAchievementAndUnlockTime(string name, out bool isAchieved, out long unlockTime)
+    Task<ApiRspImpl<(bool isAchieved, long unlockTime)>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default)
     {
-        isAchieved = default;
-        unlockTime = default;
-        return default;
+        return Task.FromResult(ApiRspHelper.Fail<(bool isAchieved, long unlockTime)>());
     }
 
     /// <summary>
@@ -176,72 +182,81 @@ public interface ISteamworksLocalApiService
     /// </summary>
     /// <param name="name">成就的名称</param>
     /// <param name="percent">返回成就的完成百分比</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成百分比</returns>
-    bool GetAchievementAchievedPercent(string name, out float percent)
+    Task<ApiRspImpl<float>> GetAchievementAchievedPercent(string name, CancellationToken cancellationToken = default)
     {
-        percent = default;
-        return default;
+        return Task.FromResult(ApiRspHelper.Fail<float>());
     }
 
     /// <summary>
     /// 添加用户统计数据接收回调函数
     /// </summary>
     /// <param name="action"></param>
-    void AddUserStatsReceivedCallback(Action<IUserStatsReceived> action) { }
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl> AddUserStatsReceivedCallback(Action<IUserStatsReceived> action, CancellationToken cancellationToken = default) { return Task.FromResult(ApiRspHelper.Ok()); }
 
     /// <summary>
     /// 请求当前玩家的统计数据是否成功
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    bool RequestCurrentStats() => default;
+    Task<ApiRspImpl> RequestCurrentStats(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 重置所有统计数据
     /// </summary>
     /// <param name="achievementsToo">是否同时重置成就</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>重置结果，成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    bool ResetAllStats(bool achievementsToo) => default;
+    Task<ApiRspImpl> ResetAllStats(bool achievementsToo, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 设置成就状态
     /// </summary>
     /// <param name="name">成就名称</param>
     /// <param name="state">成就状态</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    bool SetAchievement(string name, bool state) => default;
+    Task<ApiRspImpl> SetAchievement(string name, bool state, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 设置统计数据值（整型）
     /// </summary>
     /// <param name="name"></param>
     /// <param name="value"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns>设置结果，成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    bool SetStatValue(string name, int value) => default;
+    Task<ApiRspImpl> SetStatValue(string name, int value, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 设置统计数据值（浮点型）
     /// </summary>
     /// <param name="name">统计数据名称</param>
     /// <param name="value">统计数据值</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    bool SetStatValue(string name, float value) => default;
+    Task<ApiRspImpl> SetStatValue(string name, float value, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 将变动的统计与成就数据发送至服务器进行持久保存
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns>若失败，则不会发送任何数据至服务器</returns>
-    bool StoreStats() => default;
+    Task<ApiRspImpl> StoreStats(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 异步获取全球获得该游戏各个成就的玩家百分比数据
     /// </summary>
-    void RequestGlobalAchievementPercentages() { }
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl> RequestGlobalAchievementPercentages(CancellationToken cancellationToken = default) { return Task.FromResult(ApiRspHelper.Ok()); }
 
     /// <summary>
     /// 运行回调函数
     /// </summary>
     /// <param name="server"></param>
-    void RunCallbacks(bool server) { }
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl> RunCallbacks(bool server, CancellationToken cancellationToken = default) { return Task.FromResult(ApiRspHelper.Ok()); }
 
     /// <summary>
     /// 接收用户统计信息模型
@@ -266,50 +281,54 @@ public interface ISteamworksLocalApiService
     /// </summary>
     /// <param name="totalBytes">返回用户可访问的字节总量</param>
     /// <param name="availableBytes">返回可用的字节数</param>
+    /// <param name="cancellationToken"></param>
     /// <returns>获取结果</returns>
-    bool GetCloudArchiveQuota(out ulong totalBytes, out ulong availableBytes)
+    Task<ApiRspImpl<(ulong totalBytes, ulong availableBytes)>> GetCloudArchiveQuota(CancellationToken cancellationToken = default)
     {
-        totalBytes = 0;
-        availableBytes = 0;
-        return false;
+        return Task.FromResult(ApiRspHelper.Fail<(ulong totalBytes, ulong availableBytes)>());
     }
 
     /// <summary>
     /// 获取云存档文件列表
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns>云存档文件列表</returns>
-    List<SteamRemoteFile>? GetCloudArchiveFiles() => default;
+    Task<ApiRspImpl<List<SteamRemoteFile>?>> GetCloudArchiveFiles(CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 打开一个二进制文件，将文件内容读取至一个字节数组，然后关闭文件
     /// </summary>
     /// <param name="name"></param>
     /// <param name="buffer"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    int FileRead(string name, byte[] buffer) => default;
+    Task<ApiRspImpl<int>> FileRead(string name, byte[] buffer, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 创建一个新文件，将字节写入文件，再关闭文件。 目标文件若已存在，将被覆盖
     /// </summary>
     /// <param name="name"></param>
     /// <param name="buffer"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    bool FileWrite(string name, byte[] buffer) => default;
+    Task<ApiRspImpl> FileWrite(string name, byte[] buffer, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 将文件从远程存储删除，但保留在本地磁盘上，且仍能从 API 访问
     /// </summary>
     /// <param name="name"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns><see langword="true"/> 表示文件存在且已被成功遗忘；否则返回 <see langword="false"/></returns>
-    bool FileForget(string name) => default;
+    Task<ApiRspImpl> FileForget(string name, CancellationToken cancellationToken = default) => default!;
 
     /// <summary>
     /// 从本地磁盘中删除一个文件，并将该删除传播到云端
     /// 此函数应该只在用户主动删除文件时使用。 如果您希望将一个文件从 Steam 云中移除，但将其保留在用户的本地磁盘，则需使用 <see cref="FileForget"/>
     /// </summary>
     /// <param name="name"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns><see langword="true"/> 表示文件存在且已成功删除；否则，如果文件不存在，返回 <see langword="false"/></returns>
-    bool FileDelete(string name) => default;
+    Task<ApiRspImpl> FileDelete(string name, CancellationToken cancellationToken = default) => default!;
 
     #endregion
 }

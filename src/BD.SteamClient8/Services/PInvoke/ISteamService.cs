@@ -1,6 +1,6 @@
 using static System.String2;
 
-namespace BD.SteamClient8.Services.WebApi;
+namespace BD.SteamClient8.Services.PInvoke;
 
 #pragma warning disable SA1600 // Elements should be documented
 
@@ -41,116 +41,120 @@ public partial interface ISteamService
     /// 尝试结束 Steam 进程
     /// </summary>
     /// <returns></returns>
-    ValueTask<bool> TryKillSteamProcess();
+    ValueTask<ApiRspImpl> TryKillSteamProcess(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Steam 进程是否正在运行，如果正在运行，返回进程PID提示用户去任务管理器中结束进程
     /// </summary>
     /// <returns></returns>
-    int GetSteamProcessPid();
+    Task<ApiRspImpl<int>> GetSteamProcessPid(CancellationToken cancellationToken = default);
 
-    bool IsSteamChinaLauncher();
+    Task<ApiRspImpl<bool>> IsSteamChinaLauncher(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 启动 Steam
     /// </summary>
     /// <param name="arguments"></param>
-    void StartSteam(string? arguments = null);
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl> StartSteam(string? arguments = null, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 使用配置的参数启动 Steam
     /// </summary>
-    void StartSteamWithParameter() /*=> StartSteam(SteamSettings.SteamStratParameter.Value)*/;
+    Task<ApiRspImpl> StartSteamWithParameter(CancellationToken cancellationToken = default) /*=> StartSteam(SteamSettings.SteamStratParameter.Value)*/;
 
     /// <summary>
     /// 安全退出 Steam（如果有修改 Steam 数据的操作请退出后在执行不然 Steam 安全退出会还原修改）
     /// </summary>
-    Task ShutdownSteamAsync(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> ShutdownSteamAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取最后一次自动登录 Steam 用户名称
     /// </summary>
     /// <returns></returns>
-    string GetLastLoginUserName();
+    Task<ApiRspImpl<string>> GetLastLoginUserName(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取所有记住登录 Steam 用户信息
     /// </summary>
     /// <returns></returns>
-    List<SteamUser> GetRememberUserList();
+    Task<ApiRspImpl<List<SteamUser>>> GetRememberUserList(CancellationToken cancellationToken = default);
 
-    bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> model);
+    Task<ApiRspImpl> UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> model, CancellationToken cancellationToken = default);
 
-    bool RemoveAuthorizedDeviceList(AuthorizedDevice list);
+    Task<ApiRspImpl> RemoveAuthorizedDeviceList(AuthorizedDevice list, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取所有当前PC共享授权信息
     /// </summary>
     /// <returns></returns>
-    List<AuthorizedDevice> GetAuthorizedDeviceList();
+    Task<ApiRspImpl<List<AuthorizedDevice>>> GetAuthorizedDeviceList(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 设置下次登录 Steam 用户
     /// </summary>
     /// <param name="userName"></param>
-    ValueTask SetSteamCurrentUserAsync(string userName);
+    /// <param name="cancellationToken"></param>
+    ValueTask<ApiRspImpl> SetSteamCurrentUserAsync(string userName, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Sets whether the user is invisible or not
     /// </summary>
     /// <param name="steamId32">SteamID of user to update</param>
     /// <param name="ePersonaState">Persona state enum for user (0-7)</param>
-    void SetPersonaState(string steamId32, PersonaState ePersonaState);
+    /// <param name="cancellationToken"></param>
+    Task<ApiRspImpl> SetPersonaState(string steamId32, PersonaState ePersonaState, CancellationToken cancellationToken = default);
 
-    void DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false);
+    Task<ApiRspImpl> DeleteLocalUserData(SteamUser user, bool isDeleteUserData = false, CancellationToken cancellationToken = default);
 
-    void UpdateLocalUserData(IEnumerable<SteamUser> users);
+    Task<ApiRspImpl> UpdateLocalUserData(IEnumerable<SteamUser> users, CancellationToken cancellationToken = default);
 
-    void WatchLocalUserDataChange(Action changedAction);
+    Task<ApiRspImpl> WatchLocalUserDataChange(Action changedAction, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 从 Steam 本地客户端缓存文件中读取游戏数据
     /// </summary>
-    Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false);
+    Task<ApiRspImpl<List<SteamApp>>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default);
 
-    List<ModifiedApp>? GetModifiedApps();
+    Task<ApiRspImpl<List<ModifiedApp>?>> GetModifiedApps(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 保存修改后的游戏数据到 Steam 本地客户端缓存文件
     /// </summary>
-    Task<bool> SaveAppInfosToSteam();
+    Task<ApiRspImpl> SaveAppInfosToSteam(CancellationToken cancellationToken = default);
 
-    Task<CommonImageSource?> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default);
+    Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default);
 
-    ValueTask LoadAppImageAsync(SteamApp app);
+    ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 保存图片流到 Steam 自定义封面文件夹
     /// </summary>
     /// <returns></returns>
-    Task<bool> SaveAppImageToSteamFile(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType);
+    Task<ApiRspImpl> SaveAppImageToSteamFile(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取已安装的 SteamApp 列表(包括正在下载的项)
     /// </summary>
-    List<SteamApp> GetDownloadingAppList();
+    Task<ApiRspImpl<List<SteamApp>>> GetDownloadingAppList(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 监听 Steam 下载
     /// </summary>
-    void StartWatchSteamDownloading(Action<SteamApp> changedAction, Action<uint> deleteAction);
+    Task<ApiRspImpl> StartWatchSteamDownloading(Action<SteamApp> changedAction, Action<uint> deleteAction, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 结束监听 Steam 下载
     /// </summary>
-    void StopWatchSteamDownloading();
+    Task<ApiRspImpl> StopWatchSteamDownloading(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 从任意文本中匹配批量提取 SteamKey
     /// </summary>
     /// <param name="source"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    IEnumerable<string> ExtractKeysFromString(string source)
+    async Task<ApiRspImpl<IEnumerable<string>>> ExtractKeysFromString(string source, CancellationToken cancellationToken = default)
     {
         var m = ExtractKeysFromStringRegex().Matches(source);
         var keys = new List<string>();
@@ -161,7 +165,8 @@ public partial interface ISteamService
                 keys.Add(v.Value);
             }
         }
-        return keys;
+        await Task.CompletedTask;
+        return keys!;
     }
 
     [GeneratedRegex("([0-9A-Z]{5})(?:\\-[0-9A-Z]{5}){2,4}", RegexOptions.IgnoreCase | RegexOptions.Singleline)]

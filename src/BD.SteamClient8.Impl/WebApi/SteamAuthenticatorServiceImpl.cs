@@ -38,7 +38,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
     const string ContentType = MediaTypeNames.FormUrlEncoded; //"application/x-www-form-urlencoded; charset=UTF-8";
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IsAccountWaitingForEmailConfirmationResponse?>> AccountWaitingForEmailConfirmation(string steam_id)
+    public async Task<ApiRspImpl<IsAccountWaitingForEmailConfirmationResponse?>> AccountWaitingForEmailConfirmation(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -49,11 +49,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        return await SendAsync<IsAccountWaitingForEmailConfirmationResponse>(sendArgs);
+        return await SendAsync<IsAccountWaitingForEmailConfirmationResponse>(sendArgs, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamDoLoginTfaJsonStruct?>> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1")
+    public async Task<ApiRspImpl<SteamDoLoginTfaJsonStruct?>> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1", CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -72,11 +72,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamDoLoginTfaJsonStruct, Dictionary<string, string>>(sendArgs, data);
+        return await SendAsync<SteamDoLoginTfaJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code)
+    public async Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -92,11 +92,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamAddPhoneNumberResponse, Dictionary<string, string>>(sendArgs, data);
+        return await SendAsync<SteamAddPhoneNumberResponse, Dictionary<string, string>>(sendArgs, data, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1")
+    public async Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -114,11 +114,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamDoLoginFinalizeJsonStruct, Dictionary<string, string>>(sendArgs, data);
+        return await SendAsync<SteamDoLoginFinalizeJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<GetUserCountryResponse?>> GetUserCountry(string steam_id)
+    public async Task<ApiRspImpl<GetUserCountryResponse?>> GetUserCountry(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -132,11 +132,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<GetUserCountryResponse, Dictionary<string, string>>(sendArgs, param);
+        return await SendAsync<GetUserCountryResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<RemoveAuthenticatorResponse?>> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1")
+    public async Task<ApiRspImpl<RemoveAuthenticatorResponse?>> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1", CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -153,11 +153,11 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<RemoveAuthenticatorResponse, Dictionary<string, string>>(sendArgs, param);
+        return await SendAsync<RemoveAuthenticatorResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?>> RemoveAuthenticatorViaChallengeStartSync(string steam_id)
+    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?>> RemoveAuthenticatorViaChallengeStartSync(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -174,12 +174,12 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data);
+        var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
         return CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.Parser.ParseFrom(response);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true)
+    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -200,12 +200,12 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data);
+        var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
         return CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response.Parser.ParseFrom(response);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SendPhoneVerificationCode(string steam_id)
+    public async Task<ApiRspImpl<bool>> SendPhoneVerificationCode(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -215,21 +215,21 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             ContentType = ContentType
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return (await SendAsync<HttpResponseMessage>(sendArgs)).ThrowIsNull().IsSuccessStatusCode;
+        return (await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken)).ThrowIsNull().IsSuccessStatusCode;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamSyncStruct?>> TwoFAQueryTime()
+    public async Task<ApiRspImpl<SteamSyncStruct?>> TwoFAQueryTime(CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_TWOFAQUERYTIME) { Method = HttpMethod.Post };
         sendArgs.SetHttpClient(CreateClient());
-        return await SendAsync<SteamSyncStruct>(sendArgs);
+        return await SendAsync<SteamSyncStruct>(sendArgs, cancellationToken);
     }
 
     /// <inheritdoc/>
     [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
     [RequiresDynamicCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
-    public async Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id)
+    public async Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -251,7 +251,7 @@ public sealed class SteamAuthenticatorServiceImpl : WebApiClientFactoryService, 
             using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN) { Method = HttpMethod.Post, ContentType = ContentType };
             sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-            response = await SendAsync<GenerateAccessTokenForAppResponse, Dictionary<string, string>>(sendArgs, postData);
+            response = await SendAsync<GenerateAccessTokenForAppResponse, Dictionary<string, string>>(sendArgs, postData, cancellationToken);
         }
         catch (Exception ex)
         {

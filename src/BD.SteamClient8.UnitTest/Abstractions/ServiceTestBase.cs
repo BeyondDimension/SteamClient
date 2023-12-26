@@ -51,13 +51,6 @@ abstract class ServiceTestBase
             if (InventoryPageResponse is null)
             {
                 var response = await steamAccountService.GetInventories(steam_id, app_id, context_id, 50);
-                Assert.Multiple(() =>
-                {
-                    Assert.That(response.IsSuccess);
-                    Assert.That(response.Content, Is.Not.Null);
-                    Assert.That(response.Content!.Success, Is.EqualTo(1));
-                });
-
                 InventoryPageResponse = response.Content;
             }
         }

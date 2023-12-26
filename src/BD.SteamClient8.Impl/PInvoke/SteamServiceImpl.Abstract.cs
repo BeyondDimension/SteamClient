@@ -8,7 +8,7 @@ public abstract partial class SteamServiceImpl
     public abstract ISteamConnectService Conn { get; }
 
     /// <inheritdoc/>
-    public virtual void StartSteamWithParameter() => StartSteam(StratSteamDefaultParameter);
+    public virtual Task<ApiRspImpl> StartSteamWithParameter(CancellationToken cancellationToken = default) => StartSteam(StratSteamDefaultParameter, cancellationToken);
 
     /// <summary>
     /// 以正常权限启动进程
@@ -165,8 +165,10 @@ public abstract partial class SteamServiceImpl
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string GetLastSteamLoginUserName()
+    internal static string GetLastSteamLoginUserName(CancellationToken cancellationToken = default)
     {
+        if (cancellationToken.IsCancellationRequested)
+            throw new OperationCanceledException();
 #if WINDOWS
         return Registry.CurrentUser.Read(SteamRegistryPath, "AutoLoginUser");
 #else
@@ -174,9 +176,9 @@ public abstract partial class SteamServiceImpl
 #endif
     }
 
-    /// <inheritdoc cref="ISteamService.SetSteamCurrentUserAsync(string)"/>
+    /// <inheritdoc cref="ISteamService.SetSteamCurrentUserAsync(string, CancellationToken)"/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public virtual ValueTask SetSteamCurrentUserAsync(string userName)
+    public virtual async ValueTask<ApiRspImpl> SetSteamCurrentUserAsync(string userName, CancellationToken cancellationToken = default)
     {
         // override BD.WTTS.Services.Implementation.SteamServiceImpl2.SetSteamCurrentUser
 #if WINDOWS
@@ -217,7 +219,8 @@ public abstract partial class SteamServiceImpl
             Log.Error(TAG, e, "SetSteamCurrentUser fail(0).");
         }
 #endif
-        return ValueTask.CompletedTask;
+        await ValueTask.CompletedTask;
+        return ApiRspHelper.Ok();
     }
 
 #endif

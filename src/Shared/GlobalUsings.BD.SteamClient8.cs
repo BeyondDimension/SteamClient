@@ -6,6 +6,7 @@
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 global using BD.SteamClient8;
 global using BD.SteamClient8.Services;
+global using BD.SteamClient8.Services.PInvoke;
 global using BD.SteamClient8.Services.WebApi;
 global using BD.SteamClient8.Services.WebApi.Mvvm;
 global using BD.SteamClient8.Helpers;

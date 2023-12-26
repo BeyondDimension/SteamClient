@@ -40,75 +40,86 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Tasks 后台任务
 
     /// <inheritdoc/>
-    public ApiRspImpl StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum)
+    public async Task<ApiRspImpl> StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
     {
-        try
+        if (!cancellationToken.IsCancellationRequested)
         {
-            var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
-            if (!_tasks.ContainsKey(taskName))
+            await Task.CompletedTask;
+            try
             {
-                Action action;
-                switch (tradeTaskEnum)
+                var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
+                if (!_tasks.ContainsKey(taskName))
                 {
-                    case TradeTaskEnum.None:
-                        return ApiRspHelper.Fail();
-                    case TradeTaskEnum.AutoAcceptGitTrade:
-                        action = async () => { await AcceptAllGiftTradeOfferAsync(steam_id); };
-                        break;
-                    default:
-                        return ApiRspHelper.Fail();
+                    Action action;
+                    switch (tradeTaskEnum)
+                    {
+                        case TradeTaskEnum.None:
+                            return ApiRspHelper.Fail();
+                        case TradeTaskEnum.AutoAcceptGitTrade:
+                            action = async () => { await AcceptAllGiftTradeOfferAsync(steam_id); };
+                            break;
+                        default:
+                            return ApiRspHelper.Fail();
+                    }
+                    var cancellationTokenSource = new CancellationTokenSource();
+                    _tasks.TryAdd(taskName, cancellationTokenSource);
+                    _ = Task.Run(() => RunTask(action, interval, cancellationTokenSource.Token));
+                    return ApiRspHelper.Ok();
                 }
-
-                var cancellationTokenSource = new CancellationTokenSource();
-                _tasks.TryAdd(taskName, cancellationTokenSource);
-                _ = Task.Run(() => RunTask(action, interval, cancellationTokenSource.Token));
             }
-            return ApiRspHelper.Ok();
+            catch (Exception ex)
+            {
+                return ApiRspHelper.Exception(ex);
+            }
         }
-        catch (Exception ex)
-        {
-            return ApiRspHelper.Exception(ex);
-        }
+        await Task.FromCanceled(cancellationToken);
+        return ApiRspHelper.Fail();
     }
 
     /// <inheritdoc/>
-    public ApiRspImpl StopTask(string steam_id, TradeTaskEnum tradeTaskEnum)
+    public async Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
     {
-        try
+        if (!cancellationToken.IsCancellationRequested)
         {
-            var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
-            if (_tasks.TryGetValue(taskName, out var cancellationTokenSource))
+            await Task.CompletedTask;
+            try
             {
-                cancellationTokenSource.Cancel();
-                _tasks.TryRemove(taskName, out _);
+                var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
+                if (_tasks.TryGetValue(taskName, out var cancellationTokenSource))
+                {
+                    cancellationTokenSource.Cancel();
+                    _tasks.TryRemove(taskName, out _);
+                }
+                return ApiRspHelper.Ok();
             }
-            return ApiRspHelper.Ok();
+            catch (Exception ex)
+            {
+                return ApiRspHelper.Exception(ex);
+            }
         }
-        catch (Exception ex)
-        {
-            return ApiRspHelper.Exception(ex);
-        }
+        await Task.FromCanceled(cancellationToken);
+        return ApiRspHelper.Fail();
     }
     #endregion
 
     #region Trade 交易报价
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> AcceptAllGiftTradeOfferAsync(string steam_id)
+    public async Task<ApiRspImpl<bool>> AcceptAllGiftTradeOfferAsync(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (string.IsNullOrEmpty(steamSession.APIKey))
             return false;
 
-        var trade_summary = (await GetTradeOffersSummaryAsync(steamSession.APIKey)).Content;
+        var trade_summary = (await GetTradeOffersSummaryAsync(steamSession.APIKey, cancellationToken)).Content;
         if (trade_summary != null && trade_summary.PendingReceivedCount > 0)
         {
-            var trade_offers_rsp = await GetTradeOffersAsync(steamSession.APIKey);
-            var trade_offers = trade_offers_rsp.IsSuccess ? ISteamTradeService.FilterNonActiveOffers(trade_offers_rsp.Content!)?.Response?.TradeOffersReceived : null; // 获取活跃状态的交易报价
+            var trade_offers_rsp = await GetTradeOffersAsync(steamSession.APIKey, cancellationToken);
+            var trade_offers = trade_offers_rsp.IsSuccess ? ISteamTradeService.FilterNonActiveOffers(trade_offers_rsp.Content!, cancellationToken)?.Response?.TradeOffersReceived : null; // 获取活跃状态的交易报价
             if (trade_offers != null && trade_offers.Count > 0)
             {
-                var confirmations = (await GetConfirmations(steam_id)).Content;
+                var confirmations = (await GetConfirmations(steam_id, cancellationToken)).Content;
                 foreach (var trade_offer in trade_offers)
                 {
                     if (trade_offer != null)
@@ -117,7 +128,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
                         var receive_count = trade_offer.ItemsToReceive?.Count ?? -1; // 接收物品数
                         if (give_count == 0)
                         {
-                            await AcceptTradeOfferAsync(steam_id, trade_offer.TradeOfferId, trade_offer, confirmations); // 接受报价
+                            await AcceptTradeOfferAsync(steam_id, trade_offer.TradeOfferId, trade_offer, confirmations, cancellationToken); // 接受报价
                         }
                     }
                 }
@@ -127,13 +138,13 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
+    public async Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
         if (tradeInfo == null)
         {
-            tradeInfo = (await GetTradeOfferAsync(steamSession.APIKey, trade_offer_id)).Content;
+            tradeInfo = (await GetTradeOfferAsync(steamSession.APIKey, trade_offer_id, cancellationToken)).Content;
             if (tradeInfo == null)
                 return false;
         }
@@ -163,12 +174,12 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param, cancellationToken);
         return response?.IsSuccessStatusCode ?? false;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeOffersResponse?>> GetTradeOffersAsync(string api_key)
+    public async Task<ApiRspImpl<TradeOffersResponse?>> GetTradeOffersAsync(string api_key, CancellationToken cancellationToken = default)
     {
         var queryString = new NameValueCollection()
         {
@@ -188,13 +199,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
-
-        var re = await SendAsync<string>(sendArgs);
-        return await SendAsync<TradeOffersResponse>(sendArgs);
+        return await SendAsync<TradeOffersResponse>(sendArgs, cancellationToken);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeOffersInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id)
+    public async Task<ApiRspImpl<TradeOffersInfo?>> GetTradeOfferAsync(string api_key, string trade_offer_id, CancellationToken cancellationToken = default)
     {
         var queryString = new NameValueCollection()
         {
@@ -209,7 +218,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
-        var json = await SendAsync<string>(sendArgs);
+        var json = await SendAsync<string>(sendArgs, cancellationToken);
 
         using (var document = JsonDocument.Parse(json.ThrowIsNull()))
         {
@@ -220,13 +229,13 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeSummary?>> GetTradeOffersSummaryAsync(string api_key)
+    public async Task<ApiRspImpl<TradeSummary?>> GetTradeOffersSummaryAsync(string api_key, CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_TRADEOFFER_GET_SUMMARY.Format(api_key)) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
         try
         {
-            var response = await SendAsync<HttpResponseMessage>(sendArgs);
+            var response = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
             if (response.ThrowIsNull().IsSuccessStatusCode)
             {
                 var contentString = await response.Content.ReadAsStringAsync();
@@ -244,7 +253,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false)
+    public async Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false, CancellationToken cancellationToken = default)
     {
         const string Language = "schinese";
 
@@ -277,11 +286,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
         sendArgs.SetHttpClient(CreateClient());
-        return (await SendAsync<TradeHistory>(sendArgs))?.Response;
+        return (await SendAsync<TradeHistory>(sendArgs, cancellationToken))?.Response;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message)
+    public async Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -314,12 +323,12 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param, cancellationToken);
         return response?.IsSuccessStatusCode ?? false;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message)
+    public async Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -360,12 +369,12 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param, cancellationToken);
         return response?.IsSuccessStatusCode ?? false;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> CancelTradeOfferAsync(string steam_id, string trade_offer_id)
+    public async Task<ApiRspImpl<bool>> CancelTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -378,12 +387,12 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param, cancellationToken);
         return response?.IsSuccessStatusCode ?? false;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> DeclineTradeOfferAsync(string steam_id, string trade_offer_id)
+    public async Task<ApiRspImpl<bool>> DeclineTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -396,7 +405,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(sendArgs, param, cancellationToken);
         return response?.IsSuccessStatusCode ?? false;
     }
     #endregion
@@ -404,7 +413,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     #region Confirmation 交易确认
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<Confirmation>>> GetConfirmations(string steam_id)
+    public async Task<ApiRspImpl<IEnumerable<Confirmation>>> GetConfirmations(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -425,12 +434,12 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
             }
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        var response = await SendAsync<HttpResponseMessage>(sendArgs);
+        var response = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
 
         List<Confirmation> confirmations = [];
         if (response != null && response.IsSuccessStatusCode)
         {
-            var contentString = await response.Content.ReadAsStringAsync();
+            var contentString = await response.Content.ReadAsStringAsync(cancellationToken);
             using var confirmations_page = JsonDocument.Parse(contentString);
             if (contentString.Contains("Steam Guard Mobile Authenticator is providing incorrect Steam Guard codes."))
                 return confirmations!;
@@ -497,7 +506,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     // }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, Confirmation confirmation)
+    public async Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, Confirmation confirmation, CancellationToken cancellationToken = default)
     {
         // 获取登陆状态
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
@@ -514,18 +523,18 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri);
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        var resp = await SendAsync<HttpResponseMessage>(sendArgs);
+        var resp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
 
         resp.ThrowIsNull().EnsureSuccessStatusCode();
 
-        var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync()).RootElement.GetProperty("html").GetString();
+        var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync(cancellationToken)).RootElement.GetProperty("html").GetString();
 
         if (string.IsNullOrEmpty(html))
             throw new ArgumentException("获取报价图片响应错误");
 
         // 解析html
         var parser = new HtmlParser();
-        var document = await parser.ParseDocumentAsync(html);
+        var document = await parser.ParseDocumentAsync(html, cancellationToken);
 
         var tradeofferItemsGroup = document.QuerySelectorAll("div.tradeoffer_items");
 
@@ -561,7 +570,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, Confirmation confirmation, bool accept)
+    public async Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, Confirmation confirmation, bool accept, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -585,11 +594,11 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<HttpResponseMessage>(sendArgs);
+        var response = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
 
         if (response != null && response.IsSuccessStatusCode)
         {
-            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
+            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync(cancellationToken)).RootElement;
             if (root.TryGetProperty("success", out var success))
                 return success.GetBoolean();
         }
@@ -597,7 +606,7 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> BatchSendConfirmation(string steam_id, Dictionary<string, string> trades, bool accept)
+    public async Task<ApiRspImpl<bool>> BatchSendConfirmation(string steam_id, Dictionary<string, string> trades, bool accept, CancellationToken cancellationToken = default)
     {
         var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
 
@@ -624,10 +633,10 @@ public sealed partial class SteamTradeServiceImpl : WebApiClientFactoryService, 
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
-        var response = await SendAsync<HttpResponseMessage, List<KeyValuePair<string, string>>>(sendArgs, param);
+        var response = await SendAsync<HttpResponseMessage, List<KeyValuePair<string, string>>>(sendArgs, param, cancellationToken);
         if (response != null && response.IsSuccessStatusCode)
         {
-            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement;
+            var root = JsonDocument.Parse(await response.Content.ReadAsStringAsync(cancellationToken)).RootElement;
             if (root.TryGetProperty("success", out var success))
                 return success.GetBoolean();
         }
