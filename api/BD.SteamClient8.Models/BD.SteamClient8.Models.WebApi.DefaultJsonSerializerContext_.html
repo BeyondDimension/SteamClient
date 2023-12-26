@@ -145,10 +145,15 @@
 [JsonSerializable(typeof(Asset))]
 [JsonSerializable(typeof(Confirmation))]
 [JsonSerializable(typeof(TradeHistory))]
-[JsonSerializable(typeof(TradeInfo))]
-[JsonSerializable(typeof(TradeItem))]
+[JsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
+[JsonSerializable(typeof(TradeHistory.TradeItem))]
+[JsonSerializable(typeof(TradeHistory.TradeItemAssetItem))]
+[JsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
+[JsonSerializable(typeof(TradeOffersResponse))]
+[JsonSerializable(typeof(TradeOffersResponseInfo))]
+[JsonSerializable(typeof(TradeOffersInfo))]
+[JsonSerializable(typeof(TradeOffersItem))]
 [JsonSerializable(typeof(TradeSummary))]
-[JsonSerializable(typeof(TradeResponse))]
 [JsonSerializable(typeof(TradeSummaryResponse))]
 [JsonSerializable(typeof(GetUserCountryResponse))]
 [JsonSerializable(typeof(SteamAddPhoneNumberResponse))]
@@ -2173,11 +2178,11 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeInfo*"></a>
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeOffersInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeOffersInfo*"></a>
 
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeInfo">
-  ListTradeInfo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListTradeInfo.g.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeOffersInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeOffersInfo">
+  ListTradeOffersInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListTradeOffersInfo.g.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
@@ -2185,7 +2190,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;TradeInfo&gt;&gt; ListTradeInfo { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;TradeOffersInfo&gt;&gt; ListTradeOffersInfo { get; }</code></pre>
   </div>
 
 
@@ -2194,7 +2199,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeInfo.html">TradeInfo</a>&gt;&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersInfo.html">TradeOffersInfo</a>&gt;&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -2205,11 +2210,11 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeItem*"></a>
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeOffersItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeOffersItem*"></a>
 
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeItem">
-  ListTradeItem
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListTradeItem.g.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__ListTradeOffersItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.ListTradeOffersItem">
+  ListTradeOffersItem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListTradeOffersItem.g.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
@@ -2217,7 +2222,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;TradeItem&gt;&gt; ListTradeItem { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;TradeOffersItem&gt;&gt; ListTradeOffersItem { get; }</code></pre>
   </div>
 
 
@@ -2226,7 +2231,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeItem.html">TradeItem</a>&gt;&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersItem.html">TradeOffersItem</a>&gt;&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -4349,38 +4354,6 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeInfo*"></a>
-
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeInfo">
-  TradeInfo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeInfo.g.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeInfo&gt; TradeInfo { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeInfo.html">TradeInfo</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeItem*"></a>
 
   <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeItem">
@@ -4393,7 +4366,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeItem&gt; TradeItem { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeHistory.TradeItem&gt; TradeItem { get; }</code></pre>
   </div>
 
 
@@ -4402,7 +4375,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeItem.html">TradeItem</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeHistory.html">TradeHistory</a>.<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeHistory.TradeItem.html">TradeItem</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -4605,11 +4578,11 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeResponse_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeResponse*"></a>
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersInfo*"></a>
 
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeResponse" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeResponse">
-  TradeResponse
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeResponse.g.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersInfo">
+  TradeOffersInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeOffersInfo.g.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
@@ -4617,7 +4590,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeResponse&gt; TradeResponse { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeOffersInfo&gt; TradeOffersInfo { get; }</code></pre>
   </div>
 
 
@@ -4626,7 +4599,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeResponse.html">TradeResponse</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersInfo.html">TradeOffersInfo</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -4637,11 +4610,11 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
-  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeResponseInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeResponseInfo*"></a>
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersItem_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersItem*"></a>
 
-  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeResponseInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeResponseInfo">
-  TradeResponseInfo
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeResponseInfo.g.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersItem" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersItem">
+  TradeOffersItem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeOffersItem.g.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
@@ -4649,7 +4622,7 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeResponseInfo&gt; TradeResponseInfo { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeOffersItem&gt; TradeOffersItem { get; }</code></pre>
   </div>
 
 
@@ -4658,7 +4631,71 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeResponseInfo.html">TradeResponseInfo</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersItem.html">TradeOffersItem</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersResponse_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersResponse*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersResponse" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersResponse">
+  TradeOffersResponse
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeOffersResponse.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeOffersResponse&gt; TradeOffersResponse { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponse.html">TradeOffersResponse</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersResponseInfo_" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersResponseInfo*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_DefaultJsonSerializerContext__TradeOffersResponseInfo" data-uid="BD.SteamClient8.Models.WebApi.DefaultJsonSerializerContext_.TradeOffersResponseInfo">
+  TradeOffersResponseInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.TradeOffersResponseInfo.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;TradeOffersResponseInfo&gt; TradeOffersResponseInfo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponseInfo.html">TradeOffersResponseInfo</a>&gt;</dt>
     <dd></dd>
   </dl>
 

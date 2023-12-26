@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -2547,40 +2547,40 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeInfo.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeInfo.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersInfo.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeItem.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersItem.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeItem.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersItem.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeResponse.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponse.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeResponse.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponse.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeResponseInfo.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponseInfo.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeResponseInfo.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trade.TradeOffersResponseInfo.html"
         }
       },
       "version": ""
