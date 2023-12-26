@@ -93,12 +93,12 @@ public partial class SteamAppViewModel
     public Task<CommonImageSource?> LibraryHeroBlurStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Library_Hero_Blur);
 
     /// <summary>
-    /// 获取游戏库Logo的异步任务
+    /// 获取游戏库 Logo 的异步任务
     /// </summary>
     public Task<CommonImageSource?> LibraryLogoStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Logo);
 
     /// <summary>
-    /// 获取头部Logo的异步任务
+    /// 获取头部 Logo 的异步任务
     /// </summary>
     public Task<CommonImageSource?> HeaderLogoStream => ISteamService.Instance.GetAppImageAsync(Model!, LibCacheType.Header);
 

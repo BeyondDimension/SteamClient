@@ -60,9 +60,7 @@
       "_appTitle": "SteamClient",
       "_appLogoPath": "res/DocFXIcon.png",
       "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved.",
-      "_disableBreadcrumb": true,
-      "_enableSearch": false,
-      "pdf": false
+      "_enableSearch": false
     },
     "keepFileLink": false,
     "disableGitFeatures": false
