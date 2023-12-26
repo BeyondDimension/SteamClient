@@ -10,15 +10,6 @@ sealed class PInvokeTest : ServiceTestBase
     ISteamworksLocalApiService steamworksLocalApiService = null!;
 
     /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSingleton<ISteamService, TestSteamServiceImpl>();
-        services.TryAddSteamworksLocalApiService();
-    }
-
-    /// <inheritdoc/>
     [SetUp]
     public override async ValueTask Setup()
     {
@@ -138,19 +129,6 @@ sealed class PInvokeTest : ServiceTestBase
             TestContext.WriteLine($"{x.Name}   {x.AppId}");
         });
         Assert.That(list, Is.Not.Empty);
-    }
-
-    sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
-    {
-        public override ISteamConnectService Conn => throw new NotImplementedException();
-
-        protected override string? StratSteamDefaultParameter => default;
-
-        protected override bool IsRunSteamAdministrator => default;
-
-        protected override Dictionary<uint, string?>? HideGameList => default;
-
-        protected override string? GetString(string name) => default;
     }
 }
 #endif

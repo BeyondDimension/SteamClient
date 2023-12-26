@@ -6,19 +6,6 @@ namespace BD.SteamClient8.UnitTest;
 sealed class SteamIdleServiceTest : ServiceTestBase
 {
     ISteamIdleCardService steamIdleCardService = null!;
-    ISteamAccountService steamAccountService = null!;
-    ISteamSessionService steamSessionService = null!;
-    IConfiguration configuration = null!;
-
-    /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSteamAccountService();
-        services.AddSteamIdleCardService();
-        services.AddSteamAuthenticatorService();
-    }
 
     /// <inheritdoc/>
     [SetUp]
@@ -27,14 +14,6 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         await base.Setup();
 
         steamIdleCardService = GetRequiredService<ISteamIdleCardService>();
-        steamAccountService = GetRequiredService<ISteamAccountService>();
-        steamSessionService = GetRequiredService<ISteamSessionService>();
-        configuration = GetRequiredService<IConfiguration>();
-
-        _ = await GetSteamAuthenticatorAsync(configuration, GetRequiredService<ISteamAuthenticatorService>());
-        _ = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
-
-        Assert.That(steamSessionService.RentSession("76561199494800019"), Is.Not.Null);
     }
 
     /// <summary>
@@ -42,11 +21,11 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// </summary>
     /// <param name="steam_id"></param>
     /// <returns></returns>
-    [TestCase("76561199494800019")]
     [Test]
-    public async Task TestGetBadgesAsync(string steam_id)
+    public async Task TestGetBadgesAsync()
     {
-        var rsp = await steamIdleCardService.GetBadgesAsync(steam_id);
+        Assert.That(SteamLoginState?.SteamId, Is.Not.Null);
+        var rsp = await steamIdleCardService.GetBadgesAsync(SteamLoginState.SteamId.ToString());
 
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>
@@ -86,7 +65,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(730U, "CNY")]
     [Test]
-    public async Task TestGetAppCardsAvgPrice(uint appId, string currency)
+    public async Task TestGetAppCardsMarketPrice(uint appId, string currency)
     {
         var rsp = await steamIdleCardService.GetCardsMarketPrice(appId, currency);
 

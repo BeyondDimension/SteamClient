@@ -8,14 +8,6 @@ sealed class SteamGridDBWebApiTest : ServiceTestBase
     ISteamGridDBWebApiServiceImpl steamGridDBWebApiService = null!;
 
     /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSteamGridDBWebApiService();
-    }
-
-    /// <inheritdoc/>
     [SetUp]
     public override async ValueTask Setup()
     {

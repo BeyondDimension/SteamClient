@@ -5,23 +5,16 @@ namespace BD.SteamClient8.UnitTest;
 /// </summary>
 sealed class WinAuthTest : ServiceTestBase
 {
-    SteamLoginState steamLoginState = null!;
     ISteamAccountService steamAccountService = null!;
     ISteamSessionService steamSessionService = null!;
-    ISteamAuthenticatorService steamAuthenticatorService = null!;
     IConfiguration configuration = null!;
 
-    SteamAuthenticator steamAuthenticator;
     SteamAuthenticator.EnrollState enrollState;
 
     /// <inheritdoc/>
     protected override void ConfigureServices(IServiceCollection services)
     {
-        base.ConfigureServices(services);
-
-        services.AddSteamAccountService();
-        services.AddSteamAuthenticatorService();
-        services.AddSteamTradeService();
+        ConfigureServices(services);
     }
 
     /// <inheritdoc/>
@@ -33,10 +26,9 @@ sealed class WinAuthTest : ServiceTestBase
         steamAccountService = GetRequiredService<ISteamAccountService>();
         steamSessionService = GetRequiredService<ISteamSessionService>();
         configuration = GetRequiredService<IConfiguration>();
-        steamAuthenticatorService = GetRequiredService<ISteamAuthenticatorService>();
 
-        steamAuthenticator ??= await GetSteamAuthenticatorAsync(configuration, steamAuthenticatorService) ?? new();
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
+        SteamAuthenticator ??= new();
+        SteamLoginState ??= await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
 
         enrollState ??= new();
     }
@@ -51,32 +43,35 @@ sealed class WinAuthTest : ServiceTestBase
     {
         if (IsCI())
             return;
+
+        Assert.That(SteamAuthenticator, Is.Not.Null);
+        Assert.That(SteamLoginState, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(steamLoginState.AccessToken, Is.Not.Null);
-            Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
+            Assert.That(SteamLoginState.AccessToken, Is.Not.Null);
+            Assert.That(SteamLoginState.RefreshToken, Is.Not.Null);
         });
 
-        enrollState.AccessToken = steamLoginState.AccessToken;
-        enrollState.RefreshToken = steamLoginState.RefreshToken;
-        enrollState.SteamId = (long)steamLoginState.SteamId;
+        enrollState.AccessToken = SteamLoginState.AccessToken;
+        enrollState.RefreshToken = SteamLoginState.RefreshToken;
+        enrollState.SteamId = (long)SteamLoginState.SteamId;
 
-        await steamAuthenticator.AddAuthenticatorAsync(enrollState);
+        await SteamAuthenticator.AddAuthenticatorAsync(enrollState);
 
         // 没有绑定手机号
         if (enrollState.NoPhoneNumber)
         {
-            var result = await steamAuthenticator.AddPhoneNumberAsync(enrollState, phone_number);
+            var result = await SteamAuthenticator.AddPhoneNumberAsync(enrollState, phone_number);
 
             // 需要邮箱手动确认手机号添加
             if (enrollState.RequiresEmailConfirmPhone)
             {
                 await Task.Delay(TimeSpan.FromSeconds(15)); // waiting for confirm email
-                result = await steamAuthenticator.AddPhoneNumberAsync(enrollState, phone_number);
+                result = await SteamAuthenticator.AddPhoneNumberAsync(enrollState, phone_number);
                 Assert.That(enrollState.RequiresEmailConfirmPhone == false && result == null);
             }
 
-            await steamAuthenticator.AddAuthenticatorAsync(enrollState);
+            await SteamAuthenticator.AddAuthenticatorAsync(enrollState);
         }
 
         // 是否激活令牌
@@ -84,7 +79,7 @@ sealed class WinAuthTest : ServiceTestBase
         {
             // 输入手机收到的验证码
             enrollState.ActivationCode = "7C86B";
-            var finalize = await steamAuthenticator.FinalizeAddAuthenticatorAsync(enrollState);
+            var finalize = await SteamAuthenticator.FinalizeAddAuthenticatorAsync(enrollState);
             Assert.That(finalize);
 
             Assert.That(await Update());
@@ -100,23 +95,26 @@ sealed class WinAuthTest : ServiceTestBase
     {
         if (IsCI())
             return;
+
+        Assert.That(SteamAuthenticator, Is.Not.Null);
+        Assert.That(SteamLoginState, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(steamLoginState.AccessToken, Is.Not.Null);
-            Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
+            Assert.That(SteamLoginState.AccessToken, Is.Not.Null);
+            Assert.That(SteamLoginState.RefreshToken, Is.Not.Null);
         });
-        enrollState.AccessToken ??= steamLoginState.AccessToken;
-        enrollState.RefreshToken ??= steamLoginState.RefreshToken;
-        enrollState.SteamId = (long)steamLoginState.SteamId;
+        enrollState.AccessToken ??= SteamLoginState.AccessToken;
+        enrollState.RefreshToken ??= SteamLoginState.RefreshToken;
+        enrollState.SteamId = (long)SteamLoginState.SteamId;
 
         // 开始移除，注意手机验证码
-        var removeStart_result = await steamAuthenticator.RemoveAuthenticatorViaChallengeStartSync(enrollState.SteamId.ToString());
+        var removeStart_result = await SteamAuthenticator.RemoveAuthenticatorViaChallengeStartSync(enrollState.SteamId.ToString());
 
         Assert.That(removeStart_result);
 
         // 手机验证码
         var phoneVerifyCode = "7C86B";
-        var removeContinue_result = await steamAuthenticator.RemoveAuthenticatorViaChallengeContinueSync(enrollState.SteamId.ToString(), phoneVerifyCode);
+        var removeContinue_result = await SteamAuthenticator.RemoveAuthenticatorViaChallengeContinueSync(enrollState.SteamId.ToString(), phoneVerifyCode);
 
         Assert.That(removeContinue_result);
 
@@ -124,25 +122,26 @@ sealed class WinAuthTest : ServiceTestBase
     }
 
     /// <summary>
-    /// 解绑（移除） 令牌
+    /// 解绑（移除） 令牌 ，危险操作请手动修改再测试
     /// </summary>
     /// <param name="scheme">1 = 移除令牌验证器但保留邮箱验证，2 = 移除所有防护</param>
     /// <returns></returns>
-    [Test]
-    [TestCase(2)]
     public async Task UnBindingAuthenticator(int scheme)
     {
         if (IsCI())
             return;
+
+        Assert.That(SteamAuthenticator, Is.Not.Null);
+        Assert.That(SteamLoginState, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(steamLoginState.AccessToken, Is.Not.Null);
-            Assert.That(steamLoginState.RefreshToken, Is.Not.Null);
+            Assert.That(SteamLoginState.AccessToken, Is.Not.Null);
+            Assert.That(SteamLoginState.RefreshToken, Is.Not.Null);
 
-            Assert.That(!string.IsNullOrEmpty(steamAuthenticator.RecoveryCode));
+            Assert.That(!string.IsNullOrEmpty(SteamAuthenticator.RecoveryCode));
         });
 
-        var remove_result = await steamAuthenticator.RemoveAuthenticatorAsync(steamLoginState.SteamId.ToString(), scheme);
+        var remove_result = await SteamAuthenticator.RemoveAuthenticatorAsync(SteamLoginState.SteamId.ToString(), scheme);
 
         Assert.That(remove_result);
 
@@ -153,30 +152,34 @@ sealed class WinAuthTest : ServiceTestBase
     /// 获取用户国家
     /// </summary>
     /// <returns></returns>
+    [Test]
     public async Task GetUserCountry()
     {
         if (IsCI())
             return;
-        Assert.That(steamAuthenticator, Is.Not.Null);
 
-        var country = await steamAuthenticator.GetUserCountry(steamLoginState.SteamId.ToString());
+        Assert.That(SteamAuthenticator, Is.Not.Null);
+        Assert.That(SteamLoginState, Is.Not.Null);
+
+        var country = await SteamAuthenticator.GetUserCountry(SteamLoginState.SteamId.ToString());
         Assert.That(string.IsNullOrEmpty(country));
     }
 
     private async Task<bool> Update()
     {
-        Assert.That(steamAuthenticator, Is.Not.Null);
+        Assert.That(SteamAuthenticator, Is.Not.Null);
+        Assert.That(SteamLoginState, Is.Not.Null);
 
-        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(steamAuthenticator.SteamData!);
+        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(SteamAuthenticator.SteamData!);
 
         var session = steamSessionService.RentSession(steamData.ThrowIsNull().SteamId.ToString());
         session ??= new();
-        session.AccessToken = steamLoginState.AccessToken.ThrowIsNull();
-        session.RefreshToken = steamLoginState.RefreshToken.ThrowIsNull();
+        session.AccessToken = SteamLoginState.AccessToken.ThrowIsNull();
+        session.RefreshToken = SteamLoginState.RefreshToken.ThrowIsNull();
         session.IdentitySecret = steamData.IdentitySecret;
-        session.ServerTimeDiff = steamAuthenticator.ServerTimeDiff;
+        session.ServerTimeDiff = SteamAuthenticator.ServerTimeDiff;
         steamSessionService.AddOrSetSession(session);
 
-        return await SaveSteamAuthenticatorAsync(steamAuthenticator);
+        return await SaveSteamAuthenticatorAsync(SteamAuthenticator);
     }
 }

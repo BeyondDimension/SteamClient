@@ -5,15 +5,7 @@ namespace BD.SteamClient8.UnitTest;
 /// </summary>
 sealed class SteamDBWebApiTest : ServiceTestBase
 {
-    ISteamDbWebApiService steamDbWebApiService = null!;
-
-    /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSteamDbWebApiService();
-    }
+    static ISteamDbWebApiService steamDbWebApiService = null!;
 
     /// <inheritdoc/>
     [SetUp]

@@ -5,20 +5,7 @@ namespace BD.SteamClient8.UnitTest;
 /// </summary>
 sealed class SteamMarketServiceTest : ServiceTestBase
 {
-    SteamLoginState steamLoginState = null!;
-    ISteamAccountService steamAccountService = null!;
-    IConfiguration configuration = null!;
     ISteamMarketService steamMarketService = null!;
-
-    /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSteamAccountService();
-        services.AddSteamTradeService();
-        services.AddSteamMarketService();
-    }
 
     /// <inheritdoc/>
     [SetUp]
@@ -27,10 +14,6 @@ sealed class SteamMarketServiceTest : ServiceTestBase
         await base.Setup();
 
         steamMarketService = GetRequiredService<ISteamMarketService>();
-        steamAccountService = GetRequiredService<ISteamAccountService>();
-        configuration = GetRequiredService<IConfiguration>();
-
-        steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, GetRequiredService<ISteamSessionService>());
     }
 
     /// <summary>
@@ -74,9 +57,9 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     [Test]
     public async Task TestGetMyListings()
     {
-        if (steamLoginState != null)
+        if (SteamLoginState != null)
         {
-            var rsp = await steamMarketService.GetMarketListing(steamLoginState!);
+            var rsp = await steamMarketService.GetMarketListing(SteamLoginState!);
 
             Assert.That(rsp.IsSuccess && rsp.Content is not null);
 

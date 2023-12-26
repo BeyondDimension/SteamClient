@@ -8,14 +8,6 @@ sealed class SteamworksWebApiTest : ServiceTestBase
     ISteamworksWebApiService steamworksWebApiService = null!;
 
     /// <inheritdoc/>
-    protected override void ConfigureServices(IServiceCollection services)
-    {
-        base.ConfigureServices(services);
-
-        services.AddSteamworksWebApiService();
-    }
-
-    /// <inheritdoc/>
     [SetUp]
     public override async ValueTask Setup()
     {
