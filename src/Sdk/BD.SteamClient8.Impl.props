@@ -29,12 +29,6 @@
 		<!--<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)\..\Shared\XmlnsDefinition.$(MSBuildThisFileName).cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>-->
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SteamAchievementManager.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ValveKeyValue.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
 	</ItemGroup>
 
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
