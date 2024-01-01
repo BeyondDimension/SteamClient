@@ -1,13 +1,16 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-namespace BD.SteamClient8.Models.WebApi.SteamApp;
+#if !(IOS || ANDROID)
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
 /// <summary>
 /// 移动过的游戏 App
 /// </summary>
-[MPObj, MP2Obj(SerializeLayout.Explicit)]
+[MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
 public partial class ModifiedApp
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ModifiedApp"/> class.
+    /// </summary>
     [MPConstructor, MP2Constructor]
     public ModifiedApp()
     {

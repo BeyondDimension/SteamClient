@@ -1,9 +1,10 @@
-namespace BD.SteamClient8.Models.WebApi.Trade;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 库存资产
 /// </summary>
-public record class Asset
+public record class TradeAsset
 {
     /// <summary>
     /// 游戏 AppId

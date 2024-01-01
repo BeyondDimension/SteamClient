@@ -1,0 +1,6 @@
+<Project TreatAsLocalProperty="$(TreatAsLocalProperty);UseSteamClient8Primitives;UseSteamClient8Models">
+
+	<Import Condition="$(UseSteamClient8Primitives) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8.Primitives'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Primitives.props" />
+	<Import Condition="$(UseSteamClient8Models) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8.Models'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Models.props" />
+
+</Project>

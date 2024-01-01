@@ -1,11 +1,9 @@
-namespace BD.SteamClient8.Models.Converter;
-
-#pragma warning disable SA1600 // Elements should be documented
+namespace BD.SteamClient8.Models.Converters;
 
 /// <summary>
 /// Steam API 数据 <see cref="JsonTokenType.String"/> => <see cref="long"/>
 /// </summary>
-public class SteamDataLongConverter : System.Text.Json.Serialization.JsonConverter<long>
+public sealed class SteamDataInt64Converter : System.Text.Json.Serialization.JsonConverter<long>
 {
     public override long Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
     {

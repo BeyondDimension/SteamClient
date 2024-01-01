@@ -1,9 +1,10 @@
-namespace BD.SteamClient8.Impl.Extensions;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// <see cref="SteamSession"/> 扩展方法
 /// </summary>
-public static class SteamSessionExtensions
+public static partial class SteamSessionExtensions
 {
     /// <summary>
     /// 空引用抛出异常，提示用户登录

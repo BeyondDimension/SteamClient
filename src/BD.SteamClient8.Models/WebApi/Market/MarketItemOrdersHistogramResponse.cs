@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Market;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 市场订单柱状图数据

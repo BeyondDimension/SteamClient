@@ -1,8 +1,6 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-
-namespace BD.SteamClient8.Models.WebApi.SteamApp;
-
-#pragma warning disable SA1600 // Elements should be documented
+#if !(IOS || ANDROID)
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// <see cref="SteamApp"/> Property
@@ -17,7 +15,7 @@ public class SteamAppProperty
         typeof(float),
         null,
         typeof(string),
-        typeof(System.Drawing.Color),
+        typeof(SDColor),
         typeof(ulong),
         null
     ];

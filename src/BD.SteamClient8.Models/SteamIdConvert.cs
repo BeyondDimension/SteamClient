@@ -1,8 +1,6 @@
-namespace BD.SteamClient8.Models.Helpers;
+namespace BD.SteamClient8.Models;
 
-#pragma warning disable SA1600 // Elements should be documented
-
-public class SteamIdConvert
+public sealed class SteamIdConvert
 {
     // Usage:
     // - SteamIdConvert sid = new SteamIdConvert("STEAM_0:0:52161201");
@@ -56,7 +54,7 @@ public class SteamIdConvert
             {
                 < 17 => 3,
                 17 => 4,
-                _ => _inputType
+                _ => _inputType,
             };
         }
         else
@@ -88,7 +86,7 @@ public class SteamIdConvert
                 SteamId3 => _input == null ? "" : _input[4..],
                 SteamId32 => _input,
                 SteamId64 => CalcSteamId32(),
-                _ => ""
+                _ => "",
             };
 
             Id += GetOddity(s!) + ":" + FloorDivide(s!, 2);
@@ -117,7 +115,7 @@ public class SteamIdConvert
                 SteamId => ((int.Parse(_input.ThrowIsNull()[10..]) * 2) + int.Parse($"{_input[8]}")).ToString(),
                 SteamId3 => _input.ThrowIsNull()[4..],
                 SteamId64 => (long.Parse(_input.ThrowIsNull()) - UndefinedId).ToString(),
-                _ => Id32
+                _ => Id32,
             };
         }
 
@@ -134,7 +132,7 @@ public class SteamIdConvert
                 SteamId => ((int.Parse(this._input.ThrowIsNull()[10..]) * 2) + int.Parse($"{_input[8]}") + UndefinedId).ToString(),
                 SteamId3 => (int.Parse(_input.ThrowIsNull()[4..]) + UndefinedId).ToString(),
                 SteamId32 => (int.Parse(_input.ThrowIsNull()) + UndefinedId).ToString(),
-                _ => Id64
+                _ => Id64,
             };
     }
 

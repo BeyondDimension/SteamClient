@@ -1,17 +1,15 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-using static BD.SteamClient8.Services.PInvoke.ISteamworksLocalApiService;
+#if !(IOS || ANDROID)
+using static BD.SteamClient8.Services.ISteamworksLocalApiService;
 using SAMAPIClient = SAM.API.Client;
 using UserStatsReceived = SAM.API.Types.UserStatsReceived;
 using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
-#endif
 
-namespace BD.SteamClient8.Impl.PInvoke;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <inheritdoc cref="ISteamworksLocalApiService "/> Steamworks 本地 API 服务实现
 public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 {
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-
     /// <summary>
     /// <see cref="SAMAPIClient"/> 实例
     /// </summary>
@@ -24,24 +22,22 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     /// </summary>
     public SteamworksLocalApiServiceImpl()
     {
-        Steam.GetInstallPathDelegate = SteamServiceImpl.GetSteamDynamicLinkLibraryPath;
+        Steam.GetInstallPathDelegate = ISteamService.GetSteamDynamicLinkLibraryPath;
         SteamClient = new SAMAPIClient();
     }
 
     /// <inheritdoc/>
-    public bool IsSupported => RuntimeInformation.ProcessArchitecture.IsX86OrX64();
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> DisposeSteamClient(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> DisposeSteamClient(CancellationToken cancellationToken = default)
     {
         SteamClient.Dispose();
-
-        return Task.FromResult(ApiRspHelper.Ok());
+        await Task.CompletedTask;
+        return ApiRspHelper.Ok();
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> Initialize(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> Initialize(CancellationToken cancellationToken = default)
     {
+        await Task.CompletedTask;
         try
         {
             SteamClient.Initialize(0);
@@ -49,14 +45,18 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         catch (Exception ex)
         {
             Log.Error(TAG, ex, "Initialize fail.");
-            return Task.FromResult(ApiRspHelper.Fail());
+            var result = ApiRspHelper.Exception(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
+            return result;
         }
-        return Task.FromResult(ApiRspHelper.Ok());
+        return ApiRspHelper.Ok();
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> Initialize(int appid, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> Initialize(int appid, CancellationToken cancellationToken = default)
     {
+        await Task.CompletedTask;
         try
         {
             SteamClient.Initialize(appid);
@@ -64,31 +64,37 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         catch (Exception ex)
         {
             Log.Error(TAG, ex, "Initialize fail.");
-            return Task.FromResult(ApiRspHelper.Fail());
+            var result = ApiRspHelper.Exception(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
+            return result;
         }
-        return Task.FromResult(ApiRspHelper.Ok());
+        return ApiRspHelper.Ok();
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<long>> GetSteamId64(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<long>> GetSteamId64(CancellationToken cancellationToken = default)
     {
-        long result;
-        if (SteamClient.SteamUser == null)
-            result = 0L;
-        result = (long)SteamClient.SteamUser.GetSteamId();
-        return Task.FromResult(ApiRspHelper.Ok(result));
+        await Task.CompletedTask;
+        var steamUser = SteamClient.SteamUser;
+        if (steamUser == null)
+            return 0L;
+        var result = (long)steamUser.GetSteamId();
+        return result;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> OwnsApps(uint appid, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> OwnsApps(uint appid, CancellationToken cancellationToken = default)
     {
-        var result = SteamClient.SteamApps008 == null ? false : SteamClient.SteamApps008.IsSubscribedApp(appid);
-        return Task.FromResult(ApiRspHelper.Code(result ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamApps008 != null && SteamClient.SteamApps008.IsSubscribedApp(appid);
+        return result;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<IEnumerable<SteamApp>>> OwnsApps(IEnumerable<SteamApp> apps, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<IEnumerable<SteamApp>>> OwnsApps(IEnumerable<SteamApp> apps, CancellationToken cancellationToken = default)
     {
+        await Task.CompletedTask;
         IEnumerable<SteamApp> ownsApps;
         if (!apps.Any_Nullable())
             ownsApps = new List<SteamApp>();
@@ -113,192 +119,205 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
                 s.Type = Enum.TryParse<SteamAppType>(GetAppData(s.AppId, "type").GetAwaiter().GetResult().Content, true, out var result) ? result : SteamAppType.Unknown;
                 return s;
             });
-        return Task.FromResult(ApiRspHelper.Ok(ownsApps))!;
+        return ApiRspHelper.Ok(ownsApps)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<string>> GetAppData(uint appid, string key, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string>> GetAppData(uint appid, string key, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamApps001.GetAppData(appid, key)))!;
+        await Task.CompletedTask;
+        var result = SteamClient.SteamApps001.GetAppData(appid, key);
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> IsSteamChinaLauncher(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> IsSteamChinaLauncher(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUtils.IsSteamChinaLauncher() ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUtils.IsSteamChinaLauncher();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> IsSteamInBigPictureMode(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> IsSteamInBigPictureMode(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUtils.IsSteamInBigPictureMode() ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUtils.IsSteamInBigPictureMode();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<uint>> GetSecondsSinceAppActive(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<uint>> GetSecondsSinceAppActive(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamUtils.GetSecondsSinceAppActive()));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUtils.GetSecondsSinceAppActive();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<uint>> GetServerRealTime(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<uint>> GetServerRealTime(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamUtils.GetServerRealTime()));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUtils.GetServerRealTime();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> IsAppInstalled(uint appid, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> IsAppInstalled(uint appid, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamApps008.IsAppInstalled(appid) ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamApps008.IsAppInstalled(appid);
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<string>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamApps008.GetAppInstallDir(appid)))!;
+        await Task.CompletedTask;
+        var result = SteamClient.SteamApps008.GetAppInstallDir(appid);
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<string>> GetIPCountry(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string>> GetIPCountry(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamUtils.GetIPCountry()))!;
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUtils.GetIPCountry();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<string>> GetCurrentGameLanguage(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string>> GetCurrentGameLanguage(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(SteamClient.SteamApps008.GetCurrentGameLanguage()))!;
+        await Task.CompletedTask;
+        var result = SteamClient.SteamApps008.GetCurrentGameLanguage();
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<string>> GetAvailableGameLanguages(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
-        return ApiRspHelper.Ok(SteamClient.SteamApps008.GetAvailableGameLanguages())!;
+        var result = SteamClient.SteamApps008.GetAvailableGameLanguages();
+        return ApiRspHelper.Ok(result)!;
     }
 
     #region SteamUserStats
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<int>> GetStatValueInt(string name, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code<int>(
-            code: SteamClient.SteamUserStats.GetStatValue(name, out int value) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: value
-            ));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl<float>> GetStatValueFloat(string name, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code<float>(
-            code: SteamClient.SteamUserStats.GetStatValue(name, out float value) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: value
-            ));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl<bool>> GetAchievementState(string name, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code<bool>(
-            code: SteamClient.SteamUserStats.GetAchievementState(name, out bool isAchieved) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: isAchieved
-            ));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl<(bool isAchieved, long unlockTime)>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code<(bool isAchieved, long unlockTime)>(
-            code: SteamClient.SteamUserStats.GetAchievementAndUnlockTime(name, out var isAchieved, out var unlockTime) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: (isAchieved, unlockTime)
-            ));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl<float>> GetAchievementAchievedPercent(string name, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code<float>(
-            code: SteamClient.SteamUserStats.GetAchievementAchievedPercent(name, out var percent) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: percent
-            ));
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl> AddUserStatsReceivedCallback(Action<IUserStatsReceived> action, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<int?>> GetStatValueInt(string name, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.GetStatValue(name, out int value);
+        return ApiRspHelper.Ok(result ? value : (int?)null)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<float?>> GetStatValueFloat(string name, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.GetStatValue(name, out float value);
+        return ApiRspHelper.Ok(result ? value : (float?)null)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool?>> GetAchievementState(string name, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.GetAchievementState(name, out bool isAchieved);
+        return ApiRspHelper.Ok(result ? isAchieved : (bool?)null)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<(bool isAchieved, long unlockTime)?>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.GetAchievementAndUnlockTime(name, out var isAchieved, out var unlockTime);
+        return ApiRspHelper.Ok<(bool isAchieved, long unlockTime)?>(result ? (isAchieved, unlockTime) : null)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<float?>> GetAchievementAchievedPercent(string name, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.GetAchievementAchievedPercent(name, out var percent);
+        return ApiRspHelper.Ok<float?>(result ? percent : null)!;
+    }
+
+    /// <inheritdoc/>
+    public async IAsyncEnumerable<ApiRspImpl<IUserStatsReceived>> AddUserStatsReceivedCallback([EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        var tcs = new TaskCompletionSource<IUserStatsReceived>();
+        tcs.SetCanceled(cancellationToken);
+
         UserStatsReceivedCallback = SteamClient.CreateAndRegisterCallback<UserStatsReceivedCallback>();
         UserStatsReceivedCallback.OnRun += value =>
         {
             var valueWrapper = new UserStatsReceivedWrapper(value);
-            action(valueWrapper);
+            tcs.TrySetResult(valueWrapper);
         };
-        return ApiRspHelper.Ok();
-    }
 
-    sealed class UserStatsReceivedWrapper : IUserStatsReceived
-    {
-        readonly SAM.API.Types.UserStatsReceived userStatsReceived;
+        var result = await tcs.Task;
 
-        public UserStatsReceivedWrapper(UserStatsReceived userStatsReceived)
-        {
-            this.userStatsReceived = userStatsReceived;
-        }
-
-        public ulong GameId => userStatsReceived.GameId;
-
-        public int Result => userStatsReceived.Result;
+        yield return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> RequestCurrentStats(CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.RequestCurrentStats() ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> ResetAllStats(bool achievementsToo, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.ResetAllStats(achievementsToo) ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> SetAchievement(string name, bool state, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.SetAchievement(name, state) ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> SetStatValue(string name, int value, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.SetStatValue(name, value) ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> SetStatValue(string name, float value, CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.SetStatValue(name, value) ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl> StoreStats(CancellationToken cancellationToken = default)
-    {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamUserStats.StoreStats() ? ApiRspCode.OK : ApiRspCode.Fail));
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl> RequestGlobalAchievementPercentages(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> RequestCurrentStats(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
-        SteamClient.SteamUserStats.RequestGlobalAchievementPercentages();
-        return ApiRspHelper.Ok();
+        var result = SteamClient.SteamUserStats.RequestCurrentStats();
+        return ApiRspHelper.Ok(result)!;
     }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> ResetAllStats(bool achievementsToo, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.ResetAllStats(achievementsToo);
+        return ApiRspHelper.Ok(result)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> SetAchievement(string name, bool state, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.SetAchievement(name, state);
+        return ApiRspHelper.Ok(result)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> SetStatValue(string name, int value, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.SetStatValue(name, value);
+        return ApiRspHelper.Ok(result)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> SetStatValue(string name, float value, CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.SetStatValue(name, value);
+        return ApiRspHelper.Ok(result)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> StoreStats(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.StoreStats();
+        return ApiRspHelper.Ok(result)!;
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<nint>> RequestGlobalAchievementPercentages(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamClient.SteamUserStats.RequestGlobalAchievementPercentages();
+        return ApiRspHelper.Ok(result);
+    }
+
     #endregion
 
     /// <inheritdoc/>
@@ -312,18 +331,17 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     #region SteamRemoteStorage
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<(ulong totalBytes, ulong availableBytes)>> GetCloudArchiveQuota(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<(ulong totalBytes, ulong availableBytes)?>> GetCloudArchiveQuota(CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code<(ulong totalBytes, ulong availableBytes)>(
-            code: SteamClient.SteamRemoteStorage.GetQuota(out var totalBytes, out var availableBytes) ? ApiRspCode.OK : ApiRspCode.Fail,
-            message: null,
-            content: (totalBytes, availableBytes)
-            ));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamRemoteStorage.GetQuota(out var totalBytes, out var availableBytes);
+        return ApiRspHelper.Ok<(ulong totalBytes, ulong availableBytes)?>(result ? (totalBytes, availableBytes) : null)!;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<List<SteamRemoteFile>?>> GetCloudArchiveFiles(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamRemoteFile>?>> GetCloudArchiveFiles(CancellationToken cancellationToken = default)
     {
+        await Task.CompletedTask;
         List<SteamRemoteFile> files = [];
 
         var fileCount = SteamClient.SteamRemoteStorage.GetFileCount();
@@ -338,35 +356,64 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
             files.Add(file);
         }
 
-        return Task.FromResult(ApiRspHelper.Ok(files));
+        return files;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<int>> FileRead(string name, byte[] buffer, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<byte[]?>> FileRead(string name, long length, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
-        return SteamClient.SteamRemoteStorage.FileRead(name, buffer);
+        byte[] buffer = new byte[length];
+        var result = SteamClient.SteamRemoteStorage.FileRead(name, buffer);
+        if (result == 0)
+            return ApiRspHelper.Ok((byte[]?)null);
+        return buffer;
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> FileWrite(string name, byte[] buffer, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> FileWrite(string name, byte[] buffer, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamRemoteStorage.FileWrite(name, buffer) ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamRemoteStorage.FileWrite(name, buffer);
+        return ApiRspHelper.Ok(result);
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> FileForget(string name, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> FileForget(string name, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamRemoteStorage.FileForget(name) ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamRemoteStorage.FileForget(name);
+        return ApiRspHelper.Ok(result);
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl> FileDelete(string name, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> FileDelete(string name, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Code(SteamClient.SteamRemoteStorage.FileDelete(name) ? ApiRspCode.OK : ApiRspCode.Fail));
+        await Task.CompletedTask;
+        var result = SteamClient.SteamRemoteStorage.FileDelete(name);
+        return ApiRspHelper.Ok(result);
     }
 
     #endregion
 
-#endif
 }
+
+[MP2Obj(MP2SerializeLayout.Sequential)]
+sealed partial record class UserStatsReceivedWrapper : IUserStatsReceived
+{
+    [MP2Constructor, SystemTextJsonConstructor]
+    public UserStatsReceivedWrapper()
+    {
+    }
+
+    internal UserStatsReceivedWrapper(UserStatsReceived userStatsReceived)
+    {
+        GameId = userStatsReceived.GameId;
+        Result = userStatsReceived.Result;
+    }
+
+    public ulong GameId { get; init; }
+
+    public int Result { get; init; }
+}
+#endif

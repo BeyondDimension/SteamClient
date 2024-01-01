@@ -2,42 +2,39 @@ using AngleSharp.Common;
 using AngleSharp.Html.Dom;
 using Nito.Comparers.Linq;
 
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamIdleCardService"/> Steam 挂卡相关服务实现
 /// </summary>
-public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCardService
+/// <remarks>
+/// 初始化 <see cref="SteamIdleCardServiceImpl"/> 类的新实例
+/// </remarks>
+/// <param name="s"></param>
+/// <param name="sessions"></param>
+/// <param name="loggerFactory"></param>
+public partial class SteamIdleCardServiceImpl(
+    IServiceProvider s,
+    ISteamSessionService sessions,
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(
+        loggerFactory.CreateLogger(TAG),
+        s), ISteamIdleCardService
 {
     const string TAG = "SteamIdleS";
 
     /// <inheritdoc/>
     protected override string ClientName => TAG;
 
-    private readonly ISteamSessionService _sessionService;
-
-    /// <summary>
-    /// 初始化 <see cref="SteamIdleCardServiceImpl"/> 类的新实例
-    /// </summary>
-    /// <param name="s"></param>
-    /// <param name="sessions"></param>
-    /// <param name="loggerFactory"></param>
-    public SteamIdleCardServiceImpl(
-        IServiceProvider s,
-        ISteamSessionService sessions,
-        ILoggerFactory loggerFactory) : base(
-            loggerFactory.CreateLogger(TAG),
-            s)
-    {
-        _sessionService = sessions;
-    }
+    readonly ISteamSessionService _sessionService = sessions;
 
     #region Public
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
     {
-        var steamSession = _sessionService.RentSession(steam_id).ThrowIsNull(steam_id);
+        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        steamSession = steamSession.ThrowIsNull(steam_id);
 
         var badges_url = SteamApiUrls.STEAM_BADGES_URL.Format(steamSession.SteamId, 1);
         var pages = new List<string>() { "?p=1" };
@@ -61,7 +58,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             }
 
             // 读取总页数
-            string lastpagestr = Regex.Match(pages.Last().ToString(), @"p=\s*(\d+)").Groups[1].Value;
+            string lastpagestr = PRegex().Match(pages.Last().ToString()).Groups[1].Value;
             if (int.TryParse(lastpagestr, out var lastpage))
             {
                 pagesCount = lastpage;
@@ -84,14 +81,10 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             for (var i = 2; i <= pagesCount; i++)
             {
                 badges_url = SteamApiUrls.STEAM_BADGES_URL.Format(steamSession.SteamId, i);
-                using (var otherPageSendArgs = new WebApiClientSendArgs(badges_url))
-                {
-                    otherPageSendArgs.SetHttpClient(steamSession.HttpClient!);
-                    using (var otherDocument = await parser.ParseDocumentAsync(page, cancellationToken))
-                    {
-                        FetchBadgesOnPage(otherDocument, badges, cardpage_func, need_price);
-                    }
-                }
+                using var otherPageSendArgs = new WebApiClientSendArgs(badges_url);
+                otherPageSendArgs.SetHttpClient(steamSession.HttpClient!);
+                using var otherDocument = await parser.ParseDocumentAsync(page, cancellationToken);
+                FetchBadgesOnPage(otherDocument, badges, cardpage_func, need_price);
             }
 
             if (need_price)
@@ -123,17 +116,20 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium")?.LastElementChild?.GetAttribute("src");
             userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content")?.TextContent.Trim();
             userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum")?.TextContent, out var after_userLevel) ? after_userLevel : default;
-            userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
+            userIdle.CurrentExp = int.TryParse(D13Regex().Match(document.QuerySelector(".profile_xp_block_xp")?.TextContent ?? string.Empty).Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
 
-            var matches = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
+            var matches = D13Regex().Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty);
             if (matches.Count >= 2)
                 userIdle.UpExp = int.TryParse(matches[1].Value, out var after_upExp) ? after_upExp : default;
 
-            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress")?.OuterHtml ?? string.Empty, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
+            userIdle.NextLevelExpPercentage = short.TryParse(WidthRegex().Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress")?.OuterHtml ?? string.Empty).Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
         }
         catch (Exception ex)
         {
-            ex.LogAndShow();
+            var result = ApiRspHelper.Exception<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
+            return result!;
         }
 
         return (userIdle, badges);
@@ -179,6 +175,10 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         catch (Exception ex)
         {
             Log.Warn(nameof(GetAppCardsAvgPrice), ex, "获取卡片平均价格接口出错");
+            var result = ApiRspHelper.Exception<IEnumerable<AppCardsAvgPrice>>(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
+            return result!;
         }
         return ApiRspHelper.Ok(Enumerable.Empty<AppCardsAvgPrice>())!;
     }
@@ -213,19 +213,25 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         catch (Exception ex)
         {
             Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
+            var result = ApiRspHelper.Exception<IEnumerable<CardsMarketPrice>>(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
+            return result!;
         }
         return ApiRspHelper.Ok(Enumerable.Empty<CardsMarketPrice>())!;
     }
+
     #endregion
 
     #region Private
-    private void FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
+
+    static void FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
     {
         var badges_rows = document.QuerySelectorAll("div.badge_row.is_link");
         foreach (var badge in badges_rows)
         {
             var appIdNode = badge.QuerySelector("a.badge_row_overlay")?.Attributes["href"]?.Value ?? "";
-            var appid = Regex.Match(appIdNode, @"gamecards/(\d+)/").Groups[1].Value;
+            var appid = GameCardsRegex().Match(appIdNode).Groups[1].Value;
 
             if (string.IsNullOrWhiteSpace(appid) || appid == "368020" || appid == "335590" || appIdNode.Contains("border=1"))
             {
@@ -233,7 +239,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
             }
 
             var hoursNode = badge.QuerySelector("div.badge_title_stats_playtime");
-            var hours = hoursNode == null ? string.Empty : Regex.Match(hoursNode.TextContent, @"[0-9\.,]+").Value;
+            var hours = hoursNode == null ? string.Empty : _09Regex().Match(hoursNode.TextContent).Value;
 
             var nameNode = badge.QuerySelector("div.badge_title");
             var name = WebUtility.HtmlDecode(nameNode?.FirstChild?.TextContent)?.Trim() ?? "";
@@ -288,7 +294,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
                 HoursPlayed = double.TryParse(hours, out var after_hours) ? after_hours : 0D,
                 CardsRemaining = int.TryParse(remaining_cards, out var after_remaining_cards) ? after_remaining_cards : 0,
                 CardsCollected = collected,
-                CardsGathering = gathering
+                CardsGathering = gathering,
             };
 
             //if (need_price)
@@ -304,7 +310,7 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         }
     }
 
-    private IEnumerable<SteamCard> FetchCardsOnPage(IHtmlDocument document)
+    IEnumerable<SteamCard> FetchCardsOnPage(IHtmlDocument document)
     {
         var cards = new List<SteamCard>();
         foreach (var owned in document.QuerySelectorAll("div.badge_card_set_card.owned"))
@@ -322,14 +328,32 @@ public class SteamIdleCardServiceImpl : WebApiClientFactoryService, ISteamIdleCa
         }
         return cards;
 
-        SteamCard GetCard(IElement element)
+        static SteamCard GetCard(IElement element)
         {
-            var card = new SteamCard();
-            card.ImageUrl = element.QuerySelector("img.gamecard")?.Attributes["src"]?.Value ?? "";
+            var card = new SteamCard
+            {
+                ImageUrl = element.QuerySelector("img.gamecard")?.Attributes["src"]?.Value ?? "",
+            };
             var name = element.QuerySelector("div.badge_card_set_text.badge_card_set_text")?.ChildNodes.Where(x => x.NodeType == NodeType.Text).Select(s => s.TextContent);
             card.Name = name != null ? WebUtility.HtmlDecode(string.Join("", name)).Trim() : "";
             return card;
         }
     }
+
+    [GeneratedRegex(@"gamecards/(\d+)/")]
+    private static partial Regex GameCardsRegex();
+
+    [GeneratedRegex(@"\d{1,3}(,\d{3})*")]
+    private static partial Regex D13Regex();
+
+    [GeneratedRegex(@"width:\s*(\d+)%")]
+    private static partial Regex WidthRegex();
+
+    [GeneratedRegex(@"[0-9\.,]+")]
+    private static partial Regex _09Regex();
+
+    [GeneratedRegex(@"p=\s*(\d+)")]
+    private static partial Regex PRegex();
+
     #endregion
 }

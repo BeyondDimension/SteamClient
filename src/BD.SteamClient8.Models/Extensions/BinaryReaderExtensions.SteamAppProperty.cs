@@ -1,11 +1,8 @@
-#if WINDOWS || MACCATALYST || MACOS || LINUX
+#if !(IOS || ANDROID)
 
 using Color = System.Drawing.Color;
 
-// ReSharper disable once CheckNamespace
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-#pragma warning disable SA1600 // Elements should be documented
-
 namespace System;
 
 public static partial class BinaryReaderExtensions

@@ -1,5 +1,6 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-namespace BD.SteamClient8.Models.WebApi.SteamApp;
+#if !(IOS || ANDROID)
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// <see cref="SteamApp"/> 属性表格

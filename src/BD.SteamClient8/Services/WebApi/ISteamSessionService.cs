@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Services.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Services;
 
 /// <summary>
 /// Steam 登录会话信息服务
@@ -14,34 +15,38 @@ public interface ISteamSessionService
     /// 添加或修改登录会话信息
     /// </summary>
     /// <param name="steamSession"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    bool AddOrSetSession(SteamSession steamSession);
+    Task<ApiRspImpl<bool>> AddOrSetSession(SteamSession steamSession, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 根据 STEAM ID 获取会话信息，不存在返回 null
     /// </summary>
     /// <param name="steam_id"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    SteamSession? RentSession(string steam_id);
+    Task<ApiRspImpl<SteamSession?>> RentSession(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 通过文件加载登录会话信息
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<SteamSession?> LoadSession(string filePath);
+    Task<ApiRspImpl<SteamSession?>> LoadSession(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将登录会话信息本地存储
     /// </summary>
     /// <param name="steamSession"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<bool> SaveSession(SteamSession steamSession);
+    Task<ApiRspImpl<bool>> SaveSession(SteamSession steamSession, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 删除登录会话信息
     /// </summary>
     /// <param name="steam_id"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    bool RemoveSession(string steam_id);
+    Task<ApiRspImpl<bool>> RemoveSession(string steam_id, CancellationToken cancellationToken = default);
 }

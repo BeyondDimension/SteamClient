@@ -1,4 +1,4 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
 namespace BD.SteamClient8.Helpers;
 
@@ -9,7 +9,7 @@ public static class VdfHelper
 {
     const string TAG = nameof(VdfHelper);
 
-    private static KVSerializerOptions options = new KVSerializerOptions
+    static readonly KVSerializerOptions options = new()
     {
         HasEscapeSequences = true,
     };

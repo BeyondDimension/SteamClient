@@ -3,7 +3,7 @@
 
 	<PropertyGroup>
 		<!--<Version>1.yy.1MMdd.1hhmm</Version>-->
-		<Version>1.23.11016.11900</Version>
+		<Version>8.24.10102.10055</Version>
 		<IsCommon8Project>false</IsCommon8Project>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>

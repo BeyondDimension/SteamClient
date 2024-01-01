@@ -1,9 +1,18 @@
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamMarketService"/> Steam 市场交易相关服务实现
 /// </summary>
-public class SteamMarketService : WebApiClientFactoryService, ISteamMarketService
+/// <remarks>
+/// 初始化 <see cref="SteamMarketService"/> 类的新实例
+/// </remarks>
+/// <param name="serviceProvider"></param>
+/// <param name="loggerFactory"></param>
+public class SteamMarketService(IServiceProvider serviceProvider,
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(
+        loggerFactory.CreateLogger(TAG),
+        serviceProvider), ISteamMarketService
 {
     const string TAG = "SteamMarketWebApiS";
 
@@ -16,22 +25,10 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
-    /// <summary>
-    /// 初始化 <see cref="SteamMarketService"/> 类的新实例
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    /// <param name="loggerFactory"></param>
-    public SteamMarketService(IServiceProvider serviceProvider,
-        ILoggerFactory loggerFactory) : base(
-            loggerFactory.CreateLogger(TAG),
-            serviceProvider)
-    {
-    }
-
-    /// <summary>
-    /// 重试间隔
-    /// </summary>
-    static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
+    ///// <summary>
+    ///// 重试间隔
+    ///// </summary>
+    //static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1, CancellationToken cancellationToken = default)
@@ -60,7 +57,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         {
             sendArgs.SetHttpClient(CreateClient());
             var str = await SendAsync<string>(sendArgs, cancellationToken);
-            return (await SendAsync<MarketItemOrdersHistogramResponse>(sendArgs))!;
+            return (await SendAsync<MarketItemOrdersHistogramResponse>(sendArgs, cancellationToken))!;
         }
         catch (Exception ex)
         {
@@ -97,8 +94,8 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 Value = loginState.SeesionId,
                 Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
                 Secure = true,
-                Path = "/"
-            }
+                Path = "/",
+            },
         };
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -134,7 +131,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
                 Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
                 Secure = true,
                 Path = "/",
-            }
+            },
         };
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -142,7 +139,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         using var sendArgs = new WebApiClientSendArgs(requestUrl)
         {
             Method = HttpMethod.Get,
-            JsonImplType = Serializable.JsonImplType.SystemTextJson
+            JsonImplType = Serializable.JsonImplType.SystemTextJson,
         };
         sendArgs.SetHttpClient(client);
 
@@ -212,12 +209,12 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
             {
                 if (datesElement.Length == 2)
                 {
-                    renderItem.TradingDate = ParseDateTimeText(datesElement[0].TextContent, l);
-                    renderItem.ListingDate = ParseDateTimeText(datesElement[1].TextContent, l) ?? default;
+                    renderItem.TradingDate = SteamMarketService.ParseDateTimeText(datesElement[0].TextContent, l);
+                    renderItem.ListingDate = SteamMarketService.ParseDateTimeText(datesElement[1].TextContent, l) ?? default;
                 }
                 else if (datesElement.Length == 1)
                 {
-                    renderItem.ListingDate = ParseDateTimeText(datesElement[0].TextContent, l) ?? default;
+                    renderItem.ListingDate = SteamMarketService.ParseDateTimeText(datesElement[0].TextContent, l) ?? default;
                 }
             }
 
@@ -263,8 +260,8 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
 
         return new MarketListings
         {
-            ActiveListings = activeListings.ToBlockingEnumerable(),
-            Buyorders = buyorders.ToBlockingEnumerable(),
+            ActiveListings = activeListings.ToBlockingEnumerable(cancellationToken: cancellationToken),
+            Buyorders = buyorders.ToBlockingEnumerable(cancellationToken: cancellationToken),
         }!;
 
         // 解析正在出售的物品行
@@ -272,10 +269,11 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         {
             string rowId = rowElement.Id?.Trim() ?? string.Empty;
 
-            MarketListings.ActiveListingItem item = new();
-
-            item.Id = rowId.Replace(activeListingRowIdPrefix, string.Empty).ToString();
-            item.ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty;
+            MarketListings.ActiveListingItem item = new()
+            {
+                Id = rowId.Replace(activeListingRowIdPrefix, string.Empty).ToString(),
+                ImgUrl = rowElement.QuerySelector($"#{rowId}_image")?.GetAttribute("src") ?? string.Empty,
+            };
 
             var priceElement = rowElement.QuerySelector("div.market_listing_my_price")
                 ?.FirstElementChild
@@ -353,7 +351,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         }
     }
 
-    private DateTime? ParseDateTimeText(string? text, string? l)
+    static DateTime? ParseDateTimeText(string? text, string? l)
     {
         if (string.IsNullOrEmpty(text))
         {
@@ -369,7 +367,7 @@ public class SteamMarketService : WebApiClientFactoryService, ISteamMarketServic
         {
             "english" => DateTime.TryParse(text, out var parsedDate) ? parsedDate : null,
             "schinese" => DateTime.TryParse(text, CultureInfo.GetCultureInfo("zh-CN"), out var parsedDate) ? parsedDate : null,
-            _ => null
+            _ => null,
         };
     }
 }

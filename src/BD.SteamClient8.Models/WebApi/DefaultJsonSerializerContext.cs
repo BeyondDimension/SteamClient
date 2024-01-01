@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// Json 源生成类型上下文
@@ -42,10 +43,10 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(LoginHistoryItem))]
 [SystemTextJsonSerializable(typeof(SendGiftHistoryItem))]
 //// SteamApp
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 [SystemTextJsonSerializable(typeof(ModifiedApp))]
 #endif
-[SystemTextJsonSerializable(typeof(SteamApp.SteamApp))]
+[SystemTextJsonSerializable(typeof(SteamApp))]
 [SystemTextJsonSerializable(typeof(SteamApps))]
 [SystemTextJsonSerializable(typeof(SteamAppInfo))]
 [SystemTextJsonSerializable(typeof(SteamAppSaveFile))]
@@ -55,8 +56,8 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(SteamGridItem))]
 [SystemTextJsonSerializable(typeof(SteamGridAppData))]
 //// Trade
-[SystemTextJsonSerializable(typeof(Asset))]
-[SystemTextJsonSerializable(typeof(Confirmation))]
+[SystemTextJsonSerializable(typeof(TradeAsset))]
+[SystemTextJsonSerializable(typeof(TradeConfirmation))]
 [SystemTextJsonSerializable(typeof(TradeHistory))]
 [SystemTextJsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
 [SystemTextJsonSerializable(typeof(TradeHistory.TradeItem))]
@@ -82,6 +83,8 @@ namespace BD.SteamClient8.Models.WebApi;
 [SystemTextJsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
 [SystemTextJsonSerializable(typeof(RemoveAuthenticatorResponse))]
 [SystemTextJsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
+[JsonSourceGenerationOptions(
+    AllowTrailingCommas = true)]
 public partial class DefaultJsonSerializerContext_ : SystemTextJsonSerializerContext
 {
 }

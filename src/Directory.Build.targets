@@ -1,5 +1,6 @@
 <Project>
 
-	<Import Project="..\ref\Common\src\Directory.Build.targets" />
+	<Import Project="$(MSBuildThisFileDirectory)..\ref\Common\src\Directory.Build.targets" />
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.SteamClient8.Sdk.targets" />
 
 </Project>

@@ -1,6 +1,4 @@
-namespace BD.SteamClient8.Primitives.Constants;
-
-#pragma warning disable SA1600 // Elements should be documented
+namespace BD.SteamClient8.Constants;
 
 public static partial class SteamApiUrls
 {
@@ -81,11 +79,11 @@ public static partial class SteamApiUrls
     public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
     #endregion
 
-    #region LoginV1
-    public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
-    public const string DologinUrl = $"{STEAM_STORE_URL}/login/dologin?l=schinese";
-    public const string SteamLoginUrl = $"{STEAM_STORE_URL}/login?oldauth=1";
-    #endregion
+    //#region LoginV1
+    //public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
+    //public const string DologinUrl = $"{STEAM_STORE_URL}/login/dologin?l=schinese";
+    //public const string SteamLoginUrl = $"{STEAM_STORE_URL}/login?oldauth=1";
+    //#endregion
 
     #region LoginV2
     public const string GetRSAkeyV2Url = "https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={0}";

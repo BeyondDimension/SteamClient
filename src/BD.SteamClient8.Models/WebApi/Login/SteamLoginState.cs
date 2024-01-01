@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Login;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 [MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
 public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
@@ -24,16 +25,37 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
     public string? Language { get; set; }
 
     /// <summary>
+    /// Steam 会从用户名和密码中删除所有非 ASCII 字符
+    /// </summary>
+    /// <returns></returns>
+    [GeneratedRegex("[^\\u0000-\\u007F]")]
+    private static partial Regex SteamUNPWDRegex();
+
+    string? _Username;
+
+    /// <summary>
     /// 用户名
     /// </summary>
     [MPKey(1), MP2Key(1), JsonPropertyOrder(1)]
-    public string? Username { get; set; }
+    public string? Username
+    {
+        get => _Username;
+        set => _Username = value == null ? null :
+            SteamUNPWDRegex().Replace(value, string.Empty);
+    }
+
+    string? _Password;
 
     /// <summary>
     /// 密码
     /// </summary>
     [MPKey(2), MP2Key(2), JsonPropertyOrder(2)]
-    public string? Password { get; set; }
+    public string? Password
+    {
+        get => _Password;
+        set => _Password = value == null ? null :
+            SteamUNPWDRegex().Replace(value, string.Empty);
+    }
 
     /// <summary>
     /// 验证码 Id

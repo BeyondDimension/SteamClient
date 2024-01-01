@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Idle;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 // https://github.com/IsThereAnyDeal/AugmentedSteam_Server/blob/master/src/Controllers/MarketController.php
 

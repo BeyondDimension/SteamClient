@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Services.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Services;
 
 /// <summary>
 /// Steam 令牌服务
@@ -105,12 +106,10 @@ public interface ISteamAuthenticatorService
     Task<ApiRspImpl<SteamSyncStruct?>> TwoFAQueryTime(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 刷新AccessToken
+    /// 刷新 AccessToken
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
-    [RequiresDynamicCode("Calls System.Text.Json.JsonSerializer.Deserialize<TValue>(String, JsonSerializerOptions)")]
     Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default);
 }

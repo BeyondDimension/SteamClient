@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Authenticator;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 旧版获取是否绑定手机接口返回模型类
@@ -92,7 +93,7 @@ public sealed class SteamConvertSteamDataJsonStruct
     /// <summary>
     /// 状态
     /// </summary>
-    [SystemTextJsonConverter(typeof(SteamDataIntConverter))]
+    [SystemTextJsonConverter(typeof(SteamDataInt32Converter))]
     [JsonPropertyName("status")]
     public int Status { get; set; }
 
@@ -117,7 +118,7 @@ public sealed class SteamConvertSteamDataJsonStruct
     /// <summary>
     /// 用户 steamId
     /// </summary>
-    [SystemTextJsonConverter(typeof(SteamDataLongConverter))]
+    [SystemTextJsonConverter(typeof(SteamDataInt64Converter))]
     [JsonPropertyName("steamid")]
     public long SteamId { get; set; }
 
@@ -131,7 +132,7 @@ public sealed class SteamConvertSteamDataJsonStruct
     /// <summary>
     /// 服务器时间
     /// </summary>
-    [SystemTextJsonConverter(typeof(SteamDataLongConverter))]
+    [SystemTextJsonConverter(typeof(SteamDataInt64Converter))]
     [JsonPropertyName("server_time")]
     public long ServerTime { get; set; }
 

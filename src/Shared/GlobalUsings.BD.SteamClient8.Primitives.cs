@@ -5,10 +5,13 @@
 #pragma warning disable SA1209 // Using alias directives should be placed after other using directives
 #pragma warning disable SA1211 // Using alias directives should be ordered alphabetically by alias name
 
-global using BD.SteamClient8.Primitives;
-global using BD.SteamClient8.Primitives.Constants;
-global using BD.SteamClient8.Primitives.Enums.WebApi;
-global using BD.SteamClient8.Primitives.Enums.WebApi.Market;
-global using BD.SteamClient8.Primitives.Enums.WebApi.Trade;
-global using BD.SteamClient8.Primitives.Enums.WebApi.SteamApp;
-global using BD.SteamClient8.Primitives.Enums.WebApi.SteamGridDB;
+global using BD.SteamClient8;
+global using BD.SteamClient8.Constants;
+global using BD.SteamClient8.Enums;
+
+#if !(IOS || ANDROID)
+global using SteamKit2SteamUser = SteamKit2.SteamUser;
+global using SteamKit2SteamApps = SteamKit2.SteamApps;
+global using SteamKit2;
+global using SteamKit2ERemoteStoragePlatform = SteamKit2.ERemoteStoragePlatform;
+#endif

@@ -26,10 +26,4 @@
 		</Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
-	</ItemGroup>
-
 </Project>

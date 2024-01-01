@@ -1,6 +1,5 @@
-#pragma warning disable IDE1006 // 命名样式
-
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// Steam 小型用户个人资料
@@ -61,11 +60,11 @@ public record class SteamMiniProfile
         public string? Name { get; set; }
 
         /// <summary>
-        /// 非Steam游戏
+        /// 非 Steam 游戏
         /// </summary>
         [NewtonsoftJsonProperty("is_non_steam")]
         [SystemTextJsonProperty("is_non_steam")]
-        public bool isNonSteam { get; set; }
+        public bool IsNonSteam { get; set; }
 
         /// <summary>
         /// 游戏LOGO

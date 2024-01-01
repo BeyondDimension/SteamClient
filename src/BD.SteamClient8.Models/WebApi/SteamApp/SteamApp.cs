@@ -1,10 +1,11 @@
-namespace BD.SteamClient8.Models.WebApi.SteamApp;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// Steam 游戏
 /// </summary>
 public class SteamApp
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
     : IComparable<SteamApp>
 #endif
 {
@@ -56,8 +57,6 @@ public class SteamApp
 
     [SystemTextJsonIgnore]
     public string NodeLaunch { get; } = "launch";
-
-#pragma warning restore SA1600 // Elements should be documented
 
     /// <summary>
     /// 无参构造
@@ -441,7 +440,7 @@ public class SteamApp
     /// </summary>
     public byte[]? OriginalData { get => _originalData; set => _originalData = value; }
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
     /// 内部属性集合
@@ -594,7 +593,7 @@ public class SteamApp
 
 #endif
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
     /// 是否正在下载

@@ -1,6 +1,7 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
-[MPObj, MP2Obj(SerializeLayout.Explicit)]
+[MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
 public partial record class DisableAuthorizedDevice
 {
     /// <summary>

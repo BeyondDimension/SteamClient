@@ -1,6 +1,4 @@
-namespace BD.SteamClient8.Primitives.Constants;
-
-#pragma warning disable SA1600 // Elements should be documented
+namespace BD.SteamClient8.Constants;
 
 public static partial class SteamGridDBApiUrls
 {

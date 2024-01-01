@@ -1,8 +1,7 @@
 using static System.String2;
 
-namespace BD.SteamClient8.Services.PInvoke;
-
-#pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Services;
 
 /// <summary>
 /// Steam 相关助手、工具类服务
@@ -11,9 +10,6 @@ public partial interface ISteamService
 {
     static ISteamService Instance => Ioc.Get<ISteamService>();
 
-    ISteamConnectService Conn { get; }
-
-    const int IPC_Call_GetLoginUsingSteamClient_Timeout_MS = 6500;
     protected const string url_localhost_auth_public = Prefix_HTTP + "127.0.0.1:27060/auth/?u=public";
     const string url_steamcommunity_ = "steamcommunity.com";
     const string url_store_steampowered_ = "store.steampowered.com";
@@ -23,25 +19,55 @@ public partial interface ISteamService
     const string url_steamcommunity_checkclientautologin = url_steamcommunity + "/login/checkclientautologin";
     static readonly Uri uri_store_steampowered_checkclientautologin = new(url_store_steampowered_checkclientautologin);
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
-    /// Steam 文件夹目录
+    /// 连接 SteamClient 是否成功
     /// </summary>
-    string? SteamDirPath { get; }
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<bool>> IsConnectToSteamAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Steam 主程序文件目录
+    /// Steam 语言
     /// </summary>
-    string? SteamProgramPath { get; }
+    Task<ApiRspImpl<string?>> GetSteamLanguageString(CancellationToken cancellationToken = default);
 
-    bool IsRunningSteamProcess { get; }
+    /// <summary>
+    /// 本机的 Steam 游戏
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<SteamApp[]?>> GetSteamApps(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 下载的 Steam 游戏
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<SteamApp[]?>> GetDownloadApps(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 用户拥有的 Steam 游戏
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<SteamUser[]?>> GetSteamUsers(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 当前 Steam 客户端连接的用户
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<SteamUser?>> GetCurrentSteamUser(CancellationToken cancellationToken = default);
+
+    Task<ApiRspImpl<bool>> IsRunningSteamProcess(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 尝试结束 Steam 进程
     /// </summary>
     /// <returns></returns>
-    ValueTask<ApiRspImpl> TryKillSteamProcess(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> TryKillSteamProcess(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Steam 进程是否正在运行，如果正在运行，返回进程PID提示用户去任务管理器中结束进程
@@ -72,7 +98,7 @@ public partial interface ISteamService
     /// 获取最后一次自动登录 Steam 用户名称
     /// </summary>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetLastLoginUserName(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetLastLoginUserName(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取所有记住登录 Steam 用户信息
@@ -95,7 +121,7 @@ public partial interface ISteamService
     /// </summary>
     /// <param name="userName"></param>
     /// <param name="cancellationToken"></param>
-    ValueTask<ApiRspImpl> SetSteamCurrentUserAsync(string userName, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> SetSteamCurrentUserAsync(string userName, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Sets whether the user is invisible or not
@@ -123,15 +149,21 @@ public partial interface ISteamService
     /// </summary>
     Task<ApiRspImpl> SaveAppInfosToSteam(CancellationToken cancellationToken = default);
 
-    Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default);
+    //Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default);
 
-    ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default);
+    //ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 保存图片流到 Steam 自定义封面文件夹
+    /// 保存图片数据到 Steam 自定义封面文件夹
     /// </summary>
     /// <returns></returns>
-    Task<ApiRspImpl> SaveAppImageToSteamFile(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> SaveAppImageToSteamFileByByteArray(byte[]? imageBytes, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 保存图片数据到 Steam 自定义封面文件夹
+    /// </summary>
+    /// <returns></returns>
+    Task<ApiRspImpl> SaveAppImageToSteamFileByFilePath(string? imagePath, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取已安装的 SteamApp 列表(包括正在下载的项)
@@ -152,20 +184,18 @@ public partial interface ISteamService
     /// 从任意文本中匹配批量提取 SteamKey
     /// </summary>
     /// <param name="source"></param>
-    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    async Task<ApiRspImpl<IEnumerable<string>>> ExtractKeysFromString(string source, CancellationToken cancellationToken = default)
+    static IEnumerable<string> ExtractKeysFromString(string source)
     {
         var m = ExtractKeysFromStringRegex().Matches(source);
         var keys = new List<string>();
         if (m.Count > 0)
         {
-            foreach (Match v in m)
+            foreach (Match v in m.Cast<Match>())
             {
                 keys.Add(v.Value);
             }
         }
-        await Task.CompletedTask;
         return keys!;
     }
 

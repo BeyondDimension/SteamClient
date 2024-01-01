@@ -1,21 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
+		<RootNamespace>BD.SteamClient8</RootNamespace>
 	</PropertyGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildProjectName).props" />
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="SteamKit2" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Enums\PInvoke\" />
-	</ItemGroup>
 </Project>

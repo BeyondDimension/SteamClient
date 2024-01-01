@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Login;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 public sealed partial class SteamSession
 {
@@ -68,12 +69,12 @@ public sealed partial class SteamSession
     /// <returns></returns>
     public bool GenerateSetCookie()
     {
-        if (string.IsNullOrEmpty(this.AccessToken))
+        if (string.IsNullOrEmpty(AccessToken))
         {
             return false;
         }
 
-        var steamLoginSecure = this.SteamId + "%7C%7C" + this.AccessToken;
+        var steamLoginSecure = SteamId + "%7C%7C" + AccessToken;
         var sessionid = GetRandomHexNumber(32);
         Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
         Cookies.Add(new Cookie("sessionid", sessionid, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
@@ -92,7 +93,7 @@ public sealed partial class SteamSession
         return true;
     }
 
-    private static string GetRandomHexNumber(int digits)
+    static string GetRandomHexNumber(int digits)
     {
         Random random = new Random();
         byte[] buffer = new byte[digits / 2];

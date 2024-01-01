@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi.Profile;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 用户游戏库存信息返回

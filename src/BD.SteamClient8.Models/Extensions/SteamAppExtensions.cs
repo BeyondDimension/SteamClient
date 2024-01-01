@@ -1,12 +1,12 @@
-#pragma warning disable IDE0130
-namespace BD.SteamClient8.Models.WebApi.SteamApp;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// <see cref="SteamApp"/> 扩展
 /// </summary>
 public static class SteamAppExtensions
 {
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
     /// 从其他 <see cref="SteamApp"/> 修改内容
@@ -158,7 +158,7 @@ public static class SteamAppExtensions
         return $"{steamApp.AppId} | {steamApp.DisplayName}";
     }
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
     /// <summary>
     /// 启动 <see cref="SteamApp"/> 进程
     /// </summary>
@@ -203,7 +203,7 @@ public static class SteamAppExtensions
                     {
                         "SteamAppId",
                         steamApp.AppId.ToString()
-                    }
+                    },
                 });
             }
         }

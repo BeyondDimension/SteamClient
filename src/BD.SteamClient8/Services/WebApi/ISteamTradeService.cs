@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Services.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Services;
 
 /// <summary>
 /// Steam 交易报价相关服务
@@ -28,6 +29,7 @@ public interface ISteamTradeService
     /// <param name="tradeTaskEnum"></param>
     /// <param name="cancellationToken"></param>
     Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default);
+
     #endregion
 
     #region Trade 交易报价
@@ -49,7 +51,7 @@ public interface ISteamTradeService
     /// <param name="confirmations"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo, IEnumerable<Confirmation>? confirmations = null, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo, IEnumerable<TradeConfirmation>? confirmations = null, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 发送交易报价（需要好友关系）
@@ -61,7 +63,7 @@ public interface ISteamTradeService
     /// <param name="message"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, List<Asset> my_items, List<Asset> them_items, string target_steam_id, string message, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> SendTradeOfferAsync(string steam_id, IEnumerable<TradeAsset> my_items, IEnumerable<TradeAsset> them_items, string target_steam_id, string message, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 使用交易连接发送报价
@@ -73,7 +75,7 @@ public interface ISteamTradeService
     /// <param name="message"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, List<Asset> my_items, List<Asset> them_items, string message, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, IEnumerable<TradeAsset> my_items, IEnumerable<TradeAsset> them_items, string message, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 发送方取消交易报价
@@ -127,7 +129,6 @@ public interface ISteamTradeService
     /// <param name="getDescriptions">是否获取交易物品描述</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    /// <exception cref="InvalidOperationException"></exception>
     Task<ApiRspImpl<TradeHistory.TradeHistoryResponseDetail?>> GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false, CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -136,20 +137,17 @@ public interface ISteamTradeService
     /// <param name="tradeResponse"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse, CancellationToken cancellationToken = default)
+    static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse)
     {
-        if (!cancellationToken.IsCancellationRequested)
-        {
-            if (tradeResponse?.Response?.TradeOffersSent != null)
-                tradeResponse.Response.TradeOffersSent = tradeResponse.Response.TradeOffersSent.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
+        if (tradeResponse?.Response?.TradeOffersSent != null)
+            tradeResponse.Response.TradeOffersSent = tradeResponse.Response.TradeOffersSent.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
 
-            if (tradeResponse?.Response?.TradeOffersReceived != null)
-                tradeResponse.Response.TradeOffersReceived = tradeResponse.Response.TradeOffersReceived.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
+        if (tradeResponse?.Response?.TradeOffersReceived != null)
+            tradeResponse.Response.TradeOffersReceived = tradeResponse.Response.TradeOffersReceived.Where(x => x.TradeOfferState == TradeOfferState.Active).ToList();
 
-            return tradeResponse!;
-        }
-        throw new OperationCanceledException();
+        return tradeResponse!;
     }
+
     #endregion
 
     #region Confirmation 交易确认
@@ -160,7 +158,7 @@ public interface ISteamTradeService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<Confirmation>>> GetConfirmations(string steam_id, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<IEnumerable<TradeConfirmation>>> GetConfirmations(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取交易确认详细信息
@@ -169,7 +167,7 @@ public interface ISteamTradeService
     /// <param name="confirmation"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, Confirmation confirmation, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<(string[] my_items, string[] them_items)>> GetConfirmationImages(string steam_id, TradeConfirmation confirmation, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 交易确认发送
@@ -179,7 +177,7 @@ public interface ISteamTradeService
     /// <param name="accept"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, Confirmation confirmation, bool accept, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> SendConfirmation(string steam_id, TradeConfirmation confirmation, bool accept, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 批量处理交易确认
@@ -190,5 +188,6 @@ public interface ISteamTradeService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<bool>> BatchSendConfirmation(string steam_id, Dictionary<string, string> trades, bool accept, CancellationToken cancellationToken = default);
+
     #endregion
 }

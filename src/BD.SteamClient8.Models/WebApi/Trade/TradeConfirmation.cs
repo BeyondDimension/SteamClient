@@ -1,9 +1,10 @@
-namespace BD.SteamClient8.Models.WebApi.Trade;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 确认消息
 /// </summary>
-public record class Confirmation
+public record class TradeConfirmation
 {
     /// <summary>
     /// 确认类型

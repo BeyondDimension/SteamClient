@@ -1,14 +1,16 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// Steam 同步文件
 /// </summary>
-public record class SteamRemoteFile
+[MP2Obj(MP2SerializeLayout.Sequential)]
+public sealed partial record class SteamRemoteFile
 {
     /// <summary>
     /// 名称
     /// </summary>
-    public string Name { get; private set; }
+    public string Name { get; private set; } = "";
 
     /// <summary>
     /// 是否已存在
@@ -30,7 +32,7 @@ public record class SteamRemoteFile
     /// </summary>
     public DateTimeOffset Timestamp { get; }
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
     /// 系统平台
@@ -38,6 +40,14 @@ public record class SteamRemoteFile
     public SteamKit2ERemoteStoragePlatform SyncPlatforms { get; set; }
 
 #endif
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SteamRemoteFile"/> class.
+    /// </summary>
+    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
+    public SteamRemoteFile()
+    {
+    }
 
     /// <summary>
     /// 通过名称构造 <see cref="SteamRemoteFile"/> 实例

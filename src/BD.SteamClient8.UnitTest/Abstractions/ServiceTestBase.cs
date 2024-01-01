@@ -143,15 +143,11 @@ abstract class ServiceTestBase
 
     sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
     {
-        public override ISteamConnectService Conn => throw new NotImplementedException();
-
         protected override string? StratSteamDefaultParameter => default;
 
         protected override bool IsRunSteamAdministrator => default;
 
         protected override Dictionary<uint, string?>? HideGameList => default;
-
-        protected override string? GetString(string name) => default;
     }
 #endif
 }

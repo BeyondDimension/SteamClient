@@ -1,6 +1,8 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
+using static BD.SteamClient8.Services.ISteamService;
 
-namespace BD.SteamClient8.Impl.PInvoke;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamService"/> Steam 相关助手、工具类服务实现
@@ -53,24 +55,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     protected const string UserDataDirectory = "userdata";
 
     /// <summary>
-    /// Steam 目录的路径
-    /// </summary>
-    protected readonly string? mSteamDirPath;
-
-    /// <summary>
-    /// Steam 程序的路径
-    /// </summary>
-    protected readonly string? mSteamProgramPath;
-
-    /// <summary>
-    /// 注册表信息文件的路径
-    /// </summary>
-    protected readonly string? mRegistryVdfPath;
-
-    /// <summary>
     /// Steam 相关进程的列表
     /// </summary>
-    protected readonly string[] steamProcess = new[] {
+    protected readonly string[] steamProcess = [
 #if MACCATALYST || MACOS
         "steam_osx",
 #else
@@ -79,7 +66,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         "steamservice",
         "steamwebhelper",
         "GameOverlayUI",
-    };
+    ];
 
     /// <summary>
     /// 日志记录器
@@ -98,14 +85,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     public SteamServiceImpl(ILoggerFactory loggerFactory)
     {
         logger = loggerFactory.CreateLogger(TAG);
-        mSteamDirPath = GetSteamDirPath();
-        mSteamProgramPath = GetSteamProgramPath();
         UserVdfPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "config", "loginusers.vdf");
         AppInfoPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "appcache", "appinfo.vdf");
         LibrarycacheDirPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "appcache", "librarycache");
-        mRegistryVdfPath = GetRegistryVdfPath();
-        // SteamDirPath == null ? null : Path.Combine(SteamDirPath, "registry.vdf");
-        //RegistryVdfPath  = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "registry.vdf");
         ConfigVdfPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "config", "config.vdf");
 
         if (!File.Exists(UserVdfPath)) UserVdfPath = null;
@@ -114,30 +96,83 @@ public abstract partial class SteamServiceImpl : ISteamService
         if (!Directory.Exists(LibrarycacheDirPath)) LibrarycacheDirPath = null;
     }
 
-    /// <inheritdoc/>
-    public string? SteamDirPath => mSteamDirPath;
-
-    /// <summary>
-    /// 非 windows 平台 steam 注册表配置路径
-    /// </summary>
-    public string? RegistryVdfPath => mRegistryVdfPath;
+    public string? SteamLanguageString { get; private set; }
 
     /// <inheritdoc/>
-    public string? SteamProgramPath => mSteamProgramPath;
+    public async Task<ApiRspImpl<string?>> GetSteamLanguageString(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamLanguageString;
+        return ApiRspHelper.Ok(result);
+    }
 
-    /// <summary>
-    /// 检测 Steam 是否正在运行
-    /// </summary>
-    public bool IsRunningSteamProcess => GetSteamProcesses().Length > 0;
+    public bool IsConnectToSteam { get; private set; }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> IsConnectToSteamAsync(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = IsConnectToSteam;
+        return ApiRspHelper.Ok(result);
+    }
+
+    public SteamApp[]? SteamApps { get; private set; }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<SteamApp[]?>> GetSteamApps(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamApps;
+        return ApiRspHelper.Ok(result);
+    }
+
+    public SteamApp[]? DownloadApps { get; private set; }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<SteamApp[]?>> GetDownloadApps(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = DownloadApps;
+        return ApiRspHelper.Ok(result);
+    }
+
+    public SteamUser[]? SteamUsers { get; private set; }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<SteamUser[]?>> GetSteamUsers(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = SteamUsers;
+        return ApiRspHelper.Ok(result);
+    }
+
+    public SteamUser? CurrentSteamUser { get; private set; }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<SteamUser?>> GetCurrentSteamUser(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = CurrentSteamUser;
+        return ApiRspHelper.Ok(result);
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool>> IsRunningSteamProcess(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var len = GetSteamProcesses().Length;
+        return ApiRspHelper.Ok(len != 0);
+    }
 
     /// <summary>
     /// 结束 Steam 进程
     /// </summary>
     /// <returns></returns>
-    protected virtual ValueTask<bool> KillSteamProcess()
+    protected virtual async Task<ApiRspImpl<bool>> KillSteamProcess()
     {
+        await Task.CompletedTask;
         var r = KillSteamProcessCore();
-        return ValueTask.FromResult(r);
+        return ApiRspHelper.Ok(r);
     }
 
     bool KillSteamProcessCore()
@@ -152,7 +187,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             }
             catch
             {
-                return Array.Empty<Process>();
+                return [];
             }
         }).SelectMany(static x => x).ToArray();
 
@@ -208,9 +243,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     }
 
     /// <inheritdoc/>
-    public async ValueTask<ApiRspImpl> TryKillSteamProcess(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> TryKillSteamProcess(CancellationToken cancellationToken = default)
     {
-        bool result;
+        ApiRspImpl<bool> result;
         try
         {
             result = await KillSteamProcess();
@@ -222,15 +257,17 @@ public abstract partial class SteamServiceImpl : ISteamService
             //}
             //return false;
         }
-        catch
+        catch (Exception ex)
         {
-            result = false;
+            result = ApiRspHelper.Exception<bool>(ex);
+            if (string.IsNullOrWhiteSpace(result.InternalMessage))
+                result.InternalMessage = result.GetMessage();
         }
         finally
         {
-            Conn.IsConnectToSteam = false;
+            IsConnectToSteam = false;
         }
-        return ApiRspHelper.Code(result ? ApiRspCode.OK : ApiRspCode.Fail);
+        return result;
     }
 
     /// <summary>
@@ -240,21 +277,21 @@ public abstract partial class SteamServiceImpl : ISteamService
     public async Task<ApiRspImpl<int>> GetSteamProcessPid(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
-        var steamProces = GetSteamProces();
-        return steamProces != null ? steamProces.Id : default;
+        var steamProcess = GetSteamProcess();
+        return steamProcess != null ? steamProcess.Id : default;
     }
 
     /// <summary>
     /// 获取所有的 Steam 主进程
     /// </summary>
     /// <returns></returns>
-    private Process[] GetSteamProcesses() => Process.GetProcessesByName(steamProcess[0]);
+    Process[] GetSteamProcesses() => Process.GetProcessesByName(steamProcess[0]);
 
     /// <summary>
     /// 获取首个 Steam 主进程
     /// </summary>
     /// <returns></returns>
-    private Process? GetSteamProces() => GetSteamProcesses().FirstOrDefault();
+    Process? GetSteamProcess() => GetSteamProcesses().FirstOrDefault();
 
     /// <summary>
     /// 检测是否是中国启动器
@@ -264,7 +301,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     {
         await Task.CompletedTask;
 #if WINDOWS
-        var process = GetSteamProces();
+        var process = GetSteamProcess();
         if (process != null)
         {
             try
@@ -284,13 +321,11 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         string GetCommandLineArgsCore()
         {
-            using (var searcher = new ManagementObjectSearcher(
-                "SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id))
-            using (var objects = searcher.Get())
-            {
-                var @object = objects.Cast<ManagementBaseObject>().SingleOrDefault();
-                return @object?["CommandLine"]?.ToString() ?? "";
-            }
+            using var searcher = new ManagementObjectSearcher(
+                "SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id);
+            using var objects = searcher.Get();
+            var @object = objects.Cast<ManagementBaseObject>().SingleOrDefault();
+            return @object?["CommandLine"]?.ToString() ?? "";
         }
 #endif
         return false;
@@ -320,7 +355,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         await Task.CompletedTask;
         if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
         {
-            var steamProces = GetSteamProces();
+            var steamProces = GetSteamProcess();
             if (steamProces != null)
             {
                 Process2.Start(SteamProgramPath, "-shutdown", useShellExecute: true);
@@ -331,7 +366,12 @@ public abstract partial class SteamServiceImpl : ISteamService
     }
 
     /// <inheritdoc/>
-    public Task<ApiRspImpl<string>> GetLastLoginUserName(CancellationToken cancellationToken = default) => Task.FromResult(ApiRspHelper.Ok(GetLastSteamLoginUserName(cancellationToken)))!;
+    public async Task<ApiRspImpl<string?>> GetLastLoginUserName(CancellationToken cancellationToken = default)
+    {
+        await Task.CompletedTask;
+        var result = GetLastSteamLoginUserName();
+        return ApiRspHelper.Ok(result);
+    }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<List<SteamUser>>> GetRememberUserList(CancellationToken cancellationToken = default)
@@ -406,7 +446,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                 var lists = new KVCollectionValue();
                 foreach (var item in items.OrderBy(x => x.Index))
                 {
-                    KVObject itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
+                    var itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
                     {
                             new KVObject("timeused", (KVValue)item.Timeused),
                             new KVObject("description", (KVValue)item.Description!),
@@ -440,8 +480,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             if (!string.IsNullOrWhiteSpace(ConfigVdfPath) && File.Exists(ConfigVdfPath))
             {
                 var v = VdfHelper.Read(ConfigVdfPath);
-                var authorizedDevices = v["AuthorizedDevice"] as KVCollectionValue;
-                if (authorizedDevices != null)
+                if (v["AuthorizedDevice"] is KVCollectionValue authorizedDevices)
                 {
                     authorizedDevices.Remove(model.SteamId3_Int.ToString());
                     //v["AuthorizedDevice"] = authorizedDevices;
@@ -524,8 +563,8 @@ public abstract partial class SteamServiceImpl : ISteamService
         // Find index of range needing to be changed.
         var positionOfVar = localConfigText.IndexOf("ePersonaState", StringComparison.Ordinal); // Find where the variable is being set
         if (positionOfVar == -1) return result;
-        var indexOfBefore = localConfigText.IndexOf(":", positionOfVar, StringComparison.Ordinal) + 1; // Find where the start of the variable's value is
-        var indexOfAfter = localConfigText.IndexOf(",", positionOfVar, StringComparison.Ordinal); // Find where the end of the variable's value is
+        var indexOfBefore = localConfigText.IndexOf(':', positionOfVar) + 1; // Find where the start of the variable's value is
+        var indexOfAfter = localConfigText.IndexOf(',', positionOfVar); // Find where the end of the variable's value is
 
         // The variable is now in-between the above numbers. Remove it and insert something different here.
         var sb = new StringBuilder(localConfigText);
@@ -693,73 +732,69 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
-    private uint univeseNumber;
-    private const uint MagicNumber = 123094055U;
-    private const uint MagicNumberV2 = 123094056U;
+    uint univeseNumber;
+    const uint MagicNumber = 123094055U;
+    const uint MagicNumberV2 = 123094056U;
 
-    private static readonly Lazy<uint[]> MagicNumbers = new(new uint[] { MagicNumber, MagicNumberV2 });
+    static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2]);
 
     /// <summary>
-    /// 从steam本地客户端缓存文件中读取游戏数据
+    /// 从 Steam 本地客户端缓存文件中读取游戏数据
     /// </summary>
-    public Task<ApiRspImpl<List<SteamApp>>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamApp>>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult(ApiRspHelper.Ok(GetAppInfos_()))!;
-        List<SteamApp> GetAppInfos_()
+        await Task.CompletedTask;
+        var apps = new List<SteamApp>();
+        try
         {
-            var apps = new List<SteamApp>();
-            try
+            if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
+                return apps;
+            using var stream = IOPath.OpenRead(AppInfoPath);
+            if (stream == null)
             {
-                if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
-                    return apps;
-                using var stream = IOPath.OpenRead(AppInfoPath);
-                if (stream == null)
+                return apps;
+            }
+            using BinaryReader binaryReader = new(stream);
+            uint num = binaryReader.ReadUInt32();
+            if (!MagicNumbers.Value.Contains(num))
+            {
+                var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath), num);
+                logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
+                return msg;
+            }
+            SteamApp? app = new();
+            univeseNumber = binaryReader.ReadUInt32();
+            var installAppIds = GetInstalledAppIds();
+            while ((app = SteamAppExtensions.FromReader(binaryReader, installAppIds, isSaveProperties, num == MagicNumberV2)) != null)
+            {
+                if (app.AppId > 0)
                 {
-                    return apps;
-                }
-                using BinaryReader binaryReader = new(stream);
-                uint num = binaryReader.ReadUInt32();
-                if (!MagicNumbers.Value.Contains(num))
-                {
-                    var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath), num);
-                    logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
-                    Toast.Show(ToastIcon.Info, msg, ToastLength.Long);
-                    return apps;
-                }
-                SteamApp? app = new();
-                univeseNumber = binaryReader.ReadUInt32();
-                var installAppIds = GetInstalledAppIds();
-                while ((app = SteamAppExtensions.FromReader(binaryReader, installAppIds, isSaveProperties, num == MagicNumberV2)) != null)
-                {
-                    if (app.AppId > 0)
+                    if (!isSaveProperties)
                     {
-                        if (!isSaveProperties)
-                        {
-                            //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
-                            //    continue;
-                            if (HideGameList != null && HideGameList.ContainsKey(app.AppId))
-                                continue;
-                            //if (app.ParentId > 0)
-                            //{
-                            //    var parentApp = apps.FirstOrDefault(f => f.AppId == app.ParentId);
-                            //    if (parentApp != null)
-                            //        parentApp.ChildApp.Add(app.AppId);
-                            //    //continue;
-                            //}
-                        }
-                        apps.Add(app);
-                        //app.Modified += (s, e) =>
+                        //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
+                        //    continue;
+                        if (HideGameList != null && HideGameList.ContainsKey(app.AppId))
+                            continue;
+                        //if (app.ParentId > 0)
                         //{
-                        //};
+                        //    var parentApp = apps.FirstOrDefault(f => f.AppId == app.ParentId);
+                        //    if (parentApp != null)
+                        //        parentApp.ChildApp.Add(app.AppId);
+                        //    //continue;
+                        //}
                     }
+                    apps.Add(app);
+                    //app.Modified += (s, e) =>
+                    //{
+                    //};
                 }
-                return apps;
             }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, nameof(GetAppInfos));
-                return apps;
-            }
+            return apps;
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, nameof(GetAppInfos));
+            return apps;
         }
     }
 
@@ -794,7 +829,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     public async Task<ApiRspImpl> SaveAppInfosToSteam(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
-        if (string.IsNullOrEmpty(AppInfoPath) || !File.Exists(AppInfoPath) || !Conn.SteamApps.Items.Any_Nullable())
+        if (string.IsNullOrEmpty(AppInfoPath) || !File.Exists(AppInfoPath) || !SteamApps.Any_Nullable())
             return ApiRspHelper.Fail();
 
         //var bakFile = AppInfoPath + ".bak";
@@ -804,7 +839,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             //File.Copy(AppInfoPath, bakFile, true);
 
             var applist = (await GetAppInfos(true)).Content ?? [];
-            var editApps = Conn.SteamApps.Items.Where(s => s.IsEdited);
+            var editApps = SteamApps.Where(s => s.IsEdited);
             var modifiedApps = new List<ModifiedApp>();
 
             using BinaryWriter binaryWriter = new(new MemoryStream());
@@ -823,14 +858,14 @@ public abstract partial class SteamServiceImpl : ISteamService
             }
 
             binaryWriter.Write(0);
-            using FileStream fileStream = File.Open(AppInfoPath, FileMode.Create, FileAccess.Write);
+            using FileStream fileStream = File.Open(AppInfoPath.ThrowIsNull(), FileMode.Create, FileAccess.Write);
             binaryWriter.BaseStream.Position = 0L;
-            await binaryWriter.BaseStream.CopyToAsync(fileStream);
+            await binaryWriter.BaseStream.CopyToAsync(fileStream, CancellationToken.None);
             fileStream.Close();
             binaryWriter.Close();
 
             using FileStream modifiedFileStream = File.Open(Path.Combine(IOPath.AppDataDirectory, ModifiedFileName), FileMode.Create, FileAccess.Write);
-            modifiedFileStream.Write(Serializable.SMP(modifiedApps));
+            modifiedFileStream.Write(Serializable.SMP(modifiedApps, CancellationToken.None));
             modifiedFileStream.Close();
 
             applist = null;
@@ -842,11 +877,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         catch (Exception ex)
         {
             logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} 保存 AppInfos 出现错误");
-            Toast.Show(ToastIcon.Error, GetString("SaveEditedAppInfo_SaveFailed")!);
             //if (File.Exists(bakFile))
             //    File.Copy(bakFile, AppInfoPath, true);
 
-            return ApiRspHelper.Fail();
+            return ApiRspHelper.Exception(ex);
         }
         return ApiRspHelper.Ok();
     }
@@ -906,151 +940,161 @@ public abstract partial class SteamServiceImpl : ISteamService
 
         var filePath = Path.Combine(LibrarycacheDirPath, fileName);
 
-        if (Conn.SteamLanguageString != null && !File.Exists(filePath))
+        if (SteamLanguageString != null && !File.Exists(filePath))
         {
-            //默认图没找到情况下尝试查找当前Steam客户端语言图片
-            var lang = $"_{Conn.SteamLanguageString}";
+            //默认图没找到情况下尝试查找当前 Steam 客户端语言图片
+            var lang = $"_{SteamLanguageString}";
             filePath = filePath.Insert(filePath.LastIndexOf('.'), lang);
         }
 
         return filePath;
     }
 
-    /// <summary>
-    /// 获取应用程序图片源
-    /// </summary>
-    /// <param name="app"></param>
-    /// <param name="type"></param>
-    /// <param name="token"></param>
-    /// <returns></returns>
-    public async Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default)
+    ///// <summary>
+    ///// 获取应用程序图片源
+    ///// </summary>
+    ///// <param name="app"></param>
+    ///// <param name="type"></param>
+    ///// <param name="token"></param>
+    ///// <returns></returns>
+    //public async Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default)
+    //{
+    //    var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
+    //    //var mostRecentUser = Conn.CurrentSteamUser;
+    //    if (mostRecentUser != null)
+    //    {
+    //        var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
+    //        if (customFilePath != null && File.Exists(customFilePath))
+    //            return customFilePath;
+    //    }
+
+    //    var cacheFilePath = GetAppLibCacheFilePath(app.AppId, type);
+    //    if (cacheFilePath != null && File.Exists(cacheFilePath))
+    //        return cacheFilePath;
+
+    //    var url = type switch
+    //    {
+    //        LibCacheType.Header => app.HeaderLogoUrl,
+    //        LibCacheType.Icon => app.IconUrl,
+    //        LibCacheType.Library_Grid => app.LibraryGridUrl,
+    //        LibCacheType.Library_Hero => app.LibraryHeroUrl,
+    //        LibCacheType.Library_Hero_Blur => app.LibraryHeroBlurUrl,
+    //        LibCacheType.Logo => app.LibraryLogoUrl,
+    //        _ => null,
+    //    };
+
+    //    if (string.IsNullOrEmpty(url))
+    //        return default;
+    //    var value = await CommonImageSourceExtensions.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
+
+    //    return value;
+    //}
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl> SaveAppImageToSteamFileByByteArray(byte[]? imageBytes, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default)
     {
-        var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
-        //var mostRecentUser = Conn.CurrentSteamUser;
-        if (mostRecentUser != null)
-        {
-            var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
-            if (customFilePath != null && File.Exists(customFilePath))
-                return customFilePath;
-        }
-
-        var cacheFilePath = GetAppLibCacheFilePath(app.AppId, type);
-        if (cacheFilePath != null && File.Exists(cacheFilePath))
-            return cacheFilePath;
-
-        var url = type switch
-        {
-            LibCacheType.Header => app.HeaderLogoUrl,
-            LibCacheType.Icon => app.IconUrl,
-            LibCacheType.Library_Grid => app.LibraryGridUrl,
-            LibCacheType.Library_Hero => app.LibraryHeroUrl,
-            LibCacheType.Library_Hero_Blur => app.LibraryHeroBlurUrl,
-            LibCacheType.Logo => app.LibraryLogoUrl,
-            _ => null,
-        };
-
-        if (string.IsNullOrEmpty(url))
-            return default;
-        var value = await CommonImageSourceExtensions.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
-
-        return value;
+        var isOk = await SaveAppImageToSteamFileCore(imageBytes, user, appId, gridType);
+        return ApiRspHelper.Code(isOk ? ApiRspCode.OK : ApiRspCode.Fail);
     }
 
-    /// <summary>
-    /// 保存图片流到 Steam 自定义封面文件夹
-    /// </summary>
-    /// <returns></returns>
-    public async Task<ApiRspImpl> SaveAppImageToSteamFile(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default)
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl> SaveAppImageToSteamFileByFilePath(string? imagePath, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default)
     {
-        return ApiRspHelper.Code(await SaveAppImageToSteamFileCore() ? ApiRspCode.OK : ApiRspCode.Fail);
-        async Task<bool> SaveAppImageToSteamFileCore(CancellationToken cancellationToken = default)
+        var isOk = await SaveAppImageToSteamFileCore(imagePath, user, appId, gridType);
+        return ApiRspHelper.Code(isOk ? ApiRspCode.OK : ApiRspCode.Fail);
+    }
+
+    async Task<bool> SaveAppImageToSteamFileCore(object? imageObject, SteamUser user, long appId, SteamGridItemType gridType)
+    {
+        if (!string.IsNullOrEmpty(SteamDirPath))
         {
-            if (!string.IsNullOrEmpty(SteamDirPath))
+            var path = Path.Combine(SteamDirPath, UserDataDirectory,
+                user.SteamId32.ToString(), "config", "grid");
+
+            if (!Directory.Exists(path))
             {
-                var path = Path.Combine(SteamDirPath, UserDataDirectory,
-                    user.SteamId32.ToString(), "config", "grid");
+                Directory.CreateDirectory(path);
+            }
 
-                if (!Directory.Exists(path))
+            var filePath = gridType switch
+            {
+                SteamGridItemType.Hero => Path.Combine(path, $"{appId}_hero.png"),
+                SteamGridItemType.Logo => Path.Combine(path, $"{appId}_logo.png"),
+                SteamGridItemType.Grid => Path.Combine(path, $"{appId}p.png"),
+                _ => Path.Combine(path, $"{appId}.png"),
+            };
+            try
+            {
+                if (imageObject == null)
                 {
-                    Directory.CreateDirectory(path);
-                }
-
-                var filePath = gridType switch
-                {
-                    SteamGridItemType.Hero => Path.Combine(path, $"{appId}_hero.png"),
-                    SteamGridItemType.Logo => Path.Combine(path, $"{appId}_logo.png"),
-                    SteamGridItemType.Grid => Path.Combine(path, $"{appId}p.png"),
-                    _ => Path.Combine(path, $"{appId}.png"),
-                };
-                try
-                {
-                    if (imageObject == null)
+                    if (File.Exists(filePath))
                     {
-                        if (File.Exists(filePath))
-                        {
-                            File.Delete(filePath);
-                            return true;
-                        }
-                        return false;
+                        File.Delete(filePath);
+                        return true;
                     }
-
-                    if (imageObject is Stream imageStream)
-                    {
-                        using FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
-                        if (imageStream.Position > 0)
-                        {
-                            imageStream.Position = 0;
-                        }
-                        await imageStream.CopyToAsync(fs, cancellationToken);
-                        await fs.FlushAsync(cancellationToken);
-                        fs.Close();
-                    }
-                    else if (imageObject is string imagePath && File.Exists(imagePath))
-                    {
-                        File.Copy(imagePath, filePath, true);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    logger.LogError(ex, nameof(SaveAppImageToSteamFile));
                     return false;
                 }
-                return true;
+
+                if (imageObject is Stream imageStream)
+                {
+                    using FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                    if (imageStream.Position > 0)
+                    {
+                        imageStream.Position = 0;
+                    }
+                    await imageStream.CopyToAsync(fs);
+                    await fs.FlushAsync();
+                    fs.Close();
+                }
+                else if (imageObject is string imagePath && File.Exists(imagePath))
+                {
+                    File.Copy(imagePath, filePath, true);
+                }
+                else if (imageObject is byte[] imageBytes)
+                {
+                    File.WriteAllBytes(filePath, imageBytes);
+                }
             }
-            return false;
+            catch (Exception ex)
+            {
+                logger.LogError(ex, nameof(SaveAppImageToSteamFileCore));
+                return false;
+            }
+            return true;
         }
+        return false;
     }
 
-    /// <summary>
-    /// 加载应用程序图片
-    /// </summary>
-    /// <param name="app"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    public /*async*/ ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default)
-    {
-        return default(ValueTask<ApiRspImpl>);
-        //if (app.LibraryLogoStream == null)
-        //{
-        //    app.LibraryLogoStream = await GetAppImageAsync(app, LibCacheType.Library_600x900);
-        //}
-        //if (app.LibraryHeaderStream == null)
-        //{
-        //    app.LibraryHeaderStream = await GetAppImageAsync(app, LibCacheType.Library_Hero);
-        //}
-        //if (app.LibraryHeaderBlurStream == null)
-        //{
-        //    app.LibraryHeaderBlurStream = await GetAppImageAsync(app, LibCacheType.Library_Hero_Blur);
-        //}
-        //if (app.LibraryNameStream == null)
-        //{
-        //    app.LibraryNameStream = await GetAppImageAsync(app, LibCacheType.Logo);
-        //}
-        //if (app.HeaderLogoStream == null)
-        //{
-        //    app.HeaderLogoStream = await GetAppImageAsync(app, LibCacheType.Header);
-        //}
-    }
+    ///// <summary>
+    ///// 加载应用程序图片
+    ///// </summary>
+    ///// <param name="app"></param>
+    ///// <param name="cancellationToken"></param>
+    ///// <returns></returns>
+    //public /*async*/ ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default)
+    //{
+    //    return default(ValueTask<ApiRspImpl>);
+    //    //if (app.LibraryLogoStream == null)
+    //    //{
+    //    //    app.LibraryLogoStream = await GetAppImageAsync(app, LibCacheType.Library_600x900);
+    //    //}
+    //    //if (app.LibraryHeaderStream == null)
+    //    //{
+    //    //    app.LibraryHeaderStream = await GetAppImageAsync(app, LibCacheType.Library_Hero);
+    //    //}
+    //    //if (app.LibraryHeaderBlurStream == null)
+    //    //{
+    //    //    app.LibraryHeaderBlurStream = await GetAppImageAsync(app, LibCacheType.Library_Hero_Blur);
+    //    //}
+    //    //if (app.LibraryNameStream == null)
+    //    //{
+    //    //    app.LibraryNameStream = await GetAppImageAsync(app, LibCacheType.Logo);
+    //    //}
+    //    //if (app.HeaderLogoStream == null)
+    //    //{
+    //    //    app.HeaderLogoStream = await GetAppImageAsync(app, LibCacheType.Header);
+    //    //}
+    //}
 
     string[]? GetLibraryPaths()
     {
@@ -1110,7 +1154,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             logger.LogError(e, "GetLibraryPaths Read libraryFoldersPath catch");
         }
 
-        return paths.ToArray();
+        return [.. paths];
     }
 
     /// <summary>
@@ -1130,7 +1174,7 @@ public abstract partial class SteamServiceImpl : ISteamService
 
             if (v.Value == null)
             {
-                Toast.Show(ToastIcon.Error, $"{filename}{Environment.NewLine}contains unexpected content.{Environment.NewLine}This game will be ignored.");
+                //Toast.Show(ToastIcon.Error, $"{filename}{Environment.NewLine}contains unexpected content.{Environment.NewLine}This game will be ignored.");
                 return null;
             }
 
@@ -1172,8 +1216,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             var libraryPaths = GetLibraryPaths();
             if (!libraryPaths.Any_Nullable())
             {
-                Toast.Show(ToastIcon.Info, $"No game library found.");
-                return appInfos!;
+                return "No game library found.";
             }
 
             foreach (string path in libraryPaths)
@@ -1227,7 +1270,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         var libraryPaths = GetLibraryPaths();
         if (!libraryPaths.Any_Nullable())
         {
-            ToastHelper.Show(ToastIcon.Info, "No game library found.");
+            return "No game library found.";
         }
 
         foreach (string libraryFolder in libraryPaths!)

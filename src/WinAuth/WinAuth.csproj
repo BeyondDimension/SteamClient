@@ -52,8 +52,4 @@
 		<PackageReference Include="System.Security.Cryptography.ProtectedData" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
-	</ItemGroup>
-
 </Project>

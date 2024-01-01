@@ -1,0 +1,6 @@
+<Project>
+	<PropertyGroup>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<TargetFrameworks Condition="$([System.OperatingSystem]::IsWindows())">net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
+	</PropertyGroup>
+</Project>

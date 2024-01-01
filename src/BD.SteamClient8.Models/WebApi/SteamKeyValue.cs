@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 用户统计类型枚举
@@ -16,9 +17,9 @@ public enum UserStatType
 /// <summary>
 /// 键值对象
 /// </summary>
-public record class KeyValue
+public record class SteamKeyValue
 {
-    static readonly KeyValue _Invalid = new();
+    static readonly SteamKeyValue _Invalid = new();
 
     /// <summary>
     /// 键名
@@ -28,7 +29,7 @@ public record class KeyValue
     /// <summary>
     /// 键值类型
     /// </summary>
-    public KeyValueType Type = KeyValueType.None;
+    public SteamKeyValueType Type = SteamKeyValueType.None;
 
     /// <summary>
     /// 值
@@ -43,14 +44,14 @@ public record class KeyValue
     /// <summary>
     /// 子集
     /// </summary>
-    public List<KeyValue>? Children;
+    public List<SteamKeyValue>? Children;
 
     /// <summary>
     /// 通过索引获取对象
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
-    public KeyValue this[string key]
+    public SteamKeyValue this[string key]
     {
         get
         {
@@ -105,8 +106,8 @@ public record class KeyValue
 
         switch (Type)
         {
-            case KeyValueType.String:
-            case KeyValueType.WideString:
+            case SteamKeyValueType.String:
+            case SteamKeyValueType.WideString:
                 {
                     if (int.TryParse(Value?.ToString(), out int value) == false)
                     {
@@ -115,17 +116,17 @@ public record class KeyValue
                     return value;
                 }
 
-            case KeyValueType.Int32:
+            case SteamKeyValueType.Int32:
                 {
                     return (int)Value!;
                 }
 
-            case KeyValueType.Float32:
+            case SteamKeyValueType.Float32:
                 {
                     return (int)(float)Value!;
                 }
 
-            case KeyValueType.UInt64:
+            case SteamKeyValueType.UInt64:
                 {
                     return (int)((ulong)Value! & 0xFFFFFFFF);
                 }
@@ -148,8 +149,8 @@ public record class KeyValue
 
         switch (Type)
         {
-            case KeyValueType.String:
-            case KeyValueType.WideString:
+            case SteamKeyValueType.String:
+            case SteamKeyValueType.WideString:
                 {
                     if (float.TryParse(Value?.ToString(), out float value) == false)
                     {
@@ -158,17 +159,17 @@ public record class KeyValue
                     return value;
                 }
 
-            case KeyValueType.Int32:
+            case SteamKeyValueType.Int32:
                 {
                     return (int)Value!;
                 }
 
-            case KeyValueType.Float32:
+            case SteamKeyValueType.Float32:
                 {
                     return (float)Value!;
                 }
 
-            case KeyValueType.UInt64:
+            case SteamKeyValueType.UInt64:
                 {
                     return (ulong)Value! & 0xFFFFFFFF;
                 }
@@ -191,8 +192,8 @@ public record class KeyValue
 
         switch (Type)
         {
-            case KeyValueType.String:
-            case KeyValueType.WideString:
+            case SteamKeyValueType.String:
+            case SteamKeyValueType.WideString:
                 {
                     if (int.TryParse(Value?.ToString(), out int value) == false)
                     {
@@ -201,17 +202,17 @@ public record class KeyValue
                     return value != 0;
                 }
 
-            case KeyValueType.Int32:
+            case SteamKeyValueType.Int32:
                 {
                     return ((int)Value!) != 0;
                 }
 
-            case KeyValueType.Float32:
+            case SteamKeyValueType.Float32:
                 {
                     return ((int)(float)Value!) != 0;
                 }
 
-            case KeyValueType.UInt64:
+            case SteamKeyValueType.UInt64:
                 {
                     return ((ulong)Value!) != 0;
                 }
@@ -231,7 +232,7 @@ public record class KeyValue
             return "<invalid>";
         }
 
-        if (Type == KeyValueType.None)
+        if (Type == SteamKeyValueType.None)
         {
             return Name;
         }
@@ -247,7 +248,7 @@ public record class KeyValue
     /// </summary>
     /// <param name="path"></param>
     /// <returns></returns>
-    public static KeyValue? LoadAsBinary(string path)
+    public static SteamKeyValue? LoadAsBinary(string path)
     {
         if (File.Exists(path) == false)
         {
@@ -257,7 +258,7 @@ public record class KeyValue
         try
         {
             using var input = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            var kv = new KeyValue();
+            var kv = new SteamKeyValue();
             if (kv.ReadAsBinary(input) == false)
             {
                 return null;
@@ -284,14 +285,14 @@ public record class KeyValue
         {
             while (true)
             {
-                var type = (KeyValueType)input.ReadValueU8();
+                var type = (SteamKeyValueType)input.ReadValueU8();
 
-                if (type == KeyValueType.End)
+                if (type == SteamKeyValueType.End)
                 {
                     break;
                 }
 
-                var current = new KeyValue
+                var current = new SteamKeyValue
                 {
                     Type = type,
                     Name = input.ReadStringUnicode(),
@@ -299,53 +300,53 @@ public record class KeyValue
 
                 switch (type)
                 {
-                    case KeyValueType.None:
+                    case SteamKeyValueType.None:
                         {
                             current.ReadAsBinary(input);
                             break;
                         }
 
-                    case KeyValueType.String:
+                    case SteamKeyValueType.String:
                         {
                             current.Valid = true;
                             current.Value = input.ReadStringUnicode();
                             break;
                         }
 
-                    case KeyValueType.WideString:
+                    case SteamKeyValueType.WideString:
                         {
                             throw new FormatException("wstring is unsupported");
                         }
 
-                    case KeyValueType.Int32:
+                    case SteamKeyValueType.Int32:
                         {
                             current.Valid = true;
                             current.Value = input.ReadValueS32();
                             break;
                         }
 
-                    case KeyValueType.UInt64:
+                    case SteamKeyValueType.UInt64:
                         {
                             current.Valid = true;
                             current.Value = input.ReadValueU64();
                             break;
                         }
 
-                    case KeyValueType.Float32:
+                    case SteamKeyValueType.Float32:
                         {
                             current.Valid = true;
                             current.Value = input.ReadValueF32();
                             break;
                         }
 
-                    case KeyValueType.Color:
+                    case SteamKeyValueType.Color:
                         {
                             current.Valid = true;
                             current.Value = input.ReadValueU32();
                             break;
                         }
 
-                    case KeyValueType.Pointer:
+                    case SteamKeyValueType.Pointer:
                         {
                             current.Valid = true;
                             current.Value = input.ReadValueU32();
@@ -379,7 +380,7 @@ public record class KeyValue
 /// <summary>
 /// 键值类型枚举
 /// </summary>
-public enum KeyValueType : byte
+public enum SteamKeyValueType : byte
 {
     None = 0,
     String = 1,

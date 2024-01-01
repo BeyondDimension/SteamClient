@@ -1,9 +1,21 @@
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamDbWebApiService"/> SteamDb WebApi 服务实现
 /// </summary>
-internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISteamDbWebApiService
+/// <remarks>
+/// 初始化 <see cref="SteamDbWebApiServiceImpl"/> 类的新实例
+/// </remarks>
+/// <param name="serviceProvider"></param>
+/// <param name="http_helper"></param>
+/// <param name="loggerFactory"></param>
+internal sealed class SteamDbWebApiServiceImpl(
+    IServiceProvider serviceProvider,
+    IHttpPlatformHelperService http_helper,
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(
+        loggerFactory.CreateLogger(TAG),
+        serviceProvider), ISteamDbWebApiService
 {
     const string TAG = "SteamDbWebApiS";
 
@@ -16,23 +28,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
-    private readonly IHttpPlatformHelperService http_helper;
-
-    /// <summary>
-    /// 初始化 <see cref="SteamDbWebApiServiceImpl"/> 类的新实例
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    /// <param name="http_helper"></param>
-    /// <param name="loggerFactory"></param>
-    public SteamDbWebApiServiceImpl(
-        IServiceProvider serviceProvider,
-        IHttpPlatformHelperService http_helper,
-        ILoggerFactory loggerFactory) : base(
-            loggerFactory.CreateLogger(TAG),
-            serviceProvider)
-    {
-        this.http_helper = http_helper;
-    }
+    private readonly IHttpPlatformHelperService http_helper = http_helper;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
@@ -47,7 +43,7 @@ internal sealed class SteamDbWebApiServiceImpl : WebApiClientFactoryService, ISt
                 {
                     req.Headers.Accept.ParseAdd(accept);
                     req.Headers.TryAddWithoutValidation("User-Agent", http_helper.UserAgent);
-                }
+                },
             };
             sendArgs.SetHttpClient(client);
             return await SendAsync<T>(sendArgs, cancellationToken);

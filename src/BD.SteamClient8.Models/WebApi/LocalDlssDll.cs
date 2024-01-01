@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 本机 Dlss 库
@@ -8,33 +9,37 @@ public record class LocalDlssDll : IComparable<LocalDlssDll>
     /// <summary>
     /// 文件名
     /// </summary>
-    public string Filename { get; }
+    public string Filename { get; private set; } = "";
 
     /// <summary>
     /// 版本信息
     /// </summary>
-    public string Version { get; }
+    public string Version { get; private set; } = "";
 
     /// <summary>
     /// 版本号
     /// </summary>
-    public ulong VersionNumber { get; }
+    public ulong VersionNumber { get; private set; }
 
     /// <summary>
     /// <see cref="SHA1"/> Hash 字符串
     /// </summary>
-    public string SHA1Hash { get; }
+    public string SHA1Hash { get; private set; } = "";
 
     /// <summary>
     /// <see cref="MD5"/> Hash 字符串
     /// </summary>
-    public string MD5Hash { get; }
+    public string MD5Hash { get; private set; } = "";
 
     /// <summary>
-    /// 通过文件构造实例
+    /// Initializes a new instance of the <see cref="LocalDlssDll"/> class.
     /// </summary>
-    /// <param name="filename"></param>
-    public LocalDlssDll(string filename)
+    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
+    public LocalDlssDll()
+    {
+    }
+
+    public void SetFilename(string filename)
     {
         Filename = filename;
 
@@ -45,23 +50,23 @@ public record class LocalDlssDll : IComparable<LocalDlssDll>
                      ((ulong)versionInfo.FileMinorPart << 32) +
                      ((ulong)versionInfo.FileBuildPart << 16) +
                      ((ulong)versionInfo.FilePrivatePart);
+        using var stream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+        var hash_md5 = MD5.HashData(stream);
+        MD5Hash = hash_md5.ToHexString(isLower: false);
 
-        using (var stream = File.OpenRead(filename))
-        {
-            using (var md5 = MD5.Create())
-            {
-                var hash = md5.ComputeHash(stream);
-                MD5Hash = BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
-            }
+        stream.Position = 0;
 
-            stream.Position = 0;
+        var hash_sha1 = SHA1.HashData(stream);
+        SHA1Hash = hash_sha1.ToHexString(isLower: false);
+    }
 
-            using (var sha1 = SHA1.Create())
-            {
-                var hash = sha1.ComputeHash(stream);
-                SHA1Hash = BitConverter.ToString(hash).Replace("-", "").ToUpperInvariant();
-            }
-        }
+    /// <summary>
+    /// 通过文件构造实例
+    /// </summary>
+    /// <param name="filename"></param>
+    public LocalDlssDll(string filename)
+    {
+        SetFilename(filename);
     }
 
     /// <summary>

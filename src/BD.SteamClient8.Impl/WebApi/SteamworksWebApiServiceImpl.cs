@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamworksWebApiService"/> Steamworks WebApi 服务实现
@@ -37,7 +38,7 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
                 ConfigureRequestMessage = (req, args, token) =>
                 {
                     req.Headers.TryAddWithoutValidation("accept", accept);
-                }
+                },
             };
             sendArgs.SetHttpClient(CreateClient());
             return await SendAsync<T>(sendArgs, cancellationToken);

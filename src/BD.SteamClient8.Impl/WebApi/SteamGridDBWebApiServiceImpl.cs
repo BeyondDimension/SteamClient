@@ -1,9 +1,21 @@
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamGridDBWebApiServiceImpl"/> SteamGridDB WebApi 服务实现
 /// </summary>
-internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService, ISteamGridDBWebApiServiceImpl
+/// <remarks>
+/// 初始化 <see cref="SteamGridDBWebApiServiceImpl"/> 类的新实例
+/// </remarks>
+/// <param name="serviceProvider"></param>
+/// <param name="http_helper"></param>
+/// <param name="loggerFactory"></param>
+internal sealed class SteamGridDBWebApiServiceImpl(
+    IServiceProvider serviceProvider,
+    IHttpPlatformHelperService http_helper,
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(
+        loggerFactory.CreateLogger(TAG),
+        serviceProvider), ISteamGridDBWebApiServiceImpl
 {
     const string TAG = "SteamGridDBWebApiS";
 
@@ -14,23 +26,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
     protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
         DefaultJsonSerializerContext_.Default.Options;
 
-    private readonly IHttpPlatformHelperService http_helper;
-
-    /// <summary>
-    /// 初始化 <see cref="SteamGridDBWebApiServiceImpl"/> 类的新实例
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    /// <param name="http_helper"></param>
-    /// <param name="loggerFactory"></param>
-    public SteamGridDBWebApiServiceImpl(
-        IServiceProvider serviceProvider,
-        IHttpPlatformHelperService http_helper,
-        ILoggerFactory loggerFactory) : base(
-            loggerFactory.CreateLogger(TAG),
-            serviceProvider)
-    {
-        this.http_helper = http_helper;
-    }
+    private readonly IHttpPlatformHelperService http_helper = http_helper;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
@@ -48,10 +44,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
                 {
                     req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
                     req.Headers.Accept.ParseAdd(accept);
-                    var userAgent = http_helper.UserAgent;
-                    if (userAgent != null)
-                        req.Headers.UserAgent.ParseAdd(userAgent);
-                }
+                },
             };
             sendArgs.SetHttpClient(client);
             return await SendAsync<T>(sendArgs, cancellationToken);
@@ -128,14 +121,9 @@ internal sealed class SteamGridDBWebApiServiceImpl : WebApiClientFactoryService,
         return ApiRspHelper.Ok<List<SteamGridItem>?>();
     }
 
-    readonly struct LogStrJoin
+    readonly struct LogStrJoin(IEnumerable<string> strings)
     {
-        public LogStrJoin(IEnumerable<string> strings)
-        {
-            Strings = strings;
-        }
-
-        IEnumerable<string> Strings { get; }
+        IEnumerable<string> Strings { get; } = strings;
 
         public override string ToString() => string.Join(", ", Strings);
     }

@@ -1,24 +1,11 @@
-namespace BD.SteamClient8.Services.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Services;
 
 /// <summary>
 /// Steam 账号相关接口服务
 /// </summary>
 public interface ISteamAccountService
 {
-    /// <summary>
-    /// 获取 Steam 登录所需的 RSAkey 来加密 password
-    /// </summary>
-    /// <param name="username"></param>
-    /// <param name="password"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
-    [Obsolete("use GetRSAkeyV2Async")]
-    Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(
-        string username,
-        string password,
-        CancellationToken cancellationToken = default);
-
     /// <summary>
     /// 获取新版 Steam 登录所需的 RSAkey 来加密 password
     /// </summary>
@@ -32,37 +19,12 @@ public interface ISteamAccountService
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 执行请求 Steam 登录，返回登录状态
-    /// </summary>
-    /// <param name="loginState">登录状态</param>
-    /// <param name="isTransfer"></param>
-    /// <param name="isDownloadCaptchaImage"></param>
-    /// <param name="cancellationToken"></param>
-    [Obsolete("use DoLoginV2Async")]
-    Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false, CancellationToken cancellationToken = default);
-
-    /// <summary>
     /// 执行新版请求 Steam 登录，返回登录状态
     /// </summary>
     /// <param name="loginState"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// 执行 Steam 第三方快速登录接口请求并返回登录后 Cookie
-    /// </summary>
-    /// <param name="openidparams">请求参数</param>
-    /// <param name="nonce">nonce</param>
-    /// <param name="cookie">登录成功状态</param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [Obsolete("现已使用 Steam 登录状态在浏览器中登录")]
-    Task<ApiRspImpl<CookieCollection?>> OpenIdLoginAsync(
-        string openidparams,
-        string nonce,
-        CookieCollection cookie,
-        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Steam 账号消费历史记录
@@ -123,7 +85,7 @@ public interface ISteamAccountService
     Task<ApiRspImpl<string?>> RegisterApiKey(SteamLoginState steamLoginState, string? domain = null, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 获取库存信息 (有频率限制 间隔3分钟)
+    /// 获取库存信息 (有频率限制 间隔 3 分钟)
     /// </summary>
     /// <param name="steamId">用户 Steam Id</param>
     /// <param name="appId">应用 Id</param>
@@ -146,7 +108,7 @@ public interface ISteamAccountService
     Task<ApiRspImpl<InventoryTradeHistoryRenderPageResponse>> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 解析库存交易历史html
+    /// 解析库存交易历史 html
     /// </summary>
     /// <param name="html">交易历史 html</param>
     /// <param name="cultureInfo">网页语言信息(目前只有时间按照语言解析)</param>
@@ -160,7 +122,7 @@ public interface ISteamAccountService
     /// <param name="loginState">登录状态</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>>> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>?>> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取登录历史记录

@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Primitives.Enums.WebApi.Trade;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Enums;
 
 /// <summary>
 /// 交易报价确认信息操作类型

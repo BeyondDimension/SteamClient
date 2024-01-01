@@ -1,34 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-android;net$(DotNet_Version)-ios;net$(DotNet_Version)-macos;net$(DotNet_Version)-maccatalyst</TargetFrameworks>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-	</PropertyGroup>
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildProjectName).props" />
+
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
 
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
 	</PropertyGroup>
-
-	<ItemGroup>
-	  <Compile Remove="WebApi\SteamApp\SteamApp2.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Google.Protobuf" />
-		<PackageReference Include="SteamKit2" />
-		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="PInvoke\" />
-	</ItemGroup>
 </Project>

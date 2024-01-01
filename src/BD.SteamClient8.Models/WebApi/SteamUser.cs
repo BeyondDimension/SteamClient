@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 [XmlRoot("profile")]
 public record class SteamUser
@@ -10,13 +11,13 @@ public record class SteamUser
     public string? SteamId3 => $"[U:1:{SteamId32}]";
 
     /// <summary>
-    /// SteamId 32位
+    /// SteamId 32 位
     /// </summary>
     [XmlIgnore]
     public int SteamId32 => Convert.ToInt32((SteamId64 >> 0) & 0xFFFFFFFF);
 
     /// <summary>
-    /// SteamId 64位
+    /// SteamId 64 位
     /// </summary>
     [XmlElement("steamID64")]
     public long SteamId64 { get; set; }
@@ -28,7 +29,7 @@ public record class SteamUser
     public string ProfileUrl => string.Format(SteamApiUrls.STEAM_PROFILES_URL, SteamId64);
 
     /// <summary>
-    /// Userdata文件夹相对路径
+    /// Userdata 文件夹相对路径
     /// </summary>
     [XmlIgnore]
     public string UserdataPath => Path.Combine("userdata", SteamId32.ToString());
@@ -40,7 +41,7 @@ public record class SteamUser
     public string? OnlineState { get; set; }
 
     /// <summary>
-    /// Steam等级
+    /// Steam 等级
     /// </summary>
     [XmlIgnore]
     public int? Level { get; set; }
@@ -90,7 +91,7 @@ public record class SteamUser
     public bool VacBanned { get; set; }
 
     /// <summary>
-    /// 自我介绍HTML
+    /// 自我介绍 HTML
     /// </summary>
     [XmlElement("summary")]
     public string? Summary { get; set; }
@@ -114,7 +115,7 @@ public record class SteamUser
     public string? PersonaName { get; set; }
 
     /// <summary>
-    /// 从 Valve Data File 读取到的AllowAutoLogin
+    /// 从 Valve Data File 读取到的 AllowAutoLogin
     /// </summary>
     [XmlIgnore]
     public bool AllowAutoLogin { get; set; }

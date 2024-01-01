@@ -1,6 +1,5 @@
-#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
-
-namespace BD.SteamClient8.Models.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// 导入 SDA 实体

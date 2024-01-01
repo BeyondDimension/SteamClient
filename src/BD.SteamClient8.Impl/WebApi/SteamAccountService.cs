@@ -1,4 +1,5 @@
-namespace BD.SteamClient8.Impl.WebApi;
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+namespace BD.SteamClient8.Impl;
 
 public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {
@@ -44,12 +45,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     }
 
     /// <summary>
-    /// 是否使用重试机制
-    /// </summary>
-    [Obsolete("根据业务而定")]
-    public bool UseRetry { get; set; } = true;
-
-    /// <summary>
     /// 等待一个时间并且重试
     /// </summary>
     /// <returns></returns>
@@ -68,35 +63,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
 
     #region Public Methods
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(string username, string password, CancellationToken cancellationToken = default)
-    {
-        var stm_login_getrsakey_req_form = new Dictionary<string, string>()
-        {
-            { "donotache", default_donotcache },
-            { "username", username },
-        };
-        async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyAsync(CancellationToken cancellationToken = default)
-        {
-            var result = await GetRSAkeyCoreAsync(username, password, stm_login_getrsakey_req_form, cancellationToken);
-            return result;
-        }
-        bool HasValue(ApiRspImpl<(string encryptedPassword64, string timestamp)>? result)
-        {
-            if (result is null)
-                return false;
-            if (!result.IsSuccess)
-                return false;
-            if (string.IsNullOrWhiteSpace(result.Content.encryptedPassword64))
-                return false;
-            if (string.IsNullOrWhiteSpace(result.Content.timestamp))
-                return false;
-            return true;
-        }
-        var result = await Policy.HandleResult<ApiRspImpl<(string encryptedPassword64, string timestamp)>>(HasValue).WaitAndRetryAsync(sleepDurations).ExecuteAsync(GetRSAkeyAsync, cancellationToken);
-        return result;
-    }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(string username, string password, CancellationToken cancellationToken = default)
@@ -128,248 +94,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl> DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false, CancellationToken cancellationToken = default)
-    {
-        loginState.Success = false;
-
-        if (string.IsNullOrEmpty(loginState.Username) ||
-            string.IsNullOrEmpty(loginState.Password))
-        {
-            return loginState.Message = "请填写正确的 Steam 用户名密码";
-        }
-
-        loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
-        loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
-
-        if (string.IsNullOrEmpty(loginState.Cookies?["sessionid"]?.Value))
-        {
-            // 访问一次登录页获取 SessionId
-            using WebApiClientSendArgs args = new(SteamApiUrls.SteamLoginUrl)
-            {
-                Method = HttpMethod.Get,
-            };
-            var client = CreateClient(loginState.Username);
-            args.SetHttpClient(client);
-            await SendAsync<string>(args, cancellationToken);
-        }
-
-        var rsaKey = await GetRSAkeyAsync(loginState.Username, loginState.Password, cancellationToken);
-        if (!rsaKey.IsSuccess)
-            return rsaKey.GetMessage();
-
-        var (encryptedPassword64, timestamp) = rsaKey.Content;
-
-        async Task<ApiRspImpl<SystemTextJsonObject?>> DoLoginCoreAsync(CancellationToken cancellationToken = default)
-        {
-            var data = new Dictionary<string, string>()
-            {
-                { "password", encryptedPassword64 },
-                { "username", loginState.Username },
-                { "twofactorcode", loginState.TwofactorCode ?? string.Empty },
-                { "emailauth", loginState.EmailCode ?? string.Empty },
-                { "loginfriendlyname", string.Empty },
-                { "captchagid", string.IsNullOrEmpty(loginState.CaptchaId) == false ? loginState.CaptchaId : "-1" },
-                { "captcha_text", string.IsNullOrEmpty(loginState.CaptchaText) == false ? loginState.CaptchaText : string.Empty },
-                { "emailsteamid", (string.IsNullOrEmpty(loginState.EmailCode) == false ? loginState.SteamIdString ?? string.Empty : string.Empty) },
-                { "rsatimestamp", timestamp.ToString() },
-                { "remember_login", "false" },
-                { "donotache", default_donotcache },
-            };
-
-            using WebApiClientSendArgs args = new(SteamApiUrls.DologinUrl)
-            {
-                Method = HttpMethod.Post,
-                ContentType = MediaTypeNames.FormUrlEncoded
-            };
-            try
-            {
-                var client = CreateClient(loginState.Username);
-                args.SetHttpClient(client);
-                using var dologinRspMsg = await SendAsync<HttpResponseMessage, Dictionary<string, string>>(args, data, cancellationToken);
-                dologinRspMsg.ThrowIsNull();
-                if (dologinRspMsg.StatusCode == HttpStatusCode.TooManyRequests)
-                {
-                    loginState.Requires2FA = false;
-                    loginState.RequiresCaptcha = false;
-                    loginState.RequiresEmailAuth = false;
-                    loginState.Success = false;
-                    return loginState.Message = $"{HttpStatusCode.TooManyRequests} 请求过于频繁，请稍后再试";
-                }
-
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                // SystemTextJsonObject 应配置为跳过裁剪所以忽略警告
-                var dologinRspJObj = await ReadFromSJsonAsync<SystemTextJsonObject>(dologinRspMsg.Content, cancellationToken);
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-                if (dologinRspJObj is null)
-                {
-                    loginState.Success = false;
-                    return loginState.Message = $"登录错误: 无效的 {nameof(dologinRspJObj)}";
-                }
-
-                return dologinRspJObj;
-            }
-            catch (Exception ex)
-            {
-                var errorResult = OnErrorReApiRspBase<ApiRspImpl<SystemTextJsonObject?>>(ex, args);
-                loginState.Message = $"登录错误: " + errorResult.GetMessage();
-                return errorResult;
-            }
-        }
-
-        bool HasValue(ApiRspImpl<SystemTextJsonObject?>? result)
-        {
-            if (result is null)
-                return false;
-            if (!result.IsSuccess)
-                return false;
-            if (result.Content == null)
-                return false;
-            return true;
-        }
-
-        var result = await Policy.HandleResult<ApiRspImpl<SystemTextJsonObject?>>(HasValue).WaitAndRetryAsync(sleepDurations).ExecuteAsync(DoLoginCoreAsync, cancellationToken);
-        var dologinRspJObj = result.Content;
-        if (dologinRspJObj == null)
-        {
-            return result.GetMessage();
-        }
-
-        var message = dologinRspJObj["message"]?.GetValue<string>();
-
-        var emailsteamid = dologinRspJObj["emailsteamid"]?.GetValue<string>();
-        if (!string.IsNullOrEmpty(emailsteamid))
-        {
-            loginState.SteamIdString = emailsteamid;
-        }
-
-        var captcha_needed = dologinRspJObj["captcha_needed"]?.GetValue<bool>();
-        loginState.RequiresCaptcha = captcha_needed.HasValue && captcha_needed.Value;
-        if (loginState.RequiresCaptcha)
-        {
-            if (message?.Contains("验证码中的字符", StringComparison.OrdinalIgnoreCase) == true)
-            {
-                loginState.CaptchaId = dologinRspJObj["captcha_gid"]?.GetValue<string>();
-                loginState.CaptchaUrl = SteamApiUrls.CaptchaImageUrl + loginState.CaptchaId;
-                if (isDownloadCaptchaImage && !string.IsNullOrEmpty(loginState.CaptchaId))
-                {
-                    loginState.CaptchaImageBase64 = await GetCaptchaImageBase64(loginState.CaptchaId);
-                }
-                return loginState.Message = $"登录错误: " + message;
-            }
-            else
-            {
-                loginState.RequiresCaptcha = false;
-                loginState.CaptchaId = null;
-                loginState.CaptchaUrl = null;
-                loginState.CaptchaText = null;
-                return loginState.Message = $"登录错误: " + message;
-            }
-        }
-        else
-        {
-            loginState.RequiresCaptcha = false;
-            loginState.CaptchaId = null;
-            loginState.CaptchaUrl = null;
-            loginState.CaptchaText = null;
-        }
-
-        // require email auth
-        var emailauth_needed = dologinRspJObj["emailauth_needed"]?.GetValue<bool>();
-        loginState.RequiresEmailAuth = emailauth_needed.HasValue && emailauth_needed.Value;
-        if (loginState.RequiresEmailAuth)
-        {
-            var emaildomain = dologinRspJObj["emaildomain"]?.GetValue<string>();
-            if (!string.IsNullOrEmpty(emaildomain))
-            {
-                loginState.EmailDomain = emaildomain;
-            }
-            loginState.Message = $"登录错误: 需要邮箱验证码";
-        }
-        else
-        {
-            loginState.EmailDomain = null;
-        }
-
-        // require 2fa auth
-        var requires_twofactor = dologinRspJObj["requires_twofactor"]?.GetValue<bool>();
-        loginState.Requires2FA = requires_twofactor.HasValue && requires_twofactor.Value;
-        if (loginState.Requires2FA)
-        {
-            return loginState.Message = $"登录错误: 需要输入令牌";
-        }
-
-        // 登录因为其它原因失败
-        var login_complete = dologinRspJObj["login_complete"]?.GetValue<bool>();
-        loginState.Success = login_complete.HasValue && login_complete.Value;
-        if (!loginState.Success)
-        {
-            if (!string.IsNullOrEmpty(message))
-            {
-                return loginState.Message = $"登录错误: " + message;
-            }
-        }
-        else
-        {
-            // 登录成功
-            DoLoginResponse? dologinRspObj = null;
-            try
-            {
-                dologinRspObj = SystemTextJsonSerializer.Deserialize(dologinRspJObj, DefaultJsonSerializerContext_.Default.DoLoginResponse);
-            }
-            catch (Exception ex)
-            {
-                var errorResult = OnSerializerErrorReApiRspBase<ApiRspImpl>(ex, isSerializeOrDeserialize: false, typeof(DoLoginResponse));
-                loginState.Message = $"登录错误: " + errorResult.GetMessage();
-                return errorResult;
-            }
-            if (dologinRspObj != null)
-            {
-                var cookieContainer = GetCookieContainer(loginState.Username);
-                var session = new SteamSession
-                {
-                    Cookies = cookieContainer.GetAllCookies(),
-                    SteamId = loginState.SteamId.ToString(),
-                };
-                loginState.Cookies = cookieContainer.GetAllCookies();
-                if (dologinRspObj.TransferParameters != null && dologinRspObj.TransferUrls != null)
-                {
-                    session.AccessToken = dologinRspObj.TransferParameters.Auth.ThrowIsNull();
-                    loginState.SteamIdString = dologinRspObj.TransferParameters.Steamid;
-
-                    _ = ulong.TryParse(loginState.SteamIdString, out var steamid);
-                    loginState.SteamId = steamid;
-
-                    if (isTransfer)
-                    {
-                        foreach (var transferUrl in dologinRspObj.TransferUrls)
-                        {
-                            await Policy.Handle<Exception>().WaitAndRetryAsync(sleepDurations).ExecuteAsync(async (cancellationToken) =>
-                            {
-                                using WebApiClientSendArgs args = new(transferUrl)
-                                {
-                                    Method = HttpMethod.Post,
-                                };
-                                var client = CreateClient(loginState.Username);
-                                args.SetHttpClient(client);
-                                using var transferUrlRsp = await SendAsync<HttpResponseMessage>(args, cancellationToken);
-                                transferUrlRsp.ThrowIsNull();
-                                transferUrlRsp.EnsureSuccessStatusCode();
-                            }, cancellationToken);
-                        }
-                    }
-                }
-                session.GenerateSetCookie();
-                sessions.AddOrSetSession(session);
-                return ApiRspHelper.Ok();
-            }
-        }
-        return loginState.Message = "登录错误: 出现未知错误";
-    }
-
-    /// <inheritdoc/>
-    public Task<ApiRspImpl<CookieCollection?>> OpenIdLoginAsync(string openidparams, string nonce, CookieCollection cookie, CancellationToken cancellationToken = default) => throw new NotImplementedException();
-
-    /// <inheritdoc/>
     public async Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default)
     {
         loginState.Success = false;
@@ -391,10 +115,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             {
                 return loginState.Message = "请填写正确的 Steam 用户名密码";
             }
-
-            // Steam 会从用户名和密码中删除所有非 ASCII 字符
-            loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
-            loginState.Password = SteamUNPWDRegex().Replace(loginState.Password, string.Empty);
 
             if (string.IsNullOrEmpty(loginState.SeesionId))
             {
@@ -498,11 +218,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     {
                         Method = HttpMethod.Post,
                         ContentType = MediaTypeNames.FormUrlEncoded,
-                        ConfigureRequestMessage = (req, args, token) =>
-                        {
-                            req.Headers.UserAgent.Clear();
-                            req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-                        }
+                        UserAgent = uas.GetUserAgent(),
                     };
                     sendArgs.SetHttpClient(client);
                     var param = new Dictionary<string, string?>()
@@ -518,13 +234,15 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             }
             loginState.Cookies = cookieContainer.GetAllCookies();
         }
-        var session = new SteamSession();
-        session.SteamId = loginState.SteamId.ToString();
-        session.AccessToken = loginState.AccessToken;
-        session.RefreshToken = loginState.RefreshToken;
-        session.Cookies = cookieContainer.GetAllCookies();
+        var session = new SteamSession
+        {
+            SteamId = loginState.SteamId.ToString(),
+            AccessToken = loginState.AccessToken,
+            RefreshToken = loginState.RefreshToken,
+            Cookies = cookieContainer.GetAllCookies(),
+        };
         session.GenerateSetCookie();
-        sessions.AddOrSetSession(session);
+        await sessions.AddOrSetSession(session, cancellationToken);
         return ApiRspHelper.Ok();
 
         async Task JwtCheckDevice(CancellationToken cancellationToken = default)
@@ -535,11 +253,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded,
-                    ConfigureRequestMessage = (req, args, token) =>
-                    {
-                        req.Headers.UserAgent.Clear();
-                        req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-                    }
+                    UserAgent = uas.GetUserAgent(),
                 };
                 sendArgs.SetHttpClient(client);
                 var param = new Dictionary<string, string?>()
@@ -577,11 +291,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 {
                     Method = HttpMethod.Post,
                     ContentType = MediaTypeNames.FormUrlEncoded,
-                    ConfigureRequestMessage = (req, args, token) =>
-                    {
-                        req.Headers.UserAgent.Clear();
-                        req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-                    }
+                    UserAgent = uas.GetUserAgent(),
                 };
                 sendArgs.SetHttpClient(client);
 
@@ -646,7 +356,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE)
                 {
                     Method = HttpMethod.Post,
-                    ContentType = MediaTypeNames.FormUrlEncoded
+                    ContentType = MediaTypeNames.FormUrlEncoded,
                 };
                 sendArgs.SetHttpClient(client);
                 var param = new Dictionary<string, string?>()
@@ -674,7 +384,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_LOGIN_FINALIZELOGIN)
                 {
                     Method = HttpMethod.Post,
-                    ContentType = MediaTypeNames.FormUrlEncoded
+                    ContentType = MediaTypeNames.FormUrlEncoded,
                 };
                 sendArgs.SetHttpClient(client);
                 var param = new Dictionary<string, string?>()
@@ -721,11 +431,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-            }
+            UserAgent = uas.GetUserAgent(),
         };
         sendArgs.SetHttpClient(client);
 
@@ -789,11 +495,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-            }
+            UserAgent = uas.GetUserAgent(),
         };
         sendArgs.SetHttpClient(client);
 
@@ -839,7 +541,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         if (isRetry)
             return await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () => await RedeemWalletCodeCore(loginState, walletCode, cancellationToken));
         else
-            return await RedeemWalletCodeCore(loginState, walletCode);
+            return await RedeemWalletCodeCore(loginState, walletCode, cancellationToken);
     }
 
     /// <inheritdoc/>
@@ -856,22 +558,19 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-                req.Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                    {
-                        { "cc", currencyCode },
-                        { "sessionid", loginState.Cookies["sessionid"]?.Value },
-                    });
-            }
+            ContentType = MediaTypeNames.FormUrlEncoded,
+            UserAgent = uas.GetUserAgent(),
         };
         sendArgs.SetHttpClient(client);
 
+        var dict = new Dictionary<string, string?>()
+        {
+            { "cc", currencyCode },
+            { "sessionid", loginState.Cookies["sessionid"]?.Value },
+        };
         var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
-            var html = await SendAsync<string>(sendArgs, cancellationToken);
+            var html = await SendAsync<string, Dictionary<string, string?>>(sendArgs, dict, cancellationToken);
 
             if (!string.IsNullOrEmpty(html))
             {
@@ -900,11 +599,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-            }
+            UserAgent = uas.GetUserAgent(),
         };
         sendArgs.SetHttpClient(client);
 
@@ -968,8 +663,8 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             {
                 Name = "timezoneOffset",
                 Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
-                Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host
-            }
+                Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
+            },
         };
 
         var client = CreateClient(loginState.Username.ThrowIsNull());
@@ -985,16 +680,44 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return result!;
     }
 
+    static bool TryParseDateTime([NotNullWhen(true)] string? s, CultureInfo? cultureInfo, out DateTime result)
+    {
+        if (!DateTime.TryParse(s, cultureInfo, out result))
+        {
+            return true;
+        }
+
+        try
+        {
+            if (!DateTime.TryParse(s, CultureInfo.GetCultureInfo("zh-CN"), out result))
+            {
+                return true;
+            }
+        }
+        catch
+        {
+        }
+
+        if (!DateTime.TryParseExact(s, "O", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+        {
+            return true;
+        }
+
+        if (!DateTime.TryParseExact(s, "R", CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+        {
+            return true;
+        }
+
+        result = default;
+        return false;
+    }
+
     /// <inheritdoc/>
     public async IAsyncEnumerable<InventoryTradeHistoryRow> ParseInventoryTradeHistory(string html, CultureInfo? cultureInfo = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         IBrowsingContext context = BrowsingContext.New();
 
-        var htmlParser = context.GetService<IHtmlParser>();
-
-        if (htmlParser == null)
-            throw new ArgumentNullException("获取Html解析器失败");
-
+        var htmlParser = context.GetService<IHtmlParser>() ?? throw new ArgumentNullException("获取 Html 解析器失败");
         var document = await htmlParser.ParseDocumentAsync(html);
 
         var rowElements = document.QuerySelectorAll("div.tradehistoryrow");
@@ -1012,7 +735,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 Date = date,
                 TimeOfDate = timeOfDate,
                 Desc = desc,
-                Groups = groups
+                Groups = groups,
             };
         }
 
@@ -1023,7 +746,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
             var timeElement = rowElement.QuerySelector("div.tradehistory_timestamp");
 
-            if (!DateTime.TryParse(timeElement?.TextContent?.Trim(), cultureInfo, out var timeDate))
+            if (!TryParseDateTime(timeElement?.TextContent?.Trim(), cultureInfo, out var timeDate))
             {
                 throw new ArgumentException("日期转换失败!");
             }
@@ -1037,7 +760,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
                 string? dateText = dateElement.TextContent?.Trim();
 
-                if (!DateTime.TryParse(dateText?.Trim(), CultureInfo.GetCultureInfo("zh-CN"), out date))
+                if (!TryParseDateTime(dateText?.Trim(), cultureInfo, out date))
                 {
                     throw new ArgumentException("日期转换失败!");
                 }
@@ -1106,7 +829,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 groups.Add(new()
                 {
                     PlusMinus = plusminus,
-                    Items = groupItems
+                    Items = groupItems,
                 });
             }
 
@@ -1127,14 +850,13 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             !string.IsNullOrEmpty(startAssetId) ? $"&start_assetid={startAssetId}" : string.Empty);
 
         using var sendArgs = new WebApiClientSendArgs(url);
-        InventoryPageResponse? inventories = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
+        var inventories = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
             var result = await SendAsync<InventoryPageResponse>(sendArgs, cancellationToken);
-            if (result is null)
-                throw new NullReferenceException("GetInventories 429 too many requests");
             return result;
         });
-
+        if (inventories == null)
+            return ApiRspHelper.Code<InventoryPageResponse>((ApiRspCode)sendArgs.StatusCode);
         return inventories;
     }
 
@@ -1148,11 +870,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Get,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-            }
+            UserAgent = uas.GetUserAgent(),
         };
         sendArgs.SetHttpClient(client);
         var stream = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
@@ -1168,7 +886,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         if (string.IsNullOrEmpty(loginState.SeesionId))
             throw new ArgumentException(nameof(loginState.SeesionId));
 
-        Dictionary<string, string> data = new Dictionary<string, string>()
+        var data = new Dictionary<string, string>()
         {
             { "domain", domain ?? Guid.NewGuid().ToString("N") },
             { "agreeToTerms", "agreed" },
@@ -1185,8 +903,8 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 Value = loginState.SeesionId,
                 Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
                 Secure = true,
-                Path = "/"
-            }
+                Path = "/",
+            },
         };
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -1195,27 +913,26 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
+            UserAgent = uas.GetUserAgent(),
+            ContentType = MediaTypeNames.FormUrlEncoded,
+            ConfigureRequestMessage = (req, _, _) =>
             {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
                 req.Headers.Add("origin", "https://steamcommunity.com");
                 req.Headers.Add("authority", "steamcommunity.com");
                 req.Headers.Add("referer", "https://steamcommunity.com/dev/revokekey");
                 req.Headers.Add("accept-language", "zh-CN");
-                req.Content = new FormUrlEncodedContent(data);
-            }
+            },
         };
         sendArgs.SetHttpClient(client);
         var stream = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
-            return await SendAsync<Stream>(sendArgs, cancellationToken);
+            return await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
         });
         return ApiRspHelper.Ok(ParseApiKeyFromHttpContent(stream));
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>>> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>?>> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default)
     {
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -1226,17 +943,15 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
         };
         sendArgs.SetHttpClient(client);
-        using Stream? respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
 
+        using Stream? respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
         if (respStream == null)
-            return ApiRspHelper.Fail<IEnumerable<SendGiftHistoryItem>>("访问网站页面信息异常")!;
+            return "访问网站页面信息异常";
 
         IBrowsingContext context = BrowsingContext.New();
-
         var htmlParser = context.GetService<IHtmlParser>();
-
         if (htmlParser == null)
-            return ApiRspHelper.Fail<IEnumerable<SendGiftHistoryItem>>("获取Html解析器失败")!;
+            return "获取 Html 解析器失败";
 
         var document = await htmlParser.ParseDocumentAsync(respStream);
 
@@ -1256,7 +971,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     Name = giftItemElement?.QuerySelector("div.gift_item_details > b")?.TextContent?.Trim() ?? string.Empty,
                     ImgUrl = giftItemElement?.QuerySelector("div.item_icon > img")?.GetAttribute("src") ?? string.Empty,
                     RedeemedGiftStatusText = giftItemElement?.QuerySelector("div.sent_gift_actions > span")?.TextContent?.Trim() ?? string.Empty,
-                    GiftStatusText = giftStatusElement?.TextContent?.Trim() ?? string.Empty
+                    GiftStatusText = giftStatusElement?.TextContent?.Trim() ?? string.Empty,
                 };
 
                 result.Add(giftHistoryItem);
@@ -1275,7 +990,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             loginState.Cookies!,
             new Cookie("sessionid", loginState.SeesionId, "/", $".{new Uri(url).Host}"),
-            new Cookie("steamLoginSecure", loginState.Cookies!["steamLoginSecure"]?.Value, "/", $".{new Uri(url).Host}")
+            new Cookie("steamLoginSecure", loginState.Cookies!["steamLoginSecure"]?.Value, "/", $".{new Uri(url).Host}"),
         };
 
         var client = CreateClient(loginState.Username.ThrowIsNull());
@@ -1288,11 +1003,8 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         };
         sendArgs.SetHttpClient(client);
 
-        using var respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
-
-        if (respStream == null)
-            throw new Exception("访问网站页面信息异常")!;
-
+        using var respStream = await SendAsync<Stream>(sendArgs, cancellationToken)
+            ?? throw new Exception("访问网站页面信息异常");
         var result = await ParseHtmlResponseStream(respStream, (doc) => Task.FromResult(doc));
 
         var tableElement = result.QuerySelector("table");
@@ -1307,9 +1019,9 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             yield return item;
         }
 
-        ValueTask<LoginHistoryItem> ParseLoginHistoryRow(IElement trElement)
+        static ValueTask<LoginHistoryItem> ParseLoginHistoryRow(IElement trElement)
         {
-            return ValueTask.FromResult(new LoginHistoryItem()
+            var result = new LoginHistoryItem()
             {
                 LogInDateTime = trElement.Children[0].TextContent?.Trim() ?? string.Empty,
                 LogOutDateTime = trElement.Children[1].TextContent?.Trim() ?? string.Empty,
@@ -1317,22 +1029,30 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 CountryOrRegion = trElement.Children[3].TextContent?.Trim() ?? string.Empty,
                 City = trElement.Children[4].TextContent?.Trim() ?? string.Empty,
                 State = trElement.Children[5].TextContent?.Trim() ?? string.Empty,
-            });
+            };
+            return ValueTask.FromResult(result);
         }
     }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string access_token, CancellationToken cancellationToken = default)
     {
-        var rsp = await CreateClient().GetAsync(string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, access_token), cancellationToken);
+        using var sendArgs = new WebApiClientSendArgs(
+            string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_STEAMNOTIFICATION, access_token))
+        {
+            Method = HttpMethod.Get,
+        };
 
-        if (rsp.IsSuccessStatusCode)
+        var rsp = await SendAsync<nil>(sendArgs, cancellationToken);
+
+        if (sendArgs.IsSuccessStatusCode)
         {
             return true;
         }
 
         return false;
     }
+
     #endregion
 
     #region Static Methods
@@ -1356,17 +1076,17 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
             if (!string.IsNullOrEmpty(symbol1))
             {
-                if (CurrencyHelper.SymbolCurrency.ContainsKey(symbol1))
+                if (CurrencyHelper.SymbolCurrency.TryGetValue(symbol1, out var value))
                 {
-                    currency = CurrencyHelper.SymbolCurrency[symbol1];
+                    currency = value;
                 }
             }
 
             if (!string.IsNullOrEmpty(symbol2))
             {
-                if (CurrencyHelper.SymbolCurrency.ContainsKey(symbol2))
+                if (CurrencyHelper.SymbolCurrency.TryGetValue(symbol2, out var value))
                 {
-                    currency = CurrencyHelper.SymbolCurrency[symbol2];
+                    currency = value;
                 }
             }
 
@@ -1572,11 +1292,12 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
         return result;
     }
+
     #endregion
 
     #region Private Methods
 
-    private async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2CoreAsync(string username, string password, Uri requestUri, string requestUriString, CancellationToken cancellationToken = default)
+    async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2CoreAsync(string username, string password, Uri requestUri, string requestUriString, CancellationToken cancellationToken = default)
     {
         using WebApiClientSendArgs args = new(requestUri, requestUriString)
         {
@@ -1608,57 +1329,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
-    private async Task<ApiRspImpl<(string encryptedPassword64, string timestamp)>> GetRSAkeyCoreAsync(string username, string password, Dictionary<string, string> stm_login_getrsakey_req_form, CancellationToken cancellationToken = default)
-    {
-        const string error_prefix = "获取 RSAKey 出现错误: ";
-
-        using WebApiClientSendArgs args = new(SteamApiUrls.GetRSAkeyUrl)
-        {
-            Method = HttpMethod.Post,
-            ContentType = MediaTypeNames.FormUrlEncoded,
-        };
-        try
-        {
-            var client = CreateClient(username);
-            args.SetHttpClient(client);
-
-#pragma warning disable IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-            // SystemTextJsonObject 与 Dictionary 应配置为跳过裁剪所以忽略警告
-            var stm_login_getrsakey_rsp_jobj = await SendAsync<SystemTextJsonObject, Dictionary<string, string>>(args, stm_login_getrsakey_req_form, cancellationToken);
-#pragma warning restore IL2026 // Members annotated with 'RequiresUnreferencedCodeAttribute' require dynamic access otherwise can break functionality when trimming application code
-
-            if (stm_login_getrsakey_rsp_jobj is null)
-                return $"{error_prefix}stm_login_getrsakey_rsp_jobj is null.";
-
-            var success = stm_login_getrsakey_rsp_jobj["success"]?.GetValue<bool>();
-            var publickey_exp = stm_login_getrsakey_rsp_jobj["publickey_exp"]?.GetValue<string>();
-            var publickey_mod = stm_login_getrsakey_rsp_jobj["publickey_mod"]?.GetValue<string>();
-            var timestamp = stm_login_getrsakey_rsp_jobj["timestamp"]?.GetValue<string>();
-            if (!(success.HasValue && success.Value) ||
-                string.IsNullOrEmpty(publickey_exp) ||
-                string.IsNullOrEmpty(publickey_mod) ||
-                string.IsNullOrEmpty(timestamp))
-                return $"{error_prefix} stm_login_getrsakey_rsp_jobj value incorrect.";
-
-            // 使用 RSA 密钥加密密码
-            using var rsa = RSA.Create();
-            var passwordBytes = Encoding.ASCII.GetBytes(password);
-            var p = rsa.ExportParameters(false);
-            p.Exponent = Convert.FromHexString(publickey_exp);
-            p.Modulus = Convert.FromHexString(publickey_mod);
-            rsa.ImportParameters(p);
-            byte[] encryptedPassword = rsa.Encrypt(passwordBytes, RSAEncryptionPadding.Pkcs1);
-            var encryptedPassword64 = Convert.ToBase64String(encryptedPassword);
-            return (encryptedPassword64, timestamp);
-        }
-        catch (Exception ex)
-        {
-            var errorResult = OnErrorReApiRspBase<ApiRspImpl<(string encryptedPassword64, string timestamp)>>(ex, args);
-            return errorResult;
-        }
-    }
-
-    private async Task<(SteamResult Result, PurchaseResultDetail? Detail)?> RedeemWalletCodeCore(SteamLoginState loginState, string walletCode, CancellationToken cancellationToken = default)
+    async Task<(SteamResult Result, PurchaseResultDetail? Detail)?> RedeemWalletCodeCore(SteamLoginState loginState, string walletCode, CancellationToken cancellationToken = default)
     {
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -1667,20 +1338,17 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         {
             Method = HttpMethod.Post,
             JsonImplType = Serializable.JsonImplType.SystemTextJson,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                req.Headers.UserAgent.Clear();
-                req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
-                req.Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                {
-                    { "wallet_code", walletCode },
-                    { "sessionid", loginState.Cookies?["sessionid"]?.Value },
-                });
-            }
+            UserAgent = uas.GetUserAgent(),
+            ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(client);
 
-        var detail = await SendAsync<RedeemWalletResponse>(sendArgs, cancellationToken);
+        var dict = new Dictionary<string, string?>()
+        {
+            { "wallet_code", walletCode },
+            { "sessionid", loginState.Cookies?["sessionid"]?.Value },
+        };
+        var detail = await SendAsync<RedeemWalletResponse, Dictionary<string, string?>>(sendArgs, dict, cancellationToken);
 
         if (detail == null)
             return null;
@@ -1696,7 +1364,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     /// </summary>
     /// <param name="captchaId"></param>
     /// <returns></returns>
-    private async Task<string?> GetCaptchaImageBase64(string captchaId)
+    async Task<string?> GetCaptchaImageBase64(string captchaId)
     {
         var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
@@ -1713,7 +1381,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     /// <param name="respStream"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentNullException"></exception>
-    private string? ParseApiKeyFromHttpContent(Stream? respStream)
+    string? ParseApiKeyFromHttpContent(Stream? respStream)
     {
         if (respStream == null)
             return string.Empty;
@@ -1753,32 +1421,22 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
-    private async Task<T> ParseHtmlResponseStream<T>(Stream stream, Func<IDocument, Task<T>> parseFunc)
+    async Task<T> ParseHtmlResponseStream<T>(Stream stream, Func<IDocument, Task<T>> parseFunc)
     {
         using (stream)
         {
             IBrowsingContext context = BrowsingContext.New();
-
-            var htmlParser = context.GetService<IHtmlParser>();
-
-            if (htmlParser == null)
-                throw new ArgumentNullException("获取Html解析器失败");
-
+            var htmlParser = context.GetService<IHtmlParser>()
+                ?? throw new ArgumentNullException("获取 Html 解析器失败");
             var document = await htmlParser.ParseDocumentAsync(stream);
 
             return await parseFunc(document);
         }
     }
+
     #endregion
 
     #region GeneratedRegex
-
-    /// <summary>
-    /// Steam 会从用户名和密码中删除所有非 ASCII 字符
-    /// </summary>
-    /// <returns></returns>
-    [GeneratedRegex("[^\\u0000-\\u007F]")]
-    private static partial Regex SteamUNPWDRegex();
 
     [GeneratedRegex("<input type=\"hidden\" name=\"(.*?)\" value=\"(.*?)\" />")]
     private static partial Regex OpenIdLoginRegex();
@@ -1800,5 +1458,6 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
 
     [GeneratedRegex("<div class=\"currency_change_option btnv6_grey_black\" data-country=\"(?<grp0>[^\"]+)\" >[\\s]+<span>[\\s]+<div class=\"country\">(?<grp1>[\\w]+?)</div>")]
     private static partial Regex CountryItemRegex();
+
     #endregion
 }
