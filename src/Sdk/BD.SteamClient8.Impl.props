@@ -15,9 +15,6 @@
 	<PropertyGroup>
 		<UseCommon8Crawler Condition="$(UseCommon8Crawler) == ''">true</UseCommon8Crawler>
 		<UseCommon8HttpClientFactory Condition="$(UseCommon8HttpClientFactory) == ''">true</UseCommon8HttpClientFactory>
-		<!--<UseCommon8PrimitivesToast>true</UseCommon8PrimitivesToast>-->
-		<!--<UseReactiveUI>true</UseReactiveUI>-->
-		<!--<UseCommon8Toast>true</UseCommon8Toast>-->
 	</PropertyGroup>
 
 	<!-- 全局 using 当前项目 -->
@@ -32,10 +29,10 @@
 		<!--<Compile Condition="$(MSBuildProjectName) == $(MSBuildThisFileName)" Include="$(MSBuildThisFileDirectory)\..\Shared\XmlnsDefinition.$(MSBuildThisFileName).cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>-->
-		<Compile Include="..\Shared\GlobalUsings.SteamAchievementManager.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.SteamAchievementManager.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.ValveKeyValue.cs">
+		<Compile Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.ValveKeyValue.cs">
 			<LinkBase>Properties\GlobalUsings</LinkBase>
 		</Compile>
 	</ItemGroup>

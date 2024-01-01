@@ -2,5 +2,7 @@
 
 	<Import Condition="$(UseSteamClient8Primitives) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8.Primitives'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Primitives.props" />
 	<Import Condition="$(UseSteamClient8Models) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8.Models'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Models.props" />
+	<Import Condition="$(UseSteamClient8) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.props" />
+	<Import Condition="$(UseSteamClient8Impl) != '' AND $(MSBuildProjectName) != 'BD.SteamClient8.Impl'" Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Impl.props" />
 
 </Project>
