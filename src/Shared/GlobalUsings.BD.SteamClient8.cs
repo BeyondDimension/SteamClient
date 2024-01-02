@@ -8,3 +8,12 @@
 global using BD.SteamClient8;
 global using BD.SteamClient8.Helpers;
 global using BD.SteamClient8.Services;
+
+global using BD.SteamClient8.Models.Abstractions;
+
+global using Org.BouncyCastle.Crypto;
+global using Org.BouncyCastle.Crypto.Digests;
+global using Org.BouncyCastle.Crypto.Engines;
+global using Org.BouncyCastle.Crypto.Macs;
+global using Org.BouncyCastle.Crypto.Paddings;
+global using Org.BouncyCastle.Crypto.Parameters;

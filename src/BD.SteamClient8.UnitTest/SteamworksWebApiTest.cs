@@ -21,13 +21,18 @@ sealed class SteamworksWebApiTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetAllSteamAppsString()
+    public async Task GetAllSteamAppsString()
     {
         var rsp = await steamworksWebApiService.GetAllSteamAppsString();
 
         Assert.That(rsp, Is.Not.EqualTo(null));
-        Assert.That(rsp.IsSuccess);
-        Assert.That(rsp.Content, Is.Not.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content, Is.Not.Empty);
+        });
+
+        TestContext.WriteLine(rsp.Content.Length);
     }
 
     /// <summary>
@@ -35,12 +40,14 @@ sealed class SteamworksWebApiTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetAllSteamAppList()
+    public async Task GetAllSteamAppList()
     {
         var rsp = await steamworksWebApiService.GetAllSteamAppList();
 
         Assert.That(rsp, Is.Not.EqualTo(null));
         Assert.That(rsp.IsSuccess && rsp.Content != null && rsp.Content.Count > 0);
+
+        TestContext.WriteLine(Serializable.SJSON(rsp.Content!.Take(3), writeIndented: true));
     }
 
     /// <summary>
@@ -53,9 +60,15 @@ sealed class SteamworksWebApiTest : ServiceTestBase
     public async Task GetUserInfo(long steamId64)
     {
         var rsp = await steamworksWebApiService.GetUserInfo(steamId64);
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
 
         Assert.That(rsp, Is.Not.EqualTo(null));
-        Assert.That(rsp.IsSuccess);
-        Assert.That(rsp.Content?.AvatarFull, Is.Not.Empty);
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp.IsSuccess);
+            Assert.That(rsp.Content?.AvatarFull, Is.Not.Empty);
+        });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }

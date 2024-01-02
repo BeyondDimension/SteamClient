@@ -120,11 +120,11 @@ public interface ISteamworksLocalApiService
     Task<ApiRspImpl<string>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 获取IP所属国家
+    /// 获取 IP 所属国家或地区
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetIPCountry(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string>> GetCountryOrRegionByIP(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取当前游戏语言

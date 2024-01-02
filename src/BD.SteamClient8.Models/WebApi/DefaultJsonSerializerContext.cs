@@ -70,7 +70,7 @@ namespace BD.SteamClient8.Models;
 [SystemTextJsonSerializable(typeof(TradeSummary))]
 [SystemTextJsonSerializable(typeof(TradeSummaryResponse))]
 //// Authenticator
-[SystemTextJsonSerializable(typeof(GetUserCountryResponse))]
+[SystemTextJsonSerializable(typeof(GetUserCountryOrRegionResponse))]
 [SystemTextJsonSerializable(typeof(SteamAddPhoneNumberResponse))]
 [SystemTextJsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
 [SystemTextJsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]

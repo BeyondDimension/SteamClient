@@ -179,7 +179,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<string>> GetIPCountry(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string>> GetCountryOrRegionByIP(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         var result = SteamClient.SteamUtils.GetIPCountry();

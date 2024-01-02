@@ -2,25 +2,39 @@
 namespace BD.SteamClient8.Models;
 
 /// <summary>
-/// GetUserCountry 接口返回模型类
+/// 获取用户国家或地区接口返回模型类
 /// </summary>
-public class GetUserCountryResponse
+public sealed class GetUserCountryOrRegionResponse
 {
     /// <summary>
-    /// <see cref="GetUserCountryResponse"/> Response
+    /// <see cref="GetUserCountryOrRegionResponse"/> Response
     /// </summary>
     [SystemTextJsonProperty("response")]
-    public GetUserCountryResponseResponse? Response { get; set; }
+    public GetUserCountryOrRegionResponseResponse? Response { get; set; }
+
+    /// <inheritdoc/>
+    public override string ToString() => Response?.ToString()!;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator string?(GetUserCountryOrRegionResponse? r)
+        => r?.ToString();
 }
 
 /// <summary>
-/// <see cref="GetUserCountryResponse.Response"/> 详细信息
+/// <see cref="GetUserCountryOrRegionResponse.Response"/> 详细信息
 /// </summary>
-public class GetUserCountryResponseResponse
+public sealed class GetUserCountryOrRegionResponseResponse
 {
     /// <summary>
     /// 国家或地区
     /// </summary>
     [SystemTextJsonProperty("country")]
-    public string? Country { get; set; }
+    public string? CountryOrRegion { get; set; }
+
+    /// <inheritdoc/>
+    public override string ToString() => CountryOrRegion!;
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static implicit operator string?(GetUserCountryOrRegionResponseResponse? r)
+        => r?.ToString();
 }

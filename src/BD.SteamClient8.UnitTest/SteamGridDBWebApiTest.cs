@@ -23,7 +23,7 @@ sealed class SteamGridDBWebApiTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(730)]
     [Test]
-    public async Task TestGetSteamGridAppBySteamAppId(long appId)
+    public async Task GetSteamGridAppBySteamAppId(long appId)
     {
         var rsp = await steamGridDBWebApiService.GetSteamGridAppBySteamAppId(appId);
 
@@ -42,5 +42,8 @@ sealed class SteamGridDBWebApiTest : ServiceTestBase
             Assert.That(gridItems.IsSuccess);
             Assert.That(gridItems.Content, Is.Not.Empty);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.WriteLine(Serializable.SJSON(gridItems, writeIndented: true));
     }
 }

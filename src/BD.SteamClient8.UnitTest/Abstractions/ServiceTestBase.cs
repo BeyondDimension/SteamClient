@@ -10,12 +10,7 @@ abstract class ServiceTestBase
     /// <summary>
     /// Steam 登录状态
     /// </summary>
-    protected static SteamLoginState SteamLoginState { get; set; } = null!;
-
-    /// <summary>
-    /// Steam 令牌
-    /// </summary>
-    protected static SteamAuthenticator SteamAuthenticator { get; set; } = null!;
+    protected static SteamLoginState SteamLoginState => SteamLoginStateHelper.SteamLoginState;
 
     /// <summary>
     /// 依赖注入服务提供程序
@@ -26,15 +21,13 @@ abstract class ServiceTestBase
         private set => serviceProvider = value;
     }
 
-    #region Static
-
     /// <summary>
-    /// <see cref="GetInventories"/> 获取的用户库存，访问有频率限制
+    /// <see cref="GetInventories(ISteamAccountService, ulong, string, string)"/> 获取的用户库存，访问有频率限制
     /// </summary>
     protected static InventoryPageResponse? InventoryPageResponse { get; set; }
 
+    static readonly AsyncExclusiveLock lock_Setup = new();
     static readonly AsyncExclusiveLock lock_GetInventoryPageResponseAsync = new();
-    #endregion
 
     /// <summary>
     /// 获取用户库存信息
@@ -57,7 +50,7 @@ abstract class ServiceTestBase
     }
 
     /// <inheritdoc cref="ServiceProviderServiceExtensions.GetRequiredService{T}(IServiceProvider)"/>
-    protected T GetRequiredService<T>() where T : notnull
+    protected static T GetRequiredService<T>() where T : notnull
         => serviceProvider.ThrowIsNull().GetRequiredService<T>();
 
     static bool IsInit;
@@ -65,7 +58,7 @@ abstract class ServiceTestBase
     /// <inheritdoc cref="SetUpAttribute"/>
     public virtual async ValueTask Setup()
     {
-        using (await lock_GetInventoryPageResponseAsync.AcquireLockAsync(CancellationToken.None))
+        using (await lock_Setup.AcquireLockAsync(CancellationToken.None))
         {
             if (IsInit)
                 return;
@@ -75,9 +68,6 @@ abstract class ServiceTestBase
             serviceProvider = services.BuildServiceProvider();
             Ioc.ConfigureServices(serviceProvider);
             IsInit = true;
-
-            SteamAuthenticator = (await GetSteamAuthenticatorAsync(GetRequiredService<IConfiguration>(), GetRequiredService<ISteamAuthenticatorService>())).ThrowIsNull();
-            SteamLoginState = await GetSteamLoginStateAsync(GetRequiredService<IConfiguration>(), GetRequiredService<ISteamAccountService>(), GetRequiredService<ISteamSessionService>())!;
         }
     }
 
@@ -86,7 +76,7 @@ abstract class ServiceTestBase
     /// </summary>
     /// <param name="services"></param>
     /// <param name="needLoginState"></param>
-    protected void ConfigureServices(IServiceCollection services, bool needLoginState)
+    static void ConfigureServices(IServiceCollection services)
     {
         ConfigurationBuilder builder = new();
         ConfigureConfiguration(builder);
@@ -103,44 +93,36 @@ abstract class ServiceTestBase
         services.AddSteamIdleCardService();
         services.AddSteamMarketService();
         services.AddSteamTradeService();
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
         services.AddSingleton<ISteamService, TestSteamServiceImpl>();
         services.TryAddSteamworksLocalApiService();
 #endif
         services.AddSteamDbWebApiService();
         services.AddSteamworksWebApiService();
         services.AddSteamGridDBWebApiService();
-    }
 
-    /// <summary>
-    /// 配置依赖注入服务
-    /// </summary>
-    /// <param name="services"></param>
-    protected virtual void ConfigureServices(IServiceCollection services)
-    {
-        ConfigureServices(services, true);
+        services.AddAuthenticatorNetService();
     }
 
     /// <summary>
     /// 配置 <see cref="IConfiguration"/>
     /// </summary>
     /// <param name="builder"></param>
-    protected virtual void ConfigureConfiguration(IConfigurationBuilder builder)
+    static void ConfigureConfiguration(IConfigurationBuilder builder)
     {
-        builder.AddUserSecrets(GetType().Assembly);
+        builder.AddUserSecrets(typeof(ServiceTestBase).Assembly);
     }
 
     /// <summary>
     /// 配置日志
     /// </summary>
     /// <param name="builder"></param>
-    protected virtual void ConfigureLogging(ILoggingBuilder builder)
+    static void ConfigureLogging(ILoggingBuilder builder)
     {
         builder.AddConsole();
     }
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-
+#if !(IOS || ANDROID)
     sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
     {
         protected override string? StratSteamDefaultParameter => default;

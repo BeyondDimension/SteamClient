@@ -29,7 +29,7 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
     /// </summary>
     /// <returns></returns>
     [GeneratedRegex("[^\\u0000-\\u007F]")]
-    private static partial Regex SteamUNPWDRegex();
+    public static partial Regex SteamUNPWDRegex();
 
     string? _Username;
 

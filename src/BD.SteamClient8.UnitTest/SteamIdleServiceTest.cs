@@ -14,6 +14,9 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         await base.Setup();
 
         steamIdleCardService = GetRequiredService<ISteamIdleCardService>();
+
+        await GetSteamAuthenticatorAsync();
+        await GetSteamLoginStateAsync();
     }
 
     /// <summary>
@@ -22,7 +25,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// <param name="steam_id"></param>
     /// <returns></returns>
     [Test]
-    public async Task TestGetBadgesAsync()
+    public async Task GetBadgesAsync()
     {
         Assert.That(SteamLoginState?.SteamId, Is.Not.Null);
         var rsp = await steamIdleCardService.GetBadgesAsync(SteamLoginState.SteamId.ToString());
@@ -34,6 +37,8 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp.Content.idleInfo, Is.Not.Null);
             Assert.That(rsp.Content.badges, Is.Not.Null);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -44,7 +49,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(new uint[] { 730, 580 }, "CNY")]
     [Test]
-    public async Task TestGetAppCardsAvgPrice(uint[] appIds, string currency)
+    public async Task GetAppCardsAvgPrice(uint[] appIds, string currency)
     {
         var rsp = await steamIdleCardService.GetAppCardsAvgPrice(appIds, currency);
 
@@ -54,6 +59,8 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content, Is.Not.Null);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -64,7 +71,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(730U, "CNY")]
     [Test]
-    public async Task TestGetAppCardsMarketPrice(uint appId, string currency)
+    public async Task GetAppCardsMarketPrice(uint appId, string currency)
     {
         var rsp = await steamIdleCardService.GetCardsMarketPrice(appId, currency);
 
@@ -74,5 +81,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content, Is.Not.Null);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }

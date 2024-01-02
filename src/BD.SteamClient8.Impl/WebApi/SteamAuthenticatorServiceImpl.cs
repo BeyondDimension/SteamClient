@@ -116,7 +116,7 @@ public sealed class SteamAuthenticatorServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<GetUserCountryResponse?>> GetUserCountry(string steam_id, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<GetUserCountryOrRegionResponse?>> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default)
     {
         var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
         steamSession = steamSession.ThrowIsNull(steam_id);
@@ -131,7 +131,7 @@ public sealed class SteamAuthenticatorServiceImpl(
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<GetUserCountryResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
+        return await SendAsync<GetUserCountryOrRegionResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
     }
 
     /// <inheritdoc/>

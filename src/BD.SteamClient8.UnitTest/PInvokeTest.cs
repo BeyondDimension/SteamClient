@@ -1,4 +1,4 @@
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -23,29 +23,37 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试本机库初始化
     /// </summary>
     [Test]
-    public async Task Test_SteamworksLocal()
+    public async Task SteamworksLocal()
     {
         var init_result = await steamworksLocalApiService.Initialize();
         Assert.That(init_result.IsSuccess);
 
         var steamId64 = await steamworksLocalApiService.GetSteamId64();
-        Assert.That(steamId64.IsSuccess);
-        Assert.That(steamId64.Content, !Is.EqualTo(0L));
+        Assert.Multiple(() =>
+        {
+            Assert.That(steamId64.IsSuccess);
+            Assert.That(steamId64.Content, !Is.EqualTo(0L));
+        });
 
         await steamworksLocalApiService.OwnsApps(730);
 
-        var country = await steamworksLocalApiService.GetIPCountry();
-        Assert.That(country.IsSuccess);
-        Assert.That(country.Content, Is.Not.Empty);
+        var countryOrRegion = await steamworksLocalApiService.GetCountryOrRegionByIP();
+        Assert.Multiple(() =>
+        {
+            Assert.That(countryOrRegion.IsSuccess);
+            Assert.That(countryOrRegion.Content, Is.Not.Empty);
+        });
+
+        TestContext.WriteLine(Serializable.SJSON(countryOrRegion, writeIndented: true));
     }
 
     /// <summary>
     /// Vdf 基准测试
     /// </summary>
     [Test]
-    public void TestVdfBenchmark()
+    public void VdfBenchmark()
     {
-        var steamDirPath = steamService.SteamDirPath;
+        var steamDirPath = ISteamService.SteamDirPath;
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
@@ -64,9 +72,9 @@ sealed class PInvokeTest : ServiceTestBase
     /// </summary>
     [Ignore("unspport")]
     [Test]
-    public void TestVdfValueEdit()
+    public void VdfValueEdit()
     {
-        var steamDirPath = steamService.SteamDirPath;
+        var steamDirPath = ISteamService.SteamDirPath;
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
@@ -85,9 +93,9 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试移除授权设备列表
     /// </summary>
     [Test]
-    public void TestRemoveAuthorizedDeviceList()
+    public void RemoveAuthorizedDeviceList()
     {
-        var steamDirPath = steamService.SteamDirPath;
+        var steamDirPath = ISteamService.SteamDirPath;
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
@@ -103,17 +111,22 @@ sealed class PInvokeTest : ServiceTestBase
             }
             //VdfHelper.Write(vdfStr, v);
         }
+
+        TestContext.WriteLine("OK");
     }
 
     /// <summary>
     /// 测试获取记住的用户列表
     /// </summary>
     [Test]
-    public async Task TestGetRememberUserList()
+    public async Task GetRememberUserList()
     {
         var list_rsp = await steamService.GetRememberUserList();
-        Assert.That(list_rsp.IsSuccess);
-        Assert.That(list_rsp.Content, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(list_rsp.IsSuccess);
+            Assert.That(list_rsp.Content, Is.Not.Null);
+        });
 
         var list = list_rsp.Content;
         list.ForEach(x =>
@@ -127,12 +140,15 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试获取下载的游戏列表
     /// </summary>
     [Test]
-    public async Task TestGetDownloadingAppList()
+    public async Task GetDownloadingAppList()
     {
         var list_rsp = await steamService.GetDownloadingAppList();
 
-        Assert.That(list_rsp.IsSuccess);
-        Assert.That(list_rsp.Content, Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(list_rsp.IsSuccess);
+            Assert.That(list_rsp.Content, Is.Not.Null);
+        });
 
         var list = list_rsp.Content;
         list.ForEach(x =>

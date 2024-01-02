@@ -64,6 +64,14 @@
 		<PackageReference Include="$(MSBuildThisFileName)" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="Portable.BouncyCastle" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" />
+	</ItemGroup>
+
 	<Import Project="$(MSBuildThisFileDirectory)BD.SteamClient8.Models.props" />
 
 </Project>

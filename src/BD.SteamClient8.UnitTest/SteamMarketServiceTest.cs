@@ -14,6 +14,9 @@ sealed class SteamMarketServiceTest : ServiceTestBase
         await base.Setup();
 
         steamMarketService = GetRequiredService<ISteamMarketService>();
+
+        await GetSteamAuthenticatorAsync();
+        await GetSteamLoginStateAsync();
     }
 
     /// <summary>
@@ -23,13 +26,18 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(2384364)]
     [Test]
-    public async Task TestGetMarketItemOrdersHistogram(long marketItemNameId)
+    public async Task GetMarketItemOrdersHistogram(long marketItemNameId)
     {
         var histogram = await steamMarketService
             .GetMarketItemOrdersHistogram(marketItemNameId);
 
-        Assert.That(histogram.IsSuccess && histogram.Content is not null);
-        Assert.That(histogram.Content?.Success, Is.EqualTo(1));
+        Assert.Multiple(() =>
+        {
+            Assert.That(histogram.IsSuccess && histogram.Content is not null);
+            Assert.That(histogram.Content?.Success, Is.EqualTo(1));
+        });
+
+        TestContext.WriteLine(Serializable.SJSON(histogram, writeIndented: true));
     }
 
     /// <summary>
@@ -41,13 +49,18 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase("730", "AK-47%20%7C%20Safari%20Mesh%20%28Field-Tested%29", 23)]
     [Test]
-    public async Task TestGetMarketItemPriceOverview(string appId, string marketHashName, int currency)
+    public async Task GetMarketItemPriceOverview(string appId, string marketHashName, int currency)
     {
         var overview = await steamMarketService
             .GetMarketItemPriceOverview(appId, marketHashName, currency);
 
-        Assert.That(overview.IsSuccess && overview.Content is not null);
-        Assert.That(overview.Content?.Success, Is.True);
+        Assert.Multiple(() =>
+        {
+            Assert.That(overview.IsSuccess && overview.Content is not null);
+            Assert.That(overview.Content?.Success, Is.True);
+        });
+
+        TestContext.WriteLine(Serializable.SJSON(overview, writeIndented: true));
     }
 
     /// <summary>
@@ -55,20 +68,24 @@ sealed class SteamMarketServiceTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetMyListings()
+    public async Task GetMyListings()
     {
-        if (SteamLoginState != null)
+        if (SteamLoginState == null)
         {
-            var rsp = await steamMarketService.GetMarketListing(SteamLoginState!);
-
-            Assert.That(rsp.IsSuccess && rsp.Content is not null);
-
-            var listings = rsp.Content;
-            listings.ThrowIsNull();
-            var activeListings = listings.ActiveListings.ToList();
-            var buyorders = listings.Buyorders.ToList();
-
-            Assert.That(listings.ActiveListings, Is.Not.Null);
+            Assert.Pass("SteamLoginState is null.");
+            return;
         }
+        var rsp = await steamMarketService.GetMarketListing(SteamLoginState);
+
+        Assert.That(rsp.IsSuccess && rsp.Content is not null);
+
+        var listings = rsp.Content;
+        listings.ThrowIsNull();
+        var activeListings = listings.ActiveListings.ToList();
+        var buyorders = listings.Buyorders.ToList();
+
+        Assert.That(listings.ActiveListings, Is.Not.Null);
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }

@@ -6,6 +6,11 @@ SteamClient8 基本库
 - SteamGridDB ```Steam 相关第三方数据平台```
 - Trade ```Steam 交易```
 
+#### Columns
+| 描述 | XmlnsDefinition | 关键字 | 命名空间 |
+| ----------- | ----------- | ----------- | ----------- |
+| 列接口 | ```false``` | ```public interface``` | 统一 ```BD.SteamClient8.Columns``` |
+
 #### Constants
 | 描述 | XmlnsDefinition | 关键字 | 命名空间 |
 | ----------- | ----------- | ----------- | ----------- |

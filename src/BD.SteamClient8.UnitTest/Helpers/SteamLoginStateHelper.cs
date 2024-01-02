@@ -1,6 +1,7 @@
 namespace BD.SteamClient8.UnitTest.Helpers;
 
 #pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
 public static partial class SteamLoginStateHelper
 {
@@ -9,17 +10,19 @@ public static partial class SteamLoginStateHelper
     static SteamLoginState? steamLoginState;
     static readonly AsyncExclusiveLock lock_GetSteamLoginStateAsync = new();
 
+    public static SteamLoginState SteamLoginState => steamLoginState.ThrowIsNull();
+
     public static async ValueTask<SteamLoginState> GetSteamLoginStateAsync(
         IConfiguration configuration,
         ISteamAccountService steamAccountService,
         ISteamSessionService steamSession)
     {
-        if (steamLoginState == null)
+        using (await lock_GetSteamLoginStateAsync.AcquireLockAsync(CancellationToken.None))
         {
-            using (await lock_GetSteamLoginStateAsync.AcquireLockAsync(CancellationToken.None))
+            if (steamLoginState == null)
             {
-                var steamLoginStateCacheFilePath = Path.Combine(ProjPath,
-                    "..", steamLoginStateCacheFileName);
+                var steamLoginStateCacheFilePath = Path.Combine(DataPath,
+                    steamLoginStateCacheFileName);
                 try
                 {
                     byte[] steamLoginStateCache = File.ReadAllBytes(steamLoginStateCacheFilePath);
@@ -30,15 +33,17 @@ public static partial class SteamLoginStateHelper
                     steamLoginState.ThrowIsNull();
                     var check = await steamAccountService.CheckAccessTokenValidation(steamLoginState.AccessToken!);
                     if (steamLoginState.Username != configuration["steamUsername"] || !check.Content)
-                        throw new ArgumentException();
+                        throw ThrowHelper.GetArgumentOutOfRangeException(steamLoginState.Username);
 
-                    var session = new SteamSession();
-                    session.SteamId = steamLoginState.SteamId.ToString();
-                    session.AccessToken = steamLoginState.AccessToken!;
-                    session.RefreshToken = steamLoginState.RefreshToken!;
+                    var session = new SteamSession
+                    {
+                        SteamId = steamLoginState.SteamId.ToString(),
+                        AccessToken = steamLoginState.AccessToken!,
+                        RefreshToken = steamLoginState.RefreshToken!,
+                    };
                     session.Cookies.Add(steamLoginState.Cookies!);
                     session.GenerateSetCookie();
-                    steamSession.AddOrSetSession(session);
+                    await steamSession.AddOrSetSession(session);
                 }
                 catch
                 {
@@ -74,5 +79,13 @@ public static partial class SteamLoginStateHelper
         }
 
         return steamLoginState;
+    }
+
+    public static ValueTask<SteamLoginState> GetSteamLoginStateAsync()
+    {
+        var configuration = Ioc.Get<IConfiguration>();
+        var steamAccountService = Ioc.Get<ISteamAccountService>();
+        var steamSessionService = Ioc.Get<ISteamSessionService>();
+        return GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
     }
 }

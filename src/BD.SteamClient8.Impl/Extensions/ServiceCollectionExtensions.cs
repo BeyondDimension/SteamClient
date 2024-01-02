@@ -27,7 +27,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamDbWebApiService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.AddSingleton<ISteamDbWebApiService, SteamDbWebApiServiceImpl>();
         return services;
     }
@@ -40,7 +39,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamGridDBWebApiService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.AddSingleton<ISteamGridDBWebApiServiceImpl, SteamGridDBWebApiServiceImpl>();
         return services;
     }
@@ -53,7 +51,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamworksWebApiService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.AddSingleton<ISteamworksWebApiService, SteamworksWebApiServiceImpl>();
         return services;
     }
@@ -67,7 +64,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamAccountService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
         services.TryAddSingleton<IRandomGetUserAgentService, ConsoleRandomGetUserAgentServiceImpl>();
         services.TryAddSingleton<ISteamAccountService, SteamAccountService>();
@@ -82,7 +78,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamTradeService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
         services.TryAddSingleton<ISteamTradeService, SteamTradeServiceImpl>();
         return services;
@@ -96,7 +91,6 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamMarketService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.TryAddSingleton<ISteamMarketService, SteamMarketService>();
         return services;
     }
@@ -115,16 +109,30 @@ public static partial class ServiceCollectionExtensions
     }
 
     /// <summary>
-    /// 添加 Steam Idle挂卡服务
+    /// 添加 Steam Idle 挂卡服务
     /// </summary>
     /// <param name="services"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamIdleCardService(this IServiceCollection services)
     {
-        services.TryAddHttpPlatformHelper();
         services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
         services.TryAddSingleton<ISteamIdleCardService, SteamIdleCardServiceImpl>();
+        return services;
+    }
+
+    /// <summary>
+    /// 添加令牌相关网络服务
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection AddAuthenticatorNetService(this IServiceCollection services)
+    {
+        services.TryAddSingleton<BattleNetAuthenticator.IAuthenticatorNetService,
+            BattleNetAuthenticatorNetServiceImpl>();
+        services.TryAddSingleton<GoogleAuthenticator.IAuthenticatorNetService,
+            GoogleAuthenticatorNetServiceImpl>();
         return services;
     }
 }

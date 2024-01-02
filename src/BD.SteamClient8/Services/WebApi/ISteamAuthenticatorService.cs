@@ -36,12 +36,12 @@ public interface ISteamAuthenticatorService
     Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 获取用户国家地区
+    /// 获取用户国家或地区
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<GetUserCountryResponse?>> GetUserCountry(string steam_id, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<GetUserCountryOrRegionResponse?>> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 绑定手机

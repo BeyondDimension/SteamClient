@@ -15,7 +15,8 @@ sealed class SteamAccountServiceTest : ServiceTestBase
 
         steamAccountService = GetRequiredService<ISteamAccountService>();
 
-        SteamLoginState.ThrowIsNull();
+        await GetSteamAuthenticatorAsync();
+        await GetSteamLoginStateAsync();
     }
 
     /// <summary>
@@ -27,9 +28,11 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(76561199495399375UL, "570", "2")]
     [Test]
-    public async Task TestGetInventories(ulong steam_id, string appId, string contextId)
+    public async Task GetInventories(ulong steam_id, string appId, string contextId)
     {
         await GetInventories(steamAccountService, steam_id, appId, contextId);
+
+        TestContext.WriteLine(Serializable.SJSON(InventoryPageResponse, writeIndented: true));
     }
 
     /// <summary>
@@ -42,26 +45,32 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     [TestCase(new int[] { 754, 730, 570 })]
 #pragma warning restore CA1861 // 不要将常量数组作为参数
     [Test]
-    public async Task TestGetAndParseInventoryTradingHistory(int[]? appFilter)
+    public async Task GetAndParseInventoryTradingHistory(int[]? appFilter)
     {
-        if (SteamLoginState != null)
+        if (SteamLoginState == null)
         {
-            InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null;
-
-            var rsp = await steamAccountService.GetInventoryTradeHistory(SteamLoginState!, appFilter, cursor);
-
-            Assert.Multiple(() =>
-            {
-                Assert.That(rsp?.Content, Is.Not.Null);
-                Assert.That(rsp!.Content!.Success, Is.True);
-            });
-
-            var parsedRows = steamAccountService.ParseInventoryTradeHistory(rsp.Content.Html)
-                .ToBlockingEnumerable()
-                .ToArray();
-
-            Assert.That(parsedRows, Is.Not.Null);
+            Assert.Pass("SteamLoginState is null.");
+            return;
         }
+
+        InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null;
+
+        var rsp = await steamAccountService.GetInventoryTradeHistory(SteamLoginState!, appFilter, cursor);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(rsp?.Content, Is.Not.Null);
+            Assert.That(rsp!.Content!.Success, Is.True);
+        });
+
+        var parsedRows = steamAccountService.ParseInventoryTradeHistory(rsp.Content.Html)
+            .ToBlockingEnumerable()
+            .ToArray();
+
+        Assert.That(parsedRows, Is.Not.Null);
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.WriteLine(Serializable.SJSON(parsedRows, writeIndented: true));
     }
 
     /// <summary>
@@ -69,20 +78,25 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetApiKey()
+    public async Task GetApiKey()
     {
-        if (SteamLoginState != null)
+        if (SteamLoginState == null)
         {
-            string? apiKey = (await steamAccountService.GetApiKey(SteamLoginState!)).Content;
-
-            if (string.IsNullOrEmpty(apiKey))
-            {
-                apiKey = (await steamAccountService.RegisterApiKey(SteamLoginState!)).Content;
-            }
-
-            Assert.That(apiKey, Is.Not.Null);
-            Assert.That(apiKey, Is.Not.EqualTo(string.Empty));
+            Assert.Pass("SteamLoginState is null.");
+            return;
         }
+
+        string? apiKey = (await steamAccountService.GetApiKey(SteamLoginState!)).Content;
+
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            apiKey = (await steamAccountService.RegisterApiKey(SteamLoginState!)).Content;
+        }
+
+        Assert.That(apiKey, Is.Not.Null);
+        Assert.That(apiKey, Is.Not.EqualTo(string.Empty));
+
+        TestContext.WriteLine("OK");
     }
 
     /// <summary>
@@ -90,14 +104,18 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetSendGiftHistory()
+    public async Task GetSendGiftHistory()
     {
-        if (SteamLoginState != null)
+        if (SteamLoginState == null)
         {
-            var history = await steamAccountService.GetSendGiftHistories(SteamLoginState!);
-
-            Assert.That(history, Is.Not.Null);
+            Assert.Pass("SteamLoginState is null.");
+            return;
         }
+
+        var history = await steamAccountService.GetSendGiftHistories(SteamLoginState);
+        Assert.That(history, Is.Not.Null);
+
+        TestContext.WriteLine(Serializable.SJSON(history, writeIndented: true));
     }
 
     /// <summary>
@@ -105,18 +123,25 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     /// </summary>
     /// <returns></returns>
     [Test]
-    public async Task TestGetLoginHistory()
+    public async Task GetLoginHistory()
     {
-        if (SteamLoginState != null)
+        if (SteamLoginState == null)
         {
-            var result = steamAccountService.GetLoginHistory(SteamLoginState);
-
-            Assert.That(result, Is.Not.Null);
-
-            await foreach (var item in result)
-            {
-                Console.WriteLine(item.City);
-            }
+            Assert.Pass("SteamLoginState is null.");
+            return;
         }
+
+        var result = steamAccountService.GetLoginHistory(SteamLoginState);
+
+        Assert.That(result, Is.Not.Null);
+
+        List<LoginHistoryItem> loginHistories = new();
+        await foreach (var item in result)
+        {
+            Console.WriteLine(item.City);
+            loginHistories.Add(item);
+        }
+
+        TestContext.WriteLine(Serializable.SJSON(loginHistories, writeIndented: true));
     }
 }

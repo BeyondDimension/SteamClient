@@ -23,7 +23,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
     /// <returns></returns>
     [TestCase(76561199494800019L)]
     [Test]
-    public async Task TestGetUserInfo(long steamId)
+    public async Task GetUserInfo(long steamId)
     {
         var rsp = await steamDbWebApiService.GetUserInfo(steamId);
 
@@ -33,6 +33,8 @@ sealed class SteamDBWebApiTest : ServiceTestBase
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content?.ProfileUrl, Is.Not.Empty);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -44,7 +46,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
     [TestCase(new long[] { 76561199494800019L, 76561199495399375L })]
 #pragma warning restore CA1861 // 不要将常量数组作为参数
     [Test]
-    public async Task TestGetUserInfos(long[] steamIds)
+    public async Task GetUserInfos(long[] steamIds)
     {
         var rsp = await steamDbWebApiService.GetUserInfo(steamIds);
 
@@ -52,7 +54,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
         Assert.Multiple(() =>
         {
             Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content?.Count > 0);
+            Assert.That(rsp.Content?.Count, Is.GreaterThan(0));
         });
     }
 
@@ -73,5 +75,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
             Assert.That(rsp.IsSuccess);
             Assert.That(rsp.Content?.Name, Is.Not.Empty);
         });
+
+        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }
