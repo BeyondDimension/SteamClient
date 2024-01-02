@@ -12,6 +12,11 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<UseCommon8Crawler Condition="$(UseCommon8Crawler) == ''">true</UseCommon8Crawler>
+		<UseCommon8HttpClientFactory Condition="$(UseCommon8HttpClientFactory) == ''">true</UseCommon8HttpClientFactory>
+	</PropertyGroup>
+
 	<ItemGroup Condition="$(MSBuildProjectName) == $(MSBuildThisFileName) OR $(UseSteamClient8) == 'src'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\SAM.API\**\*.cs">
 			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>

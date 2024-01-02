@@ -84,15 +84,15 @@ public partial class GoogleAuthenticator : AuthenticatorValueModel
         try
         {
             // we use the Header response field from a request to www.google.come
-            using var response = await IAuthenticatorNetService.Instance.TimeSync();
+            var response = await IAuthenticatorNetService.Instance.TimeSync();
 
             // OK?
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (response.Content.statusCode != HttpStatusCode.OK)
             {
-                throw new ApplicationException(string.Format("{0}: {1}", (int)response.StatusCode, response.RequestMessage));
+                throw new ApplicationException(string.Format("{0}: {1}", response.Content, response.GetMessage()));
             }
 
-            string headerdate = response.Headers.GetValues("Date").First();
+            var headerdate = response.Content.date;
             if (string.IsNullOrEmpty(headerdate) == false)
             {
                 if (DateTime.TryParse(headerdate, out var dt) == true)

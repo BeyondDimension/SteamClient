@@ -12,11 +12,6 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<UseCommon8Crawler Condition="$(UseCommon8Crawler) == ''">true</UseCommon8Crawler>
-		<UseCommon8HttpClientFactory Condition="$(UseCommon8HttpClientFactory) == ''">true</UseCommon8HttpClientFactory>
-	</PropertyGroup>
-
 	<!-- 全局 using 当前项目 -->
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" />

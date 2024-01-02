@@ -13,38 +13,43 @@ partial class BattleNetAuthenticator
         /// <summary>
         /// 地理位置 IP
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> GEOIP();
+        Task<ApiRspImpl<string>> GEOIP(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 令牌添加
         /// </summary>
         /// <param name="region"></param>
         /// <param name="encrypted"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> EnRoll(string region, byte[] encrypted);
+        Task<ApiRspImpl<byte[]>> EnRoll(string region, byte[] encrypted, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 令牌同步
         /// </summary>
         /// <param name="region"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        HttpResponseMessage Sync(string region);
+        Task<ApiRspImpl<byte[]>> Sync(string region, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 令牌恢复
         /// </summary>
         /// <param name="serial"></param>
         /// <param name="serialBytes"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> ReStore(string serial, byte[] serialBytes);
+        Task<ApiRspImpl<byte[]>> ReStore(string serial, byte[] serialBytes, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// 令牌恢复验证
         /// </summary>
         /// <param name="serial"></param>
         /// <param name="postbytes"></param>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> ReStoreValidate(string serial, byte[] postbytes);
+        Task<ApiRspImpl<byte[]>> ReStoreValidate(string serial, byte[] postbytes, CancellationToken cancellationToken = default);
     }
 }

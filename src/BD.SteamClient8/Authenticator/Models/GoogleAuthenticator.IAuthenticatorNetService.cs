@@ -13,7 +13,8 @@ partial class GoogleAuthenticator
         /// <summary>
         /// 同步时间
         /// </summary>
+        /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<HttpResponseMessage> TimeSync();
+        Task<ApiRspImpl<(HttpStatusCode statusCode, string? date)>> TimeSync(CancellationToken cancellationToken = default);
     }
 }

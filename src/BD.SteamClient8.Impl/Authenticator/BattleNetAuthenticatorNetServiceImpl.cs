@@ -68,15 +68,16 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
     /// 地理位置 IP
     /// </summary>
     /// <returns></returns>
-    public async Task<HttpResponseMessage> GEOIP()
+    public async Task<ApiRspImpl<string>> GEOIP(CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(GEOIPURL);
-        var result = await SendAsync<HttpResponseMessage>(sendArgs);
-        return result!;
+        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var result = await rsp!.Content.ReadAsStringAsync(cancellationToken);
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponseMessage> EnRoll(string region, byte[] encrypted)
+    public async Task<ApiRspImpl<byte[]>> EnRoll(string region, byte[] encrypted, CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(region) + ENROLL_PATH)
         {
@@ -88,31 +89,22 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 req.Content = content;
             },
         };
-        var result = await SendAsync<HttpResponseMessage>(sendArgs);
-        return result!;
+        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
+        return ApiRspHelper.Ok(result)!;
     }
 
-    /// <summary>
-    /// 令牌同步
-    /// </summary>
-    /// <param name="region"></param>
-    /// <returns></returns>
-    public HttpResponseMessage Sync(string region)
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<byte[]>> Sync(string region, CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(region) + SYNC_PATH);
-#pragma warning disable CS0618 // 类型或成员已过时
-        var result = Send<HttpResponseMessage>(sendArgs);
-#pragma warning restore CS0618 // 类型或成员已过时
-        return result!;
+        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
+        return ApiRspHelper.Ok(result)!;
     }
 
-    /// <summary>
-    /// 恢复
-    /// </summary>
-    /// <param name="serial"></param>
-    /// <param name="serialBytes"></param>
-    /// <returns></returns>
-    public async Task<HttpResponseMessage> ReStore(string serial, byte[] serialBytes)
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<byte[]>> ReStore(string serial, byte[] serialBytes, CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(serial) + RESTORE_PATH)
         {
@@ -124,12 +116,13 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 req.Content = content;
             },
         };
-        var result = await SendAsync<HttpResponseMessage>(sendArgs);
-        return result!;
+        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
+        return ApiRspHelper.Ok(result)!;
     }
 
     /// <inheritdoc/>
-    public async Task<HttpResponseMessage> ReStoreValidate(string serial, byte[] postbytes)
+    public async Task<ApiRspImpl<byte[]>> ReStoreValidate(string serial, byte[] postbytes, CancellationToken cancellationToken = default)
     {
         using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(serial) + RESTOREVALIDATE_PATH)
         {
@@ -141,7 +134,8 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 req.Content = content;
             },
         };
-        var result = await SendAsync<HttpResponseMessage>(sendArgs);
-        return result!;
+        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
+        return ApiRspHelper.Ok(result)!;
     }
 }

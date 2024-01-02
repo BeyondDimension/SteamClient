@@ -3,7 +3,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class ServiceCollectionExtensions
 {
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+#if !(IOS || ANDROID)
 
     /// <summary>
     /// 尝试添加 Steamworks LocalApi Service

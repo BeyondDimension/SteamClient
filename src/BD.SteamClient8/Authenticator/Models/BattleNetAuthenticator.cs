@@ -205,20 +205,8 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
         string? responseString = null;
         try
         {
-            using var georesponse = await IAuthenticatorNetService.Instance.GEOIP();
-            // OK?
-            if (georesponse.StatusCode == HttpStatusCode.OK)
-            {
-                using var ms = new MemoryStream();
-                using var bs = await georesponse.Content.ReadAsStreamAsync();
-                var temp = new byte[RESPONSE_BUFFER_SIZE];
-                int read;
-                while ((read = bs.Read(temp, 0, RESPONSE_BUFFER_SIZE)) != 0)
-                {
-                    ms.Write(temp, 0, read);
-                }
-                responseString = Encoding.UTF8.GetString(ms.ToArray());
-            }
+            var georesponse = await IAuthenticatorNetService.Instance.GEOIP();
+            responseString = georesponse?.Content;
         }
         catch (Exception)
         {
@@ -299,24 +287,8 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
         try
         {
             var response = await IAuthenticatorNetService.Instance.EnRoll(region, encrypted);
-
-            // OK?
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new AuthenticatorInvalidEnrollResponseException(string.Format("{0}: {1}", (int)response.StatusCode, response.RequestMessage?.RequestUri));
-            }
-
-            // load back the buffer - should only be a byte[45]
-            using var ms = new MemoryStream();
-            //using (BufferedStream bs = new BufferedStream(response.GetResponseStream()))
-            using var bs = await response.Content.ReadAsStreamAsync();
-            var temp = new byte[RESPONSE_BUFFER_SIZE];
-            int read;
-            while ((read = bs.Read(temp, 0, RESPONSE_BUFFER_SIZE)) != 0)
-            {
-                ms.Write(temp, 0, read);
-            }
-            responseData = ms.ToArray();
+            responseData = response.Content;
+            responseData.ThrowIsNull();
 
             // check it is correct size
             if (responseData.Length != ENROLL_RESPONSE_SIZE)
@@ -381,7 +353,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
     /// <summary>
     /// Synchronise this authenticator's time with server time. We update our data record with the difference from our UTC time.
     /// </summary>
-    public override void Sync()
+    public override async void Sync()
     {
         // check if data is protected
         if (SecretKey == null && EncryptedData != null)
@@ -400,31 +372,14 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
             // create a connection to time sync server
             // get response
             byte[]? responseData = null;
-            using (var response = IAuthenticatorNetService.Instance.Sync(Region))
+            var response = await IAuthenticatorNetService.Instance.Sync(Region);
+            responseData = response.Content;
+            responseData.ThrowIsNull();
+
+            // check it is correct size
+            if (responseData.Length != SYNC_RESPONSE_SIZE)
             {
-                // OK?
-                if (response.ThrowIsNull().StatusCode != HttpStatusCode.OK)
-                {
-                    throw new ApplicationException(string.Format("{0}: {1}", (int)response.StatusCode, response.RequestMessage));
-                }
-
-                // load back the buffer - should only be a byte[8]
-                using var ms = new MemoryStream();
-                // using (BufferedStream bs = new BufferedStream(response.GetResponseStream()))
-                using var bs = response.Content.ReadAsStream();
-                var temp = new byte[RESPONSE_BUFFER_SIZE];
-                int read;
-                while ((read = bs.Read(temp, 0, RESPONSE_BUFFER_SIZE)) != 0)
-                {
-                    ms.Write(temp, 0, read);
-                }
-                responseData = ms.ToArray();
-
-                // check it is correct size
-                if (responseData.Length != SYNC_RESPONSE_SIZE)
-                {
-                    throw new AuthenticatorInvalidSyncResponseException(string.Format("Invalid response data size (expected " + SYNC_RESPONSE_SIZE + " got {0}", responseData.Length));
-                }
+                throw new AuthenticatorInvalidSyncResponseException(string.Format("Invalid response data size (expected " + SYNC_RESPONSE_SIZE + " got {0}", responseData.Length));
             }
 
             // return data:
@@ -469,30 +424,21 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
 
         byte[]? challenge = null;
         {
-            using var response = await IAuthenticatorNetService.Instance.ReStore(serial, serialBytes);
+            var response = await IAuthenticatorNetService.Instance.ReStore(serial, serialBytes);
             // OK?
-            if (!response.IsSuccessStatusCode)
-            {
-                if ((int)response.StatusCode >= 500 && (int)response.StatusCode < 600)
-                {
-                    throw new AuthenticatorInvalidRestoreResponseException(string.Format("No response from server ({0}). Perhaps maintainence?", (int)response.StatusCode));
-                }
-                else
-                {
-                    throw new AuthenticatorInvalidRestoreResponseException(string.Format("Error communicating with server: {0} - {1}", (int)response.StatusCode, response.StatusCode));
-                }
-            }
-
-            // load back the buffer - should only be a byte[32]
-            using var ms = new MemoryStream();
-            using var bs = await response.Content.ReadAsStreamAsync();
-            var temp = new byte[RESPONSE_BUFFER_SIZE];
-            int read;
-            while ((read = bs.Read(temp, 0, RESPONSE_BUFFER_SIZE)) != 0)
-            {
-                ms.Write(temp, 0, read);
-            }
-            challenge = ms.ToArray();
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    if ((int)response.StatusCode >= 500 && (int)response.StatusCode < 600)
+            //    {
+            //        throw new AuthenticatorInvalidRestoreResponseException(string.Format("No response from server ({0}). Perhaps maintainence?", (int)response.StatusCode));
+            //    }
+            //    else
+            //    {
+            //        throw new AuthenticatorInvalidRestoreResponseException(string.Format("Error communicating with server: {0} - {1}", (int)response.StatusCode, response.StatusCode));
+            //    }
+            //}
+            challenge = response.Content;
+            challenge.ThrowIsNull();
 
             // check it is correct size
             if (challenge.Length != RESTOREINIT_BUFFER_SIZE)
@@ -541,34 +487,25 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
 
         byte[]? secretKey = null;
         {
-            using var response = await IAuthenticatorNetService.Instance.ReStoreValidate(serial, postbytes);
+            var response = await IAuthenticatorNetService.Instance.ReStoreValidate(serial, postbytes);
             // OK?
-            if (!response.IsSuccessStatusCode)
-            {
-                if ((int)response.StatusCode >= 500 && (int)response.StatusCode < 600)
-                {
-                    throw new AuthenticatorInvalidRestoreResponseException(string.Format("No response from server ({0}). Perhaps maintainence?", (int)response.StatusCode));
-                }
-                else if ((int)response.StatusCode >= 600 && (int)response.StatusCode < 700)
-                {
-                    throw new AuthenticatorInvalidRestoreCodeException("Invalid serial number or restore code.");
-                }
-                else
-                {
-                    throw new AuthenticatorInvalidRestoreResponseException(string.Format("Error communicating with server: {0} - {1}", (int)response.StatusCode, response.StatusCode));
-                }
-            }
-
-            // load back the buffer - should only be a byte[32]
-            using var ms = new MemoryStream();
-            using var bs = await response.Content.ReadAsStreamAsync();
-            var temp = new byte[RESPONSE_BUFFER_SIZE];
-            int read;
-            while ((read = bs.Read(temp, 0, RESPONSE_BUFFER_SIZE)) != 0)
-            {
-                ms.Write(temp, 0, read);
-            }
-            secretKey = ms.ToArray();
+            //if (!response.IsSuccessStatusCode)
+            //{
+            //    if ((int)response.StatusCode >= 500 && (int)response.StatusCode < 600)
+            //    {
+            //        throw new AuthenticatorInvalidRestoreResponseException(string.Format("No response from server ({0}). Perhaps maintainence?", (int)response.StatusCode));
+            //    }
+            //    else if ((int)response.StatusCode >= 600 && (int)response.StatusCode < 700)
+            //    {
+            //        throw new AuthenticatorInvalidRestoreCodeException("Invalid serial number or restore code.");
+            //    }
+            //    else
+            //    {
+            //        throw new AuthenticatorInvalidRestoreResponseException(string.Format("Error communicating with server: {0} - {1}", (int)response.StatusCode, response.StatusCode));
+            //    }
+            //}
+            secretKey = response.Content;
+            secretKey.ThrowIsNull();
 
             // check it is correct size
             if (secretKey.Length != RESTOREVALIDATE_BUFFER_SIZE)
