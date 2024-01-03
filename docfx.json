@@ -15,15 +15,7 @@
     {
       "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.Primitives/**/BD.SteamClient8.Primitives.dll"]}],
       "dest": "api/BD.SteamClient8.Primitives"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/BD.SteamClient8.ViewModels/**/BD.SteamClient8.ViewModels.dll"]}],
-      "dest": "api/BD.SteamClient8.ViewModels"
-    },
-    {
-      "src": [{ "files": ["src/artifacts/bin/WinAuth/**/WinAuth.dll"]}],
-      "dest": "api/WinAuth"
-    } 
+    }
   ],
   "build": {
     "content": [

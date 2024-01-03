@@ -9,10 +9,6 @@ items:
     href: BD.SteamClient8.Models/toc.yml
   - name: BD.SteamClient8.Primitives
     href: BD.SteamClient8.Primitives/toc.yml    
-  - name: BD.SteamClient8.ViewModels
-    href: BD.SteamClient8.ViewModels/toc.yml
-  - name: WinAuth
-    href: WinAuth/toc.yml
 - name: Tools 工具
   items:
   - name: Tools.Build
