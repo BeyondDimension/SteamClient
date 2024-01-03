@@ -627,7 +627,8 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         if (result.Content == null)
             return ApiRspCode.NoResponseContent.GetMessage();
 
-        return result.Content is not null;
+        // 返回内容正常序列化即表示成功
+        return result.Content != null;
     }
 
     /// <summary>
