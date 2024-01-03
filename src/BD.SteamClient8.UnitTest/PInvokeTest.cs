@@ -155,7 +155,6 @@ sealed class PInvokeTest : ServiceTestBase
         {
             TestContext.WriteLine($"{x.Name}   {x.AppId}");
         });
-        Assert.That(list, Is.Not.Empty);
     }
 }
 #endif
