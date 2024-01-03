@@ -1,3 +1,4 @@
+using BD.Common8.Extensions;
 using static BD.SteamClient8.Models.SteamAuthenticator;
 
 namespace BD.SteamClient8.UnitTest;
@@ -128,7 +129,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         SteamAuthenticatorHelper.SteamAuthenticator ??= steamAuthenticator;
         Assert.Multiple(async () =>
         {
-            Assert.That(removeContinue_result.IsSuccess && removeContinue_result.Content);
+            Assert.That(removeContinue_result.IsSuccess && removeContinue_result.Content, removeContinue_result.GetMessage());
             Assert.That(await Update());
         });
 

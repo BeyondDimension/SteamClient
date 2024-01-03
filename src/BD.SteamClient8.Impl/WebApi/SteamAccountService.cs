@@ -1043,7 +1043,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
             Method = HttpMethod.Get,
         };
 
-        var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        var rsp = await SendAsync<nil>(sendArgs, cancellationToken);
 
         if (sendArgs.IsSuccessStatusCode)
         {

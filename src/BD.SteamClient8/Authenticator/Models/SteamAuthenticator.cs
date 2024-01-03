@@ -649,7 +649,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         var response = result.Content;
         if (!response.Success || response.ReplacementToken == null)
         {
-            return Strings.Error_InvalidResponseFromSteam.Format(response);
+            return Strings.Error_InvalidResponseFromSteam.Format("ReplacementToken is null.");
         }
 
         // save data into this authenticator
