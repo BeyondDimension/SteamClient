@@ -11,7 +11,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     protected ISteamAuthenticatorService steamAuthenticatorService = null!;
     protected IConfiguration configuration = null!;
 
-    static string ApiKey => SteamAuthenticatorHelper.ApiKey;
+    static string ApiKey => SteamLoginStateHelper.ApiKey;
 
     /// <inheritdoc/>
     [SetUp]

@@ -12,10 +12,13 @@ public static partial class SteamLoginStateHelper
 
     public static SteamLoginState SteamLoginState => steamLoginState.ThrowIsNull();
 
+    public static string ApiKey { get; private set; } = string.Empty;
+
     public static async ValueTask<SteamLoginState> GetSteamLoginStateAsync(
         IConfiguration configuration,
         ISteamAccountService steamAccountService,
-        ISteamSessionService steamSession)
+        ISteamSessionService steamSession,
+        ISteamAuthenticatorService steamAuthenticatorService)
     {
         using (await lock_GetSteamLoginStateAsync.AcquireLockAsync(CancellationToken.None))
         {
@@ -75,6 +78,39 @@ public static partial class SteamLoginStateHelper
                             steamLoginStateCache, null, DataProtectionScope.LocalMachine);
                     File.WriteAllBytes(steamLoginStateCacheFilePath, steamLoginStateCache);
                 }
+                finally
+                {
+                    var identitySecret = configuration["identitySecret"];
+                    long serverTimeDiff;
+                    var authenticator = SteamAuthenticatorHelper.SteamAuthenticator;
+                    // 本地令牌获取相关信息
+                    if (identitySecret is null && authenticator is not null)
+                    {
+                        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(authenticator.ThrowIsNull().SteamData!);
+                        identitySecret = steamData!.IdentitySecret;
+                    }
+
+                    if (authenticator is null)
+                    {
+                        var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
+                        serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                    }
+                    else
+                    {
+                        serverTimeDiff = authenticator.ServerTimeDiff;
+                    }
+
+                    var sessionRsp = await steamSession.RentSession(steamLoginState.ThrowIsNull().SteamId.ToString());
+                    var session = sessionRsp.Content;
+                    if (session is not null)
+                    {
+                        session.ServerTimeDiff = serverTimeDiff;
+                        session.IdentitySecret = identitySecret;
+                        var apiKey = (await steamAccountService.GetApiKey(steamLoginState)).Content;
+                        session.APIKey = ApiKey = string.IsNullOrEmpty(apiKey) ? (await steamAccountService.RegisterApiKey(steamLoginState)).Content.ThrowIsNull() : apiKey;
+                        await steamSession.AddOrSetSession(session);
+                    }
+                }
             }
         }
 
@@ -86,6 +122,7 @@ public static partial class SteamLoginStateHelper
         var configuration = Ioc.Get<IConfiguration>();
         var steamAccountService = Ioc.Get<ISteamAccountService>();
         var steamSessionService = Ioc.Get<ISteamSessionService>();
-        return GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
+        var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
+        return GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService, steamAuthenticatorService);
     }
 }

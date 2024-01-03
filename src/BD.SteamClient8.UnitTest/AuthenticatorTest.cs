@@ -37,7 +37,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         if (IsCI())
             return;
 
-        var steamAuthenticator = await GetSteamAuthenticatorAsync();
+        var steamAuthenticator = await GetSteamAuthenticatorAsync() ?? new();
         var steamLoginState = await GetSteamLoginStateAsync();
 
         Assert.Multiple(() =>
@@ -99,7 +99,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         if (IsCI())
             return;
 
-        var steamAuthenticator = await GetSteamAuthenticatorAsync();
+        var steamAuthenticator = await GetSteamAuthenticatorAsync() ?? new();
         var steamLoginState = await GetSteamLoginStateAsync();
 
         Assert.Multiple(() =>
@@ -107,6 +107,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             Assert.That(steamAuthenticator, Is.Not.Null);
             Assert.That(steamLoginState, Is.Not.Null);
         });
+
         Assert.Multiple(() =>
         {
             Assert.That(steamLoginState.AccessToken, Is.Not.Null);
@@ -124,7 +125,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         // 手机验证码
         var phoneVerifyCode = "7C86B";
         var removeContinue_result = await steamAuthenticator.RemoveAuthenticatorViaChallengeContinueSync(enrollState.SteamId.ToString(), phoneVerifyCode);
-
+        SteamAuthenticatorHelper.SteamAuthenticator ??= steamAuthenticator;
         Assert.Multiple(async () =>
         {
             Assert.That(removeContinue_result.IsSuccess && removeContinue_result.Content);

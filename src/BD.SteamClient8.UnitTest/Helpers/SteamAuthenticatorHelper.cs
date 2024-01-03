@@ -10,8 +10,6 @@ public static partial class SteamAuthenticatorHelper
     public static SteamAuthenticator? SteamAuthenticator;
     static readonly AsyncExclusiveLock lock_GetSteamAuthenticatorAsync = new();
 
-    public static string ApiKey { get; private set; } = string.Empty;
-
     public static async ValueTask<SteamAuthenticator?> GetSteamAuthenticatorAsync(
         IConfiguration configuration,
         ISteamAuthenticatorService steamAuthenticatorService,
@@ -22,68 +20,34 @@ public static partial class SteamAuthenticatorHelper
         {
             if (SteamAuthenticator == null)
             {
+                var steamAuthenticatorCacheFilePath = Path.Combine(DataPath,
+                    steamAuthenticatorCacheFileName);
                 try
                 {
-                    var steamAuthenticatorCacheFilePath = Path.Combine(DataPath,
-                        steamAuthenticatorCacheFileName);
-                    try
-                    {
-                        byte[] steamAuthenticatorCache = File.ReadAllBytes(steamAuthenticatorCacheFilePath);
-                        if (OperatingSystem.IsWindows())
-                            steamAuthenticatorCache = ProtectedData.Unprotect(
-                                steamAuthenticatorCache, null, DataProtectionScope.LocalMachine);
-                        SteamAuthenticator = Serializable.DJSON<SteamAuthenticator>(Serializable.JsonImplType.SystemTextJson, Encoding.UTF8.GetString(steamAuthenticatorCache));
-                        SteamAuthenticator.ThrowIsNull();
-                    }
-                    catch
-                    {
-                        var maFilePath = configuration["maFilePath"];
-                        if (!File.Exists(maFilePath))
-                            return null;
-
-                        var maFile_json = await File.ReadAllTextAsync(maFilePath);
-                        var steamData = SystemTextJsonSerializer.Deserialize(maFile_json, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct).ThrowIsNull();
-                        var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
-                        var serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                        SteamAuthenticator = new()
-                        {
-                            SteamData = maFile_json,
-                            LastServerTime = long.Parse(serverTime!),
-                            ServerTimeDiff = serverTimeDiff,
-                            SecretKey = Base64Extensions.Base64DecodeToByteArray_Nullable(steamData.SharedSecret),
-                        };
-                    }
+                    byte[] steamAuthenticatorCache = File.ReadAllBytes(steamAuthenticatorCacheFilePath);
+                    if (OperatingSystem.IsWindows())
+                        steamAuthenticatorCache = ProtectedData.Unprotect(
+                            steamAuthenticatorCache, null, DataProtectionScope.LocalMachine);
+                    SteamAuthenticator = Serializable.DJSON<SteamAuthenticator>(Serializable.JsonImplType.SystemTextJson, Encoding.UTF8.GetString(steamAuthenticatorCache));
+                    SteamAuthenticator.ThrowIsNull();
                 }
-                finally
+                catch
                 {
-                    var identitySecret = configuration["identitySecret"];
-                    long serverTimeDiff;
-                    // 本地令牌获取相关信息
-                    if (identitySecret is null)
-                    {
-                        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(SteamAuthenticator.ThrowIsNull().SteamData!);
-                        identitySecret = steamData!.IdentitySecret;
-                    }
-                    if (SteamAuthenticator is null)
-                    {
-                        var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
-                        serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                    }
-                    else
-                    {
-                        serverTimeDiff = SteamAuthenticator.ServerTimeDiff;
-                    }
+                    var maFilePath = configuration["maFilePath"];
+                    if (!File.Exists(maFilePath))
+                        return null;
 
-                    var steamLoginState = await GetSteamLoginStateAsync(configuration, steamAccountService, steamSessionService);
-                    var sessionRsp = await steamSessionService.RentSession(steamLoginState.ThrowIsNull().SteamId.ToString());
-                    var session = sessionRsp.Content;
-                    if (session is not null)
+                    var maFile_json = await File.ReadAllTextAsync(maFilePath);
+                    var steamData = SystemTextJsonSerializer.Deserialize(maFile_json, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct).ThrowIsNull();
+                    var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
+                    var serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                    SteamAuthenticator = new()
                     {
-                        session.ServerTimeDiff = serverTimeDiff;
-                        session.IdentitySecret = identitySecret;
-                        session.APIKey = ApiKey = (await steamAccountService.GetApiKey(steamLoginState)).Content ?? (await steamAccountService.RegisterApiKey(steamLoginState)).Content.ThrowIsNull();
-                        await steamSessionService.AddOrSetSession(session);
-                    }
+                        SteamData = maFile_json,
+                        LastServerTime = long.Parse(serverTime!),
+                        ServerTimeDiff = serverTimeDiff,
+                        SecretKey = Base64Extensions.Base64DecodeToByteArray_Nullable(steamData.SharedSecret),
+                    };
                 }
             }
         }
