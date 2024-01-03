@@ -74,10 +74,7 @@ public class SteamSessionServiceImpl(
         }
         catch (Exception ex)
         {
-            var rsp = ApiRspHelper.Exception<bool>(ex);
-            if (string.IsNullOrWhiteSpace(rsp.InternalMessage))
-                rsp.InternalMessage = rsp.GetMessage();
-            return rsp;
+            return ex;
         }
     }
 
@@ -107,10 +104,7 @@ public class SteamSessionServiceImpl(
         }
         catch (Exception ex)
         {
-            var rsp = ApiRspHelper.Exception<SteamSession>(ex);
-            if (string.IsNullOrWhiteSpace(rsp.InternalMessage))
-                rsp.InternalMessage = rsp.GetMessage();
-            return rsp;
+            return ex;
         }
     }
 

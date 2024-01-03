@@ -259,9 +259,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         catch (Exception ex)
         {
-            result = ApiRspHelper.Exception<bool>(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
+            result = ex;
         }
         finally
         {

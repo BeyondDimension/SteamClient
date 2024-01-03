@@ -2,6 +2,7 @@
 namespace BD.SteamClient8.Models;
 
 [XmlRoot("profile")]
+[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public record class SteamUser
 {
     /// <summary>
@@ -21,6 +22,9 @@ public record class SteamUser
     /// </summary>
     [XmlElement("steamID64")]
     public long SteamId64 { get; set; }
+
+    /// <inheritdoc cref="DebuggerDisplayAttribute"/>
+    public string DebuggerDisplay() => $"{SteamNickName}, {SteamId64}";
 
     /// <summary>
     /// 个人资料链接

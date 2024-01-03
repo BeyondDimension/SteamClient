@@ -4,6 +4,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// Steam 游戏
 /// </summary>
+[DebuggerDisplay("{DebuggerDisplay(),nq}")]
 public class SteamApp
 #if !(IOS || ANDROID)
     : IComparable<SteamApp>
@@ -71,6 +72,9 @@ public class SteamApp
     {
         AppId = app_id;
     }
+
+    /// <inheritdoc cref="DebuggerDisplayAttribute"/>
+    public string DebuggerDisplay() => $"{AppId}, {Name}";
 
     /// <summary>
     /// AppId 唯一标识

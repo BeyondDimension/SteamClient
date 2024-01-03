@@ -126,10 +126,7 @@ public partial class SteamIdleCardServiceImpl(
         }
         catch (Exception ex)
         {
-            var result = ApiRspHelper.Exception<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
-            return result!;
+            return ex;
         }
 
         return (userIdle, badges);
@@ -175,10 +172,7 @@ public partial class SteamIdleCardServiceImpl(
         catch (Exception ex)
         {
             Log.Warn(nameof(GetAppCardsAvgPrice), ex, "获取卡片平均价格接口出错");
-            var result = ApiRspHelper.Exception<IEnumerable<AppCardsAvgPrice>>(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
-            return result!;
+            return ex!;
         }
         return ApiRspHelper.Ok(Enumerable.Empty<AppCardsAvgPrice>())!;
     }
@@ -213,10 +207,7 @@ public partial class SteamIdleCardServiceImpl(
         catch (Exception ex)
         {
             Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
-            var result = ApiRspHelper.Exception<IEnumerable<CardsMarketPrice>>(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
-            return result!;
+            return ex!;
         }
         return ApiRspHelper.Ok(Enumerable.Empty<CardsMarketPrice>())!;
     }

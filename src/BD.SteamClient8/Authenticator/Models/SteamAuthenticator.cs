@@ -604,9 +604,9 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
         var result = await steamAuthenticatorService.RemoveAuthenticatorAsync(steam_id, RecoveryCode, scheme.ToString());
         if (!result.IsSuccess)
-            return result.GetMessage();
+            return ApiRspHelper.Create<bool>(result);
         if (result.Content == null)
-            return ApiRspCode.NoResponseContent.GetMessage();
+            return ApiRspCode.NoResponseContent;
         if (result.Content.Response?.Success != true)
             return Strings.RemoveAuthenticatorFail_.Format(result.Content.Response?.RevocationAttemptsRemaining);
         return true;
@@ -623,9 +623,9 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         var result = await steamAuthenticatorService.RemoveAuthenticatorViaChallengeStartSync(steam_id);
 
         if (!result.IsSuccess)
-            return result.GetMessage();
+            return ApiRspHelper.Create<bool>(result);
         if (result.Content == null)
-            return ApiRspCode.NoResponseContent.GetMessage();
+            return ApiRspCode.NoResponseContent;
 
         // 返回内容正常序列化即表示成功
         return result.Content != null;
@@ -643,9 +643,9 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
         var result = await steamAuthenticatorService.RemoveAuthenticatorViaChallengeContinueSync(steam_id, sms_code, generate_new_token);
         if (!result.IsSuccess)
-            return result.GetMessage();
+            return ApiRspHelper.Create<bool>(result);
         if (result.Content == null)
-            return ApiRspCode.NoResponseContent.GetMessage();
+            return ApiRspCode.NoResponseContent;
 
         var response = result.Content;
         if (!response.Success || response.ReplacementToken == null)

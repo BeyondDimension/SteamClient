@@ -45,10 +45,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         catch (Exception ex)
         {
             Log.Error(TAG, ex, "Initialize fail.");
-            var result = ApiRspHelper.Exception(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
-            return result;
+            return ex;
         }
         return ApiRspHelper.Ok();
     }
@@ -64,10 +61,7 @@ public sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         catch (Exception ex)
         {
             Log.Error(TAG, ex, "Initialize fail.");
-            var result = ApiRspHelper.Exception(ex);
-            if (string.IsNullOrWhiteSpace(result.InternalMessage))
-                result.InternalMessage = result.GetMessage();
-            return result;
+            return ex;
         }
         return ApiRspHelper.Ok();
     }
