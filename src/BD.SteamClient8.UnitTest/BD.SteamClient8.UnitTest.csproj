@@ -9,6 +9,9 @@
 		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
 		<UseProjectUtils>true</UseProjectUtils>
 		<UseCommon8Bcl>true</UseCommon8Bcl>
+		<UseCommon8Primitives>true</UseCommon8Primitives>
+		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
+		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
 		<UseDotNextThreading>true</UseDotNextThreading>
 		<UseSystemSecurityCryptographyProtectedData>true</UseSystemSecurityCryptographyProtectedData>
 		<UseMicrosoftExtensionsLoggingConsole>true</UseMicrosoftExtensionsLoggingConsole>

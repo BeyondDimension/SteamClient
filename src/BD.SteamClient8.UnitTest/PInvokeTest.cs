@@ -1,4 +1,5 @@
 #if !(IOS || ANDROID)
+
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -25,14 +26,21 @@ sealed class PInvokeTest : ServiceTestBase
     [Test]
     public async Task SteamworksLocal()
     {
+        TestContext.WriteLine($"ProcessPath: {Environment.ProcessPath}");
+        TestContext.WriteLine($"CurrentDirectory: {Environment.CurrentDirectory}");
+        TestContext.WriteLine($"OSArchitecture: {RuntimeInformation.OSArchitecture}");
+        TestContext.WriteLine($"ProcessArchitecture: {RuntimeInformation.ProcessArchitecture}");
+        TestContext.WriteLine($"RuntimeIdentifier: {RuntimeInformation.RuntimeIdentifier}");
+        TestContext.WriteLine($"FrameworkDescription: {RuntimeInformation.FrameworkDescription}");
+
         var init_result = await steamworksLocalApiService.Initialize();
-        Assert.That(init_result.IsSuccess);
+        Assert.That(init_result.IsSuccess, init_result.GetMessage());
 
         var steamId64 = await steamworksLocalApiService.GetSteamId64();
         Assert.Multiple(() =>
         {
-            Assert.That(steamId64.IsSuccess);
-            Assert.That(steamId64.Content, !Is.EqualTo(0L));
+            Assert.That(steamId64.IsSuccess, steamId64.GetMessage());
+            Assert.That(steamId64.Content, !Is.EqualTo(0L), steamId64.GetMessage());
         });
 
         await steamworksLocalApiService.OwnsApps(730);
@@ -40,8 +48,8 @@ sealed class PInvokeTest : ServiceTestBase
         var countryOrRegion = await steamworksLocalApiService.GetCountryOrRegionByIP();
         Assert.Multiple(() =>
         {
-            Assert.That(countryOrRegion.IsSuccess);
-            Assert.That(countryOrRegion.Content, Is.Not.Empty);
+            Assert.That(countryOrRegion.IsSuccess, countryOrRegion.GetMessage());
+            Assert.That(countryOrRegion.Content, Is.Not.Empty, countryOrRegion.GetMessage());
         });
 
         TestContext.WriteLine(Serializable.SJSON(countryOrRegion, writeIndented: true));
