@@ -1,0 +1,639 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class SteamSessionServiceImpl
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SteamSessionServiceImpl
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl">
+
+
+
+  <h1 id="BD_SteamClient8_Impl_SteamSessionServiceImpl" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl" class="text-break">
+    Class SteamSessionServiceImpl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Impl.html">Impl</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Impl.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.ISteamSessionService.html">ISteamSessionService</a> Steam 登录会话信息服务实现</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SteamSessionServiceImpl : WebApiClientFactoryService, Log.I, ISteamSessionService</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService</a></div>
+      <div><span class="xref">SteamSessionServiceImpl</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">Log</a>.<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Bcl/Log.cs">I</a></div>
+      <div><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.ISteamSessionService.html">ISteamSessionService</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.clientHttpClientFactory</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.cookieClientHttpClientFactory</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.CreateClient()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.CreateClient(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.GetCookieContainer(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService.Category</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.Obsolete_GetNJsonContent</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.Obsolete_ReadFromNJsonAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.Obsolete_UseAsync</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.httpPlatformHelper</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.logger</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.GetApiRspBase&lt;TResponseBody&gt;(Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.OnSerializerErrorReApiRspBase&lt;TResponseBody&gt;(Exception, bool, Type)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.OnSerializerError&lt;TResponseBody&gt;(Exception, bool, Type, bool?, HttpStatusCode?, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.GetApiRspCodeByClientException(Exception)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.OnErrorReApiRspBase&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.OnError&lt;TResponseBody&gt;(Exception, WebApiClientSendArgs, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendAsync&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.Send&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendAsync&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsAsyncEnumerable&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.Send&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendCoreAsync&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.SendCoreAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendCore&lt;TResponseBody, TRequestBody&gt;(HttpClient, WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.GetRequestContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.GetCustomSerializeContent&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.ReadFromCustomDeserializeAsync&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.ReadFromCustomDeserialize&lt;TResponseBody&gt;(HttpResponseMessage, string, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.GetMemoryPackContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.ReadFromMemoryPackAsync&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.Newtonsoft.Json.cs">WebApiClientService.GetNJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.ReadFromNJsonAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.Newtonsoft.Json.cs">WebApiClientService.ReadFromNJson&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs">WebApiClientService.GetSJsonContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs">WebApiClientService.GetEncoding(HttpContent)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.ReadFromSJsonAsync&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs">WebApiClientService.ReadFromSJsonAsAsyncEnumerable&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Text.Json.cs">WebApiClientService.ReadFromSJson&lt;TResponseBody&gt;(HttpContent, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Xml.cs">WebApiClientService.GetXmlContent&lt;TResponseBody, TRequestBody&gt;(TRequestBody, Encoding, MediaTypeHeaderValue)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.MemoryPack.cs">WebApiClientService.ReadFromXmlAsync&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.System.Xml.cs">WebApiClientService.ReadFromXml&lt;TResponseBody&gt;(HttpContent, Encoding, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.Accept</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.DefaultEncoding</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.NewtonsoftJsonSerializer</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.EnableLogOnError</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>初始化 <a class="xref" href="BD.SteamClient8.Impl.SteamSessionServiceImpl.html">SteamSessionServiceImpl</a> 类的新实例</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl__ctor_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl__ctor_System_IServiceProvider_Microsoft_Extensions_Logging_ILoggerFactory_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.#ctor(System.IServiceProvider,Microsoft.Extensions.Logging.ILoggerFactory)">
+  SteamSessionServiceImpl(IServiceProvider, ILoggerFactory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.ISteamSessionService.html">ISteamSessionService</a> Steam 登录会话信息服务实现</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamSessionServiceImpl(IServiceProvider serviceProvider, ILoggerFactory loggerFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceProvider</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd></dd>
+    <dt><code>loggerFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.iloggerfactory">ILoggerFactory</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Impl_SteamSessionServiceImpl__ctor_System_IServiceProvider_Microsoft_Extensions_Logging_ILoggerFactory__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>初始化 <a class="xref" href="BD.SteamClient8.Impl.SteamSessionServiceImpl.html">SteamSessionServiceImpl</a> 类的新实例</p>
+</div>
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_ClientName_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.ClientName*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_ClientName" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.ClientName">
+  ClientName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务名称，通常使用 TAG，格式规范应为 typeName.TrimStart(I).TrimEnd(Impl).TrimEnd(Service)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed string ClientName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_JsonSerializerOptions_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.JsonSerializerOptions*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_JsonSerializerOptions" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.JsonSerializerOptions">
+  JsonSerializerOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed JsonSerializerOptions JsonSerializerOptions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_AddOrSetSession_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.AddOrSetSession*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_AddOrSetSession_BD_SteamClient8_Models_SteamSession_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.AddOrSetSession(BD.SteamClient8.Models.SteamSession,System.Threading.CancellationToken)">
+  AddOrSetSession(SteamSession, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>添加或修改登录会话信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; AddOrSetSession(SteamSession steamSession, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>steamSession</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.SteamSession.html">SteamSession</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_LoadSession_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.LoadSession*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_LoadSession_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.LoadSession(System.Threading.CancellationToken)">
+  LoadSession(CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>通过文件加载登录会话信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;SteamSession?&gt;&gt; LoadSession(CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Login/SteamSession.cs">SteamSession</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_RemoveSession_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.RemoveSession*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_RemoveSession_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.RemoveSession(System.String,System.Threading.CancellationToken)">
+  RemoveSession(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>删除登录会话信息</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; RemoveSession(string steam_id, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>steam_id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_RentSession_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.RentSession*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_RentSession_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.RentSession(System.String,System.Threading.CancellationToken)">
+  RentSession(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据 STEAM ID 获取会话信息，不存在返回 null</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;SteamSession?&gt;&gt; RentSession(string steam_id, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>steam_id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Login/SteamSession.cs">SteamSession</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Impl_SteamSessionServiceImpl_SaveSession_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.SaveSession*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamSessionServiceImpl_SaveSession_BD_SteamClient8_Models_SteamSession_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamSessionServiceImpl.SaveSession(BD.SteamClient8.Models.SteamSession,System.Threading.CancellationToken)">
+  SaveSession(SteamSession, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将登录会话信息本地存储</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; SaveSession(SteamSession steamSession, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>steamSession</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.SteamSession.html">SteamSession</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Impl/WebApi/SteamSessionServiceImpl.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

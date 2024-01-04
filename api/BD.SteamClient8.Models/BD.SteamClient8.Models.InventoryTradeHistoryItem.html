@@ -1,0 +1,807 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class InventoryTradeHistoryItem
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class InventoryTradeHistoryItem
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem">
+
+
+
+  <h1 id="BD_SteamClient8_Models_InventoryTradeHistoryItem" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem" class="text-break">
+    Class InventoryTradeHistoryItem
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public record InventoryTradeHistoryItem : IEquatable&lt;InventoryTradeHistoryItem&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">InventoryTradeHistoryItem</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem__ctor_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem__ctor" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.#ctor">
+  InventoryTradeHistoryItem()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InventoryTradeHistoryItem()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem__ctor_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem__ctor_BD_SteamClient8_Models_InventoryTradeHistoryItem_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.#ctor(BD.SteamClient8.Models.InventoryTradeHistoryItem)">
+  InventoryTradeHistoryItem(InventoryTradeHistoryItem)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected InventoryTradeHistoryItem(InventoryTradeHistoryItem original)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Amount_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Amount*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Amount" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Amount">
+  Amount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>数量</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Amount { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_AppId_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.AppId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_AppId" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.AppId">
+  AppId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>游戏 AppId</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string AppId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ClassId_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ClassId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ClassId" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ClassId">
+  ClassId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品类型 Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ClassId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ContextId_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ContextId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ContextId" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ContextId">
+  ContextId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品上下文 Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ContextId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_EqualityContract_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.EqualityContract*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_EqualityContract" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.EqualityContract">
+  EqualityContract
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_InstanceId_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.InstanceId*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_InstanceId" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.InstanceId">
+  InstanceId
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品实例 Id</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string InstanceId { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ItemImgUrl_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ItemImgUrl*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ItemImgUrl" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ItemImgUrl">
+  ItemImgUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品图片 Url</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ItemImgUrl { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ItemName_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ItemName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ItemName" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ItemName">
+  ItemName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ItemName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ProfilePreviewPageUrl_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ProfilePreviewPageUrl*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ProfilePreviewPageUrl" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ProfilePreviewPageUrl">
+  ProfilePreviewPageUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>物品预览图片 Url</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ProfilePreviewPageUrl { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Equals_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Equals_BD_SteamClient8_Models_InventoryTradeHistoryItem_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Equals(BD.SteamClient8.Models.InventoryTradeHistoryItem)">
+  Equals(InventoryTradeHistoryItem?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool Equals(InventoryTradeHistoryItem? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Equals_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_Equals_System_Object_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_GetHashCode_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_GetHashCode" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_PrintMembers_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.PrintMembers*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.PrintMembers(System.Text.StringBuilder)">
+  PrintMembers(StringBuilder)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ToString_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_ToString" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem__Clone___" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.{Clone}$*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem__Clone__" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.{Clone}$">
+  &lt;Clone&gt;$()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual InventoryTradeHistoryItem &lt;Clone&gt;$()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_op_Equality_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.op_Equality*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_op_Equality_BD_SteamClient8_Models_InventoryTradeHistoryItem_BD_SteamClient8_Models_InventoryTradeHistoryItem_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.op_Equality(BD.SteamClient8.Models.InventoryTradeHistoryItem,BD.SteamClient8.Models.InventoryTradeHistoryItem)">
+  operator ==(InventoryTradeHistoryItem?, InventoryTradeHistoryItem?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(InventoryTradeHistoryItem? left, InventoryTradeHistoryItem? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_InventoryTradeHistoryItem_op_Inequality_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.op_Inequality*"></a>
+
+  <h3 id="BD_SteamClient8_Models_InventoryTradeHistoryItem_op_Inequality_BD_SteamClient8_Models_InventoryTradeHistoryItem_BD_SteamClient8_Models_InventoryTradeHistoryItem_" data-uid="BD.SteamClient8.Models.InventoryTradeHistoryItem.op_Inequality(BD.SteamClient8.Models.InventoryTradeHistoryItem,BD.SteamClient8.Models.InventoryTradeHistoryItem)">
+  operator !=(InventoryTradeHistoryItem?, InventoryTradeHistoryItem?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(InventoryTradeHistoryItem? left, InventoryTradeHistoryItem? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.InventoryTradeHistoryItem.html">InventoryTradeHistoryItem</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8.Models/WebApi/Profile/InventoryTradingHistoryRenderPageResponse.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

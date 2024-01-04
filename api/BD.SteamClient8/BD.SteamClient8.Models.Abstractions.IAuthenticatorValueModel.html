@@ -1,0 +1,773 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Interface IAuthenticatorValueModel
+ | SteamClient </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Interface IAuthenticatorValueModel
+ | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient">
+            SteamClient
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel">
+
+
+
+  <h1 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel" class="text-break">
+    Interface IAuthenticatorValueModel
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.Abstractions.html">Abstractions</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>身份验证器(游戏平台令牌)数据值模型</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Union(11, typeof(BattleNetAuthenticator))]
+[Union(12, typeof(GoogleAuthenticator))]
+[Union(14, typeof(TOTPAuthenticator))]
+[Union(13, typeof(HOTPAuthenticator))]
+[Union(5, typeof(MicrosoftAuthenticator))]
+[Union(1, typeof(SteamAuthenticator))]
+public interface IAuthenticatorValueModel : IExplicitHasValue</code></pre>
+  </div>
+
+
+
+
+
+
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/main/src/BD.Common8.Primitives/Models/Abstractions/IExplicitHasValue.cs">IExplicitHasValue.ExplicitHasValue()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CodeDigits_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CodeDigits*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CodeDigits" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CodeDigits">
+  CodeDigits
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>代码中返回的位数（默认为 6）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int CodeDigits { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CodeInterval_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CodeInterval*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CodeInterval" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CodeInterval">
+  CodeInterval
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据计算的服务器时间计算代码间隔</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long CodeInterval { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CurrentCode_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CurrentCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_CurrentCode" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.CurrentCode">
+  CurrentCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取验证器的当前代码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string CurrentCode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_EncryptedData_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.EncryptedData*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_EncryptedData" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.EncryptedData">
+  EncryptedData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>使用当前加密和/或密码保存的当前数据（可能为无）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? EncryptedData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_HMACType_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.HMACType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_HMACType" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.HMACType">
+  HMACType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于 OTP 生成的哈希算法（默认为 SHA1）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">HMACTypes HMACType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.HMACTypes.html">HMACTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Issuer_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Issuer*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Issuer" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Issuer">
+  Issuer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发行者名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? Issuer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_LastServerTime_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.LastServerTime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_LastServerTime" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.LastServerTime">
+  LastServerTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>上次同步时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long LastServerTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_PasswordType_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.PasswordType*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_PasswordType" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.PasswordType">
+  PasswordType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于加密机密数据的密码类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IAuthenticatorValueModel.PasswordTypes PasswordType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.html">IAuthenticatorValueModel</a>.<a class="xref" href="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.PasswordTypes.html">PasswordTypes</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Period_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Period*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Period" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Period">
+  Period
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>下一个代码的周期（秒）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int Period { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Platform_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Platform*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Platform" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Platform">
+  Platform
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>身份验证器平台</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">AuthenticatorPlatform Platform { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.AuthenticatorPlatform.html">AuthenticatorPlatform</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_RequiresPassword_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.RequiresPassword*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_RequiresPassword" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.RequiresPassword">
+  RequiresPassword
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否必须密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RequiresPassword { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_SecretData_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.SecretData*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_SecretData" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.SecretData">
+  SecretData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取/设置组合的机密数据值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string? SecretData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_SecretKey_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.SecretKey*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_SecretKey" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.SecretKey">
+  SecretKey
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于身份验证器的密钥</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">byte[]? SecretKey { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ServerTime_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ServerTime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ServerTime" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ServerTime">
+  ServerTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>服务器时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long ServerTime { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ServerTimeDiff_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ServerTimeDiff*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ServerTimeDiff" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ServerTimeDiff">
+  ServerTimeDiff
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>本地机器和服务器的时间差（毫秒 ms）</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">long ServerTimeDiff { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Protect_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Protect*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Protect" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Protect">
+  Protect()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>令牌保护</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Protect()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ReadXml_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ReadXml*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_ReadXml_System_Xml_XmlReader_System_String_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.ReadXml(System.Xml.XmlReader,System.String)">
+  ReadXml(XmlReader, string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Xml 内容读取</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool ReadXml(XmlReader reader, string? password = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">XmlReader</span></dt>
+    <dd></dd>
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Sync_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Sync*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Sync" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Sync">
+  Sync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>将此验证器的时间与服务器时间同步，我们用 UTC 时间的差值更新数据记录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void Sync()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Unprotect_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Unprotect*"></a>
+
+  <h3 id="BD_SteamClient8_Models_Abstractions_IAuthenticatorValueModel_Unprotect_System_String_" data-uid="BD.SteamClient8.Models.Abstractions.IAuthenticatorValueModel.Unprotect(System.String)">
+  Unprotect(string?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>取消令牌保护</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool Unprotect(string? password)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>password</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/main/src/BD.SteamClient8/Authenticator/Models/Abstractions/IAuthenticatorValueModel.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
