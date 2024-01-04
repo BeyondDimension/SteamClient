@@ -1,4 +1,3 @@
-using BD.Common8.Extensions;
 using static BD.SteamClient8.Models.SteamAuthenticator;
 
 namespace BD.SteamClient8.UnitTest;
@@ -80,6 +79,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             // 输入手机收到的验证码
             enrollState.ActivationCode = "7C86B";
             var finalize = await steamAuthenticator.FinalizeAddAuthenticatorAsync(enrollState);
+            SteamAuthenticatorHelper.SteamAuthenticator ??= steamAuthenticator;
             Assert.Multiple(async () =>
             {
                 Assert.That(finalize.IsSuccess && finalize.Content);
