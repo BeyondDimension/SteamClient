@@ -26,6 +26,9 @@ sealed class PInvokeTest : ServiceTestBase
     [Test]
     public async Task SteamworksLocal()
     {
+        TestContext.WriteLine($"UserName: {Environment.UserName}");
+        TestContext.WriteLine($"UserInteractive: {Environment.UserInteractive}");
+        TestContext.WriteLine($"UserDomainName: {Environment.UserDomainName}");
         TestContext.WriteLine($"ProcessPath: {Environment.ProcessPath}");
         TestContext.WriteLine($"CurrentDirectory: {Environment.CurrentDirectory}");
         TestContext.WriteLine($"OSArchitecture: {RuntimeInformation.OSArchitecture}");
