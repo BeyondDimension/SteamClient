@@ -10,6 +10,8 @@ public static partial class SteamAuthenticatorHelper
     public static SteamAuthenticator? SteamAuthenticator;
     static readonly AsyncExclusiveLock lock_GetSteamAuthenticatorAsync = new();
 
+    static readonly string steamAuthenticatorCacheFilePath = Path.Combine(DataPath, steamAuthenticatorCacheFileName);
+
     public static async ValueTask<SteamAuthenticator?> GetSteamAuthenticatorAsync(
         IConfiguration configuration,
         ISteamAuthenticatorService steamAuthenticatorService,
@@ -20,8 +22,6 @@ public static partial class SteamAuthenticatorHelper
         {
             if (SteamAuthenticator == null)
             {
-                var steamAuthenticatorCacheFilePath = Path.Combine(DataPath,
-                    steamAuthenticatorCacheFileName);
                 try
                 {
                     byte[] steamAuthenticatorCache = File.ReadAllBytes(steamAuthenticatorCacheFilePath);
@@ -67,8 +67,6 @@ public static partial class SteamAuthenticatorHelper
     {
         using (await lock_GetSteamAuthenticatorAsync.AcquireLockAsync(CancellationToken.None))
         {
-            var steamAuthenticatorCacheFilePath = Path.Combine(ProjPath,
-                "..", steamAuthenticatorCacheFileName);
             try
             {
                 byte[] steamAuthenticatorCache = Encoding.UTF8.GetBytes(Serializable.SJSON(Serializable.JsonImplType.SystemTextJson, steamAuthenticator));
@@ -89,8 +87,6 @@ public static partial class SteamAuthenticatorHelper
     {
         using (await lock_GetSteamAuthenticatorAsync.AcquireLockAsync(CancellationToken.None))
         {
-            var steamAuthenticatorCacheFilePath = Path.Combine(ProjPath,
-                "..", steamAuthenticatorCacheFileName);
             try
             {
                 File.Delete(steamAuthenticatorCacheFilePath);

@@ -9,6 +9,7 @@ public static partial class SteamLoginStateHelper
 
     static SteamLoginState? steamLoginState;
     static readonly AsyncExclusiveLock lock_GetSteamLoginStateAsync = new();
+    static readonly string steamLoginStateCacheFilePath = Path.Combine(DataPath, steamLoginStateCacheFileName);
 
     public static SteamLoginState SteamLoginState => steamLoginState.ThrowIsNull();
 
@@ -24,8 +25,6 @@ public static partial class SteamLoginStateHelper
         {
             if (steamLoginState == null)
             {
-                var steamLoginStateCacheFilePath = Path.Combine(DataPath,
-                    steamLoginStateCacheFileName);
                 try
                 {
                     byte[] steamLoginStateCache = File.ReadAllBytes(steamLoginStateCacheFilePath);
