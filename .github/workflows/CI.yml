@@ -63,10 +63,11 @@ jobs:
 #        run: dotnet workload restore
 
       - name: Verify dotnet info
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         run: dotnet --info
 
       - name: Test
-        run: dotnet test src/BD.SteamClient8.UnitTest/BD.SteamClient8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
+        run: dotnet test src/BD.SteamClient8.UnitTest/BD.SteamClient8.UnitTest.csproj -c Release -p:GeneratePackageOnBuild=false -p:AnalysisLevel=none --nologo -v q /property:WarningLevel=0 --logger:"trx;LogFilePrefix=testResults"
 
   build:
     name: Build
@@ -127,16 +128,17 @@ jobs:
 #        run: dotnet workload restore
 
       - name: Verify dotnet info
+        if: ${{ matrix.os != 'aigio-win10ltsc-vm' }}
         run: dotnet --info
 
       - name: Build tools
-        run: dotnet build -c Release src\BD.SteamClient8.Tools.Build\BD.SteamClient8.Tools.Build.csproj --nologo -v q /property:WarningLevel=0
+        run: dotnet build -c Release src\Tools.Build\Tools.Build.csproj --nologo -v q /property:WarningLevel=0 -p:AnalysisLevel=none
 
       - name: Build projects
-        run: .\src\artifacts\bin\BD.Common8.Tools.Build\release\BD.SteamClient8.Tools.Build.exe build
+        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe build
 
       - name: Push NuGet packages
-        run: .\src\artifacts\bin\BD.SteamClient8.Tools.Build\release\BD.SteamClient8.Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
+        run: .\src\artifacts\bin\Tools.Build\release\Tools.Build.exe push --token_github ${{ secrets.RMBADMIN_TOKEN }} --token_nuget ${{ secrets.NUGET_API_KEY }}
 
       - name: Delete nuget packages
         if: ${{ matrix.os == 'aigio-win10ltsc-vm' }}
