@@ -9,10 +9,14 @@
   ],
   "packageRules": [
     {
-      "packagePatterns": ["*"],
+      "matchManagers": [
+        "nuget",
+        "github-actions"
+      ],
       "enabled": false
     }
   ],
+  "schedule": ["at any time"],
   "git-submodules": {
     "enabled": true
   }
