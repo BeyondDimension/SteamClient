@@ -169,6 +169,8 @@ public sealed partial class SteamTradeServiceImpl(
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id));
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
@@ -323,6 +325,8 @@ public sealed partial class SteamTradeServiceImpl(
             {
                 req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
                 req.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
@@ -370,6 +374,8 @@ public sealed partial class SteamTradeServiceImpl(
             {
                 req.Headers.TryAddWithoutValidation("Referer", tradeoffer_url);
                 req.Headers.TryAddWithoutValidation("Origin", SteamApiUrls.STEAM_COMMUNITY_URL);
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
@@ -441,6 +447,8 @@ public sealed partial class SteamTradeServiceImpl(
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.TryAddWithoutValidation("X-Requested-With", "'com.valvesoftware.android.steam.community'");
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
@@ -606,6 +614,8 @@ public sealed partial class SteamTradeServiceImpl(
             ConfigureRequestMessage = (req, args, token) =>
             {
                 req.Headers.TryAddWithoutValidation("X-Requested-With", "XMLHttpRequest");
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);

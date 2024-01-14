@@ -87,6 +87,8 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 var content = new ByteArrayContent(encrypted);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
                 req.Content = content;
+
+                return Task.CompletedTask;
             },
         };
         using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
@@ -114,6 +116,8 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 var content = new ByteArrayContent(serialBytes);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
                 req.Content = content;
+
+                return Task.CompletedTask;
             },
         };
         using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
@@ -132,6 +136,8 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
                 var content = new ByteArrayContent(postbytes);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
                 req.Content = content;
+
+                return Task.CompletedTask;
             },
         };
         using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);

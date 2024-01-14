@@ -44,6 +44,8 @@ internal sealed class SteamGridDBWebApiServiceImpl(
                 {
                     req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
                     req.Headers.Accept.ParseAdd(accept);
+
+                    return Task.CompletedTask;
                 },
             };
             sendArgs.SetHttpClient(client);

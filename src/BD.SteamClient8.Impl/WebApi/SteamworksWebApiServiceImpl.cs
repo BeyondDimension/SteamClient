@@ -38,6 +38,8 @@ internal sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, 
                 ConfigureRequestMessage = (req, args, token) =>
                 {
                     req.Headers.TryAddWithoutValidation("accept", accept);
+
+                    return Task.CompletedTask;
                 },
             };
             sendArgs.SetHttpClient(CreateClient());

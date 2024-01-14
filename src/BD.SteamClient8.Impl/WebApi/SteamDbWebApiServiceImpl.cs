@@ -43,6 +43,8 @@ internal sealed class SteamDbWebApiServiceImpl(
                 {
                     req.Headers.Accept.ParseAdd(accept);
                     req.Headers.TryAddWithoutValidation("User-Agent", http_helper.UserAgent);
+
+                    return Task.CompletedTask;
                 },
             };
             sendArgs.SetHttpClient(client);

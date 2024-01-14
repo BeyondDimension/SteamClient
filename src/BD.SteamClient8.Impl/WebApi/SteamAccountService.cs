@@ -921,6 +921,8 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 req.Headers.Add("authority", "steamcommunity.com");
                 req.Headers.Add("referer", "https://steamcommunity.com/dev/revokekey");
                 req.Headers.Add("accept-language", "zh-CN");
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(client);

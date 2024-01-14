@@ -108,6 +108,8 @@ public class SteamMarketService(IServiceProvider serviceProvider,
             {
                 req.Headers.Add("Referer", referer);
                 req.Content = new FormUrlEncodedContent(data);
+
+                return Task.CompletedTask;
             },
         };
         sendArgs.SetHttpClient(client);
