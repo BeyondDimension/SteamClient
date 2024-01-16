@@ -2,7 +2,9 @@ using AngleSharp.Common;
 using AngleSharp.Html.Dom;
 using Nito.Comparers.Linq;
 
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Impl;
 
 /// <summary>
@@ -31,7 +33,7 @@ public partial class SteamIdleCardServiceImpl(
     #region Public
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<IdleBadge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
     {
         var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
         steamSession = steamSession.ThrowIsNull(steam_id);
@@ -42,7 +44,7 @@ public partial class SteamIdleCardServiceImpl(
         int pagesCount = 1;
 
         var userIdle = new UserIdleInfo();
-        var badges = new List<Badge>();
+        var badges = new List<IdleBadge>();
         try
         {
             using var sendArgs = new WebApiClientSendArgs(badges_url);
@@ -216,7 +218,7 @@ public partial class SteamIdleCardServiceImpl(
 
     #region Private
 
-    static void FetchBadgesOnPage(IHtmlDocument document, List<Badge> badges, Func<string, Task<string>> func, bool need_price)
+    static void FetchBadgesOnPage(IHtmlDocument document, List<IdleBadge> badges, Func<string, Task<string>> func, bool need_price)
     {
         var badges_rows = document.QuerySelectorAll("div.badge_row.is_link");
         foreach (var badge in badges_rows)
@@ -274,7 +276,7 @@ public partial class SteamIdleCardServiceImpl(
                 }
             }
 
-            var badge_item = new Badge
+            var badge_item = new IdleBadge
             {
                 AppId = uint.TryParse(appid, out var after_appid) ? after_appid : 0,
                 AppName = name,

@@ -4,19 +4,17 @@
 namespace BD.SteamClient8.Models;
 
 /// <summary>
-/// 兑换钱包返回信息
+/// 接收用户统计信息模型
 /// </summary>
-public sealed class RedeemWalletResponse : JsonModel
+public sealed record class UserStatsReceivedResult
 {
     /// <summary>
-    /// 成功结果
+    /// 游戏 Id
     /// </summary>
-    [SystemTextJsonProperty("success")]
-    public SteamResult Result { get; private set; }
+    public ulong GameId { get; set; }
 
     /// <summary>
-    /// 详情
+    /// 结果
     /// </summary>
-    [SystemTextJsonProperty("detail")]
-    public PurchaseResultDetail Detail { get; set; }
+    public int Result { get; set; }
 }

@@ -4,19 +4,17 @@
 namespace BD.SteamClient8.Models;
 
 /// <summary>
-/// 兑换钱包返回信息
+/// 获得可用的字节数返回结果
 /// </summary>
-public sealed class RedeemWalletResponse : JsonModel
+public sealed record class CloudArchiveQuotaResult
 {
     /// <summary>
-    /// 成功结果
+    /// 返回用户可访问的字节总量
     /// </summary>
-    [SystemTextJsonProperty("success")]
-    public SteamResult Result { get; private set; }
+    public ulong TotalBytes { get; set; }
 
     /// <summary>
-    /// 详情
+    /// 返回可用的字节数
     /// </summary>
-    [SystemTextJsonProperty("detail")]
-    public PurchaseResultDetail Detail { get; set; }
+    public ulong AvailableBytes { get; set; }
 }

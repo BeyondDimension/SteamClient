@@ -1,5 +1,7 @@
 #if !(IOS || ANDROID)
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Services;
 
 /// <summary>
@@ -21,7 +23,7 @@ public interface ISteamworksLocalApiService
     /// <summary>
     /// 当前平台是否支持
     /// </summary>
-    bool IsSupported => RuntimeInformation.ProcessArchitecture switch
+    static bool IsSupported { get; } = RuntimeInformation.ProcessArchitecture switch
     {
         Architecture.X86 => true,
         Architecture.X64 => true,
@@ -173,7 +175,7 @@ public interface ISteamworksLocalApiService
     /// <param name="unlockTime">返回解锁该成就的时间</param>
     /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成状态和解锁时间</returns>
-    Task<ApiRspImpl<(bool isAchieved, long unlockTime)?>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<AchievementAndUnlockTimeResult?>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取指定成就的完成百分比
@@ -188,7 +190,7 @@ public interface ISteamworksLocalApiService
     /// 添加用户统计数据接收回调函数
     /// </summary>
     /// <param name="cancellationToken"></param>
-    IAsyncEnumerable<ApiRspImpl<IUserStatsReceived>> AddUserStatsReceivedCallback(CancellationToken cancellationToken = default);
+    IAsyncEnumerable<ApiRspImpl<UserStatsReceivedResult>> AddUserStatsReceivedCallback(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 请求当前玩家的统计数据是否成功
@@ -252,32 +254,14 @@ public interface ISteamworksLocalApiService
     /// <param name="cancellationToken"></param>
     Task<ApiRspImpl> RunCallbacks(bool server, CancellationToken cancellationToken = default);
 
-    /// <summary>
-    /// 接收用户统计信息模型
-    /// </summary>
-    interface IUserStatsReceived
-    {
-        /// <summary>
-        /// 游戏 Id
-        /// </summary>
-        ulong GameId { get; }
-
-        /// <summary>
-        /// 结果
-        /// </summary>
-        int Result { get; }
-    }
-
     #region SteamRemoteStorage
 
     /// <summary>
     /// 获得可用的字节数，以及在用户的 Steam 云存储中使用的字节数
     /// </summary>
-    /// <param name="totalBytes">返回用户可访问的字节总量</param>
-    /// <param name="availableBytes">返回可用的字节数</param>
     /// <param name="cancellationToken"></param>
     /// <returns>获取结果</returns>
-    Task<ApiRspImpl<(ulong totalBytes, ulong availableBytes)?>> GetCloudArchiveQuota(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<CloudArchiveQuotaResult?>> GetCloudArchiveQuota(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取云存档文件列表

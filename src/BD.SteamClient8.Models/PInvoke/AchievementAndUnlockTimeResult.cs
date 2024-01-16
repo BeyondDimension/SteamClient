@@ -4,19 +4,17 @@
 namespace BD.SteamClient8.Models;
 
 /// <summary>
-/// 兑换钱包返回信息
+/// 获取指定成就的完成状态和解锁时间结果
 /// </summary>
-public sealed class RedeemWalletResponse : JsonModel
+public sealed record class AchievementAndUnlockTimeResult
 {
     /// <summary>
-    /// 成功结果
+    /// 返回是否完成该成就
     /// </summary>
-    [SystemTextJsonProperty("success")]
-    public SteamResult Result { get; private set; }
+    public bool IsAchieved { get; set; }
 
     /// <summary>
-    /// 详情
+    /// 返回解锁该成就的时间
     /// </summary>
-    [SystemTextJsonProperty("detail")]
-    public PurchaseResultDetail Detail { get; set; }
+    public long UnlockTime { get; set; }
 }

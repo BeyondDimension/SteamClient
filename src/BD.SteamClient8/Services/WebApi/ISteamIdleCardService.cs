@@ -1,4 +1,6 @@
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Services;
 
 /// <summary>
@@ -19,7 +21,7 @@ public interface ISteamIdleCardService
     /// <param name="currency"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<IdleBadge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取游戏卡组卡片平均价格

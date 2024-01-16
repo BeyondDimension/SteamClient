@@ -9,6 +9,10 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
+
+#pragma warning disable IDE0079 // 请删除不必要的忽略
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Models.Protobuf {
 
   /// <summary>Holder for reflection information generated from steammessages_auth.steamclient.proto</summary>

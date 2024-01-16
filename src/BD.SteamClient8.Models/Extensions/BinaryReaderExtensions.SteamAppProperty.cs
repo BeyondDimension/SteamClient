@@ -1,8 +1,7 @@
 #if !(IOS || ANDROID)
-
-using Color = System.Drawing.Color;
-
+#pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace System;
 
 public static partial class BinaryReaderExtensions
@@ -53,16 +52,16 @@ public static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Color ReadColor(this BinaryReader reader)
+    public static SDColor ReadColor(this BinaryReader reader)
     {
         byte red = reader.ReadByte();
         byte green = reader.ReadByte();
         byte blue = reader.ReadByte();
-        return Color.FromArgb(red, green, blue);
+        return SDColor.FromArgb(red, green, blue);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static void Write(this BinaryWriter writer, Color color)
+    public static void Write(this BinaryWriter writer, SDColor color)
     {
         writer.Write(color.R);
         writer.Write(color.G);
@@ -104,7 +103,7 @@ public static partial class BinaryReaderExtensions
                     writer.Write(single);
                     break;
                 case SteamAppPropertyType.Color:
-                    if (property.Value is not Color color)
+                    if (property.Value is not SDColor color)
                         color = default;
                     writer.Write(color);
                     break;

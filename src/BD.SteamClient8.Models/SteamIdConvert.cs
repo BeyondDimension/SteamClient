@@ -1,3 +1,6 @@
+#pragma warning disable IDE0079 // 请删除不必要的忽略
+#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
+#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Models;
 
 public sealed class SteamIdConvert
@@ -24,6 +27,10 @@ public sealed class SteamIdConvert
     public const long UndefinedId = 76561197960265728;
 #pragma warning restore SA1132 // Do not combine fields
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SteamIdConvert"/> class.
+    /// </summary>
+    /// <param name="anySteamId"></param>
     public SteamIdConvert(string anySteamId)
     {
         try
