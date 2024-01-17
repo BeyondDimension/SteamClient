@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -104,16 +104,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Impl.SteamworksLocalApiServiceImpl.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Impl.SteamworksLocalApiServiceImpl.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Impl.yml",
       "output": {
         ".html": {
@@ -177,6 +167,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.AchievementAndUnlockTimeResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.AchievementAndUnlockTimeResult.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.AchievementInfo.yml",
       "output": {
         ".html": {
@@ -207,20 +207,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Badge.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CardsMarketPrice.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Badge.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CardsMarketPrice.html"
         }
       },
       "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CardsMarketPrice.yml",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CloudArchiveQuotaResult.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CardsMarketPrice.html"
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.CloudArchiveQuotaResult.html"
         }
       },
       "version": ""
@@ -381,6 +381,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.HistoryParseResponse.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.IdleBadge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.IdleBadge.html"
         }
       },
       "version": ""
@@ -2487,6 +2497,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.UserStatsReceivedResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.UserStatsReceivedResult.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.yml",
       "output": {
         ".html": {
@@ -3003,6 +3023,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8/BD.SteamClient8.Models.Base32.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Models.Base32.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8/BD.SteamClient8.Models.BattleNetAuthenticator.IAuthenticatorNetService.yml",
       "output": {
         ".html": {
@@ -3197,16 +3227,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.ISteamTradeService.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.ISteamworksLocalApiService.IUserStatsReceived.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.ISteamworksLocalApiService.IUserStatsReceived.html"
         }
       },
       "version": ""

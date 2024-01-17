@@ -455,7 +455,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;(UserIdleInfo idleInfo, IEnumerable&lt;Badge&gt; badges)&gt;&gt; GetBadgesAsync(string steam_id, bool need_price = false, string currency = &quot;CNY&quot;, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;(UserIdleInfo idleInfo, IEnumerable&lt;IdleBadge&gt; badges)&gt;&gt; GetBadgesAsync(string steam_id, bool need_price = false, string currency = &quot;CNY&quot;, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -472,7 +472,7 @@
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;(<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Idle/UserIdleInfo.cs">UserIdleInfo</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-bd.steamclient8.models.useridleinfo,system.collections.generic.ienumerable-bd.steamclient8.models.badge--.idleinfo">idleInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Idle/Badge.cs">Badge</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-bd.steamclient8.models.useridleinfo,system.collections.generic.ienumerable-bd.steamclient8.models.badge--.badges">badges</a>)&gt;&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;(<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Idle/UserIdleInfo.cs">UserIdleInfo</a> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-bd.steamclient8.models.useridleinfo,system.collections.generic.ienumerable-bd.steamclient8.models.idlebadge--.idleinfo">idleInfo</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Idle/IdleBadge.cs">IdleBadge</a>&gt; <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-bd.steamclient8.models.useridleinfo,system.collections.generic.ienumerable-bd.steamclient8.models.idlebadge--.badges">badges</a>)&gt;&gt;</dt>
     <dd></dd>
   </dl>
 
