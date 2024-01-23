@@ -52,7 +52,7 @@ sealed class PInvokeTest : ServiceTestBase
             Assert.That(steamId64.Content, !Is.EqualTo(0L), steamId64.GetMessage());
         });
 
-        await steamworksLocalApiService.OwnsApps(730);
+        await steamworksLocalApiService.OwnsApp(730);
 
         var countryOrRegion = await steamworksLocalApiService.GetCountryOrRegionByIP();
         Assert.Multiple(() =>
@@ -79,6 +79,7 @@ sealed class PInvokeTest : ServiceTestBase
         var sw = Stopwatch.StartNew();
         var kv = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
         var k = kv.Deserialize(File.OpenRead(vdfStr));
+        _ = k.GetHashCode();
         sw.Stop();
         TestContext.WriteLine(
             $"ValveKeyValue (VDF)       : {sw.ElapsedMilliseconds / numIterations}ms, {sw.ElapsedTicks / numIterations}ticks average");

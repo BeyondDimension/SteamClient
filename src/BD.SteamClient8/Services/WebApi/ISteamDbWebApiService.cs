@@ -27,7 +27,7 @@ public interface ISteamDbWebApiService
     /// <param name="steamId64s"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<SteamUser>>> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 通过 AppId 获取游戏详情

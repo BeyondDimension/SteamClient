@@ -125,6 +125,8 @@ abstract class ServiceTestBase
 #if !(IOS || ANDROID)
     sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
     {
+        public override string? SteamLanguageString => default;
+
         protected override string? StratSteamDefaultParameter => default;
 
         protected override bool IsRunSteamAdministrator => default;

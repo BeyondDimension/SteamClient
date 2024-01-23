@@ -446,12 +446,12 @@ public abstract partial class SteamServiceImpl : ISteamService
                 var lists = new KVCollectionValue();
                 foreach (var item in items.OrderBy(x => x.Index))
                 {
-                    var itemTemp = new KVObject(item.SteamId3_Int.ToString(), new KVObject[]
-                    {
-                            new KVObject("timeused", (KVValue)item.Timeused),
-                            new KVObject("description", (KVValue)item.Description!),
-                            new KVObject("tokenid", (KVValue)item.Tokenid!),
-                    });
+                    var itemTemp = new KVObject(item.SteamId3_Int.ToString(),
+                    [
+                        new("timeused", (KVValue)item.Timeused),
+                        new("description", (KVValue)item.Description!),
+                        new("tokenid", (KVValue)item.Tokenid!),
+                    ]);
                     lists.Add(itemTemp);
                 }
                 v.Set("AuthorizedDevice", lists);
@@ -814,7 +814,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             }
 
             using FileStream modifiedFileStream = File.Open(file, FileMode.Open, FileAccess.Read);
-            return Serializable.DMP<List<ModifiedApp>>(modifiedFileStream);
+            return Serializable.DMP<List<ModifiedApp>>(modifiedFileStream, cancellationToken);
         }
         catch (Exception ex)
         {
@@ -838,7 +838,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             //File.Copy(AppInfoPath, bakFile, true);
 
-            var applist = (await GetAppInfos(true)).Content ?? [];
+            var applist = (await GetAppInfos(true, cancellationToken)).Content ?? [];
             var editApps = SteamApps.Where(s => s.IsEdited);
             var modifiedApps = new List<ModifiedApp>();
 
@@ -891,10 +891,10 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// <returns></returns>
     public uint[] GetInstalledAppIds()
     {
-        return GetDownloadingAppList().GetAwaiter().GetResult()?.Content?.Where(x => x.IsInstalled).Select(x => x.AppId).ToArray() ?? Array.Empty<uint>();
+        return GetDownloadingAppList().GetAwaiter().GetResult()?.Content?.Where(x => x.IsInstalled).Select(x => x.AppId).ToArray() ?? [];
     }
 
-    private string? GetAppCustomImageFilePath(uint appId, SteamUser user, LibCacheType type)
+    static string? GetAppCustomImageFilePath(uint appId, SteamUser user, LibCacheType type)
     {
         if (string.IsNullOrEmpty(SteamDirPath)) return null;
 
@@ -919,7 +919,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
-    private string? GetAppLibCacheFilePath(uint appId, LibCacheType type)
+    string? GetAppLibCacheFilePath(uint appId, LibCacheType type)
     {
         if (LibrarycacheDirPath == null) return null;
         var fileName = type switch
@@ -942,7 +942,7 @@ public abstract partial class SteamServiceImpl : ISteamService
 
         if (SteamLanguageString != null && !File.Exists(filePath))
         {
-            //默认图没找到情况下尝试查找当前 Steam 客户端语言图片
+            // 默认图没找到情况下尝试查找当前 Steam 客户端语言图片
             var lang = $"_{SteamLanguageString}";
             filePath = filePath.Insert(filePath.LastIndexOf('.'), lang);
         }

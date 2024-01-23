@@ -61,7 +61,6 @@ public static partial class ServiceCollectionExtensions
     /// 添加 Steam 账号服务
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="getHandler"></param>
     /// <returns></returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddSteamAccountService(this IServiceCollection services)

@@ -48,7 +48,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
     [Test]
     public async Task GetUserInfos(long[] steamIds)
     {
-        var rsp = await steamDbWebApiService.GetUserInfo(steamIds);
+        var rsp = await steamDbWebApiService.GetUserInfos(steamIds);
 
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>

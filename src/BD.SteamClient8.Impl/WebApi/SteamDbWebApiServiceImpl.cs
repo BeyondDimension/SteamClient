@@ -67,7 +67,7 @@ class SteamDbWebApiServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfo(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default)
     {
         List<SteamUser> users = [];
         foreach (var i in steamId64s)

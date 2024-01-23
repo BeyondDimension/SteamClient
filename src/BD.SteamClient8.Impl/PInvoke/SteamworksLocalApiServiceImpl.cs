@@ -42,25 +42,6 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl> Initialize(CancellationToken cancellationToken = default)
-    {
-        await Task.CompletedTask;
-        if (IsSupported)
-        {
-            try
-            {
-                SteamClient.Initialize(0);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(TAG, ex, "Initialize fail.");
-                return ex;
-            }
-        }
-        return ApiRspHelper.Ok();
-    }
-
-    /// <inheritdoc/>
     public async Task<ApiRspImpl> Initialize(int appid, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
@@ -95,7 +76,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> OwnsApps(uint appid, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> OwnsApp(uint appid, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         if (IsSupported)
@@ -388,7 +369,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SetStatValue(string name, int value, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> SetStatInt32Value(string name, int value, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         if (IsSupported)
@@ -400,7 +381,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SetStatValue(string name, float value, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<bool>> SetStatSingleValue(string name, float value, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         if (IsSupported)

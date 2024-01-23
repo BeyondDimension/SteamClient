@@ -39,18 +39,12 @@ public interface ISteamworksLocalApiService
     Task<ApiRspImpl> DisposeSteamClient(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 初始化 Steamworks 本地 API 服务
-    /// </summary>
-    /// <returns>初始化是否成功</returns>
-    Task<ApiRspImpl> Initialize(CancellationToken cancellationToken = default);
-
-    /// <summary>
     /// 初始化 Steamworks 本地 API 服务并设置 App Id
     /// </summary>
     /// <param name="appid">要使用的 App ID</param>
     /// <param name="cancellationToken"></param>
     /// <returns>初始化是否成功</returns>
-    Task<ApiRspImpl> Initialize(int appid, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> Initialize(int appid = 0, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取当前用户的 Steam ID（64 位）
@@ -64,7 +58,7 @@ public interface ISteamworksLocalApiService
     /// <param name="appid">AppId</param>
     /// <param name="cancellationToken"></param>
     /// <returns>如果用户拥有该应用程序，则返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    Task<ApiRspImpl<bool>> OwnsApps(uint appid, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> OwnsApp(uint appid, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 检查用户是否拥有指定的应用程序列表
@@ -223,7 +217,7 @@ public interface ISteamworksLocalApiService
     /// <param name="value"></param>
     /// <param name="cancellationToken"></param>
     /// <returns>设置结果，成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    Task<ApiRspImpl<bool>> SetStatValue(string name, int value, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> SetStatInt32Value(string name, int value, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 设置统计数据值（浮点型）
@@ -232,7 +226,7 @@ public interface ISteamworksLocalApiService
     /// <param name="value">统计数据值</param>
     /// <param name="cancellationToken"></param>
     /// <returns>成功返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
-    Task<ApiRspImpl<bool>> SetStatValue(string name, float value, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<bool>> SetStatSingleValue(string name, float value, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将变动的统计与成就数据发送至服务器进行持久保存
