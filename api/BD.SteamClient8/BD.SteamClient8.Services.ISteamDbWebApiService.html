@@ -197,45 +197,6 @@
 
   <a id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfo_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfo*"></a>
 
-  <h3 id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfo_System_Collections_Generic_IEnumerable_System_Int64__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfo(System.Collections.Generic.IEnumerable{System.Int64},System.Threading.CancellationToken)">
-  GetUserInfo(IEnumerable&lt;long&gt;, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamDbWebApiService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>批量获取用户详情</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamUser&gt;&gt;&gt; GetUserInfo(IEnumerable&lt;long&gt; steamId64s, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>steamId64s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs">SteamUser</a>&gt;&gt;&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfo_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfo*"></a>
-
   <h3 id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfo_System_Int64_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfo(System.Int64,System.Threading.CancellationToken)">
   GetUserInfo(long, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamDbWebApiService.cs"><i class="bi bi-code-slash"></i></a>
@@ -260,6 +221,45 @@
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs">SteamUser</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfos_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfos*"></a>
+
+  <h3 id="BD_SteamClient8_Services_ISteamDbWebApiService_GetUserInfos_System_Collections_Generic_IEnumerable_System_Int64__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamDbWebApiService.GetUserInfos(System.Collections.Generic.IEnumerable{System.Int64},System.Threading.CancellationToken)">
+  GetUserInfos(IEnumerable&lt;long&gt;, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamDbWebApiService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>批量获取用户详情</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamUser&gt;&gt;&gt; GetUserInfos(IEnumerable&lt;long&gt; steamId64s, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>steamId64s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs">SteamUser</a>&gt;&gt;&gt;</dt>
     <dd></dd>
   </dl>
 

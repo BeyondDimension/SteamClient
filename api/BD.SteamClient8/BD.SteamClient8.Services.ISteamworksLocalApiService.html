@@ -1058,7 +1058,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; Initialize(int appid, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; Initialize(int appid = 0, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1068,44 +1068,6 @@
 </dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl.MemoryPackFormatter.g.cs">ApiRspImpl</a>&gt;</dt>
-    <dd><p>初始化是否成功</p>
-</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_Initialize_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.Initialize*"></a>
-
-  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_Initialize_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.Initialize(System.Threading.CancellationToken)">
-  Initialize(CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamworksLocalApiService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>初始化 Steamworks 本地 API 服务</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; Initialize(CancellationToken cancellationToken = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd>Steamworks 本地 API 服务 https://partner.steamgames.com/doc/home</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
@@ -1238,6 +1200,47 @@
 
 
 
+  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApp_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApp*"></a>
+
+  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApp_System_UInt32_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApp(System.UInt32,System.Threading.CancellationToken)">
+  OwnsApp(uint, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamworksLocalApiService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查用户是否拥有指定的应用程序</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; OwnsApp(uint appid, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd><p>AppId</p>
+</dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
+    <dd><p>如果用户拥有该应用程序，则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApps_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApps*"></a>
 
   <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApps_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_SteamApp__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApps(System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.SteamApp},System.Threading.CancellationToken)">
@@ -1266,47 +1269,6 @@
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApp/SteamApp.cs">SteamApp</a>&gt;&gt;&gt;</dt>
     <dd>Steamworks 本地 API 服务 https://partner.steamgames.com/doc/home</dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApps_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApps*"></a>
-
-  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_OwnsApps_System_UInt32_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.OwnsApps(System.UInt32,System.Threading.CancellationToken)">
-  OwnsApps(uint, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamworksLocalApiService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>检查用户是否拥有指定的应用程序</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; OwnsApps(uint appid, CancellationToken cancellationToken = default)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>appid</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
-    <dd><p>AppId</p>
-</dd>
-    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;&gt;</dt>
-    <dd><p>如果用户拥有该应用程序，则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a>；否则返回 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a></p>
-</dd>
   </dl>
 
 
@@ -1517,10 +1479,10 @@
 
 
 
-  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatValue_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatValue*"></a>
+  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatInt32Value_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatInt32Value*"></a>
 
-  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatValue_System_String_System_Int32_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatValue(System.String,System.Int32,System.Threading.CancellationToken)">
-  SetStatValue(string, int, CancellationToken)
+  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatInt32Value_System_String_System_Int32_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatInt32Value(System.String,System.Int32,System.Threading.CancellationToken)">
+  SetStatInt32Value(string, int, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamworksLocalApiService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1529,7 +1491,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SetStatValue(string name, int value, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SetStatInt32Value(string name, int value, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1559,10 +1521,10 @@
 
 
 
-  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatValue_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatValue*"></a>
+  <a id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatSingleValue_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatSingleValue*"></a>
 
-  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatValue_System_String_System_Single_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatValue(System.String,System.Single,System.Threading.CancellationToken)">
-  SetStatValue(string, float, CancellationToken)
+  <h3 id="BD_SteamClient8_Services_ISteamworksLocalApiService_SetStatSingleValue_System_String_System_Single_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.ISteamworksLocalApiService.SetStatSingleValue(System.String,System.Single,System.Threading.CancellationToken)">
+  SetStatSingleValue(string, float, CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamworksLocalApiService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1571,7 +1533,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SetStatValue(string name, float value, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SetStatSingleValue(string name, float value, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
