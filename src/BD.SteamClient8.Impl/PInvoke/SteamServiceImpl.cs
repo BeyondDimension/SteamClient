@@ -950,45 +950,30 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
-    ///// <summary>
-    ///// 获取应用程序图片源
-    ///// </summary>
-    ///// <param name="app"></param>
-    ///// <param name="type"></param>
-    ///// <param name="token"></param>
-    ///// <returns></returns>
-    //public async Task<ApiRspImpl<CommonImageSource?>> GetAppImageAsync(SteamApp app, LibCacheType type, CancellationToken token = default)
-    //{
-    //    var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
-    //    //var mostRecentUser = Conn.CurrentSteamUser;
-    //    if (mostRecentUser != null)
-    //    {
-    //        var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
-    //        if (customFilePath != null && File.Exists(customFilePath))
-    //            return customFilePath;
-    //    }
+    /// <summary>
+    /// 获取应用程序图片源
+    /// </summary>
+    /// <param name="appId"></param>
+    /// <param name="type"></param>
+    /// <param name="mostRecentUser"></param>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public async Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken token = default)
+    {
+        string? url = null;
+        if (mostRecentUser != null)
+        {
+            var customFilePath = GetAppCustomImageFilePath(appId, mostRecentUser, type);
+            if (customFilePath != null && File.Exists(customFilePath))
+                url = customFilePath;
+        }
 
-    //    var cacheFilePath = GetAppLibCacheFilePath(app.AppId, type);
-    //    if (cacheFilePath != null && File.Exists(cacheFilePath))
-    //        return cacheFilePath;
+        var cacheFilePath = GetAppLibCacheFilePath(appId, type);
+        if (cacheFilePath != null && File.Exists(cacheFilePath))
+            url = cacheFilePath;
 
-    //    var url = type switch
-    //    {
-    //        LibCacheType.Header => app.HeaderLogoUrl,
-    //        LibCacheType.Icon => app.IconUrl,
-    //        LibCacheType.Library_Grid => app.LibraryGridUrl,
-    //        LibCacheType.Library_Hero => app.LibraryHeroUrl,
-    //        LibCacheType.Library_Hero_Blur => app.LibraryHeroBlurUrl,
-    //        LibCacheType.Logo => app.LibraryLogoUrl,
-    //        _ => null,
-    //    };
-
-    //    if (string.IsNullOrEmpty(url))
-    //        return default;
-    //    var value = await CommonImageSourceExtensions.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
-
-    //    return value;
-    //}
+        return ApiRspHelper.Ok(url);
+    }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl> SaveAppImageToSteamFileByByteArray(byte[]? imageBytes, SteamUser user, long appId, SteamGridItemType gridType, CancellationToken cancellationToken = default)
