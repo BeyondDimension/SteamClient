@@ -956,9 +956,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// <param name="appId"></param>
     /// <param name="type"></param>
     /// <param name="mostRecentUser"></param>
-    /// <param name="token"></param>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public async Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken token = default)
+    public async Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken cancellationToken = default)
     {
         string? url = null;
         if (mostRecentUser != null)

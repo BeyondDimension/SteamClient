@@ -151,7 +151,7 @@ public partial interface ISteamService
     /// </summary>
     Task<ApiRspImpl> SaveAppInfosToSteam(CancellationToken cancellationToken = default);
 
-    Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken token = default);
+    Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken cancellationToken = default);
 
     //ValueTask<ApiRspImpl> LoadAppImageAsync(SteamApp app, CancellationToken cancellationToken = default);
 
