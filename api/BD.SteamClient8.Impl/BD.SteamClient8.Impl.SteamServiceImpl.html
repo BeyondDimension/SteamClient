@@ -901,6 +901,49 @@ Class SteamServiceImpl  <a class="header-action link-secondary" title="View sour
 
 
 
+  <a id="BD_SteamClient8_Impl_SteamServiceImpl_GetAppImageAsync_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.GetAppImageAsync*"></a>
+
+  <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_GetAppImageAsync_System_UInt32_BD_SteamClient8_Enums_LibCacheType_BD_SteamClient8_Models_SteamUser_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.GetAppImageAsync(System.UInt32,BD.SteamClient8.Enums.LibCacheType,BD.SteamClient8.Models.SteamUser,System.Threading.CancellationToken)">
+  GetAppImageAsync(uint, LibCacheType, SteamUser?, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/PInvoke/SteamServiceImpl.Abstract.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取应用程序图片源</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;string?&gt;&gt; GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>appId</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></dt>
+    <dd></dd>
+    <dt><code>type</code> <a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.LibCacheType.html">LibCacheType</a></dt>
+    <dd></dd>
+    <dt><code>mostRecentUser</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Impl_SteamServiceImpl_GetAppInfos_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.GetAppInfos*"></a>
 
   <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_GetAppInfos_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.GetAppInfos(System.Boolean,System.Threading.CancellationToken)">
