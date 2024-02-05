@@ -65,7 +65,7 @@ public interface ISteamworksLocalApiService
     /// </summary>
     /// <param name="apps">Steam 应用程序列表</param>
     /// <param name="cancellationToken"></param>
-    Task<ApiRspImpl<IEnumerable<SteamApp>>> OwnsApps(IEnumerable<SteamApp> apps, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<SteamApp>?>> OwnsApps(List<SteamApp> apps, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取应用程序的指定数据

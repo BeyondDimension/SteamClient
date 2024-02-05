@@ -64,6 +64,7 @@ public class SteamApp
     /// <summary>
     /// 无参构造
     /// </summary>
+    [SystemTextJsonConstructor]
     public SteamApp() { }
 
     /// <summary>
@@ -604,11 +605,13 @@ public class SteamApp
     /// <summary>
     /// 是否正在下载
     /// </summary>
+    [SystemTextJsonIgnore]
     public bool IsDownloading => CheckDownloading(State);
 
     /// <summary>
     /// 是否已下载
     /// </summary>
+    [SystemTextJsonIgnore]
     public bool IsInstalled => IsBitSet(State, 2);
 
     /// <summary>

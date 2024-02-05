@@ -810,7 +810,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             var file = Path.Combine(IOPath.AppDataDirectory, ModifiedFileName);
             if (!File.Exists(file))
             {
-                return null!;
+                return ApiRspHelper.Ok<List<ModifiedApp>?>(null);
             }
 
             using FileStream modifiedFileStream = File.Open(file, FileMode.Open, FileAccess.Read);

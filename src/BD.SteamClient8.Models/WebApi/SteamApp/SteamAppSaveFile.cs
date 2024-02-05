@@ -22,6 +22,11 @@ public class SteamAppSaveFile
         Pattern = pattern;
     }
 
+    [SystemTextJsonConstructor]
+    public SteamAppSaveFile()
+    {
+    }
+
     /// <summary>
     /// 父级 AppId
     /// </summary>

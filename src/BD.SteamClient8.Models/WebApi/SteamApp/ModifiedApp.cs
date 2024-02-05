@@ -13,7 +13,7 @@ public partial class ModifiedApp
     /// <summary>
     /// Initializes a new instance of the <see cref="ModifiedApp"/> class.
     /// </summary>
-    [MPConstructor, MP2Constructor]
+    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
     public ModifiedApp()
     {
         ReadChanges();
