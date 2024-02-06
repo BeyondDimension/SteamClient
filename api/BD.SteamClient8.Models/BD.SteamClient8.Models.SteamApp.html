@@ -189,7 +189,8 @@ Class SteamApp  <a class="header-action link-secondary" title="View source" href
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SteamApp()</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonConstructor]
+public SteamApp()</code></pre>
   </div>
 
 
@@ -933,7 +934,8 @@ public string? IconUrl { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsDownloading { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsDownloading { get; }</code></pre>
   </div>
 
 
@@ -997,7 +999,8 @@ public string? IconUrl { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsInstalled { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool IsInstalled { get; }</code></pre>
   </div>
 
 
