@@ -3,6 +3,7 @@ using Strings = BD.SteamClient8.Resources.Strings;
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 #pragma warning restore IDE0079 // 请删除不必要的忽略
+
 namespace BD.SteamClient8.Models;
 
 /// <summary>
@@ -121,8 +122,32 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
     /// </summary>
     static readonly char[] STEAMCHARS =
     [
-        '2', '3', '4', '5', '6', '7', '8', '9', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'M', 'N', 'P', 'Q', 'R',
-        'T', 'V', 'W', 'X', 'Y',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        'B',
+        'C',
+        'D',
+        'F',
+        'G',
+        'H',
+        'J',
+        'K',
+        'M',
+        'N',
+        'P',
+        'Q',
+        'R',
+        'T',
+        'V',
+        'W',
+        'X',
+        'Y',
     ];
 
     /// <summary>
@@ -265,7 +290,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
     /// </summary>
     static DateTime _lastSyncError = DateTime.MinValue;
 
-    #endregion
+    #endregion Authenticator data
 
     /// <summary>
     /// 扩展偏移量以在创建第一个代码时重试
@@ -416,6 +441,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
                 state.Error = Strings.Error_AccountNotBindTel;
                 state.NoPhoneNumber = true;
                 return state.Error;
+
             case 29:
                 state.Error = Strings.Error_HasAuthenticator;
                 return state.Error;
@@ -473,7 +499,12 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         while (state.RequiresActivation == true && retries < ENROLL_ACTIVATE_RETRIES)
         {
             var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
-            var response = await steamAuthenticatorService.FinalizeAddAuthenticatorAsync(state.SteamId.ToString(), state.ActivationCode, CalculateCode(false), ServerTime.ToString(), state.AccessToken);
+            var response = await steamAuthenticatorService.FinalizeAddAuthenticatorAsync(
+                    steam_id: state.SteamId.ToString(),
+                    activation_code: state.ActivationCode,
+                    authenticator_code: CalculateCode(false),
+                    authenticator_time: ServerTime.ToString()
+                );
             var finalizeResponse = response.Content;
             finalizeResponse.ThrowIsNull();
             if (finalizeResponse.Response == null)

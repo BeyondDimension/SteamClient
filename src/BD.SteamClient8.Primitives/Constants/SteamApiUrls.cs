@@ -1,6 +1,7 @@
 #pragma warning disable IDE0079 // 请删除不必要的忽略
 #pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
 #pragma warning restore IDE0079 // 请删除不必要的忽略
+
 namespace BD.SteamClient8.Constants;
 
 public static partial class SteamApiUrls
@@ -60,12 +61,13 @@ public static partial class SteamApiUrls
     public const string STEAMACHIEVEMENT_STATS_USER_URL = "https://www.achievementstats.com/index.php?action=profile&playerId={0}";
     public const string STEAMBACKPACK_USER_URL = "https://backpack.tf/profiles/{0}";
 
-    #endregion
+    #endregion 第三方链接
 
     /// <summary>
     /// 这里需要 steamid3 而不是 id64
     /// </summary>
     public const string STEAM_MINIPROFILE_URL = "https://steam-chat.com/miniprofile/{0}/json";
+
     public const string STEAM_USERINFO_XML_URL = "https://steamcommunity.com/profiles/{0}?xml=1";
 
     public const string STEAMCN_USERINFO_XML_URL = "https://my.steamchina.com/profiles/76561198289531723?xml=1";
@@ -78,9 +80,12 @@ public static partial class SteamApiUrls
     /// <summary>
     /// Login 登录操作相关 API
     /// </summary>
+
     #region OpenIdLogin
+
     public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
-    #endregion
+
+    #endregion OpenIdLogin
 
     //#region LoginV1
     //public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
@@ -89,18 +94,21 @@ public static partial class SteamApiUrls
     //#endregion
 
     #region LoginV2
+
     public const string GetRSAkeyV2Url = "https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={0}";
     public const string STEAM_LOGIN_CHECKDEVICE = "https://login.steampowered.com/jwt/checkdevice/{0}";
     public const string STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS = "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1";
     public const string STEAM_LOGIN_POLLAUTHSESSIONSTATUS = "https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1";
     public const string STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE = "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1";
     public const string STEAM_LOGIN_FINALIZELOGIN = "https://login.steampowered.com/jwt/finalizelogin";
-    #endregion
+
+    #endregion LoginV2
 
     /// <summary>
     /// Account 账号相关信息
     /// </summary>
     public const string STEAM_ACCOUNT_REDEEMWALLETCODE = $"{STEAM_STORE_URL}/account/ajaxredeemwalletcode?l=schinese";
+
     public const string STEAM_ACCOUNT_HISTORY_LOGIN = "https://help.steampowered.com/zh-cn/accountdata/SteamLoginHistory";
     public const string STEAM_ACCOUNT_APIKEY_REGISTER = "https://steamcommunity.com/dev/registerkey";
     public const string STEAM_ACCOUNT_APIKEY_GET = "https://steamcommunity.com/dev/apikey";
@@ -117,6 +125,7 @@ public static partial class SteamApiUrls
     /// TradeOffer 交易报价 API
     /// </summary>
     public const string STEAM_TRADEOFFER_ACCPET = "https://steamcommunity.com/tradeoffer/{0}/accept";
+
     public const string STEAM_TRADEOFFER_DECLINE = "https://steamcommunity.com/tradeoffer/{0}/decline";
     public const string STEAM_TRADEOFFER_CANCEL = "https://steamcommunity.com/tradeoffer/{0}/cancel";
     public const string STEAM_TRADEOFFER_GET_SUMMARY = "https://api.steampowered.com/IEconService/GetTradeOffersSummary/v1?key={0}";
@@ -130,6 +139,7 @@ public static partial class SteamApiUrls
     /// MOBILECONF 令牌交易确认 API
     /// </summary>
     public const string STEAM_MOBILECONF_CONFIRMATION = "https://steamcommunity.com/mobileconf/ajaxop";
+
     public const string STEAM_MOBILECONF_BATCH_CONFIRMATION = "https://steamcommunity.com/mobileconf/multiajaxop";
     public const string STEAM_MOBILECONF_GET_CONFIRMATIONS = "https://steamcommunity.com/mobileconf/getlist";
     public const string STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS = "https://steamcommunity.com/mobileconf/details/{0}?l=schinese";
@@ -138,9 +148,10 @@ public static partial class SteamApiUrls
     /// Authenticator 令牌
     /// </summary>
     public const string STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
+
     public const string STEAM_AUTHENTICATOR_ADD_PHONENUMBER = "https://api.steampowered.com/IPhoneService/SetAccountPhoneNumber/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_GET_USERCOUNTRY = "https://api.steampowered.com/IUserAccountService/GetUserCountry/v1?access_token={0}";
-    public const string STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE = "https://api.steampowered.com/IPhoneService/SendPhoneVerificationCode/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_TWOFAQUERYTIME = "https://api.steampowered.com/ITwoFactorService/QueryTime/v0001";
     public const string STEAM_AUTHENTICATOR_ADD = "https://api.steampowered.com/ITwoFactorService/AddAuthenticator/v1/?access_token={0}";
     public const string STEAM_AUTHENTICATOR_FINALIZEADD = "https://api.steampowered.com/ITwoFactorService/FinalizeAddAuthenticator/v1/?access_token={0}";
@@ -153,12 +164,14 @@ public static partial class SteamApiUrls
     /// Idle 挂卡
     /// </summary>
     public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/v2/market/cards/average-prices/?appids={0}&currency={1}";
+
     public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/v2/market/cards/?appid={0}&currency={1}";
 
     /// <summary>
     /// Market 市场交易
     /// </summary>
     public const string STEAM_MARKET_ITEMPRICEOVERVIEW_GET = "https://steamcommunity.com/market/priceoverview/?appid={0}&currency={1}&market_hash_name={2}";
+
     public const string STEAM_MARKET_ITEMORDERHISTOGRAM_GET = "https://steamcommunity.com/market/itemordershistogram?country={0}&language={1}&currency={2}&item_nameid={3}";
     public const string STEAM_MARKET_SELLITEM = "https://steamcommunity.com/market/sellitem/";
     public const string STEAM_MARKET_TRADING_HISTORY_GET = "https://steamcommunity.com/market/myhistory/render/?query=&start={0}&count={1}";
