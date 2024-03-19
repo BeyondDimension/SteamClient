@@ -118,7 +118,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
-    public SteamApp[]? SteamApps { get; private set; }
+    public abstract SteamApp[]? SteamApps { get; }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamApp[]?>> GetSteamApps(CancellationToken cancellationToken = default)
@@ -128,7 +128,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
-    public SteamApp[]? DownloadApps { get; private set; }
+    public abstract SteamApp[]? DownloadApps { get; }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamApp[]?>> GetDownloadApps(CancellationToken cancellationToken = default)
@@ -138,7 +138,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
-    public SteamUser[]? SteamUsers { get; private set; }
+    public abstract SteamUser[]? SteamUsers { get; }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamUser[]?>> GetSteamUsers(CancellationToken cancellationToken = default)
