@@ -81,6 +81,11 @@ public abstract partial class SteamServiceImpl : ISteamService
     protected List<FileSystemWatcher>? steamDownloadingWatchers;
 
     /// <summary>
+    /// Steam 下载文件监听触发列表
+    /// </summary>
+    protected ConcurrentQueue<string>? steamDownloadingChanges;
+
+    /// <summary>
     /// 初始化 <see cref="SteamServiceImpl"/> 类的新实例
     /// </summary>
     /// <param name="loggerFactory"></param>
@@ -1245,7 +1250,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// <summary>
     /// 监听 Steam 下载
     /// </summary>
-    public async Task<ApiRspImpl> StartWatchSteamDownloading(Action<SteamApp> changedAction, Action<uint> deleteAction, CancellationToken cancellationToken = default)
+    public async IAsyncEnumerable<ApiRspImpl<string>> StartWatchSteamDownloading([EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         if (!steamDownloadingWatchers.Any_Nullable())
@@ -1254,10 +1259,9 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
         var libraryPaths = GetLibraryPaths();
         if (!libraryPaths.Any_Nullable())
-        {
-            return "No game library found.";
-        }
+            yield break;
 
+        steamDownloadingChanges = [];
         foreach (string libraryFolder in libraryPaths!)
         {
             var fsw = new FileSystemWatcher(libraryFolder, "*.acf")
@@ -1271,7 +1275,25 @@ public abstract partial class SteamServiceImpl : ISteamService
             fsw.EnableRaisingEvents = true;
             steamDownloadingWatchers.Add(fsw);
         }
-        return ApiRspHelper.Ok();
+
+        try
+        {
+            while (steamDownloadingWatchers is not null)
+            {
+                if (steamDownloadingChanges is not null && steamDownloadingChanges.TryDequeue(out var result))
+                    yield return ApiRspHelper.Ok(result)!;
+                else
+                {
+                    await Task.Yield();
+                    await Task.Delay(5000);
+                }
+            }
+        }
+        finally
+        {
+            steamDownloadingChanges?.Clear();
+            steamDownloadingChanges = null;
+        }
 
         void Fsw_Changed(object sender, FileSystemEventArgs e)
         {
@@ -1306,7 +1328,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             // Search for changed app, if null it's a new app
             //SteamApp info = Apps.FirstOrDefault(x => x.ID == newID);
             //uint appId = GetAppId(v);
-            changedAction.Invoke(app);
+            steamDownloadingChanges.Enqueue(Serializable.SJSON(app));
 
             //if (info != null) // Download state changed
             //{
@@ -1333,7 +1355,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             //if (info == null) return;
 
             //var eventArgs = new AppInfoEventArgs(info);
-            deleteAction.Invoke(id);
+            steamDownloadingChanges.Enqueue(id.ToString());
         }
     }
 

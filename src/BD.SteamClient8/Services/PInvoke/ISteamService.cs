@@ -175,7 +175,7 @@ public partial interface ISteamService
     /// <summary>
     /// 监听 Steam 下载
     /// </summary>
-    Task<ApiRspImpl> StartWatchSteamDownloading(Action<SteamApp> changedAction, Action<uint> deleteAction, CancellationToken cancellationToken = default);
+    IAsyncEnumerable<ApiRspImpl<string>> StartWatchSteamDownloading([EnumeratorCancellation] CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 结束监听 Steam 下载
