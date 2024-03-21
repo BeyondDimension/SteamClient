@@ -472,6 +472,37 @@ Class SteamServiceImpl  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_steamDownloadingChanges" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.steamDownloadingChanges">
+  steamDownloadingChanges
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/PInvoke/SteamServiceImpl.Abstract.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steam 下载文件监听触发列表</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ConcurrentQueue&lt;string&gt;? steamDownloadingChanges</code></pre>
+  </div>
+
+
+
+
+  <h4 class="section">Field Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.concurrent.concurrentqueue-1">ConcurrentQueue</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_steamDownloadingWatchers" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.steamDownloadingWatchers">
   steamDownloadingWatchers
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/PInvoke/SteamServiceImpl.Abstract.cs"><i class="bi bi-code-slash"></i></a>
@@ -1968,8 +1999,8 @@ Class SteamServiceImpl  <a class="header-action link-secondary" title="View sour
 
   <a id="BD_SteamClient8_Impl_SteamServiceImpl_StartWatchSteamDownloading_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.StartWatchSteamDownloading*"></a>
 
-  <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_StartWatchSteamDownloading_System_Action_BD_SteamClient8_Models_SteamApp__System_Action_System_UInt32__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.StartWatchSteamDownloading(System.Action{BD.SteamClient8.Models.SteamApp},System.Action{System.UInt32},System.Threading.CancellationToken)">
-  StartWatchSteamDownloading(Action&lt;SteamApp&gt;, Action&lt;uint&gt;, CancellationToken)
+  <h3 id="BD_SteamClient8_Impl_SteamServiceImpl_StartWatchSteamDownloading_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Impl.SteamServiceImpl.StartWatchSteamDownloading(System.Threading.CancellationToken)">
+  StartWatchSteamDownloading(CancellationToken)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/PInvoke/SteamServiceImpl.Abstract.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -1978,22 +2009,18 @@ Class SteamServiceImpl  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&gt; StartWatchSteamDownloading(Action&lt;SteamApp&gt; changedAction, Action&lt;uint&gt; deleteAction, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public IAsyncEnumerable&lt;ApiRspImpl&lt;string&gt;&gt; StartWatchSteamDownloading(CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>changedAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApp/SteamApp.cs">SteamApp</a>&gt;</dt>
-    <dd></dd>
-    <dt><code>deleteAction</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>&gt;</dt>
-    <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl.MemoryPackFormatter.g.cs">ApiRspImpl</a>&gt;</dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/MemoryPack.Generator/MemoryPack.Generator.MemoryPackGenerator/BD.Common8.Models.ApiRspImpl_TContent_.MemoryPackFormatter.g.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;&gt;</dt>
     <dd></dd>
   </dl>
 
