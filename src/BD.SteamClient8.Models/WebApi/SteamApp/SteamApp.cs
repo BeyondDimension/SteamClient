@@ -412,11 +412,18 @@ public class SteamApp
     public string? IconUrl => string.IsNullOrEmpty(Icon) ? null :
         string.Format(SteamApiUrls.STEAMAPP_LOGO_URL, AppId, Icon);
 
+    private Process? _process;
+
     /// <summary>
     /// App 启动进程
     /// </summary>
     [SystemTextJsonIgnore]
-    public Process? Process { get; set; }
+    public Process? Process { get => _process; set { _process = value; HasProcess = value is not null; } }
+
+    /// <summary>
+    /// App 是否启动进程（用于序列化传输获取状态）
+    /// </summary>
+    public bool HasProcess { get; set; }
 
     /// <summary>
     /// 是否正在观测下载

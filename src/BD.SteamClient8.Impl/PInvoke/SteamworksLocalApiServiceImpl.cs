@@ -314,7 +314,6 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         if (IsSupported)
         {
             var tcs = new TaskCompletionSource<UserStatsReceivedResult>();
-            tcs.SetCanceled(cancellationToken);
 
             UserStatsReceivedCallback = SteamClient.CreateAndRegisterCallback<UserStatsReceivedCallback>();
             UserStatsReceivedCallback.OnRun += value =>
@@ -326,9 +325,13 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
                 });
             };
 
-            var result = await tcs.Task;
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                var result = await tcs.Task;
+                yield return ApiRspHelper.Ok(result)!;
+                tcs = new();
+            }
 
-            yield return ApiRspHelper.Ok(result)!;
         }
     }
 
