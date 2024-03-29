@@ -34,8 +34,8 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         Assert.Multiple(() =>
         {
             Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content.idleInfo, Is.Not.Null);
-            Assert.That(rsp.Content.badges, Is.Not.Null);
+            Assert.That(rsp.Content.UserIdleInfo, Is.Not.Null);
+            Assert.That(rsp.Content.Badges, Is.Not.Null);
         });
 
         TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));

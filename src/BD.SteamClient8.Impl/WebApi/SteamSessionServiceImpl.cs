@@ -71,7 +71,7 @@ public class SteamSessionServiceImpl(
         {
             var temp = SystemTextJsonSerializer.Serialize(steamSession,
                 SteamSessionServiceImpl_SteamSession_JsonSerializerContext_.Default.SteamSession);
-            await ISecureStorage.Instance.SetAsync("CurrentSteamUserSession", temp);
+            await ISecureStorage.Instance.SetAsync(ISteamSessionService.CurrentSteamUserKey, temp);
             return true;
         }
         catch (Exception ex)
@@ -85,7 +85,7 @@ public class SteamSessionServiceImpl(
     {
         try
         {
-            var text = await ISecureStorage.Instance.GetAsync("CurrentSteamUserSession");
+            var text = await ISecureStorage.Instance.GetAsync(ISteamSessionService.CurrentSteamUserKey);
             if (text != null)
             {
                 var session = SystemTextJsonSerializer.Deserialize(text,

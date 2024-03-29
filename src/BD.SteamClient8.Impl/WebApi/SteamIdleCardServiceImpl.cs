@@ -33,7 +33,7 @@ public partial class SteamIdleCardServiceImpl(
     #region Public
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<(UserIdleInfo idleInfo, IEnumerable<IdleBadge> badges)>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<UserBadgesResponse>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
     {
         var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
         steamSession = steamSession.ThrowIsNull(steam_id);
@@ -131,12 +131,13 @@ public partial class SteamIdleCardServiceImpl(
             return ex;
         }
 
-        return (userIdle, badges);
+        return new UserBadgesResponse(userIdle, badges)!;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
     {
+        List<AppCardsAvgPrice> avgs = [];
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
@@ -148,7 +149,6 @@ public partial class SteamIdleCardServiceImpl(
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
             {
-                var avgs = new List<AppCardsAvgPrice>();
                 foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
                 {
                     var avg = new AppCardsAvgPrice();
@@ -168,7 +168,6 @@ public partial class SteamIdleCardServiceImpl(
                             avgs.Add(avg);
                     }
                 }
-                return avgs!;
             }
         }
         catch (Exception ex)
@@ -176,12 +175,13 @@ public partial class SteamIdleCardServiceImpl(
             Log.Warn(nameof(GetAppCardsAvgPrice), ex, "获取卡片平均价格接口出错");
             return ex!;
         }
-        return ApiRspHelper.Ok(Enumerable.Empty<AppCardsAvgPrice>())!;
+        return avgs!;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IEnumerable<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)
     {
+        List<CardsMarketPrice> cardPrices = [];
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_MARKETPRICE.Format(appId, currency);
@@ -193,7 +193,6 @@ public partial class SteamIdleCardServiceImpl(
                 && result.ToString() == "success"
                 && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
             {
-                var cardPrices = new List<CardsMarketPrice>();
                 foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
                 {
                     var cardPrice = new CardsMarketPrice();
@@ -203,7 +202,6 @@ public partial class SteamIdleCardServiceImpl(
                     cardPrice.Price = item.Value.GetProperty("price").GetDecimal();
                     cardPrices.Add(cardPrice);
                 }
-                return cardPrices!;
             }
         }
         catch (Exception ex)
@@ -211,7 +209,7 @@ public partial class SteamIdleCardServiceImpl(
             Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
             return ex!;
         }
-        return ApiRspHelper.Ok(Enumerable.Empty<CardsMarketPrice>())!;
+        return cardPrices!;
     }
 
     #endregion

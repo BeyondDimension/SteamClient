@@ -14,6 +14,11 @@ public interface ISteamSessionService
     static ISteamSessionService Instance => Ioc.Get<ISteamSessionService>();
 
     /// <summary>
+    /// 当前本地的 Steam 登录会话信息键
+    /// </summary>
+    public const string CurrentSteamUserKey = "CurrentSteamUser";
+
+    /// <summary>
     /// 添加或修改登录会话信息
     /// </summary>
     /// <param name="steamSession"></param>
