@@ -1,23 +1,23 @@
 {
-  "source_base_path": "C:/actions-runner/_work/SteamClient/SteamClient",
+  "source_base_path": "C:/Users/CYCY/source/SteamClient",
   "xrefmap": "xrefmap.yml",
   "files": [
-    {
-      "type": "Conceptual",
-      "source_relative_path": "README.md",
-      "output": {
-        ".html": {
-          "relative_path": "README.html"
-        }
-      },
-      "version": ""
-    },
     {
       "type": "Resource",
       "source_relative_path": "README.md",
       "output": {
         "resource": {
           "relative_path": "README.md"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
         }
       },
       "version": ""
@@ -2471,6 +2471,16 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Transfer_Parameters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.UserBadgesResponse.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.UserBadgesResponse.html"
         }
       },
       "version": ""
