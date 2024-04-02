@@ -163,9 +163,9 @@ public static partial class SteamApiUrls
     /// <summary>
     /// Idle 挂卡
     /// </summary>
-    public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/v2/market/cards/average-prices/?appids={0}&currency={1}";
+    public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/market/cards/average-prices/v2?appids={0}&currency={1}";
 
-    public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/v2/market/cards/?appid={0}&currency={1}";
+    public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/market/cards/v2?appid={0}&currency={1}";
 
     /// <summary>
     /// Market 市场交易
