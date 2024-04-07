@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -17,12 +17,14 @@
     <resheader name="version">2.0</resheader>
     <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
     <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
     <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
     <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
         <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
     <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
                 
     There are any number of "resheader" rows that contain simple 
@@ -57,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -115,4 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CaptchaNeeded" xml:space="preserve">
+    <value>認証コードを入力してからもう一度ログインしてください。</value>
+  </data>
+  <data name="EmailAuthNeeded" xml:space="preserve">
+    <value>アカウントのメール・アドレスを使用して、メールコードを入力してから続行してください。</value>
+  </data>
+  <data name="Error_InvalidActivationCode" xml:space="preserve">
+    <value>認証コードが無効です</value>
+  </data>
+  <data name="Error_InvalidResponseFromSteam" xml:space="preserve">
+    <value>Steam から不正なレスポンス：{0}</value>
+  </data>
+  <data name="Error_ITwoFactorService_AddAuthenticator_v0001" xml:space="preserve">
+    <value>メールを送信できません。Steamアカウントを使用して携帯電話番号を確認してください。</value>
+  </data>
+  <data name="Error_NoOAuth" xml:space="preserve">
+    <value>Steamからの無効な応答（OAuthトークンがありません）</value>
+  </data>
+  <data name="Error_OnActivating" xml:space="preserve">
+    <value>トークンを有効化中に問題が発生しました。Steamサーバーに問題がある可能性があります。後でもう一度やり直してください。</value>
+  </data>
+  <data name="Error_Password" xml:space="preserve">
+    <value>ユーザー名またはパスワードが正しくありません。</value>
+  </data>
+  <data name="Error_SteamguardPhoneAjax" xml:space="preserve">
+    <value>您的 Steam 帐户必须附有支持短信的手机号码, {0}请到 Steam 客户端或 Steam 网站的帐户详细信息添加电话号码。</value>
+  </data>
+  <data name="Error_TooManyRequests" xml:space="preserve">
+    <value>あなたのIPアドレスからのログインは頻繁すぎます、後でまたお試しください。</value>
+  </data>
+  <data name="RequiresActivation" xml:space="preserve">
+    <value>アカウントバインディングの端末情報を確認して、続行してください</value>
+  </data>
+  <data name="Error_HasAuthenticator" xml:space="preserve">
+    <value>アカウントが追加された認証システムが存在しているようです。あなたのアカウントからインポートするには、既存の認証システムを削除する必要があります。</value>
+  </data>
+  <data name="AccountNotBindEmail" xml:space="preserve">
+    <value>連携済みメールアカウントはありません</value>
+  </data>
+  <data name="ConfirmLinkInEmail" xml:space="preserve">
+    <value>メール内のリンクを確認してください</value>
+  </data>
+  <data name="Error_AccountNotBindTel" xml:space="preserve">
+    <value>アカウントにリンクされた携帯電話番号がありません。指示に従って電話番号を追加してください</value>
+  </data>
+  <data name="Error_GetQuoteTradingImage" xml:space="preserve">
+    <value>トレードマークの画像の取得に失敗しました</value>
+  </data>
+  <data name="Error_InvalidLoginInfo" xml:space="preserve">
+    <value>ログイン情報が無効になりました</value>
+  </data>
+  <data name="RemoveAuthenticatorFail_" xml:space="preserve">
+    <value>トークンのバリデータを削除できませんでした。残りの試行回数：{0}</value>
+  </data>
 </root>
