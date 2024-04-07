@@ -22,9 +22,7 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
-public class ClientInitializeException : Exception
+public class ClientInitializeException : ApplicationException
 {
     public readonly ClientInitializeFailure Failure;
 

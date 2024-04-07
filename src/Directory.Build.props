@@ -1,10 +1,8 @@
 <Project>
 	<Import Project="..\ref\Common\src\Directory.Build.props" />
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\Version.props" />
 
 	<PropertyGroup>
-		<!--<Version>1.yy.1MMdd.1hhmm</Version>-->
-		<Version>8.24.10107.12344</Version>
-		<IsCommon8Project>false</IsCommon8Project>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
@@ -15,5 +13,21 @@
 		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
 		<GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<Version>$(Version_SteamClient8)</Version>
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Condition="Exists('$(Path_Submodule)Common\src\Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs')" Remove="$(Path_Submodule)Common\src\Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs" />
+		<Compile Condition="$(MSBuildProjectName) != 'BD.SteamClient8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.SteamClient8.UnitTest.cs">
+			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
+		</Compile>
+	</ItemGroup>
 
 </Project>

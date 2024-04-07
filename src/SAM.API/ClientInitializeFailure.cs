@@ -21,8 +21,6 @@
  */
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public enum ClientInitializeFailure : byte
 {
     Unknown = 0,

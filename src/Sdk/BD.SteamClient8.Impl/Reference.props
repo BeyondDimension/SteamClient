@@ -1,0 +1,7 @@
+<Project>
+	<!-- 依赖包引用 -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<!-- Windows Only -->
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+</Project>

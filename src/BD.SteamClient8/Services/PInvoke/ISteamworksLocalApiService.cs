@@ -1,7 +1,4 @@
 #if !(IOS || ANDROID)
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Services;
 
 /// <summary>
@@ -156,7 +153,6 @@ public interface ISteamworksLocalApiService
     /// 获取指定成就的完成状态
     /// </summary>
     /// <param name="name">成就的名称</param>
-    /// <param name="isAchieved">返回是否完成该成就</param>
     /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成状态</returns>
     Task<ApiRspImpl<bool?>> GetAchievementState(string name, CancellationToken cancellationToken = default);
@@ -165,8 +161,6 @@ public interface ISteamworksLocalApiService
     /// 获取指定成就的完成状态和解锁时间
     /// </summary>
     /// <param name="name">成就的名称</param>
-    /// <param name="isAchieved">返回是否完成该成就</param>
-    /// <param name="unlockTime">返回解锁该成就的时间</param>
     /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成状态和解锁时间</returns>
     Task<ApiRspImpl<AchievementAndUnlockTimeResult?>> GetAchievementAndUnlockTime(string name, CancellationToken cancellationToken = default);
@@ -175,7 +169,6 @@ public interface ISteamworksLocalApiService
     /// 获取指定成就的完成百分比
     /// </summary>
     /// <param name="name">成就的名称</param>
-    /// <param name="percent">返回成就的完成百分比</param>
     /// <param name="cancellationToken"></param>
     /// <returns>是否成功获取到成就的完成百分比</returns>
     Task<ApiRspImpl<float?>> GetAchievementAchievedPercent(string name, CancellationToken cancellationToken = default);

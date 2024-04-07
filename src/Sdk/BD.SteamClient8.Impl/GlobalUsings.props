@@ -1,0 +1,14 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.Impl" />
+		<Using Include="Google.Protobuf" />
+		<Using Include="System.Net.Http.Json" />
+		<Using Include="Polly.Retry" />
+	</ItemGroup>
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<!-- Windows Only -->
+		<Using Include="System.Management" />
+	</ItemGroup>
+</Project>

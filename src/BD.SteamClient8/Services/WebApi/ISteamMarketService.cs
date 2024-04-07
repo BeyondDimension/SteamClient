@@ -1,6 +1,3 @@
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Services;
 
 /// <summary>
@@ -47,7 +44,7 @@ public interface ISteamMarketService
     /// </summary>
     /// <param name="loginState">登录状态</param>
     /// <param name="start">从多少条开始 (跳过条数)</param>
-    /// <param name="count" >获取多少条 ( 最大:500)</param>
+    /// <param name="count" >获取多少条 (最大:500)</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     IAsyncEnumerable<MarketTradingHistoryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100, CancellationToken cancellationToken = default);

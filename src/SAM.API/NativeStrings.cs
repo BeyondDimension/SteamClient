@@ -22,8 +22,6 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 internal sealed class NativeStrings
 {
     public sealed class StringHandle : SafeHandleZeroOrMinusOneIsInvalid

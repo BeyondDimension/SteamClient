@@ -1,0 +1,12 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="ValveKeyValue" />
+		<Using Include="ValveKeyValue.Abstraction" />
+		<Using Include="ValveKeyValue.Deserialization" />
+		<Using Include="ValveKeyValue.Deserialization.KeyValues1" />
+		<Using Include="ValveKeyValue.KeyValues1" />
+		<Using Include="ValveKeyValue.Serialization" />
+		<Using Include="ValveKeyValue.Serialization.KeyValues1" />
+	</ItemGroup>
+</Project>

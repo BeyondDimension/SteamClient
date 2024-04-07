@@ -22,8 +22,6 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 [StructLayout(LayoutKind.Sequential, Pack = 1, CharSet = CharSet.Ansi)]
 internal struct NativeClass
 {

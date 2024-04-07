@@ -1,0 +1,13 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.Columns" />
+		<Using Include="BD.SteamClient8.Constants" />
+		<Using Include="BD.SteamClient8.Enums" />
+		<Using Include="SteamKit2" />
+		<Using Alias="SteamKit2SteamUser" Include="SteamKit2.SteamUser" />
+		<Using Alias="SteamKit2SteamApps" Include="SteamKit2.SteamApps" />
+		<Using Alias="SteamKit2ERemoteStoragePlatform" Include="SteamKit2.ERemoteStoragePlatform" />
+	</ItemGroup>
+</Project>

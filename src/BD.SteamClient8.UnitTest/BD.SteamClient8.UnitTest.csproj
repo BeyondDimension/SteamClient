@@ -6,17 +6,8 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<IsPackable>false</IsPackable>
 		<IsTestProject>true</IsTestProject>
-		<IsGlobalUsingsMSBuildProjectName>true</IsGlobalUsingsMSBuildProjectName>
-		<UseProjectUtils>true</UseProjectUtils>
-		<UseCommon8Bcl>true</UseCommon8Bcl>
-		<UseCommon8Primitives>true</UseCommon8Primitives>
-		<UseCommon8PrimitivesApiResponse>true</UseCommon8PrimitivesApiResponse>
-		<UseCommon8PrimitivesApiRsp>true</UseCommon8PrimitivesApiRsp>
-		<UseDotNextThreading>true</UseDotNextThreading>
-		<UseSystemSecurityCryptographyProtectedData>true</UseSystemSecurityCryptographyProtectedData>
-		<UseMicrosoftExtensionsLoggingConsole>true</UseMicrosoftExtensionsLoggingConsole>
 		<UserSecretsId>51922236-4771-4648-8755-76d97bcfa849</UserSecretsId>
-		<UseSteamClient8Impl>true</UseSteamClient8Impl>
+		<UseProjectUtils>true</UseProjectUtils>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -24,33 +15,34 @@
 			<LinkBase>Templates</LinkBase>
 		</Compile>
 	</ItemGroup>
+	
+	<ItemGroup>
+		<Using Include="NUnit.Framework" />
+		<Using Include="NUnit.Framework.Interfaces" />
+		<Using Include="NUnit.Framework.Internal" />
+		<Using Include="NUnit.Framework.Internal.Commands" />
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.UnitTest" />
+		<Using Include="BD.SteamClient8.UnitTest.Abstractions" />
+		<Using Include="BD.SteamClient8.UnitTest.Helpers" />
+		<Using Alias="IConfiguration" Include="Microsoft.Extensions.Configuration.IConfiguration" />
+	</ItemGroup>
 
-	<!--<ItemGroup>
-		<Compile Include="..\Shared\GlobalUsings.SteamAchievementManager.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.ValveKeyValue.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Impl.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Primitives.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.BD.SteamClient8.Models.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-		<Compile Include="..\Shared\GlobalUsings.WinAuth.cs">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</Compile>
-	</ItemGroup>-->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+	</ItemGroup>
 
-	<!--<ItemGroup>
-		<ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
-	</ItemGroup>-->
+	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
+	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Logging.props" />
+	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Logging.Console.props" />
+
+	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.UnitTest.props" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.props" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.ApiResponse.props" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.SteamClient8.Impl.props" />
 
 </Project>

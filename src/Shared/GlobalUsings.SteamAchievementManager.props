@@ -1,0 +1,10 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="SAM.API" />
+		<Using Include="SAM.API.Callbacks" />
+		<Using Include="SAM.API.Interfaces" />
+		<Using Include="SAM.API.Types" />
+		<Using Include="SAM.API.Wrappers" />
+	</ItemGroup>
+</Project>

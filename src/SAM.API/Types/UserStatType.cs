@@ -22,8 +22,6 @@
 
 namespace SAM.API.Types;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public enum UserStatType
 {
     Invalid = 0,

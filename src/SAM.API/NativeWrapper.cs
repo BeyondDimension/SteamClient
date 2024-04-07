@@ -22,8 +22,6 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TNativeFunctions> : INativeWrapper
 {
     protected nint ObjectAddress;

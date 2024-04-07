@@ -127,6 +127,12 @@ abstract class ServiceTestBase
     {
         public override string? SteamLanguageString => default;
 
+        public override SteamApp[]? SteamApps => [];
+
+        public override SteamApp[]? DownloadApps => [];
+
+        public override SteamUser[]? SteamUsers => [];
+
         protected override string? StratSteamDefaultParameter => default;
 
         protected override bool IsRunSteamAdministrator => default;

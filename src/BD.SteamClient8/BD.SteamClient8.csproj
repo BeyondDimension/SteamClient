@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildProjectName).props" />
+	<PropertyGroup>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<IsPackable>true</IsPackable>
-	</PropertyGroup>
 </Project>

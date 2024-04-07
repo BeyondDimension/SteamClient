@@ -22,8 +22,6 @@
 
 namespace SAM.API.Wrappers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public class SteamClient018 : NativeWrapper<ISteamClient018>
 {
     #region CreateSteamPipe

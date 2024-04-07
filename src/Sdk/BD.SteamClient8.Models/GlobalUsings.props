@@ -1,0 +1,11 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.Models" />
+		<Using Include="BD.SteamClient8.Models.Converters" />
+		<Using Include="BD.SteamClient8.Models.Protobuf" />
+		<Using Alias="SteamUser" Include="BD.SteamClient8.Models.SteamUser" />
+		<Using Alias="SteamApps" Include="BD.SteamClient8.Models.SteamApps" />
+	</ItemGroup>
+</Project>

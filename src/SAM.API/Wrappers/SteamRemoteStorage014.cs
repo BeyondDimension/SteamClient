@@ -23,7 +23,6 @@
 namespace SAM.API.Wrappers;
 
 using ERemoteStoragePlatform = SAM.API.Types.ERemoteStoragePlatform;
-#pragma warning disable SA1600 // Elements should be documented
 
 public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
 {

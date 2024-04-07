@@ -1,8 +1,5 @@
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable IDE1006 // 命名样式
-#pragma warning disable SA1600 // Elements should be documented
-
 sealed class _ProjectUtilsTest
 {
     [Test]

@@ -22,8 +22,6 @@
 
 namespace SAM.API.Callbacks;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public sealed class UserStatsReceived : Callback<Types.UserStatsReceived>
 {
     public override int Id => 1101;

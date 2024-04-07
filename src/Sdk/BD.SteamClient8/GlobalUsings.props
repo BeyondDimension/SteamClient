@@ -1,0 +1,14 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.Helpers" />
+		<Using Include="BD.SteamClient8.Services" />
+		<Using Include="BD.SteamClient8.Models.Abstractions" />
+	</ItemGroup>
+	<ImportGroup>
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.BouncyCastle.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ValveKeyValue.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.SteamAchievementManager.props" />
+	</ImportGroup>
+</Project>

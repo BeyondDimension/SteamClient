@@ -22,8 +22,6 @@
 
 namespace SAM.API.Wrappers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 /// <summary>
 /// https://partner.steamgames.com/doc/api/ISteamUtils?language=english
 /// </summary>

@@ -22,8 +22,6 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public class Client : IDisposable
 {
     public SteamClient018 SteamClient { get; set; } = null!;

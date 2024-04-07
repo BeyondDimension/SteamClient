@@ -1,0 +1,26 @@
+<Project>
+	<!-- 配置 NuGet 包生成 -->
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<IsPackable>true</IsPackable>
+		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/BeyondDimension/SteamClient</PackageProjectUrl>
+		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
+		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryBranch>dev8</RepositoryBranch>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageOutputPath>$(MSBuildProjectDirectory)\..\..\pkg</PackageOutputPath>
+		<!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All"/>
+		<None Include="$(MSBuildThisFileDirectory)..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\..\README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+</Project>

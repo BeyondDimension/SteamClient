@@ -5,11 +5,11 @@ namespace BD.SteamClient8.UnitTest;
 /// </summary>
 sealed class SteamTradeServiceTest : ServiceTestBase
 {
-    protected ISteamTradeService steamTradeService = null!;
-    protected ISteamAccountService steamAccountService = null!;
-    protected ISteamSessionService steamSessionService = null!;
-    protected ISteamAuthenticatorService steamAuthenticatorService = null!;
-    protected IConfiguration configuration = null!;
+    ISteamTradeService steamTradeService = null!;
+    ISteamAccountService steamAccountService = null!;
+    ISteamSessionService steamSessionService = null!;
+    ISteamAuthenticatorService steamAuthenticatorService = null!;
+    IConfiguration configuration = null!;
 
     static string ApiKey => SteamLoginStateHelper.ApiKey;
 

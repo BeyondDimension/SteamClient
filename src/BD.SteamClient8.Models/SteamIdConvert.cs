@@ -1,6 +1,3 @@
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Models;
 
 public sealed class SteamIdConvert
@@ -9,23 +6,25 @@ public sealed class SteamIdConvert
     // - SteamIdConvert sid = new SteamIdConvert("STEAM_0:0:52161201");
     //   string Steam64 = sid.Id64;
 
-#pragma warning disable SA1132 // Do not combine fields
     const string Default_Id = "STEAM_0:";
     const string Default_Id3 = "U:1:";
 
-    public string
-        Id = Default_Id,
-        Id3 = Default_Id3,
-        Id32 = string.Empty,
-        Id64 = string.Empty;
+    public string Id = Default_Id;
+    public string Id3 = Default_Id3;
+    public string Id32 = string.Empty;
+    public string Id64 = string.Empty;
 
     private string? _input;
     private byte _inputType;
 
-    private static readonly char[] Sid3Strings = { 'U', 'I', 'M', 'G', 'A', 'P', 'C', 'g', 'T', 'L', 'C', 'a' };
-    private const byte SteamId = 1, SteamId3 = 2, SteamId32 = 3, SteamId64 = 4;
+    private static readonly char[] Sid3Strings = ['U', 'I', 'M', 'G', 'A', 'P', 'C', 'g', 'T', 'L', 'C', 'a'];
+
+    const byte SteamId = 1;
+    const byte SteamId3 = 2;
+    const byte SteamId32 = 3;
+    const byte SteamId64 = 4;
+
     public const long UndefinedId = 76561197960265728;
-#pragma warning restore SA1132 // Do not combine fields
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SteamIdConvert"/> class.

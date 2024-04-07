@@ -1,5 +1,5 @@
 # SteamClient
-Steam 相关库
+[次元超越 Steam 相关库文档](https://beyonddimension.github.io/SteamClient)
 
 ### BD.SteamClient8
 Steam 相关服务接口库，扩展函数、助手类

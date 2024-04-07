@@ -2,8 +2,6 @@ using Resx1 = BD.SteamClient8.Resources.Strings;
 
 namespace BD.SteamClient8.UnitTest;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 sealed class ResxTest
 {
     [Test]

@@ -11,7 +11,7 @@ sealed class AuthenticatorTest : ServiceTestBase
     ISteamSessionService steamSessionService = null!;
     IConfiguration configuration = null!;
 
-    SteamAuthenticator.EnrollState enrollState;
+    EnrollState enrollState;
 
     /// <inheritdoc/>
     [SetUp]

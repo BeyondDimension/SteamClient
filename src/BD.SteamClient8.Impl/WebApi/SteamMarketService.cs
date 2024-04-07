@@ -1,6 +1,3 @@
-#pragma warning disable IDE0079 // 请删除不必要的忽略
-#pragma warning disable IDE0130 // 命名空间与文件夹结构不匹配
-#pragma warning restore IDE0079 // 请删除不必要的忽略
 namespace BD.SteamClient8.Impl;
 
 /// <summary>
@@ -247,17 +244,24 @@ public class SteamMarketService(IServiceProvider serviceProvider,
         };
         sendArgs.SetHttpClient(client);
 
-        var respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
+        using var respStream = await SendAsync<Stream>(sendArgs, cancellationToken);
 
         if (respStream == null)
             return ApiRspHelper.Fail<MarketListings>($"{requestUrl} request error")!;
 
-        var activeListings = HtmlParseHelper.ParseSimpleTable(respStream,
+        using IBrowsingContext browsingContext = BrowsingContext.New();
+
+        var htmlParser = browsingContext.GetService<IHtmlParser>();
+        ArgumentNullException.ThrowIfNull(htmlParser);
+
+        using IDocument document = await htmlParser.ParseDocumentAsync(respStream);
+
+        var activeListings = HtmlParseHelper.ParseSimpleTable(document,
          tableSelector: "#tabContentsMyActiveMarketListingsRows",
          rowSelector: $"div[id^='{activeListingRowIdPrefix}']",
          ParseActiveListingRow);
 
-        var buyorders = HtmlParseHelper.ParseSimpleTable(respStream,
+        var buyorders = HtmlParseHelper.ParseSimpleTable(document,
          tableSelector: "#tabContentsMyListings > div:last-child",
          rowSelector: $"div[id^='{buyorderRowIdPrefix}']",
          ParseBuyorderRow);

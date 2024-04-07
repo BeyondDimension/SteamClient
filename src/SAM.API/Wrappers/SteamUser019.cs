@@ -22,8 +22,6 @@
 
 namespace SAM.API.Wrappers;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public class SteamUser017 : NativeWrapper<ISteamUser019>
 {
     #region GetSteamID

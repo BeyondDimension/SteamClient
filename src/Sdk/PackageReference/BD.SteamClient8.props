@@ -1,0 +1,15 @@
+<Project>
+	<!-- 包引用 -->
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')" Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\GlobalUsings.props')" Project="$(MSBuildThisFileDirectory)..\$(MSBuildThisFileName)\GlobalUsings.props" />
+	<ItemGroup Condition="$(MSBuildProjectName) != $(MSBuildThisFileName)">
+		<PackageReference Include="$(MSBuildThisFileName)" />
+		<PackageReference Include="BD.Common8.SourceGenerator.ResX" />
+		<PackageReference Include="BD.Common8.Bcl" />
+		<PackageReference Include="BD.Common8.Crawler" />
+		<PackageReference Include="BD.Common8.Http.ClientFactory" />
+		<PackageReference Include="BD.SteamClient8.Primitives" />
+		<PackageReference Include="BD.SteamClient8.Models" />
+		<PackageReference Include="BD.SteamClient8" />
+	</ItemGroup>
+</Project>

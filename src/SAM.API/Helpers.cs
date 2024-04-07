@@ -1,7 +1,5 @@
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 internal static class Helpers
 {
     public const int MemoryBufferSize = 1024 * 32;

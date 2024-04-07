@@ -22,8 +22,6 @@
 
 namespace SAM.API;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public abstract class Callback : ICallback
 {
     public delegate void CallbackFunction(nint param);

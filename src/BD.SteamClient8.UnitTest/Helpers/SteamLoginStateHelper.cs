@@ -1,9 +1,8 @@
+global using static BD.SteamClient8.UnitTest.Helpers.SteamLoginStateHelper;
+
 namespace BD.SteamClient8.UnitTest.Helpers;
 
-#pragma warning disable SA1600 // Elements should be documented
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
-
-public static partial class SteamLoginStateHelper
+static partial class SteamLoginStateHelper
 {
     const string steamLoginStateCacheFileName = "SteamLoginState.mpo";
 

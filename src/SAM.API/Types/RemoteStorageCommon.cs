@@ -1,7 +1,5 @@
 namespace SAM.API.Types;
 
-#pragma warning disable SA1600 // Elements should be documented
-
 public enum ERemoteStoragePlatform : int
 {
     k_ERemoteStoragePlatformNone = 0,
