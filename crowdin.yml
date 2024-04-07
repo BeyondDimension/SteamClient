@@ -1,0 +1,5 @@
+files:
+  - source: /res/i18n/BD.SteamClient8.Primitives.resx
+    ignore:
+      - '*.cs'
+    translation: /res/i18n/BD.SteamClient8.Primitives.%two_letters_code%.resx
