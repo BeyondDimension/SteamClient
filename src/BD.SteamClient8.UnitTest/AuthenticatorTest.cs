@@ -94,7 +94,7 @@ sealed class AuthenticatorTest : ServiceTestBase
     /// 已有令牌 替换新令牌
     /// </summary>
     /// <returns></returns>
-    [Test]
+    [Ignore("需要手动填入手机验证码")]
     public async Task RemoveAuthenticator()
     {
         if (IsCI())
@@ -141,6 +141,7 @@ sealed class AuthenticatorTest : ServiceTestBase
     /// </summary>
     /// <param name="scheme">1 = 移除令牌验证器但保留邮箱验证，2 = 移除所有防护</param>
     /// <returns></returns>
+    [Ignore("危险操作,手动测试")]
     public async Task UnBindingAuthenticator(int scheme)
     {
         if (IsCI())
