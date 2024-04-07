@@ -1,4 +1,4 @@
-# SteamClient
+# SteamClient [![Crowdin](https://badges.crowdin.net/bdsteamclient8/localized.svg)](https://crowdin.com/project/bdsteamclient8)
 [次元超越 Steam 相关库文档](https://beyonddimension.github.io/SteamClient)
 
 ### BD.SteamClient8
