@@ -170,7 +170,6 @@ public partial class SteamIdleCardServiceImpl(
         catch (Exception ex)
         {
             Log.Warn(nameof(GetAppCardsAvgPrice), ex, "获取卡片平均价格接口出错");
-            return ex!;
         }
         return avgs!;
     }
@@ -204,7 +203,6 @@ public partial class SteamIdleCardServiceImpl(
         catch (Exception ex)
         {
             Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
-            return ex!;
         }
         return cardPrices!;
     }
