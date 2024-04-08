@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/CYCY/source/SteamClient",
+  "source_base_path": "C:/actions-runner/_work/SteamClient/SteamClient",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -2760,10 +2760,20 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resource.yml",
+      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.Resource.yml",
       "output": {
         ".html": {
-          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resource.html"
+          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.Resource.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.html"
         }
       },
       "version": ""
@@ -2784,16 +2794,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resources.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.html"
         }
       },
       "version": ""
