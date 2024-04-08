@@ -45,10 +45,11 @@
     "output": "_site",
     "template": [
       "default",
-      "modern"
+      "modern",
+      "templates/default"
     ],
     "globalMetadata": {
-      "_appName": "SteamClient",
+      "_appName": "SteamClient 文档",
       "_appTitle": "SteamClient",
       "_appLogoPath": "res/DocFXIcon.png",
       "_appFooter": "©️ 江苏蒸汽凡星科技有限公司. All rights reserved.",

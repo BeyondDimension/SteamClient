@@ -1,3 +1,3 @@
 ---
-redirect_url: "articles/Protobuf.html" 
+redirect_url: "doc/Protobuf.html" 
 ---
