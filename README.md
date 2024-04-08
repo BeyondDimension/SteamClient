@@ -1,5 +1,5 @@
-# SteamClient
-Steam 相关库
+# SteamClient [![Crowdin](https://badges.crowdin.net/bdsteamclient8/localized.svg)](https://crowdin.com/project/bdsteamclient8)
+[次元超越 Steam 相关库文档](https://beyonddimension.github.io/SteamClient)
 
 ### BD.SteamClient8
 Steam 相关服务接口库，扩展函数、助手类

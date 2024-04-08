@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -3919,33 +3919,33 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "articles/Protobuf.md",
+      "source_relative_path": "doc/Protobuf.md",
       "output": {
         ".html": {
-          "relative_path": "articles/Protobuf.html"
+          "relative_path": "doc/Protobuf.html"
         }
       },
       "version": ""
     },
     {
       "type": "Redirection",
-      "source_relative_path": "articles/index.md",
+      "source_relative_path": "doc/index.md",
       "output": {
         ".html": {
-          "relative_path": "articles/index.html"
+          "relative_path": "doc/index.html"
         }
       },
       "version": ""
     },
     {
       "type": "Toc",
-      "source_relative_path": "articles/toc.yml",
+      "source_relative_path": "doc/toc.yml",
       "output": {
         ".html": {
-          "relative_path": "articles/toc.html"
+          "relative_path": "doc/toc.html"
         },
         ".json": {
-          "relative_path": "articles/toc.json"
+          "relative_path": "doc/toc.json"
         }
       },
       "version": ""
