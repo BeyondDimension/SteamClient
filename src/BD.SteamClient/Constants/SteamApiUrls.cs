@@ -128,4 +128,17 @@ public static class SteamApiUrls
     /// </summary>
     public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/market/cards/average-prices/v2?appids={0}&currency={1}";
     public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/market/cards/v2?appid={0}&currency={1}";
+
+    /// <summary>
+    /// 家庭监控
+    /// </summary>
+    public const string STEAM_PARENTAL_UNLOCK_COMMUNITY = "https://steamcommunity.com/parental/ajaxunlock/";
+    public const string STEAM_PARENTAL_UNLOCK_STORE = "https://store.steampowered.com/parental/ajaxunlock/";
+    public const string STEAM_PARENTAL_UNLOCK_CHECKOUT = "https://checkout.steampowered.com/parental/ajaxunlock/";
+    public const string STEAM_PARENTAL_UNLOCK_TV = "https://steam.tv/parental/ajaxunlock";
+
+    public const string STEAM_PARENTAL_LOCK_COMMUNITY = "https://steamcommunity.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_STORE = "https://store.steampowered.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_CHECKOUT = "https://checkout.steampowered.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_TV = "https://steam.tv/parental/ajaxlock";
 }

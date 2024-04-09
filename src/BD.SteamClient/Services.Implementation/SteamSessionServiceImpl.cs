@@ -47,6 +47,7 @@ public class SteamSessionServiceImpl : ISteamSessionService
     {
         try
         {
+            steamSession.SavingBefore();
             var temp = Serializable.SJSON(steamSession);
             await ISecureStorage.Instance.SetAsync(ISteamSessionService.CurrentSteamUserKey, temp);
             return true;
@@ -79,6 +80,44 @@ public class SteamSessionServiceImpl : ISteamSessionService
             ex.LogAndShowT();
         }
         return null;
+    }
+
+    public async Task UnlockParental(string steam_id, string pinCode)
+    {
+        var session = RentSession(steam_id).ThrowIsNull();
+        foreach (var unlock_url in Unlock_urls())
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, unlock_url)
+            {
+                Content = new MultipartFormDataContent()
+                {
+                    { new ByteArrayContent(Encoding.UTF8.GetBytes(pinCode)), "pin" },
+                    { new ByteArrayContent(Encoding.UTF8.GetBytes(session.CookieContainer.GetCookies(new Uri(unlock_url))["sessionid"]?.Value ?? string.Empty)), "sessionid" },
+                }
+            };
+            var response = await session.HttpClient!.SendAsync(request);
+        }
+
+        IEnumerable<string> Unlock_urls()
+        {
+            yield return SteamApiUrls.STEAM_PARENTAL_UNLOCK_STORE;
+            yield return SteamApiUrls.STEAM_PARENTAL_UNLOCK_COMMUNITY;
+        }
+    }
+
+    public async Task LockParental(string steam_id)
+    {
+        var session = RentSession(steam_id).ThrowIsNull();
+        foreach (var lock_url in lock_urls())
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, lock_url);
+            await session.HttpClient!.SendAsync(request);
+        }
+        IEnumerable<string> lock_urls()
+        {
+            yield return SteamApiUrls.STEAM_PARENTAL_LOCK_STORE;
+            yield return SteamApiUrls.STEAM_PARENTAL_LOCK_COMMUNITY;
+        }
     }
 
     private static string SpecialTag(string steam_id) => $"SteamSession_{steam_id}";

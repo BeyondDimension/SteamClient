@@ -28,7 +28,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
     }
 
     #region Public
-    public async Task<(UserIdleInfo idleInfo, IEnumerable<Badge> badges)> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
+    public async Task<(UserIdleInfo? idleInfo, IEnumerable<Badge>? badges, HttpStatusCode status)> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY")
     {
         var steamSession = _sessionService.RentSession(steam_id);
         if (steamSession == null)
@@ -39,7 +39,11 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         var parser = new HtmlParser();
         int pagesCount = 1;
 
-        var page = await steamSession.HttpClient.GetStringAsync(badges_url);
+        var page_rsp = await steamSession.HttpClient.GetAsync(badges_url);
+        if (!page_rsp.IsSuccessStatusCode)
+            return (null, null, page_rsp.StatusCode);
+
+        var page = await page_rsp.Content.ReadAsStringAsync();
         var document = parser.ParseDocument(page);
 
         var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
@@ -124,8 +128,8 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         {
             ex.LogAndShowT();
         }
-
-        return (userIdle, badges);
+        document.Dispose();
+        return (userIdle, badges, HttpStatusCode.OK);
     }
 
     public async Task<IEnumerable<AppCardsAvgPrice>> GetAppCradsAvgPrice(uint[] appIds, string currency)

@@ -13,6 +13,18 @@ public sealed partial class SteamSession
     [MPKey(2), JsonPropertyName("refresh_token")]
     public string RefreshToken { get; set; } = string.Empty;
 
+    /// <summary>
+    /// <see cref="SteamApiUrls.STEAM_COMMUNITY_URL"/> Steam 社区 家庭监护凭证与 sessionid 绑定，不同域名凭证独立不共享
+    /// </summary>
+    [MPKey(3), JsonPropertyName("steam_parental")]
+    public string SteamParental { get; set; } = string.Empty;
+
+    /// <summary>
+    /// 本地储存的 sessionid，不是最新的 
+    /// </summary>
+    [MPKey(4), JsonPropertyName("sessionid")]
+    public string SaveSessionId { get; set; } = string.Empty;
+
     [JsonIgnore]
     public CookieContainer CookieContainer { get; set; } = new();
 
@@ -34,6 +46,13 @@ public sealed partial class SteamSession
     [JsonIgnore]
     public HttpClient? HttpClient { get; set; }
 
+    public void SavingBefore()
+    {
+        var cookies = this.CookieContainer.GetCookies(new Uri(SteamApiUrls.STEAM_COMMUNITY_URL));
+        this.SteamParental = cookies["steamparental"]?.Value ?? string.Empty;
+        this.SaveSessionId = cookies["sessionid"]?.Value ?? string.Empty;
+    }
+
     public bool GenerateSetCookie()
     {
         if (string.IsNullOrEmpty(this.AccessToken))
@@ -42,7 +61,13 @@ public sealed partial class SteamSession
         }
 
         var steamLoginSecure = this.SteamId + "%7C%7C" + this.AccessToken;
-        var sessionid = GetRandomHexNumber(32);
+        var sessionid = string.IsNullOrEmpty(this.SaveSessionId) ? GetRandomHexNumber(32) : this.SaveSessionId;
+
+        if (!string.IsNullOrEmpty(SteamParental))
+        {
+            CookieContainer.Add(new Cookie("steamparental", this.SteamParental, "/", "steamcommunity.com"));
+            CookieContainer.Add(new Cookie("steamparental", this.SteamParental, "/", "steampowered.com"));
+        }
         CookieContainer.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steamcommunity.com"));
         CookieContainer.Add(new Cookie("sessionid", sessionid, "/", "steamcommunity.com"));
         CookieContainer.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", "steampowered.com"));
