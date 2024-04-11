@@ -142,7 +142,7 @@
     <value>ユーザー名またはパスワードが正しくありません。</value>
   </data>
   <data name="Error_SteamguardPhoneAjax" xml:space="preserve">
-    <value>您的 Steam 帐户必须附有支持短信的手机号码, {0}请到 Steam 客户端或 Steam 网站的帐户详细信息添加电话号码。</value>
+    <value>Steam アカウントには SMS 対応の携帯電話番号が必要です。 {0}Steam クライアントまたは Steam ウェブサイトのアカウント情報に電話番号を追加してください。</value>
   </data>
   <data name="Error_TooManyRequests" xml:space="preserve">
     <value>あなたのIPアドレスからのログインは頻繁すぎます、後でまたお試しください。</value>
