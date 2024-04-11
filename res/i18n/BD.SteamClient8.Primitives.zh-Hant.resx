@@ -118,57 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CaptchaNeeded" xml:space="preserve">
-    <value>请在输入验证码后再次登录。</value>
+    <value>請輸入驗證碼並重新登入。</value>
   </data>
   <data name="EmailAuthNeeded" xml:space="preserve">
-    <value>请查看账号绑定邮箱，输入邮件验证码后继续。</value>
+    <value>請檢查與您帳戶關聯的電子郵件地址，然後輸入電子郵件驗證碼以繼續。</value>
   </data>
   <data name="Error_InvalidActivationCode" xml:space="preserve">
-    <value>无效的验证码</value>
+    <value>驗證碼無效</value>
   </data>
   <data name="Error_InvalidResponseFromSteam" xml:space="preserve">
-    <value>来自 Steam 的无效响应：{0}</value>
+    <value>來自 Steam 無效的回應：{0}</value>
   </data>
   <data name="Error_ITwoFactorService_AddAuthenticator_v0001" xml:space="preserve">
-    <value>无法发送短信，检查您的手机号已在您的 Steam 帐户中注册。</value>
+    <value>無法發送短信，請檢查您的電話號碼是否已註冊到您的 Steam 帳戶。</value>
   </data>
   <data name="Error_NoOAuth" xml:space="preserve">
-    <value>来自Steam的无效响应（没有OAuth令牌）。</value>
+    <value>來自 Steam 無效的回應（沒有 OAuth 令牌）。</value>
   </data>
   <data name="Error_OnActivating" xml:space="preserve">
-    <value>激活令牌时出现了问题。Steam 服务器可能存在问题。请稍后再试。</value>
+    <value>啟動令牌時發生問題。Steam 伺服器可能出現問題。請稍後再試一次。</value>
   </data>
   <data name="Error_Password" xml:space="preserve">
-    <value>您所输入的账户名或密码不正确。</value>
+    <value>您輸入的帳戶名稱或密碼不正確。</value>
   </data>
   <data name="Error_SteamguardPhoneAjax" xml:space="preserve">
-    <value>您的 Steam 帐户必须附有支持短信的手机号码, {0}请到 Steam 客户端或 Steam 网站的帐户详细信息添加电话号码。</value>
+    <value>您的 Steam 帳戶必須具有 SMS 功能的手機號碼 {0}請在 Steam 用戶端或 Steam 網站中添加電話號碼到您的帳戶詳細信息中。</value>
   </data>
   <data name="Error_TooManyRequests" xml:space="preserve">
-    <value>IP 登录请求过于频繁，请稍后重试。</value>
+    <value>IP 登入請求太頻繁，請稍後再試一次。</value>
   </data>
   <data name="RequiresActivation" xml:space="preserve">
-    <value>请查看账号绑定手机号信息，输入验证码后继续。</value>
+    <value>請檢查與您的帳戶相關聯的電話號碼信息，然後輸入驗證碼以繼續。</value>
   </data>
   <data name="Error_HasAuthenticator" xml:space="preserve">
-    <value>您的帐户似乎已添加了身份验证器，需要移除现有的身份验证器才可以通过账号导入</value>
+    <value>看起來已新增驗證器到您的帳戶中；您必須先移除現有的驗證器，才能透過帳戶匯入</value>
   </data>
   <data name="AccountNotBindEmail" xml:space="preserve">
-    <value>账号没有绑定邮箱</value>
+    <value>帳戶未連結至電子郵件</value>
   </data>
   <data name="ConfirmLinkInEmail" xml:space="preserve">
-    <value>请确认邮件内的链接</value>
+    <value>請檢查電子郵件中的鏈接</value>
   </data>
   <data name="Error_AccountNotBindTel" xml:space="preserve">
-    <value>账号没有绑定的手机号，请根据指示添加手机号</value>
+    <value>沒有與帳戶關聯的電話號碼，請按照說明添加電話號碼</value>
   </data>
   <data name="Error_GetQuoteTradingImage" xml:space="preserve">
-    <value>获取交易报价图片失败</value>
+    <value>無法取得交易報價的圖片</value>
   </data>
   <data name="Error_InvalidLoginInfo" xml:space="preserve">
-    <value>登陆信息已失效</value>
+    <value>登入資訊無效</value>
   </data>
   <data name="RemoveAuthenticatorFail_" xml:space="preserve">
-    <value>移除令牌验证器失败，剩余尝试次数：{0}</value>
+    <value>移除令牌驗證器失敗，剩餘嘗試：{0}</value>
   </data>
 </root>
