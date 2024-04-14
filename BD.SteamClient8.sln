@@ -5,6 +5,7 @@ VisualStudioVersion = 17.8.34302.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{7B87D11D-B726-471E-A72C-F3B76C6553B5}"
 	ProjectSection(SolutionItems) = preProject
+		crowdin.yml = crowdin.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
