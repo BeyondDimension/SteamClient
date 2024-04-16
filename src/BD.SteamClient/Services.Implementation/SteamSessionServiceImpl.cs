@@ -47,7 +47,6 @@ public class SteamSessionServiceImpl : ISteamSessionService
     {
         try
         {
-            steamSession.SavingBefore();
             var temp = Serializable.SJSON(steamSession);
             await ISecureStorage.Instance.SetAsync(ISteamSessionService.CurrentSteamUserKey, temp);
             return true;
