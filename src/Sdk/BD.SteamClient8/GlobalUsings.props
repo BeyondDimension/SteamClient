@@ -8,6 +8,9 @@
 	</ItemGroup>
 	<ImportGroup>
 		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.BouncyCastle.props" />
+	</ImportGroup>
+	<!-- 平台 != ios,android -->
+	<ImportGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
 		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ValveKeyValue.props" />
 		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.SteamAchievementManager.props" />
 	</ImportGroup>
