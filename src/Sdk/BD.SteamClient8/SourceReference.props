@@ -1,6 +1,7 @@
 <Project>
 	<!-- 源码引用 -->
-	<ItemGroup>
+	<!-- 平台 != ios,android -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
 		<Compile Include="$(MSBuildThisFileDirectory)..\..\SAM.API\**\*.cs">
 			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
 		</Compile>

@@ -30,7 +30,7 @@ public partial class SteamIdleCardServiceImpl(
     #region Public
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<UserBadgesResponse>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<UserBadgesResponse?>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default)
     {
         var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
         steamSession = steamSession.ThrowIsNull(steam_id);
@@ -132,7 +132,7 @@ public partial class SteamIdleCardServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<AppCardsAvgPrice>?>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
     {
         List<AppCardsAvgPrice> avgs = [];
         try
@@ -175,7 +175,7 @@ public partial class SteamIdleCardServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<CardsMarketPrice>?>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)
     {
         List<CardsMarketPrice> cardPrices = [];
         try

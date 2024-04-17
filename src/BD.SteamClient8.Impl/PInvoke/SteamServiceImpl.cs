@@ -1,12 +1,16 @@
 #if !(IOS || ANDROID)
 using static BD.SteamClient8.Services.ISteamService;
+#endif
 
 namespace BD.SteamClient8.Impl;
 
 /// <summary>
 /// <see cref="ISteamService"/> Steam 相关助手、工具类服务实现
 /// </summary>
-public abstract partial class SteamServiceImpl : ISteamService
+public abstract partial class SteamServiceImpl : ISteamService { }
+
+#if !(IOS || ANDROID)
+partial class SteamServiceImpl : ISteamService
 {
     /// <summary>
     /// 用于标识和记录日志信息

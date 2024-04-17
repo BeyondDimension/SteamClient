@@ -18,7 +18,7 @@ public interface ISteamIdleCardService
     /// <param name="currency"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<UserBadgesResponse>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<UserBadgesResponse?>> GetBadgesAsync(string steam_id, bool need_price = false, string currency = "CNY", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取游戏卡组卡片平均价格
@@ -27,7 +27,7 @@ public interface ISteamIdleCardService
     /// <param name="currency"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<AppCardsAvgPrice>>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<AppCardsAvgPrice>?>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取游戏卡片价格
@@ -36,5 +36,5 @@ public interface ISteamIdleCardService
     /// <param name="currency"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<CardsMarketPrice>>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<CardsMarketPrice>?>> GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default);
 }
