@@ -163,7 +163,7 @@ Interface ISteamIdleCardService  <a class="header-action link-secondary" title="
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;AppCardsAvgPrice&gt;&gt;&gt; GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;AppCardsAvgPrice&gt;?&gt;&gt; GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -204,7 +204,7 @@ Interface ISteamIdleCardService  <a class="header-action link-secondary" title="
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;UserBadgesResponse&gt;&gt; GetBadgesAsync(string steam_id, bool need_price = false, string currency = &quot;CNY&quot;, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;UserBadgesResponse?&gt;&gt; GetBadgesAsync(string steam_id, bool need_price = false, string currency = &quot;CNY&quot;, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -247,7 +247,7 @@ Interface ISteamIdleCardService  <a class="header-action link-secondary" title="
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;CardsMarketPrice&gt;&gt;&gt; GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;CardsMarketPrice&gt;?&gt;&gt; GetCardsMarketPrice(uint appId, string currency, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
