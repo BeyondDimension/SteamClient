@@ -1,11 +1,8 @@
-using System;
-using System.Text;
 using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
 using BD.SteamClient.Models.Profile;
 using Google.Protobuf;
-using Google.Protobuf.WellKnownTypes;
 using Polly;
 using Polly.Retry;
 using JsonSerializer = System.Text.Json.JsonSerializer;
@@ -1680,5 +1677,32 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
 
         return false;
+    }
+
+    public async Task<bool?> CheckAccountPhoneStatus(string accessToken)
+    {
+        var resp = await client
+            .PostAsync(string.Format(STEAM_AUTHENTICATOR_ACCOUNTPHONESTATUS, accessToken), new StringContent(""));
+
+        if (resp.IsSuccessStatusCode)
+        {
+            var json = await resp.Content.ReadAsStringAsync();
+
+            var doc = JsonDocument.Parse(json);
+
+            /*
+             * {
+                    "response": {
+                        verified_phone": false
+                    }
+               }
+             */
+
+            return doc.RootElement.TryGetProperty("response", out var jsonResp) &&
+                jsonResp.TryGetProperty("verified_phone", out var prop) &&
+                prop.GetBoolean();
+        }
+
+        return null;
     }
 }

@@ -148,4 +148,11 @@ public interface ISteamAccountService
     /// <param name="accesstoken"></param>
     /// <returns></returns>
     Task<bool> CheckAccessTokenValidation(string accesstoken);
+
+    /// <summary>
+    /// 检查账号是否绑定了手机号
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <returns></returns>
+    Task<bool?> CheckAccountPhoneStatus(string accessToken);
 }
