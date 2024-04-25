@@ -63,7 +63,7 @@ internal sealed class NativeStrings
         return new StringHandle(p, true);
     }
 
-    public static unsafe string PointerToString(sbyte* bytes)
+    public static unsafe string? PointerToString(sbyte* bytes)
     {
         if (bytes == null)
         {
@@ -86,17 +86,17 @@ internal sealed class NativeStrings
         return new string(bytes, 0, running, Encoding.UTF8);
     }
 
-    public static unsafe string PointerToString(byte* bytes)
+    public static unsafe string? PointerToString(byte* bytes)
     {
         return PointerToString((sbyte*)bytes);
     }
 
-    public static unsafe string PointerToString(nint nativeData)
+    public static unsafe string? PointerToString(nint nativeData)
     {
         return PointerToString((sbyte*)nativeData.ToPointer());
     }
 
-    public static unsafe string PointerToString(sbyte* bytes, int length)
+    public static unsafe string? PointerToString(sbyte* bytes, int length)
     {
         if (bytes == null)
         {
@@ -120,12 +120,12 @@ internal sealed class NativeStrings
         return new string(bytes, 0, running, Encoding.UTF8);
     }
 
-    public static unsafe string PointerToString(byte* bytes, int length)
+    public static unsafe string? PointerToString(byte* bytes, int length)
     {
         return PointerToString((sbyte*)bytes, length);
     }
 
-    public static unsafe string PointerToString(nint nativeData, int length)
+    public static unsafe string? PointerToString(nint nativeData, int length)
     {
         return PointerToString((sbyte*)nativeData.ToPointer(), length);
     }

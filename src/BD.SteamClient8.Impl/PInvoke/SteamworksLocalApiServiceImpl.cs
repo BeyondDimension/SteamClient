@@ -87,10 +87,10 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
     /// <inheritdoc/>
     public async Task<ApiRspImpl<List<SteamApp>?>> OwnsApps(List<SteamApp> apps, CancellationToken cancellationToken = default)
     {
+        List<SteamApp> ownsApps = [];
         await Task.CompletedTask;
         if (IsSupported)
         {
-            List<SteamApp> ownsApps = [];
             if (!apps.Any_Nullable())
                 ownsApps = new List<SteamApp>();
             else if (SteamClient.SteamApps008 == null || SteamClient.SteamApps001 == null)
@@ -114,9 +114,9 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
                     s.Type = Enum.TryParse<SteamAppType>(GetAppData(s.AppId, "type").GetAwaiter().GetResult().Content, true, out var result) ? result : SteamAppType.Unknown;
                     return s;
                 }).ToList();
-            return ApiRspHelper.Ok(ownsApps)!;
+            return ApiRspHelper.Ok(ownsApps);
         }
-        return null;
+        return ApiRspHelper.Ok(ownsApps);
     }
 
     /// <inheritdoc/>

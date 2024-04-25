@@ -16,7 +16,7 @@ public enum UserStatType
 /// <summary>
 /// 键值对象
 /// </summary>
-public record class SteamKeyValue
+public sealed record class SteamKeyValue
 {
     static readonly SteamKeyValue _Invalid = new();
 

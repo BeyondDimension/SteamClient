@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 兑换钱包返回信息
 /// </summary>
-public sealed class RedeemWalletResponse : JsonModel
+public sealed class RedeemWalletResponse : JsonModel<RedeemWalletResponse>
 {
     /// <summary>
     /// 成功结果

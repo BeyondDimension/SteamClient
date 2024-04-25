@@ -4,7 +4,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// <see cref="SteamApp"/> Property
 /// </summary>
-public class SteamAppProperty
+public sealed class SteamAppProperty
 {
     private static readonly Type?[] _types =
     [

@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 跳转信息
 /// </summary>
-public sealed class TransferInfo : JsonModel
+public sealed class TransferInfo : JsonModel<TransferInfo>
 {
     /// <summary>
     /// 跳转域名地址

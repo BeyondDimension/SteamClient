@@ -8,4 +8,9 @@
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
 
+	<ItemGroup Condition="'$(Configuration)' == 'Debug' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
+		<ProjectReference Include="$(MSBuildThisFileDirectory)..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\ValveKeyValue.csproj" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\ref\ValveKeyValue\**\*.cs" />
+	</ItemGroup>
+
 </Project>

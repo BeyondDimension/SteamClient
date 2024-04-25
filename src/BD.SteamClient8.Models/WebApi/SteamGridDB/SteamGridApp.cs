@@ -1,6 +1,9 @@
 namespace BD.SteamClient8.Models;
 
-public record class SteamGridApp
+/// <summary>
+/// steamgriddb.com App
+/// </summary>
+public sealed record class SteamGridApp
 {
     /// <summary>
     /// 唯一标识符
@@ -27,7 +30,10 @@ public record class SteamGridApp
     public bool Verified { get; set; }
 }
 
-public class SteamGridAppData
+/// <summary>
+/// steamgriddb.com AppData
+/// </summary>
+public sealed class SteamGridAppData : JsonModel<SteamGridAppData>
 {
     /// <summary>
     /// 是否成功

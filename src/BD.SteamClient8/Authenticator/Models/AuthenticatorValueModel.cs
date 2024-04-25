@@ -897,7 +897,7 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
     public static string DecryptSequence(string data, PasswordTypes encryptedTypes, string? password, bool decode = false)
     {
         // check for encrpytion header
-        if (data.Length < ENCRYPTION_HEADER.Length || data.IndexOf(ENCRYPTION_HEADER) != 0)
+        if (data.Length < ENCRYPTION_HEADER.Length || !data.StartsWith(ENCRYPTION_HEADER))
         {
             return DecryptSequenceNoHash(data, encryptedTypes, password, decode);
         }
@@ -1178,7 +1178,9 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
     /// <param name="password"></param>
     /// <param name="PBKDF2">标志，指示我们正在使用PBKDF2生成派生密钥</param>
     /// <returns>十六进制编码解密字符串</returns>
+#pragma warning disable SA1313 // Parameter names should begin with lower-case letter
     public static string Decrypt(string data, string? password, bool PBKDF2)
+#pragma warning restore SA1313 // Parameter names should begin with lower-case letter
     {
         byte[] key;
         var saltBytes = StringToByteArray(data[..(SALT_LENGTH * 2)]);

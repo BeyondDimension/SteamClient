@@ -41,7 +41,7 @@ public sealed partial class SteamTradeServiceImpl(
             await Task.CompletedTask;
             try
             {
-                var taskName = $"{steam_id}_{tradeTaskEnum.ToString()}";
+                var taskName = $"{steam_id}_{tradeTaskEnum}";
                 if (!_tasks.ContainsKey(taskName))
                 {
                     Action action;
@@ -122,7 +122,7 @@ public sealed partial class SteamTradeServiceImpl(
                     if (trade_offer != null)
                     {
                         var give_count = trade_offer.ItemsToGive?.Count ?? -1; // 支出物品数
-                        var receive_count = trade_offer.ItemsToReceive?.Count ?? -1; // 接收物品数
+                        //var receive_count = trade_offer.ItemsToReceive?.Count ?? -1; // 接收物品数
                         if (give_count == 0)
                         {
                             await AcceptTradeOfferAsync(steam_id, trade_offer.TradeOfferId, trade_offer, confirmations, cancellationToken); // 接受报价
@@ -196,7 +196,7 @@ public sealed partial class SteamTradeServiceImpl(
         .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
         var builder = new UriBuilder(SteamApiUrls.STEAM_TRADEOFFER_GET_OFFERS)
         {
-            Query = query
+            Query = query,
         };
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
@@ -285,7 +285,7 @@ public sealed partial class SteamTradeServiceImpl(
         .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryString[key]!)}"));
         var builder = new UriBuilder(SteamApiUrls.STEAM_TRADEOFFER_GET_HISTORY)
         {
-            Query = query
+            Query = query,
         };
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri) { Method = HttpMethod.Get };
@@ -538,7 +538,7 @@ public sealed partial class SteamTradeServiceImpl(
 
         var builder = new UriBuilder(SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS.Format(confirmation.Id))
         {
-            Query = query
+            Query = query,
         };
 
         using var sendArgs = new WebApiClientSendArgs(builder.Uri);
@@ -739,7 +739,6 @@ public sealed partial class SteamTradeServiceImpl(
     /// <summary>
     /// 获取 SessionId
     /// </summary>
-    /// <param name="domain"></param>
     /// <param name="steamSession"></param>
     /// <returns></returns>
     async Task<string?> FetchSessionId(SteamSession steamSession)
@@ -822,19 +821,19 @@ public sealed partial class SteamTradeServiceImpl(
         };
     }
 
-    /// <summary>
-    /// html解析出 TradeOfferId
-    /// </summary>
-    /// <param name="confirmation_details_page"></param>
-    /// <returns></returns>
-    static string GetConfirmationTradeOfferId(string confirmation_details_page)
-    {
-        var parser = new HtmlParser();
-        var document = parser.ParseDocument(confirmation_details_page);
-        var full_id = document.QuerySelectorAll(".tradeoffer").Select(s => s.Id).FirstOrDefault();
-        document.Dispose();
-        return full_id?.Split('_')[1] ?? string.Empty;
-    }
+    ///// <summary>
+    ///// html 解析出 TradeOfferId
+    ///// </summary>
+    ///// <param name="confirmation_details_page"></param>
+    ///// <returns></returns>
+    //static string GetConfirmationTradeOfferId(string confirmation_details_page)
+    //{
+    //    var parser = new HtmlParser();
+    //    var document = parser.ParseDocument(confirmation_details_page);
+    //    var full_id = document.QuerySelectorAll(".tradeoffer").Select(s => s.Id).FirstOrDefault();
+    //    document.Dispose();
+    //    return full_id?.Split('_')[1] ?? string.Empty;
+    //}
 
     static string CreateTimeHash(string identitySecret, string tag, long timestamp)
     {

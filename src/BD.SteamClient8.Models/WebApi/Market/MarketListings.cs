@@ -8,12 +8,12 @@ public record class MarketListings
     /// <summary>
     /// 上架中的物品
     /// </summary>
-    public IEnumerable<ActiveListingItem> ActiveListings { get; set; } = Enumerable.Empty<ActiveListingItem>();
+    public IEnumerable<ActiveListingItem> ActiveListings { get; set; } = [];
 
     /// <summary>
     /// 求购订单
     /// </summary>
-    public IEnumerable<BuyorderItem> Buyorders { get; set; } = Enumerable.Empty<BuyorderItem>();
+    public IEnumerable<BuyorderItem> Buyorders { get; set; } = [];
 
     /// <summary>
     /// 上架物品

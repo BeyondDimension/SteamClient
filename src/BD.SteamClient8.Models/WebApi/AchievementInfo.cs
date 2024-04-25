@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// Steam 成就
 /// </summary>
-public record class AchievementInfo
+public sealed record class AchievementInfo
 {
     /// <summary>
     /// 游戏 AppId

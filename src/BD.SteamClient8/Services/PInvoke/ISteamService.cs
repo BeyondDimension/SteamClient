@@ -47,19 +47,24 @@ public partial interface ISteamService
     Task<ApiRspImpl<SteamApp[]?>> GetDownloadApps(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 用户拥有的 Steam 游戏
+    /// Steam 用户数组
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<SteamUser[]?>> GetSteamUsers(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 当前 Steam 客户端连接的用户
+    /// Steam 客户端连接的用户
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<SteamUser?>> GetCurrentSteamUser(CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// Steam 进程是否正在运行
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     Task<ApiRspImpl<bool>> IsRunningSteamProcess(CancellationToken cancellationToken = default);
 
     /// <summary>
@@ -139,7 +144,7 @@ public partial interface ISteamService
     /// <summary>
     /// 从 Steam 本地客户端缓存文件中读取游戏数据
     /// </summary>
-    Task<ApiRspImpl<List<SteamApp>>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<SteamApp>?>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default);
 
     Task<ApiRspImpl<List<ModifiedApp>?>> GetModifiedApps(CancellationToken cancellationToken = default);
 
@@ -167,12 +172,12 @@ public partial interface ISteamService
     /// <summary>
     /// 获取已安装的 SteamApp 列表(包括正在下载的项)
     /// </summary>
-    Task<ApiRspImpl<List<SteamApp>>> GetDownloadingAppList(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<SteamApp>?>> GetDownloadingAppList(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 监听 Steam 下载
     /// </summary>
-    IAsyncEnumerable<ApiRspImpl<string>> StartWatchSteamDownloading([EnumeratorCancellation] CancellationToken cancellationToken = default);
+    IAsyncEnumerable<ApiRspImpl<string>> StartWatchSteamDownloading(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 结束监听 Steam 下载

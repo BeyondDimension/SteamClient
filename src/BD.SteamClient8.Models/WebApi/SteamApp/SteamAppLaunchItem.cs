@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// <see cref="SteamApp"/> 已启动的游戏项
 /// </summary>
-public class SteamAppLaunchItem
+public sealed class SteamAppLaunchItem
 {
     /// <summary>
     /// 描述

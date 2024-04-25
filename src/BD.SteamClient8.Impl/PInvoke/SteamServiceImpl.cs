@@ -104,6 +104,7 @@ partial class SteamServiceImpl : ISteamService
         if (!Directory.Exists(LibrarycacheDirPath)) LibrarycacheDirPath = null;
     }
 
+    /// <inheritdoc cref="GetSteamLanguageString"/>
     public abstract string? SteamLanguageString { get; }
 
     /// <inheritdoc/>
@@ -114,6 +115,7 @@ partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
+    /// <inheritdoc cref="IsConnectToSteamAsync"/>
     public bool IsConnectToSteam { get; private set; }
 
     /// <inheritdoc/>
@@ -124,6 +126,7 @@ partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
+    /// <inheritdoc cref="GetSteamApps"/>
     public abstract SteamApp[]? SteamApps { get; }
 
     /// <inheritdoc/>
@@ -134,6 +137,7 @@ partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
+    /// <inheritdoc cref="GetDownloadApps"/>
     public abstract SteamApp[]? DownloadApps { get; }
 
     /// <inheritdoc/>
@@ -144,6 +148,7 @@ partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
+    /// <inheritdoc cref="GetSteamUsers"/>
     public abstract SteamUser[]? SteamUsers { get; }
 
     /// <inheritdoc/>
@@ -154,6 +159,7 @@ partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok(result);
     }
 
+    /// <inheritdoc cref="GetCurrentSteamUser"/>
     public SteamUser? CurrentSteamUser { get; private set; }
 
     /// <inheritdoc/>
@@ -707,6 +713,14 @@ partial class SteamServiceImpl : ISteamService
         }
     }
 
+    Action? fsw_WatchLocalUserDataChange_changedAction;
+    FileSystemWatcher? fsw_WatchLocalUserDataChange;
+
+    void WatchLocalUserDataChanged(object sender, FileSystemEventArgs e)
+    {
+        fsw_WatchLocalUserDataChange_changedAction?.Invoke();
+    }
+
     /// <summary>
     /// 监视本地用户数据更改
     /// </summary>
@@ -721,40 +735,40 @@ partial class SteamServiceImpl : ISteamService
             throw new Exception("Steam Dir Path is null or empty.");
         }
 
-        var fsw = new FileSystemWatcher(Path.Combine(SteamDirPath, "config"), "loginusers.vdf")
+        fsw_WatchLocalUserDataChange?.Dispose();
+        fsw_WatchLocalUserDataChange_changedAction += changedAction;
+        fsw_WatchLocalUserDataChange = new FileSystemWatcher(Path.Combine(SteamDirPath, "config"), "loginusers.vdf")
         {
             NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime,
         };
 
-        fsw.Created += Fsw_Changed;
-        fsw.Renamed += Fsw_Changed;
-        fsw.Changed += Fsw_Changed;
-        fsw.EnableRaisingEvents = true;
+        fsw_WatchLocalUserDataChange.Created += WatchLocalUserDataChanged;
+        fsw_WatchLocalUserDataChange.Renamed += WatchLocalUserDataChanged;
+        fsw_WatchLocalUserDataChange.Changed += WatchLocalUserDataChanged;
+        fsw_WatchLocalUserDataChange.EnableRaisingEvents = true;
 
         return ApiRspHelper.Ok();
-        void Fsw_Changed(object sender, FileSystemEventArgs e)
-        {
-            changedAction.Invoke();
-        }
     }
 
     uint univeseNumber;
     const uint MagicNumber = 123094055U;
     const uint MagicNumberV2 = 123094056U;
 
-    static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2]);
+    static readonly Lazy<uint[]> MagicNumbers = new(() => [MagicNumber, MagicNumberV2], LazyThreadSafetyMode.ExecutionAndPublication);
 
     /// <summary>
     /// 从 Steam 本地客户端缓存文件中读取游戏数据
     /// </summary>
-    public async Task<ApiRspImpl<List<SteamApp>>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamApp>?>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         var apps = new List<SteamApp>();
         try
         {
             if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
+            {
                 return apps;
+            }
             using var stream = IOPath.OpenRead(AppInfoPath);
             if (stream == null)
             {
@@ -848,7 +862,8 @@ partial class SteamServiceImpl : ISteamService
             var editApps = SteamApps.Where(s => s.IsEdited);
             var modifiedApps = new List<ModifiedApp>();
 
-            using BinaryWriter binaryWriter = new(new MemoryStream());
+            using MemoryStream memoryStream = new();
+            using BinaryWriter binaryWriter = new(memoryStream);
             binaryWriter.Write(MagicNumber);
             binaryWriter.Write(univeseNumber);
 
@@ -966,6 +981,7 @@ partial class SteamServiceImpl : ISteamService
     /// <returns></returns>
     public async Task<ApiRspImpl<string?>> GetAppImageAsync(uint appId, LibCacheType type, SteamUser? mostRecentUser = null, CancellationToken cancellationToken = default)
     {
+        await Task.CompletedTask;
         string? url = null;
         if (mostRecentUser != null)
         {
@@ -1198,7 +1214,7 @@ partial class SteamServiceImpl : ISteamService
     /// <summary>
     /// 获取正在下载和已下载的 SteamApp 列表
     /// </summary>
-    public async Task<ApiRspImpl<List<SteamApp>>> GetDownloadingAppList(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamApp>?>> GetDownloadingAppList(CancellationToken cancellationToken = default)
     {
         await Task.CompletedTask;
         var appInfos = new List<SteamApp>();
@@ -1286,7 +1302,7 @@ partial class SteamServiceImpl : ISteamService
                 else
                 {
                     await Task.Yield();
-                    await Task.Delay(5000);
+                    await Task.Delay(5000, cancellationToken);
                 }
             }
         }
@@ -1324,12 +1340,13 @@ partial class SteamServiceImpl : ISteamService
             }
 
             // Shouldn't happen, but might occur if Steam holds the acf file too long
-            if (app == null) return;
+            if (app == null)
+                return;
 
             // Search for changed app, if null it's a new app
             //SteamApp info = Apps.FirstOrDefault(x => x.ID == newID);
             //uint appId = GetAppId(v);
-            steamDownloadingChanges.Enqueue(Serializable.SJSON(app));
+            steamDownloadingChanges.Enqueue(SystemTextJsonSerializer.Serialize(app, DefaultJsonSerializerContext_.Default.SteamApp));
 
             //if (info != null) // Download state changed
             //{

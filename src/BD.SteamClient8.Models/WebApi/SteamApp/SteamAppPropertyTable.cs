@@ -4,9 +4,9 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// <see cref="SteamApp"/> 属性表格
 /// </summary>
-public class SteamAppPropertyTable
+public sealed class SteamAppPropertyTable
 {
-    private List<SteamAppProperty> _properties = [];
+    readonly List<SteamAppProperty> _properties = [];
 
     /// <summary>
     /// 属性数量
@@ -56,7 +56,7 @@ public class SteamAppPropertyTable
     /// <param name="name"></param>
     /// <param name="defValue"></param>
     /// <returns></returns>
-    public T? GetPropertyValue<T>(string name, T? defValue = default(T))
+    public T? GetPropertyValue<T>(string name, T? defValue = default)
     {
         if (!TryGetPropertyValue<T>(name, out var result))
         {
@@ -75,7 +75,7 @@ public class SteamAppPropertyTable
     public bool TryGetPropertyValue<T>(string name, out T? result)
     {
         bool result2 = false;
-        result = default(T);
+        result = default;
         SteamAppProperty? property = this[name];
         if (property != null)
         {

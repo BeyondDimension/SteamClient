@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 整数类型统计
 /// </summary>
-public record class IntStatInfo : StatInfo
+public sealed record class IntStatInfo : StatInfo
 {
     /// <summary>
     /// 原始数值

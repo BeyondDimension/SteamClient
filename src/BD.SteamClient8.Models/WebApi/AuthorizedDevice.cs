@@ -1,7 +1,10 @@
 namespace BD.SteamClient8.Models;
 
-public record class AuthorizedDevice
+public sealed record class AuthorizedDevice
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AuthorizedDevice"/> class.
+    /// </summary>
     public AuthorizedDevice() { }
 
     /// <summary>

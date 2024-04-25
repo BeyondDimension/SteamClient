@@ -2,16 +2,16 @@
 	<!-- 源码引用 -->
 	<!-- 平台 != ios,android -->
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
-		<Compile Include="$(MSBuildThisFileDirectory)..\..\SAM.API\**\*.cs">
-			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
-		</Compile>
-		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\bin\**\*.cs" />
-		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\obj\**\*.cs" />
 		<Compile Include="$(MSBuildThisFileDirectory)..\..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\**\*.cs">
 			<LinkBase>_SourceReference\ValveKeyValue</LinkBase>
 		</Compile>
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\bin\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\obj\**\*.cs" />
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\..\ref\ValveKeyValue\ValveKeyValue\ValveKeyValue\Properties\AssemblyInfo.cs" />
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\SAM.API\**\*.cs">
+			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\obj\**\*.cs" />
 	</ItemGroup>
 </Project>

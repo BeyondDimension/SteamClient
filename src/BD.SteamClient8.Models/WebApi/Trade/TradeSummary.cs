@@ -5,7 +5,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 未处理和新的交易报价汇总
 /// </summary>
-public class TradeSummary
+public sealed class TradeSummary
 {
     /// <summary>
     /// 待处理的交易报价数量
@@ -68,7 +68,7 @@ public class TradeSummary
     public int EscrowSentCount { get; set; }
 }
 
-public partial class TradeSummaryResponse : JsonModel
+public sealed partial class TradeSummaryResponse : JsonModel<TradeSummaryResponse>
 {
     /// <summary>
     /// 交易报价汇总返回信息

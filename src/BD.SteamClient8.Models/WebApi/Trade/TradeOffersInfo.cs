@@ -5,7 +5,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 交易详情
 /// </summary>
-public record class TradeOffersInfo
+public sealed record class TradeOffersInfo
 {
     /// <summary>
     /// 交易报价 Id
@@ -95,7 +95,7 @@ public record class TradeOffersInfo
 /// <summary>
 /// 交易报价返回
 /// </summary>
-public partial class TradeOffersResponse : JsonModel
+public sealed partial class TradeOffersResponse : JsonModel<TradeOffersResponse>
 {
     /// <summary>
     /// 交易报价返回信息详情
@@ -107,7 +107,7 @@ public partial class TradeOffersResponse : JsonModel
 /// <summary>
 /// 交易报价返回信息详情
 /// </summary>
-public record class TradeOffersResponseInfo
+public sealed record class TradeOffersResponseInfo
 {
     /// <summary>
     /// 失去的物品集合

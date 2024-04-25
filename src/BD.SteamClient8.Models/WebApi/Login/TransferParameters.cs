@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 登录接口返回跳转参数
 /// </summary>
-public sealed class TransferParameters : JsonModel
+public sealed class TransferParameters : JsonModel<TransferParameters>
 {
     /// <summary>
     /// SteamId

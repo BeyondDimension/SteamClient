@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 确认消息
 /// </summary>
-public record class TradeConfirmation
+public sealed record class TradeConfirmation
 {
     /// <summary>
     /// 确认类型

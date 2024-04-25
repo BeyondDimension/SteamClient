@@ -33,7 +33,8 @@ public partial class ModifiedApp
             OriginalData = originalData;
         }
 
-        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
+        using MemoryStream memoryStream = new();
+        using BinaryWriter binaryWriter = new(memoryStream);
         binaryWriter.Write(app.ChangesData);
 
         ChangesData = binaryWriter.BaseStream.ToByteArray();

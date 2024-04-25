@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// <see cref="SteamApp"/> Detail
 /// </summary>
-public class SteamAppInfo
+public sealed class SteamAppInfo
 {
     public string? ClientIcon { get; set; }
 

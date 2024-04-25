@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 浮点类型统计
 /// </summary>
-public record class FloatStatInfo : StatInfo
+public sealed record class FloatStatInfo : StatInfo
 {
     /// <summary>
     /// 原始数值

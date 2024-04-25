@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// <see cref="SteamApp"/> Collection Model
 /// </summary>
-public class SteamAppList
+public sealed class SteamAppList : JsonModel<SteamAppList>
 {
     /// <summary>
     /// <see cref="SteamApp"/> Collection

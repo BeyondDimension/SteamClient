@@ -5,7 +5,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 交易历史记录
 /// </summary>
-public record class TradeHistory
+public sealed record class TradeHistory
 {
     /// <summary>
     /// 返回详情
@@ -16,7 +16,7 @@ public record class TradeHistory
     /// <summary>
     /// 交易历史记录响应详情
     /// </summary>
-    public record class TradeHistoryResponseDetail
+    public sealed record class TradeHistoryResponseDetail
     {
         /// <summary>
         /// 是否更多
@@ -40,7 +40,7 @@ public record class TradeHistory
     /// <summary>
     /// 交易历史记录信息
     /// </summary>
-    public record class TradeItem
+    public sealed record class TradeItem
     {
         /// <summary>
         /// 交易 Id
@@ -82,7 +82,7 @@ public record class TradeHistory
     /// <summary>
     /// 交易历史记录的交易项
     /// </summary>
-    public record class TradeItemAssetItem
+    public sealed record class TradeItemAssetItem
     {
         /// <summary>
         /// 游戏 AppId
@@ -137,7 +137,7 @@ public record class TradeHistory
     /// <summary>
     /// 交易历史记录的交易项描述
     /// </summary>
-    public record class TradeItemAssetItemDesc
+    public sealed record class TradeItemAssetItemDesc
     {
         /// <summary>
         /// 游戏 AppId

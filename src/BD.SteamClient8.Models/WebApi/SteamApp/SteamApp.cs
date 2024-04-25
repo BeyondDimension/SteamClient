@@ -4,7 +4,7 @@ namespace BD.SteamClient8.Models;
 /// Steam 游戏
 /// </summary>
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-public class SteamApp
+public sealed class SteamApp
 #if !(IOS || ANDROID)
     : IComparable<SteamApp>
 #endif
@@ -100,7 +100,6 @@ public class SteamApp
             if (_Name != value)
             {
                 _Name = value;
-                SortAs = value;
             }
         }
     }
@@ -112,7 +111,7 @@ public class SteamApp
     /// </summary>
     public string? SortAs
     {
-        get => _SortAs;
+        get => _SortAs ?? _Name;
         set
         {
             if (_SortAs != value)
@@ -456,7 +455,7 @@ public class SteamApp
     /// 内部属性集合
     /// </summary>
     [SystemTextJsonIgnore]
-    protected internal SteamAppPropertyTable? _properties;
+    internal SteamAppPropertyTable? _properties;
 
     /// <summary>
     /// 修改的属性集合
@@ -617,11 +616,7 @@ public class SteamApp
     [SystemTextJsonIgnore]
     public bool IsInstalled => IsBitSet(State, 2);
 
-    /// <summary>
-    /// <see cref="SteamApp"/> Compare
-    /// </summary>
-    /// <param name="other"></param>
-    /// <returns></returns>
+    /// <inheritdoc/>
     public int CompareTo(SteamApp? other) => string.Compare(Name, other?.Name);
 
     static bool IsBitSet(int b, int pos)

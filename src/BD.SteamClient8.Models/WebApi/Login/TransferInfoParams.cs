@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 完成登录接口跳转参数
 /// </summary>
-public sealed class TransferInfoParams : JsonModel
+public sealed class TransferInfoParams : JsonModel<TransferInfoParams>
 {
     /// <summary>
     /// 随机数

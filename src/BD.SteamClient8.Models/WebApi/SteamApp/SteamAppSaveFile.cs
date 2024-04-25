@@ -1,6 +1,6 @@
 namespace BD.SteamClient8.Models;
 
-public class SteamAppSaveFile
+public sealed class SteamAppSaveFile
 {
 #if !(IOS || ANDROID)
 

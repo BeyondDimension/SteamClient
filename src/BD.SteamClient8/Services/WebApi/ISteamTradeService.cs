@@ -134,7 +134,6 @@ public interface ISteamTradeService
     /// 过滤出有状态活跃的 交易报价进行操作
     /// </summary>
     /// <param name="tradeResponse"></param>
-    /// <param name="cancellationToken"></param>
     /// <returns></returns>
     static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse)
     {

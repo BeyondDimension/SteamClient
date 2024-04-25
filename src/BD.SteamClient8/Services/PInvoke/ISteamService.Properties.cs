@@ -89,12 +89,12 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string> _SteamDirPath = new(GetSteamDirPath);
+    private static Lazy<string?> _SteamDirPath = new(GetSteamDirPath);
 
     /// <summary>
     /// Steam 文件夹目录
     /// </summary>
-    static string SteamDirPath => _SteamDirPath.Value;
+    static string? SteamDirPath => _SteamDirPath.Value;
 
     /// <summary>
     /// 获取 Steam 动态链接库 (DLL) 文件夹目录
@@ -122,12 +122,12 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string> _SteamProgramPath = new(GetSteamProgramPath);
+    private static Lazy<string?> _SteamProgramPath = new(GetSteamProgramPath);
 
     /// <summary>
     /// Steam 程序的路径
     /// </summary>
-    static string SteamProgramPath => _SteamProgramPath.Value;
+    static string? SteamProgramPath => _SteamProgramPath.Value;
 
     private static string? GetRegistryVdfPath()
     {
@@ -140,12 +140,12 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string> _RegistryVdfPath = new(GetRegistryVdfPath);
+    private static Lazy<string?> _RegistryVdfPath = new(GetRegistryVdfPath);
 
     /// <summary>
     /// 注册表信息文件的路径
     /// </summary>
-    static string RegistryVdfPath => _RegistryVdfPath.Value;
+    static string? RegistryVdfPath => _RegistryVdfPath.Value;
 
 #endif
 }

@@ -45,7 +45,7 @@ public interface ISteamAccountService
     /// <param name="isRetry">是否重试，在尝试定区的时候可以重试，真正充值时不应重试</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(SteamResult Result, PurchaseResultDetail? Detail)?>> RedeemWalletCode(
+    Task<ApiRspImpl<RedeemWalletCodeResult?>> RedeemWalletCode(
         SteamLoginState loginState,
         string walletCode,
         bool isRetry = false,

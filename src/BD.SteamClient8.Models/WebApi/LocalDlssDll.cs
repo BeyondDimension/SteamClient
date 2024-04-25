@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 本机 Dlss 库
 /// </summary>
-public record class LocalDlssDll : IComparable<LocalDlssDll>
+public sealed record class LocalDlssDll : IComparable<LocalDlssDll>
 {
     /// <summary>
     /// 文件名

@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 登录返回
 /// </summary>
-public sealed class DoLoginResponse : JsonModel
+public sealed class DoLoginResponse : JsonModel<DoLoginResponse>
 {
     /// <summary>
     /// 是否成功

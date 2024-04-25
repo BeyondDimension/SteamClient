@@ -29,25 +29,25 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     #region FileWrite
     [return: MarshalAs(UnmanagedType.I1)]
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate bool NativeFileWriteSBI(nint self, nint pchFile, Byte[] pvData, int cubData);
+    private delegate bool NativeFileWriteSBI(nint self, nint pchFile, byte[] pvData, int cubData);
 
-    public bool FileWrite(string pchFile, Byte[] pvData)
+    public bool FileWrite(string pchFile, byte[] pvData)
     {
         using var nativeName = NativeStrings.StringToStringHandle(pchFile);
-        return GetFunction<NativeFileWriteSBI>(Functions.FileWrite)
-        (ObjectAddress, nativeName.Handle, pvData, pvData.Length);
+        return GetFunction<NativeFileWriteSBI>(Functions.FileWrite)(
+        ObjectAddress, nativeName.Handle, pvData, pvData.Length);
     }
     #endregion
 
     #region FileWrite
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
-    private delegate int NativeFileReadSBI(nint thisptr, nint pchFile, Byte[] pvData, int cubDataToRead);
+    private delegate int NativeFileReadSBI(nint thisptr, nint pchFile, byte[] pvData, int cubDataToRead);
 
-    public int FileRead(string pchFile, Byte[] pvData)
+    public int FileRead(string pchFile, byte[] pvData)
     {
         using var nativeName = NativeStrings.StringToStringHandle(pchFile);
-        return GetFunction<NativeFileReadSBI>(Functions.FileRead)
-            (ObjectAddress, nativeName.Handle, pvData, pvData.Length);
+        return GetFunction<NativeFileReadSBI>(Functions.FileRead)(
+            ObjectAddress, nativeName.Handle, pvData, pvData.Length);
     }
     #endregion
 

@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 库存资产
 /// </summary>
-public record class TradeAsset
+public sealed record class TradeAsset
 {
     /// <summary>
     /// 游戏 AppId

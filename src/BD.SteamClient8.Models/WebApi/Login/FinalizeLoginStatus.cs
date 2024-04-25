@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Models;
 /// <summary>
 /// 完成登录状态
 /// </summary>
-public sealed class FinalizeLoginStatus : JsonModel
+public sealed class FinalizeLoginStatus : JsonModel<FinalizeLoginStatus>
 {
     /// <summary>
     /// SteamId

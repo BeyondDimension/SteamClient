@@ -1,7 +1,7 @@
 namespace BD.SteamClient8.Models;
 
 [MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
-public partial record class DisableAuthorizedDevice
+public sealed partial record class DisableAuthorizedDevice
 {
     /// <summary>
     /// Steam ID3 格式 Id
