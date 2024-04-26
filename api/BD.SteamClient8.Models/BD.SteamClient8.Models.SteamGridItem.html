@@ -95,7 +95,7 @@ Class SteamGridItem  <a class="header-action link-secondary" title="View source"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record SteamGridItem : IEquatable&lt;SteamGridItem&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class SteamGridItem : JsonModel&lt;SteamGridItem&gt;, IJsonModel</code></pre>
   </div>
 
 
@@ -105,6 +105,7 @@ Class SteamGridItem  <a class="header-action link-secondary" title="View source"
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel</a>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a>&gt;</div>
       <div><span class="xref">SteamGridItem</span></div>
     </dd>
   </dl>
@@ -112,7 +113,7 @@ Class SteamGridItem  <a class="header-action link-secondary" title="View source"
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a>&gt;</div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">IJsonModel</a></div>
     </dd>
   </dl>
 
@@ -121,16 +122,22 @@ Class SteamGridItem  <a class="header-action link-secondary" title="View source"
     <dt>Inherited Members</dt>
     <dd>
     <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel&lt;SteamGridItem&gt;.ToString()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
     </div>
   </dd></dl>
 
@@ -157,37 +164,6 @@ Class SteamGridItem  <a class="header-action link-secondary" title="View source"
     <pre><code class="lang-csharp hljs">public SteamGridItem()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem__ctor_" data-uid="BD.SteamClient8.Models.SteamGridItem.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem__ctor_BD_SteamClient8_Models_SteamGridItem_" data-uid="BD.SteamClient8.Models.SteamGridItem.#ctor(BD.SteamClient8.Models.SteamGridItem)">
-  SteamGridItem(SteamGridItem)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SteamGridItem(SteamGridItem original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -227,37 +203,6 @@ public SteamGridItemAuthor Author { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="BD.SteamClient8.Models.SteamGridItemAuthor.html">SteamGridItemAuthor</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_EqualityContract_" data-uid="BD.SteamClient8.Models.SteamGridItem.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_EqualityContract" data-uid="BD.SteamClient8.Models.SteamGridItem.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd></dd>
   </dl>
 
@@ -490,291 +435,6 @@ public string Url { get; set; }</code></pre>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
-
-
-
-
-
-
-
-
-  <h2 class="section" id="methods">Methods
-</h2>
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_Equals_" data-uid="BD.SteamClient8.Models.SteamGridItem.Equals*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_Equals_BD_SteamClient8_Models_SteamGridItem_" data-uid="BD.SteamClient8.Models.SteamGridItem.Equals(BD.SteamClient8.Models.SteamGridItem)">
-  Equals(SteamGridItem?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(SteamGridItem? other)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_Equals_" data-uid="BD.SteamClient8.Models.SteamGridItem.Equals*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_Equals_System_Object_" data-uid="BD.SteamClient8.Models.SteamGridItem.Equals(System.Object)">
-  Equals(object?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_GetHashCode_" data-uid="BD.SteamClient8.Models.SteamGridItem.GetHashCode*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_GetHashCode" data-uid="BD.SteamClient8.Models.SteamGridItem.GetHashCode">
-  GetHashCode()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_PrintMembers_" data-uid="BD.SteamClient8.Models.SteamGridItem.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.SteamGridItem.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_ToString_" data-uid="BD.SteamClient8.Models.SteamGridItem.ToString*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_ToString" data-uid="BD.SteamClient8.Models.SteamGridItem.ToString">
-  ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem__Clone___" data-uid="BD.SteamClient8.Models.SteamGridItem.{Clone}$*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem__Clone__" data-uid="BD.SteamClient8.Models.SteamGridItem.{Clone}$">
-  &lt;Clone&gt;$()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual SteamGridItem &lt;Clone&gt;$()</code></pre>
-  </div>
-
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <h2 class="section" id="operators">Operators
-</h2>
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_op_Equality_" data-uid="BD.SteamClient8.Models.SteamGridItem.op_Equality*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_op_Equality_BD_SteamClient8_Models_SteamGridItem_BD_SteamClient8_Models_SteamGridItem_" data-uid="BD.SteamClient8.Models.SteamGridItem.op_Equality(BD.SteamClient8.Models.SteamGridItem,BD.SteamClient8.Models.SteamGridItem)">
-  operator ==(SteamGridItem?, SteamGridItem?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator ==(SteamGridItem? left, SteamGridItem? right)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamGridItem_op_Inequality_" data-uid="BD.SteamClient8.Models.SteamGridItem.op_Inequality*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridItem_op_Inequality_BD_SteamClient8_Models_SteamGridItem_BD_SteamClient8_Models_SteamGridItem_" data-uid="BD.SteamClient8.Models.SteamGridItem.op_Inequality(BD.SteamClient8.Models.SteamGridItem,BD.SteamClient8.Models.SteamGridItem)">
-  operator !=(SteamGridItem?, SteamGridItem?)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridItem.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static bool operator !=(SteamGridItem? left, SteamGridItem? right)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridItem.html">SteamGridItem</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
 
 
 

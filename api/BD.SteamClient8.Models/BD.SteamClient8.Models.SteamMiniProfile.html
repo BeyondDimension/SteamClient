@@ -96,7 +96,8 @@ Class SteamMiniProfile  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record SteamMiniProfile : IEquatable&lt;SteamMiniProfile&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[MemoryPackable(GenerateType.Object)]
+public sealed record SteamMiniProfile : IMemoryPackable&lt;SteamMiniProfile&gt;, IMemoryPackFormatterRegister, IEquatable&lt;SteamMiniProfile&gt;</code></pre>
   </div>
 
 
@@ -113,6 +114,8 @@ Class SteamMiniProfile  <a class="header-action link-secondary" title="View sour
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
+      <div><span class="xref">IMemoryPackable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a>&gt;</div>
+      <div><span class="xref">IMemoryPackFormatterRegister</span></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a>&gt;</div>
     </dd>
   </dl>
@@ -125,9 +128,6 @@ Class SteamMiniProfile  <a class="header-action link-secondary" title="View sour
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
@@ -138,6 +138,9 @@ Class SteamMiniProfile  <a class="header-action link-secondary" title="View sour
 
 
 
+  <h2 id="BD_SteamClient8_Models_SteamMiniProfile_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>MemoryPack GenerateType: Object<br><pre><code class="lang-csharp">int Levelstring LevelClassstring AvatarUrlstring PersonaNameBD.SteamClient8.Models.SteamMiniProfileBadge FavoriteBadgeBD.SteamClient8.Models.SteamMiniProfileGame InGameBD.SteamClient8.Models.SteamMiniProfileProfileBackground Backgroundstring AvatarFramestring AnimatedAvatar</code></pre>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -158,37 +161,6 @@ Class SteamMiniProfile  <a class="header-action link-secondary" title="View sour
     <pre><code class="lang-csharp hljs">public SteamMiniProfile()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamMiniProfile__ctor_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamMiniProfile__ctor_BD_SteamClient8_Models_SteamMiniProfile_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.#ctor(BD.SteamClient8.Models.SteamMiniProfile)">
-  SteamMiniProfile(SteamMiniProfile)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamMiniProfile.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SteamMiniProfile(SteamMiniProfile original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -239,40 +211,6 @@ public string? AnimatedAvatar { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_SteamMiniProfile_AnimatedAvatarStream_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AnimatedAvatarStream*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamMiniProfile_AnimatedAvatarStream" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AnimatedAvatarStream">
-  AnimatedAvatarStream
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamMiniProfile.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>动态头像流</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonIgnore]
-[JsonIgnore]
-public Task&lt;string?&gt;? AnimatedAvatarStream { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_SteamMiniProfile_AvatarFrame_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AvatarFrame*"></a>
 
   <h3 id="BD_SteamClient8_Models_SteamMiniProfile_AvatarFrame" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AvatarFrame">
@@ -297,40 +235,6 @@ public string? AvatarFrame { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamMiniProfile_AvatarFrameStream_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AvatarFrameStream*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamMiniProfile_AvatarFrameStream" data-uid="BD.SteamClient8.Models.SteamMiniProfile.AvatarFrameStream">
-  AvatarFrameStream
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamMiniProfile.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>头像帧流</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[JsonIgnore]
-[JsonIgnore]
-public Task&lt;string?&gt;? AvatarFrameStream { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -389,7 +293,7 @@ public string? AvatarUrl { get; set; }</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonProperty(&quot;profile_background&quot;)]
 [JsonPropertyName(&quot;profile_background&quot;)]
-public SteamMiniProfile.ProfileBackground? Background { get; set; }</code></pre>
+public SteamMiniProfileProfileBackground? Background { get; set; }</code></pre>
   </div>
 
 
@@ -398,38 +302,7 @@ public SteamMiniProfile.ProfileBackground? Background { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a>.<a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.ProfileBackground.html">ProfileBackground</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamMiniProfile_EqualityContract_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamMiniProfile_EqualityContract" data-uid="BD.SteamClient8.Models.SteamMiniProfile.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamMiniProfile.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfileProfileBackground.html">SteamMiniProfileProfileBackground</a></dt>
     <dd></dd>
   </dl>
 
@@ -454,7 +327,7 @@ public SteamMiniProfile.ProfileBackground? Background { get; set; }</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonProperty(&quot;favorite_badge&quot;)]
 [JsonPropertyName(&quot;favorite_badge&quot;)]
-public SteamMiniProfile.Badge? FavoriteBadge { get; set; }</code></pre>
+public SteamMiniProfileBadge? FavoriteBadge { get; set; }</code></pre>
   </div>
 
 
@@ -463,7 +336,7 @@ public SteamMiniProfile.Badge? FavoriteBadge { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a>.<a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.Badge.html">Badge</a></dt>
+    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfileBadge.html">SteamMiniProfileBadge</a></dt>
     <dd></dd>
   </dl>
 
@@ -488,7 +361,7 @@ public SteamMiniProfile.Badge? FavoriteBadge { get; set; }</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonProperty(&quot;in_game&quot;)]
 [JsonPropertyName(&quot;in_game&quot;)]
-public SteamMiniProfile.Game? InGame { get; set; }</code></pre>
+public SteamMiniProfileGame? InGame { get; set; }</code></pre>
   </div>
 
 
@@ -497,7 +370,7 @@ public SteamMiniProfile.Game? InGame { get; set; }</code></pre>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.html">SteamMiniProfile</a>.<a class="xref" href="BD.SteamClient8.Models.SteamMiniProfile.Game.html">Game</a></dt>
+    <dt><a class="xref" href="BD.SteamClient8.Models.SteamMiniProfileGame.html">SteamMiniProfileGame</a></dt>
     <dd></dd>
   </dl>
 
@@ -625,7 +498,7 @@ public string? PersonaName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(SteamMiniProfile? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(SteamMiniProfile? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -717,42 +590,6 @@ public string? PersonaName { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_SteamMiniProfile_PrintMembers_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamMiniProfile_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamMiniProfile.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_SteamMiniProfile_ToString_" data-uid="BD.SteamClient8.Models.SteamMiniProfile.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_SteamMiniProfile_ToString" data-uid="BD.SteamClient8.Models.SteamMiniProfile.ToString">
@@ -795,7 +632,7 @@ public string? PersonaName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual SteamMiniProfile &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public SteamMiniProfile &lt;Clone&gt;$()</code></pre>
   </div>
 
 

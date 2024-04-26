@@ -96,7 +96,7 @@ Class TradeHistory.TradeItemAssetItemDesc  <a class="header-action link-secondar
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record TradeHistory.TradeItemAssetItemDesc : IEquatable&lt;TradeHistory.TradeItemAssetItemDesc&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record TradeHistory.TradeItemAssetItemDesc : IEquatable&lt;TradeHistory.TradeItemAssetItemDesc&gt;</code></pre>
   </div>
 
 
@@ -123,9 +123,6 @@ Class TradeHistory.TradeItemAssetItemDesc  <a class="header-action link-secondar
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -158,37 +155,6 @@ Class TradeHistory.TradeItemAssetItemDesc  <a class="header-action link-secondar
     <pre><code class="lang-csharp hljs">public TradeItemAssetItemDesc()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc__ctor_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc__ctor_BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.#ctor(BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc)">
-  TradeItemAssetItemDesc(TradeItemAssetItemDesc)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TradeItemAssetItemDesc(TradeHistory.TradeItemAssetItemDesc original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.TradeHistory.html">TradeHistory</a>.<a class="xref" href="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.html">TradeItemAssetItemDesc</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -261,37 +227,6 @@ public string ClassId { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_EqualityContract_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_EqualityContract" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd></dd>
   </dl>
 
@@ -416,7 +351,7 @@ public string MarketName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(TradeHistory.TradeItemAssetItemDesc? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(TradeHistory.TradeItemAssetItemDesc? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -508,42 +443,6 @@ public string MarketName { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_PrintMembers_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_ToString_" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_TradeHistory_TradeItemAssetItemDesc_ToString" data-uid="BD.SteamClient8.Models.TradeHistory.TradeItemAssetItemDesc.ToString">
@@ -586,7 +485,7 @@ public string MarketName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual TradeHistory.TradeItemAssetItemDesc &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public TradeHistory.TradeItemAssetItemDesc &lt;Clone&gt;$()</code></pre>
   </div>
 
 

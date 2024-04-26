@@ -96,7 +96,7 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record AchievementInfo : IEquatable&lt;AchievementInfo&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record AchievementInfo : IEquatable&lt;AchievementInfo&gt;</code></pre>
   </div>
 
 
@@ -123,9 +123,6 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -158,37 +155,6 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
     <pre><code class="lang-csharp hljs">public AchievementInfo()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_AchievementInfo__ctor_" data-uid="BD.SteamClient8.Models.AchievementInfo.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_AchievementInfo__ctor_BD_SteamClient8_Models_AchievementInfo_" data-uid="BD.SteamClient8.Models.AchievementInfo.#ctor(BD.SteamClient8.Models.AchievementInfo)">
-  AchievementInfo(AchievementInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/AchievementInfo.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected AchievementInfo(AchievementInfo original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.AchievementInfo.html">AchievementInfo</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -259,37 +225,6 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_AchievementInfo_EqualityContract_" data-uid="BD.SteamClient8.Models.AchievementInfo.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_AchievementInfo_EqualityContract" data-uid="BD.SteamClient8.Models.AchievementInfo.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/AchievementInfo.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd></dd>
   </dl>
 
@@ -728,7 +663,7 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(AchievementInfo? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(AchievementInfo? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -820,42 +755,6 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
 
 
 
-  <a id="BD_SteamClient8_Models_AchievementInfo_PrintMembers_" data-uid="BD.SteamClient8.Models.AchievementInfo.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_AchievementInfo_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.AchievementInfo.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/AchievementInfo.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_AchievementInfo_ToString_" data-uid="BD.SteamClient8.Models.AchievementInfo.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_AchievementInfo_ToString" data-uid="BD.SteamClient8.Models.AchievementInfo.ToString">
@@ -898,7 +797,7 @@ Class AchievementInfo  <a class="header-action link-secondary" title="View sourc
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual AchievementInfo &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public AchievementInfo &lt;Clone&gt;$()</code></pre>
   </div>
 
 

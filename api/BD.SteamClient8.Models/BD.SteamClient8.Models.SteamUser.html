@@ -95,7 +95,8 @@ Class SteamUser  <a class="header-action link-secondary" title="View source" hre
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record SteamUser : IEquatable&lt;SteamUser&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">[MemoryPackable(GenerateType.Object)]
+public sealed record SteamUser : IMemoryPackable&lt;SteamUser&gt;, IMemoryPackFormatterRegister, IEquatable&lt;SteamUser&gt;</code></pre>
   </div>
 
 
@@ -112,6 +113,8 @@ Class SteamUser  <a class="header-action link-secondary" title="View source" hre
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
+      <div><span class="xref">IMemoryPackable</span>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamUser.html">SteamUser</a>&gt;</div>
+      <div><span class="xref">IMemoryPackFormatterRegister</span></div>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamUser.html">SteamUser</a>&gt;</div>
     </dd>
   </dl>
@@ -124,9 +127,6 @@ Class SteamUser  <a class="header-action link-secondary" title="View source" hre
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
@@ -137,6 +137,9 @@ Class SteamUser  <a class="header-action link-secondary" title="View source" hre
 
 
 
+  <h2 id="BD_SteamClient8_Models_SteamUser_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>MemoryPack GenerateType: Object<br><pre><code class="lang-csharp">long SteamId64string OnlineStateint? Levelstring IPCountrystring PrivacyStatestring AvatarIconstring AvatarMediumstring AvatarFullstring MemberSincebool VacBannedstring Summarystring SteamIDstring PersonaNamebool AllowAutoLoginstring AccountNamebool RememberPasswordstring PassWordlong TimestampSystem.DateTime LastLoginTimebool MostRecentbool WantsOfflineModebool SkipOfflineModeWarningstring RemarkBD.SteamClient8.Models.SteamMiniProfile MiniProfileBD.SteamClient8.Enums.PersonaState PersonaState</code></pre>
+</div>
 
 
   <h2 class="section" id="constructors">Constructors
@@ -157,37 +160,6 @@ Class SteamUser  <a class="header-action link-secondary" title="View source" hre
     <pre><code class="lang-csharp hljs">public SteamUser()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamUser__ctor_" data-uid="BD.SteamClient8.Models.SteamUser.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamUser__ctor_BD_SteamClient8_Models_SteamUser_" data-uid="BD.SteamClient8.Models.SteamUser.#ctor(BD.SteamClient8.Models.SteamUser)">
-  SteamUser(SteamUser)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SteamUser(SteamUser original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.SteamUser.html">SteamUser</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -359,37 +331,6 @@ public string? AvatarMedium { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamUser_EqualityContract_" data-uid="BD.SteamClient8.Models.SteamUser.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamUser_EqualityContract" data-uid="BD.SteamClient8.Models.SteamUser.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd></dd>
   </dl>
 
@@ -777,7 +718,10 @@ public string? PrivacyState { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ProfileUrl { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+[JsonIgnore]
+[MemoryPackIgnore]
+public string ProfileUrl { get; }</code></pre>
   </div>
 
 
@@ -941,6 +885,8 @@ public string? SteamID { get; set; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonIgnore]
+[JsonIgnore]
+[MemoryPackIgnore]
 public string? SteamId3 { get; }</code></pre>
   </div>
 
@@ -974,6 +920,8 @@ public string? SteamId3 { get; }</code></pre>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[JsonIgnore]
+[JsonIgnore]
+[MemoryPackIgnore]
 public int SteamId32 { get; }</code></pre>
   </div>
 
@@ -1039,7 +987,10 @@ public long SteamId64 { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string? SteamNickName { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+[JsonIgnore]
+[MemoryPackIgnore]
+public string? SteamNickName { get; }</code></pre>
   </div>
 
 
@@ -1137,7 +1088,10 @@ public long Timestamp { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string UserdataPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+[JsonIgnore]
+[MemoryPackIgnore]
+public string UserdataPath { get; }</code></pre>
   </div>
 
 
@@ -1269,7 +1223,7 @@ public bool WantsOfflineMode { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(SteamUser? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(SteamUser? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1361,42 +1315,6 @@ public bool WantsOfflineMode { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_SteamUser_PrintMembers_" data-uid="BD.SteamClient8.Models.SteamUser.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamUser_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.SteamUser.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_SteamUser_ToString_" data-uid="BD.SteamClient8.Models.SteamUser.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_SteamUser_ToString" data-uid="BD.SteamClient8.Models.SteamUser.ToString">
@@ -1439,7 +1357,7 @@ public bool WantsOfflineMode { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual SteamUser &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public SteamUser &lt;Clone&gt;$()</code></pre>
   </div>
 
 

@@ -1837,6 +1837,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.RedeemWalletCodeResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.RedeemWalletCodeResult.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.RedeemWalletResponse.yml",
       "output": {
         ".html": {
@@ -2187,40 +2197,40 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.Badge.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.Badge.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.Game.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.Game.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.ProfileBackground.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.ProfileBackground.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.yml",
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfile.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileBadge.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileBadge.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileGame.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileGame.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileProfileBackground.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamMiniProfileProfileBackground.html"
         }
       },
       "version": ""
@@ -2521,26 +2531,6 @@
       "output": {
         ".html": {
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/System.BinaryReaderExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/System.BinaryReaderExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Models/System.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Models/System.html"
         }
       },
       "version": ""

@@ -95,7 +95,7 @@ Class TradeSummaryResponse  <a class="header-action link-secondary" title="View 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TradeSummaryResponse : JsonModel, IJsonModel</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class TradeSummaryResponse : JsonModel&lt;TradeSummaryResponse&gt;, IJsonModel</code></pre>
   </div>
 
 
@@ -105,7 +105,7 @@ Class TradeSummaryResponse  <a class="header-action link-secondary" title="View 
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel</a>&lt;<a class="xref" href="BD.SteamClient8.Models.TradeSummaryResponse.html">TradeSummaryResponse</a>&gt;</div>
       <div><span class="xref">TradeSummaryResponse</span></div>
     </dd>
   </dl>
@@ -122,13 +122,10 @@ Class TradeSummaryResponse  <a class="header-action link-secondary" title="View 
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel.ToString()</a>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel&lt;TradeSummaryResponse&gt;.ToString()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>

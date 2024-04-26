@@ -402,7 +402,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string RegistryVdfPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static string? RegistryVdfPath { get; }</code></pre>
   </div>
 
 
@@ -434,7 +434,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string SteamDirPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static string? SteamDirPath { get; }</code></pre>
   </div>
 
 
@@ -466,7 +466,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string SteamProgramPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static string? SteamProgramPath { get; }</code></pre>
   </div>
 
 
@@ -621,7 +621,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamApp&gt;&gt;&gt; GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamApp&gt;?&gt;&gt; GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -692,7 +692,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamService.Properties.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>当前 Steam 客户端连接的用户</p>
+  <div class="markdown level1 summary"><p>Steam 客户端连接的用户</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -771,7 +771,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamApp&gt;&gt;&gt; GetDownloadingAppList(CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;List&lt;SteamApp&gt;?&gt;&gt; GetDownloadingAppList(CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -1056,7 +1056,7 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamService.Properties.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>用户拥有的 Steam 游戏</p>
+  <div class="markdown level1 summary"><p>Steam 用户数组</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
@@ -1130,7 +1130,8 @@ Interface ISteamService  <a class="header-action link-secondary" title="View sou
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/PInvoke/ISteamService.Properties.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Steam 进程是否正在运行</p>
+</div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">

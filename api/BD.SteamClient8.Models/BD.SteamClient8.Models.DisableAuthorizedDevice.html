@@ -97,7 +97,7 @@ Class DisableAuthorizedDevice  <a class="header-action link-secondary" title="Vi
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[MessagePackObject(false)]
 [MemoryPackable(SerializeLayout.Explicit)]
-public record DisableAuthorizedDevice : IMemoryPackable&lt;DisableAuthorizedDevice&gt;, IMemoryPackFormatterRegister, IEquatable&lt;DisableAuthorizedDevice&gt;</code></pre>
+public sealed record DisableAuthorizedDevice : IMemoryPackable&lt;DisableAuthorizedDevice&gt;, IMemoryPackFormatterRegister, IEquatable&lt;DisableAuthorizedDevice&gt;</code></pre>
   </div>
 
 
@@ -126,9 +126,6 @@ public record DisableAuthorizedDevice : IMemoryPackable&lt;DisableAuthorizedDevi
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -176,37 +173,6 @@ public record DisableAuthorizedDevice : IMemoryPackable&lt;DisableAuthorizedDevi
 
 
 
-  <a id="BD_SteamClient8_Models_DisableAuthorizedDevice__ctor_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_DisableAuthorizedDevice__ctor_BD_SteamClient8_Models_DisableAuthorizedDevice_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.#ctor(BD.SteamClient8.Models.DisableAuthorizedDevice)">
-  DisableAuthorizedDevice(DisableAuthorizedDevice)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/DisableAuthorizedDevice.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected DisableAuthorizedDevice(DisableAuthorizedDevice original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.DisableAuthorizedDevice.html">DisableAuthorizedDevice</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="properties">Properties
 </h2>
 
@@ -235,37 +201,6 @@ public string? Description { get; set; }</code></pre>
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_DisableAuthorizedDevice_EqualityContract_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_DisableAuthorizedDevice_EqualityContract" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/DisableAuthorizedDevice.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
     <dd></dd>
   </dl>
 
@@ -393,7 +328,7 @@ public string? Tokenid { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(DisableAuthorizedDevice? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(DisableAuthorizedDevice? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -485,42 +420,6 @@ public string? Tokenid { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_DisableAuthorizedDevice_PrintMembers_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_DisableAuthorizedDevice_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/DisableAuthorizedDevice.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_DisableAuthorizedDevice_ToString_" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_DisableAuthorizedDevice_ToString" data-uid="BD.SteamClient8.Models.DisableAuthorizedDevice.ToString">
@@ -563,7 +462,7 @@ public string? Tokenid { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual DisableAuthorizedDevice &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public DisableAuthorizedDevice &lt;Clone&gt;$()</code></pre>
   </div>
 
 

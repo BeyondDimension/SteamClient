@@ -91,11 +91,12 @@ Class SteamGridAppData  <a class="header-action link-secondary" title="View sour
   <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>steamgriddb.com AppData</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SteamGridAppData</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class SteamGridAppData : JsonModel&lt;SteamGridAppData&gt;, IJsonModel</code></pre>
   </div>
 
 
@@ -105,23 +106,27 @@ Class SteamGridAppData  <a class="header-action link-secondary" title="View sour
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel</a>&lt;<a class="xref" href="BD.SteamClient8.Models.SteamGridAppData.html">SteamGridAppData</a>&gt;</div>
       <div><span class="xref">SteamGridAppData</span></div>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">IJsonModel</a></div>
+    </dd>
+  </dl>
 
 
   <dl class="typelist inheritedMembers">
     <dt>Inherited Members</dt>
     <dd>
     <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/JsonModel.cs">JsonModel&lt;SteamGridAppData&gt;.ToString()</a>
+    </div>
+    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>

@@ -96,7 +96,7 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record SteamKeyValue : IEquatable&lt;SteamKeyValue&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record SteamKeyValue : IEquatable&lt;SteamKeyValue&gt;</code></pre>
   </div>
 
 
@@ -123,9 +123,6 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -158,37 +155,6 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
     <pre><code class="lang-csharp hljs">public SteamKeyValue()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_SteamKeyValue__ctor_" data-uid="BD.SteamClient8.Models.SteamKeyValue.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamKeyValue__ctor_BD_SteamClient8_Models_SteamKeyValue_" data-uid="BD.SteamClient8.Models.SteamKeyValue.#ctor(BD.SteamClient8.Models.SteamKeyValue)">
-  SteamKeyValue(SteamKeyValue)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamKeyValue.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SteamKeyValue(SteamKeyValue original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.SteamKeyValue.html">SteamKeyValue</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -362,37 +328,6 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
 
   <h2 class="section" id="properties">Properties
 </h2>
-
-
-  <a id="BD_SteamClient8_Models_SteamKeyValue_EqualityContract_" data-uid="BD.SteamClient8.Models.SteamKeyValue.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamKeyValue_EqualityContract" data-uid="BD.SteamClient8.Models.SteamKeyValue.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamKeyValue.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
 
 
   <a id="BD_SteamClient8_Models_SteamKeyValue_Item_" data-uid="BD.SteamClient8.Models.SteamKeyValue.Item*"></a>
@@ -595,7 +530,7 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(SteamKeyValue? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(SteamKeyValue? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -724,42 +659,6 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
 
 
 
-  <a id="BD_SteamClient8_Models_SteamKeyValue_PrintMembers_" data-uid="BD.SteamClient8.Models.SteamKeyValue.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamKeyValue_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.SteamKeyValue.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamKeyValue.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_SteamKeyValue_ReadAsBinary_" data-uid="BD.SteamClient8.Models.SteamKeyValue.ReadAsBinary*"></a>
 
   <h3 id="BD_SteamClient8_Models_SteamKeyValue_ReadAsBinary_System_IO_Stream_" data-uid="BD.SteamClient8.Models.SteamKeyValue.ReadAsBinary(System.IO.Stream)">
@@ -845,7 +744,7 @@ Class SteamKeyValue  <a class="header-action link-secondary" title="View source"
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual SteamKeyValue &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public SteamKeyValue &lt;Clone&gt;$()</code></pre>
   </div>
 
 

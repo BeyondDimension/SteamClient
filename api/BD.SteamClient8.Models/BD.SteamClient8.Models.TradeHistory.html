@@ -96,7 +96,7 @@ Class TradeHistory  <a class="header-action link-secondary" title="View source" 
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record TradeHistory : IEquatable&lt;TradeHistory&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record TradeHistory : IEquatable&lt;TradeHistory&gt;</code></pre>
   </div>
 
 
@@ -123,9 +123,6 @@ Class TradeHistory  <a class="header-action link-secondary" title="View source" 
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -170,70 +167,8 @@ Class TradeHistory  <a class="header-action link-secondary" title="View source" 
 
 
 
-  <a id="BD_SteamClient8_Models_TradeHistory__ctor_" data-uid="BD.SteamClient8.Models.TradeHistory.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory__ctor_BD_SteamClient8_Models_TradeHistory_" data-uid="BD.SteamClient8.Models.TradeHistory.#ctor(BD.SteamClient8.Models.TradeHistory)">
-  TradeHistory(TradeHistory)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected TradeHistory(TradeHistory original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.TradeHistory.html">TradeHistory</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="properties">Properties
 </h2>
-
-
-  <a id="BD_SteamClient8_Models_TradeHistory_EqualityContract_" data-uid="BD.SteamClient8.Models.TradeHistory.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory_EqualityContract" data-uid="BD.SteamClient8.Models.TradeHistory.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
 
 
   <a id="BD_SteamClient8_Models_TradeHistory_Response_" data-uid="BD.SteamClient8.Models.TradeHistory.Response*"></a>
@@ -284,7 +219,7 @@ public TradeHistory.TradeHistoryResponseDetail? Response { get; set; }</code></p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(TradeHistory? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(TradeHistory? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -376,42 +311,6 @@ public TradeHistory.TradeHistoryResponseDetail? Response { get; set; }</code></p
 
 
 
-  <a id="BD_SteamClient8_Models_TradeHistory_PrintMembers_" data-uid="BD.SteamClient8.Models.TradeHistory.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_TradeHistory_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.TradeHistory.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/Trade/TradeHistory.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_TradeHistory_ToString_" data-uid="BD.SteamClient8.Models.TradeHistory.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_TradeHistory_ToString" data-uid="BD.SteamClient8.Models.TradeHistory.ToString">
@@ -454,7 +353,7 @@ public TradeHistory.TradeHistoryResponseDetail? Response { get; set; }</code></p
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual TradeHistory &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public TradeHistory &lt;Clone&gt;$()</code></pre>
   </div>
 
 

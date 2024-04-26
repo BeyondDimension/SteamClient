@@ -91,11 +91,12 @@ Class SteamGridApp  <a class="header-action link-secondary" title="View source" 
   <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>steamgriddb.com App</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record SteamGridApp : IEquatable&lt;SteamGridApp&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record SteamGridApp : IEquatable&lt;SteamGridApp&gt;</code></pre>
   </div>
 
 
@@ -122,9 +123,6 @@ Class SteamGridApp  <a class="header-action link-secondary" title="View source" 
     <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
-    </div>
-    <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
     </div>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
@@ -169,70 +167,8 @@ Class SteamGridApp  <a class="header-action link-secondary" title="View source" 
 
 
 
-  <a id="BD_SteamClient8_Models_SteamGridApp__ctor_" data-uid="BD.SteamClient8.Models.SteamGridApp.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridApp__ctor_BD_SteamClient8_Models_SteamGridApp_" data-uid="BD.SteamClient8.Models.SteamGridApp.#ctor(BD.SteamClient8.Models.SteamGridApp)">
-  SteamGridApp(SteamGridApp)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridApp.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected SteamGridApp(SteamGridApp original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.SteamGridApp.html">SteamGridApp</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-
   <h2 class="section" id="properties">Properties
 </h2>
-
-
-  <a id="BD_SteamClient8_Models_SteamGridApp_EqualityContract_" data-uid="BD.SteamClient8.Models.SteamGridApp.EqualityContract*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridApp_EqualityContract" data-uid="BD.SteamClient8.Models.SteamGridApp.EqualityContract">
-  EqualityContract
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridApp.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual Type EqualityContract { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
 
 
   <a id="BD_SteamClient8_Models_SteamGridApp_Id_" data-uid="BD.SteamClient8.Models.SteamGridApp.Id*"></a>
@@ -382,7 +318,7 @@ public bool Verified { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(SteamGridApp? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(SteamGridApp? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -474,42 +410,6 @@ public bool Verified { get; set; }</code></pre>
 
 
 
-  <a id="BD_SteamClient8_Models_SteamGridApp_PrintMembers_" data-uid="BD.SteamClient8.Models.SteamGridApp.PrintMembers*"></a>
-
-  <h3 id="BD_SteamClient8_Models_SteamGridApp_PrintMembers_System_Text_StringBuilder_" data-uid="BD.SteamClient8.Models.SteamGridApp.PrintMembers(System.Text.StringBuilder)">
-  PrintMembers(StringBuilder)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamGridDB/SteamGridApp.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual bool PrintMembers(StringBuilder builder)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>builder</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.stringbuilder">StringBuilder</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
   <a id="BD_SteamClient8_Models_SteamGridApp_ToString_" data-uid="BD.SteamClient8.Models.SteamGridApp.ToString*"></a>
 
   <h3 id="BD_SteamClient8_Models_SteamGridApp_ToString" data-uid="BD.SteamClient8.Models.SteamGridApp.ToString">
@@ -552,7 +452,7 @@ public bool Verified { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual SteamGridApp &lt;Clone&gt;$()</code></pre>
+    <pre><code class="lang-csharp hljs">public SteamGridApp &lt;Clone&gt;$()</code></pre>
   </div>
 
 

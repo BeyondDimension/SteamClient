@@ -96,7 +96,7 @@ Class IntStatInfo  <a class="header-action link-secondary" title="View source" h
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public record IntStatInfo : StatInfo, IEquatable&lt;StatInfo&gt;, IEquatable&lt;IntStatInfo&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed record IntStatInfo : StatInfo, IEquatable&lt;StatInfo&gt;, IEquatable&lt;IntStatInfo&gt;</code></pre>
   </div>
 
 
@@ -142,9 +142,6 @@ Class IntStatInfo  <a class="header-action link-secondary" title="View source" h
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
     </div>
     <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
-    </div>
-    <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
     </div>
     <div>
@@ -175,37 +172,6 @@ Class IntStatInfo  <a class="header-action link-secondary" title="View source" h
     <pre><code class="lang-csharp hljs">public IntStatInfo()</code></pre>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Models_IntStatInfo__ctor_" data-uid="BD.SteamClient8.Models.IntStatInfo.#ctor*"></a>
-
-  <h3 id="BD_SteamClient8_Models_IntStatInfo__ctor_BD_SteamClient8_Models_IntStatInfo_" data-uid="BD.SteamClient8.Models.IntStatInfo.#ctor(BD.SteamClient8.Models.IntStatInfo)">
-  IntStatInfo(IntStatInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/IntStatInfo.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected IntStatInfo(IntStatInfo original)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>original</code> <a class="xref" href="BD.SteamClient8.Models.IntStatInfo.html">IntStatInfo</a></dt>
-    <dd></dd>
-  </dl>
 
 
 
@@ -556,7 +522,7 @@ Class IntStatInfo  <a class="header-action link-secondary" title="View source" h
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public virtual bool Equals(IntStatInfo? other)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Equals(IntStatInfo? other)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
