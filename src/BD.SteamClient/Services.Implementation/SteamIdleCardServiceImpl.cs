@@ -39,7 +39,7 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         var parser = new HtmlParser();
         int pagesCount = 1;
 
-        var page_rsp = await steamSession.HttpClient.GetAsync(badges_url);
+        var page_rsp = await steamSession.HttpClient!.GetAsync(badges_url);
         if (!page_rsp.IsSuccessStatusCode)
             return (null, null, page_rsp.StatusCode);
 
@@ -112,16 +112,19 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         var userIdle = new UserIdleInfo();
         try
         {
-            userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium").LastElementChild.GetAttribute("src");
-            userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content").TextContent.Trim();
-            userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum").TextContent, out var after_userLevel) ? after_userLevel : default;
-            userIdle.CurrentExp = int.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_xp").TextContent, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp) ? after_currentExp : default;
+            userIdle.AvatarUrl = document.QuerySelector(".playerAvatar.medium")?.LastElementChild?.GetAttribute("src");
+            userIdle.UserName = document.QuerySelector(".whiteLink.persona_name_text_content")?.TextContent.Trim();
+            userIdle.UserLevel = ushort.TryParse(document.QuerySelector(".friendPlayerLevelNum")?.TextContent, out var after_userLevel) ? after_userLevel : default;
+            userIdle.CurrentExp = int.TryParse(
+                Regex.Match(document.QuerySelector(".profile_xp_block_xp")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*").Value, NumberStyles.Number, CultureInfo.CurrentCulture, out var after_currentExp)
+                ? after_currentExp
+                : default;
 
-            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining").TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
+            var matchs = Regex.Matches(document.QuerySelector(".profile_xp_block_remaining")?.TextContent ?? string.Empty, @"\d{1,3}(,\d{3})*");
             if (matchs.Count >= 2)
                 userIdle.UpExp = int.TryParse(matchs[1].Value, out var after_upExp) ? after_upExp : default;
 
-            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress").OuterHtml, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
+            userIdle.NextLevelExpPercentage = short.TryParse(Regex.Match(document.QuerySelector(".profile_xp_block_remaining_bar_progress")?.OuterHtml ?? string.Empty, @"width:\s*(\d+)%").Groups[1].Value, out var nextLevelExpPercentage) ? nextLevelExpPercentage : default;
 
         }
         catch (Exception ex)
