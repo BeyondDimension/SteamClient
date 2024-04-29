@@ -22,7 +22,7 @@ public partial class ModifiedApp
             OriginalData = originalData;
         }
 
-        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
+        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream(), Encoding.UTF8, true);
         binaryWriter.Write(app.ChangesData);
 
         ChangesData = binaryWriter.BaseStream.ToByteArray();
@@ -48,7 +48,7 @@ public partial class ModifiedApp
     {
         if (ChangesData != null)
         {
-            using BinaryReader reader = new BinaryReader(new MemoryStream(ChangesData));
+            using BinaryReader reader = new BinaryReader(new MemoryStream(ChangesData), Encoding.UTF8, true);
             return Changes = reader.ReadPropertyTable();
         }
         return null;
@@ -58,7 +58,7 @@ public partial class ModifiedApp
     {
         if (OriginalData != null)
         {
-            using BinaryReader reader = new BinaryReader(new MemoryStream(OriginalData));
+            using BinaryReader reader = new BinaryReader(new MemoryStream(OriginalData), Encoding.UTF8, true);
             return reader.ReadPropertyTable();
         }
         return null;

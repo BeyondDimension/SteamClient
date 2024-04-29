@@ -594,7 +594,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                 {
                     return apps;
                 }
-                using BinaryReader binaryReader = new(stream);
+                using BinaryReader binaryReader = new(stream, Encoding.UTF8, true);
                 uint num = binaryReader.ReadUInt32();
                 if (!MagicNumbers.Value.Contains(num))
                 {
@@ -678,7 +678,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             var editApps = Conn.SteamApps.Items.Where(s => s.IsEdited);
             var modifiedApps = new List<ModifiedApp>();
 
-            using BinaryWriter binaryWriter = new(new MemoryStream());
+            using BinaryWriter binaryWriter = new(new MemoryStream(), Encoding.UTF8, true);
             binaryWriter.Write(MagicNumber);
             binaryWriter.Write(univeseNumber);
 

@@ -871,7 +871,7 @@ public class SteamApp : ReactiveObject
         {
             int count = reader.ReadInt32();
             byte[] array = reader.ReadBytes(count);
-            using BinaryReader binaryReader = new(new MemoryStream(array));
+            using BinaryReader binaryReader = new(new MemoryStream(array), Encoding.UTF8, true);
             app._stuffBeforeHash = binaryReader.ReadBytes(16);
             binaryReader.ReadBytes(20);
             app._changeNumber = binaryReader.ReadUInt32();
@@ -907,7 +907,7 @@ public class SteamApp : ReactiveObject
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)AppId);
-        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
+        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream(), Encoding.UTF8, true);
         binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);
         binaryWriter.Write(_changeNumber);
