@@ -158,7 +158,7 @@ public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate nint NativeGetFileNameAndSizeII(nint thisptr, int iFile, out int pnFileSizeInBytes);
 
-    public string GetFileNameAndSize(int iFile, out int pnFileSizeInBytes)
+    public string? GetFileNameAndSize(int iFile, out int pnFileSizeInBytes)
     {
         return NativeStrings.PointerToString(
             GetFunction<NativeGetFileNameAndSizeII>(

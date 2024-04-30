@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.Extensions;
 
 /// <summary>
 /// <see cref="SteamApp"/> 扩展
@@ -148,7 +148,7 @@ public static class SteamAppExtensions
 #endif
 
     /// <summary>
-    /// 获取 Id 和名称，使用 | 分割
+    /// 获取Id和名称,使用 | 分割
     /// </summary>
     /// <param name="steamApp"></param>
     /// <returns></returns>
@@ -301,7 +301,7 @@ public static class SteamAppExtensions
                                           propertyTable!.TryGetPropertyValue<string>(steamApp.NodePlatforms, out var os) ? os : null : null,
                                       };
 
-                    steamApp.LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems);
+                    steamApp.LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());
                 }
             }
 
@@ -326,7 +326,7 @@ public static class SteamAppExtensions
                                     Recursive = table.GetPropertyValue(false, "recursive"),
                                 };
 
-                steamApp.SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles);
+                steamApp.SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles.ToList());
             }
 
             steamApp.BaseName = properties.GetPropertyValue(string.Empty, steamApp.NodeAppInfo, "steam_edit", "base_name");
@@ -399,17 +399,17 @@ public static class SteamAppExtensions
     {
         if (steamApp._properties == null)
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(steamApp._properties)} is null.");
-        SteamAppPropertyTable propertyTable = new(steamApp._properties);
+        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(steamApp._properties);
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)steamApp.AppId);
-        using MemoryStream memoryStream = new();
-        using BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
+        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
         binaryWriter.Write(steamApp._stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);
         binaryWriter.Write(steamApp._changeNumber);
         binaryWriter.Write(propertyTable);
+        MemoryStream memoryStream = (MemoryStream)binaryWriter.BaseStream;
         writer.Write((int)memoryStream.Length);
         writer.Write(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
     }

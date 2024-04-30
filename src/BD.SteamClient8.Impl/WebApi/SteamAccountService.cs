@@ -1,20 +1,6 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
-/// <summary>
-/// 初始化 <see cref="SteamAccountService"/> 类的新实例
-/// </summary>
-/// <param name="uas"></param>
-/// <param name="sessions"></param>
-/// <param name="loggerFactory"></param>
-/// <param name="serviceProvider"></param>
-[method: ActivatorUtilitiesConstructor]
-public sealed partial class SteamAccountService(
-    IRandomGetUserAgentService uas,
-    ISteamSessionService sessions,
-    ILoggerFactory loggerFactory,
-    IServiceProvider serviceProvider) : WebApiClientFactoryService(
-        loggerFactory.CreateLogger(TAG),
-        serviceProvider), ISteamAccountService
+public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {
     /// <inheritdoc/>
     protected sealed override string ClientName => TAG;
@@ -33,9 +19,29 @@ public sealed partial class SteamAccountService(
     /// </summary>
     public const string default_donotcache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
 
-    readonly IRandomGetUserAgentService uas = uas;
+    readonly IRandomGetUserAgentService uas;
 
-    readonly ISteamSessionService sessions = sessions;
+    readonly ISteamSessionService sessions;
+
+    /// <summary>
+    /// 初始化 <see cref="SteamAccountService"/> 类的新实例
+    /// </summary>
+    /// <param name="uas"></param>
+    /// <param name="sessions"></param>
+    /// <param name="loggerFactory"></param>
+    /// <param name="serviceProvider"></param>
+    [ActivatorUtilitiesConstructor]
+    public SteamAccountService(
+        IRandomGetUserAgentService uas,
+        ISteamSessionService sessions,
+        ILoggerFactory loggerFactory,
+        IServiceProvider serviceProvider) : base(
+            loggerFactory.CreateLogger(TAG),
+            serviceProvider)
+    {
+        this.uas = uas;
+        this.sessions = sessions;
+    }
 
     /// <summary>
     /// 等待一个时间并且重试
@@ -53,7 +59,7 @@ public sealed partial class SteamAccountService(
     /// <summary>
     /// 重试间隔
     /// </summary>
-    static readonly IEnumerable<TimeSpan> sleepDurations = [TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3),];
+    static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
 
     #region Public Methods
 
@@ -526,10 +532,10 @@ public sealed partial class SteamAccountService(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<RedeemWalletCodeResult?>> RedeemWalletCode(SteamLoginState loginState, string walletCode, bool isRetry = false, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<(SteamResult Result, PurchaseResultDetail? Detail)?>> RedeemWalletCode(SteamLoginState loginState, string walletCode, bool isRetry = false, CancellationToken cancellationToken = default)
     {
         if (loginState.Cookies == null || string.IsNullOrEmpty(loginState.Cookies?["sessionid"]?.Value))
-            return "Parameter Cookies not be null in SteamLoginState";
+            return ApiRspHelper.Fail<(SteamResult Result, PurchaseResultDetail? Detail)?>("Parameter Cookies not be null in SteamLoginState");
 
         if (isRetry)
             return await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () => await RedeemWalletCodeCore(loginState, walletCode, cancellationToken));
@@ -710,8 +716,7 @@ public sealed partial class SteamAccountService(
     {
         IBrowsingContext context = BrowsingContext.New();
 
-        var htmlParser = context.GetService<IHtmlParser>();
-        htmlParser.ThrowIsNull();
+        var htmlParser = context.GetService<IHtmlParser>() ?? throw new ArgumentNullException("获取 Html 解析器失败");
         var document = await htmlParser.ParseDocumentAsync(html);
 
         var rowElements = document.QuerySelectorAll("div.tradehistoryrow");
@@ -1325,7 +1330,7 @@ public sealed partial class SteamAccountService(
         }
     }
 
-    async Task<RedeemWalletCodeResult?> RedeemWalletCodeCore(SteamLoginState loginState, string walletCode, CancellationToken cancellationToken = default)
+    async Task<(SteamResult Result, PurchaseResultDetail? Detail)?> RedeemWalletCodeCore(SteamLoginState loginState, string walletCode, CancellationToken cancellationToken = default)
     {
         var client = CreateClient(loginState.Username.ThrowIsNull());
         var container = GetCookieContainer(loginState.Username);
@@ -1350,30 +1355,26 @@ public sealed partial class SteamAccountService(
             return null;
 
         if ((detail.Result != SteamResult.OK) || (detail.Detail != PurchaseResultDetail.NoDetail))
-            return new RedeemWalletCodeResult
-            {
-                Result = detail.Result == SteamResult.OK ? SteamResult.Fail : detail.Result,
-                Detail = detail.Detail,
-            };
+            return (detail.Result == SteamResult.OK ? SteamResult.Fail : detail.Result, detail.Detail);
 
-        return new RedeemWalletCodeResult { Result = SteamResult.Fail, Detail = PurchaseResultDetail.NoDetail, };
+        return (SteamResult.Fail, PurchaseResultDetail.NoDetail);
     }
 
-    ///// <summary>
-    ///// 获取验证码图片 Base64
-    ///// </summary>
-    ///// <param name="captchaId"></param>
-    ///// <returns></returns>
-    //async Task<string?> GetCaptchaImageBase64(string captchaId)
-    //{
-    //    var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
-    //    {
-    //        var url = SteamApiUrls.CaptchaImageUrl + captchaId;
-    //        var response = await CreateClient().GetByteArrayAsync(url);
-    //        return Convert.ToBase64String(response);
-    //    });
-    //    return r;
-    //}
+    /// <summary>
+    /// 获取验证码图片 Base64
+    /// </summary>
+    /// <param name="captchaId"></param>
+    /// <returns></returns>
+    async Task<string?> GetCaptchaImageBase64(string captchaId)
+    {
+        var r = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
+        {
+            var url = SteamApiUrls.CaptchaImageUrl + captchaId;
+            var response = await CreateClient().GetByteArrayAsync(url);
+            return Convert.ToBase64String(response);
+        });
+        return r;
+    }
 
     /// <summary>
     /// 解析开发密钥信息
@@ -1393,7 +1394,10 @@ public sealed partial class SteamAccountService(
             IBrowsingContext context = BrowsingContext.New();
 
             var htmlParser = context.GetService<IHtmlParser>();
-            htmlParser.ThrowIsNull();
+
+            if (htmlParser == null)
+                throw new ArgumentNullException("获取Html解析器失败");
+
             var document = htmlParser.ParseDocument(respStream);
 
             var form = document.QuerySelector("#editForm");
@@ -1423,8 +1427,8 @@ public sealed partial class SteamAccountService(
         using (stream)
         {
             IBrowsingContext context = BrowsingContext.New();
-            var htmlParser = context.GetService<IHtmlParser>();
-            htmlParser.ThrowIsNull();
+            var htmlParser = context.GetService<IHtmlParser>()
+                ?? throw new ArgumentNullException("获取 Html 解析器失败");
             var document = await htmlParser.ParseDocumentAsync(stream);
 
             return await parseFunc(document);
@@ -1435,8 +1439,8 @@ public sealed partial class SteamAccountService(
 
     #region GeneratedRegex
 
-    //[GeneratedRegex("<input type=\"hidden\" name=\"(.*?)\" value=\"(.*?)\" />")]
-    //private static partial Regex OpenIdLoginRegex();
+    [GeneratedRegex("<input type=\"hidden\" name=\"(.*?)\" value=\"(.*?)\" />")]
+    private static partial Regex OpenIdLoginRegex();
 
     [GeneratedRegex("^\\s*([-+])?([^\\d,.]*)([\\d,.]+)([^\\d,.]*)$")]
     private static partial Regex ParseHistoryRegex();

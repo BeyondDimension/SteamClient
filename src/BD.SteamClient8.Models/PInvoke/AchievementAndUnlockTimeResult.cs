@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.PInvoke;
 
 /// <summary>
 /// 获取指定成就的完成状态和解锁时间结果

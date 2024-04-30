@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamDbWebApiService"/> SteamDb WebApi 服务实现
@@ -9,7 +9,7 @@ namespace BD.SteamClient8.Impl;
 /// <param name="serviceProvider"></param>
 /// <param name="http_helper"></param>
 /// <param name="loggerFactory"></param>
-class SteamDbWebApiServiceImpl(
+sealed class SteamDbWebApiServiceImpl(
     IServiceProvider serviceProvider,
     IHttpPlatformHelperService http_helper,
     ILoggerFactory loggerFactory) : WebApiClientFactoryService(

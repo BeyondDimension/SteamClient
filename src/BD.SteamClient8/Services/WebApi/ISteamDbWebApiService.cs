@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// SteamDb WebApi 服务

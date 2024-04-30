@@ -1,5 +1,5 @@
 #if !(IOS || ANDROID)
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.PInvoke;
 
 /// <summary>
 /// Steamworks 本地 API 服务
@@ -70,7 +70,7 @@ public interface ISteamworksLocalApiService
     /// <param name="appid"></param>
     /// <param name="key"></param>
     /// <param name="cancellationToken"></param>
-    Task<ApiRspImpl<string>> GetAppData(uint appid, string key, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetAppData(uint appid, string key, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 检查 Steam 是否是中国版本的启动器
@@ -110,28 +110,28 @@ public interface ISteamworksLocalApiService
     /// <param name="appid"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetAppInstallDir(uint appid, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 IP 所属国家或地区
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetCountryOrRegionByIP(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetCountryOrRegionByIP(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取当前游戏语言
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetCurrentGameLanguage(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetCurrentGameLanguage(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取可用的游戏语言
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetAvailableGameLanguages(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetAvailableGameLanguages(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取指定统计数据的整数值
@@ -177,7 +177,7 @@ public interface ISteamworksLocalApiService
     /// 添加用户统计数据接收回调函数
     /// </summary>
     /// <param name="cancellationToken"></param>
-    IAsyncEnumerable<ApiRspImpl<UserStatsReceivedResult>> AddUserStatsReceivedCallback(CancellationToken cancellationToken = default);
+    IAsyncEnumerable<ApiRspImpl<UserStatsReceivedResult?>> AddUserStatsReceivedCallback(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 请求当前玩家的统计数据是否成功

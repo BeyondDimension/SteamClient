@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// Steam 账号相关接口服务
@@ -45,7 +45,7 @@ public interface ISteamAccountService
     /// <param name="isRetry">是否重试，在尝试定区的时候可以重试，真正充值时不应重试</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<RedeemWalletCodeResult?>> RedeemWalletCode(
+    Task<ApiRspImpl<(SteamResult Result, PurchaseResultDetail? Detail)?>> RedeemWalletCode(
         SteamLoginState loginState,
         string walletCode,
         bool isRetry = false,

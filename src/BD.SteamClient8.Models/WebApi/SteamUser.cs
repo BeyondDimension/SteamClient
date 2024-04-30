@@ -1,22 +1,21 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
-[MP2Obj]
 [XmlRoot("profile")]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-public sealed partial record class SteamUser
+public sealed record class SteamUser
 {
     /// <summary>
     /// SteamId 3 格式
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore, NewtonsoftJsonIgnore, MP2Ignore]
+    [SystemTextJsonIgnore]
     public string? SteamId3 => $"[U:1:{SteamId32}]";
 
     /// <summary>
     /// SteamId 32 位
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore, NewtonsoftJsonIgnore, MP2Ignore]
+    [SystemTextJsonIgnore]
     public int SteamId32 => Convert.ToInt32((SteamId64 >> 0) & 0xFFFFFFFF);
 
     /// <summary>
@@ -33,14 +32,12 @@ public sealed partial record class SteamUser
     /// 个人资料链接
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore, NewtonsoftJsonIgnore, MP2Ignore]
     public string ProfileUrl => string.Format(SteamApiUrls.STEAM_PROFILES_URL, SteamId64);
 
     /// <summary>
     /// Userdata 文件夹相对路径
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore, NewtonsoftJsonIgnore, MP2Ignore]
     public string UserdataPath => Path.Combine("userdata", SteamId32.ToString());
 
     /// <summary>
@@ -126,7 +123,6 @@ public sealed partial record class SteamUser
     /// 昵称
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore, NewtonsoftJsonIgnore, MP2Ignore]
     public string? SteamNickName => string.IsNullOrEmpty(SteamID) ? PersonaName : SteamID;
 
     /// <summary>

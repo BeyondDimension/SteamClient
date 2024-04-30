@@ -1,7 +1,7 @@
-namespace BD.SteamClient8.Enums;
+namespace BD.SteamClient8.Enums.WebApi.SteamGridDB;
 
 /// <summary>
-/// SteamGridDB 托管图像类型
+/// steamgriddb.com 托管图像类型
 /// </summary>
 public enum SteamGridItemType
 {

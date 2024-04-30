@@ -74,8 +74,6 @@ abstract class ServiceTestBase
     /// <summary>
     /// 配置依赖注入服务
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="needLoginState"></param>
     static void ConfigureServices(IServiceCollection services)
     {
         ConfigurationBuilder builder = new();

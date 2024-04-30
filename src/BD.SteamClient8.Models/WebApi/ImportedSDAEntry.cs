@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// 导入 SDA 实体
@@ -38,7 +38,9 @@ public sealed record class ImportedSDAEntry
     /// <summary>
     /// json text
     /// </summary>
+#pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
     public string? json;
+#pragma warning restore SA1307 // Accessible fields should begin with upper-case letter
 
     /// <summary>
     /// ToString()

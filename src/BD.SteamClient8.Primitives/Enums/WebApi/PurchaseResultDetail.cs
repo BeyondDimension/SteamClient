@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Enums;
+namespace BD.SteamClient8.Enums.WebApi;
 
 /// <summary>
 /// 购买结果详情代码

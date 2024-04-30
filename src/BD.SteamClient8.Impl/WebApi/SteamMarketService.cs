@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamMarketService"/> Steam 市场交易相关服务实现
@@ -8,7 +8,7 @@ namespace BD.SteamClient8.Impl;
 /// </remarks>
 /// <param name="serviceProvider"></param>
 /// <param name="loggerFactory"></param>
-public class SteamMarketService(IServiceProvider serviceProvider,
+public sealed class SteamMarketService(IServiceProvider serviceProvider,
     ILoggerFactory loggerFactory) : WebApiClientFactoryService(
         loggerFactory.CreateLogger(TAG),
         serviceProvider), ISteamMarketService

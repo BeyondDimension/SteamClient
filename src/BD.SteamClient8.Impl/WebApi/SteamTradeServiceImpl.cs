@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamTradeService"/> Steam 交易报价相关服实现
@@ -739,8 +739,6 @@ public sealed partial class SteamTradeServiceImpl(
     /// <summary>
     /// 获取 SessionId
     /// </summary>
-    /// <param name="steamSession"></param>
-    /// <returns></returns>
     async Task<string?> FetchSessionId(SteamSession steamSession)
     {
         if (string.IsNullOrEmpty(steamSession.Cookies?["sessionid"]?.Value))
@@ -821,19 +819,19 @@ public sealed partial class SteamTradeServiceImpl(
         };
     }
 
-    ///// <summary>
-    ///// html 解析出 TradeOfferId
-    ///// </summary>
-    ///// <param name="confirmation_details_page"></param>
-    ///// <returns></returns>
-    //static string GetConfirmationTradeOfferId(string confirmation_details_page)
-    //{
-    //    var parser = new HtmlParser();
-    //    var document = parser.ParseDocument(confirmation_details_page);
-    //    var full_id = document.QuerySelectorAll(".tradeoffer").Select(s => s.Id).FirstOrDefault();
-    //    document.Dispose();
-    //    return full_id?.Split('_')[1] ?? string.Empty;
-    //}
+    /// <summary>
+    /// html解析出 TradeOfferId
+    /// </summary>
+    /// <param name="confirmation_details_page"></param>
+    /// <returns></returns>
+    static string GetConfirmationTradeOfferId(string confirmation_details_page)
+    {
+        var parser = new HtmlParser();
+        var document = parser.ParseDocument(confirmation_details_page);
+        var full_id = document.QuerySelectorAll(".tradeoffer").Select(s => s.Id).FirstOrDefault();
+        document.Dispose();
+        return full_id?.Split('_')[1] ?? string.Empty;
+    }
 
     static string CreateTimeHash(string identitySecret, string tag, long timestamp)
     {

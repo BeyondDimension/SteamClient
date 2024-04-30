@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamAuthenticatorService"/> Steam 令牌服务实现

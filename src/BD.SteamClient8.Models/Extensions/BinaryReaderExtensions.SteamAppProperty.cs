@@ -1,10 +1,10 @@
 #if !(IOS || ANDROID)
-namespace System;
+namespace BD.SteamClient8.Models.Extensions;
 
-static partial class BinaryReaderExtensions
+public static partial class BinaryReaderExtensions
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ReadAppInfoString(this BinaryReader reader)
+    public static string ReadAppInfoString(this BinaryReader reader)
     {
         byte[] buffer;
         int count;
@@ -22,9 +22,9 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string ReadAppInfoWideString(this BinaryReader reader)
+    public static string ReadAppInfoWideString(this BinaryReader reader)
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder stringBuilder = new StringBuilder();
         for (char c = (char)reader.ReadUInt16(); c != 0; c = (char)reader.ReadUInt16())
         {
             stringBuilder.Append(c);
@@ -33,7 +33,7 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static void WriteAppInfoString(this BinaryWriter writer, string str)
+    public static void WriteAppInfoString(this BinaryWriter writer, string str)
     {
         byte[] bytes = Encoding.UTF8.GetBytes(str);
         writer.Write(bytes);
@@ -41,7 +41,7 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static void WriteAppInfoWideString(this BinaryWriter writer, string str)
+    public static void WriteAppInfoWideString(this BinaryWriter writer, string str)
     {
         byte[] bytes = Encoding.Unicode.GetBytes(str);
         writer.Write(bytes);
@@ -49,7 +49,7 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static SDColor ReadColor(this BinaryReader reader)
+    public static SDColor ReadColor(this BinaryReader reader)
     {
         byte red = reader.ReadByte();
         byte green = reader.ReadByte();
@@ -58,7 +58,7 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static void Write(this BinaryWriter writer, SDColor color)
+    public static void Write(this BinaryWriter writer, SDColor color)
     {
         writer.Write(color.R);
         writer.Write(color.G);
@@ -66,7 +66,7 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static void Write(this BinaryWriter writer, SteamAppPropertyTable table)
+    public static void Write(this BinaryWriter writer, SteamAppPropertyTable table)
     {
         foreach (SteamAppProperty property in table.Properties)
         {
@@ -112,9 +112,9 @@ static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader)
+    public static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader)
     {
-        SteamAppPropertyTable propertyTable = new();
+        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable();
         SteamAppPropertyType propertyType;
         while ((propertyType = (SteamAppPropertyType)reader.ReadByte()) != SteamAppPropertyType._EndOfTable_)
         {

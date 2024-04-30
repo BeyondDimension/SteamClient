@@ -1,4 +1,4 @@
-namespace Microsoft.Extensions.DependencyInjection;
+namespace BD.SteamClient8.Impl.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
@@ -103,6 +103,7 @@ public static partial class ServiceCollectionExtensions
     {
         services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
         services.TryAddSingleton<ISteamAuthenticatorService, SteamAuthenticatorServiceImpl>();
+        services.TryAddSingleton<SteamAuthenticator.IAuthenticatorNetService>(static s => s.GetRequiredService<ISteamAuthenticatorService>());
         return services;
     }
 

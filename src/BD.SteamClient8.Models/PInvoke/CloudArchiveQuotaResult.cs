@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.PInvoke;
 
 /// <summary>
 /// 获得可用的字节数返回结果

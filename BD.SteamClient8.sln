@@ -37,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Root", "0.Root", "{49150E
 		src\Directory.Build.props = src\Directory.Build.props
 		src\Directory.Build.targets = src\Directory.Build.targets
 		ref\Common\src\Directory.Packages.props = ref\Common\src\Directory.Packages.props
+		src\Version.props = src\Version.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.SharedLibrary", "2.SharedLibrary", "{0CE5250A-9E2C-43A7-BE3F-763ADE47652E}"

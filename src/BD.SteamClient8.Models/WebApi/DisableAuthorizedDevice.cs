@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 [MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
 public sealed partial record class DisableAuthorizedDevice

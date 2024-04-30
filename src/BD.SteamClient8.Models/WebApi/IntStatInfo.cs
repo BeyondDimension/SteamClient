@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// 整数类型统计

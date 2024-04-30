@@ -2,7 +2,7 @@ using AngleSharp.Common;
 using AngleSharp.Html.Dom;
 using Nito.Comparers.Linq;
 
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamIdleCardService"/> Steam 挂卡相关服务实现
@@ -67,12 +67,12 @@ public partial class SteamIdleCardServiceImpl(
                 pagesCount = pages.Count;
             }
 
-            Func<string, Task<string>> cardpage_func = async (app_id) =>
+            async Task<string> cardpage_func(string app_id)
             {
                 using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_GAMECARDS_URL.Format(steamSession.SteamId, app_id));
                 sendArgs.SetHttpClient(steamSession.HttpClient!);
                 return await SendAsync<string>(sendArgs, cancellationToken) ?? string.Empty;
-            };
+            }
 
             FetchBadgesOnPage(document, badges, cardpage_func, need_price);
 
@@ -128,7 +128,7 @@ public partial class SteamIdleCardServiceImpl(
             return ex;
         }
 
-        return new UserBadgesResponse(userIdle, badges)!;
+        return new UserBadgesResponse(userIdle, badges);
     }
 
     /// <inheritdoc/>
@@ -171,7 +171,7 @@ public partial class SteamIdleCardServiceImpl(
         {
             Log.Warn(nameof(GetAppCardsAvgPrice), ex, "获取卡片平均价格接口出错");
         }
-        return avgs!;
+        return avgs;
     }
 
     /// <inheritdoc/>
@@ -191,8 +191,10 @@ public partial class SteamIdleCardServiceImpl(
             {
                 foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
                 {
-                    var cardPrice = new CardsMarketPrice();
-                    cardPrice.CardName = item.Name;
+                    var cardPrice = new CardsMarketPrice
+                    {
+                        CardName = item.Name,
+                    };
                     cardPrice.IsFoil = cardPrice.CardName.Contains("(Foil)");
                     cardPrice.MarketUrl = item.Value.GetProperty("url").ToString();
                     cardPrice.Price = item.Value.GetProperty("price").GetDecimal();
@@ -204,7 +206,7 @@ public partial class SteamIdleCardServiceImpl(
         {
             Log.Warn(nameof(GetCardsMarketPrice), ex, "获取卡片价格数据出错");
         }
-        return cardPrices!;
+        return cardPrices;
     }
 
     #endregion
@@ -240,7 +242,7 @@ public partial class SteamIdleCardServiceImpl(
             {
                 badgeImageUrl = badgeInfo.QuerySelector("img.badge_icon")?.Attributes["src"]?.Value ?? string.Empty;
                 var level_expCards = badgeInfo.QuerySelector("div.badge_info_description")?.Children[1];
-                var matchs = Regex.Matches(level_expCards?.TextContent ?? string.Empty, @"[0-9]+");
+                var matchs = MyRegex().Matches(level_expCards?.TextContent ?? string.Empty);
                 if (matchs.Count == 2)
                 {
                     level = byte.Parse(matchs[0].Value);
@@ -249,7 +251,7 @@ public partial class SteamIdleCardServiceImpl(
             }
 
             var cardRemainingNode = badge.QuerySelector("span.progress_info_bold");
-            var remaining_cards = cardRemainingNode == null ? string.Empty : Regex.Match(cardRemainingNode.TextContent, @"[0-9]+").Value;
+            var remaining_cards = cardRemainingNode == null ? string.Empty : MyRegex().Match(cardRemainingNode.TextContent).Value;
 
             var cardGathering = badge.QuerySelector("div.badge_progress_info");
             int collected = 0, gathering = 0;
@@ -296,7 +298,7 @@ public partial class SteamIdleCardServiceImpl(
         }
     }
 
-    IEnumerable<SteamCard> FetchCardsOnPage(IHtmlDocument document)
+    List<SteamCard> FetchCardsOnPage(IHtmlDocument document)
     {
         var cards = new List<SteamCard>();
         foreach (var owned in document.QuerySelectorAll("div.badge_card_set_card.owned"))
@@ -340,6 +342,9 @@ public partial class SteamIdleCardServiceImpl(
 
     [GeneratedRegex(@"p=\s*(\d+)")]
     private static partial Regex PRegex();
+
+    [GeneratedRegex(@"[0-9]+")]
+    private static partial Regex MyRegex();
 
     #endregion
 }

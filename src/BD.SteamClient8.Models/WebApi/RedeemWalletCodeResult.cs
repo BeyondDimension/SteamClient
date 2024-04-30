@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 public sealed record class RedeemWalletCodeResult
 {

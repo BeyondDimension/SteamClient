@@ -39,7 +39,7 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate nint NativeGetCurrentGameLanguage(nint self);
 
-    public string GetCurrentGameLanguage()
+    public string? GetCurrentGameLanguage()
     {
         var languagePointer = Call<nint, NativeGetCurrentGameLanguage>(
             Functions.GetCurrentGameLanguage,
@@ -52,7 +52,7 @@ public class SteamApps008 : NativeWrapper<ISteamApps008>
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate nint NativeGetAvailableGameLanguages(nint self);
 
-    public string GetAvailableGameLanguages()
+    public string? GetAvailableGameLanguages()
     {
         var languagePointer = Call<nint, NativeGetAvailableGameLanguages>(
             Functions.GetAvailableGameLanguages,

@@ -103,7 +103,7 @@ static partial class SteamLoginStateHelper
                     if (session is not null)
                     {
                         session.ServerTimeDiff = serverTimeDiff;
-                        session.IdentitySecret = identitySecret;
+                        session.IdentitySecret = identitySecret.ThrowIsNull();
                         var apiKey = (await steamAccountService.GetApiKey(steamLoginState)).Content;
                         session.APIKey = ApiKey = string.IsNullOrEmpty(apiKey) ? (await steamAccountService.RegisterApiKey(steamLoginState)).Content.ThrowIsNull() : apiKey;
                         await steamSession.AddOrSetSession(session);

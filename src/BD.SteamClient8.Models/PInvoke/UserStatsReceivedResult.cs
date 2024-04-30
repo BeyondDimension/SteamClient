@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.PInvoke;
 
 /// <summary>
 /// 接收用户统计信息模型

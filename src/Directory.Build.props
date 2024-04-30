@@ -1,6 +1,6 @@
 <Project>
-	<Import Project="..\ref\Common\src\Directory.Build.props" />
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\Version.props" />
+	<Import Project="..\ref\Common\src\Sdk\Global.props" />
+	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
 	<PropertyGroup>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
@@ -24,7 +24,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Condition="Exists('$(Path_Submodule)Common\src\Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs')" Remove="$(Path_Submodule)Common\src\Shared\InternalsVisibleTo.BD.Common8.UnitTest.cs" />
 		<Compile Condition="$(MSBuildProjectName) != 'BD.SteamClient8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.SteamClient8.UnitTest.cs">
 			<LinkBase>Properties\InternalsVisibleTo</LinkBase>
 		</Compile>

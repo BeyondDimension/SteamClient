@@ -205,7 +205,7 @@ public class SteamUserStats011 : NativeWrapper<ISteamUserStats007>
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate nint NativeGetAchievementDisplayAttribute(nint self, nint name, nint key);
 
-    public string GetAchievementDisplayAttribute(string name, string key)
+    public string? GetAchievementDisplayAttribute(string name, string key)
     {
         using var nativeName = NativeStrings.StringToStringHandle(name);
         using var nativeKey = NativeStrings.StringToStringHandle(key);

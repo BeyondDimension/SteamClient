@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// Steam 交易报价相关服务
@@ -133,8 +133,6 @@ public interface ISteamTradeService
     /// <summary>
     /// 过滤出有状态活跃的 交易报价进行操作
     /// </summary>
-    /// <param name="tradeResponse"></param>
-    /// <returns></returns>
     static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse)
     {
         if (tradeResponse?.Response?.TradeOffersSent != null)

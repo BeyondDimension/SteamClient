@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// Steam 市场交易相关服务

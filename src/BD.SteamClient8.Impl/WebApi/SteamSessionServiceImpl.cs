@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.WebApi;
 
 /// <summary>
 /// <see cref="ISteamSessionService"/> Steam 登录会话信息服务实现
@@ -8,7 +8,7 @@ namespace BD.SteamClient8.Impl;
 /// </remarks>
 /// <param name="serviceProvider"></param>
 /// <param name="loggerFactory"></param>
-public class SteamSessionServiceImpl(
+public sealed class SteamSessionServiceImpl(
     IServiceProvider serviceProvider,
     ILoggerFactory loggerFactory) : WebApiClientFactoryService(loggerFactory.CreateLogger(TAG),
         serviceProvider), ISteamSessionService

@@ -1,8 +1,0 @@
-<Project>
-	<!-- 版本号 | Version -->
-	<PropertyGroup>
-		<!--8.yy.1MMdd.1hhmm-->
-		<Version_SteamClient8>8.24.10425.11140</Version_SteamClient8>
-	</PropertyGroup>
-</Project>
-

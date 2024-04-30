@@ -1,6 +1,6 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi.SteamGridDB;
 
-public sealed class SteamGridItem : JsonModel<SteamGridItem>
+public sealed record class SteamGridItem
 {
     /// <summary>
     /// 唯一标识符
@@ -48,7 +48,7 @@ public sealed class SteamGridItem : JsonModel<SteamGridItem>
     public SteamGridItemType GridType { get; set; }
 }
 
-public sealed class SteamGridItemAuthor : JsonModel<SteamGridItemAuthor>
+public sealed class SteamGridItemAuthor
 {
     /// <summary>
     /// 用户名称
@@ -69,7 +69,7 @@ public sealed class SteamGridItemAuthor : JsonModel<SteamGridItemAuthor>
     public string Avatar { get; set; } = "";
 }
 
-public sealed class SteamGridItemData : JsonModel<SteamGridItemData>
+public sealed class SteamGridItemData
 {
     /// <summary>
     /// 是否成功

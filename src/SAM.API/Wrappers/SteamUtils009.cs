@@ -41,7 +41,7 @@ public class SteamUtils007 : NativeWrapper<ISteamUtils009>
     [UnmanagedFunctionPointer(CallingConvention.ThisCall)]
     private delegate nint NativeGetIPCountry(nint self);
 
-    public string GetIPCountry()
+    public string? GetIPCountry()
     {
         var result = Call<nint, NativeGetIPCountry>(Functions.GetIPCountry, ObjectAddress);
         return NativeStrings.PointerToString(result);

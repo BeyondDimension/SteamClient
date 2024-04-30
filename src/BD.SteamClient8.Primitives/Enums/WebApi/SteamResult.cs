@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Enums;
+namespace BD.SteamClient8.Enums.WebApi;
 
 /// <summary>
 /// Steam 错误结果代码

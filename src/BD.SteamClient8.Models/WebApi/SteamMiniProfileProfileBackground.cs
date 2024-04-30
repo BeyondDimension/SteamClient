@@ -1,10 +1,10 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// Steam 小型用户个人资料视频
 /// </summary>
 [MP2Obj]
-public partial record class SteamMiniProfileProfileBackground
+public sealed partial record class SteamMiniProfileProfileBackground
 {
     /// <summary>
     /// Webm 格式

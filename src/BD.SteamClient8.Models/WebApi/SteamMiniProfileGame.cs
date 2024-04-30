@@ -1,10 +1,10 @@
-namespace BD.SteamClient8.Models;
+namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// Steam 小型用户个人资料游戏
 /// </summary>
 [MP2Obj]
-public partial record class SteamMiniProfileGame
+public sealed partial record class SteamMiniProfileGame
 {
     /// <summary>
     /// 游戏名称

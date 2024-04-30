@@ -2,5 +2,9 @@
 	<!-- 依赖包引用 -->
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="Portable.BouncyCastle" />
+	</ItemGroup>
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="System.Security.Cryptography.ProtectedData" />
 	</ItemGroup>
 </Project>

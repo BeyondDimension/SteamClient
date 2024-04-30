@@ -1,4 +1,4 @@
-using static BD.SteamClient8.Models.SteamAuthenticator;
+using static BD.SteamClient8.Models.WinAuth.SteamAuthenticator;
 
 namespace BD.SteamClient8.UnitTest;
 
@@ -9,6 +9,7 @@ sealed class AuthenticatorTest : ServiceTestBase
 {
     ISteamAccountService steamAccountService = null!;
     ISteamSessionService steamSessionService = null!;
+    ISteamAuthenticatorService steamAuthenticatorService = null!;
     IConfiguration configuration = null!;
 
     EnrollState enrollState;
@@ -21,6 +22,7 @@ sealed class AuthenticatorTest : ServiceTestBase
 
         steamAccountService = GetRequiredService<ISteamAccountService>();
         steamSessionService = GetRequiredService<ISteamSessionService>();
+        steamAuthenticatorService = GetRequiredService<ISteamAuthenticatorService>();
         configuration = GetRequiredService<IConfiguration>();
 
         enrollState ??= new();
@@ -60,13 +62,13 @@ sealed class AuthenticatorTest : ServiceTestBase
         // 没有绑定手机号
         if (enrollState.NoPhoneNumber)
         {
-            var result = await AddPhoneNumberAsync(enrollState, phone_number);
+            var result = await steamAuthenticatorService.AddPhoneNumberAsync(enrollState, phone_number);
 
             // 需要邮箱手动确认手机号添加
             if (enrollState.RequiresEmailConfirmPhone)
             {
                 await Task.Delay(TimeSpan.FromSeconds(15)); // waiting for confirm email
-                result = await AddPhoneNumberAsync(enrollState, phone_number);
+                result = await steamAuthenticatorService.AddPhoneNumberAsync(enrollState, phone_number);
                 Assert.That(enrollState.RequiresEmailConfirmPhone == false && result == null);
             }
 
@@ -119,7 +121,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         enrollState.SteamId = (long)steamLoginState.SteamId;
 
         // 开始移除，注意手机验证码
-        var removeStart_result = await RemoveAuthenticatorViaChallengeStartSync(enrollState.SteamId.ToString());
+        var removeStart_result = await steamAuthenticatorService.RemoveAuthenticatorViaChallengeStartSync2(enrollState.SteamId.ToString());
 
         Assert.That(removeStart_result.IsSuccess && removeStart_result.Content);
 
@@ -191,7 +193,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             Assert.That(steamLoginState, Is.Not.Null);
         });
 
-        var userCountryOrRegionRsp = await GetUserCountryOrRegion(steamLoginState.SteamId.ToString());
+        var userCountryOrRegionRsp = await steamAuthenticatorService.GetUserCountryOrRegion(steamLoginState.SteamId.ToString());
         string? userCountryOrRegion = userCountryOrRegionRsp.Content;
         Assert.That(userCountryOrRegion, Is.Not.Empty);
 

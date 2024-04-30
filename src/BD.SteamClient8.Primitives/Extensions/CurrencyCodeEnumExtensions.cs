@@ -1,4 +1,4 @@
-namespace SteamKit2;
+namespace BD.SteamClient8.Extensions;
 
 public static partial class ECurrencyCodeEnumExtensions
 {

@@ -1,16 +1,12 @@
 #if !(IOS || ANDROID)
-using static BD.SteamClient8.Services.ISteamService;
-#endif
+using static BD.SteamClient8.Services.PInvoke.ISteamService;
 
-namespace BD.SteamClient8.Impl;
+namespace BD.SteamClient8.Impl.PInvoke;
 
 /// <summary>
 /// <see cref="ISteamService"/> Steam 相关助手、工具类服务实现
 /// </summary>
-public abstract partial class SteamServiceImpl : ISteamService { }
-
-#if !(IOS || ANDROID)
-partial class SteamServiceImpl : ISteamService
+public abstract partial class SteamServiceImpl : ISteamService
 {
     /// <summary>
     /// 用于标识和记录日志信息
@@ -713,14 +709,6 @@ partial class SteamServiceImpl : ISteamService
         }
     }
 
-    Action? fsw_WatchLocalUserDataChange_changedAction;
-    FileSystemWatcher? fsw_WatchLocalUserDataChange;
-
-    void WatchLocalUserDataChanged(object sender, FileSystemEventArgs e)
-    {
-        fsw_WatchLocalUserDataChange_changedAction?.Invoke();
-    }
-
     /// <summary>
     /// 监视本地用户数据更改
     /// </summary>
@@ -735,26 +723,28 @@ partial class SteamServiceImpl : ISteamService
             throw new Exception("Steam Dir Path is null or empty.");
         }
 
-        fsw_WatchLocalUserDataChange?.Dispose();
-        fsw_WatchLocalUserDataChange_changedAction += changedAction;
-        fsw_WatchLocalUserDataChange = new FileSystemWatcher(Path.Combine(SteamDirPath, "config"), "loginusers.vdf")
+        var fsw = new FileSystemWatcher(Path.Combine(SteamDirPath, "config"), "loginusers.vdf")
         {
             NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName | NotifyFilters.CreationTime,
         };
 
-        fsw_WatchLocalUserDataChange.Created += WatchLocalUserDataChanged;
-        fsw_WatchLocalUserDataChange.Renamed += WatchLocalUserDataChanged;
-        fsw_WatchLocalUserDataChange.Changed += WatchLocalUserDataChanged;
-        fsw_WatchLocalUserDataChange.EnableRaisingEvents = true;
+        fsw.Created += Fsw_Changed;
+        fsw.Renamed += Fsw_Changed;
+        fsw.Changed += Fsw_Changed;
+        fsw.EnableRaisingEvents = true;
 
         return ApiRspHelper.Ok();
+        void Fsw_Changed(object sender, FileSystemEventArgs e)
+        {
+            changedAction.Invoke();
+        }
     }
 
     uint univeseNumber;
     const uint MagicNumber = 123094055U;
     const uint MagicNumberV2 = 123094056U;
 
-    static readonly Lazy<uint[]> MagicNumbers = new(() => [MagicNumber, MagicNumberV2], LazyThreadSafetyMode.ExecutionAndPublication);
+    static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2]);
 
     /// <summary>
     /// 从 Steam 本地客户端缓存文件中读取游戏数据
@@ -766,9 +756,7 @@ partial class SteamServiceImpl : ISteamService
         try
         {
             if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
-            {
                 return apps;
-            }
             using var stream = IOPath.OpenRead(AppInfoPath);
             if (stream == null)
             {
@@ -862,8 +850,7 @@ partial class SteamServiceImpl : ISteamService
             var editApps = SteamApps.Where(s => s.IsEdited);
             var modifiedApps = new List<ModifiedApp>();
 
-            using MemoryStream memoryStream = new();
-            using BinaryWriter binaryWriter = new(memoryStream);
+            using BinaryWriter binaryWriter = new(new MemoryStream());
             binaryWriter.Write(MagicNumber);
             binaryWriter.Write(univeseNumber);
 
@@ -1298,7 +1285,9 @@ partial class SteamServiceImpl : ISteamService
             while (steamDownloadingWatchers is not null)
             {
                 if (steamDownloadingChanges is not null && steamDownloadingChanges.TryDequeue(out var result))
+                {
                     yield return ApiRspHelper.Ok(result)!;
+                }
                 else
                 {
                     await Task.Yield();
@@ -1340,8 +1329,7 @@ partial class SteamServiceImpl : ISteamService
             }
 
             // Shouldn't happen, but might occur if Steam holds the acf file too long
-            if (app == null)
-                return;
+            if (app == null) return;
 
             // Search for changed app, if null it's a new app
             //SteamApp info = Apps.FirstOrDefault(x => x.ID == newID);

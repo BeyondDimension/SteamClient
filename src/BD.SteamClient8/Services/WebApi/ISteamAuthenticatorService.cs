@@ -1,14 +1,14 @@
-namespace BD.SteamClient8.Services;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// Steam 令牌服务
 /// </summary>
-public interface ISteamAuthenticatorService
+public interface ISteamAuthenticatorService : SteamAuthenticator.IAuthenticatorNetService
 {
     /// <summary>
     /// 获取当前服务实例
     /// </summary>
-    static ISteamAuthenticatorService Instance => Ioc.Get<ISteamAuthenticatorService>();
+    static new ISteamAuthenticatorService Instance => Ioc.Get<ISteamAuthenticatorService>();
 
     /// <summary>
     /// 添加令牌
@@ -35,7 +35,7 @@ public interface ISteamAuthenticatorService
     Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 获取用户国家或地区
+    /// 获取用户所在国家或地区
     /// </summary>
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
@@ -96,13 +96,6 @@ public interface ISteamAuthenticatorService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// 服务器时间
-    /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    Task<ApiRspImpl<SteamSyncStruct?>> TwoFAQueryTime(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 刷新 AccessToken
