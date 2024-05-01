@@ -1,0 +1,751 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | SteamClient</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class BattleNetAuthenticator | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator">
+
+
+
+  <h1 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator" class="text-break">
+Class BattleNetAuthenticator  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.IAuthenticatorNetService.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.WinAuth.html">WinAuth</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[MessagePackObject(true)]
+public sealed class BattleNetAuthenticator : AuthenticatorValueModel, IAuthenticatorValueModel, IExplicitHasValue</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html">AuthenticatorValueModel</a></div>
+      <div><span class="xref">BattleNetAuthenticator</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.html">IAuthenticatorValueModel</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives/Models/Abstractions/IExplicitHasValue.cs">IExplicitHasValue</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_DEFAULT_CODE_DIGITS">AuthenticatorValueModel.DEFAULT_CODE_DIGITS</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_DEFAULT_PERIOD">AuthenticatorValueModel.DEFAULT_PERIOD</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_DEFAULT_HMAC_TYPE">AuthenticatorValueModel.DEFAULT_HMAC_TYPE</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_CalculateCode_System_Boolean_System_Int64_">AuthenticatorValueModel.CalculateCode(bool, long)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_DecodePasswordTypes_System_String_">AuthenticatorValueModel.DecodePasswordTypes(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_EncodePasswordTypes_BD_SteamClient8_Models_WinAuth_Abstractions_IAuthenticatorValueModel_PasswordTypes_">AuthenticatorValueModel.EncodePasswordTypes(IAuthenticatorValueModel.PasswordTypes)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_SetEncryption_BD_SteamClient8_Models_WinAuth_Abstractions_IAuthenticatorValueModel_PasswordTypes_System_String_">AuthenticatorValueModel.SetEncryption(IAuthenticatorValueModel.PasswordTypes, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Protect">AuthenticatorValueModel.Protect()</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Unprotect_System_String_">AuthenticatorValueModel.Unprotect(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_ReadXml_System_Xml_XmlReader_System_String_">AuthenticatorValueModel.ReadXml(XmlReader, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_WriteToWriter_System_Xml_XmlWriter_">AuthenticatorValueModel.WriteToWriter(XmlWriter)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_StringToByteArray_System_String_">AuthenticatorValueModel.StringToByteArray(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_ByteArrayToString_System_Byte___">AuthenticatorValueModel.ByteArrayToString(byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_DecryptSequence_System_String_BD_SteamClient8_Models_WinAuth_Abstractions_IAuthenticatorValueModel_PasswordTypes_System_String_System_Boolean_">AuthenticatorValueModel.DecryptSequence(string, IAuthenticatorValueModel.PasswordTypes, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_SafeHasher_System_String_">AuthenticatorValueModel.SafeHasher(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_EncryptSequence_System_String_BD_SteamClient8_Models_WinAuth_Abstractions_IAuthenticatorValueModel_PasswordTypes_System_String_">AuthenticatorValueModel.EncryptSequence(string, IAuthenticatorValueModel.PasswordTypes, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Encrypt_System_String_System_String_">AuthenticatorValueModel.Encrypt(string, string)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Encrypt_System_String_System_Byte___">AuthenticatorValueModel.Encrypt(string, byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Decrypt_System_String_System_String_System_Boolean_">AuthenticatorValueModel.Decrypt(string, string, bool)</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Decrypt_System_String_System_Byte___">AuthenticatorValueModel.Decrypt(string, byte[])</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_ServerTimeDiff">AuthenticatorValueModel.ServerTimeDiff</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_LastServerTime">AuthenticatorValueModel.LastServerTime</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_SecretKey">AuthenticatorValueModel.SecretKey</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_CodeDigits">AuthenticatorValueModel.CodeDigits</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_HMACType">AuthenticatorValueModel.HMACType</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_Period">AuthenticatorValueModel.Period</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_EncryptedData">AuthenticatorValueModel.EncryptedData</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_PasswordType">AuthenticatorValueModel.PasswordType</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_RequiresPassword">AuthenticatorValueModel.RequiresPassword</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_ServerTime">AuthenticatorValueModel.ServerTime</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_CodeInterval">AuthenticatorValueModel.CodeInterval</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_CurrentCode">AuthenticatorValueModel.CurrentCode</a>
+    </div>
+    <div>
+      <a class="xref" href="BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html#BD_SteamClient8_Models_WinAuth_AuthenticatorValueModel_CurrentTime">AuthenticatorValueModel.CurrentTime</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator__ctor_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator__ctor" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.#ctor">
+  BattleNetAuthenticator()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>创建一个新的 <a class="xref" href="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.html">BattleNetAuthenticator</a> 对象</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[SerializationConstructor]
+public BattleNetAuthenticator()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Issuer_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Issuer*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Issuer" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Issuer">
+  Issuer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>发行者名称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string? Issuer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Platform_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Platform*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Platform" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Platform">
+  Platform
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>令牌平台类型</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public override AuthenticatorPlatform Platform { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.AuthenticatorPlatform.html">AuthenticatorPlatform</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Region_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Region*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Region" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Region">
+  Region
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从序列号的前 2 个字符中获取验证者的区域</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public string Region { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreCode_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreCode" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreCode">
+  RestoreCode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取用于恢复丢失的身份验证器的身份验证器的还原代码以及序列号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public string RestoreCode { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>restore code (10 chars)</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreCodeVerified_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreCodeVerified*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreCodeVerified" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreCodeVerified">
+  RestoreCodeVerified
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置恢复码是否已验证</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RestoreCodeVerified { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_SecretData_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.SecretData*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_SecretData" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.SecretData">
+  SecretData
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取/设置组合的秘密数据值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[IgnoreDataMember]
+[IgnoreMember]
+[JsonIgnore]
+[JsonIgnore]
+public override string? SecretData { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Serial_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Serial*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Serial" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Serial">
+  Serial
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>获取或设置序列号</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? Serial { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_EnrollAsync_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.EnrollAsync*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_EnrollAsync" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.EnrollAsync">
+  EnrollAsync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.IAuthenticatorNetService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>向服务器注册验证器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnrollAsync()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_ExplicitHasValue_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.ExplicitHasValue*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_ExplicitHasValue" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.ExplicitHasValue">
+  ExplicitHasValue()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>判断 <a class="xref" href="BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.html">IAuthenticatorValueModel</a> 实例是否具有值</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool ExplicitHasValue()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_ReadExtraXml_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.ReadExtraXml*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_ReadExtraXml_System_Xml_XmlReader_System_String_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.ReadExtraXml(System.Xml.XmlReader,System.String)">
+  ReadExtraXml(XmlReader, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从 Xml 中读取任何额外的标记</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool ReadExtraXml(XmlReader reader, string name)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <span class="xref">XmlReader</span></dt>
+    <dd></dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>标签的名称</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>如果读取并处理了标记，则为<a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a></p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreAsync_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreAsync*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_RestoreAsync_System_String_System_String_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.RestoreAsync(System.String,System.String)">
+  RestoreAsync(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.IAuthenticatorNetService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>根据序列号和还原代码还原验证器</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RestoreAsync(string serial, string restoreCode)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serial</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>序列码，例如 US-1234-5678-1234</p>
+</dd>
+    <dt><code>restoreCode</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>恢复注册时给定的代码，10个字符</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Sync_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Sync*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_Sync" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.Sync">
+  Sync()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.IAuthenticatorNetService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Synchronise this authenticator's time with server time. We update our data record with the difference from our UTC time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void Sync()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_WriteExtraXml_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.WriteExtraXml*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WinAuth_BattleNetAuthenticator_WriteExtraXml_System_Xml_XmlWriter_" data-uid="BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.WriteExtraXml(System.Xml.XmlWriter)">
+  WriteExtraXml(XmlWriter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>向 XmlWriter 中添加额外的标记</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void WriteExtraXml(XmlWriter writer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>writer</code> <span class="xref">XmlWriter</span></dt>
+    <dd><p>XmlWriter 写入数据</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WinAuth/BattleNetAuthenticator.IAuthenticatorNetService.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

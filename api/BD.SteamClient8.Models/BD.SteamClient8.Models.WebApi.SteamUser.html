@@ -1,0 +1,1465 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>文档 | SteamClient</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class SteamUser | SteamClient ">
+      
+      <link rel="icon" href="../../favicon.ico">
+      <link rel="stylesheet" href="../../public/docfx.min.css">
+      <link rel="stylesheet" href="../../public/main.css">
+      <meta name="docfx:navrel" content="../../toc.html">
+      <meta name="docfx:tocrel" content="../toc.html">
+      
+      
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../../index.html">
+            <img id="logo" class="svg" src="../../res/DocFXIcon.png" alt="SteamClient 文档">
+            SteamClient 文档
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="BD.SteamClient8.Models.WebApi.SteamUser">
+
+
+
+  <h1 id="BD_SteamClient8_Models_WebApi_SteamUser" data-uid="BD.SteamClient8.Models.WebApi.SteamUser" class="text-break">
+Class SteamUser  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Models.html">Models</a>.<a class="xref" href="BD.SteamClient8.Models.WebApi.html">WebApi</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Models.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record SteamUser : IEquatable&lt;SteamUser&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">SteamUser</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser__ctor_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser__ctor" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.#ctor">
+  SteamUser()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamUser()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_AccountName_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AccountName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_AccountName" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AccountName">
+  AccountName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用户名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;accountName&quot;)]
+public string? AccountName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_AllowAutoLogin_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AllowAutoLogin*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_AllowAutoLogin" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AllowAutoLogin">
+  AllowAutoLogin
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从 Valve Data File 读取到的 AllowAutoLogin</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;allowAutoLogin&quot;)]
+public bool AllowAutoLogin { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarFull_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarFull*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarFull" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarFull">
+  AvatarFull
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>完整头像</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;avatarFull&quot;)]
+public string? AvatarFull { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarIcon_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarIcon*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarIcon" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarIcon">
+  AvatarIcon
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>头像图标</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;avatarIcon&quot;)]
+public string? AvatarIcon { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarMedium_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarMedium*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_AvatarMedium" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.AvatarMedium">
+  AvatarMedium
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>中等大小头像</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;avatarMedium&quot;)]
+public string? AvatarMedium { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_IPCountry_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.IPCountry*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_IPCountry" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.IPCountry">
+  IPCountry
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>IP 国家地区</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;ipCountry&quot;)]
+public string? IPCountry { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_LastLoginTime_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.LastLoginTime*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_LastLoginTime" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.LastLoginTime">
+  LastLoginTime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最后登录时间</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;lastLoginTime&quot;)]
+public DateTime LastLoginTime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Level_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Level*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Level" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Level">
+  Level
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steam 等级</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;level&quot;)]
+public int? Level { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_MemberSince_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MemberSince*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_MemberSince" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MemberSince">
+  MemberSince
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>注册日期</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;memberSince&quot;)]
+public string? MemberSince { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_MiniProfile_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MiniProfile*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_MiniProfile" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MiniProfile">
+  MiniProfile
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Steam 用户小型简介</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;miniProfile&quot;)]
+public SteamMiniProfile? MiniProfile { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.WebApi.SteamMiniProfile.html">SteamMiniProfile</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_MostRecent_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MostRecent*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_MostRecent" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.MostRecent">
+  MostRecent
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最近登录</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;mostRecent&quot;)]
+public bool MostRecent { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_OnlineState_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.OnlineState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_OnlineState" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.OnlineState">
+  OnlineState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>在线状态</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;onlineState&quot;)]
+public string? OnlineState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_PassWord_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PassWord*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_PassWord" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PassWord">
+  PassWord
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public string? PassWord { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_PersonaName_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PersonaName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_PersonaName" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PersonaName">
+  PersonaName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>从 Valve Data File 读取到的用户名</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;personaName&quot;)]
+public string? PersonaName { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_PersonaState_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PersonaState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_PersonaState" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PersonaState">
+  PersonaState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>离线模式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;personaState&quot;)]
+public PersonaState PersonaState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.PersonaState.html">PersonaState</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_PrivacyState_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PrivacyState*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_PrivacyState" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.PrivacyState">
+  PrivacyState
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>公开状态
+friendsonly
+public</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;privacyState&quot;)]
+public string? PrivacyState { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_ProfileUrl_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.ProfileUrl*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_ProfileUrl" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.ProfileUrl">
+  ProfileUrl
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>个人资料链接</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ProfileUrl { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Remark_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Remark*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Remark" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Remark">
+  Remark
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>备注</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;remark&quot;)]
+public string? Remark { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_RememberPassword_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.RememberPassword*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_RememberPassword" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.RememberPassword">
+  RememberPassword
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>是否记住密码</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public bool RememberPassword { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SkipOfflineModeWarning_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SkipOfflineModeWarning*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SkipOfflineModeWarning" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SkipOfflineModeWarning">
+  SkipOfflineModeWarning
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>忽略离线模式警告弹窗</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SkipOfflineModeWarning { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SteamID_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamID*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SteamID" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamID">
+  SteamID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>昵称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;steamID&quot;)]
+public string? SteamID { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId3_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId3*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId3" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId3">
+  SteamId3
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>SteamId 3 格式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public string? SteamId3 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId32_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId32*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId32" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId32">
+  SteamId32
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>SteamId 32 位</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonIgnore]
+public int SteamId32 { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId64_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId64*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SteamId64" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamId64">
+  SteamId64
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>SteamId 64 位</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;steamId64&quot;)]
+public long SteamId64 { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_SteamNickName_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamNickName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_SteamNickName" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.SteamNickName">
+  SteamNickName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>昵称</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? SteamNickName { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Summary_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Summary*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Summary" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Summary">
+  Summary
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>自我介绍 HTML</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;summary&quot;)]
+public string? Summary { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Timestamp_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Timestamp*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Timestamp" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Timestamp">
+  Timestamp
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>最后登录时间戳</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;timestamp&quot;)]
+public long Timestamp { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_UserdataPath_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.UserdataPath*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_UserdataPath" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.UserdataPath">
+  UserdataPath
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Userdata 文件夹相对路径</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UserdataPath { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_VacBanned_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.VacBanned*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_VacBanned" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.VacBanned">
+  VacBanned
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>VAC</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;vacBanned&quot;)]
+public bool VacBanned { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_WantsOfflineMode_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.WantsOfflineMode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_WantsOfflineMode" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.WantsOfflineMode">
+  WantsOfflineMode
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>离线模式</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[JsonPropertyName(&quot;wantsOfflineMode&quot;)]
+public bool WantsOfflineMode { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_DebuggerDisplay_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.DebuggerDisplay*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_DebuggerDisplay" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.DebuggerDisplay">
+  DebuggerDisplay()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DebuggerDisplay()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Equals_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Equals_BD_SteamClient8_Models_WebApi_SteamUser_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Equals(BD.SteamClient8.Models.WebApi.SteamUser)">
+  Equals(SteamUser?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(SteamUser? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_Equals_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Equals*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_Equals_System_Object_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_GetHashCode_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.GetHashCode*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_GetHashCode" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_ToString_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.ToString*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_ToString" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser__Clone___" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.{Clone}$*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser__Clone__" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.{Clone}$">
+  &lt;Clone&gt;$()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamUser &lt;Clone&gt;$()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_op_Equality_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.op_Equality*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_op_Equality_BD_SteamClient8_Models_WebApi_SteamUser_BD_SteamClient8_Models_WebApi_SteamUser_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.op_Equality(BD.SteamClient8.Models.WebApi.SteamUser,BD.SteamClient8.Models.WebApi.SteamUser)">
+  operator ==(SteamUser?, SteamUser?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(SteamUser? left, SteamUser? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamUser_op_Inequality_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.op_Inequality*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamUser_op_Inequality_BD_SteamClient8_Models_WebApi_SteamUser_BD_SteamClient8_Models_WebApi_SteamUser_" data-uid="BD.SteamClient8.Models.WebApi.SteamUser.op_Inequality(BD.SteamClient8.Models.WebApi.SteamUser,BD.SteamClient8.Models.WebApi.SteamUser)">
+  operator !=(SteamUser?, SteamUser?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(SteamUser? left, SteamUser? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamUser.html">SteamUser</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamUser.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          ©️ 江苏蒸汽凡星科技有限公司. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
