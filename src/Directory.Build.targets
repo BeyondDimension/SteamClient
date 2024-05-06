@@ -1,5 +1,12 @@
 <Project>
+	<PropertyGroup>
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
+	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\ref\Common\src\Directory.Build.targets" />
+	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
+	</PropertyGroup>
+
+	<Import Project="$(Path_Submodule)Common\src\Directory.Build.targets" />
 
 </Project>

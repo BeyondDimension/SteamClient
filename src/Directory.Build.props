@@ -1,5 +1,4 @@
 <Project>
-	<Import Project="..\ref\Common\src\Sdk\Global.props" />
 	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
 	<PropertyGroup>
@@ -29,4 +28,5 @@
 		</Compile>
 	</ItemGroup>
 
+	<Import Project="$(Path_Submodule)Common\src\Sdk\Global.props" />
 </Project>
