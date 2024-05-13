@@ -1,0 +1,25 @@
+<Project>
+	<!-- 全局 using | Global usings -->
+	<ItemGroup>
+		<Using Include="BD.SteamClient8" />
+		<Using Include="BD.SteamClient8.Models" />
+		<Using Include="BD.SteamClient8.Models.Extensions" />
+		<Using Include="BD.SteamClient8.Models.Converters" />
+		<Using Include="BD.SteamClient8.Models.PInvoke" />
+		<Using Include="BD.SteamClient8.Models.Protobuf" />
+		<Using Include="BD.SteamClient8.Models.WebApi" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Authenticators" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Idles" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Logins" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Markets" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Profiles" />
+		<Using Include="BD.SteamClient8.Models.WebApi.SteamApps" />
+		<Using Include="BD.SteamClient8.Models.WebApi.SteamGridDB" />
+		<Using Include="BD.SteamClient8.Models.WebApi.Trades" />
+		<Using Include="BD.SteamClient8.Models.WinAuth" />
+		<Using Include="BD.SteamClient8.Models.WinAuth.Abstractions" />
+		<Using Alias="SteamUser" Include="BD.SteamClient8.Models.WebApi.SteamUser" />
+		<Using Alias="SteamApps" Include="BD.SteamClient8.Models.WebApi.SteamApps.SteamApps" />
+	</ItemGroup>
+</Project>

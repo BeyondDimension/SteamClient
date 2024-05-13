@@ -25,9 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Doc", "1.Doc", "{0D3AF3F5-C3C3-4068-8B3E-EA1947B1093E}"
-	ProjectSection(SolutionItems) = preProject
-		articles\Protobuf.md = articles\Protobuf.md
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Src", "2.Src", "{9AA2E622-F320-45CA-BF70-9290780FFCC4}"
 EndProject

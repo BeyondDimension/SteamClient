@@ -13,4 +13,15 @@
 		<Compile Remove="$(MSBuildThisFileDirectory)..\..\ref\ValveKeyValue\**\*.cs" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive">
+			<LinkBase>Properties\GlobalUsings</LinkBase>
+		</None>
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
+		<!-- Reference GlobalUsings -->
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildThisFileName)\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\MSBuildThisFileName" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="Shared" Visible="false" />
+	</ItemGroup>
+
 </Project>

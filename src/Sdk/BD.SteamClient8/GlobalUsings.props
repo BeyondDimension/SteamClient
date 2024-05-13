@@ -1,13 +1,5 @@
 <Project>
 	<!-- 全局 using | Global usings -->
-	<ItemGroup>
-		<Using Include="BD.SteamClient8" />
-		<Using Include="BD.SteamClient8.Extensions" />
-		<Using Include="BD.SteamClient8.Helpers" />
-		<Using Include="BD.SteamClient8.Services" />
-		<Using Include="BD.SteamClient8.Services.PInvoke" />
-		<Using Include="BD.SteamClient8.Services.WebApi" />
-	</ItemGroup>
 	<!-- 平台 != ios,android -->
 	<ImportGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
 		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ValveKeyValue.props" />
