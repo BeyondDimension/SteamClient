@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageDescription>SteamClient8 服务实现库</PackageDescription>
 	</PropertyGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
