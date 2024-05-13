@@ -2,6 +2,16 @@
 	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
 	<PropertyGroup>
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
+		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
+	</PropertyGroup>
+
+	<Import Project="$(Path_Submodule)Common\src\Sdk\Global.props" />
+
+	<PropertyGroup>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
@@ -15,11 +25,6 @@
 
 	<PropertyGroup>
 		<Version>$(Version_SteamClient8)</Version>
-		<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
-		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -28,5 +33,4 @@
 		</Compile>
 	</ItemGroup>
 
-	<Import Project="$(Path_Submodule)Common\src\Sdk\Global.props" />
 </Project>
