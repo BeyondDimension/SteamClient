@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+	<PropertyGroup>
+		<PackageDescription>SteamClient8 模型库</PackageDescription>
+	</PropertyGroup>
+
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
