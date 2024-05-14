@@ -1,4 +1,5 @@
-# SteamClient [![Crowdin](https://badges.crowdin.net/bdsteamclient8/localized.svg)](https://crowdin.com/project/bdsteamclient8)
+# SteamClient [![Crowdin](https://badges.crowdin.net/bdsteamclient8/localized.svg)](https://crowdin.com/project/bdsteamclient8) [![NuGet](https://img.shields.io/nuget/v/BD.SteamClient8.svg)](https://www.nuget.org/packages/BD.SteamClient8) [![license](https://img.shields.io/github/license/beyonddimension/SteamClient)](https://github.com/SteamClient/Common/blob/dev8/LICENSE)
+
 [次元超越 Steam 相关库文档](https://beyonddimension.github.io/SteamClient)
 
 ### BD.SteamClient8
