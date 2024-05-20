@@ -7,15 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="System.CommandLine" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Compile Include="$(Path_Submodule)Common\src\Tools.Build\**\*.cs" />
 		<Compile Remove="$(Path_Submodule)Common\src\Tools.Build\bin\**\*.cs" />
 		<Compile Remove="$(Path_Submodule)Common\src\Tools.Build\obj\**\*.cs" />
 	</ItemGroup>
 
+	<Import Project="$(Path_Submodule)Common\src\Sdk\Tools.Build\Reference.props" />
 	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.$(MSBuildProjectName).props" />
 	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.System.CommandLine.props" />
 	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Bcl.props" />
