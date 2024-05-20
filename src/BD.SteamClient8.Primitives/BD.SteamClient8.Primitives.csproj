@@ -5,6 +5,12 @@
 		<PackageDescription>SteamClient8 基本库</PackageDescription>
 	</PropertyGroup>
 
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\AssemblyInfo.cs">
+			<LinkBase>Properties</LinkBase>
+		</Compile>
+	</ItemGroup>
+
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
