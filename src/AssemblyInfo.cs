@@ -32,19 +32,19 @@ public static partial class AssemblyInfo
     /// 提供程序集的文本说明。
     /// <para><see cref="AssemblyDescriptionAttribute"/></para>
     /// </summary>
-    public const string Description = "Steam 相关服务类库"; // 不可更改
+    public const string Description = "Steam 相关服务类库";
 
     /// <summary>
     /// 与该应用程序关联的公司名称。
     /// <para><see cref="AssemblyCompanyAttribute"/></para>
     /// </summary>
-    public const string Company = "江苏蒸汽凡星科技有限公司"; // 不可更改
+    public const string Company = "江苏蒸汽凡星科技有限公司";
 
     /// <summary>
     /// 与应用程序关联的版权声明。
     /// <para><see cref="AssemblyCopyrightAttribute"/></para>
     /// </summary>
-    public const string Copyright = $"©️ {Company}. All rights reserved."; // 不可更改
+    public const string Copyright = $"©️ {Company}. All rights reserved.";
 
     /// <summary>
     /// 简体中文的区域性名称。
