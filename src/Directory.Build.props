@@ -33,7 +33,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\AssemblyInfo.Attribute.cs">
+		<Compile Condition="$(MSBuildProjectName) != 'Tools.Build' AND $(MSBuildProjectName) != 'Tools.DocFX'" Include="..\AssemblyInfo.Attribute.cs">
 			<LinkBase>Properties</LinkBase>
 		</Compile>
 	</ItemGroup>

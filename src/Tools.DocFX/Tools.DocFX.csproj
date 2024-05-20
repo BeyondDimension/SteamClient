@@ -12,10 +12,6 @@
 		<Compile Remove="$(Path_Submodule)Common\src\Tools.DocFX\obj\**\*.cs" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-	</ItemGroup>
-
 	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Bcl.props" />
 
 </Project>
