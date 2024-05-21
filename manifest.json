@@ -3,21 +3,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
-      "type": "Resource",
-      "source_relative_path": "README.md",
-      "output": {
-        "resource": {
-          "relative_path": "README.md"
-        }
-      },
-      "version": ""
-    },
-    {
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "README.md",
+      "output": {
+        "resource": {
+          "relative_path": "README.md"
         }
       },
       "version": ""
@@ -2974,6 +2974,16 @@
         },
         ".json": {
           "relative_path": "api/BD.SteamClient8.Models/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.AssemblyInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.AssemblyInfo.html"
         }
       },
       "version": ""
