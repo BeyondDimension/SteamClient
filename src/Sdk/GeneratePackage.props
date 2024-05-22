@@ -2,7 +2,7 @@
 	<!-- 配置 NuGet 包生成 -->
 	<PropertyGroup Condition="'$(Configuration)'=='Release'">
 		<IsPackable>true</IsPackable>
-		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+		<PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/BeyondDimension/SteamClient</PackageProjectUrl>
 		<PackageReleaseNotes>$(PackageProjectUrl)/releases</PackageReleaseNotes>
 		<RepositoryUrl>$(PackageProjectUrl).git</RepositoryUrl>
