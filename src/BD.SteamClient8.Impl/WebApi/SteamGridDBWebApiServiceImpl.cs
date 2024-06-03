@@ -9,7 +9,7 @@ namespace BD.SteamClient8.Impl.WebApi;
 /// <param name="serviceProvider"></param>
 /// <param name="http_helper"></param>
 /// <param name="loggerFactory"></param>
-sealed class SteamGridDBWebApiServiceImpl(
+class SteamGridDBWebApiServiceImpl(
     IServiceProvider serviceProvider,
     IHttpPlatformHelperService http_helper,
     ILoggerFactory loggerFactory) : WebApiClientFactoryService(

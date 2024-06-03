@@ -3,7 +3,7 @@ namespace BD.SteamClient8.Impl.WebApi;
 /// <summary>
 /// <see cref="ISteamworksWebApiService"/> Steamworks WebApi 服务实现
 /// </summary>
-sealed class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebApiService
+class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebApiService
 {
     const string TAG = "SteamworksWebApiS";
 
