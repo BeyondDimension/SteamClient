@@ -1,0 +1,25 @@
+<Project>
+	<Import Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')" Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props" />
+	<ItemGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props')">
+		<None Include="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.$(MSBuildThisFileName).props">
+			<LinkBase>Properties</LinkBase>
+		</None>
+	</ItemGroup>
+	<PropertyGroup>
+		<!-- 👇 Common 库引用 -->
+		<BeyondDimensionFeatures>
+			$(BeyondDimensionFeatures)
+			BD.Common8.Bcl;
+			BD.Common8.Primitives;
+			BD.Common8.Primitives.ApiRsp;
+			BD.Common8.Security;
+			BD.SteamClient8.Primitives;
+			BD.SteamClient8.Models;
+		</BeyondDimensionFeatures>
+		<!-- 👇 包引用（属性） -->
+	</PropertyGroup>
+	<ImportGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.SteamAchievementManager.props" />
+		<Import Project="$(MSBuildThisFileDirectory)..\..\Shared\GlobalUsings.ValveKeyValue.props" />
+	</ImportGroup>
+</Project>

@@ -3,15 +3,9 @@
 	<PropertyGroup>
 		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\AssemblyInfo.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
 	
 	<ItemGroup>
-		<None Include="../Shared/**/*">
+		<None Include="..\Shared\**\*">
 			<LinkBase>Shared</LinkBase>
 		</None>
 	</ItemGroup>

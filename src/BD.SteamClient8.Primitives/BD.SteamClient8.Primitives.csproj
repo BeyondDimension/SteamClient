@@ -1,29 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<RootNamespace>BD.SteamClient8</RootNamespace>
-		<PackageDescription>SteamClient8 基本库</PackageDescription>
+		<Description>SteamClient8 基本库</Description>
 	</PropertyGroup>
 
+	<!-- 👇 NuGet 打包配置 -->
 	<ItemGroup>
-		<Compile Include="$(MSBuildThisFileDirectory)..\AssemblyInfo.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.SteamClient8.Primitives.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.SteamClient8.Primitives.props" Pack="true" PackagePath="buildTransitive" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Projects\BD.SteamClient8.*.props" Pack="true" PackagePath="buildTransitive\src\Sdk\Projects" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.Lib.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.Ref.Package.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
+		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
 	</ItemGroup>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
-
-	<ItemGroup>
-		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<!-- Reference GlobalUsings -->
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildThisFileName)\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\MSBuildThisFileName" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="Shared" Visible="false" />
-	</ItemGroup>
 
 </Project>

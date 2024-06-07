@@ -1,6 +1,6 @@
 <Project>
 	<!-- 全局 using | Global usings -->
-	<ItemGroup>
+	<ItemGroup Condition="@(PackageReference->AnyHaveMetadataValue('Identity', 'Portable.BouncyCastle'))" >
 		<Using Include="Org.BouncyCastle.Crypto" />
 		<Using Include="Org.BouncyCastle.Crypto.Digests" />
 		<Using Include="Org.BouncyCastle.Crypto.Engines" />

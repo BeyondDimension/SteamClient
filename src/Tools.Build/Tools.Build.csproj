@@ -4,6 +4,9 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net$(DotNet_Version)</TargetFramework>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -12,9 +15,6 @@
 		<Compile Remove="$(Path_Submodule)Common\src\Tools.Build\obj\**\*.cs" />
 	</ItemGroup>
 
-	<Import Project="$(Path_Submodule)Common\src\Sdk\Tools.Build\Reference.props" />
-	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.$(MSBuildProjectName).props" />
-	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.System.CommandLine.props" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Bcl.props" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\Tools\Tools.Build.props"/>
 
 </Project>

@@ -1,22 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<PackageDescription>SteamClient8 模型库</PackageDescription>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<Description>SteamClient8 模型库</Description>
 	</PropertyGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\GeneratePackage.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\$(MSBuildProjectName).props" />
-
-	<ItemGroup>
-		<!-- 👇 Nuget 包引用的 GlobalUsings 配置 -->
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive">
-			<LinkBase>Properties\GlobalUsings</LinkBase>
-		</None>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\$(MSBuildThisFileName).props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<!-- Reference GlobalUsings -->
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\$(MSBuildThisFileName)\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\MSBuildThisFileName" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="Shared" Visible="false" />
-	</ItemGroup>
 
 </Project>

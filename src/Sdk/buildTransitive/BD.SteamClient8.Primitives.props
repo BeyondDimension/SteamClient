@@ -1,3 +1,2 @@
 <Project>
-	<Import Condition="Exists('$(MSBuildThisFileDirectory)MSBuildThisFileName\GlobalUsings.props')" Project="$(MSBuildThisFileDirectory)MSBuildThisFileName\GlobalUsings.props" />
 </Project>

@@ -7,6 +7,13 @@
 		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
 	</PropertyGroup>
 
-	<Import Project="$(Path_Submodule)Common\src\Directory.Build.targets" />
+	<!-- 👇 配置 NuGet 包生成 -->
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\GeneratePackage.props" />
+
+	<!-- 👇 SDK 配置 -->
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.SteamClient8.Sdk.Ref.Project.targets" />
+	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.SteamClient8.Sdk.targets" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.Sdk.Ref.Project.targets" />
+	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.Sdk.targets" />
 
 </Project>

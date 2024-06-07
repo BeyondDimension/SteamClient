@@ -1,4 +1,6 @@
 <Project>
+	<Import Condition="$(IsSourceGeneratorProject) != 'true' AND $(MSBuildProjectName.StartsWith('BD.SteamClient8')) AND !$(MSBuildProjectName.StartsWith('BD.SteamClient8.SourceGenerator.')) AND Exists('$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props')" Project="$(MSBuildThisFileDirectory)Sdk\Projects\$(MSBuildProjectName).props" />
+
 	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
 
 	<PropertyGroup>
@@ -12,18 +14,6 @@
 	<Import Project="$(Path_Submodule)Common\src\Sdk\Global.props" />
 
 	<PropertyGroup>
-		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
-		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
-		<!--<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>-->
-		<!--<GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>-->
-		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-		<!--<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>-->
-		<GenerateNeutralResourcesLanguageAttribute>false</GenerateNeutralResourcesLanguageAttribute>
-	</PropertyGroup>
-
-	<PropertyGroup>
 		<Version>$(Version_SteamClient8)</Version>
 	</PropertyGroup>
 
@@ -31,12 +21,6 @@
 	<PropertyGroup>
 		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Condition="$(MSBuildProjectName) != 'Tools.Build' AND $(MSBuildProjectName) != 'Tools.DocFX'" Include="..\AssemblyInfo.Attribute.cs">
-			<LinkBase>Properties</LinkBase>
-		</Compile>
-	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Condition="$(MSBuildProjectName) != 'BD.SteamClient8.UnitTest' AND $(IsTestProject) != 'true'" Include="$(MSBuildThisFileDirectory)Shared\InternalsVisibleTo.BD.SteamClient8.UnitTest.cs">

@@ -1,0 +1,10 @@
+<Project>
+	<!-- 📄 源码引用 SteamAchievementManager -->
+	<ItemGroup>
+		<Compile Include="$(MSBuildThisFileDirectory)..\..\SAM.API\**\*.cs">
+			<LinkBase>_SourceReference\SteamAchievementManager</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\bin\**\*.cs" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\..\SAM.API\obj\**\*.cs" />
+	</ItemGroup>
+</Project>

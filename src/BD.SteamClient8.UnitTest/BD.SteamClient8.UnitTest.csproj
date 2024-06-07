@@ -8,6 +8,13 @@
 		<IsTestProject>true</IsTestProject>
 		<UserSecretsId>51922236-4771-4648-8755-76d97bcfa849</UserSecretsId>
 		<UseProjectUtils>true</UseProjectUtils>
+		<BeyondDimensionFeatures>
+			BD.Common8.Bcl;
+			BD.SteamClient8.Primitives;
+			BD.SteamClient8.Models;
+			BD.SteamClient8;
+			BD.SteamClient8.Impl;
+		</BeyondDimensionFeatures>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -15,34 +22,18 @@
 			<LinkBase>Templates</LinkBase>
 		</Compile>
 	</ItemGroup>
-	
-	<ItemGroup>
-		<Using Include="NUnit.Framework" />
-		<Using Include="NUnit.Framework.Interfaces" />
-		<Using Include="NUnit.Framework.Internal" />
-		<Using Include="NUnit.Framework.Internal.Commands" />
-		<Using Include="BD.SteamClient8" />
-		<Using Include="BD.SteamClient8.UnitTest" />
-		<Using Include="BD.SteamClient8.UnitTest.Abstractions" />
-		<Using Include="BD.SteamClient8.UnitTest.Helpers" />
-		<Using Alias="IConfiguration" Include="Microsoft.Extensions.Configuration.IConfiguration" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Configuration" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Console" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
 	</ItemGroup>
 
-	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Configuration.props" />
-	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Logging.props" />
-	<Import Project="$(Path_Submodule)Common\src\Shared\GlobalUsings.Microsoft.Extensions.Logging.Console.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.SteamClient8.UnitTest.props" />
 
-	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Bcl.props" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.UnitTest.props" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.props" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.ApiResponse.props" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\ProjectReference\BD.Common8.Primitives.ApiRsp.props" />
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\ProjectReference\BD.SteamClient8.Impl.props" />
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.BD.SteamClient8.UnitTest.props">
+			<LinkBase>Properties</LinkBase>
+		</None>
+	</ItemGroup>
 
 </Project>

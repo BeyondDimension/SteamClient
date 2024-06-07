@@ -1,0 +1,13 @@
+<Project>
+	<!-- 📄 SDK 项目引用 -->
+
+	<!-- 👇 源生成器 -->
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND !$(TargetFramework.StartsWith('net3')) AND !$(TargetFramework.StartsWith('net4'))">
+		<!-- 👇 类库项目引用 -->
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Primitives;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Primitives'" Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Models;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Models'" Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8;')) AND $(MSBuildProjectName) != 'BD.SteamClient8'" Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8\BD.SteamClient8.csproj" />
+		<ProjectReference Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Impl;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Impl'" Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
+	</ItemGroup>
+
+</Project>
