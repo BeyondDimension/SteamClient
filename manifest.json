@@ -2980,16 +2980,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.AssemblyInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.AssemblyInfo.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Columns.Authenticators.IOrderAuthenticator.yml",
       "output": {
         ".html": {
