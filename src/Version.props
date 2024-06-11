@@ -2,7 +2,7 @@
 	<!-- 版本号 | Version -->
 	<PropertyGroup>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version_SteamClient8>8.24.10607.12200</Version_SteamClient8>
+		<Version_SteamClient8>8.24.10611.11400</Version_SteamClient8>
 	</PropertyGroup>
 </Project>
 
