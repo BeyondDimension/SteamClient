@@ -1,36 +1,34 @@
 <Project>
 	<!-- 📄 SDK 源码引用 -->
 
-	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true'">
-		<!-- 👇 类库项目源码引用 -->
-		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Primitives;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Primitives'">
-			<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\**\*.cs">
-				<LinkBase>_SourceReference\BD.SteamClient8.Primitives</LinkBase>
-			</Compile>
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\bin\**" />
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\obj\**" />
-		</ItemGroup>
-		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Models;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Models'">
-			<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\**\*.cs">
-				<LinkBase>_SourceReference\BD.SteamClient8.Models</LinkBase>
-			</Compile>
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\bin\**" />
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\obj\**" />
-		</ItemGroup>
-		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8;')) AND $(MSBuildProjectName) != 'BD.SteamClient8'">
-			<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8\**\*.cs">
-				<LinkBase>_SourceReference\BD.SteamClient8</LinkBase>
-			</Compile>
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8\bin\**" />
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8\obj\**" />
-		</ItemGroup>
-		<ItemGroup Condition="$(BeyondDimensionFeatures.Contains('BD.SteamClient8.Impl;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Impl'">
-			<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\**\*.cs">
-				<LinkBase>_SourceReference\BD.SteamClient8.Impl</LinkBase>
-			</Compile>
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\bin\**" />
-			<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\obj\**" />
-		</ItemGroup>
+	<!-- 👇 类库项目源码引用 -->
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(BeyondDimensionFeatures.Contains('BD.SteamClient8.Primitives;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Primitives'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\**\*.cs">
+			<LinkBase>_SourceReference\BD.SteamClient8.Primitives</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Primitives\obj\**" />
+	</ItemGroup>
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(BeyondDimensionFeatures.Contains('BD.SteamClient8.Models;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Models'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\**\*.cs">
+			<LinkBase>_SourceReference\BD.SteamClient8.Models</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Models\obj\**" />
+	</ItemGroup>
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(BeyondDimensionFeatures.Contains('BD.SteamClient8;')) AND $(MSBuildProjectName) != 'BD.SteamClient8'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8\**\*.cs">
+			<LinkBase>_SourceReference\BD.SteamClient8</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8\obj\**" />
+	</ItemGroup>
+	<ItemGroup Condition="$(IsSourceGeneratorProject) != 'true' AND $(BeyondDimensionFeatures.Contains('BD.SteamClient8.Impl;')) AND $(MSBuildProjectName) != 'BD.SteamClient8.Impl'">
+		<Compile Include="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\**\*.cs">
+			<LinkBase>_SourceReference\BD.SteamClient8.Impl</LinkBase>
+		</Compile>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\bin\**" />
+		<Compile Remove="$(MSBuildThisFileDirectory)..\BD.SteamClient8.Impl\obj\**" />
 	</ItemGroup>
 
 </Project>
