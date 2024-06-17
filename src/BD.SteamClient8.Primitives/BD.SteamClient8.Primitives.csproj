@@ -18,8 +18,6 @@
 		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
 	</ItemGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\..\res\i18n\$(MSBuildThisFileName).props" />
-
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
 
 </Project>

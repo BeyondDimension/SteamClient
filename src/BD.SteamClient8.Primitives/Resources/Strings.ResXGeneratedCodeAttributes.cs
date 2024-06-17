@@ -12,5 +12,5 @@
 namespace BD.SteamClient8.Resources;
 #pragma warning restore IDE0079 // 请删除不必要的忽略
 
-[ResXGeneratedCode(@"..\..\..\res\i18n\BD.SteamClient8.Primitives.resx")]
+[ResXGeneratedCode(@"..\..\..\res\i18n\BD.SteamClient8.Primitives.resx", version: 1)]
 public partial class Strings { }
