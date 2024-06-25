@@ -183,6 +183,7 @@ abstract partial class SteamServiceImpl
         // override BD.WTTS.Services.Implementation.SteamServiceImpl2.SetSteamCurrentUser
 #if WINDOWS
         Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "AutoLoginUser", userName, RegistryValueKind.String);
+        Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "AutoLoginUser_steamchina", userName, RegistryValueKind.String);
         Registry.CurrentUser.AddOrUpdate(SteamRegistryPath, "RememberPassword", 1, RegistryValueKind.DWord);
 #elif LINUX || MACOS || MACCATALYST
         try
