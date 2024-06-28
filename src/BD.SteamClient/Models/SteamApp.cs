@@ -856,7 +856,7 @@ public class SteamApp : ReactiveObject
         return this;
     }
 
-    public static SteamApp? FromReader(BinaryReader reader, uint[]? installedAppIds = null, bool isSaveProperties = false, bool is0x07564428 = true)
+    public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
     {
         uint id = reader.ReadUInt32();
         if (id == 0)
@@ -876,10 +876,12 @@ public class SteamApp : ReactiveObject
             binaryReader.ReadBytes(20);
             app._changeNumber = binaryReader.ReadUInt32();
 
-            if (is0x07564428)
+            if (isMagicNumberV2 || isMagicNumberV3)
+            {
                 binaryReader.ReadBytes(20);
+            }
 
-            var properties = binaryReader.ReadPropertyTable();
+            var properties = binaryReader.ReadPropertyTable(stringPool);
 
             if (properties == null)
                 return app;

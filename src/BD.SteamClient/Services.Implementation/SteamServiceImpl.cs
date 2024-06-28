@@ -573,8 +573,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     private uint univeseNumber;
     private const uint MagicNumber = 123094055U;
     private const uint MagicNumberV2 = 123094056U;
+    private const uint MagicNumberV3 = 123094057U;
 
-    private static readonly Lazy<uint[]> MagicNumbers = new(new uint[] { MagicNumber, MagicNumberV2 });
+    private static readonly Lazy<uint[]> MagicNumbers = new(new uint[] { MagicNumber, MagicNumberV2, MagicNumberV3 });
 
     /// <summary>
     /// 从steam本地客户端缓存文件中读取游戏数据
@@ -600,13 +601,29 @@ public abstract partial class SteamServiceImpl : ISteamService
                 {
                     var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath), num);
                     logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
-                    Toast.Show(msg, ToastLength.Long);
+                    Toast.Show(ToastIcon.Error, msg);
                     return apps;
                 }
                 SteamApp? app = new();
                 univeseNumber = binaryReader.ReadUInt32();
+
+                string[]? stringPool = null;
+                if (num == MagicNumberV3)
+                {
+                    var stringTableOffset = binaryReader.ReadInt64();
+                    var offset = binaryReader.BaseStream.Position;
+                    binaryReader.BaseStream.Position = stringTableOffset;
+                    var stringCount = binaryReader.ReadUInt32();
+                    stringPool = new string[stringCount];
+                    for (var i = 0; i < stringCount; i++)
+                    {
+                        stringPool[i] = ReadNullTermUtf8String(binaryReader.BaseStream);
+                    }
+                    binaryReader.BaseStream.Position = offset;
+                }
+
                 var installAppIds = GetInstalledAppIds();
-                while ((app = SteamApp.FromReader(binaryReader, installAppIds, isSaveProperties, num == MagicNumberV2)) != null)
+                while ((app = SteamApp.FromReader(binaryReader, stringPool, installAppIds, isSaveProperties, num == MagicNumberV2, num == MagicNumberV3)) != null)
                 {
                     if (app.AppId > 0)
                     {
@@ -636,6 +653,43 @@ public abstract partial class SteamServiceImpl : ISteamService
             {
                 logger.LogError(ex, nameof(GetAppInfos));
                 return apps;
+            }
+        }
+
+        static string ReadNullTermUtf8String(Stream stream)
+        {
+            var buffer = ArrayPool<byte>.Shared.Rent(32);
+
+            try
+            {
+                var position = 0;
+
+                do
+                {
+                    var b = stream.ReadByte();
+
+                    if (b <= 0) // null byte or stream ended
+                    {
+                        break;
+                    }
+
+                    if (position >= buffer.Length)
+                    {
+                        var newBuffer = ArrayPool<byte>.Shared.Rent(buffer.Length * 2);
+                        Buffer.BlockCopy(buffer, 0, newBuffer, 0, buffer.Length);
+                        ArrayPool<byte>.Shared.Return(buffer);
+                        buffer = newBuffer;
+                    }
+
+                    buffer[position++] = (byte)b;
+                }
+                while (true);
+
+                return Encoding.UTF8.GetString(buffer[..position]);
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(buffer);
             }
         }
     }
