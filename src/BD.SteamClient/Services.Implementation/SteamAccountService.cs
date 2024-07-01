@@ -497,8 +497,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 EncryptedPassword = encryptedPassword64,
                 EncryptionTimestamp = timestamp,
                 WebsiteId = "Community",
-                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser,
-                RememberLogin = false,
+                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient,
+                RememberLogin = true,
                 Persistence = ESessionPersistence.KEsessionPersistencePersistent,
             }.ToByteString().ToBase64();
 
@@ -1704,5 +1704,90 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
 
         return null;
+    }
+
+    public async Task<string?> RefreshAccessToken(ulong steamId, string refreshToken)
+    {
+        HttpContent content = new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            { "refresh_token", refreshToken },
+            { "steamid", steamId.ToString() }
+        });
+
+        var resp = await client.PostAsync(SteamApiUrls.STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN, content)
+            .ConfigureAwait(false);
+
+        var r = await resp.Content.ReadAsStringAsync();
+
+        return r;
+    }
+
+    public async Task<string?> GetAccessToken(
+            string sessionId,
+            string steamLoginSecure,
+            string timezoneOffset
+        )
+    {
+        using HttpClientHandler httpClientHandler = new HttpClientHandler();
+
+        var cookies = new CookieContainer();
+
+        httpClientHandler.UseCookies = true;
+        httpClientHandler.CookieContainer = new CookieContainer();
+
+        httpClientHandler.CookieContainer.Add(new CookieCollection()
+        {
+            new Cookie("sessionid", sessionId, domain: SteamApiUrls.STEAM_STORE_URL, path: "/"),
+            new Cookie("steamLoginSecure", steamLoginSecure, domain: SteamApiUrls.STEAM_STORE_URL, path: "/"),
+            new Cookie("timezoneOffset", timezoneOffset, domain: SteamApiUrls.STEAM_STORE_URL, path: "/"),
+        });
+
+        using HttpClient client = new HttpClient(httpClientHandler, true);
+
+        client.DefaultRequestVersion = HttpVersion.Version10;
+
+        var resp = await client.GetAsync($"{SteamApiUrls.STEAM_STORE_URL}/pointssummary/ajaxgetasyncconfig")
+            .ConfigureAwait(false);
+
+        var json = await resp.Content.ReadAsStringAsync();
+
+        return json;
+    }
+
+    public bool IsAccessTokenValid(string accessToken)
+    {
+        if (string.IsNullOrWhiteSpace(accessToken))
+            return false;
+
+        var tokenComponents = accessToken.Split('.');
+
+        if (tokenComponents.Length < 3)
+            return false;
+
+        var base64 = tokenComponents[1]
+            .Replace('-', '+')
+            .Replace('_', '/');
+
+        if (string.IsNullOrWhiteSpace(base64))
+            return false;
+
+        switch (base64.Length % 4)
+        {
+            case 2: base64 += "=="; break;
+            case 3: base64 += "="; break;
+        }
+
+        var payloadBytes = Convert.FromBase64String(base64);
+
+        var reader = new Utf8JsonReader(payloadBytes);
+
+        if (!JsonElement.TryParseValue(ref reader, out var element) || element == null)
+            return false;
+
+        const string expPropertyName = "exp";
+
+        return element.Value.TryGetProperty(expPropertyName, out var exp)
+            && exp.TryGetInt64(out var expTicks)
+            && expTicks > DateTimeOffset.UtcNow.ToUnixTimeSeconds();
     }
 }

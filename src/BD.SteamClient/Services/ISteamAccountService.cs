@@ -155,4 +155,14 @@ public interface ISteamAccountService
     /// <param name="accessToken"></param>
     /// <returns></returns>
     Task<bool?> CheckAccountPhoneStatus(string accessToken);
+
+    //Task<string?> RefreshAccessToken(ulong steamId, string refreshToken);
+    Task<string?> GetAccessToken(
+            string sessionId,
+            string steamLoginSecure,
+            string timezoneOffset);
+
+    Task<string?> RefreshAccessToken(ulong steamId, string refreshToken);
+
+    bool IsAccessTokenValid(string accessToken);
 }
