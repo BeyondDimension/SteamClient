@@ -1717,9 +1717,17 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         var resp = await client.PostAsync(SteamApiUrls.STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN, content)
             .ConfigureAwait(false);
 
-        var r = await resp.Content.ReadAsStringAsync();
-
-        return r;
+        try
+        {
+            var document = JsonDocument.Parse(await resp.Content.ReadAsStreamAsync());
+            if (document is not null && document.RootElement.TryGetProperty("response", out var rsp) && rsp.TryGetProperty("access_token", out JsonElement access_token))
+            {
+                var result = access_token.GetString();
+                return !string.IsNullOrWhiteSpace(result) ? result : null;
+            }
+        }
+        catch { }
+        return null;
     }
 
     public async Task<string?> GetAccessToken(
