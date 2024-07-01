@@ -575,7 +575,7 @@ public abstract partial class SteamServiceImpl : ISteamService
     private const uint MagicNumberV2 = 123094056U;
     private const uint MagicNumberV3 = 123094057U;
 
-    private static readonly Lazy<uint[]> MagicNumbers = new(new uint[] { MagicNumber, MagicNumberV2, MagicNumberV3 });
+    private static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2, MagicNumberV3]);
 
     /// <summary>
     /// 从steam本地客户端缓存文件中读取游戏数据
