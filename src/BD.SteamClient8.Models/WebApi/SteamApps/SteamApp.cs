@@ -229,7 +229,7 @@ public class SteamApp
     //    }
     //}
 
-    #endregion
+    #endregion 暂时不用
 
     /// <summary>
     /// 是否被编辑
@@ -371,6 +371,10 @@ public class SteamApp
     [SystemTextJsonIgnore]
     public string LibraryGridUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARY_URL, AppId);
 
+    private Stream? _EditLibraryGridStream;
+
+    public Stream? EditLibraryGridStream { get; set; }
+
     /// <summary>
     /// LibraryHero 图片路径
     /// </summary>
@@ -450,6 +454,11 @@ public class SteamApp
     /// </summary>
     public byte[]? OriginalData { get => _originalData; set => _originalData = value; }
 
+    public string GetIdAndName()
+    {
+        return $"{AppId} | {DisplayName}";
+    }
+
 #if !(IOS || ANDROID)
 
     /// <summary>
@@ -463,6 +472,63 @@ public class SteamApp
     /// </summary>
     [SystemTextJsonIgnore]
     public SteamAppPropertyTable? ChangesData => _properties;
+
+    public Process? StartSteamAppProcess(SteamAppRunType runType = SteamAppRunType.Idle)
+    {
+        var arg = runType switch
+        {
+            SteamAppRunType.UnlockAchievement => "-achievement",
+            SteamAppRunType.CloudManager => "-cloudmanager",
+            _ => "-silence",
+        };
+        string arguments = $"-clt app {arg} -id {AppId}";
+        var processPath = Environment.ProcessPath;
+        processPath.ThrowIsNull();
+        if (OperatingSystem.IsWindows())
+        {
+            return Process = Process2.Start(processPath, arguments);
+        }
+        else
+        {
+            if (OperatingSystem.IsLinux())
+            {
+                var psi = new ProcessStartInfo
+                {
+                    Arguments = arguments,
+                    FileName = Path.Combine(AppContext.BaseDirectory, "Steam++.sh"),
+                    UseShellExecute = true,
+                };
+                Console.WriteLine(psi.FileName);
+                psi.Environment.Add("SteamAppId", AppId.ToString());
+                return Process = Process.Start(psi);
+            }
+            else
+            {
+                return Process = Process2.Start(
+                processPath,
+                arguments,
+                environment: new Dictionary<string, string>() {
+                    {
+                        "SteamAppId",
+                        AppId.ToString()
+                    }
+                });
+            }
+        }
+    }
+
+    public void RunOrStopSteamAppProcess()
+    {
+        if (Process != null && !Process.HasExited)
+        {
+            Process.KillEntireProcessTree();
+            Process = null;
+        }
+        else
+        {
+            StartSteamAppProcess();
+        }
+    }
 
     #region Replace DLSS dll files methods
 
@@ -599,7 +665,178 @@ public class SteamApp
     //            return true;
     //        }
 
-    #endregion
+    #endregion Replace DLSS dll files methods
+
+    public SteamApp ExtractReaderProperty(SteamAppPropertyTable properties, uint[]? installedAppIds = null)
+    {
+        if (properties != null)
+        {
+            //var installpath = properties.GetPropertyValue<string>(null, NodeAppInfo, NodeConfig, "installdir");
+
+            //if (!string.IsNullOrEmpty(installpath))
+            //{
+            //    app.InstalledDir = Path.Combine(ISteamService.Instance.SteamDirPath, ISteamService.dirname_steamapps, NodeCommon, installpath);
+            //}
+
+            Name = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeName);
+            SortAs = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeSortAs);
+            if (!SortAs.Any_Nullable())
+            {
+                SortAs = Name;
+            }
+            ParentId = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, NodeParentId);
+            Developer = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeExtended, NodeDeveloper);
+            Publisher = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeExtended, NodePublisher);
+            //SteamReleaseDate = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, "steam_release_date");
+            //OriginReleaseDate = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, "original_release_date");
+
+            var type = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeAppType);
+            if (Enum.TryParse(type, true, out SteamAppType apptype))
+            {
+                Type = apptype;
+            }
+            else
+            {
+                Type = SteamAppType.Unknown;
+                Debug.WriteLineIf(!string.IsNullOrEmpty(type), string.Format("AppInfo: New AppType '{0}'", type));
+            }
+
+            OSList = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodePlatforms);
+
+            if (installedAppIds != null)
+            {
+                if (installedAppIds.Contains(AppId) &&
+                    (Type == SteamAppType.Application ||
+                    Type == SteamAppType.Game ||
+                    Type == SteamAppType.Tool ||
+                    Type == SteamAppType.Demo))
+                {
+                    // This is an installed app.
+                    State = 4;
+                }
+            }
+
+            if (IsInstalled)
+            {
+                var launchTable = properties.GetPropertyValue<SteamAppPropertyTable?>(null, NodeAppInfo, NodeConfig, NodeLaunch);
+
+                if (launchTable != null)
+                {
+                    var launchItems = from table in from prop in (from prop in launchTable.Properties
+                                                                  where prop.PropertyType == SteamAppPropertyType.Table
+                                                                  select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                                    select prop.GetValue<SteamAppPropertyTable>()
+                                      select new SteamAppLaunchItem
+                                      {
+                                          Label = table.GetPropertyValue<string?>("description"),
+                                          Executable = table.GetPropertyValue<string?>("executable"),
+                                          Arguments = table.GetPropertyValue<string?>("arguments"),
+                                          WorkingDir = table.GetPropertyValue<string?>("workingdir"),
+                                          Platform = table.TryGetPropertyValue<SteamAppPropertyTable>(NodeConfig, out var propertyTable) ?
+                                          propertyTable.TryGetPropertyValue<string>(NodePlatforms, out var os) ? os : null : null,
+                                      };
+
+                    LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());
+                }
+            }
+
+            CloudQuota = properties.GetPropertyValue(0, NodeAppInfo, "ufs", "quota");
+            CloudMaxnumFiles = properties.GetPropertyValue(0, NodeAppInfo, "ufs", "maxnumfiles");
+
+            var savefilesTable = properties.GetPropertyValue<SteamAppPropertyTable?>(null, NodeAppInfo, "ufs", "savefiles");
+
+            if (savefilesTable != null)
+            {
+                var savefiles = from table in from prop in (from prop in savefilesTable.Properties
+                                                            where prop.PropertyType == SteamAppPropertyType.Table
+                                                            select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                              select prop.GetValue<SteamAppPropertyTable>()
+                                select new SteamAppSaveFile
+                                (
+                                    AppId,
+                                    table.GetPropertyValue<string?>("root"),
+                                    table.GetPropertyValue<string?>("path"),
+                                    table.GetPropertyValue<string?>("pattern")
+                                )
+                                {
+                                    Recursive = table.GetPropertyValue(false, "recursive"),
+                                };
+
+                SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles.ToList());
+            }
+
+            BaseName = properties.GetPropertyValue(string.Empty, NodeAppInfo, "steam_edit", "base_name");
+
+            if (string.IsNullOrEmpty(BaseName))
+            {
+                BaseName = Name;
+            }
+        }
+        return this;
+    }
+
+    public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
+    {
+        uint id = reader.ReadUInt32();
+        if (id == 0)
+        {
+            return null;
+        }
+        SteamApp app = new()
+        {
+            AppId = id,
+        };
+        try
+        {
+            int count = reader.ReadInt32();
+            byte[] array = reader.ReadBytes(count);
+            using BinaryReader binaryReader = new(new MemoryStream(array), Encoding.UTF8, true);
+            app._stuffBeforeHash = binaryReader.ReadBytes(16);
+            binaryReader.ReadBytes(20);
+            app._changeNumber = binaryReader.ReadUInt32();
+
+            if (isMagicNumberV2 || isMagicNumberV3)
+            {
+                binaryReader.ReadBytes(20);
+            }
+
+            var properties = binaryReader.ReadPropertyTable(stringPool);
+
+            if (properties == null)
+                return app;
+
+            if (isSaveProperties)
+            {
+                app._properties = properties;
+                app._originalData = array;
+            }
+            app.ExtractReaderProperty(properties, installedAppIds);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(nameof(SteamApp), ex, string.Format("Failed to load entry with appId {0}", app.AppId));
+        }
+        return app;
+    }
+
+    public void Write(BinaryWriter writer)
+    {
+        if (_properties == null)
+            throw new ArgumentNullException($"SteamApp Write Failed. {nameof(_properties)} is null.");
+        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(_properties);
+        string s = propertyTable.ToString();
+        byte[] bytes = Encoding.UTF8.GetBytes(s);
+        byte[] buffer = SHA1.HashData(bytes);
+        writer.Write((int)AppId);
+        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream(), Encoding.UTF8, true);
+        binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
+        binaryWriter.Write(buffer);
+        binaryWriter.Write(_changeNumber);
+        binaryWriter.Write(propertyTable);
+        MemoryStream memoryStream = (MemoryStream)binaryWriter.BaseStream;
+        writer.Write((int)memoryStream.Length);
+        writer.Write(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+    }
 
 #endif
 
@@ -654,5 +891,6 @@ public class SteamApp
          *             I think Bit 5 indicates if "something" is happening with a DLC and Bit 10 indicates if it is downloading.
          */
     }
+
 #endif
 }
