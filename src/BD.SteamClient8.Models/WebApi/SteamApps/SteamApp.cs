@@ -800,7 +800,7 @@ public class SteamApp
                 binaryReader.ReadBytes(20);
             }
 
-            var properties = binaryReader.ReadPropertyTable(stringPool);
+            var properties = binaryReader.ReadPropertyTable();
 
             if (properties == null)
                 return app;
