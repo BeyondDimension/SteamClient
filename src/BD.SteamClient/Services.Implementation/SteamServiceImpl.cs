@@ -58,9 +58,10 @@ public abstract partial class SteamServiceImpl : ISteamService
         //RegistryVdfPath  = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "registry.vdf");
         ConfigVdfPath = SteamDirPath == null ? null : Path.Combine(SteamDirPath, "config", "config.vdf");
 
-        if (!File.Exists(UserVdfPath)) UserVdfPath = null;
-        if (!File.Exists(AppInfoPath)) AppInfoPath = null;
-        if (!File.Exists(ConfigVdfPath)) ConfigVdfPath = null;
+        // 这里判断不存在设置 null 会干扰后续文件创建的判断
+        //if (!File.Exists(UserVdfPath)) UserVdfPath = null;
+        //if (!File.Exists(AppInfoPath)) AppInfoPath = null;
+        //if (!File.Exists(ConfigVdfPath)) ConfigVdfPath = null;
         if (!Directory.Exists(LibrarycacheDirPath)) LibrarycacheDirPath = null;
     }
 
