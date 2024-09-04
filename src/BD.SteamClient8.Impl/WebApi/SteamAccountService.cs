@@ -274,7 +274,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 EncryptedPassword = encryptedPassword64,
                 EncryptionTimestamp = timestamp,
                 WebsiteId = "Community",
-                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser,
+                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient,
                 RememberLogin = false,
                 Persistence = ESessionPersistence.KEsessionPersistencePersistent,
             }.ToByteString().ToBase64();
@@ -1054,7 +1054,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return false;
     }
 
-    #endregion
+    #endregion Public Methods
 
     #region Static Methods
 
@@ -1294,7 +1294,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return result;
     }
 
-    #endregion
+    #endregion Static Methods
 
     #region Private Methods
 
@@ -1435,7 +1435,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
     }
 
-    #endregion
+    #endregion Private Methods
 
     #region GeneratedRegex
 
@@ -1460,5 +1460,5 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     [GeneratedRegex("<div class=\"currency_change_option btnv6_grey_black\" data-country=\"(?<grp0>[^\"]+)\" >[\\s]+<span>[\\s]+<div class=\"country\">(?<grp1>[\\w]+?)</div>")]
     private static partial Regex CountryItemRegex();
 
-    #endregion
+    #endregion GeneratedRegex
 }

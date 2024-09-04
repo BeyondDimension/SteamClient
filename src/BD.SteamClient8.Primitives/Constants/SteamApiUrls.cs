@@ -9,7 +9,7 @@ public static partial class SteamApiUrls
     public const string STEAM_PROFILES_URL = "https://steamcommunity.com/profiles/{0}";
 
     public const string STEAM_LOGIN_URL = "https://steamcommunity.com/login/home/?goto=my/profile";
-    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/l=schinese&p={1}";
+    public const string STEAM_BADGES_URL = "https://steamcommunity.com/profiles/{0}/badges/?l=schinese&p={1}";
     public const string STEAM_GAMECARDS_URL = "https://steamcommunity.com/profiles/{0}/gamecards/{1}?l=english";
     public const string STEAMAPP_LIST_URL = "https://api.steampowered.com/ISteamApps/GetAppList/v2";
     public const string STEAMAPP_LOGO_URL = "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/{0}/{1}.jpg";
@@ -71,6 +71,10 @@ public static partial class SteamApiUrls
     public const string STEAM_COMMUNITY_URL = "https://steamcommunity.com";
     public const string STEAM_STORE_URL = "https://store.steampowered.com";
 
+    public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
+    public const string DologinUrl = $"{STEAM_STORE_URL}/login/dologin?l=schinese";
+    public const string SteamLoginUrl = $"{STEAM_STORE_URL}/login?oldauth=1";
+
     public const string CaptchaImageUrl = $"{STEAM_STORE_URL}/login/rendercaptcha/?gid=";
 
     /// <summary>
@@ -82,6 +86,17 @@ public static partial class SteamApiUrls
     public const string OpenIdloginUrl = $"{STEAM_COMMUNITY_URL}/openid/login";
 
     #endregion OpenIdLogin
+
+    public const string SteamStoreRedeemWalletCodelUrl = $"{STEAM_STORE_URL}/account/ajaxredeemwalletcode?l=schinese";
+
+    public const string SteamStoreAccountlUrl = $"{STEAM_STORE_URL}/account?l=schinese";
+    public const string SteamStoreAccountHistoryDetailUrl = $"{STEAM_STORE_URL}/account/history?l=schinese";
+    public const string SteamStoreAccountHistoryAjaxlUrl = $"{STEAM_STORE_URL}/AjaxLoadMoreHistory?l=schinese";
+
+    public const string SteamStoreAccountSetCountryUrl = $"{STEAM_STORE_URL}/account/setcountry";
+    public const string SteamStoreAddFundsUrl = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
+
+    public const string AccountGetSteamNotificationsUrl = "https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}";
 
     //#region LoginV1
     //public const string GetRSAkeyUrl = $"{STEAM_STORE_URL}/login/getrsakey/";
@@ -155,6 +170,7 @@ public static partial class SteamApiUrls
     public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGESTARTSYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeStart/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC = "https://api.steampowered.com/ITwoFactorService/RemoveAuthenticatorViaChallengeContinue/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_REFRESHACCESSTOKEN = "https://api.steampowered.com/IAuthenticationService/GenerateAccessTokenForApp/v1/";
+    public const string STEAM_AUTHENTICATOR_ACCOUNTPHONESTATUS = "https://api.steampowered.com/IPhoneService/AccountPhoneStatus/v1?access_token={0}";
 
     /// <summary>
     /// Idle 挂卡
@@ -162,6 +178,20 @@ public static partial class SteamApiUrls
     public const string STEAM_IDLE_APPCARDS_AVG = "https://api.augmentedsteam.com/market/cards/average-prices/v2?appids={0}&currency={1}";
 
     public const string STEAM_IDLE_APPCARDS_MARKETPRICE = "https://api.augmentedsteam.com/market/cards/v2?appid={0}&currency={1}";
+
+    /// <summary>
+    /// 家庭监控
+    /// </summary>
+    public const string STEAM_PARENTAL_UNLOCK_COMMUNITY = "https://steamcommunity.com/parental/ajaxunlock/";
+
+    public const string STEAM_PARENTAL_UNLOCK_STORE = "https://store.steampowered.com/parental/ajaxunlock/";
+    public const string STEAM_PARENTAL_UNLOCK_CHECKOUT = "https://checkout.steampowered.com/parental/ajaxunlock/";
+    public const string STEAM_PARENTAL_UNLOCK_TV = "https://steam.tv/parental/ajaxunlock";
+
+    public const string STEAM_PARENTAL_LOCK_COMMUNITY = "https://steamcommunity.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_STORE = "https://store.steampowered.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_CHECKOUT = "https://checkout.steampowered.com/parental/ajaxlock/";
+    public const string STEAM_PARENTAL_LOCK_TV = "https://steam.tv/parental/ajaxlock";
 
     /// <summary>
     /// Market 市场交易
