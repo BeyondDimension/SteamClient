@@ -688,6 +688,37 @@ public SteamAppPropertyTable? ChangesData { get; }</code></pre>
 
 
 
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_EditLibraryGridStream_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.EditLibraryGridStream*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_EditLibraryGridStream" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.EditLibraryGridStream">
+  EditLibraryGridStream
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream? EditLibraryGridStream { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_HasProcess_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.HasProcess*"></a>
 
   <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_HasProcess" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.HasProcess">
@@ -2397,6 +2428,214 @@ public Process? Process { get; set; }</code></pre>
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
     <dd></dd>
   </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_ExtractReaderProperty_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.ExtractReaderProperty*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_ExtractReaderProperty_BD_SteamClient8_Models_WebApi_SteamApps_SteamAppPropertyTable_System_UInt32___" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.ExtractReaderProperty(BD.SteamClient8.Models.WebApi.SteamApps.SteamAppPropertyTable,System.UInt32[])">
+  ExtractReaderProperty(SteamAppPropertyTable, uint[]?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamApp ExtractReaderProperty(SteamAppPropertyTable properties, uint[]? installedAppIds = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>properties</code> <a class="xref" href="BD.SteamClient8.Models.WebApi.SteamApps.SteamAppPropertyTable.html">SteamAppPropertyTable</a></dt>
+    <dd></dd>
+    <dt><code>installedAppIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>[]</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_FromReader_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.FromReader*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_FromReader_System_IO_BinaryReader_System_String___System_UInt32___System_Boolean_System_Boolean_System_Boolean_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.FromReader(System.IO.BinaryReader,System.String[],System.UInt32[],System.Boolean,System.Boolean,System.Boolean)">
+  FromReader(BinaryReader, string[]?, uint[]?, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reader</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.binaryreader">BinaryReader</a></dt>
+    <dd></dd>
+    <dt><code>stringPool</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</dt>
+    <dd></dd>
+    <dt><code>installedAppIds</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a>[]</dt>
+    <dd></dd>
+    <dt><code>isSaveProperties</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>isMagicNumberV2</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+    <dt><code>isMagicNumberV3</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.html">SteamApp</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_GetIdAndName_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.GetIdAndName*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_GetIdAndName" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.GetIdAndName">
+  GetIdAndName()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetIdAndName()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_RunOrStopSteamAppProcess_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.RunOrStopSteamAppProcess*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_RunOrStopSteamAppProcess" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.RunOrStopSteamAppProcess">
+  RunOrStopSteamAppProcess()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RunOrStopSteamAppProcess()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_StartSteamAppProcess_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.StartSteamAppProcess*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_StartSteamAppProcess_BD_SteamClient8_Enums_WebApi_SteamApps_SteamAppRunType_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.StartSteamAppProcess(BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppRunType)">
+  StartSteamAppProcess(SteamAppRunType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Process? StartSteamAppProcess(SteamAppRunType runType = SteamAppRunType.Idle)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>runType</code> <a class="xref" href="../BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppRunType.html">SteamAppRunType</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.diagnostics.process">Process</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_Write_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.Write*"></a>
+
+  <h3 id="BD_SteamClient8_Models_WebApi_SteamApps_SteamApp_Write_System_IO_BinaryWriter_" data-uid="BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.Write(System.IO.BinaryWriter)">
+  Write(BinaryWriter)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Models/WebApi/SteamApps/SteamApp.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Write(BinaryWriter writer)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>writer</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.binarywriter">BinaryWriter</a></dt>
+    <dd></dd>
+  </dl>
+
 
 
 
