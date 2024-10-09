@@ -41,6 +41,25 @@ public interface ISteamAccountService
     Task DoLoginV2Async(SteamLoginState loginState);
 
     /// <summary>
+    /// QRCode 登录
+    /// </summary>
+    /// <param name="loginState">登陆状态</param>
+    /// <param name="processSessionFunc">QRCode 登录会话处理委托,可通过会话信息生成二维码 返回 true 表示开始确认登陆状态 false 表示取消</param>
+    /// <param name="deviceFriendlyName"></param>
+    /// <param name="gamingDeviceType"></param>
+    /// <param name="osType"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task DoLoginWithQRCodeAsync(
+            SteamLoginState loginState,
+            Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
+            string? deviceFriendlyName = null,
+            uint gamingDeviceType = default,
+            int osType = 20,
+            CancellationToken cancellationToken = default
+        );
+
+    /// <summary>
     /// 执行 Steam 第三方快速登录接口请求并返回登录后 Cookie
     /// </summary>
     /// <param name="openidparams">请求参数</param>

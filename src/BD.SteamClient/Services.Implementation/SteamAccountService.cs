@@ -653,6 +653,154 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         sessions.AddOrSetSeesion(session);
     }
 
+    //<inheritdoc/>
+    public async Task DoLoginWithQRCodeAsync(
+            SteamLoginState loginState,
+            Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
+            string? deviceFriendlyName = null,
+            uint gamingDeviceType = default,
+            int osType = 20, //EOSType
+            CancellationToken cancellationToken = default
+        )
+    {
+        var session = await BeginAuthSessionViaQRCode(
+                deviceFriendlyName,
+                gamingDeviceType,
+                osType,
+                cancellationToken
+            );
+
+        string? errorMsg = session switch
+        {
+            { HasRequestId: var hasReqId, HasClientId: var hasClientId, HasChallengeUrl: var hasUrl }
+                when !hasReqId && !hasClientId && !hasUrl => "获取二维码登录会话信息失败!",
+            // 没有二维码验证地址
+            { HasChallengeUrl: false } => "获取 ChallengeUrl 错误",
+            // 没有 ClientId 确认登录状态 （PollAuthSessionStatusAsync）需要
+            { HasClientId: false } => "获取 ClientId 错误",
+            // 没有 RequestId 确认登录状态 （PollAuthSessionStatusAsync）需要
+            { HasRequestId: false } => "获取 RequestId 错误",
+            _ => null,
+        };
+
+        if (!string.IsNullOrEmpty(errorMsg))
+        {
+            loginState.Message = errorMsg;
+            loginState.Success = false;
+            return;
+        }
+
+        // 确认登录状态
+        var confirmLoginStatus = await processSessionFunc(session);
+
+        if (!confirmLoginStatus)
+        {
+            loginState.Message = "取消扫描二维码登录";
+            loginState.Success = false;
+            return;
+        }
+
+        byte[] requestIdBytes = session.RequestId.ToByteArray();
+
+        var pollAuthSessionStatusResponse = await PollAuthSessionStatusAsync(session.ClientId, requestIdBytes);
+
+        if (!pollAuthSessionStatusResponse.HasAccessToken || !pollAuthSessionStatusResponse.HasRefreshToken)
+        {
+            loginState.Message = "登录信息已过期";
+            loginState.Success = false;
+            return;
+        }
+
+        loginState.AccessToken = pollAuthSessionStatusResponse.AccessToken;
+        loginState.RefreshToken = pollAuthSessionStatusResponse.RefreshToken;
+        loginState.SteamId =
+            TryParseAccessTokenSteamId(pollAuthSessionStatusResponse.AccessToken, out ulong parsedSteamId)
+                ? parsedSteamId
+                : default;
+
+        loginState.RequestId = requestIdBytes;
+        loginState.Username = pollAuthSessionStatusResponse.AccountName;
+        loginState.Success = pollAuthSessionStatusResponse.HasAccessToken && pollAuthSessionStatusResponse.HasRefreshToken;
+        loginState.Cookies = cookieContainer.GetAllCookies();
+
+        var steamSession = new SteamSession();
+        steamSession.SteamId = loginState.SteamId.ToString();
+        steamSession.AccessToken = loginState.AccessToken;
+        steamSession.RefreshToken = loginState.RefreshToken;
+        steamSession.CookieContainer = cookieContainer;
+        sessions.AddOrSetSeesion(steamSession);
+    }
+
+    bool TryParseAccessTokenSteamId(string token, out ulong steamId)
+    {
+        steamId = default;
+        if (TryParseAccessTokenProperty(token, "sub", out var propertyElement) && propertyElement.HasValue)
+        {
+            steamId = propertyElement switch
+            {
+                { ValueKind: JsonValueKind.String } =>
+                    ulong.TryParse(propertyElement.Value.GetString(), out var parseSteamId)
+                        ? parseSteamId
+                        : default,
+                { ValueKind: JsonValueKind.Number } => propertyElement.Value.GetUInt64(),
+                _ => 0
+            };
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 开启二维码登录会话
+    /// </summary>
+    /// <param name="deviceFriendlyName"></param>
+    /// <param name="gamingDeviceType"></param>
+    /// <param name="osType"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns>二维码会话信息</returns>
+    async Task<CAuthentication_BeginAuthSessionViaQR_Response> BeginAuthSessionViaQRCode(
+            string? deviceFriendlyName = null,
+            uint gamingDeviceType = default,
+            int osType = 20,
+            CancellationToken cancellationToken = default
+        )
+    {
+        deviceFriendlyName ??= Guid.NewGuid().ToStringN();
+
+        var input_protobuf_encoded = new CAuthentication_BeginAuthSessionViaQR_Request
+        {
+            PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser
+               | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient
+               | EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
+            DeviceFriendlyName = deviceFriendlyName,
+            DeviceDetails = new CAuthentication_DeviceDetails
+            {
+                DeviceFriendlyName = deviceFriendlyName,
+                GamingDeviceType = gamingDeviceType,
+                OsType = osType,
+                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser
+               | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient
+               | EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
+            },
+        }.ToByteString().ToBase64();
+
+        return await WaitAndRetryAsync().ExecuteAsync(async () =>
+         {
+             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaQR/v1")
+             {
+                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
+                 {
+                    { "input_protobuf_encoded", input_protobuf_encoded },
+                 }),
+             };
+
+             var response = await client.SendAsync(request);
+
+             return CAuthentication_BeginAuthSessionViaQR_Response.Parser.ParseFrom(response.Content.ReadAsStream());
+         });
+    }
+
     async Task<CAuthentication_PollAuthSessionStatus_Response> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id)
     {
         var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
@@ -1197,7 +1345,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 }
             }
             return false;
-
         });
         return r;
     }
@@ -1797,5 +1944,45 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         return element.Value.TryGetProperty(expPropertyName, out var exp)
             && exp.TryGetInt64(out var expTicks)
             && expTicks > DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+    }
+
+    /// <summary>
+    /// 尝试解析 AccessToken 属性
+    /// </summary>
+    /// <param name="accessToken"></param>
+    /// <param name="propertyName"></param>
+    /// <param name="property"></param>
+    /// <returns></returns>
+    bool TryParseAccessTokenProperty(string accessToken, string propertyName, out JsonElement? property)
+    {
+        property = default;
+
+        if (string.IsNullOrWhiteSpace(accessToken))
+            return false;
+        var tokenComponents = accessToken.Split('.');
+        if (tokenComponents.Length < 3)
+            return false;
+        var base64 = tokenComponents[1]
+            .Replace('-', '+')
+            .Replace('_', '/');
+        if (string.IsNullOrWhiteSpace(base64))
+            return false;
+        switch (base64.Length % 4)
+        {
+            case 2: base64 += "=="; break;
+            case 3: base64 += "="; break;
+        }
+
+        var payloadBytes = Convert.FromBase64String(base64);
+
+        using var jsonDoc = JsonDocument.Parse(payloadBytes);
+
+        if (jsonDoc.RootElement.TryGetProperty(propertyName, out var prop))
+        {
+            property = prop.Clone();
+            return true;
+        }
+
+        return false;
     }
 }
