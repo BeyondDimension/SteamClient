@@ -1888,8 +1888,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         var cookies = new CookieContainer();
 
         httpClientHandler.UseCookies = true;
+        httpClientHandler.Proxy = HttpClient.DefaultProxy;
         httpClientHandler.CookieContainer = new CookieContainer();
-
         httpClientHandler.CookieContainer.Add(new CookieCollection()
         {
             new Cookie("sessionid", sessionId, domain: SteamApiUrls.STEAM_STORE_URL, path: "/"),

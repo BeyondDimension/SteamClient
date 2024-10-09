@@ -1,3 +1,5 @@
+using static System.Net.Http.HttpClientUseCookiesWithProxyServiceImpl;
+
 namespace BD.SteamClient.Services.Implementation;
 
 public class SteamSessionServiceImpl : ISteamSessionService
@@ -21,6 +23,7 @@ public class SteamSessionServiceImpl : ISteamSessionService
         {
             UseCookies = true,
             CookieContainer = steamSession.CookieContainer,
+            Proxy = HttpClient.DefaultProxy,
         };
         steamSession.HttpClient = new HttpClient(handler);
         _sessions[tag] = steamSession;
