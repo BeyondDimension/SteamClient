@@ -53,6 +53,26 @@ public static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static string ReadAppInfoString_0x07564429(this BinaryReader reader, IList<string> stringTable)
+    {
+        uint num = reader.ReadUInt32();
+        return stringTable[(int)num];
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WriteAppInfoString_0x07564429(this BinaryWriter writer, string str, List<string> stringTable, Dictionary<string, uint> stringLookup)
+    {
+        uint num = uint.MaxValue;
+        if (!stringLookup.TryGetValue(str, out num))
+        {
+            num = (uint)stringTable.Count;
+            stringTable.Add(str);
+            stringLookup.Add(str, num);
+        }
+        writer.Write(num);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Color ReadColor(this BinaryReader reader)
     {
         byte red = reader.ReadByte();
@@ -113,6 +133,64 @@ public static partial class BinaryReaderExtensions
             }
         }
         writer.Write((byte)8);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static void WritePropertyTable_0x07564429(this BinaryWriter writer, SteamAppPropertyTable table, List<string> stringTable, Dictionary<string, uint> stringLookup)
+    {
+        foreach (SteamAppProperty property in table.Properties)
+        {
+            writer.Write((byte)property.PropertyType);
+            writer.WriteAppInfoString_0x07564429(property.Name, stringTable, stringLookup);
+            switch (property.PropertyType)
+            {
+                case SteamAppPropertyType.Table:
+                    if (property.Value is SteamAppPropertyTable table1)
+                        writer.WritePropertyTable_0x07564429(table1, stringTable, stringLookup);
+                    break;
+                case SteamAppPropertyType.String:
+                    writer.WriteAppInfoString(property.Value?.ToString() ?? string.Empty);
+                    break;
+                case SteamAppPropertyType.WString:
+                    writer.WriteAppInfoString_0x07564429(property.Value?.ToString() ?? string.Empty, stringTable, stringLookup);
+                    break;
+                case SteamAppPropertyType.Int32:
+                    if (property.Value is not int int32)
+                        int32 = default;
+                    writer.Write(int32);
+                    break;
+                case SteamAppPropertyType.Uint64:
+                    if (property.Value is not ulong uint64)
+                        uint64 = default;
+                    writer.Write(uint64);
+                    break;
+                case SteamAppPropertyType.Float:
+                    if (property.Value is not float single)
+                        single = default;
+                    writer.Write(single);
+                    break;
+                case SteamAppPropertyType.Color:
+                    if (property.Value is not Color color)
+                        color = default;
+                    writer.Write(color);
+                    break;
+                default:
+                    throw new NotImplementedException("The value type " + property.PropertyType.ToString() + " has not been implemented.");
+            }
+        }
+        writer.Write((byte)8);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static byte[] GetPropertyTableByte_0x07564429(this SteamAppPropertyTable table, List<string> stringTable, Dictionary<string, uint> stringLookup)
+    {
+        byte[] array;
+        using (BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream()))
+        {
+            binaryWriter.WritePropertyTable_0x07564429(table, stringTable, stringLookup);
+            array = ((MemoryStream)binaryWriter.BaseStream).ToArray();
+        }
+        return array;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

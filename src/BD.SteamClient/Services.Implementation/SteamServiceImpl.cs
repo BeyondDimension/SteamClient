@@ -1,4 +1,5 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+using System.IO;
 using ValveKeyValue;
 
 namespace BD.SteamClient.Services.Implementation;
@@ -734,9 +735,13 @@ public abstract partial class SteamServiceImpl : ISteamService
             var modifiedApps = new List<ModifiedApp>();
 
             using BinaryWriter binaryWriter = new(new MemoryStream(), Encoding.UTF8, true);
-            binaryWriter.Write(MagicNumber);
+            binaryWriter.Write(MagicNumberV3);
             binaryWriter.Write(univeseNumber);
 
+            List<string> list = new List<string>();
+            Dictionary<string, uint> dictionary = new Dictionary<string, uint>();
+
+            using BinaryWriter binaryWriter2 = new(new MemoryStream(), Encoding.UTF8, true);
             foreach (SteamApp app in applist)
             {
                 var editApp = editApps.FirstOrDefault(s => s.AppId == app.AppId);
@@ -745,10 +750,19 @@ public abstract partial class SteamServiceImpl : ISteamService
                     app.SetEditProperty(editApp);
                     modifiedApps.Add(new ModifiedApp(app));
                 }
-                app.Write(binaryWriter);
+                app.Write(binaryWriter2, list, dictionary);
+            }
+            binaryWriter2.Write(0);
+
+            long num = binaryWriter.BaseStream.Position + 8L + binaryWriter2.BaseStream.Length;
+            binaryWriter.Write(num);
+            binaryWriter.Write(((MemoryStream)binaryWriter2.BaseStream).ToArray());
+            binaryWriter.Write((uint)list.Count);
+            foreach (string text in list)
+            {
+                binaryWriter.WriteAppInfoString(text);
             }
 
-            binaryWriter.Write(0);
             using FileStream fileStream = File.Open(AppInfoPath, FileMode.Create, FileAccess.Write);
             binaryWriter.BaseStream.Position = 0L;
             await binaryWriter.BaseStream.CopyToAsync(fileStream);

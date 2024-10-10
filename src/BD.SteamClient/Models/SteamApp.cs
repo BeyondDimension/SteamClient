@@ -900,20 +900,25 @@ public class SteamApp : ReactiveObject
         return app;
     }
 
-    public void Write(BinaryWriter writer)
+    public void Write(BinaryWriter writer, List<string> stringTable, Dictionary<string, uint> stringLookup)
     {
         if (_properties == null)
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(_properties)} is null.");
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(_properties);
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
-        byte[] buffer = SHA1.HashData(bytes);
-        writer.Write((int)AppId);
+        SHA1 sha = SHA1.Create();
+        byte[] array = sha.ComputeHash(bytes);
+        writer.Write(this.AppId);
+        byte[] array2 = propertyTable.GetPropertyTableByte_0x07564429(stringTable, stringLookup);
+        byte[] array3 = sha.ComputeHash(array2);
+
         using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream(), Encoding.UTF8, true);
         binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
-        binaryWriter.Write(buffer);
+        binaryWriter.Write(array);
         binaryWriter.Write(_changeNumber);
-        binaryWriter.Write(propertyTable);
+        binaryWriter.Write(array3);
+        binaryWriter.Write(array2);
         MemoryStream memoryStream = (MemoryStream)binaryWriter.BaseStream;
         writer.Write((int)memoryStream.Length);
         writer.Write(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
