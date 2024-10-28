@@ -239,13 +239,13 @@ public abstract partial class SteamServiceImpl : ISteamService
                 if (innerExceptions.Length > 0)
                 {
                     throw new AggregateException(
-                        "KillProcess fail", innerExceptions);
+                        "KillProcess fail.", innerExceptions);
                 }
             }
         }
         catch (Exception ex)
         {
-            Log.Error(TAG, ex, "KillSteamProcess fail");
+            Log.Error(TAG, ex, "KillSteamProcess fail.");
             throw;
         }
 
