@@ -5,10 +5,12 @@
 		<Using Include="NUnit.Framework.Interfaces" />
 		<Using Include="NUnit.Framework.Internal" />
 		<Using Include="NUnit.Framework.Internal.Commands" />
+
 		<Using Include="BD.SteamClient8" />
 		<Using Include="BD.SteamClient8.UnitTest" />
 		<Using Include="BD.SteamClient8.UnitTest.Abstractions" />
 		<Using Include="BD.SteamClient8.UnitTest.Helpers" />
+
 		<Using Alias="IConfiguration" Include="Microsoft.Extensions.Configuration.IConfiguration" />
 	</ItemGroup>
 </Project>
