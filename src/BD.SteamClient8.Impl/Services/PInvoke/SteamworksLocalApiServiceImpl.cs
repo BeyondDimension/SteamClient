@@ -1,9 +1,9 @@
 #if !(IOS || ANDROID)
-using static BD.SteamClient8.Services.PInvoke.ISteamworksLocalApiService;
+using static BD.SteamClient8.Services.Abstractions.PInvoke.ISteamworksLocalApiService;
 using SAMAPIClient = SAM.API.Client;
 using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
 
-namespace BD.SteamClient8.Impl.PInvoke;
+namespace BD.SteamClient8.Services.PInvoke;
 
 /// <inheritdoc cref="ISteamworksLocalApiService "/> Steamworks 本地 API 服务实现
 class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService

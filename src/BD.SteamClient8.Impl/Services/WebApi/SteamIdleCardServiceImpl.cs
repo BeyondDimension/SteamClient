@@ -2,7 +2,7 @@ using AngleSharp.Common;
 using AngleSharp.Html.Dom;
 using Nito.Comparers.Linq;
 
-namespace BD.SteamClient8.Impl.WebApi;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// <see cref="ISteamIdleCardService"/> Steam 挂卡相关服务实现

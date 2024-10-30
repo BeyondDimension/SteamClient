@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.WinAuth;
+namespace BD.SteamClient8.WinAuth;
 
 /// <summary>
 /// Initializes a new instance of the <see cref="GoogleAuthenticatorNetServiceImpl"/> class.

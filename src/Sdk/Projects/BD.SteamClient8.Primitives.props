@@ -20,6 +20,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- 👇 包引用 -->
-		<PackageReference Include="SteamKit2" />
+		<ProjectReference Include="$(Path_Submodule)Common\ref\SteamKit\SteamKit2\SteamKit2\SteamKit2.csproj" />
 	</ItemGroup>
 </Project>

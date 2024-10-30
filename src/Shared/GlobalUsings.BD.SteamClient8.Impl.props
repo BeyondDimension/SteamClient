@@ -2,14 +2,13 @@
 	<!-- 全局 using | Global usings -->
 	<ItemGroup>
 		<Using Include="BD.SteamClient8" />
-		<Using Include="BD.SteamClient8.Impl" />
-		<Using Include="BD.SteamClient8.Impl.Extensions" />
-		<Using Include="BD.SteamClient8.Impl.PInvoke" />
-		<Using Include="BD.SteamClient8.Impl.WebApi" />
-		<Using Include="BD.SteamClient8.Impl.WinAuth" />
+		<Using Include="BD.SteamClient8.Extensions" />
+		<Using Include="BD.SteamClient8.Services" />
+		<Using Include="BD.SteamClient8.Services.PInvoke" />
+		<Using Include="BD.SteamClient8.Services.WebApi" />
+		<Using Include="BD.SteamClient8.WinAuth" />
+
 		<Using Include="Google.Protobuf" />
-		<Using Include="System.Net.Http.Json" />
-		<Using Include="Polly.Retry" />
 	</ItemGroup>
 	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<!-- Windows Only -->

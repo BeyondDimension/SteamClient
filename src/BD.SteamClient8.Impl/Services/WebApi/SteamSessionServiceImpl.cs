@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.WebApi;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// <see cref="ISteamSessionService"/> Steam 登录会话信息服务实现

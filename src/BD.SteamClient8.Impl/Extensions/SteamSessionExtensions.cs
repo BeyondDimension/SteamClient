@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.Extensions;
+namespace BD.SteamClient8.Extensions;
 
 /// <summary>
 /// <see cref="SteamSession"/> 扩展方法

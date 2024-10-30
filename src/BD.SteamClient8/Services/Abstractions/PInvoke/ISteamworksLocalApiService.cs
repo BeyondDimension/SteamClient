@@ -1,5 +1,5 @@
 #if !(IOS || ANDROID)
-namespace BD.SteamClient8.Services.PInvoke;
+namespace BD.SteamClient8.Services.Abstractions.PInvoke;
 
 /// <summary>
 /// Steamworks 本地 API 服务

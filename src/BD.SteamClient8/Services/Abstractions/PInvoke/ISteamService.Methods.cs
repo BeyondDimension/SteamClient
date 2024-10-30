@@ -1,7 +1,7 @@
 #if !(IOS || ANDROID)
 using static System.String2;
 
-namespace BD.SteamClient8.Services.PInvoke;
+namespace BD.SteamClient8.Services.Abstractions.PInvoke;
 
 partial interface ISteamService
 {

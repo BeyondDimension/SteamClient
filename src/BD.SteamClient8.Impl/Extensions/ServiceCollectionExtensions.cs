@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.Extensions;
+namespace BD.SteamClient8.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {

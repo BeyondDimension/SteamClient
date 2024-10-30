@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.WebApi;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// <see cref="ISteamMarketService"/> Steam 市场交易相关服务实现

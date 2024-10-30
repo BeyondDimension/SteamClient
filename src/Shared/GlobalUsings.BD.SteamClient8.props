@@ -5,7 +5,8 @@
 		<Using Include="BD.SteamClient8.Extensions" />
 		<Using Include="BD.SteamClient8.Helpers" />
 		<Using Include="BD.SteamClient8.Services" />
-		<Using Include="BD.SteamClient8.Services.PInvoke" />
-		<Using Include="BD.SteamClient8.Services.WebApi" />
+		<Using Include="BD.SteamClient8.Services.Abstractions" />
+		<Using Include="BD.SteamClient8.Services.Abstractions.PInvoke" />
+		<Using Include="BD.SteamClient8.Services.Abstractions.WebApi" />
 	</ItemGroup>
 </Project>

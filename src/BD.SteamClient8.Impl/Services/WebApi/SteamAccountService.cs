@@ -1,4 +1,6 @@
-namespace BD.SteamClient8.Impl.WebApi;
+using Polly.Retry;
+
+namespace BD.SteamClient8.Services.WebApi;
 
 public sealed partial class SteamAccountService : WebApiClientFactoryService, ISteamAccountService
 {

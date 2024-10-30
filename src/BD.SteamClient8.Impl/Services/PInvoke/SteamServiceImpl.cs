@@ -1,7 +1,7 @@
 #if !(IOS || ANDROID)
-using static BD.SteamClient8.Services.PInvoke.ISteamService;
+using static BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService;
 
-namespace BD.SteamClient8.Impl.PInvoke;
+namespace BD.SteamClient8.Services.PInvoke;
 
 /// <summary>
 /// <see cref="ISteamService"/> Steam 相关助手、工具类服务实现

@@ -4,6 +4,7 @@
 		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<Description>SteamClient8 服务实现库</Description>
+		<RootNamespace>BD.SteamClient8</RootNamespace>
 	</PropertyGroup>
 
 	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />

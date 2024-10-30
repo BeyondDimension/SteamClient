@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.PInvoke;
+namespace BD.SteamClient8.Services.PInvoke;
 
 public abstract partial class SteamServiceImpl
 {

@@ -93,6 +93,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BD.SteamClient8.Sdk", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common8", "Common8", "{7DF93C75-7F66-48AF-B4A3-D6EDAB990B9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamKit2", "ref\Common\ref\SteamKit\SteamKit2\SteamKit2\SteamKit2.csproj", "{4B2B0365-DE37-4B65-B614-3E4E7C05147D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -187,6 +189,10 @@ Global
 		{A4F36A67-96BC-488C-911B-B700EB65F591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4F36A67-96BC-488C-911B-B700EB65F591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4F36A67-96BC-488C-911B-B700EB65F591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B2B0365-DE37-4B65-B614-3E4E7C05147D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B2B0365-DE37-4B65-B614-3E4E7C05147D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B2B0365-DE37-4B65-B614-3E4E7C05147D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B2B0365-DE37-4B65-B614-3E4E7C05147D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -224,6 +230,7 @@ Global
 		{F1DE414F-BC79-4F4A-8509-B7E82F1403AC} = {49150EE8-13DD-4798-AA83-D7C3B9C8B27F}
 		{A4F36A67-96BC-488C-911B-B700EB65F591} = {F1DE414F-BC79-4F4A-8509-B7E82F1403AC}
 		{7DF93C75-7F66-48AF-B4A3-D6EDAB990B9D} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
+		{4B2B0365-DE37-4B65-B614-3E4E7C05147D} = {C03124F2-9977-4ACC-A9A3-862A18F514A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F80A561-CAE0-4797-B779-42B29CA75687}

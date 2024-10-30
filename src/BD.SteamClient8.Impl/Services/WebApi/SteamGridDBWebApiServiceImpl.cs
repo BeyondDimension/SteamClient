@@ -1,4 +1,4 @@
-namespace BD.SteamClient8.Impl.WebApi;
+namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
 /// <see cref="ISteamGridDBWebApiServiceImpl"/> SteamGridDB WebApi 服务实现
