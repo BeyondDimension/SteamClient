@@ -4,7 +4,7 @@
     <meta charset="utf-8">
       <title>文档 | SteamClient</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Interface ISteamTradeService | SteamClient ">
+      <meta name="title" content="Class SteamTradeServiceImpl | SteamClient ">
       
       <link rel="icon" href="../../favicon.ico">
       <link rel="stylesheet" href="../../public/docfx.min.css">
@@ -78,35 +78,147 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService">
+        <article data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl">
 
 
 
-  <h1 id="BD_SteamClient8_Services_WebApi_ISteamTradeService" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService" class="text-break">
-Interface ISteamTradeService  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <h1 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl" class="text-break">
+Class SteamTradeServiceImpl  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
     <dl><dt>Namespace</dt><dd><a class="xref" href="BD.html">BD</a>.<a class="xref" href="BD.SteamClient8.html">SteamClient8</a>.<a class="xref" href="BD.SteamClient8.Services.html">Services</a>.<a class="xref" href="BD.SteamClient8.Services.WebApi.html">WebApi</a></dd></dl>
-  <dl><dt>Assembly</dt><dd>BD.SteamClient8.dll</dd></dl>
+  <dl><dt>Assembly</dt><dd>BD.SteamClient8.Impl.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>Steam 交易报价相关服务</p>
+  <div class="markdown summary"><p><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService.html">ISteamTradeService</a> Steam 交易报价相关服实现</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public interface ISteamTradeService</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class SteamTradeServiceImpl : WebApiClientFactoryService, Log.I, ISteamTradeService</code></pre>
   </div>
 
 
 
 
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/SerializableService.MemoryPack.cs">SerializableService</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService</a></div>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientFactoryService.cs">WebApiClientFactoryService</a></div>
+      <div><span class="xref">SteamTradeServiceImpl</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Log.cs">Log</a>.<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Bcl/Log.cs">I</a></div>
+      <div><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService.html">ISteamTradeService</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsync&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.Send&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsync&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsAsyncEnumerable&lt;TResponseBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendAsAsyncEnumerable&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.Send&lt;TResponseBody, TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/WebApiClientService.cs">WebApiClientService.SendFromStatusCodeAsync&lt;TRequestBody&gt;(WebApiClientSendArgs, TRequestBody, CancellationToken)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Http.ClientFactory/Services/SerializableService.cs">SerializableService.UseJsonSerializerOptions</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+  <h2 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_remarks">Remarks</h2>
+  <div class="markdown level0 remarks"><p>初始化 <a class="xref" href="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.html">SteamTradeServiceImpl</a> 类的新实例</p>
+</div>
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl__ctor_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.#ctor*"></a>
+
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl__ctor_System_IServiceProvider_BD_SteamClient8_Services_Abstractions_WebApi_ISteamSessionService_Microsoft_Extensions_Logging_ILoggerFactory_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.#ctor(System.IServiceProvider,BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService,Microsoft.Extensions.Logging.ILoggerFactory)">
+  SteamTradeServiceImpl(IServiceProvider, ISteamSessionService, ILoggerFactory)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p><a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService.html">ISteamTradeService</a> Steam 交易报价相关服实现</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SteamTradeServiceImpl(IServiceProvider s, ISteamSessionService sessions, ILoggerFactory loggerFactory)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>s</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a></dt>
+    <dd></dd>
+    <dt><code>sessions</code> <a class="xref" href="../BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService.html">ISteamSessionService</a></dt>
+    <dd></dd>
+    <dt><code>loggerFactory</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.logging.iloggerfactory">ILoggerFactory</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
 
 
+
+
+
+  <h4 class="section" id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl__ctor_System_IServiceProvider_BD_SteamClient8_Services_Abstractions_WebApi_ISteamSessionService_Microsoft_Extensions_Logging_ILoggerFactory__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>初始化 <a class="xref" href="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.html">SteamTradeServiceImpl</a> 类的新实例</p>
+</div>
 
 
 
@@ -115,19 +227,19 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 </h2>
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_Instance_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.Instance*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_ClientName_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.ClientName*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_Instance" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.Instance">
-  Instance
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_ClientName" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.ClientName">
+  ClientName
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>获取当前服务实例</p>
+  <div class="markdown level1 summary"><p>服务名称，通常使用 TAG，格式规范应为 typeName.TrimStart(I).TrimEnd(Impl).TrimEnd(Service)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static ISteamTradeService Instance { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected override string ClientName { get; }</code></pre>
   </div>
 
 
@@ -136,7 +248,39 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="BD.SteamClient8.Services.WebApi.ISteamTradeService.html">ISteamTradeService</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_JsonSerializerOptions_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.JsonSerializerOptions*"></a>
+
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_JsonSerializerOptions" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.JsonSerializerOptions">
+  JsonSerializerOptions
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>用于序列化的类型信息，由 Json 源生成，值指向 SystemTextJsonSerializerContext.Default.Options，由实现类重写</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed JsonSerializerOptions JsonSerializerOptions { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.jsonserializeroptions">JsonSerializerOptions</a></dt>
     <dd></dd>
   </dl>
 
@@ -151,11 +295,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 </h2>
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_AcceptAllGiftTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.AcceptAllGiftTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_AcceptAllGiftTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.AcceptAllGiftTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_AcceptAllGiftTradeOfferAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.AcceptAllGiftTradeOfferAsync(System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_AcceptAllGiftTradeOfferAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.AcceptAllGiftTradeOfferAsync(System.String,System.Threading.CancellationToken)">
   AcceptAllGiftTradeOfferAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>接受所有礼品类型报价</p>
@@ -163,7 +307,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; AcceptAllGiftTradeOfferAsync(string steam_id, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; AcceptAllGiftTradeOfferAsync(string steam_id, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -190,11 +334,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_AcceptTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.AcceptTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_AcceptTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.AcceptTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_AcceptTradeOfferAsync_System_String_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeOffersInfo_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.AcceptTradeOfferAsync(System.String,System.String,BD.SteamClient8.Models.WebApi.Trades.TradeOffersInfo,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation},System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_AcceptTradeOfferAsync_System_String_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeOffersInfo_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation__System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.AcceptTradeOfferAsync(System.String,System.String,BD.SteamClient8.Models.WebApi.Trades.TradeOffersInfo,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation},System.Threading.CancellationToken)">
   AcceptTradeOfferAsync(string, string, TradeOffersInfo?, IEnumerable&lt;TradeConfirmation&gt;?, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>接受交易报价</p>
@@ -202,7 +346,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo, IEnumerable&lt;TradeConfirmation&gt;? confirmations = null, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeOffersInfo? tradeInfo = null, IEnumerable&lt;TradeConfirmation&gt;? confirmations = null, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -235,11 +379,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_BatchSendConfirmation_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.BatchSendConfirmation*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_BatchSendConfirmation_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.BatchSendConfirmation*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_BatchSendConfirmation_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.BatchSendConfirmation(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_BatchSendConfirmation_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.BatchSendConfirmation(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Boolean,System.Threading.CancellationToken)">
   BatchSendConfirmation(string, Dictionary&lt;string, string&gt;, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>批量处理交易确认</p>
@@ -247,7 +391,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; BatchSendConfirmation(string steam_id, Dictionary&lt;string, string&gt; trades, bool accept, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; BatchSendConfirmation(string steam_id, Dictionary&lt;string, string&gt; trades, bool accept, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -278,11 +422,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_CancelTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.CancelTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_CancelTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.CancelTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_CancelTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.CancelTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_CancelTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.CancelTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
   CancelTradeOfferAsync(string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送方取消交易报价</p>
@@ -290,7 +434,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; CancelTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; CancelTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -319,11 +463,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_DeclineTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.DeclineTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_DeclineTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.DeclineTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_DeclineTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.DeclineTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_DeclineTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.DeclineTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
   DeclineTradeOfferAsync(string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>接收方拒绝交易报价</p>
@@ -331,7 +475,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; DeclineTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; DeclineTradeOfferAsync(string steam_id, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -360,48 +504,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_FilterNonActiveOffers_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.FilterNonActiveOffers*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetConfirmationImages_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetConfirmationImages*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_FilterNonActiveOffers_BD_SteamClient8_Models_WebApi_Trades_TradeOffersResponse_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.FilterNonActiveOffers(BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse)">
-  FilterNonActiveOffers(TradeOffersResponse)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>过滤出有状态活跃的 交易报价进行操作</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static TradeOffersResponse FilterNonActiveOffers(TradeOffersResponse tradeResponse)</code></pre>
-  </div>
-
-  <h4 class="section">Parameters</h4>
-  <dl class="parameters">
-    <dt><code>tradeResponse</code> <a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse.html">TradeOffersResponse</a></dt>
-    <dd></dd>
-  </dl>
-
-  <h4 class="section">Returns</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="../BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse.html">TradeOffersResponse</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
-
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetConfirmationImages_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetConfirmationImages*"></a>
-
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetConfirmationImages_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetConfirmationImages(System.String,BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetConfirmationImages_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetConfirmationImages(System.String,BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation,System.Threading.CancellationToken)">
   GetConfirmationImages(string, TradeConfirmation, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取交易确认详细信息</p>
@@ -409,7 +516,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;(string[] my_items, string[] them_items)&gt;&gt; GetConfirmationImages(string steam_id, TradeConfirmation confirmation, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;(string[] my_items, string[] them_items)&gt;&gt; GetConfirmationImages(string steam_id, TradeConfirmation confirmation, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -438,11 +545,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetConfirmations_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetConfirmations*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetConfirmations_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetConfirmations*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetConfirmations_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetConfirmations(System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetConfirmations_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetConfirmations(System.String,System.Threading.CancellationToken)">
   GetConfirmations(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取交易确认列表</p>
@@ -450,7 +557,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;IEnumerable&lt;TradeConfirmation&gt;&gt;&gt; GetConfirmations(string steam_id, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;IEnumerable&lt;TradeConfirmation&gt;&gt;&gt; GetConfirmations(string steam_id, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -477,11 +584,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeHistory_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeHistory*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeHistory_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeHistory*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeHistory_System_String_System_Int32_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeHistory(System.String,System.Int32,System.String,System.Boolean,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeHistory_System_String_System_Int32_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeHistory(System.String,System.Int32,System.String,System.Boolean,System.Threading.CancellationToken)">
   GetTradeHistory(string, int, string?, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取交易历史记录</p>
@@ -489,7 +596,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;TradeHistory.TradeHistoryResponseDetail?&gt;&gt; GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;TradeHistory.TradeHistoryResponseDetail?&gt;&gt; GetTradeHistory(string api_key, int maxTrades = 500, string? startTradeId = null, bool getDescriptions = false, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -526,11 +633,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOfferAsync_System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOfferAsync(System.String,System.String,System.Threading.CancellationToken)">
   GetTradeOfferAsync(string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>根据交易报价 ID 获取报价信息</p>
@@ -538,7 +645,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;TradeOffersInfo?&gt;&gt; GetTradeOfferAsync(string api_key, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;TradeOffersInfo?&gt;&gt; GetTradeOfferAsync(string api_key, string trade_offer_id, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -567,11 +674,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOffersAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOffersAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOffersAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOffersAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOffersAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOffersAsync(System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOffersAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOffersAsync(System.String,System.Threading.CancellationToken)">
   GetTradeOffersAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取发送或接受的交易报价的列表</p>
@@ -579,7 +686,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;TradeOffersResponse?&gt;&gt; GetTradeOffersAsync(string api_key, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;TradeOffersResponse?&gt;&gt; GetTradeOffersAsync(string api_key, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -606,11 +713,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOffersSummaryAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOffersSummaryAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOffersSummaryAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOffersSummaryAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_GetTradeOffersSummaryAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.GetTradeOffersSummaryAsync(System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_GetTradeOffersSummaryAsync_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.GetTradeOffersSummaryAsync(System.String,System.Threading.CancellationToken)">
   GetTradeOffersSummaryAsync(string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>获取待处理的交易报价和新交易报价的数量</p>
@@ -618,7 +725,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;TradeSummary?&gt;&gt; GetTradeOffersSummaryAsync(string api_key, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;TradeSummary?&gt;&gt; GetTradeOffersSummaryAsync(string api_key, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -645,11 +752,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendConfirmation_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendConfirmation*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendConfirmation_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendConfirmation*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendConfirmation_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendConfirmation(System.String,BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation,System.Boolean,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendConfirmation_System_String_BD_SteamClient8_Models_WebApi_Trades_TradeConfirmation_System_Boolean_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendConfirmation(System.String,BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation,System.Boolean,System.Threading.CancellationToken)">
   SendConfirmation(string, TradeConfirmation, bool, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>交易确认发送</p>
@@ -657,7 +764,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendConfirmation(string steam_id, TradeConfirmation confirmation, bool accept, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendConfirmation(string steam_id, TradeConfirmation confirmation, bool accept, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -688,11 +795,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendTradeOfferAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendTradeOfferAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendTradeOfferAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendTradeOfferAsync_System_String_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendTradeOfferAsync(System.String,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.String,System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendTradeOfferAsync_System_String_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_String_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendTradeOfferAsync(System.String,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.String,System.String,System.Threading.CancellationToken)">
   SendTradeOfferAsync(string, IEnumerable&lt;TradeAsset&gt;, IEnumerable&lt;TradeAsset&gt;, string, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>发送交易报价（需要好友关系）</p>
@@ -700,7 +807,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendTradeOfferAsync(string steam_id, IEnumerable&lt;TradeAsset&gt; my_items, IEnumerable&lt;TradeAsset&gt; them_items, string target_steam_id, string message, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendTradeOfferAsync(string steam_id, IEnumerable&lt;TradeAsset&gt; my_items, IEnumerable&lt;TradeAsset&gt; them_items, string target_steam_id, string message, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -737,11 +844,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendTradeOfferWithUrlAsync_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendTradeOfferWithUrlAsync*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendTradeOfferWithUrlAsync_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendTradeOfferWithUrlAsync*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_SendTradeOfferWithUrlAsync_System_String_System_String_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.SendTradeOfferWithUrlAsync(System.String,System.String,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.String,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_SendTradeOfferWithUrlAsync_System_String_System_String_System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_Collections_Generic_IEnumerable_BD_SteamClient8_Models_WebApi_Trades_TradeAsset__System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.SendTradeOfferWithUrlAsync(System.String,System.String,System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.Collections.Generic.IEnumerable{BD.SteamClient8.Models.WebApi.Trades.TradeAsset},System.String,System.Threading.CancellationToken)">
   SendTradeOfferWithUrlAsync(string, string, IEnumerable&lt;TradeAsset&gt;, IEnumerable&lt;TradeAsset&gt;, string, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>使用交易连接发送报价</p>
@@ -749,7 +856,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, IEnumerable&lt;TradeAsset&gt; my_items, IEnumerable&lt;TradeAsset&gt; them_items, string message, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool&gt;&gt; SendTradeOfferWithUrlAsync(string steam_id, string trade_offer_url, IEnumerable&lt;TradeAsset&gt; my_items, IEnumerable&lt;TradeAsset&gt; them_items, string message, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -786,11 +893,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_StartTradeTask_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.StartTradeTask*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_StartTradeTask_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.StartTradeTask*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_StartTradeTask_System_String_System_TimeSpan_BD_SteamClient8_Enums_WebApi_Trades_TradeTaskEnum_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.StartTradeTask(System.String,System.TimeSpan,BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_StartTradeTask_System_String_System_TimeSpan_BD_SteamClient8_Enums_WebApi_Trades_TradeTaskEnum_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.StartTradeTask(System.String,System.TimeSpan,BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum,System.Threading.CancellationToken)">
   StartTradeTask(string, TimeSpan, TradeTaskEnum, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>启动交易报价后台任务</p>
@@ -798,7 +905,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&gt; StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -829,11 +936,11 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 
 
 
-  <a id="BD_SteamClient8_Services_WebApi_ISteamTradeService_StopTask_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.StopTask*"></a>
+  <a id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_StopTask_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.StopTask*"></a>
 
-  <h3 id="BD_SteamClient8_Services_WebApi_ISteamTradeService_StopTask_System_String_BD_SteamClient8_Enums_WebApi_Trades_TradeTaskEnum_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.ISteamTradeService.StopTask(System.String,BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum,System.Threading.CancellationToken)">
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamTradeServiceImpl_StopTask_System_String_BD_SteamClient8_Enums_WebApi_Trades_TradeTaskEnum_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.StopTask(System.String,BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum,System.Threading.CancellationToken)">
   StopTask(string, TradeTaskEnum, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>停止交易报价后台任务</p>
@@ -841,7 +948,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&gt; StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -874,7 +981,7 @@ Interface ISteamTradeService  <a class="header-action link-secondary" title="Vie
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/WebApi/ISteamTradeService.cs" class="edit-link">Edit this page</a>
+          <a href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamTradeServiceImpl.cs" class="edit-link">Edit this page</a>
         </div>
 
 
