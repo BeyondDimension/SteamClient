@@ -142,11 +142,9 @@ public partial class SteamIdleCardServiceImpl(
             sendArgs.SetHttpClient(CreateClient());
             using var response = await SendAsync<Stream>(sendArgs, cancellationToken);
             using var document = await JsonDocument.ParseAsync(response.ThrowIsNull(), cancellationToken: cancellationToken);
-            if (document.RootElement.TryGetProperty("result", out var result)
-                && result.ToString() == "success"
-                && document.RootElement.GetProperty("data").ValueKind == JsonValueKind.Object)
+            if (document.RootElement.ValueKind == JsonValueKind.Object)
             {
-                foreach (var item in document.RootElement.GetProperty("data").EnumerateObject())
+                foreach (var item in document.RootElement.EnumerateObject())
                 {
                     var avg = new AppCardsAvgPrice();
                     try
