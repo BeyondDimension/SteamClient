@@ -50,7 +50,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
             }
             catch (Exception ex)
             {
-                Log.Error(TAG, ex, "Initialize fail.");
+                Log.Error(TAG, ex, "Initialize fail");
                 return ex;
             }
         }
