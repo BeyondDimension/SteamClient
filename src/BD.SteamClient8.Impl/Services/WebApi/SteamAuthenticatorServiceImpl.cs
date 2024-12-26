@@ -92,6 +92,36 @@ public sealed class SteamAuthenticatorServiceImpl(
     }
 
     /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool?>> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default)
+    {
+        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        steamSession = steamSession.ThrowIsNull(steam_id);
+
+        var data = new Dictionary<string, string>
+        {
+            { "code", sms_code ?? string.Empty }
+        };
+
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_VERIFY_PHONENUMBER.Format(steamSession.AccessToken))
+        {
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        try
+        {
+            var resp = await SendAsync<string, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+
+            return ApiRspHelper.Ok<bool?>(!string.IsNullOrWhiteSpace(resp));
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, "verify phone number error");
+            return ApiRspHelper.Fail<bool?>(null);
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default)
     {
         var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;

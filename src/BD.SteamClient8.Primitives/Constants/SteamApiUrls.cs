@@ -161,6 +161,7 @@ public static partial class SteamApiUrls
     public const string STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF = "https://api.steampowered.com/IPhoneService/IsAccountWaitingForEmailConfirmation/v1?access_token={0}";
 
     public const string STEAM_AUTHENTICATOR_ADD_PHONENUMBER = "https://api.steampowered.com/IPhoneService/SetAccountPhoneNumber/v1?access_token={0}";
+    public const string STEAM_AUTHENTICATOR_VERIFY_PHONENUMBER = "https://api.steampowered.com/IPhoneService/VerifyAccountPhoneWithCode/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_GET_USERCOUNTRY = "https://api.steampowered.com/IUserAccountService/GetUserCountry/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE = "https://api.steampowered.com/IPhoneService/SendPhoneVerificationCode/v1?access_token={0}";
     public const string STEAM_AUTHENTICATOR_TWOFAQUERYTIME = "https://api.steampowered.com/ITwoFactorService/QueryTime/v0001";

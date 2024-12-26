@@ -1056,6 +1056,35 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         return false;
     }
 
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<bool?>> CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default)
+    {
+        using var sendArgs = new WebApiClientSendArgs(
+             string.Format(SteamApiUrls.STEAM_AUTHENTICATOR_ACCOUNTPHONESTATUS, access_Token))
+        {
+            Method = HttpMethod.Post
+        };
+
+        using var doc = await SendAsync<JsonDocument>(sendArgs, cancellationToken);
+
+        /*
+         * {
+                "response": {
+                    verified_phone": false
+                }
+           }
+         */
+
+        if (doc is not null)
+        {
+            return doc.RootElement.TryGetProperty("response", out var jsonResp) &&
+                jsonResp.TryGetProperty("verified_phone", out var prop) &&
+                prop.GetBoolean();
+        }
+
+        return ApiRspHelper.Fail<bool?>();
+    }
+
     #endregion Public Methods
 
     #region Static Methods

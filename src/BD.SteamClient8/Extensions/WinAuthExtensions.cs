@@ -243,6 +243,28 @@ public static partial class WinAuthExtensions
     }
 
     /// <summary>
+    /// Steam 验证手机号码
+    /// </summary>
+    /// <param name="steamAuthenticatorService"></param>
+    /// <param name="state"></param>
+    /// <param name="phoneNumber"></param>
+    /// <param name="sms_code"></param>
+    /// <returns></returns>
+    public static async Task<ApiRspImpl<bool>> VerifyPhoneNumberAsync(
+        this ISteamAuthenticatorService steamAuthenticatorService,
+        SteamAuthenticator.EnrollState state,
+        string phoneNumber,
+        string? sms_code
+        )
+    {
+        state.AccessToken.ThrowIsNull();
+
+        var result = await steamAuthenticatorService.VerifyPhoneNumberAsync(state.SteamId.ToString(), phoneNumber, sms_code);
+
+        return result.Content ?? false;
+    }
+
+    /// <summary>
     /// Steam 移除安全防护
     /// </summary>
     /// <param name="this"></param>

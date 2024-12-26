@@ -53,6 +53,16 @@ public interface ISteamAuthenticatorService : SteamAuthenticator.IAuthenticatorN
     Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// 验证手机号码
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <param name="phone_number"></param>
+    /// <param name="sms_code"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<bool?>> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// 等待邮箱确认
     /// </summary>
     /// <param name="steam_id"></param>

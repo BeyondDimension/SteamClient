@@ -138,4 +138,12 @@ public interface ISteamAccountService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string accesstoken, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 检查账号是否绑定了手机
+    /// </summary>
+    /// <param name="access_Token"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<bool?>> CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default);
 }
