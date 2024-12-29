@@ -396,6 +396,45 @@ public SteamAccountService(IRandomGetUserAgentService uas, ISteamSessionService 
 
 
 
+  <a id="BD_SteamClient8_Services_WebApi_SteamAccountService_CheckAccountPhoneStatus_" data-uid="BD.SteamClient8.Services.WebApi.SteamAccountService.CheckAccountPhoneStatus*"></a>
+
+  <h3 id="BD_SteamClient8_Services_WebApi_SteamAccountService_CheckAccountPhoneStatus_System_String_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamAccountService.CheckAccountPhoneStatus(System.String,System.Threading.CancellationToken)">
+  CheckAccountPhoneStatus(string, CancellationToken)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Impl/Services/WebApi/SteamAccountService.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>检查账号是否绑定了手机</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ApiRspImpl&lt;bool?&gt;&gt; CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>access_Token</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+    <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/Common/blob/dev8/src/BD.Common8.Primitives.ApiRsp/Models/ApiRspImpl%601.cs">ApiRspImpl</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>?&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Services_WebApi_SteamAccountService_DoLoginV2Async_" data-uid="BD.SteamClient8.Services.WebApi.SteamAccountService.DoLoginV2Async*"></a>
 
   <h3 id="BD_SteamClient8_Services_WebApi_SteamAccountService_DoLoginV2Async_BD_SteamClient8_Models_WebApi_Logins_SteamLoginState_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.WebApi.SteamAccountService.DoLoginV2Async(BD.SteamClient8.Models.WebApi.Logins.SteamLoginState,System.Threading.CancellationToken)">
