@@ -1,4 +1,5 @@
 #if !(IOS || ANDROID)
+
 using static BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService;
 
 namespace BD.SteamClient8.Services.PInvoke;
@@ -743,66 +744,124 @@ public abstract partial class SteamServiceImpl : ISteamService
     uint univeseNumber;
     const uint MagicNumber = 123094055U;
     const uint MagicNumberV2 = 123094056U;
+    const uint MagicNumberV3 = 123094057U;
 
-    static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2]);
+    static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2, MagicNumberV3]);
 
     /// <summary>
     /// 从 Steam 本地客户端缓存文件中读取游戏数据
     /// </summary>
-    public async Task<ApiRspImpl<List<SteamApp>?>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
+    public Task<ApiRspImpl<List<SteamApp>?>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
     {
-        await Task.CompletedTask;
-        var apps = new List<SteamApp>();
-        try
+        return Task.FromResult<ApiRspImpl<List<SteamApp?>>>(GetAppInfos_());
+
+        List<SteamApp?> GetAppInfos_()
         {
-            if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
-                return apps;
-            using var stream = IOPath.OpenRead(AppInfoPath);
-            if (stream == null)
+            var apps = new List<SteamApp>();
+            try
             {
-                return apps;
-            }
-            using BinaryReader binaryReader = new(stream);
-            uint num = binaryReader.ReadUInt32();
-            if (!MagicNumbers.Value.Contains(num))
-            {
-                var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath), num);
-                logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
-                return msg;
-            }
-            SteamApp? app = new();
-            univeseNumber = binaryReader.ReadUInt32();
-            var installAppIds = GetInstalledAppIds();
-            while ((app = SteamAppExtensions.FromReader(binaryReader, installAppIds, isSaveProperties, num == MagicNumberV2)) != null)
-            {
-                if (app.AppId > 0)
+                if (string.IsNullOrEmpty(AppInfoPath) && !File.Exists(AppInfoPath))
+                    return apps;
+                using var stream = IOPath.OpenRead(AppInfoPath);
+                if (stream == null)
                 {
-                    if (!isSaveProperties)
-                    {
-                        //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
-                        //    continue;
-                        if (HideGameList != null && HideGameList.ContainsKey(app.AppId))
-                            continue;
-                        //if (app.ParentId > 0)
-                        //{
-                        //    var parentApp = apps.FirstOrDefault(f => f.AppId == app.ParentId);
-                        //    if (parentApp != null)
-                        //        parentApp.ChildApp.Add(app.AppId);
-                        //    //continue;
-                        //}
-                    }
-                    apps.Add(app);
-                    //app.Modified += (s, e) =>
-                    //{
-                    //};
+                    return apps;
                 }
+                using BinaryReader binaryReader = new(stream, Encoding.UTF8, true);
+                uint num = binaryReader.ReadUInt32();
+                if (!MagicNumbers.Value.Contains(num))
+                {
+                    var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath), num);
+                    logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
+                    return apps;
+                }
+                SteamApp? app = new();
+                univeseNumber = binaryReader.ReadUInt32();
+
+                string[]? stringPool = null;
+                if (num == MagicNumberV3)
+                {
+                    var stringTableOffset = binaryReader.ReadInt64();
+                    var offset = binaryReader.BaseStream.Position;
+                    binaryReader.BaseStream.Position = stringTableOffset;
+                    var stringCount = binaryReader.ReadUInt32();
+                    stringPool = new string[stringCount];
+                    for (var i = 0; i < stringCount; i++)
+                    {
+                        stringPool[i] = ReadNullTermUtf8String(binaryReader.BaseStream);
+                    }
+                    binaryReader.BaseStream.Position = offset;
+                }
+
+                var installAppIds = GetInstalledAppIds();
+                while ((app = SteamApp.FromReader(binaryReader, stringPool, installAppIds, isSaveProperties, num == MagicNumberV2, num == MagicNumberV3)) != null)
+                {
+                    if (app.AppId > 0)
+                    {
+                        if (!isSaveProperties)
+                        {
+                            //if (GameLibrarySettings.DefaultIgnoreList.Value.Contains(app.AppId))
+                            //    continue;
+                            if (HideGameList != null && HideGameList.ContainsKey(app.AppId))
+                                continue;
+                            //if (app.ParentId > 0)
+                            //{
+                            //    var parentApp = apps.FirstOrDefault(f => f.AppId == app.ParentId);
+                            //    if (parentApp != null)
+                            //        parentApp.ChildApp.Add(app.AppId);
+                            //    //continue;
+                            //}
+                        }
+                        apps.Add(app);
+                        //app.Modified += (s, e) =>
+                        //{
+                        //};
+                    }
+                }
+                return apps;
             }
-            return apps;
+            catch (Exception ex)
+            {
+                logger.LogError(ex, nameof(GetAppInfos));
+                return apps;
+            }
         }
-        catch (Exception ex)
+
+        static string ReadNullTermUtf8String(Stream stream)
         {
-            logger.LogError(ex, nameof(GetAppInfos));
-            return apps;
+            var buffer = ArrayPool<byte>.Shared.Rent(32);
+
+            try
+            {
+                var position = 0;
+
+                do
+                {
+                    var b = stream.ReadByte();
+
+                    if (b <= 0) // null byte or stream ended
+                    {
+                        break;
+                    }
+
+                    if (position >= buffer.Length)
+                    {
+                        var newBuffer = ArrayPool<byte>.Shared.Rent(buffer.Length * 2);
+                        Buffer.BlockCopy(buffer, 0, newBuffer, 0, buffer.Length);
+                        ArrayPool<byte>.Shared.Return(buffer);
+                        buffer = newBuffer;
+                    }
+
+                    buffer[position++] = (byte)b;
+                }
+                while (true);
+
+                return Encoding.UTF8.GetString(buffer[..position]);
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(buffer);
+            }
         }
     }
 
@@ -1384,4 +1443,5 @@ public abstract partial class SteamServiceImpl : ISteamService
         return ApiRspHelper.Ok();
     }
 }
+
 #endif
