@@ -25,7 +25,7 @@ public interface ISteamworksLocalApiService
         Architecture.X86 => true,
         Architecture.X64 => true,
 #if MACOS
-        Architecture.Arm64 => true,
+        Architecture.Arm64 => true, // Steam 的 ARM64 仅支持 Apple M 系列
 #endif
         _ => false,
     };
