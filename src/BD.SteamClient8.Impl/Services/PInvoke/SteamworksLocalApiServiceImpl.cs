@@ -113,7 +113,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
                     //IsInstalled = IsAppInstalled(s.AppId)
                     //s.IsInstalled = IsAppInstalled(s.AppId);
                     //s.InstalledDir = GetAppInstallDir(s.AppId);
-                    s.State = IsAppInstalled(s.AppId).GetAwaiter().GetResult().IsSuccess ? 4 : s.State;
+                    s.State = SteamClient.SteamApps008.IsAppInstalled(s.AppId) ? 4 : s.State;
                     s.InstalledDir = string.IsNullOrEmpty(s.InstalledDir) ? GetAppInstallDir(s.AppId).GetAwaiter().GetResult().Content : s.InstalledDir;
                     s.Type = Enum.TryParse<SteamAppType>(GetAppData(s.AppId, "type").GetAwaiter().GetResult().Content, true, out var result) ? result : SteamAppType.Unknown;
                     return s;
