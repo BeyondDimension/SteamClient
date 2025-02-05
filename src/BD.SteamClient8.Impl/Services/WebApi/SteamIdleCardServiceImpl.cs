@@ -135,6 +135,13 @@ public partial class SteamIdleCardServiceImpl(
     public async Task<ApiRspImpl<List<AppCardsAvgPrice>?>> GetAppCardsAvgPrice(uint[] appIds, string currency, CancellationToken cancellationToken = default)
     {
         List<AppCardsAvgPrice> avgs = [];
+
+        // AppId 为空时直接返回
+        if (appIds == null || appIds.Length == 0)
+        {
+            return avgs;
+        }
+
         try
         {
             var url = SteamApiUrls.STEAM_IDLE_APPCARDS_AVG.Format(string.Join(",", appIds), currency);
