@@ -880,6 +880,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 }),
             };
 
+            request.Headers.TryAddWithoutValidation("Origin", "https://login.steampowered.com");
+
             var respone = await client.SendAsync(request);
 
             if (!respone.IsSuccessStatusCode)
