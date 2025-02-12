@@ -68,11 +68,24 @@ public class SteamSessionServiceImpl : ISteamSessionService
             var text = await ISecureStorage.Instance.GetAsync(ISteamSessionService.CurrentSteamUserKey);
             if (text != null)
             {
+                var accountService = Ioc.Get<ISteamAccountService>();
                 var session = Serializable.DJSON<SteamSession>(text);
-                if (session != null && await Ioc.Get<ISteamAccountService>().CheckAccessTokenValidation(session.AccessToken))
+                if (session != null && accountService.IsAccessTokenValid(session.AccessToken))
                 {
+                    var isValid = accountService.IsAccessTokenValid(session.AccessToken);
+                    if (!isValid)
+                    {
+                        var newAccessToken = await accountService.RefreshAccessToken(ulong.Parse(session.SteamId), session.RefreshToken);
+
+                        if (string.IsNullOrEmpty(newAccessToken))
+                            return null;
+
+                        session.AccessToken = newAccessToken.ThrowIsNull();
+                    }
+
                     session.GenerateSetCookie();
                     AddOrSetSeesion(session);
+                    await SaveSession(session);
                     return session;
                 }
             }
