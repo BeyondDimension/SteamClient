@@ -107,6 +107,56 @@ public sealed class SteamSessionServiceImpl(
         }
     }
 
+    public async Task<ApiRspImpl> UnlockParental(string steam_id, string pinCode, CancellationToken cancellationToken = default)
+    {
+        if (cancellationToken.IsCancellationRequested)
+            return ApiRspHelper.Fail("取消操作");
+
+        var session = (await RentSession(steam_id)).Content.ThrowIsNull();
+        var tag = SpecialTag(steam_id);
+        var container = GetCookieContainer(tag);
+        foreach (var unlock_url in Unlock_urls())
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, unlock_url)
+            {
+                Content = new MultipartFormDataContent()
+                {
+                    { new ByteArrayContent(Encoding.UTF8.GetBytes(pinCode)), "pin" },
+                    { new ByteArrayContent(Encoding.UTF8.GetBytes(container.GetCookies(new Uri(unlock_url))["sessionid"]?.Value ?? string.Empty)), "sessionid" },
+                }
+            };
+            var response = await session.HttpClient!.SendAsync(request);
+        }
+
+        IEnumerable<string> Unlock_urls()
+        {
+            yield return SteamApiUrls.STEAM_PARENTAL_UNLOCK_STORE;
+            yield return SteamApiUrls.STEAM_PARENTAL_UNLOCK_COMMUNITY;
+        }
+
+        return ApiRspHelper.Ok();
+    }
+
+    public async Task<ApiRspImpl> LockParental(string steam_id, CancellationToken cancellationToken = default)
+    {
+        if (cancellationToken.IsCancellationRequested)
+            return ApiRspHelper.Fail("取消操作");
+
+        var session = (await RentSession(steam_id)).Content.ThrowIsNull();
+        foreach (var lock_url in lock_urls())
+        {
+            using var request = new HttpRequestMessage(HttpMethod.Post, lock_url);
+            await session.HttpClient!.SendAsync(request);
+        }
+        IEnumerable<string> lock_urls()
+        {
+            yield return SteamApiUrls.STEAM_PARENTAL_LOCK_STORE;
+            yield return SteamApiUrls.STEAM_PARENTAL_LOCK_COMMUNITY;
+        }
+
+        return ApiRspHelper.Ok();
+    }
+
     static string SpecialTag(string steam_id) => $"SteamSession_{steam_id}";
 }
 

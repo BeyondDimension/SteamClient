@@ -53,4 +53,21 @@ public interface ISteamSessionService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<bool>> RemoveSession(string steam_id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 解除家庭监控
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <param name="pinCode"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl> UnlockParental(string steam_id, string pinCode, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 恢复家庭监控
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl> LockParental(string steam_id, CancellationToken cancellationToken = default);
 }
