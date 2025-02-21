@@ -30,7 +30,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Extensions.ServiceCollectionExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions.ServiceCollectionExtensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -40,7 +44,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Extensions.SteamSessionExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions.SteamSessionExtensions",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Extensions.SteamSessionExtensions.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Logins.SteamSession\" data-throw-if-not-resolved=\"false\"></xref> 扩展方法</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -50,7 +58,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Extensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -60,7 +72,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Resource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Resource",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Resource.yml\" sourcestartlinenumber=\"1\">Android Resource Designer class.\nExposes the Android Resource designer assembly into the project Namespace.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -70,7 +86,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.PInvoke.SteamServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.PInvoke.SteamServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.PInvoke.SteamServiceImpl.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService\" data-throw-if-not-resolved=\"false\"></xref> Steam 相关助手、工具类服务实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -80,7 +100,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.PInvoke.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.PInvoke",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -90,7 +114,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamAccountService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamAccountService",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -100,7 +128,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamAuthenticatorServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamAuthenticatorServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamAuthenticatorServiceImpl.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.WebApi.ISteamAuthenticatorService\" data-throw-if-not-resolved=\"false\"></xref> Steam 令牌服务实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -110,7 +142,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamIdleCardServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamIdleCardServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamIdleCardServiceImpl.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.WebApi.ISteamIdleCardService\" data-throw-if-not-resolved=\"false\"></xref> Steam 挂卡相关服务实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -120,7 +156,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamMarketService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamMarketService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamMarketService.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.WebApi.ISteamMarketService\" data-throw-if-not-resolved=\"false\"></xref> Steam 市场交易相关服务实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -130,7 +170,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamSessionServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamSessionServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamSessionServiceImpl.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService\" data-throw-if-not-resolved=\"false\"></xref> Steam 登录会话信息服务实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -140,7 +184,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.SteamTradeServiceImpl.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService\" data-throw-if-not-resolved=\"false\"></xref> Steam 交易报价相关服实现</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -150,7 +198,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.Services.WebApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.WebApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -160,7 +212,11 @@
           "relative_path": "api/BD.SteamClient8.Impl/BD.SteamClient8.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8",
+      "Summary": null
     },
     {
       "type": "Toc",
@@ -183,7 +239,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataInt32Converter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Converters.SteamDataInt32Converter",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataInt32Converter.yml\" sourcestartlinenumber=\"1\">Steam API 数据 <xref href=\"System.Text.Json.JsonTokenType.String\" data-throw-if-not-resolved=\"false\"></xref> =&gt; <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -193,7 +253,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataInt64Converter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Converters.SteamDataInt64Converter",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataInt64Converter.yml\" sourcestartlinenumber=\"1\">Steam API 数据 <xref href=\"System.Text.Json.JsonTokenType.String\" data-throw-if-not-resolved=\"false\"></xref> =&gt; <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -203,7 +267,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataStringConverter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Converters.SteamDataStringConverter",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.SteamDataStringConverter.yml\" sourcestartlinenumber=\"1\">Steam API 数据 <xref href=\"System.Text.Json.JsonTokenType.Number\" data-throw-if-not-resolved=\"false\"></xref> 数字类型 =&gt; <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -213,7 +281,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Converters.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Converters",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -223,7 +295,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.DefaultJsonSerializerContext_.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.DefaultJsonSerializerContext_",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.DefaultJsonSerializerContext_.yml\" sourcestartlinenumber=\"1\">Json 源生成类型上下文</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -233,7 +309,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Extensions.AuthenticatorExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Extensions.AuthenticatorExtensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -243,7 +323,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Extensions.BinaryReaderExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Extensions.BinaryReaderExtensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -253,7 +337,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Extensions.SteamAppExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Extensions.SteamAppExtensions",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Extensions.SteamAppExtensions.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> 扩展</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -263,7 +351,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Extensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Extensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -273,7 +365,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.AchievementAndUnlockTimeResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.PInvoke.AchievementAndUnlockTimeResult",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.AchievementAndUnlockTimeResult.yml\" sourcestartlinenumber=\"1\">获取指定成就的完成状态和解锁时间结果</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -283,7 +379,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.CloudArchiveQuotaResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.PInvoke.CloudArchiveQuotaResult",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.CloudArchiveQuotaResult.yml\" sourcestartlinenumber=\"1\">获得可用的字节数返回结果</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -293,7 +393,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.UserStatsReceivedResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.PInvoke.UserStatsReceivedResult",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.UserStatsReceivedResult.yml\" sourcestartlinenumber=\"1\">接收用户统计信息模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -303,7 +407,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.PInvoke.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.PInvoke",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -313,7 +421,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_GetTokenHistory_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_GetTokenHistory_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -323,7 +435,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_GetTokenHistory_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_GetTokenHistory_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -333,7 +449,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokenByID_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokenByID_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -343,7 +463,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokenByID_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokenByID_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -353,7 +477,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokensByAccount_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokensByAccount_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -363,7 +491,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokensByAccount_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_QueryRefreshTokensByAccount_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -373,7 +505,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_RevokeToken_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_RevokeToken_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -383,7 +519,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_RevokeToken_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthenticationSupport_RevokeToken_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -393,7 +533,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_AccessToken_GenerateForApp_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_AccessToken_GenerateForApp_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -403,7 +547,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_AccessToken_GenerateForApp_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_AccessToken_GenerateForApp_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -413,7 +561,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_AllowedConfirmation.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_AllowedConfirmation",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -423,7 +575,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaCredentials_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaCredentials_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -433,7 +589,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaCredentials_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaCredentials_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -443,7 +603,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaQR_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaQR_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -453,7 +617,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaQR_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_BeginAuthSessionViaQR_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -463,7 +631,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_DeviceDetails",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -473,7 +645,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -483,7 +659,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionInfo_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -493,7 +673,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionsForAccount_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionsForAccount_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -503,7 +687,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionsForAccount_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetAuthSessionsForAccount_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -513,7 +701,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetPasswordRSAPublicKey_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetPasswordRSAPublicKey_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -523,7 +715,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_GetPasswordRSAPublicKey_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_GetPasswordRSAPublicKey_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -533,7 +729,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_MigrateMobileSession_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_MigrateMobileSession_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -543,7 +743,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_MigrateMobileSession_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_MigrateMobileSession_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -553,7 +757,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_PollAuthSessionStatus_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_PollAuthSessionStatus_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -563,7 +771,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_PollAuthSessionStatus_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_PollAuthSessionStatus_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -573,7 +785,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -583,7 +799,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.RefreshTokenDescription",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -593,7 +813,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.TokenUsageEvent",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -603,7 +827,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.Types.yml\" sourcestartlinenumber=\"1\">Container for nested types declared in the CAuthentication_RefreshToken_Enumerate_Response message type.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -613,7 +841,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Enumerate_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -623,7 +855,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Revoke_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Revoke_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -633,7 +869,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Revoke_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_RefreshToken_Revoke_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -643,7 +883,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -653,7 +897,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithMobileConfirmation_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -663,7 +911,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -673,7 +925,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CAuthentication_UpdateAuthSessionWithSteamGuardCode_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -683,7 +939,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CBilling_Address.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CBilling_Address",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -693,7 +953,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCDDBAppDetailCommon.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCDDBAppDetailCommon",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -703,7 +967,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CClanEventData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CClanEventData",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -713,7 +981,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CClanEventUserNewsTuple.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CClanEventUserNewsTuple",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -723,7 +995,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CClanMatchEventByRange.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CClanMatchEventByRange",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -733,7 +1009,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCloudGaming_CreateNonce_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCloudGaming_CreateNonce_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -743,7 +1023,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCloudGaming_CreateNonce_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCloudGaming_CreateNonce_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -753,7 +1037,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCloudGaming_GetTimeRemaining_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCloudGaming_GetTimeRemaining_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -763,7 +1051,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCloudGaming_GetTimeRemaining_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCloudGaming_GetTimeRemaining_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -773,7 +1065,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCloudGaming_TimeRemaining.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCloudGaming_TimeRemaining",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -783,7 +1079,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCommunity_ClanAnnouncementInfo",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -793,7 +1093,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CCuratorPreferences.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CCuratorPreferences",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -803,7 +1107,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CLocalizationToken.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CLocalizationToken",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -813,7 +1121,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgAppRights.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgAppRights",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -823,7 +1135,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgAuthTicket.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgAuthTicket",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -833,7 +1149,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgIPAddress.IpOneofCase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgIPAddress.IpOneofCase",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgIPAddress.IpOneofCase.yml\" sourcestartlinenumber=\"1\">Enum of possible cases for the &quot;ip&quot; oneof.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -843,7 +1163,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgIPAddress.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgIPAddress",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -853,7 +1177,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgIPAddressBucket.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgIPAddressBucket",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -863,7 +1191,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgKeyValuePair.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgKeyValuePair",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -873,7 +1205,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgKeyValueSet.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgKeyValueSet",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -883,7 +1219,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgMulti.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgMulti",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -893,7 +1233,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrOneofCase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrOneofCase",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.IpAddrOneofCase.yml\" sourcestartlinenumber=\"1\">Enum of possible cases for the &quot;ip_addr&quot; oneof.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -903,7 +1247,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgProtoBufHeader",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -913,7 +1261,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CMsgProtobufWrapped.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CMsgProtobufWrapped",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -923,7 +1275,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CPackageReservationStatus.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CPackageReservationStatus",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -933,7 +1289,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CRemoveAuthenticatorViaChallengeContinue_Replacement_Token",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -943,7 +1303,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CSupportRefreshTokenAudit.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CSupportRefreshTokenAudit",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -953,7 +1317,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CSupportRefreshTokenDescription.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CSupportRefreshTokenDescription",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -963,7 +1331,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -973,7 +1345,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -983,7 +1359,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -993,7 +1373,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1003,7 +1387,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EACState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EACState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1013,7 +1401,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthSessionGuardType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EAuthSessionGuardType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1023,7 +1415,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthSessionSecurityHistory.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EAuthSessionSecurityHistory",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1033,7 +1429,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthTokenPlatformType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EAuthTokenPlatformType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthTokenPlatformType.yml\" sourcestartlinenumber=\"1\">[START messages]</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1043,7 +1443,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthTokenRevokeAction.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EAuthTokenRevokeAction",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1053,7 +1457,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EAuthTokenState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EAuthTokenState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1063,7 +1471,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EBanContentCheckResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EBanContentCheckResult",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1073,7 +1485,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EBatteryState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EBatteryState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1083,7 +1499,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EBluetoothDeviceType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EBluetoothDeviceType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1093,7 +1513,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ECPUGovernor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ECPUGovernor",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1103,7 +1527,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ECloudStoragePersistState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ECloudStoragePersistState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1113,7 +1541,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EColorProfile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EColorProfile",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1123,7 +1555,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ECommunityItemClass.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ECommunityItemClass",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1133,7 +1569,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EContentCheckProvider.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EContentCheckProvider",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1143,7 +1583,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EGPUPerformanceLevel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EGPUPerformanceLevel",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1153,7 +1597,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EGraphicsPerfOverlayLevel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EGraphicsPerfOverlayLevel",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1163,7 +1611,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EOSBranch.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EOSBranch",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1173,7 +1625,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPersonaStateFlag.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EPersonaStateFlag",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1183,7 +1639,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EProfileCustomizationType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EProfileCustomizationType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1193,7 +1653,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EProtoClanEventType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EProtoClanEventType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1203,7 +1667,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EProtoExecutionSite.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EProtoExecutionSite",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1213,7 +1681,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EProvideDeckFeedbackPreference.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EProvideDeckFeedbackPreference",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1223,7 +1695,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPublishedFileInappropriateProvider.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EPublishedFileInappropriateProvider",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1233,7 +1709,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPublishedFileInappropriateResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EPublishedFileInappropriateResult",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1243,7 +1723,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPublishedFileQueryType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EPublishedFileQueryType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPublishedFileQueryType.yml\" sourcestartlinenumber=\"1\">[START messages]</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1253,7 +1737,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EPublishedFileStorageSystem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EPublishedFileStorageSystem",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1263,7 +1751,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESDCardFormatStage.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESDCardFormatStage",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1273,7 +1765,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EScalingFilter.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EScalingFilter",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1283,7 +1779,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESessionPersistence.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESessionPersistence",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1293,7 +1793,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityCategory.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityCategory",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1303,7 +1807,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityFeedback.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityFeedback",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1313,7 +1821,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityResultDisplayType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESteamDeckCompatibilityResultDisplayType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1323,7 +1835,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EStorageBlockContentType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EStorageBlockContentType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1333,7 +1849,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EStorageBlockFileSystemType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EStorageBlockFileSystemType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1343,7 +1863,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemAudioChannel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemAudioChannel",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1353,7 +1877,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemAudioDirection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemAudioDirection",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1363,7 +1891,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemAudioPortDirection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemAudioPortDirection",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1373,7 +1905,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemAudioPortType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemAudioPortType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1383,7 +1919,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemFanControlMode.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemFanControlMode",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1393,7 +1933,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ESystemServiceState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ESystemServiceState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1403,7 +1947,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.ETouchGesture.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.ETouchGesture",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1413,7 +1961,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EUpdaterState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EUpdaterState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1423,7 +1975,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EUpdaterType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EUpdaterType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1433,7 +1989,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EnumsReflection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.EnumsReflection",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EnumsReflection.yml\" sourcestartlinenumber=\"1\">Holder for reflection information generated from <a href=\"https://github.com/SteamDatabase/Protobufs/blob/master/steam/enums.proto\" sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.EnumsReflection.yml\" sourcestartlinenumber=\"1\">https://github.com/SteamDatabase/Protobufs/blob/master/steam/enums.proto</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1443,7 +2003,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.NoResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.NoResponse",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1453,7 +2017,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.PartnerEventNotificationType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.PartnerEventNotificationType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1463,7 +2031,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesBaseExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.SteamMessagesBaseExtensions",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesBaseExtensions.yml\" sourcestartlinenumber=\"1\">Holder for extension identifiers generated from the top level of steammessages_base.proto</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1473,7 +2045,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesBaseReflection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.SteamMessagesBaseReflection",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesBaseReflection.yml\" sourcestartlinenumber=\"1\">Holder for reflection information generated from <a href=\"https://github.com/SteamDatabase/Protobufs/blob/master/steam/steammessages_base.proto\" sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesBaseReflection.yml\" sourcestartlinenumber=\"1\">https://github.com/SteamDatabase/Protobufs/blob/master/steam/steammessages_base.proto</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1483,7 +2059,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientExtensions",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientExtensions.yml\" sourcestartlinenumber=\"1\">Holder for extension identifiers generated from the top level of steammessages_unified_base.steamclient.proto</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1493,7 +2073,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientReflection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientReflection",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientReflection.yml\" sourcestartlinenumber=\"1\">Holder for reflection information generated from <a href=\"https://github.com/SteamDatabase/Protobufs/blob/master/steam/steammessages_unified_base.steamclient.proto\" sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteamMessagesUnifiedBaseSteamClientReflection.yml\" sourcestartlinenumber=\"1\">https://github.com/SteamDatabase/Protobufs/blob/master/steam/steammessages_unified_base.steamclient.proto</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1503,7 +2087,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteammessagesAuthSteamclientReflection.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf.SteammessagesAuthSteamclientReflection",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.SteammessagesAuthSteamclientReflection.yml\" sourcestartlinenumber=\"1\">Holder for reflection information generated from steammessages_auth.steamclient.proto</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1513,7 +2101,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Protobuf.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Protobuf",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1523,7 +2115,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.Resource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.Resource",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.Resource.yml\" sourcestartlinenumber=\"1\">Android Resource Designer class.\nExposes the Android Resource designer assembly into the project Namespace.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1533,7 +2129,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.SteamIdConvert.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.SteamIdConvert",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1543,7 +2143,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.AchievementInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.AchievementInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.AchievementInfo.yml\" sourcestartlinenumber=\"1\">Steam 成就</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1553,7 +2157,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponse.yml\" sourcestartlinenumber=\"1\">刷新 AccessToken 接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1563,7 +2171,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponseResponse.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.GenerateAccessTokenForAppResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1573,7 +2185,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponse.yml\" sourcestartlinenumber=\"1\">获取用户国家或地区接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1583,7 +2199,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponseResponse.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.GetUserCountryOrRegionResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 详细信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1593,7 +2213,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponse.yml\" sourcestartlinenumber=\"1\">AccountWaitingForEmailConfirmation 接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1603,7 +2227,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponseResponse.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.IsAccountWaitingForEmailConfirmationResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1613,7 +2241,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponse.yml\" sourcestartlinenumber=\"1\">AddPhoneNumberAsync 接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1623,7 +2255,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponseResponse.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.SteamAddPhoneNumberResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1633,7 +2269,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1643,7 +2283,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponse.yml\" sourcestartlinenumber=\"1\">RemoveAuthenticatorAsync 接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1653,7 +2297,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponseResponse.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1663,7 +2311,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamConvertSteamDataJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamConvertSteamDataJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamConvertSteamDataJsonStruct.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginTfaJsonStruct.Response\" data-throw-if-not-resolved=\"false\"></xref> 返回详细信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1673,7 +2325,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeJsonStruct.yml\" sourcestartlinenumber=\"1\">FinalizeAddAuthenticatorAsync 令牌激活接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1683,7 +2339,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeResponseJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeResponseJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginFinalizeResponseJsonStruct.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.RemoveAuthenticatorResponse.Response\" data-throw-if-not-resolved=\"false\"></xref> 令牌激活接口返回详细信息模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1693,7 +2353,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginHasPhoneJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginHasPhoneJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginHasPhoneJsonStruct.yml\" sourcestartlinenumber=\"1\">旧版获取是否绑定手机接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1703,7 +2367,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginTfaJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginTfaJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamDoLoginTfaJsonStruct.yml\" sourcestartlinenumber=\"1\">AddAuthenticatorAsync 令牌添加接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1713,7 +2381,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamGetRsaKeyJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamGetRsaKeyJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamGetRsaKeyJsonStruct.yml\" sourcestartlinenumber=\"1\">SteamGetRsaKey 接口返回类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1723,7 +2395,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileConfGetListJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileConfGetListJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileConfGetListJsonStruct.yml\" sourcestartlinenumber=\"1\">获取确认消息返回结果</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1733,7 +2409,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileDologinJsonStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileDologinJsonStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileDologinJsonStruct.yml\" sourcestartlinenumber=\"1\">登录接口返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1743,7 +2423,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileTradeConf.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileTradeConf",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamMobileTradeConf.yml\" sourcestartlinenumber=\"1\">确认消息详情</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1753,7 +2437,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncResponseStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncResponseStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncResponseStruct.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncStruct.Response\" data-throw-if-not-resolved=\"false\"></xref> 详细信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1763,7 +2451,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncStruct.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncStruct",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.SteamSyncStruct.yml\" sourcestartlinenumber=\"1\">TwoFAQueryTime 接口返回模型类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1773,7 +2465,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.Transfer_Parameters.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators.Transfer_Parameters",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.Transfer_Parameters.yml\" sourcestartlinenumber=\"1\">跳转参数详情</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1783,7 +2479,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Authenticators.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Authenticators",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1793,7 +2493,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.AuthorizedDevice.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.AuthorizedDevice",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1803,7 +2507,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.CurrencyData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.CurrencyData",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.CurrencyData.yml\" sourcestartlinenumber=\"1\">货币信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1813,7 +2521,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.CursorData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.CursorData",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.CursorData.yml\" sourcestartlinenumber=\"1\">钱包游标数据</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1823,7 +2535,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.DisableAuthorizedDevice.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.DisableAuthorizedDevice",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1833,7 +2549,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.FloatStatInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.FloatStatInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.FloatStatInfo.yml\" sourcestartlinenumber=\"1\">浮点类型统计</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1843,7 +2563,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.AppCardsAvgPrice.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.AppCardsAvgPrice",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.AppCardsAvgPrice.yml\" sourcestartlinenumber=\"1\">Steam 游戏卡片平均价格</p>\n<p>https://github.com/IsThereAnyDeal/AugmentedSteam_Server/blob/master/src/Controllers/MarketController.php</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1853,7 +2577,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.CardsMarketPrice.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.CardsMarketPrice",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.CardsMarketPrice.yml\" sourcestartlinenumber=\"1\">Steam 游戏卡片市场价格</p>\n<p>https://github.com/IsThereAnyDeal/AugmentedSteam_Server/blob/master/src/Controllers/MarketController.php</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1863,7 +2591,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.IdleBadge.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.IdleBadge",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.IdleBadge.yml\" sourcestartlinenumber=\"1\">徽章</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1873,7 +2605,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.SteamCard.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.SteamCard",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.SteamCard.yml\" sourcestartlinenumber=\"1\">卡片</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1883,7 +2619,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.UserBadgesResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.UserBadgesResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.UserBadgesResponse.yml\" sourcestartlinenumber=\"1\">获取用户徽章信息响应返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1893,7 +2633,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.UserIdleInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles.UserIdleInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.UserIdleInfo.yml\" sourcestartlinenumber=\"1\">用户 Idle 信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1903,7 +2647,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Idles.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Idles",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1913,7 +2661,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.ImportedSDAEntry.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.ImportedSDAEntry",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.ImportedSDAEntry.yml\" sourcestartlinenumber=\"1\">导入 SDA 实体</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1923,7 +2675,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.IntStatInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.IntStatInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.IntStatInfo.yml\" sourcestartlinenumber=\"1\">整数类型统计</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1933,7 +2689,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.LocalDlssDll.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.LocalDlssDll",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.LocalDlssDll.yml\" sourcestartlinenumber=\"1\">本机 Dlss 库</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1943,7 +2703,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.DoLoginResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.DoLoginResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.DoLoginResponse.yml\" sourcestartlinenumber=\"1\">登录返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1953,7 +2717,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.FinalizeLoginStatus.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.FinalizeLoginStatus",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.FinalizeLoginStatus.yml\" sourcestartlinenumber=\"1\">完成登录状态</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1963,7 +2731,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.SteamLoginState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.SteamLoginState",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1973,7 +2745,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.SteamSession.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.SteamSession",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -1983,7 +2759,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.TransferInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferInfo.yml\" sourcestartlinenumber=\"1\">跳转信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -1993,7 +2773,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferInfoParams.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.TransferInfoParams",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferInfoParams.yml\" sourcestartlinenumber=\"1\">完成登录接口跳转参数</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2003,7 +2787,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferParameters.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins.TransferParameters",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.TransferParameters.yml\" sourcestartlinenumber=\"1\">登录接口返回跳转参数</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2013,7 +2801,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Logins.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Logins",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2023,7 +2815,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketItemOrdersHistogramResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketItemOrdersHistogramResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketItemOrdersHistogramResponse.yml\" sourcestartlinenumber=\"1\">市场订单柱状图数据</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2033,7 +2829,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketItemPriceOverviewResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketItemPriceOverviewResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketItemPriceOverviewResponse.yml\" sourcestartlinenumber=\"1\">市场物品价格概述</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2043,7 +2843,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketListings.ActiveListingItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketListings.ActiveListingItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketListings.ActiveListingItem.yml\" sourcestartlinenumber=\"1\">上架物品</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2053,7 +2857,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketListings.BuyorderItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketListings.BuyorderItem",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2063,7 +2871,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketListings.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketListings",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketListings.yml\" sourcestartlinenumber=\"1\">市场出售信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2073,7 +2885,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderItem.yml\" sourcestartlinenumber=\"1\">市场交易历史</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2083,7 +2899,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderPageResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderPageResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.MarketTradingHistoryRenderPageResponse.yml\" sourcestartlinenumber=\"1\">市场交易历史 html</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2093,7 +2913,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.SellItemToMarketResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets.SellItemToMarketResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.SellItemToMarketResponse.yml\" sourcestartlinenumber=\"1\">市场出售物品返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2103,7 +2927,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Markets.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Markets",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2113,7 +2941,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.HistoryParseResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.HistoryParseResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.HistoryParseResponse.yml\" sourcestartlinenumber=\"1\">账户历史数据返回值</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2123,7 +2955,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAsset.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAsset",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAsset.yml\" sourcestartlinenumber=\"1\">个人库存资产信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2133,7 +2969,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAssetDescription.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAssetDescription",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.ProfileInventoryAssetDescription.yml\" sourcestartlinenumber=\"1\">个人库存资产描述信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2143,7 +2983,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryPageResponse.yml\" sourcestartlinenumber=\"1\">用户游戏库存信息返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2153,7 +2997,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryGroup.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryGroup",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2163,7 +3011,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryItem",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2173,7 +3025,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryApp.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryApp",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryApp.yml\" sourcestartlinenumber=\"1\">库存交易历史游戏</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2183,7 +3039,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2193,7 +3053,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRenderPageResponse.yml\" sourcestartlinenumber=\"1\">库存历史记录页面返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2203,7 +3067,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRow.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.InventoryTradeHistoryRow",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2213,7 +3081,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.LoginHistoryItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.LoginHistoryItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.LoginHistoryItem.yml\" sourcestartlinenumber=\"1\">登录历史</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2223,7 +3095,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.SendGiftHistoryItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles.SendGiftHistoryItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.SendGiftHistoryItem.yml\" sourcestartlinenumber=\"1\">礼物发送记录</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2233,7 +3109,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Profiles.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Profiles",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2243,7 +3123,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.RedeemWalletCodeResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.RedeemWalletCodeResult",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2253,7 +3137,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.RedeemWalletResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.RedeemWalletResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.RedeemWalletResponse.yml\" sourcestartlinenumber=\"1\">兑换钱包返回信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2263,7 +3151,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.StatFlags.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.StatFlags",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.StatFlags.yml\" sourcestartlinenumber=\"1\">统计类型 Flags 枚举</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2273,7 +3165,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.StatInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.StatInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.StatInfo.yml\" sourcestartlinenumber=\"1\">统计抽象类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2283,7 +3179,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.ModifiedApp.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.ModifiedApp",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.ModifiedApp.yml\" sourcestartlinenumber=\"1\">移动过的游戏 App</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2293,7 +3193,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamApp",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamApp.yml\" sourcestartlinenumber=\"1\">Steam 游戏</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2303,7 +3207,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppInfo.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> Detail</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2313,7 +3221,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppLaunchItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppLaunchItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppLaunchItem.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> 已启动的游戏项</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2323,7 +3235,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppList.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppList",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppList.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> Collection Model</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2333,7 +3249,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppProperty.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppProperty",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppProperty.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> Property</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2343,7 +3263,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppPropertyTable.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppPropertyTable",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppPropertyTable.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamApp\" data-throw-if-not-resolved=\"false\"></xref> 属性表格</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2353,7 +3277,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamAppSaveFile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamAppSaveFile",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2363,7 +3291,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamApps.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps.SteamApps",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.SteamApps.yml\" sourcestartlinenumber=\"1\"><xref href=\"BD.SteamClient8.Models.WebApi.SteamApps.SteamAppList\" data-throw-if-not-resolved=\"false\"></xref> Model</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2373,7 +3305,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamApps.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamApps",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2383,7 +3319,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridApp.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridApp",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridApp.yml\" sourcestartlinenumber=\"1\">steamgriddb.com App</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2393,7 +3333,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridAppData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridAppData",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridAppData.yml\" sourcestartlinenumber=\"1\">steamgriddb.com AppData</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2403,7 +3347,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItem",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2413,7 +3361,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItemAuthor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItemAuthor",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2423,7 +3375,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItemData.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB.SteamGridItemData",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2433,7 +3389,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamGridDB.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamGridDB",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2443,7 +3403,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamKeyValue.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamKeyValue",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamKeyValue.yml\" sourcestartlinenumber=\"1\">键值对象</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2453,7 +3417,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamKeyValueType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamKeyValueType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamKeyValueType.yml\" sourcestartlinenumber=\"1\">键值类型枚举</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2463,7 +3431,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamMiniProfile",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfile.yml\" sourcestartlinenumber=\"1\">Steam 小型用户个人资料</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2473,7 +3445,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileBadge.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamMiniProfileBadge",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileBadge.yml\" sourcestartlinenumber=\"1\">Steam 小型用户个人资料徽章</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2483,7 +3459,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileGame.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamMiniProfileGame",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileGame.yml\" sourcestartlinenumber=\"1\">Steam 小型用户个人资料游戏</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2493,7 +3473,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileProfileBackground.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamMiniProfileProfileBackground",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamMiniProfileProfileBackground.yml\" sourcestartlinenumber=\"1\">Steam 小型用户个人资料视频</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2503,7 +3487,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamRemoteFile.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamRemoteFile",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamRemoteFile.yml\" sourcestartlinenumber=\"1\">Steam 同步文件</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2513,7 +3501,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.SteamUser.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.SteamUser",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2523,7 +3515,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeAsset.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeAsset",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeAsset.yml\" sourcestartlinenumber=\"1\">库存资产</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2533,7 +3529,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeConfirmation.yml\" sourcestartlinenumber=\"1\">确认消息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2543,7 +3543,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeHistoryResponseDetail.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeHistoryResponseDetail",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeHistoryResponseDetail.yml\" sourcestartlinenumber=\"1\">交易历史记录响应详情</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2553,7 +3557,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItem.yml\" sourcestartlinenumber=\"1\">交易历史记录信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2563,7 +3571,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItem.yml\" sourcestartlinenumber=\"1\">交易历史记录的交易项</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2573,7 +3585,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItemDesc.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItemDesc",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.TradeItemAssetItemDesc.yml\" sourcestartlinenumber=\"1\">交易历史记录的交易项描述</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2583,7 +3599,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeHistory",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeHistory.yml\" sourcestartlinenumber=\"1\">交易历史记录</p>\n<p>https://partner.steamgames.com/doc/webapi/IEconService</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2593,7 +3613,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeOffersInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersInfo.yml\" sourcestartlinenumber=\"1\">交易详情</p>\n<p>https://partner.steamgames.com/doc/webapi/IEconService</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2603,7 +3627,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersItem.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeOffersItem",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersItem.yml\" sourcestartlinenumber=\"1\">交易报价物品信息</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2613,7 +3641,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponse.yml\" sourcestartlinenumber=\"1\">交易报价返回</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2623,7 +3655,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponseInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponseInfo",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeOffersResponseInfo.yml\" sourcestartlinenumber=\"1\">交易报价返回信息详情</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2633,7 +3669,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeSummary.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeSummary",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeSummary.yml\" sourcestartlinenumber=\"1\">未处理和新的交易报价汇总</p>\n<p>https://partner.steamgames.com/doc/webapi/IEconService</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2643,7 +3683,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.TradeSummaryResponse.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades.TradeSummaryResponse",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2653,7 +3697,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.Trades.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.Trades",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2663,7 +3711,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.UserStatType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi.UserStatType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.UserStatType.yml\" sourcestartlinenumber=\"1\">用户统计类型枚举</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2673,7 +3725,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WebApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WebApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2683,7 +3739,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorModel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorModel",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorModel.yml\" sourcestartlinenumber=\"1\">身份验证器(游戏平台令牌)模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2693,7 +3753,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.PasswordTypes.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.PasswordTypes",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.PasswordTypes.yml\" sourcestartlinenumber=\"1\">用于加密机密数据的密码类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2703,7 +3767,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.IAuthenticatorValueModel.yml\" sourcestartlinenumber=\"1\">身份验证器(游戏平台令牌)数据值模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2713,7 +3781,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Abstractions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.Abstractions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2723,7 +3795,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorBadPasswordException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorBadPasswordException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorBadPasswordException.yml\" sourcestartlinenumber=\"1\">Config decryption bad password</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2733,7 +3809,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorBase32DecodingException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorBase32DecodingException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorBase32DecodingException.yml\" sourcestartlinenumber=\"1\">Initializes a new instance of the <xref href=\"BD.SteamClient8.Models.WinAuth.AuthenticatorBase32DecodingException\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2743,7 +3823,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorEncryptedSecretDataException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorEncryptedSecretDataException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorEncryptedSecretDataException.yml\" sourcestartlinenumber=\"1\">Config has been encrypted and we need a key</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2753,7 +3837,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorException.yml\" sourcestartlinenumber=\"1\">Base Authenticator exception class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2763,7 +3851,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorExportModel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorExportModel",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorExportModel.yml\" sourcestartlinenumber=\"1\">身份验证器(游戏平台令牌)数据轻量化导出模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2773,7 +3865,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEncryptionException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEncryptionException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEncryptionException.yml\" sourcestartlinenumber=\"1\">Invalid encryption detected</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2783,7 +3879,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEnrollResponseException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEnrollResponseException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidEnrollResponseException.yml\" sourcestartlinenumber=\"1\">Exception for error or unexpected return from server for enroll</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2793,7 +3893,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidRestoreCodeException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidRestoreCodeException",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2803,7 +3907,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidRestoreResponseException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidRestoreResponseException",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2813,7 +3921,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidSyncResponseException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidSyncResponseException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorInvalidSyncResponseException.yml\" sourcestartlinenumber=\"1\">Exception for error or unexpected return from server for sync</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2823,7 +3935,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorModel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorModel",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorModel.yml\" sourcestartlinenumber=\"1\">身份验证器(游戏平台令牌)模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2833,7 +3949,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.AuthenticatorValueModel.yml\" sourcestartlinenumber=\"1\">身份验证器(游戏平台令牌)数据值模型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2843,7 +3963,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Base32.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.Base32",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.Base32.yml\" sourcestartlinenumber=\"1\">实现向 Base32 RFC3548 转换的类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2853,7 +3977,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.IAuthenticatorNetService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.IAuthenticatorNetService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.IAuthenticatorNetService.yml\" sourcestartlinenumber=\"1\">战网令牌相关网络服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2863,7 +3991,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.BattleNetAuthenticator",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2873,7 +4005,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.GoogleAuthenticator.IAuthenticatorNetService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.GoogleAuthenticator.IAuthenticatorNetService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.GoogleAuthenticator.IAuthenticatorNetService.yml\" sourcestartlinenumber=\"1\">谷歌令牌相关网络服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2883,7 +4019,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.GoogleAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.GoogleAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.GoogleAuthenticator.yml\" sourcestartlinenumber=\"1\">提供谷歌身份验证</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2893,7 +4033,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.HOTPAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.HOTPAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.HOTPAuthenticator.yml\" sourcestartlinenumber=\"1\">HOTP 身份认证</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2903,7 +4047,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.MicrosoftAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.MicrosoftAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.MicrosoftAuthenticator.yml\" sourcestartlinenumber=\"1\">微软身份验证令牌</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2913,7 +4061,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.EnrollState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.SteamAuthenticator.EnrollState",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.EnrollState.yml\" sourcestartlinenumber=\"1\">注册状态</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2923,7 +4075,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.IAuthenticatorNetService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.SteamAuthenticator.IAuthenticatorNetService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.IAuthenticatorNetService.yml\" sourcestartlinenumber=\"1\">Steam 令牌相关网络服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2933,7 +4089,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.SteamAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.SteamAuthenticator.yml\" sourcestartlinenumber=\"1\">Steam 身份验证令牌</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2943,7 +4103,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.TOTPAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth.TOTPAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.TOTPAuthenticator.yml\" sourcestartlinenumber=\"1\">TOTP 身份验证</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2953,7 +4117,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.WinAuth.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models.WinAuth",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -2963,7 +4131,11 @@
           "relative_path": "api/BD.SteamClient8.Models/BD.SteamClient8.Models.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Models",
+      "Summary": null
     },
     {
       "type": "Toc",
@@ -2986,7 +4158,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Columns.Authenticators.IOrderAuthenticator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Columns.Authenticators.IOrderAuthenticator",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Columns.Authenticators.IOrderAuthenticator.yml\" sourcestartlinenumber=\"1\">可排序的身份验证器</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -2996,7 +4172,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Columns.Authenticators.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Columns.Authenticators",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3006,7 +4186,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Constants.SteamApiUrls.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Constants.SteamApiUrls",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3016,7 +4200,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Constants.SteamGridDBApiUrls.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Constants.SteamGridDBApiUrls",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3026,7 +4214,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Constants.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Constants",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3036,7 +4228,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.AuthenticatorPlatform.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.Authenticators.AuthenticatorPlatform",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.AuthenticatorPlatform.yml\" sourcestartlinenumber=\"1\">令牌平台类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3046,7 +4242,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.HMACTypes.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.Authenticators.HMACTypes",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.HMACTypes.yml\" sourcestartlinenumber=\"1\">HMAC 哈希算法类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3056,7 +4256,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.Authenticators.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.Authenticators",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3066,7 +4270,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Markets.MarketTradingHistoryRowType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Markets.MarketTradingHistoryRowType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Markets.MarketTradingHistoryRowType.yml\" sourcestartlinenumber=\"1\">交易历史操作类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3076,7 +4284,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Markets.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Markets",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3086,7 +4298,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.PersonaState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.PersonaState",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.PersonaState.yml\" sourcestartlinenumber=\"1\">在线状态</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3096,7 +4312,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.PurchaseResultDetail.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.PurchaseResultDetail",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.PurchaseResultDetail.yml\" sourcestartlinenumber=\"1\">购买结果详情代码</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3106,7 +4326,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.LibCacheType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamApps.LibCacheType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.LibCacheType.yml\" sourcestartlinenumber=\"1\">Library 图片缓存类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3116,7 +4340,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppPropertyType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppPropertyType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3126,7 +4354,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppRunType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppRunType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3136,7 +4368,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.SteamAppType.yml\" sourcestartlinenumber=\"1\">Steam App 类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3146,7 +4382,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamApps.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamApps",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3156,7 +4396,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamGridDB.SteamGridItemType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamGridDB.SteamGridItemType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamGridDB.SteamGridItemType.yml\" sourcestartlinenumber=\"1\">steamgriddb.com 托管图像类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3166,7 +4410,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamGridDB.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamGridDB",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3176,7 +4424,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.SteamResult",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.SteamResult.yml\" sourcestartlinenumber=\"1\">Steam 错误结果代码</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3186,7 +4438,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeOfferState.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Trades.TradeOfferState",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeOfferState.yml\" sourcestartlinenumber=\"1\">交易报价状态</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3196,7 +4452,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeTag.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Trades.TradeTag",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeTag.yml\" sourcestartlinenumber=\"1\">交易报价确认信息操作类型</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3206,7 +4466,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.TradeTaskEnum.yml\" sourcestartlinenumber=\"1\">交易报价后台任务类型枚举</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3216,7 +4480,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.Trades.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi.Trades",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3226,7 +4494,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Enums.WebApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Enums.WebApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3236,7 +4508,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Extensions.ECurrencyCodeEnumExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions.ECurrencyCodeEnumExtensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3246,7 +4522,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Extensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3256,7 +4536,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Resource",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Resource.yml\" sourcestartlinenumber=\"1\">Android Resource Designer class.\nExposes the Android Resource designer assembly into the project Namespace.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3266,7 +4550,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resources.Strings.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Resources.Strings",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8.Primitives/BD.SteamClient8.Resources.Strings.yml\" sourcestartlinenumber=\"1\">一个强类型的资源类，用于查找本地化的字符串等。</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3276,7 +4564,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.Resources.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Resources",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3286,7 +4578,11 @@
           "relative_path": "api/BD.SteamClient8.Primitives/BD.SteamClient8.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8",
+      "Summary": null
     },
     {
       "type": "Toc",
@@ -3309,7 +4605,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Extensions.WinAuthExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions.WinAuthExtensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3319,7 +4619,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Extensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Extensions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3329,7 +4633,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Helpers.CurrencyHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Helpers.CurrencyHelper",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Helpers.CurrencyHelper.yml\" sourcestartlinenumber=\"1\">货币 Helper</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3339,7 +4647,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Helpers.VdfHelper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Helpers.VdfHelper",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Helpers.VdfHelper.yml\" sourcestartlinenumber=\"1\">Valve Data File 格式助手类</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3349,7 +4661,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Helpers.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Helpers",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3359,7 +4675,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Resource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Resource",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Resource.yml\" sourcestartlinenumber=\"1\">Android Resource Designer class.\nExposes the Android Resource designer assembly into the project Namespace.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3369,7 +4689,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService.yml\" sourcestartlinenumber=\"1\">Steam 相关助手、工具类服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3379,7 +4703,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.PInvoke.ISteamworksLocalApiService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.PInvoke.ISteamworksLocalApiService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.PInvoke.ISteamworksLocalApiService.yml\" sourcestartlinenumber=\"1\">Steamworks 本地 API 服务</p>\n<p>https://partner.steamgames.com/doc/home</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3389,7 +4717,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.PInvoke.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.PInvoke",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3399,7 +4731,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService.yml\" sourcestartlinenumber=\"1\">Steam 账号相关接口服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3409,7 +4745,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamAuthenticatorService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamAuthenticatorService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamAuthenticatorService.yml\" sourcestartlinenumber=\"1\">Steam 令牌服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3419,7 +4759,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamDbWebApiService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamDbWebApiService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamDbWebApiService.yml\" sourcestartlinenumber=\"1\">SteamDb WebApi 服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3429,7 +4773,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamGridDBWebApiServiceImpl.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamGridDBWebApiServiceImpl",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamGridDBWebApiServiceImpl.yml\" sourcestartlinenumber=\"1\">SteamGridDB WebApi 服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3439,7 +4787,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamIdleCardService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamIdleCardService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamIdleCardService.yml\" sourcestartlinenumber=\"1\">Steam 挂卡相关服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3449,7 +4801,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamMarketService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamMarketService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamMarketService.yml\" sourcestartlinenumber=\"1\">Steam 市场交易相关服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3459,7 +4815,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamSessionService.yml\" sourcestartlinenumber=\"1\">Steam 登录会话信息服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3469,7 +4829,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamTradeService.yml\" sourcestartlinenumber=\"1\">Steam 交易报价相关服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3479,7 +4843,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamworksWebApiService.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi.ISteamworksWebApiService",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.ISteamworksWebApiService.yml\" sourcestartlinenumber=\"1\">Steamworks WebApi 服务</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3489,7 +4857,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.Services.Abstractions.WebApi.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8.Services.Abstractions.WebApi",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3499,7 +4871,11 @@
           "relative_path": "api/BD.SteamClient8/BD.SteamClient8.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "BD.SteamClient8",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3509,7 +4885,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callback-1.CallbackFunction.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callback<TParameter>.CallbackFunction",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3519,7 +4899,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callback-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callback<TParameter>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3529,7 +4913,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callback.CallbackFunction.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callback.CallbackFunction",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3539,7 +4927,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callback.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callback",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3549,7 +4941,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callbacks.AppDataChanged.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callbacks.AppDataChanged",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3559,7 +4955,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callbacks.UserStatsReceived.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callbacks.UserStatsReceived",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3569,7 +4969,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Callbacks.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Callbacks",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3579,7 +4983,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Client.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Client",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3589,7 +4997,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.ClientInitializeException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.ClientInitializeException",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3599,7 +5011,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.ClientInitializeFailure.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.ClientInitializeFailure",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3609,7 +5025,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.ICallback.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.ICallback",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3619,7 +5039,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.INativeWrapper.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.INativeWrapper",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3629,7 +5053,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamApps001.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamApps001",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3639,7 +5067,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamApps008.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamApps008",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3649,7 +5081,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamClient018.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamClient018",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3659,7 +5095,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamRemoteStorage014.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamRemoteStorage014",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3669,7 +5109,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUGC015.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUGC015",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3679,7 +5123,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUser012.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUser012",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3689,7 +5137,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUser019.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUser019",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3699,7 +5151,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUserStats007.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUserStats007",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3709,7 +5165,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUtils005.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUtils005",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3719,7 +5179,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.ISteamUtils009.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces.ISteamUtils009",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3729,7 +5193,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3739,7 +5207,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.NativeWrapper-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.NativeWrapper<TNativeFunctions>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3749,7 +5221,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Steam.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Steam",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3759,7 +5235,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.AccountType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.AccountType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3769,7 +5249,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.AppDataChanged.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.AppDataChanged",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3779,7 +5263,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.CallbackMessage.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.CallbackMessage",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3789,7 +5277,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.ERemoteStoragePlatform.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.ERemoteStoragePlatform",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3799,7 +5291,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.ItemRequestResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.ItemRequestResult",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3809,7 +5305,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.UserItemsReceived.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.UserItemsReceived",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3819,7 +5319,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.UserStatType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.UserStatType",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3829,7 +5333,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.UserStatsReceived.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.UserStatsReceived",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3839,7 +5347,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.UserStatsStored.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types.UserStatsStored",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3849,7 +5361,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Types.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Types",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3859,7 +5375,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamApps001.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamApps001",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3869,7 +5389,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamApps008.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamApps008",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3879,7 +5403,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamClient018.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamClient018",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3889,7 +5417,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamRemoteStorage012.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamRemoteStorage012",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3899,7 +5431,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUGC015.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUGC015",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3909,7 +5445,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUser012.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUser012",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3919,7 +5459,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUser017.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUser017",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3929,7 +5473,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUserStats011.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUserStats011",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3939,7 +5487,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUtils005.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUtils005",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3949,7 +5501,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.SteamUtils007.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers.SteamUtils007",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/SAM.API.Wrappers.SteamUtils007.yml\" sourcestartlinenumber=\"1\"><a href=\"https://partner.steamgames.com/doc/api/ISteamUtils?language=english\" sourcefile=\"api/BD.SteamClient8/SAM.API.Wrappers.SteamUtils007.yml\" sourcestartlinenumber=\"1\">https://partner.steamgames.com/doc/api/ISteamUtils?language=english</a></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3959,7 +5515,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.Wrappers.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API.Wrappers",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3969,7 +5529,11 @@
           "relative_path": "api/BD.SteamClient8/SAM.API.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SAM.API",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3979,7 +5543,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.IIncludedFileLoader.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.IIncludedFileLoader",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.IIncludedFileLoader.yml\" sourcestartlinenumber=\"1\">Provides a way to open any file referenced with <code>#include</code> or <code>#base</code>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -3989,7 +5557,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVCollectionValue.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVCollectionValue",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -3999,7 +5571,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVIgnoreAttribute.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVIgnoreAttribute",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVIgnoreAttribute.yml\" sourcestartlinenumber=\"1\">This attribute is used to tell the deserializer to ignore a given property.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4009,7 +5585,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVObject.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVObject",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVObject.yml\" sourcestartlinenumber=\"1\">Represents a dynamic KeyValue object.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4019,7 +5599,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVObjectValue-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVObjectValue<TObject>",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -4029,7 +5613,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVPropertyAttribute.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVPropertyAttribute",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVPropertyAttribute.yml\" sourcestartlinenumber=\"1\">This attribute is used to tell the deserializer to map a given property to a particular\nnode in the KeyValue object tree, by name.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4039,7 +5627,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVSerializationFormat.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVSerializationFormat",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVSerializationFormat.yml\" sourcestartlinenumber=\"1\">Represents the type of (de)serialization to use.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4049,7 +5641,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVSerializer.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVSerializer",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVSerializer.yml\" sourcestartlinenumber=\"1\">Helper class to easily deserialize KeyValue objects.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4059,7 +5655,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVSerializerOptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVSerializerOptions",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVSerializerOptions.yml\" sourcestartlinenumber=\"1\">Options to use when deserializing a KeyValues file.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4069,7 +5669,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVValue.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVValue",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVValue.yml\" sourcestartlinenumber=\"1\">Container type for value of a KeyValues object.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4079,7 +5683,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KVValueType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KVValueType",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KVValueType.yml\" sourcestartlinenumber=\"1\">Represents the type of a given <xref href=\"ValveKeyValue.KVValue\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4089,7 +5697,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.KeyValueException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue.KeyValueException",
+      "Summary": "<p sourcefile=\"api/BD.SteamClient8/ValveKeyValue.KeyValueException.yml\" sourcestartlinenumber=\"1\">General KeyValue exception type.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -4099,7 +5711,11 @@
           "relative_path": "api/BD.SteamClient8/ValveKeyValue.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ValveKeyValue",
+      "Summary": null
     },
     {
       "type": "Toc",

@@ -153,7 +153,36 @@ public sealed class SteamLoginState : JsonModel&lt;SteamLoginState&gt;, IJsonMod
 
 
   <h2 id="BD_SteamClient8_Models_WebApi_Logins_SteamLoginState_remarks">Remarks</h2>
-  <div class="markdown level0 remarks"><p>MemoryPack GenerateType: Object<br><pre><code class="lang-csharp">string Languagestring Usernamestring Passwordstring CaptchaIdstring CaptchaUrlstring CaptchaImageBase64string CaptchaTextstring EmailDomainstring EmailCodestring TwofactorCodeSystem.Net.CookieCollection Cookiesstring SteamIdStringulong SteamIdstring Emailbool RequiresCaptchabool Requires2FAbool RequiresEmailAuthbool Successstring Messagestring WalletBalanceStringbool IsUndeterminedAreastring CurrencySymbolstring SteamCountryint AccountHistoryCountstring SeesionIdulong? ClientIdbyte[] RequestIdstring AccessTokenstring RefreshToken</code></pre>
+  <div class="markdown level0 remarks"><p>MemoryPack GenerateType: Object<br></p>
+<pre><code class="lang-csharp">string Language
+string Username
+string Password
+string CaptchaId
+string CaptchaUrl
+string CaptchaImageBase64
+string CaptchaText
+string EmailDomain
+string EmailCode
+string TwofactorCode
+System.Net.CookieCollection Cookies
+string SteamIdString
+ulong SteamId
+string Email
+bool RequiresCaptcha
+bool Requires2FA
+bool RequiresEmailAuth
+bool Success
+string Message
+string WalletBalanceString
+bool IsUndeterminedArea
+string CurrencySymbol
+string SteamCountry
+int AccountHistoryCount
+string SeesionId
+ulong? ClientId
+byte[] RequestId
+string AccessToken
+string RefreshToken</code></pre>
 </div>
 
 
@@ -1305,8 +1334,10 @@ public static Regex SteamUNPWDRegex()</code></pre>
 
 
   <h4 class="section" id="BD_SteamClient8_Models_WebApi_Logins_SteamLoginState_SteamUNPWDRegex_remarks">Remarks</h4>
-  <div class="markdown level1 remarks"><p>Pattern:<br><pre><code class="lang-csharp">[^\u0000-\u007F]</code></pre><br>
-Explanation:<br><pre><code class="lang-csharp">○ Match a character in the set [^\0-\u007F].</code></pre>
+  <div class="markdown level1 remarks"><p>Pattern:<br></p>
+<pre><code class="lang-csharp">[^\\u0000-\\u007F]</code></pre><br>
+<p>Explanation:<br></p>
+<pre><code class="lang-csharp">○ Match a character in the set [^\0-\u007F].</code></pre>
 </div>
 
 
