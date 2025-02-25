@@ -95,7 +95,11 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl> DoLoginV2Async(
+        SteamLoginState loginState,
+        bool rememberLogin = false,
+        bool isSteamClientPlatform = false,
+        CancellationToken cancellationToken = default)
     {
         loginState.Success = false;
 
@@ -276,8 +280,10 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                 EncryptedPassword = encryptedPassword64,
                 EncryptionTimestamp = timestamp,
                 WebsiteId = "Community",
-                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient,
-                RememberLogin = false,
+                PlatformType = isSteamClientPlatform
+                    ? EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient
+                    : EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
+                RememberLogin = rememberLogin,
                 Persistence = ESessionPersistence.KEsessionPersistencePersistent,
             }.ToByteString().ToBase64();
 

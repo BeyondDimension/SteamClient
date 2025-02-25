@@ -21,9 +21,16 @@ public interface ISteamAccountService
     /// 执行新版请求 Steam 登录，返回登录状态
     /// </summary>
     /// <param name="loginState"></param>
+    /// <param name="rememberLogin">是否记住登录信息，颁发的 refreshToken 有效期较长</param>
+    /// <param name="isSteamClientPlatform">if is <see langword="true"/> 将颁发可用于登录 Steam 客户端 和 web 的 token；
+    /// 默认 <see langword="false"/> 颁发适用于 mobile 和 web 的 token  </param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl> DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl> DoLoginV2Async(
+        SteamLoginState loginState,
+        bool rememberLogin = false,
+        bool isSteamClientPlatform = false,
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Steam 账号消费历史记录
