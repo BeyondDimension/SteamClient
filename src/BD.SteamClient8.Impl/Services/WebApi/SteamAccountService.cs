@@ -97,9 +97,9 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     /// <inheritdoc/>
     public async Task<ApiRspImpl> DoLoginV2Async(
         SteamLoginState loginState,
+        CancellationToken cancellationToken = default,
         bool rememberLogin = false,
-        bool isSteamClientPlatform = false,
-        CancellationToken cancellationToken = default)
+        bool isSteamClientPlatform = false)
     {
         loginState.Success = false;
 
