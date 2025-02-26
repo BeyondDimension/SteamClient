@@ -195,8 +195,8 @@ Interface ISteamAccountService  <a class="header-action link-secondary" title="V
 
   <a id="BD_SteamClient8_Services_Abstractions_WebApi_ISteamAccountService_DoLoginV2Async_" data-uid="BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService.DoLoginV2Async*"></a>
 
-  <h3 id="BD_SteamClient8_Services_Abstractions_WebApi_ISteamAccountService_DoLoginV2Async_BD_SteamClient8_Models_WebApi_Logins_SteamLoginState_System_Threading_CancellationToken_" data-uid="BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService.DoLoginV2Async(BD.SteamClient8.Models.WebApi.Logins.SteamLoginState,System.Threading.CancellationToken)">
-  DoLoginV2Async(SteamLoginState, CancellationToken)
+  <h3 id="BD_SteamClient8_Services_Abstractions_WebApi_ISteamAccountService_DoLoginV2Async_BD_SteamClient8_Models_WebApi_Logins_SteamLoginState_System_Threading_CancellationToken_System_Boolean_System_Boolean_" data-uid="BD.SteamClient8.Services.Abstractions.WebApi.ISteamAccountService.DoLoginV2Async(BD.SteamClient8.Models.WebApi.Logins.SteamLoginState,System.Threading.CancellationToken,System.Boolean,System.Boolean)">
+  DoLoginV2Async(SteamLoginState, CancellationToken, bool, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8/Services/Abstractions/WebApi/ISteamAccountService.cs"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -205,7 +205,7 @@ Interface ISteamAccountService  <a class="header-action link-secondary" title="V
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default)</code></pre>
+    <pre><code class="lang-csharp hljs">Task&lt;ApiRspImpl&gt; DoLoginV2Async(SteamLoginState loginState, CancellationToken cancellationToken = default, bool rememberLogin = false, bool isSteamClientPlatform = false)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -214,6 +214,13 @@ Interface ISteamAccountService  <a class="header-action link-secondary" title="V
     <dd></dd>
     <dt><code>cancellationToken</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></dt>
     <dd></dd>
+    <dt><code>rememberLogin</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>是否记住登录信息，颁发的 refreshToken 有效期较长</p>
+</dd>
+    <dt><code>isSteamClientPlatform</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>if is <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> 将颁发可用于登录 Steam 客户端 和 web 的 token；
+默认 <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> 颁发适用于 mobile 和 web 的 token</p>
+</dd>
   </dl>
 
   <h4 class="section">Returns</h4>
