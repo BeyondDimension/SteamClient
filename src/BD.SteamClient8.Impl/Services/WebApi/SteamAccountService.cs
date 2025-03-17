@@ -176,6 +176,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
                     await JwtCheckDevice(cancellationToken);
                     loginState.RequiresEmailAuth = true;
                     loginState.Success = false;
+                    loginState.Email = result.AllowedConfirmations[0].AssociatedMessage;
                     return loginState.Message = "需要邮箱验证码";
                 }
             }
@@ -1089,6 +1090,25 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
         }
 
         return ApiRspHelper.Fail<bool?>();
+    }
+
+    /// <inheritdoc/>
+    public async Task<ApiRspImpl<PlayerSummariesResponse?>> GetPlayerSummaries(string webApiKey, ulong[] steam64Ids, CancellationToken cancellationToken = default)
+    {
+        using var sendArgs = new WebApiClientSendArgs(
+        string.Format(SteamApiUrls.STEAM_ACCOUNT_GET_PLAYSUMMARIES, webApiKey, string.Join(",", steam64Ids)))
+        {
+            Method = HttpMethod.Get,
+        };
+
+        var rsp = await SendAsync<PlayerSummariesResponse>(sendArgs, cancellationToken);
+
+        if (sendArgs.IsSuccessStatusCode)
+        {
+            return rsp;
+        }
+
+        return ApiRspHelper.Fail<PlayerSummariesResponse>();
     }
 
     #endregion Public Methods

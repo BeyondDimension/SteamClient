@@ -131,6 +131,7 @@ public static partial class SteamApiUrls
     public const string STEAM_ACCOUNT_ADD_FUNDS = $"{STEAM_STORE_URL}/steamaccount/addfunds?l=schinese";
     public const string STEAM_ACCOUNT_SENDGIFTHISTORIES = "https://steamcommunity.com/gifts/0/history/";
     public const string STEAM_ACCOUNT_GET_STEAMNOTIFICATION = "https://api.steampowered.com/ISteamNotificationService/GetSteamNotifications/v1?access_token={0}";
+    public const string STEAM_ACCOUNT_GET_PLAYSUMMARIES = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key={0}&steamids={1}";
 
     /// <summary>
     /// TradeOffer 交易报价 API

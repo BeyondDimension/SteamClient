@@ -15,6 +15,9 @@ namespace BD.SteamClient8.Models;
 [SystemTextJsonSerializable(typeof(SteamMiniProfile))]
 [SystemTextJsonSerializable(typeof(SteamRemoteFile))]
 [SystemTextJsonSerializable(typeof(SteamUser))]
+[SystemTextJsonSerializable(typeof(PlayerSummaries))]
+[SystemTextJsonSerializable(typeof(PlayerSummariesResponse))]
+[SystemTextJsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
 //// Idle
 [SystemTextJsonSerializable(typeof(AppCardsAvgPrice))]
 [SystemTextJsonSerializable(typeof(IdleBadge))]

@@ -153,4 +153,13 @@ public interface ISteamAccountService
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     Task<ApiRspImpl<bool?>> CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 获取账号基本信息
+    /// </summary>
+    /// <param name="webApiKey"></param>
+    /// <param name="steam64Ids"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<ApiRspImpl<PlayerSummariesResponse>> GetPlayerSummaries(string webApiKey, ulong[] steam64Ids, CancellationToken cancellationToken = default);
 }
