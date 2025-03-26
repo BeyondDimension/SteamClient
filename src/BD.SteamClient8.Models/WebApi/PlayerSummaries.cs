@@ -3,6 +3,13 @@ namespace BD.SteamClient8.Models.WebApi;
 public sealed record PlayerSummaries
 {
     /// <summary>
+    /// Steam64 Id
+    /// </summary>
+    [NewtonsoftJsonProperty("steamid")]
+    [SystemTextJsonProperty("steamid")]
+    public string SteamId { get; set; } = string.Empty;
+
+    /// <summary>
     /// 用户昵称
     /// </summary>
     [NewtonsoftJsonProperty("personaname")]
