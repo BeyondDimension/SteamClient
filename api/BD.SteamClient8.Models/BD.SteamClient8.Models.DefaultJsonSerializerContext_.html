@@ -108,6 +108,9 @@ Class DefaultJsonSerializerContext_  <a class="header-action link-secondary" tit
 [JsonSerializable(typeof(SteamMiniProfile))]
 [JsonSerializable(typeof(SteamRemoteFile))]
 [JsonSerializable(typeof(SteamUser))]
+[JsonSerializable(typeof(PlayerSummaries))]
+[JsonSerializable(typeof(PlayerSummariesResponse))]
+[JsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
 [JsonSerializable(typeof(AppCardsAvgPrice))]
 [JsonSerializable(typeof(IdleBadge))]
 [JsonSerializable(typeof(CardsMarketPrice))]
@@ -1952,6 +1955,38 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
 
 
 
+  <a id="BD_SteamClient8_Models_DefaultJsonSerializerContext__ListPlayerSummaries_" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.ListPlayerSummaries*"></a>
+
+  <h3 id="BD_SteamClient8_Models_DefaultJsonSerializerContext__ListPlayerSummaries" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.ListPlayerSummaries">
+  ListPlayerSummaries
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/artifacts/obj/BD.SteamClient8.Models/release_net9.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.ListPlayerSummaries.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;List&lt;PlayerSummaries&gt;&gt; ListPlayerSummaries { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.PlayerSummaries.html">PlayerSummaries</a>&gt;&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="BD_SteamClient8_Models_DefaultJsonSerializerContext__ListSteamApp_" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.ListSteamApp*"></a>
 
   <h3 id="BD_SteamClient8_Models_DefaultJsonSerializerContext__ListSteamApp" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.ListSteamApp">
@@ -2582,6 +2617,102 @@ public class DefaultJsonSerializerContext_ : JsonSerializerContext, IJsonTypeInf
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/BD.SteamClient8.Primitives/Enums/WebApi/PersonaState.cs">PersonaState</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummaries_" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummaries*"></a>
+
+  <h3 id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummaries" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummaries">
+  PlayerSummaries
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/artifacts/obj/BD.SteamClient8.Models/release_net9.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.PlayerSummaries.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;PlayerSummaries&gt; PlayerSummaries { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.PlayerSummaries.html">PlayerSummaries</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummariesDetail_" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummariesDetail*"></a>
+
+  <h3 id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummariesDetail" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummariesDetail">
+  PlayerSummariesDetail
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/artifacts/obj/BD.SteamClient8.Models/release_net9.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.PlayerSummariesDetail.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;PlayerSummariesResponse.PlayerSummariesDetail&gt; PlayerSummariesDetail { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.PlayerSummariesResponse.html">PlayerSummariesResponse</a>.<a class="xref" href="BD.SteamClient8.Models.WebApi.PlayerSummariesResponse.PlayerSummariesDetail.html">PlayerSummariesDetail</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummariesResponse_" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummariesResponse*"></a>
+
+  <h3 id="BD_SteamClient8_Models_DefaultJsonSerializerContext__PlayerSummariesResponse" data-uid="BD.SteamClient8.Models.DefaultJsonSerializerContext_.PlayerSummariesResponse">
+  PlayerSummariesResponse
+  <a class="header-action link-secondary" title="View source" href="https://github.com/BeyondDimension/SteamClient/blob/dev8/src/artifacts/obj/BD.SteamClient8.Models/release_net9.0/System.Text.Json.SourceGeneration/System.Text.Json.SourceGeneration.JsonSourceGenerator/DefaultJsonSerializerContext_.PlayerSummariesResponse.g.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Defines the source generated JSON serialization contract metadata for a given type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public JsonTypeInfo&lt;PlayerSummariesResponse&gt; PlayerSummariesResponse { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.serialization.metadata.jsontypeinfo-1">JsonTypeInfo</a>&lt;<a class="xref" href="BD.SteamClient8.Models.WebApi.PlayerSummariesResponse.html">PlayerSummariesResponse</a>&gt;</dt>
     <dd></dd>
   </dl>
 
