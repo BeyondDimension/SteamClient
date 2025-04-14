@@ -47,6 +47,10 @@ public partial class SteamIdleCardServiceImpl(
             using var sendArgs = new WebApiClientSendArgs(badges_url);
             sendArgs.SetHttpClient(steamSession.HttpClient!);
             var page = await SendAsync<string>(sendArgs, cancellationToken);
+
+            if (sendArgs.StatusCode == HttpStatusCode.Forbidden)
+                throw new HttpRequestException("需要家庭监护密码", null, sendArgs.StatusCode);
+
             using var document = await parser.ParseDocumentAsync(page.ThrowIsNull(), cancellationToken);
 
             var pageNodes = document.All.Where(x => x.ClassName == "pagelink");
