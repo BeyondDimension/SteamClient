@@ -40,7 +40,7 @@ public sealed partial class ModifiedApp : JsonModel<ModifiedApp>, IJsonSerialize
             OriginalData = originalData;
         }
 
-        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
+        using var memoryStream = Internals.M.GetStream();
         using BinaryWriter binaryWriter = new(memoryStream);
         binaryWriter.Write(app.ChangesData);
         binaryWriter.Flush();
@@ -84,7 +84,7 @@ public sealed partial class ModifiedApp : JsonModel<ModifiedApp>, IJsonSerialize
     {
         if (ChangesData != null)
         {
-            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(ChangesData);
+            using var memoryStream = Internals.M.GetStream(ChangesData);
             using BinaryReader reader = new BinaryReader(memoryStream);
             return Changes = reader.ReadPropertyTable();
         }
@@ -99,7 +99,7 @@ public sealed partial class ModifiedApp : JsonModel<ModifiedApp>, IJsonSerialize
     {
         if (OriginalData != null)
         {
-            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(OriginalData);
+            using var memoryStream = Internals.M.GetStream(OriginalData);
             using BinaryReader reader = new BinaryReader(memoryStream);
             return reader.ReadPropertyTable();
         }

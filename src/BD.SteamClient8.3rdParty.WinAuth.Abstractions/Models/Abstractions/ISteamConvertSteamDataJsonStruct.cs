@@ -1,5 +1,8 @@
 namespace BD.SteamClient8.WinAuth.Models.Abstractions;
 
+/// <summary>
+/// AddAuthenticatorAsync 令牌添加接口返回模型接口
+/// </summary>
 public interface ISteamConvertSteamDataJsonStruct
 {
     /// <summary>

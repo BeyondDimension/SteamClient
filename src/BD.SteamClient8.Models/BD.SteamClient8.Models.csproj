@@ -10,7 +10,7 @@
 	<!-- 👇 引用 NuGet 包 -->
 	<ItemGroup>
 		<PackageReference Include="Google.Protobuf" />
-		<PackageReference Include="Portable.BouncyCastle" />
+		<PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
 	</ItemGroup>
 
 	<Choose>
@@ -31,6 +31,7 @@
 		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.3rdParty.SteamKit2\BD.Common8.3rdParty.SteamKit2.csproj" />
 		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
 		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.3rdParty.WinAuth.Abstractions\BD.SteamClient8.3rdParty.WinAuth.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

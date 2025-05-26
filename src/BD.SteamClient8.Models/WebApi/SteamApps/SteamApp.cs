@@ -741,7 +741,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
         {
             int count = reader.ReadInt32();
             byte[] array = reader.ReadBytes(count);
-            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(array);
+            using var memoryStream = Internals.M.GetStream(array);
             using BinaryReader binaryReader = new(memoryStream, Encoding.UTF8, true);
             app._stuffBeforeHash = binaryReader.ReadBytes(16);
             binaryReader.ReadBytes(20);
@@ -783,7 +783,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)AppId);
-        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
+        using var memoryStream = Internals.M.GetStream();
         using BinaryWriter binaryWriter = new BinaryWriter(memoryStream, Encoding.UTF8, true);
         binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);

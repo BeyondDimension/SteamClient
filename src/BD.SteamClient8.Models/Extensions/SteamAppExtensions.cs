@@ -303,7 +303,7 @@ static partial class SteamAppExtensions
         {
             int count = reader.ReadInt32();
             byte[] array = reader.ReadBytes(count);
-            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(array);
+            using var memoryStream = Internals.M.GetStream(array);
             using BinaryReader binaryReader = new(memoryStream);
             app._stuffBeforeHash = binaryReader.ReadBytes(16);
             binaryReader.ReadBytes(20);
@@ -348,7 +348,7 @@ static partial class SteamAppExtensions
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)steamApp.AppId);
-        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
+        using var memoryStream = Internals.M.GetStream();
         using BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
         binaryWriter.Write(steamApp._stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);

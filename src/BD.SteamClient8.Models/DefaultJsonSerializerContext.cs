@@ -101,7 +101,7 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
-public partial class DefaultJsonSerializerContext_ : JsonSerializerContext
+public sealed partial class DefaultJsonSerializerContext_ : JsonSerializerContext
 {
     static DefaultJsonSerializerContext_()
     {

@@ -1,28 +1,11 @@
-using BD.Common8.Helpers;
-using BD.Common8.Http.ClientFactory.Models;
-using BD.Common8.Http.ClientFactory.Services;
-using BD.Common8.Models;
-using BD.SteamClient8.Models.WinAuth;
-using Microsoft.Extensions.Logging;
 using System.Extensions;
 using System.Net;
 using System.Net.Http.Headers;
-using System.Text;
 
-namespace BD.SteamClient8.WinAuth;
+namespace BD.SteamClient8.Services.WinAuth;
 
-/// <summary>
-/// Initializes a new instance of the <see cref="BattleNetAuthenticatorNetServiceImpl"/> class.
-/// </summary>
-/// <param name="serviceProvider"></param>
-/// <param name="loggerFactory"></param>
-sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvider, ILoggerFactory loggerFactory) : WebApiClientFactoryService(loggerFactory.CreateLogger(TAG), serviceProvider), BattleNetAuthenticator.IAuthenticatorNetService
+partial class AuthenticatorNetServiceImpl
 {
-    const string TAG = "BattleNetAuthenticatorNetService";
-
-    /// <inheritdoc/>
-    protected override string ClientName => TAG;
-
     async Task<(HttpStatusCode statusCode, byte[]? responseData)> ReadAsByteArrayAsync(HttpRequestMessage req, int size, CancellationToken cancellationToken = default)
     {
         var client = CreateClient();
@@ -40,7 +23,7 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
             return (rsp.StatusCode, null); // 返回 null 表示请求的内容长度超过了预期的大小
         }
 
-        var rspContent = rsp.Content.ReadAsStream(cancellationToken);
+        var rspContent = await rsp.Content.ReadAsStreamAsync(cancellationToken);
         byte[] responseData = new byte[size];
         int n = rspContent.Read(responseData);
         if (n != size)

@@ -1,5 +1,6 @@
 using BD.Common8.Models.Abstractions;
 using BD.SteamClient8.Models.Converters;
+using BD.SteamClient8.WinAuth.Models.Abstractions;
 using System.Text.Json.Serialization;
 
 namespace BD.SteamClient8.Models.WebApi.Authenticators;
@@ -85,7 +86,8 @@ public sealed class SteamDoLoginFinalizeResponseJsonStruct : JsonModel<SteamDoLo
     /// 服务器时间
     /// </summary>
     [global::System.Text.Json.Serialization.JsonPropertyName("server_time")]
-    public string ServerTime { get; set; } = string.Empty;
+    [global::System.Text.Json.Serialization.JsonConverter(typeof(SteamDataInt64Converter))]
+    public long ServerTime { get; set; }
 
     /// <summary>
     /// 是否成功
@@ -103,7 +105,7 @@ public sealed class SteamDoLoginFinalizeResponseJsonStruct : JsonModel<SteamDoLo
 /// <summary>
 /// <see cref="SteamDoLoginTfaJsonStruct.Response"/> 返回详细信息
 /// </summary>
-public sealed class SteamConvertSteamDataJsonStruct : JsonModel<SteamConvertSteamDataJsonStruct>, IJsonSerializerContext
+public sealed class SteamConvertSteamDataJsonStruct : JsonModel<SteamConvertSteamDataJsonStruct>, IJsonSerializerContext, ISteamConvertSteamDataJsonStruct
 {
     /// <inheritdoc/>
     static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;

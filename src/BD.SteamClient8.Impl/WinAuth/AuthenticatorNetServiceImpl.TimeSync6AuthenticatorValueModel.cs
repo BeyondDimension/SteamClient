@@ -1,25 +1,11 @@
-using BD.Common8.Http.ClientFactory.Services;
-using BD.Common8.Models;
-using BD.SteamClient8.Models.WinAuth;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics.CodeAnalysis;
 using System.Extensions;
 using System.Net;
 
-namespace BD.SteamClient8.WinAuth;
+namespace BD.SteamClient8.Services.WinAuth;
 
-/// <summary>
-/// Initializes a new instance of the <see cref="GoogleAuthenticatorNetServiceImpl"/> class.
-/// </summary>
-/// <param name="serviceProvider"></param>
-/// <param name="loggerFactory"></param>
-sealed class GoogleAuthenticatorNetServiceImpl(IServiceProvider serviceProvider, ILoggerFactory loggerFactory) : WebApiClientFactoryService(loggerFactory.CreateLogger(TAG), serviceProvider), TimeSync6AuthenticatorValueModel.IAuthenticatorNetService
+partial class AuthenticatorNetServiceImpl
 {
-    const string TAG = "GoogleAuthenticatorNetService";
-
-    /// <inheritdoc/>
-    protected override string ClientName => TAG;
-
     async Task<(HttpStatusCode statusCode, DateTimeOffset? date)> GetDateTimeAsync(
         [StringSyntax("Uri")] string? requestUri,
         CancellationToken cancellationToken = default)

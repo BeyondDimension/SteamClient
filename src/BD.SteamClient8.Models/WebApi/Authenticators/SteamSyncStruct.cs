@@ -1,7 +1,7 @@
 using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Models.Converters;
 using System.Text.Json.Serialization;
-
-namespace BD.SteamClient8.WinAuth.Models;
+namespace BD.SteamClient8.Models.WebApi.Authenticators;
 
 /// <summary>
 /// TwoFAQueryTime 接口返回模型类
@@ -30,7 +30,8 @@ public sealed class SteamSyncResponseStruct : JsonModel<SteamSyncResponseStruct>
     /// 服务器时间 （秒）
     /// </summary>
     [global::System.Text.Json.Serialization.JsonPropertyName("server_time")]
-    public string ServerTime { get; set; } = string.Empty;
+    [global::System.Text.Json.Serialization.JsonConverter(typeof(SteamDataInt64Converter))]
+    public long ServerTime { get; set; }
 
     /// <summary>
     /// 允许的客户端与服务器时间最大偏差秒数  （秒）

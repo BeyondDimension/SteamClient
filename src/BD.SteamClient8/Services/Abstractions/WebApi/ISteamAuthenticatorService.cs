@@ -2,19 +2,18 @@ using BD.Common8.Models;
 using BD.SteamClient8.Models.Protobuf;
 using BD.SteamClient8.Models.WebApi.Authenticators;
 using BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber;
-using BD.SteamClient8.Models.WinAuth;
 
 namespace BD.SteamClient8.Services.Abstractions.WebApi;
 
 /// <summary>
 /// Steam 令牌服务
 /// </summary>
-public interface ISteamAuthenticatorService : SteamAuthenticator.IAuthenticatorNetService
+public interface ISteamAuthenticatorService
 {
     /// <summary>
     /// 获取当前服务实例
     /// </summary>
-    static new ISteamAuthenticatorService Instance => Ioc.Get<ISteamAuthenticatorService>();
+    static ISteamAuthenticatorService Instance => Ioc.Get<ISteamAuthenticatorService>();
 
     /// <summary>
     /// 添加令牌

@@ -19,7 +19,7 @@ public interface IAuthenticatorModel : IOrderAuthenticator
     string Name { get; set; }
 
     /// <summary>
-    /// 令牌平添
+    /// 令牌平台
     /// </summary>
     AuthenticatorPlatform Platform { get; }
 

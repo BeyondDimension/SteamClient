@@ -1,9 +1,10 @@
-using BD.SteamClient8.Models.WinAuth;
 using BD.SteamClient8.Services.Abstractions.PInvoke;
 using BD.SteamClient8.Services.Abstractions.WebApi;
 using BD.SteamClient8.Services.PInvoke;
 using BD.SteamClient8.Services.WebApi;
+using BD.SteamClient8.Services.WinAuth;
 using BD.SteamClient8.WinAuth;
+using BD.SteamClient8.WinAuth.Services.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Net.Http.Headers;
@@ -98,7 +99,6 @@ public static partial class ServiceCollectionExtensions
     {
         services.TryAddSingleton<ISteamSessionService, SteamSessionServiceImpl>();
         services.TryAddSingleton<ISteamAuthenticatorService, SteamAuthenticatorServiceImpl>();
-        services.TryAddSingleton<SteamAuthenticator.IAuthenticatorNetService>(static s => s.GetRequiredService<ISteamAuthenticatorService>());
         return services;
     }
 
@@ -123,10 +123,7 @@ public static partial class ServiceCollectionExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static IServiceCollection AddAuthenticatorNetService(this IServiceCollection services)
     {
-        services.TryAddSingleton<BattleNetAuthenticator.IAuthenticatorNetService,
-            BattleNetAuthenticatorNetServiceImpl>();
-        services.TryAddSingleton<GoogleAuthenticator.IAuthenticatorNetService,
-            GoogleAuthenticatorNetServiceImpl>();
+        services.TryAddSingleton<IAuthenticatorNetService, AuthenticatorNetServiceImpl>();
         return services;
     }
 }
