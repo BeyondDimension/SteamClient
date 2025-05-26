@@ -1,17 +1,15 @@
 #if !(IOS || ANDROID)
-using static System.String2;
+using BD.Common8.Models;
+using BD.SteamClient8.Enums.WebApi;
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Enums.WebApi.SteamGridDB;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
 
 namespace BD.SteamClient8.Services.Abstractions.PInvoke;
 
 partial interface ISteamService
 {
-    protected const string url_localhost_auth_public = Prefix_HTTP + "127.0.0.1:27060/auth/?u=public";
-    const string url_steamcommunity_ = "steamcommunity.com";
-    const string url_store_steampowered_ = "store.steampowered.com";
-    const string url_steamcommunity = Prefix_HTTPS + url_steamcommunity_;
-    const string url_store_steampowered = Prefix_HTTPS + url_store_steampowered_;
-    const string url_store_steampowered_checkclientautologin = url_store_steampowered + "/login/checkclientautologin";
-    const string url_steamcommunity_checkclientautologin = url_steamcommunity + "/login/checkclientautologin";
     static readonly Uri uri_store_steampowered_checkclientautologin = new(url_store_steampowered_checkclientautologin);
 
     /// <summary>
@@ -172,27 +170,5 @@ partial interface ISteamService
     /// 结束监听 Steam 下载
     /// </summary>
     Task<ApiRspImpl> StopWatchSteamDownloading(CancellationToken cancellationToken = default);
-
-    /// <summary>
-    /// 从任意文本中匹配批量提取 SteamKey
-    /// </summary>
-    /// <param name="source"></param>
-    /// <returns></returns>
-    static IEnumerable<string> ExtractKeysFromString(string source)
-    {
-        var m = ExtractKeysFromStringRegex().Matches(source);
-        var keys = new List<string>();
-        if (m.Count > 0)
-        {
-            foreach (Match v in m.Cast<Match>())
-            {
-                keys.Add(v.Value);
-            }
-        }
-        return keys!;
-    }
-
-    [GeneratedRegex("([0-9A-Z]{5})(?:\\-[0-9A-Z]{5}){2,4}", RegexOptions.IgnoreCase | RegexOptions.Singleline)]
-    private static partial Regex ExtractKeysFromStringRegex();
 }
 #endif

@@ -1,4 +1,10 @@
 #if !(IOS || ANDROID)
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using System.Runtime.CompilerServices;
+using System.Text;
+using SDColor = System.Drawing.Color;
+
 namespace BD.SteamClient8.Models.Extensions;
 
 public static partial class BinaryReaderExtensions
@@ -105,7 +111,8 @@ public static partial class BinaryReaderExtensions
                     writer.Write(color);
                     break;
                 default:
-                    throw new NotImplementedException("The value type " + property.PropertyType.ToString() + " has not been implemented.");
+                    throw new NotImplementedException(
+                        $"The value type {property.PropertyType} has not been implemented.");
             }
         }
         writer.Write((byte)8);
@@ -136,7 +143,8 @@ public static partial class BinaryReaderExtensions
                 SteamAppPropertyType.Uint64 => reader.ReadUInt64(),
                 SteamAppPropertyType.Float => reader.ReadSingle(),
                 SteamAppPropertyType.Color => reader.ReadColor(),
-                _ => throw new NotImplementedException("The property type " + propertyType.ToString() + " has not been implemented."),
+                _ => throw new NotImplementedException(
+                    $"The property type {propertyType} has not been implemented."),
             }, name: name, type: propertyType);
         }
         return propertyTable;

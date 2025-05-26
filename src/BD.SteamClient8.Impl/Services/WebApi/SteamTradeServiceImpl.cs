@@ -1,3 +1,26 @@
+using AngleSharp.Html.Parser;
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi.Trades;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Models.WebApi.Trades;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
+using System.Collections.Specialized;
+using System.Extensions;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Web;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -22,8 +45,11 @@ public sealed partial class SteamTradeServiceImpl(
     protected override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     readonly ConcurrentDictionary<string, CancellationTokenSource> _tasks = new();
 
@@ -33,49 +59,64 @@ public sealed partial class SteamTradeServiceImpl(
 
     #region Tasks 后台任务
 
+    readonly Lock lockStartTradeTaskSync = new();
+
     /// <inheritdoc/>
-    public async Task<ApiRspImpl> StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
+    public ApiRspImpl StartTradeTaskSync(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
     {
         if (!cancellationToken.IsCancellationRequested)
         {
-            await Task.CompletedTask;
-            try
+            lock (lockStartTradeTaskSync)
             {
-                var taskName = $"{steam_id}_{tradeTaskEnum}";
-                if (!_tasks.ContainsKey(taskName))
+                try
                 {
-                    Action action;
-                    switch (tradeTaskEnum)
+                    var taskName = $"{steam_id}_{tradeTaskEnum}";
+                    if (!_tasks.ContainsKey(taskName))
                     {
-                        case TradeTaskEnum.None:
-                            return ApiRspHelper.Fail();
-                        case TradeTaskEnum.AutoAcceptGitTrade:
-                            action = async () => { await AcceptAllGiftTradeOfferAsync(steam_id); };
-                            break;
-                        default:
-                            return ApiRspHelper.Fail();
+                        Action action;
+                        switch (tradeTaskEnum)
+                        {
+                            case TradeTaskEnum.None:
+                                return ApiRspHelper.Fail();
+                            case TradeTaskEnum.AutoAcceptGitTrade:
+                                action = async () =>
+                                {
+                                    await AcceptAllGiftTradeOfferAsync(steam_id);
+                                };
+                                break;
+                            default:
+                                return ApiRspHelper.Fail();
+                        }
+                        var cancellationTokenSource = new CancellationTokenSource();
+                        _tasks.TryAdd(taskName, cancellationTokenSource);
+                        Task2.InBackground(() =>
+                        {
+                            RunTask(action, interval, cancellationTokenSource.Token);
+                        }, longRunning: true);
+                        return ApiRspHelper.Ok();
                     }
-                    var cancellationTokenSource = new CancellationTokenSource();
-                    _tasks.TryAdd(taskName, cancellationTokenSource);
-                    _ = Task.Run(() => RunTask(action, interval, cancellationTokenSource.Token), CancellationToken.None);
-                    return ApiRspHelper.Ok();
+                }
+                catch (Exception ex)
+                {
+                    return ApiRspHelper.Exception(ex);
                 }
             }
-            catch (Exception ex)
-            {
-                return ApiRspHelper.Exception(ex);
-            }
         }
-        await Task.FromCanceled(cancellationToken);
         return ApiRspHelper.Fail();
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
+    public Task<ApiRspImpl> StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
+    {
+        var result = StartTradeTaskSync(steam_id, interval, tradeTaskEnum, cancellationToken);
+        return Task.FromResult(result);
+    }
+
+    /// <inheritdoc/>
+    public ApiRspImpl StopTaskSync(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
     {
         if (!cancellationToken.IsCancellationRequested)
         {
-            await Task.CompletedTask;
             try
             {
                 var taskName = $"{steam_id}_{tradeTaskEnum}";
@@ -91,9 +132,16 @@ public sealed partial class SteamTradeServiceImpl(
                 return ApiRspHelper.Exception(ex);
             }
         }
-        await Task.FromCanceled(cancellationToken);
         return ApiRspHelper.Fail();
     }
+
+    /// <inheritdoc/>
+    public Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default)
+    {
+        var result = StopTaskSync(steam_id, tradeTaskEnum, cancellationToken);
+        return Task.FromResult(result);
+    }
+
     #endregion
 
     #region Trade 交易报价
@@ -225,7 +273,7 @@ public sealed partial class SteamTradeServiceImpl(
         var json = await SendAsync<string>(sendArgs, cancellationToken);
 
         using var document = JsonDocument.Parse(json.ThrowIsNull());
-        return SystemTextJsonSerializer.Deserialize(document.RootElement
+        return JsonSerializer.Deserialize(document.RootElement
             .GetProperty("response")
             .GetProperty("offer"), DefaultJsonSerializerContext_.Default.TradeOffersInfo);
     }
@@ -465,7 +513,7 @@ public sealed partial class SteamTradeServiceImpl(
             {
                 foreach (var conf in confs.EnumerateArray())
                 {
-                    var confirmation = SystemTextJsonSerializer.Deserialize(conf, DefaultJsonSerializerContext_.Default.TradeConfirmation);
+                    var confirmation = JsonSerializer.Deserialize(conf, DefaultJsonSerializerContext_.Default.TradeConfirmation);
                     if (confirmation is not null)
                         confirmations.Add(confirmation);
                 }
@@ -552,7 +600,7 @@ public sealed partial class SteamTradeServiceImpl(
         if (string.IsNullOrEmpty(html))
             throw new ArgumentException("获取报价图片响应错误");
 
-        // 解析html
+        // 解析 html
         var parser = new HtmlParser();
         var document = await parser.ParseDocumentAsync(html, cancellationToken);
 
@@ -677,7 +725,7 @@ public sealed partial class SteamTradeServiceImpl(
 
     #region Tasks 后台任务
 
-    static async Task RunTask(Action action, TimeSpan interval, CancellationToken cancellationToken)
+    async void RunTask(Action action, TimeSpan interval, CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)
         {
@@ -685,11 +733,21 @@ public sealed partial class SteamTradeServiceImpl(
             {
                 // 执行后台任务
                 action();
+
+                // 等待指定的时间间隔
                 await Task.Delay(interval, cancellationToken);
+            }
+            catch (ObjectDisposedException)
+            {
+                return;
+            }
+            catch (OperationCanceledException)
+            {
+                return;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception occurred in background task: {ex.Message}");
+                logger.LogError(ex, "Exception occurred in background task.");
             }
         }
     }
@@ -769,7 +827,7 @@ public sealed partial class SteamTradeServiceImpl(
                 Ready = false,
             },
         };
-        var result = SystemTextJsonSerializer.Serialize(offer, SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_.Default.TradeOffer);
+        var result = JsonSerializer.Serialize(offer, SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_.Default.TradeOffer);
         return result;
     }
 
@@ -866,10 +924,21 @@ public sealed partial class SteamTradeServiceImpl(
     #endregion
 }
 
-[SystemTextJsonSerializable(typeof(SteamTradeServiceImpl.TradeOffer))]
+[JsonSerializable(typeof(SteamTradeServiceImpl.TradeOffer))]
 [JsonSourceGenerationOptions(
     PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
     AllowTrailingCommas = true)]
-sealed partial class SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_ : SystemTextJsonSerializerContext
+sealed partial class SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_ : JsonSerializerContext
 {
+    static SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_()
+    {
+        // https://github.com/dotnet/runtime/issues/94135
+        s_defaultOptions = new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 不转义字符！！！
+            PropertyNamingPolicy = global::System.Text.Json.JsonNamingPolicy.CamelCase,
+            AllowTrailingCommas = true,
+        };
+        Default = new SteamTradeServiceImpl_TradeOffer_JsonSerializerContext_(new JsonSerializerOptions(s_defaultOptions));
+    }
 }

@@ -20,6 +20,9 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+using System.Runtime.InteropServices;
+
 namespace SAM.API.Wrappers;
 
 public class SteamUserStats011 : NativeWrapper<ISteamUserStats007>

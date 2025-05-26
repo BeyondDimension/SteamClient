@@ -1,44 +1,50 @@
+using BD.Common8.Models.Abstractions;
+using System.Text.Json;
+
 namespace BD.SteamClient8.Models.WebApi.Profiles;
 
 /// <summary>
 /// 用户游戏库存信息返回
 /// </summary>
-public sealed record class InventoryPageResponse
+public sealed record class InventoryPageResponse : JsonRecordModel<InventoryPageResponse>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 更多项
     /// </summary>
-    [SystemTextJsonProperty("more_items")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("more_items")]
     public int? MoreItems { get; set; }
 
     /// <summary>
     /// 最后一个库存资产 Id
     /// </summary>
-    [SystemTextJsonProperty("last_assetid")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("last_assetid")]
     public string LastAssetId { get; set; } = string.Empty;
 
     /// <summary>
     /// 总共库存资产数量
     /// </summary>
-    [SystemTextJsonProperty("total_inventory_count")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("total_inventory_count")]
     public int TotalInventoryCount { get; set; }
 
     /// <summary>
     /// 是否成功
     /// </summary>
-    [SystemTextJsonProperty("success")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("success")]
     public int Success { get; set; }
 
     /// <summary>
     /// 资产列表
     /// </summary>
-    [SystemTextJsonProperty("assets")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("assets")]
     public ProfileInventoryAsset[]? Assets { get; set; }
 
     /// <summary>
     /// 资产描述
     /// </summary>
-    [SystemTextJsonProperty("descriptions")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("descriptions")]
     public ProfileInventoryAssetDescription[]? Descriptions { get; set; }
 
     /// <summary>
@@ -51,12 +57,16 @@ public sealed record class InventoryPageResponse
     /// <param name="InstanceId"></param>
     /// <param name="Amount"></param>
     public record class ProfileInventoryAsset(
-        [property: SystemTextJsonProperty("appid")] int AppId,
-        [property: SystemTextJsonProperty("contextid")] string ContextId,
-        [property: SystemTextJsonProperty("assetid")] string AssetId,
-        [property: SystemTextJsonProperty("classid")] string ClassId,
-        [property: SystemTextJsonProperty("instanceid")] string InstanceId,
-        [property: SystemTextJsonProperty("amount")] string Amount);
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("appid")] int AppId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("contextid")] string ContextId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("assetid")] string AssetId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("classid")] string ClassId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("instanceid")] string InstanceId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("amount")] string Amount) : JsonRecordModel<ProfileInventoryAsset>, IJsonSerializerContext
+    {
+        /// <inheritdoc/>
+        static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+    }
 
     /// <summary>
     /// 个人库存资产描述信息
@@ -73,23 +83,26 @@ public sealed record class InventoryPageResponse
     /// <param name="MarketHashName">市场唯一名称(市场主页使用该名称作为路由地址)</param>
     /// <param name="IconUrl">图标(需加上 Steam CDN 域名访问)</param>
     public record class ProfileInventoryAssetDescription(
-        [property: SystemTextJsonProperty("appid")] int AppId,
-        [property: SystemTextJsonProperty("contextid")] string ContextId,
-        [property: SystemTextJsonProperty("assetid")] string AssetId,
-        [property: SystemTextJsonProperty("classid")] string ClassId,
-        [property: SystemTextJsonProperty("instanceid")] string InstanceId,
-        [property: SystemTextJsonProperty("tradable")] int Tradable,
-        [property: SystemTextJsonProperty("marketable")] int Marketable,
-        [property: SystemTextJsonProperty("name")] string Name,
-        [property: SystemTextJsonProperty("market_name")] string MarketName,
-        [property: SystemTextJsonProperty("market_hash_name")] string MarketHashName,
-        [property: SystemTextJsonProperty("icon_url")] string IconUrl)
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("appid")] int AppId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("contextid")] string ContextId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("assetid")] string AssetId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("classid")] string ClassId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("instanceid")] string InstanceId,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("tradable")] int Tradable,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("marketable")] int Marketable,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("name")] string Name,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("market_name")] string MarketName,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("market_hash_name")] string MarketHashName,
+        [property: global::System.Text.Json.Serialization.JsonPropertyName("icon_url")] string IconUrl) : JsonRecordModel<ProfileInventoryAssetDescription>, IJsonSerializerContext
     {
+        /// <inheritdoc/>
+        static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
         /// <summary>
         /// 未设置得属性字典
         /// </summary>
-        [SystemTextJsonIgnore]
-        [SystemTextJsonExtensionData]
+        [global::System.Text.Json.Serialization.JsonIgnore]
+        [global::System.Text.Json.Serialization.JsonExtensionData]
         public Dictionary<string, JsonElement> UnunsedProperties { get; set; } = [];
     }
 }

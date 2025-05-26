@@ -1,3 +1,19 @@
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi.SteamGridDB;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.SteamGridDB;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -7,11 +23,9 @@ namespace BD.SteamClient8.Services.WebApi;
 /// 初始化 <see cref="SteamGridDBWebApiServiceImpl"/> 类的新实例
 /// </remarks>
 /// <param name="serviceProvider"></param>
-/// <param name="http_helper"></param>
 /// <param name="loggerFactory"></param>
 class SteamGridDBWebApiServiceImpl(
     IServiceProvider serviceProvider,
-    IHttpPlatformHelperService http_helper,
     ILoggerFactory loggerFactory) : WebApiClientFactoryService(
         loggerFactory.CreateLogger(TAG),
         serviceProvider), ISteamGridDBWebApiServiceImpl
@@ -22,10 +36,13 @@ class SteamGridDBWebApiServiceImpl(
     protected override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
-    private readonly IHttpPlatformHelperService http_helper = http_helper;
+    protected virtual string? ApiKey => ISteamGridDBWebApiServiceImpl.ApiKey;
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
@@ -33,7 +50,7 @@ class SteamGridDBWebApiServiceImpl(
         try
         {
             var client = CreateClient();
-            var apiKeySteamGridDB = ISteamGridDBWebApiServiceImpl.ApiKey;
+            var apiKeySteamGridDB = ApiKey;
             apiKeySteamGridDB.ThrowIsNull();
 
             using var sendArgs = new WebApiClientSendArgs(requestUri)

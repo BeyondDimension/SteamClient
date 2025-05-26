@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
 /// <see cref="SteamApp"/> Detail
 /// </summary>
-public sealed class SteamAppInfo
+public sealed class SteamAppInfo : JsonModel<SteamAppInfo>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     public string? ClientIcon { get; set; }
 
     public string? ClientTga { get; set; }

@@ -1,12 +1,15 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.Converters;
 
 /// <summary>
 /// Steam API 数据 <see cref="JsonTokenType.String"/> => <see cref="int"/>
 /// </summary>
-public sealed class SteamDataInt32Converter : System.Text.Json.Serialization.JsonConverter<int>
+public sealed class SteamDataInt32Converter : global::System.Text.Json.Serialization.JsonConverter<int>
 {
     /// <inheritdoc/>
-    public override int Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public sealed override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         if (reader.TokenType == JsonTokenType.String && int.TryParse(reader.GetString(), out int value))
         {
@@ -21,7 +24,7 @@ public sealed class SteamDataInt32Converter : System.Text.Json.Serialization.Jso
     }
 
     /// <inheritdoc/>
-    public override void Write(Utf8JsonWriter writer, int value, SystemTextJsonSerializerOptions options)
+    public sealed override void Write(Utf8JsonWriter writer, int value, JsonSerializerOptions options)
     {
         writer.WriteNumberValue(value);
     }

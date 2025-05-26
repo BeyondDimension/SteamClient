@@ -1,3 +1,8 @@
+using Microsoft.Win32;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+using System.Text;
+
 namespace BD.SteamClient8.Services.Abstractions.PInvoke;
 
 partial interface ISteamService
@@ -16,7 +21,7 @@ partial interface ISteamService
         {
             try
             {
-                var path_splits = s.Split(new[] { '/', '\\' }, StringSplitOptions.RemoveEmptyEntries); // 按分隔符切割数组
+                var path_splits = s.Split(['/', '\\'], StringSplitOptions.RemoveEmptyEntries); // 按分隔符切割数组
                 StringBuilder builder = new();
                 bool pathExists = true;
                 for (int i = 0; i < path_splits.Length; i++) // 循环路径数组
@@ -89,7 +94,7 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string?> _SteamDirPath = new(GetSteamDirPath);
+    private static Lazy<string?> _SteamDirPath = new(GetSteamDirPath, true);
 
     /// <summary>
     /// Steam 文件夹目录
@@ -122,7 +127,7 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string?> _SteamProgramPath = new(GetSteamProgramPath);
+    private static Lazy<string?> _SteamProgramPath = new(GetSteamProgramPath, true);
 
     /// <summary>
     /// Steam 程序的路径
@@ -140,7 +145,7 @@ partial interface ISteamService
 #endif
     }
 
-    private static Lazy<string?> _RegistryVdfPath = new(GetRegistryVdfPath);
+    private static Lazy<string?> _RegistryVdfPath = new(GetRegistryVdfPath, true);
 
     /// <summary>
     /// 注册表信息文件的路径

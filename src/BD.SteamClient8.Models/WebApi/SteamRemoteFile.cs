@@ -1,11 +1,16 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// Steam 同步文件
 /// </summary>
-[MP2Obj(MP2SerializeLayout.Sequential)]
-public sealed partial record class SteamRemoteFile
+[global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Sequential)]
+public sealed partial record class SteamRemoteFile : JsonRecordModel<SteamRemoteFile>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 名称
     /// </summary>
@@ -31,19 +36,15 @@ public sealed partial record class SteamRemoteFile
     /// </summary>
     public DateTimeOffset Timestamp { get; }
 
-#if !(IOS || ANDROID)
-
     /// <summary>
     /// 系统平台
     /// </summary>
-    public SteamKit2ERemoteStoragePlatform SyncPlatforms { get; set; }
-
-#endif
+    public global::SteamKit2.ERemoteStoragePlatform SyncPlatforms { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SteamRemoteFile"/> class.
     /// </summary>
-    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
+    [global::MessagePack.SerializationConstructor, global::MemoryPack.MemoryPackConstructor, global::System.Text.Json.Serialization.JsonConstructor]
     public SteamRemoteFile()
     {
     }

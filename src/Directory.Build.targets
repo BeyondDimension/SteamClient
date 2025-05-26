@@ -1,19 +1,13 @@
 <Project>
-	<PropertyGroup>
-		<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
-		<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
-	</PropertyGroup>
-
 	<!-- 👇 配置 NuGet 包生成 -->
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\GeneratePackage.props" />
+	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
 
-	<!-- 👇 SDK 配置 -->
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.SteamClient8.Sdk.Ref.Project.targets" />
-	<Import Project="$(MSBuildThisFileDirectory)Sdk\BD.SteamClient8.Sdk.targets" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.Sdk.Ref.Project.targets" />
-	<Import Project="$(Path_Submodule)Common\src\Sdk\BD.Common8.Sdk.targets" />
-
+	<!-- 👇 静态本机编译 & 剪裁 | AOT & Trimmable -->
+	<PropertyGroup Condition="!$(MSBuildProjectName.StartsWith('BD.Avalonia8.UnitTest')) AND !$(MSBuildProjectName.StartsWith('Tools.')) AND $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+		<IsTrimmable>true</IsTrimmable>
+		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>
+		<EnableAotAnalyzer>true</EnableAotAnalyzer>
+		<IsAotCompatible>true</IsAotCompatible>
+	</PropertyGroup>
 </Project>

@@ -20,6 +20,10 @@
  *    distribution.
  */
 
+using Microsoft.Win32.SafeHandles;
+using System.Runtime.InteropServices;
+using System.Text;
+
 namespace SAM.API;
 
 internal sealed class NativeStrings
@@ -36,10 +40,10 @@ internal sealed class NativeStrings
 
         protected override bool ReleaseHandle()
         {
-            if (handle != nint.Zero)
+            if (handle != IntPtr.Zero)
             {
                 Marshal.FreeHGlobal(handle);
-                handle = nint.Zero;
+                handle = IntPtr.Zero;
                 return true;
             }
 
@@ -51,7 +55,7 @@ internal sealed class NativeStrings
     {
         if (value == null)
         {
-            return new StringHandle(nint.Zero, true);
+            return new StringHandle(IntPtr.Zero, true);
         }
 
         var bytes = Encoding.UTF8.GetBytes(value);
@@ -93,7 +97,7 @@ internal sealed class NativeStrings
 
     public static unsafe string? PointerToString(nint nativeData)
     {
-        return PointerToString((sbyte*)nativeData.ToPointer());
+        return PointerToString((sbyte*)nativeData);
     }
 
     public static unsafe string? PointerToString(sbyte* bytes, int length)
@@ -127,6 +131,6 @@ internal sealed class NativeStrings
 
     public static unsafe string? PointerToString(nint nativeData, int length)
     {
-        return PointerToString((sbyte*)nativeData.ToPointer(), length);
+        return PointerToString((sbyte*)nativeData, length);
     }
 }

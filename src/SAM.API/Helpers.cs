@@ -1,3 +1,6 @@
+using System.Runtime.InteropServices;
+using System.Text;
+
 namespace SAM.API;
 
 internal static class Helpers
@@ -72,7 +75,7 @@ internal static class Helpers
         if (len == 0)
             return string.Empty;
 
-        return UTF8Encoding.UTF8.GetString((byte*)ptr, len);
+        return Encoding.UTF8.GetString((byte*)ptr, len);
     }
 
     /// <summary>

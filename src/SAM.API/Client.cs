@@ -20,6 +20,10 @@
  *    distribution.
  */
 
+using SAM.API.Types;
+using SAM.API.Wrappers;
+using System.Globalization;
+
 namespace SAM.API;
 
 public class Client : IDisposable
@@ -50,6 +54,18 @@ public class Client : IDisposable
 
     public static bool WriteSteamAppIdTxt { get; set; }
 
+    static string? GetProcessDirectoryPath(string? processPath)
+    {
+#if NET6_0_OR_GREATER
+        ArgumentNullException.ThrowIfNull(processPath);
+#else
+        if (processPath == null)
+            throw new ArgumentNullException(nameof(processPath));
+#endif
+        var processDirPath = Path.GetDirectoryName(processPath);
+        return processDirPath;
+    }
+
     public bool Initialize(long appId)
     {
         if (string.IsNullOrEmpty(Steam.GetInstallPath()) == true)
@@ -67,7 +83,20 @@ public class Client : IDisposable
 
                 if (Steam.Load() == false)
                 {
-                    steam_appid_file_path = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath)!, "steam_appid.txt");
+                    steam_appid_file_path = "steam_appid.txt";
+                    var processPath =
+#if NET6_0_OR_GREATER
+                        Environment.ProcessPath;
+#elif NETFRAMEWORK
+                        global::System.Windows.Forms.Application.ExecutablePath;
+#else
+                        global::System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+#endif
+                    var processDirPath = GetProcessDirectoryPath(processPath);
+                    if (processDirPath != null)
+                    {
+                        steam_appid_file_path = Path.Combine(processDirPath, steam_appid_file_path);
+                    }
                     File.WriteAllText(steam_appid_file_path, appId.ToString());
 
                     if (Steam.Load() == false)

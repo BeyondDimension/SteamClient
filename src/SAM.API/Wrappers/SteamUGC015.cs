@@ -20,6 +20,8 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+
 namespace SAM.API.Wrappers;
 
 public class SteamUGC015 : NativeWrapper<ISteamUGC015>

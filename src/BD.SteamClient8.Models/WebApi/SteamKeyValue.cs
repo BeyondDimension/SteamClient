@@ -1,3 +1,6 @@
+using System.Extensions;
+using System.Globalization;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
@@ -23,26 +26,45 @@ public sealed record class SteamKeyValue
     /// <summary>
     /// 键名
     /// </summary>
+    [global::System.Text.Json.Serialization.JsonPropertyName("name")]
     public string Name = "<root>";
 
     /// <summary>
     /// 键值类型
     /// </summary>
+    [global::System.Text.Json.Serialization.JsonPropertyName("type")]
     public SteamKeyValueType Type = SteamKeyValueType.None;
 
-    /// <summary>
-    /// 值
-    /// </summary>
-    public object? Value;
+    [global::System.Text.Json.Serialization.JsonPropertyName("string")]
+    [global::System.Text.Json.Serialization.JsonIgnore(Condition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public string? StringValue;
+
+    [global::System.Text.Json.Serialization.JsonPropertyName("int")]
+    [global::System.Text.Json.Serialization.JsonIgnore(Condition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public int? Int32Value;
+
+    [global::System.Text.Json.Serialization.JsonPropertyName("ulong")]
+    [global::System.Text.Json.Serialization.JsonIgnore(Condition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public ulong? UInt64Value;
+
+    [global::System.Text.Json.Serialization.JsonPropertyName("float")]
+    [global::System.Text.Json.Serialization.JsonIgnore(Condition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public float? SingleValue;
+
+    [global::System.Text.Json.Serialization.JsonPropertyName("uint")]
+    [global::System.Text.Json.Serialization.JsonIgnore(Condition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+    public uint? UInt32Value;
 
     /// <summary>
     /// 是否有效
     /// </summary>
+    [global::System.Text.Json.Serialization.JsonPropertyName("valid")]
     public bool Valid;
 
     /// <summary>
     /// 子集
     /// </summary>
+    [global::System.Text.Json.Serialization.JsonPropertyName("children")]
     public List<SteamKeyValue>? Children;
 
     /// <summary>
@@ -83,12 +105,12 @@ public sealed record class SteamKeyValue
             return defaultValue;
         }
 
-        if (Value == null)
+        if (StringValue == null)
         {
             return defaultValue;
         }
 
-        return Value.ToString();
+        return StringValue;
     }
 
     /// <summary>
@@ -107,28 +129,29 @@ public sealed record class SteamKeyValue
         {
             case SteamKeyValueType.String:
             case SteamKeyValueType.WideString:
+                if (int.TryParse(StringValue, out var value))
                 {
-                    if (int.TryParse(Value?.ToString(), out int value) == false)
-                    {
-                        return defaultValue;
-                    }
                     return value;
                 }
-
+                break;
             case SteamKeyValueType.Int32:
+                if (Int32Value.HasValue)
                 {
-                    return (int)Value!;
+                    return Int32Value.Value;
                 }
-
+                break;
             case SteamKeyValueType.Float32:
+                if (SingleValue.HasValue)
                 {
-                    return (int)(float)Value!;
+                    return (int)SingleValue.Value;
                 }
-
+                break;
             case SteamKeyValueType.UInt64:
+                if (UInt64Value.HasValue)
                 {
-                    return (int)((ulong)Value! & 0xFFFFFFFF);
+                    return (int)(UInt64Value.Value & 0xFFFFFFFF);
                 }
+                break;
         }
 
         return defaultValue;
@@ -150,28 +173,29 @@ public sealed record class SteamKeyValue
         {
             case SteamKeyValueType.String:
             case SteamKeyValueType.WideString:
+                if (float.TryParse(StringValue, out var value))
                 {
-                    if (float.TryParse(Value?.ToString(), out float value) == false)
-                    {
-                        return defaultValue;
-                    }
                     return value;
                 }
-
+                break;
             case SteamKeyValueType.Int32:
+                if (Int32Value.HasValue)
                 {
-                    return (int)Value!;
+                    return Int32Value.Value;
                 }
-
+                break;
             case SteamKeyValueType.Float32:
+                if (SingleValue.HasValue)
                 {
-                    return (float)Value!;
+                    return SingleValue.Value;
                 }
-
+                break;
             case SteamKeyValueType.UInt64:
+                if (UInt64Value.HasValue)
                 {
-                    return (ulong)Value! & 0xFFFFFFFF;
+                    return (ulong)UInt64Value.Value & 0xFFFFFFFF;
                 }
+                break;
         }
 
         return defaultValue;
@@ -193,28 +217,36 @@ public sealed record class SteamKeyValue
         {
             case SteamKeyValueType.String:
             case SteamKeyValueType.WideString:
+                if (!string.IsNullOrWhiteSpace(StringValue))
                 {
-                    if (int.TryParse(Value?.ToString(), out int value) == false)
+                    if (short.TryParse(StringValue, out var value))
                     {
-                        return defaultValue;
+                        return value != 0;
                     }
-                    return value != 0;
+                    else if (bool.TryParse(StringValue, out var boolValue))
+                    {
+                        return boolValue;
+                    }
                 }
-
+                break;
             case SteamKeyValueType.Int32:
+                if (Int32Value.HasValue)
                 {
-                    return ((int)Value!) != 0;
+                    return Int32Value.Value != 0;
                 }
-
+                break;
             case SteamKeyValueType.Float32:
+                if (SingleValue.HasValue)
                 {
-                    return ((int)(float)Value!) != 0;
+                    return (int)SingleValue.Value != 0;
                 }
-
+                break;
             case SteamKeyValueType.UInt64:
+                if (UInt64Value.HasValue)
                 {
-                    return ((ulong)Value!) != 0;
+                    return UInt64Value.Value != 0;
                 }
+                break;
         }
 
         return defaultValue;
@@ -239,7 +271,7 @@ public sealed record class SteamKeyValue
         return string.Format(CultureInfo.CurrentCulture,
             "{0} = {1}",
             Name,
-            Value);
+            AsString(string.Empty));
     }
 
     /// <summary>
@@ -308,7 +340,7 @@ public sealed record class SteamKeyValue
                     case SteamKeyValueType.String:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadStringUnicode();
+                            current.StringValue = input.ReadStringUnicode();
                             break;
                         }
 
@@ -320,35 +352,35 @@ public sealed record class SteamKeyValue
                     case SteamKeyValueType.Int32:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadValueS32();
+                            current.Int32Value = input.ReadValueS32();
                             break;
                         }
 
                     case SteamKeyValueType.UInt64:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadValueU64();
+                            current.UInt64Value = input.ReadValueU64();
                             break;
                         }
 
                     case SteamKeyValueType.Float32:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadValueF32();
+                            current.SingleValue = input.ReadValueF32();
                             break;
                         }
 
                     case SteamKeyValueType.Color:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadValueU32();
+                            current.UInt32Value = input.ReadValueU32();
                             break;
                         }
 
                     case SteamKeyValueType.Pointer:
                         {
                             current.Valid = true;
-                            current.Value = input.ReadValueU32();
+                            current.UInt32Value = input.ReadValueU32();
                             break;
                         }
 

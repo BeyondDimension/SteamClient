@@ -1,10 +1,16 @@
+using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.WebApi.Idles;
 
 /// <summary>
 /// 用户 Idle 信息
 /// </summary>
-public sealed record class UserIdleInfo
+public sealed record class UserIdleInfo : JsonRecordModel<SteamCard>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 用户昵称
     /// </summary>

@@ -1,4 +1,13 @@
-#if !(IOS || ANDROID)
+#if !(IOS || ANDROID || MACCATALYST)
+using BD.Common8.Helpers;
+using BD.Common8.Models;
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.PInvoke;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+using System.Extensions;
+using System.Runtime.CompilerServices;
 using static BD.SteamClient8.Services.Abstractions.PInvoke.ISteamworksLocalApiService;
 using SAMAPIClient = SAM.API.Client;
 using UserStatsReceivedCallback = SAM.API.Callbacks.UserStatsReceived;
@@ -23,7 +32,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         if (!IsSupported)
             return;
 
-        Steam.GetInstallPathDelegate = ISteamService.GetSteamDynamicLinkLibraryPath;
+        global::SAM.API.Steam.GetInstallPathDelegate = ISteamService.GetSteamDynamicLinkLibraryPath;
         SteamClient = new SAMAPIClient();
     }
 
@@ -465,7 +474,7 @@ class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
                 var file = new SteamRemoteFile(name, length, SteamClient.SteamRemoteStorage.FileExists(name),
                     SteamClient.SteamRemoteStorage.FilePersisted(name), SteamClient.SteamRemoteStorage.GetFileTimestamp(name))
                 {
-                    SyncPlatforms = (SteamKit2ERemoteStoragePlatform)SteamClient.SteamRemoteStorage.GetSyncPlatforms(name),
+                    SyncPlatforms = (SteamKit2.ERemoteStoragePlatform)SteamClient.SteamRemoteStorage.GetSyncPlatforms(name),
                 };
                 files.Add(file);
             }

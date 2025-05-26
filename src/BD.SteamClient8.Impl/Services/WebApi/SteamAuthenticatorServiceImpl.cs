@@ -1,3 +1,20 @@
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.Protobuf;
+using BD.SteamClient8.Models.WebApi.Authenticators;
+using BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Google.Protobuf;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -20,8 +37,11 @@ public sealed class SteamAuthenticatorServiceImpl(
     protected sealed override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     /// <summary>
     /// 用于标识和记录日志信息
@@ -316,11 +336,11 @@ public sealed class SteamAuthenticatorServiceImpl(
         }
 
         var payloadBytes = Convert.FromBase64String(base64);
-        var jwt = SystemTextJsonSerializer.Deserialize(payloadBytes,
+        var jwt = JsonSerializer.Deserialize(payloadBytes,
             SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_.Default.SteamAccessToken);
 
         // Compare expire time of the token to the current time
-        return jwt is null ? false : DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
+        return jwt is not null && DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
     }
 
     internal sealed class SteamAccessToken
@@ -332,9 +352,19 @@ public sealed class SteamAuthenticatorServiceImpl(
     #endregion
 }
 
-[SystemTextJsonSerializable(typeof(SteamAuthenticatorServiceImpl.SteamAccessToken))]
+[JsonSerializable(typeof(SteamAuthenticatorServiceImpl.SteamAccessToken))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
-sealed partial class SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_ : SystemTextJsonSerializerContext
+sealed partial class SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_ : JsonSerializerContext
 {
+    static SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_()
+    {
+        // https://github.com/dotnet/runtime/issues/94135
+        s_defaultOptions = new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 不转义字符！！！
+            AllowTrailingCommas = true,
+        };
+        Default = new SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_(new JsonSerializerOptions(s_defaultOptions));
+    }
 }

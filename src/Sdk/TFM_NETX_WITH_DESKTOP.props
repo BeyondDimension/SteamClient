@@ -1,9 +1,0 @@
-<Project>
-	<PropertyGroup>
-		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
-		<TargetFrameworks Condition="$([System.OperatingSystem]::IsWindows())">$(TargetFrameworks);net$(DotNet_Version)-macos;net$(DotNet_Version)-windows$(WinSDK_Version)</TargetFrameworks>
-		<TargetFrameworks Condition="$([System.OperatingSystem]::IsMacOS())">$(TargetFrameworks);net$(DotNet_Version)-macos</TargetFrameworks>
-		<TargetFrameworks Condition="$([System.OperatingSystem]::IsLinux())">$(TargetFrameworks)</TargetFrameworks>
-		<DefineConstants Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">LINUX;$(DefineConstants)</DefineConstants>
-	</PropertyGroup>
-</Project>

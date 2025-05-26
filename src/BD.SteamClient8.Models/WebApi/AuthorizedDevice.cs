@@ -1,7 +1,13 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
+
 namespace BD.SteamClient8.Models.WebApi;
 
-public sealed record class AuthorizedDevice
+public sealed record class AuthorizedDevice : JsonRecordModel<AuthorizedDevice>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 是否禁用
     /// </summary>

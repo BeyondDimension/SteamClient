@@ -1,4 +1,11 @@
-#if !(IOS || ANDROID)
+#if !(IOS || ANDROID || MACCATALYST)
+using BD.Common8.Models;
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Models.PInvoke;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using System.Runtime.InteropServices;
+
 namespace BD.SteamClient8.Services.Abstractions.PInvoke;
 
 /// <summary>

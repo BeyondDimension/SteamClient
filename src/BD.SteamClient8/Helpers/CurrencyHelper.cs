@@ -105,6 +105,6 @@ public static class CurrencyHelper
         "BRL",
         "NOK",
         "EUR",
-        "PLN"
+        "PLN",
     ];
 }

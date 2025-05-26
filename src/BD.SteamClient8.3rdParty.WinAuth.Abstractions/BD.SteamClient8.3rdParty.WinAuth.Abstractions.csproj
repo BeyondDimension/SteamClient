@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<RootNamespace>BD.SteamClient8.WinAuth</RootNamespace>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10527.10600</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildProjectDirectory)..\..\..\LICENSE" Pack="true" PackagePath="" Visible="false" />
+		<None Include="$(MSBuildProjectDirectory)..\..\..\README.md" Pack="true" PackagePath="" Visible="false" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
+
+</Project>

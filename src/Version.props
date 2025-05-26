@@ -1,8 +1,12 @@
 <Project>
-	<!-- 版本号 | Version -->
+	<!-- 👇 当前项目依赖的版本号配置 -->
 	<PropertyGroup>
-		<!--8.yy.1MMdd.1hhmm-->
-		<Version_SteamClient8>8.24.10611.11400</Version_SteamClient8>
+		<DotNet_Version>9.0</DotNet_Version>
+		<WinSDK_Version>10.0.19041.0</WinSDK_Version>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 	</PropertyGroup>
 </Project>
-

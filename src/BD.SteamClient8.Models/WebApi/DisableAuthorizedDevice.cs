@@ -1,29 +1,34 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi;
 
-[MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
-public sealed partial record class DisableAuthorizedDevice
+[global::MessagePack.MessagePackObject, global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
+public sealed partial record class DisableAuthorizedDevice : JsonRecordModel<DisableAuthorizedDevice>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// Steam ID3 格式 Id
     /// </summary>
-    [MPKey(0), MP2Key(0)]
+    [global::MessagePack.Key(0), global::MemoryPack.MemoryPackOrder(0)]
     public long SteamId3_Int { get; set; }
 
     /// <summary>
     /// 使用时间
     /// </summary>
-    [MPKey(1), MP2Key(1)]
+    [global::MessagePack.Key(1), global::MemoryPack.MemoryPackOrder(1)]
     public long Timeused { get; set; }
 
     /// <summary>
     /// 描述
     /// </summary>
-    [MPKey(2), MP2Key(2)]
+    [global::MessagePack.Key(2), global::MemoryPack.MemoryPackOrder(2)]
     public string? Description { get; set; }
 
     /// <summary>
-    /// Token唯一标识符
+    /// Token 唯一标识符
     /// </summary>
-    [MPKey(3), MP2Key(3)]
+    [global::MessagePack.Key(3), global::MemoryPack.MemoryPackOrder(3)]
     public string? Tokenid { get; set; }
 }

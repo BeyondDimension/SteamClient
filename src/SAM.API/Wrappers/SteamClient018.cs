@@ -20,6 +20,10 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+using SAM.API.Types;
+using System.Runtime.InteropServices;
+
 namespace SAM.API.Wrappers;
 
 public class SteamClient018 : NativeWrapper<ISteamClient018>

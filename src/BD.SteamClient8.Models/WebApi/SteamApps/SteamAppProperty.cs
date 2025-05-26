@@ -1,4 +1,8 @@
 #if !(IOS || ANDROID)
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using System.Extensions;
+using SDColor = System.Drawing.Color;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
@@ -159,7 +163,8 @@ public class SteamAppProperty
         _propType = other._propType;
         if (_propType == SteamAppPropertyType.Table)
         {
-            _value = new SteamAppPropertyTable((SteamAppPropertyTable)other._value!);
+            _value = other._value == null ? null :
+                new SteamAppPropertyTable((SteamAppPropertyTable)other._value);
         }
         else
         {

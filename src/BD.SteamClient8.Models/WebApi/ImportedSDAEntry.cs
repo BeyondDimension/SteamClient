@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// 导入 SDA 实体
 /// </summary>
-public sealed record class ImportedSDAEntry
+public sealed record class ImportedSDAEntry : JsonRecordModel<ImportedSDAEntry>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// PBKDF2_ITERATIONS
     /// </summary>

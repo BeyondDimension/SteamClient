@@ -1,3 +1,7 @@
+using BD.Common8.Models;
+using BD.SteamClient8.Enums.WebApi.Trades;
+using BD.SteamClient8.Models.WebApi.Trades;
+
 namespace BD.SteamClient8.Services.Abstractions.WebApi;
 
 /// <summary>
@@ -15,18 +19,23 @@ public interface ISteamTradeService
     /// <summary>
     /// 启动交易报价后台任务
     /// </summary>
-    /// <param name="steam_id"></param>
-    /// <param name="interval"></param>
-    /// <param name="tradeTaskEnum"></param>
-    /// <param name="cancellationToken"></param>
+    ApiRspImpl StartTradeTaskSync(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 启动交易报价后台任务
+    /// </summary>
+    [Obsolete("use StartTradeTaskSync")]
     Task<ApiRspImpl> StartTradeTask(string steam_id, TimeSpan interval, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 停止交易报价后台任务
     /// </summary>
-    /// <param name="steam_id"></param>
-    /// <param name="tradeTaskEnum"></param>
-    /// <param name="cancellationToken"></param>
+    ApiRspImpl StopTaskSync(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 停止交易报价后台任务
+    /// </summary>
+    [Obsolete("use StopTaskSync")]
     Task<ApiRspImpl> StopTask(string steam_id, TradeTaskEnum tradeTaskEnum, CancellationToken cancellationToken = default);
 
     #endregion

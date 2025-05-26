@@ -1,3 +1,14 @@
+using BD.Common8.Enums;
+using BD.Common8.Extensions;
+using BD.Common8.Helpers;
+using BD.Common8.Models;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.Authenticators;
+using BD.SteamClient8.Models.WinAuth;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using System.Extensions;
+using System.Text;
+using System.Text.Json;
 using Strings = BD.SteamClient8.Resources.Strings;
 
 namespace BD.SteamClient8.Extensions;
@@ -74,7 +85,7 @@ public static partial class WinAuthExtensions
             steamdata.SteamId = state.SteamId;
         if (steamdata.SteamGuardScheme == string.Empty)
             steamdata.SteamGuardScheme = "2";
-        @this.SteamData = SystemTextJsonSerializer.Serialize(steamdata,
+        @this.SteamData = JsonSerializer.Serialize(steamdata,
             DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct);
 
         // calculate server drift
@@ -160,7 +171,7 @@ public static partial class WinAuthExtensions
 
         // mark and successful and return key
         state.Success = true;
-        state.SecretKey = AuthenticatorValueModel.ByteArrayToString(@this.SecretKey.ThrowIsNull());
+        state.SecretKey = Convert.ToHexString(@this.SecretKey.ThrowIsNull());
 
         // // send confirmation email
         // data.Clear();
@@ -334,7 +345,7 @@ public static partial class WinAuthExtensions
         @this.SecretKey = response.ReplacementToken.SharedSecret.ToByteArray();
         @this.Serial = response.ReplacementToken.SerialNumber.ToString();
         @this.DeviceId = SteamAuthenticator.BuildRandomId();
-        @this.SteamData = SystemTextJsonSerializer.Serialize(new SteamConvertSteamDataJsonStruct
+        @this.SteamData = JsonSerializer.Serialize(new SteamConvertSteamDataJsonStruct
         {
             Secret_1 = response.ReplacementToken.Secret1.ToBase64().Base64Encode(),
             Status = response.ReplacementToken.Status,

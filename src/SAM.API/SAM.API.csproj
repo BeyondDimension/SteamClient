@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<TargetFrameworks>net$(DotNet_Version);net$(DotNet_Version)-windows;net$(DotNet_Version)-macos;net8.0;net8.0-windows;net8.0-macos;net48;net471;netstandard2.0</TargetFrameworks>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<PackageId>BD.SteamClient8.3rdParty.SAM.API</PackageId>
+		<AssemblyName>SAM.API</AssemblyName>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Company>Gibbed</Company>
+		<Authors>Gibbed</Authors>
+		<Description>Steam Achievement Manager (SAM) is a lightweight, portable application used to manage achievements and statistics in the popular PC gaming platform Steam. This application requires the Steam client, a Steam account and network access. Steam must be running and the user must be logged in.</Description>
+		<Copyright>Copyright © Gibbed 2019</Copyright>
+		<PackageLicenseExpression>Zlib</PackageLicenseExpression>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10525.11800</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $(TargetFramework.StartsWith('net4')) OR $(TargetFramework.StartsWith('netstandard'))">
+			<PropertyGroup>
+				<SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
+				<TargetPlatformMinVersion>7.0</TargetPlatformMinVersion>
+			</PropertyGroup>
+		</When>
+	</Choose>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+		<Reference Include="System.Windows.Forms" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$(TargetFramework.StartsWith('netstandard'))">
+		<PackageReference Include="Microsoft.Win32.Registry" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildProjectDirectory)\LICENSE.txt" Pack="true" PackagePath="" />
+		<None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+</Project>

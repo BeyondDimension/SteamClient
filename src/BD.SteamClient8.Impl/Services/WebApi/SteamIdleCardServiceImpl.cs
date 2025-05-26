@@ -1,6 +1,21 @@
 using AngleSharp.Common;
+using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.Idles;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
 using Nito.Comparers.Linq;
+using System.Extensions;
+using System.Globalization;
+using System.Net;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace BD.SteamClient8.Services.WebApi;
 
@@ -24,6 +39,13 @@ public partial class SteamIdleCardServiceImpl(
 
     /// <inheritdoc/>
     protected override string ClientName => TAG;
+
+    /// <inheritdoc/>
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     readonly ISteamSessionService _sessionService = sessions;
 
@@ -57,7 +79,7 @@ public partial class SteamIdleCardServiceImpl(
             if (pageNodes != null)
             {
                 pages.AddRange(pageNodes.Where(x => x.HasAttribute("href")).Select(p => p.GetAttribute("href")!).Distinct());
-                pages = pages.Distinct().ToList();
+                pages = [.. pages.Distinct()];
             }
 
             // 读取总页数
@@ -92,7 +114,7 @@ public partial class SteamIdleCardServiceImpl(
 
             if (need_price)
             {
-                var avg_prices = (await GetAppCardsAvgPrice(badges.Select(s => s.AppId).ToArray(), currency, cancellationToken))?.Content?.ToDictionary(x => x.AppId, x => x);
+                var avg_prices = (await GetAppCardsAvgPrice([.. badges.Select(s => s.AppId)], currency, cancellationToken))?.Content?.ToDictionary(x => x.AppId, x => x);
                 foreach (var badge in badges)
                 {
                     if (avg_prices != null && avg_prices.TryGetValue(badge.AppId, out var avg))

@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.Profiles;
 
 /// <summary>
 /// 礼物发送记录
 /// </summary>
-public sealed record class SendGiftHistoryItem
+public sealed record class SendGiftHistoryItem : JsonRecordModel<SendGiftHistoryItem>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 游戏名称
     /// </summary>

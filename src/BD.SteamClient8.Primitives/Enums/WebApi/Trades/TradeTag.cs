@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace BD.SteamClient8.Enums.WebApi.Trades;
 
 /// <summary>

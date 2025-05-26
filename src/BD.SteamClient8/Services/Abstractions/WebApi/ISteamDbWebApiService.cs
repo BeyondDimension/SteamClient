@@ -1,3 +1,7 @@
+using BD.Common8.Models;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+
 namespace BD.SteamClient8.Services.Abstractions.WebApi;
 
 /// <summary>

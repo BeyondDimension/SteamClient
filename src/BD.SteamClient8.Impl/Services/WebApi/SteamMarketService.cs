@@ -1,3 +1,24 @@
+using AngleSharp;
+using AngleSharp.Dom;
+using AngleSharp.Html.Parser;
+using BD.Common8.Crawler.Helpers;
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi.Markets;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Models.WebApi.Markets;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Globalization;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -21,8 +42,11 @@ public sealed class SteamMarketService(IServiceProvider serviceProvider,
     protected override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     ///// <summary>
     ///// 重试间隔

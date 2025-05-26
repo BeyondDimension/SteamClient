@@ -1,66 +1,76 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.Extensions;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Extensions;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
 /// Steam 游戏
 /// </summary>
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-public class SteamApp
-#if !(IOS || ANDROID)
-    : IComparable<SteamApp>
-#endif
+public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, IComparable<SteamApp>
 {
-    [SystemTextJsonIgnore]
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeAppInfo { get; } = "appinfo";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeAppType { get; } = "type";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeCommon { get; } = "common";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeConfig { get; } = "config";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeExtended { get; } = "extended";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeId { get; } = "gameid";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeName { get; } = "name";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeParentId { get; } = "parent";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodePlatforms { get; } = "oslist";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodePlatformsLinux { get; } = "linux";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodePlatformsMac { get; } = "mac";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodePlatformsWindows { get; } = "windows";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeSortAs { get; } = "sortas";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeDeveloper { get; } = "developer";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodePublisher { get; } = "publisher";
 
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string NodeLaunch { get; } = "launch";
 
     /// <summary>
     /// 无参构造
     /// </summary>
-    [SystemTextJsonConstructor]
+    [global::System.Text.Json.Serialization.JsonConstructor]
     public SteamApp() { }
 
     /// <summary>
@@ -78,7 +88,7 @@ public class SteamApp
     /// <summary>
     /// AppId 唯一标识
     /// </summary>
-    [SystemTextJsonProperty("appid")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("appid")]
     public uint AppId { get; set; }
 
     /// <summary>
@@ -91,7 +101,7 @@ public class SteamApp
     /// <summary>
     /// 名称
     /// </summary>
-    [SystemTextJsonProperty("name")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("name")]
     public string? Name
     {
         get => _Name;
@@ -229,7 +239,7 @@ public class SteamApp
     //    }
     //}
 
-    #endregion 暂时不用
+    #endregion
 
     /// <summary>
     /// 是否被编辑
@@ -361,54 +371,52 @@ public class SteamApp
     /// <summary>
     /// Logo 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string? LogoUrl => string.IsNullOrEmpty(Logo) ? null :
         string.Format(SteamApiUrls.STEAMAPP_LOGO_URL, AppId, Logo);
 
     /// <summary>
     /// LibraryGrid 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string LibraryGridUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARY_URL, AppId);
-
-    private Stream? _EditLibraryGridStream;
 
     public Stream? EditLibraryGridStream { get; set; }
 
     /// <summary>
     /// LibraryHero 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string LibraryHeroUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYHERO_URL, AppId);
 
     /// <summary>
     /// LibraryHeroBlur 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string LibraryHeroBlurUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYHEROBLUR_URL, AppId);
 
     /// <summary>
     /// LibraryLogo 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string LibraryLogoUrl => string.Format(SteamApiUrls.STEAMAPP_LIBRARYLOGO_URL, AppId);
 
     /// <summary>
     /// HeaderLogo 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string HeaderLogoUrl => string.Format(SteamApiUrls.STEAMAPP_HEADIMAGE_URL, AppId);
 
     /// <summary>
     /// CAPSULELogo 图片路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string CAPSULELogoUrl => string.Format(SteamApiUrls.STEAMAPP_CAPSULE_URL, AppId);
 
     /// <summary>
     /// 图标路径
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string? IconUrl => string.IsNullOrEmpty(Icon) ? null :
         string.Format(SteamApiUrls.STEAMAPP_LOGO_URL, AppId, Icon);
 
@@ -417,7 +425,7 @@ public class SteamApp
     /// <summary>
     /// App 启动进程
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public Process? Process { get => _process; set { _process = value; HasProcess = value is not null; } }
 
     /// <summary>
@@ -464,71 +472,14 @@ public class SteamApp
     /// <summary>
     /// 内部属性集合
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     protected internal SteamAppPropertyTable? _properties;
 
     /// <summary>
     /// 修改的属性集合
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public SteamAppPropertyTable? ChangesData => _properties;
-
-    public Process? StartSteamAppProcess(SteamAppRunType runType = SteamAppRunType.Idle)
-    {
-        var arg = runType switch
-        {
-            SteamAppRunType.UnlockAchievement => "-achievement",
-            SteamAppRunType.CloudManager => "-cloudmanager",
-            _ => "-silence",
-        };
-        string arguments = $"-clt app {arg} -id {AppId}";
-        var processPath = Environment.ProcessPath;
-        processPath.ThrowIsNull();
-        if (OperatingSystem.IsWindows())
-        {
-            return Process = Process2.Start(processPath, arguments);
-        }
-        else
-        {
-            if (OperatingSystem.IsLinux())
-            {
-                var psi = new ProcessStartInfo
-                {
-                    Arguments = arguments,
-                    FileName = Path.Combine(AppContext.BaseDirectory, "Steam++.sh"),
-                    UseShellExecute = true,
-                };
-                Console.WriteLine(psi.FileName);
-                psi.Environment.Add("SteamAppId", AppId.ToString());
-                return Process = Process.Start(psi);
-            }
-            else
-            {
-                return Process = Process2.Start(
-                processPath,
-                arguments,
-                environment: new Dictionary<string, string>() {
-                    {
-                        "SteamAppId",
-                        AppId.ToString()
-                    }
-                });
-            }
-        }
-    }
-
-    public void RunOrStopSteamAppProcess()
-    {
-        if (Process != null && !Process.HasExited)
-        {
-            Process.KillEntireProcessTree();
-            Process = null;
-        }
-        else
-        {
-            StartSteamAppProcess();
-        }
-    }
 
     #region Replace DLSS dll files methods
 
@@ -762,7 +713,7 @@ public class SteamApp
                                     Recursive = table.GetPropertyValue(false, "recursive"),
                                 };
 
-                SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles.ToList());
+                SaveFiles = new ObservableCollection<SteamAppSaveFile>([.. savefiles]);
             }
 
             BaseName = properties.GetPropertyValue(string.Empty, NodeAppInfo, "steam_edit", "base_name");
@@ -790,7 +741,8 @@ public class SteamApp
         {
             int count = reader.ReadInt32();
             byte[] array = reader.ReadBytes(count);
-            using BinaryReader binaryReader = new(new MemoryStream(array), Encoding.UTF8, true);
+            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(array);
+            using BinaryReader binaryReader = new(memoryStream, Encoding.UTF8, true);
             app._stuffBeforeHash = binaryReader.ReadBytes(16);
             binaryReader.ReadBytes(20);
             app._changeNumber = binaryReader.ReadUInt32();
@@ -814,7 +766,8 @@ public class SteamApp
         }
         catch (Exception ex)
         {
-            Log.Error(nameof(SteamApp), ex, string.Format("Failed to load entry with appId {0}", app.AppId));
+            Log.Error(nameof(SteamApp), ex,
+                string.Format("Failed to load entry with appId {0}", app.AppId));
         }
         return app;
     }
@@ -822,44 +775,40 @@ public class SteamApp
     public void Write(BinaryWriter writer)
     {
         if (_properties == null)
+        {
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(_properties)} is null.");
+        }
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(_properties);
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)AppId);
-        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream(), Encoding.UTF8, true);
+        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
+        using BinaryWriter binaryWriter = new BinaryWriter(memoryStream, Encoding.UTF8, true);
         binaryWriter.Write(_stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);
         binaryWriter.Write(_changeNumber);
         binaryWriter.Write(propertyTable);
-        MemoryStream memoryStream = (MemoryStream)binaryWriter.BaseStream;
-        writer.Write((int)memoryStream.Length);
-        writer.Write(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+        binaryWriter.Flush();
+        if (memoryStream.Length > int.MaxValue)
+        {
+            throw new InvalidOperationException("Memory stream length exceeds maximum allowed size.");
+        }
+        writer.Write(unchecked((int)memoryStream.Length));
+        writer.Write(memoryStream.GetSpan());
     }
-
-#endif
-
-#if !(IOS || ANDROID)
 
     /// <summary>
     /// 是否正在下载
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public bool IsDownloading => CheckDownloading(State);
 
     /// <summary>
     /// 是否已下载
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public bool IsInstalled => IsBitSet(State, 2);
-
-    /// <summary>
-    /// <see cref="SteamApp"/> Compare
-    /// </summary>
-    /// <param name="other"></param>
-    /// <returns></returns>
-    public int CompareTo(SteamApp? other) => string.Compare(Name, other?.Name);
 
     static bool IsBitSet(int b, int pos)
     {
@@ -893,4 +842,11 @@ public class SteamApp
     }
 
 #endif
+
+    /// <summary>
+    /// <see cref="SteamApp"/> Compare
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
+    public int CompareTo(SteamApp? other) => string.Compare(Name, other?.Name);
 }

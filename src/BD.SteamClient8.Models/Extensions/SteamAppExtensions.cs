@@ -1,12 +1,32 @@
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Extensions;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace BD.SteamClient8.Models.Extensions;
 
 /// <summary>
 /// <see cref="SteamApp"/> 扩展
 /// </summary>
-public static class SteamAppExtensions
+public static partial class SteamAppExtensions
 {
-#if !(IOS || ANDROID)
+    /// <summary>
+    /// 获取 Id 和名称，使用 | 分割
+    /// </summary>
+    /// <param name="steamApp"></param>
+    /// <returns></returns>
+    public static string GetIdAndName(this SteamApp steamApp)
+    {
+        return $"{steamApp.AppId} | {steamApp.DisplayName}";
+    }
+}
 
+#if !(IOS || ANDROID)
+static partial class SteamAppExtensions
+{
     /// <summary>
     /// 从其他 <see cref="SteamApp"/> 修改内容
     /// </summary>
@@ -145,19 +165,7 @@ public static class SteamAppExtensions
         return false;
     }
 
-#endif
 
-    /// <summary>
-    /// 获取Id和名称,使用 | 分割
-    /// </summary>
-    /// <param name="steamApp"></param>
-    /// <returns></returns>
-    public static string GetIdAndName(this SteamApp steamApp)
-    {
-        return $"{steamApp.AppId} | {steamApp.DisplayName}";
-    }
-
-#if !(IOS || ANDROID)
     /// <summary>
     /// 将参数 <see cref="SteamAppPropertyTable"/> 内容导出到 <see cref="SteamApp"/>
     /// </summary>
@@ -295,7 +303,8 @@ public static class SteamAppExtensions
         {
             int count = reader.ReadInt32();
             byte[] array = reader.ReadBytes(count);
-            using BinaryReader binaryReader = new(new MemoryStream(array));
+            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(array);
+            using BinaryReader binaryReader = new(memoryStream);
             app._stuffBeforeHash = binaryReader.ReadBytes(16);
             binaryReader.ReadBytes(20);
             app._changeNumber = binaryReader.ReadUInt32();
@@ -331,20 +340,26 @@ public static class SteamAppExtensions
     public static void Write(this SteamApp steamApp, BinaryWriter writer)
     {
         if (steamApp._properties == null)
+        {
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(steamApp._properties)} is null.");
+        }
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(steamApp._properties);
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
         byte[] buffer = SHA1.HashData(bytes);
         writer.Write((int)steamApp.AppId);
-        using BinaryWriter binaryWriter = new BinaryWriter(new MemoryStream());
+        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
+        using BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
         binaryWriter.Write(steamApp._stuffBeforeHash.ThrowIsNull());
         binaryWriter.Write(buffer);
         binaryWriter.Write(steamApp._changeNumber);
         binaryWriter.Write(propertyTable);
-        MemoryStream memoryStream = (MemoryStream)binaryWriter.BaseStream;
-        writer.Write((int)memoryStream.Length);
-        writer.Write(memoryStream.GetBuffer(), 0, (int)memoryStream.Length);
+        if (memoryStream.Length > int.MaxValue)
+        {
+            throw new InvalidOperationException("Memory stream length exceeds maximum allowed size.");
+        }
+        writer.Write(unchecked((int)memoryStream.Length));
+        writer.Write(memoryStream.GetSpan());
     }
-#endif
 }
+#endif

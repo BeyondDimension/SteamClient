@@ -20,6 +20,9 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+using System.Runtime.InteropServices;
+
 namespace SAM.API.Wrappers;
 
 public class SteamUser017 : NativeWrapper<ISteamUser019>
@@ -33,37 +36,83 @@ public class SteamUser017 : NativeWrapper<ISteamUser019>
 
     public ulong GetSteamId()
     {
+#if WINDOWS
+        return GetSteamId_W();
+#else
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#else
+#endif
+#else
         if (OperatingSystem.IsWindows())
+#endif
         {
-            var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
-            ulong steamId;
-            call(ObjectAddress, out steamId);
-            return steamId;
+            return GetSteamId_W();
         }
         else
         {
-            var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
-            return steamId;
+            return GetSteamId_P();
         }
+#endif
     }
+
+    ulong GetSteamId_W()
+    {
+        var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
+        ulong steamId;
+        call(ObjectAddress, out steamId);
+        return steamId;
+    }
+
+#if !WINDOWS
+    ulong GetSteamId_P()
+    {
+        var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
+        return steamId;
+    }
+#endif
 
     public ulong GetSteamId3()
     {
+#if WINDOWS
+        return GetSteamId3_W();
+#else
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#else
+#endif
+#else
         if (OperatingSystem.IsWindows())
+#endif
         {
-            var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
-            ulong steamId;
-            call(ObjectAddress, out steamId);
-            steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
-            return steamId;
+            return GetSteamId3_W();
         }
         else
         {
-            var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
-            steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
-            return steamId;
+            return GetSteamId3_P();
         }
+#endif
     }
+
+    ulong GetSteamId3_W()
+    {
+        var call = GetFunction<NativeGetSteamId2>(Functions.GetSteamID);
+        ulong steamId;
+        call(ObjectAddress, out steamId);
+        steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
+        return steamId;
+    }
+
+#if !WINDOWS
+    ulong GetSteamId3_P()
+    {
+        var steamId = Call<ulong, NativeGetSteamId>(Functions.GetSteamID, ObjectAddress);
+        steamId = (steamId >> (ushort)0) & 0xFFFFFFFF;
+        return steamId;
+    }
+#endif
 
     #endregion
 

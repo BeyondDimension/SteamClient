@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// 整数类型统计
 /// </summary>
-public sealed record class IntStatInfo : StatInfo
+public sealed record class IntStatInfo : StatInfo, IJsonModel<IntStatInfo>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 原始数值
     /// </summary>

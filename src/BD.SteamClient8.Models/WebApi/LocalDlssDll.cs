@@ -1,10 +1,18 @@
+using BD.Common8.Models.Abstractions;
+using System.Diagnostics;
+using System.Extensions;
+using System.Security.Cryptography;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
-/// 本机 Dlss 库
+/// 本机 DLSS 库
 /// </summary>
-public sealed record class LocalDlssDll : IComparable<LocalDlssDll>
+public sealed record class LocalDlssDll : JsonRecordModel<LocalDlssDll>, IJsonSerializerContext, IComparable<LocalDlssDll>
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 文件名
     /// </summary>
@@ -33,7 +41,7 @@ public sealed record class LocalDlssDll : IComparable<LocalDlssDll>
     /// <summary>
     /// Initializes a new instance of the <see cref="LocalDlssDll"/> class.
     /// </summary>
-    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
+    [global::MessagePack.SerializationConstructor, global::MemoryPack.MemoryPackConstructor, global::System.Text.Json.Serialization.JsonConstructor]
     public LocalDlssDll()
     {
     }

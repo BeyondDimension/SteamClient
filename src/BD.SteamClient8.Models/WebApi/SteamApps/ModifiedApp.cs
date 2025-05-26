@@ -1,16 +1,23 @@
 #if !(IOS || ANDROID)
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Models.Extensions;
+using System.Buffers;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
 /// 移动过的游戏 App
 /// </summary>
-[MPObj, MP2Obj(MP2SerializeLayout.Explicit)]
-public sealed partial class ModifiedApp
+[global::MessagePack.MessagePackObject, global::MemoryPack.MemoryPackable(global::MemoryPack.SerializeLayout.Explicit)]
+public sealed partial class ModifiedApp : JsonModel<ModifiedApp>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// Initializes a new instance of the <see cref="ModifiedApp"/> class.
     /// </summary>
-    [MPConstructor, MP2Constructor, SystemTextJsonConstructor]
+    [global::MessagePack.SerializationConstructor, global::MemoryPack.MemoryPackConstructor, global::System.Text.Json.Serialization.JsonConstructor]
     public ModifiedApp()
     {
         ReadChanges();
@@ -33,17 +40,18 @@ public sealed partial class ModifiedApp
             OriginalData = originalData;
         }
 
-        using MemoryStream memoryStream = new();
+        using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream();
         using BinaryWriter binaryWriter = new(memoryStream);
         binaryWriter.Write(app.ChangesData);
+        binaryWriter.Flush();
 
-        ChangesData = binaryWriter.BaseStream.ToByteArray();
+        ChangesData = memoryStream.GetReadOnlySequence().ToArray();
     }
 
     /// <summary>
     /// AppId
     /// </summary>
-    [MPKey(0), MP2Key(0)]
+    [global::MessagePack.Key(0), global::MemoryPack.MemoryPackOrder(0)]
     public uint AppId { get; set; }
 
     private byte[]? originalData;
@@ -51,7 +59,7 @@ public sealed partial class ModifiedApp
     /// <summary>
     /// 原始数据
     /// </summary>
-    [MPKey(1), MP2Key(1)]
+    [global::MessagePack.Key(1), global::MemoryPack.MemoryPackOrder(1)]
     public byte[]? OriginalData { get => originalData; set => originalData = value; }
 
     private byte[]? changesData;
@@ -59,13 +67,13 @@ public sealed partial class ModifiedApp
     /// <summary>
     /// 改动的数据
     /// </summary>
-    [MPKey(2), MP2Key(2)]
+    [global::MessagePack.Key(2), global::MemoryPack.MemoryPackOrder(2)]
     public byte[]? ChangesData { get => changesData; set => changesData = value; }
 
     /// <summary>
     /// 改动的属性
     /// </summary>
-    [MPIgnore, MP2Ignore]
+    [global::MessagePack.IgnoreMemberAttribute, global::MemoryPack.MemoryPackIgnore]
     public SteamAppPropertyTable? Changes { get; set; }
 
     /// <summary>
@@ -76,7 +84,8 @@ public sealed partial class ModifiedApp
     {
         if (ChangesData != null)
         {
-            using BinaryReader reader = new BinaryReader(new MemoryStream(ChangesData));
+            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(ChangesData);
+            using BinaryReader reader = new BinaryReader(memoryStream);
             return Changes = reader.ReadPropertyTable();
         }
         return null;
@@ -90,7 +99,8 @@ public sealed partial class ModifiedApp
     {
         if (OriginalData != null)
         {
-            using BinaryReader reader = new BinaryReader(new MemoryStream(OriginalData));
+            using var memoryStream = RecyclableMemoryStreamHelper.Manager.GetStream(OriginalData);
+            using BinaryReader reader = new BinaryReader(memoryStream);
             return reader.ReadPropertyTable();
         }
         return null;

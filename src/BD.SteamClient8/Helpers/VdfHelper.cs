@@ -1,4 +1,7 @@
 #if !(IOS || ANDROID)
+using System.Runtime.CompilerServices;
+using ValveKeyValue;
+
 namespace BD.SteamClient8.Helpers;
 
 /// <summary>

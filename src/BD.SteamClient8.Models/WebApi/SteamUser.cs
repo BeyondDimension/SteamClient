@@ -1,32 +1,50 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi;
+using System.Diagnostics;
+using System.Xml.Serialization;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 [XmlRoot("profile")]
 [DebuggerDisplay("{DebuggerDisplay(),nq}")]
-public sealed record class SteamUser
+public sealed record class SteamUser : JsonRecordModel<SteamUser>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// SteamId 3 格式
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string? SteamId3 => $"[U:1:{SteamId32}]";
 
     /// <summary>
     /// SteamId 32 位
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public int SteamId32 => Convert.ToInt32((SteamId64 >> 0) & 0xFFFFFFFF);
 
     /// <summary>
     /// SteamId 64 位
     /// </summary>
     [XmlElement("steamID64")]
-    [SystemTextJsonProperty("steamId64")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("steamId64")]
     public long SteamId64 { get; set; }
 
     /// <inheritdoc cref="DebuggerDisplayAttribute"/>
-    public string DebuggerDisplay() => $"{SteamNickName}, {SteamId64}";
+    public string DebuggerDisplay() =>
+$"""
+NickName: {SteamNickName}, Id64: {SteamId64}, Id32: {SteamId32}, Id3: {SteamId3}
+ProfileUrl: {ProfileUrl}
+UserdataPath: {UserdataPath}
+OnlineState: {OnlineState}
+Level: {Level}
+IPCountry: {IPCountry}
+PrivacyState: {PrivacyState}
+""";
 
     /// <summary>
     /// 个人资料链接
@@ -44,21 +62,21 @@ public sealed record class SteamUser
     /// 在线状态
     /// </summary>
     [XmlElement("onlineState")]
-    [SystemTextJsonProperty("onlineState")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("onlineState")]
     public string? OnlineState { get; set; }
 
     /// <summary>
     /// Steam 等级
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("level")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("level")]
     public int? Level { get; set; }
 
     /// <summary>
     /// IP 国家地区
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("ipCountry")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("ipCountry")]
     public string? IPCountry { get; set; }
 
     /// <summary>
@@ -67,56 +85,56 @@ public sealed record class SteamUser
     /// public
     /// </summary>
     [XmlElement("privacyState")]
-    [SystemTextJsonProperty("privacyState")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("privacyState")]
     public string? PrivacyState { get; set; }
 
     /// <summary>
     /// 头像图标
     /// </summary>
     [XmlElement("avatarIcon")]
-    [SystemTextJsonProperty("avatarIcon")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("avatarIcon")]
     public string? AvatarIcon { get; set; }
 
     /// <summary>
     /// 中等大小头像
     /// </summary>
     [XmlElement("avatarMedium")]
-    [SystemTextJsonProperty("avatarMedium")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("avatarMedium")]
     public string? AvatarMedium { get; set; }
 
     /// <summary>
     /// 完整头像
     /// </summary>
     [XmlElement("avatarFull")]
-    [SystemTextJsonProperty("avatarFull")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("avatarFull")]
     public string? AvatarFull { get; set; }
 
     /// <summary>
     /// 注册日期
     /// </summary>
     [XmlElement("memberSince")]
-    [SystemTextJsonProperty("memberSince")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("memberSince")]
     public string? MemberSince { get; set; }
 
     /// <summary>
     /// VAC
     /// </summary>
     [XmlElement("vacBanned")]
-    [SystemTextJsonProperty("vacBanned")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("vacBanned")]
     public bool VacBanned { get; set; }
 
     /// <summary>
     /// 自我介绍 HTML
     /// </summary>
     [XmlElement("summary")]
-    [SystemTextJsonProperty("summary")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("summary")]
     public string? Summary { get; set; }
 
     /// <summary>
     /// 昵称
     /// </summary>
     [XmlElement("steamID")]
-    [SystemTextJsonProperty("steamID")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("steamID")]
     public string? SteamID { get; set; }
 
     /// <summary>
@@ -129,62 +147,62 @@ public sealed record class SteamUser
     /// 从 Valve Data File 读取到的用户名
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("personaName")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("personaName")]
     public string? PersonaName { get; set; }
 
     /// <summary>
     /// 从 Valve Data File 读取到的 AllowAutoLogin
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("allowAutoLogin")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("allowAutoLogin")]
     public bool AllowAutoLogin { get; set; }
 
     /// <summary>
     /// 用户名
     /// </summary>
-    [SystemTextJsonProperty("accountName")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("accountName")]
     public string? AccountName { get; set; }
 
     /// <summary>
     /// 是否记住密码
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public bool RememberPassword { get; set; }
 
     /// <summary>
     /// 密码
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string? PassWord { get; set; }
 
     /// <summary>
     /// 最后登录时间戳
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("timestamp")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("timestamp")]
     public long Timestamp { get; set; }
 
     /// <summary>
     /// 最后登录时间
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("lastLoginTime")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("lastLoginTime")]
     public DateTime LastLoginTime { get; set; }
 
     /// <summary>
     /// 最近登录
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("mostRecent")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("mostRecent")]
     public bool MostRecent { get; set; }
 
     /// <summary>
     /// 离线模式
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("wantsOfflineMode")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("wantsOfflineMode")]
     public bool WantsOfflineMode { get; set; }
 
     /// <summary>
@@ -197,20 +215,20 @@ public sealed record class SteamUser
     /// 备注
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("remark")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("remark")]
     public string? Remark { get; set; }
 
     /// <summary>
     /// Steam 用户小型简介
     /// </summary>
-    [SystemTextJsonProperty("miniProfile")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("miniProfile")]
     public SteamMiniProfile? MiniProfile { get; set; }
 
     /// <summary>
     /// 离线模式
     /// </summary>
     [XmlIgnore]
-    [SystemTextJsonProperty("personaState")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("personaState")]
     public PersonaState PersonaState { get; set; } = PersonaState.Default;
 
     ///// <summary>

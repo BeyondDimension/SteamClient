@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// 浮点类型统计
 /// </summary>
-public sealed record class FloatStatInfo : StatInfo
+public sealed record class FloatStatInfo : StatInfo, IJsonModel<FloatStatInfo>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 原始数值
     /// </summary>

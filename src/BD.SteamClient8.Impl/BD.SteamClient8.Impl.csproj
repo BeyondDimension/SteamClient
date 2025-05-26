@@ -7,6 +7,27 @@
 		<RootNamespace>BD.SteamClient8</RootNamespace>
 	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<ItemGroup>
+		<PackageReference Include="AngleSharp" />
+	</ItemGroup>
+
+	<!-- Windows Only -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8\BD.SteamClient8.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)\src\BD.Common8.Http.ClientFactory\BD.Common8.Http.ClientFactory.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)\src\BD.Common8.Crawler\BD.Common8.Crawler.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'macos' OR $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == ''">
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\SAM.API\SAM.API.csproj" />
+	</ItemGroup>
 
 </Project>

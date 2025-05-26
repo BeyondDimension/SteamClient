@@ -1,11 +1,17 @@
+using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.WebApi.Idles;
 
 /// <summary>
-/// Steam 游戏卡片市场价格
+/// Steam 游戏卡片市场价格 
 /// <para>https://github.com/IsThereAnyDeal/AugmentedSteam_Server/blob/master/src/Controllers/MarketController.php</para>
 /// </summary>
-public sealed record class CardsMarketPrice
+public sealed record class CardsMarketPrice : JsonRecordModel<CardsMarketPrice>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 卡片名称
     /// </summary>

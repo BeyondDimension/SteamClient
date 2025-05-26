@@ -1,0 +1,57 @@
+<Solution>
+  <Folder Name="/1.Root/">
+    <File Path=".github/ISSUE_TEMPLATE/bug-report.en.md" />
+    <File Path=".github/ISSUE_TEMPLATE/bug-report.md" />
+    <File Path=".github/ISSUE_TEMPLATE/question.en.md" />
+    <File Path=".github/ISSUE_TEMPLATE/question.md" />
+    <File Path=".github/workflows/CI.yml" />
+    <File Path="crowdin.yml" />
+    <File Path="README.md" />
+    <File Path="ref/Common/src/Directory.Packages.props" />
+    <File Path="src/.editorconfig" />
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Directory.Build.targets" />
+    <File Path="src/GeneratePackage.props" />
+    <File Path="src/Version.props" />
+  </Folder>
+  <Folder Name="/2.Document/" />
+  <Folder Name="/3.SharedLibrary/">
+    <Project Path="src/BD.SteamClient8.Impl/BD.SteamClient8.Impl.csproj" />
+    <Project Path="src/BD.SteamClient8.Models/BD.SteamClient8.Models.csproj" />
+    <Project Path="src/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.csproj" />
+    <Project Path="src/BD.SteamClient8/BD.SteamClient8.csproj" />
+    <Project Path="src/SAM.API/SAM.API.csproj" Id="d46e66e1-76ef-4479-b453-4ae0591b0853" />
+  </Folder>
+  <Folder Name="/3.SharedLibrary/Reference/">
+    <Project Path="ref/Common/src/BD.Common8.3rdParty.SteamKit2/BD.Common8.3rdParty.SteamKit2.csproj" Id="4b2b0365-de37-4b65-b614-3e4e7c05147d" />
+    <Project Path="ref/Common/src/BD.Common8.3rdParty.ValveKeyValue/BD.Common8.3rdParty.ValveKeyValue.csproj" />
+  </Folder>
+  <Folder Name="/3.SharedLibrary/Reference/Common8/">
+    <Project Path="ref/Common/src/BD.Common8.Bcl/BD.Common8.Bcl.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Crawler/BD.Common8.Crawler.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Essentials/BD.Common8.Essentials.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Http.ClientFactory/BD.Common8.Http.ClientFactory.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Primitives.ApiResponse/BD.Common8.Primitives.ApiResponse.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Primitives.ApiRsp/BD.Common8.Primitives.ApiRsp.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Primitives.Essentials/BD.Common8.Primitives.Essentials.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Primitives.Toast/BD.Common8.Primitives.Toast.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Primitives/BD.Common8.Primitives.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Security/BD.Common8.Security.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.SourceGenerator.Bcl/BD.Common8.SourceGenerator.Bcl.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.SourceGenerator.ResX/BD.Common8.SourceGenerator.ResX.csproj" />
+    <Project Path="ref/Common/src/BD.Common8.Toast/BD.Common8.Toast.csproj" />
+  </Folder>
+  <Folder Name="/3.SharedLibrary/WinAuth/">
+    <Project Path="src/Authenticator/Authenticator.csproj" Id="d84ef189-e0f7-4092-b4a1-7cfa9fb174dc" />
+    <Project Path="src/BD.SteamClient8.3rdParty.WinAuth.Abstractions/BD.SteamClient8.3rdParty.WinAuth.Abstractions.csproj" Id="331eff33-e054-4f85-a8b9-741548740300" />
+  </Folder>
+  <Folder Name="/4.SourceGenerator/" />
+  <Folder Name="/5.Tools/">
+    <Project Path="src/Tools.Build/Tools.Build.csproj" />
+    <Project Path="src/Tools.DocFX/Tools.DocFX.csproj" />
+  </Folder>
+  <Folder Name="/6.Sample/" />
+  <Folder Name="/7.UnitTest/">
+    <Project Path="src/BD.SteamClient8.UnitTest/BD.SteamClient8.UnitTest.csproj" />
+  </Folder>
+</Solution>

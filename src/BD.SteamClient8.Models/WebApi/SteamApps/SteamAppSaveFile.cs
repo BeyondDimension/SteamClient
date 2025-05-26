@@ -1,8 +1,11 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
-public sealed class SteamAppSaveFile
+public sealed class SteamAppSaveFile : JsonModel<SteamAppSaveFile>, IJsonSerializerContext
 {
-#if !(IOS || ANDROID)
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
 
     /// <summary>
     /// <see cref="SteamAppSaveFile"/> 构造
@@ -19,7 +22,7 @@ public sealed class SteamAppSaveFile
         Pattern = pattern;
     }
 
-    [SystemTextJsonConstructor]
+    [global::System.Text.Json.Serialization.JsonConstructor]
     public SteamAppSaveFile()
     {
     }
@@ -57,5 +60,4 @@ public sealed class SteamAppSaveFile
     /// 系统平台
     /// </summary>
     public string? Platforms { get; set; }
-#endif
 }

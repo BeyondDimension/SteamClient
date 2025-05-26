@@ -1,5 +1,8 @@
 namespace BD.SteamClient8.Constants;
 
+/// <summary>
+/// steamgriddb.com 相关 URL 常量
+/// </summary>
 public static partial class SteamGridDBApiUrls
 {
     public const string SteamGridDB_APP_URL = "https://www.steamgriddb.com/game/{0}";

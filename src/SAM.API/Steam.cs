@@ -20,29 +20,52 @@
  *    distribution.
  */
 
+using Microsoft.Win32;
+using SAM.API.Types;
+using System.Runtime.InteropServices;
+
 namespace SAM.API;
 
-public static class Steam
+public static partial class Steam
 {
     static TDelegate? GetExportFunction<TDelegate>(nint module, string name)
       where TDelegate : class
     {
         nint address = NativeLibrary.GetExport(module, name);
-        return address == nint.Zero ? null : Marshal.GetDelegateForFunctionPointer<TDelegate>(address);
+        return address == IntPtr.Zero ? null : Marshal.GetDelegateForFunctionPointer<TDelegate>(address);
     }
 
     static nint _Handle;
 
-    public static Func<string?>? GetInstallPathDelegate { private get; set; }
-
     public static string? GetInstallPath()
     {
         if (GetInstallPathDelegate != null)
+        {
             return GetInstallPathDelegate();
+        }
+#if WINDOWS
+#else
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#else
+#endif
+#else
         if (OperatingSystem.IsWindows())
-            return Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\Valve\Steam", "SteamPath", null)?.ToString();
+#endif
+#endif
+        {
+            return Registry.GetValue(
+                @"HKEY_CURRENT_USER\SOFTWARE\Valve\Steam",
+                "SteamPath",
+                null)?.ToString();
+        }
+#if !WINDOWS
         else
+        {
             throw new PlatformNotSupportedException();
+        }
+#endif
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -53,9 +76,9 @@ public static class Steam
     public static TClass? CreateInterface<TClass>(string version)
         where TClass : INativeWrapper, new()
     {
-        var address = _CallCreateInterface!(version, nint.Zero);
+        var address = _CallCreateInterface!(version, IntPtr.Zero);
 
-        if (address == nint.Zero)
+        if (address == IntPtr.Zero)
         {
             return default;
         }
@@ -91,7 +114,7 @@ public static class Steam
     {
         try
         {
-            if (_Handle != nint.Zero)
+            if (_Handle != IntPtr.Zero)
             {
                 return true;
             }
@@ -102,34 +125,59 @@ public static class Steam
                 return false;
             }
 
-            if (OperatingSystem.IsMacOS())
+            if (GetSteamClientNativeLibraryPathDelegate != null)
             {
-                path = Path.Combine(path, "steamclient.dylib");
-            }
-            else if (OperatingSystem.IsWindows())
-            {
-                // C:\Program Files (x86)\Steam\steamclient64.dll
-                path = Path.Combine(path,
-                    Environment.Is64BitProcess ?
-                        "steamclient64.dll" :
-                        "steamclient.dll");
-            }
-            else if (OperatingSystem.IsLinux() && !OperatingSystem.IsAndroid())
-            {
-                // /home/{0}/.local/share/Steam/linux64/steamclient.so
-                path = Path.Combine(path,
-                    Environment.Is64BitProcess ?
-                        "linux64" :
-                        "linux32",
-                    "steamclient.so");
+                path = GetSteamClientNativeLibraryPathDelegate(path);
             }
             else
             {
-                throw new PlatformNotSupportedException();
+#if WINDOWS
+                path = GetSteamClientNativeLibraryPathByWindows(path);
+#elif MACOS
+                path = GetSteamClientNativeLibraryPathByMacOS(path);
+#else
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+#else
+#endif
+#else
+                if (OperatingSystem.IsMacOS())
+#endif
+                {
+                    path = GetSteamClientNativeLibraryPathByMacOS(path);
+                }
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#else
+#endif
+#else
+                else if (OperatingSystem.IsWindows())
+#endif
+                {
+                    path = GetSteamClientNativeLibraryPathByWindows(path);
+                }
+#if NETFRAMEWORK || NETSTANDARD
+#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+#else
+#endif
+#else
+                else if (OperatingSystem.IsLinux())
+#endif
+                {
+                    path = GetSteamClientNativeLibraryPathByLinux(path);
+                }
+                else
+                {
+                    throw new PlatformNotSupportedException();
+                }
+#endif
             }
 
             var module = NativeLibrary.Load(path);
-            if (module == nint.Zero)
+            if (module == IntPtr.Zero)
             {
                 return false;
             }
@@ -160,4 +208,35 @@ public static class Steam
             return false;
         }
     }
+
+#if !MACOS
+    static string GetSteamClientNativeLibraryPathByWindows(string path)
+    {
+        // C:\Program Files (x86)\Steam\steamclient64.dll
+        path = Path.Combine(path,
+            Environment.Is64BitProcess ?
+                "steamclient64.dll" :
+                "steamclient.dll");
+        return path;
+    }
+#endif
+#if !WINDOWS
+#if !MACOS
+    static string GetSteamClientNativeLibraryPathByLinux(string path)
+    {
+        // /home/{0}/.local/share/Steam/linux64/steamclient.so
+        path = Path.Combine(path,
+            Environment.Is64BitProcess ?
+                "linux64" :
+                "linux32",
+            "steamclient.so");
+        return path;
+    }
+#endif
+    static string GetSteamClientNativeLibraryPathByMacOS(string path)
+    {
+        path = Path.Combine(path, "steamclient.dylib");
+        return path;
+    }
+#endif
 }

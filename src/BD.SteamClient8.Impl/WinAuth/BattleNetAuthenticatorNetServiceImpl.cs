@@ -1,3 +1,14 @@
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Models.WinAuth;
+using Microsoft.Extensions.Logging;
+using System.Extensions;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Text;
+
 namespace BD.SteamClient8.WinAuth;
 
 /// <summary>
@@ -12,135 +23,61 @@ sealed class BattleNetAuthenticatorNetServiceImpl(IServiceProvider serviceProvid
     /// <inheritdoc/>
     protected override string ClientName => TAG;
 
-    /// <summary>
-    /// 所有移动服务的 URL
-    /// </summary>
-    const string REGION_US = "US";
-    const string REGION_EU = "EU";
-    const string REGION_KR = "KR";
-    const string REGION_CN = "CN";
-
-    /// <summary>
-    /// 用于移动服务的 URLS
-    /// </summary>
-    public static Dictionary<string, string> MOBILE_URLS = new()
+    async Task<(HttpStatusCode statusCode, byte[]? responseData)> ReadAsByteArrayAsync(HttpRequestMessage req, int size, CancellationToken cancellationToken = default)
     {
-        { REGION_US, "http://mobile-service.blizzard.com" },
-        { REGION_EU, "http://mobile-service.blizzard.com" },
-        { REGION_KR, "http://mobile-service.blizzard.com" },
-        { REGION_CN, "http://mobile-service.battlenet.com.cn" },
-    };
-
-    const string ENROLL_PATH = "/enrollment/enroll2.htm";
-    const string SYNC_PATH = "/enrollment/time.htm";
-    const string RESTORE_PATH = "/enrollment/initiatePaperRestore.htm";
-    const string RESTOREVALIDATE_PATH = "/enrollment/validatePaperRestore.htm";
-
-    /// <summary>
-    /// 用于 GEO IP 查找以确定区域的 URL
-    /// </summary>
-    static readonly string GEOIPURL = "http://geoiplookup.wikimedia.org";
-
-    /// <summary>
-    /// 获取基于区域的基本 mobil url
-    /// </summary>
-    /// <param name="region">两个字母的地区代码，即美国或中国</param>
-    /// <returns>区域的 Url 字符串</returns>
-    private static string GetMobileUrl(string region)
-    {
-        var upperregion = region.ToUpper();
-        if (upperregion.Length > 2)
+        var client = CreateClient();
+        using var rsp = await client.UseDefaultSendAsync(req,
+            HttpCompletionOption.ResponseHeadersRead, // 先读取头看看响应内容长度是否符合预期
+            cancellationToken);
+        if (!rsp.IsSuccessStatusCode)
         {
-            upperregion = upperregion[..2];
+            return (rsp.StatusCode, null);
         }
-        if (MOBILE_URLS.ContainsKey(upperregion) == true)
+
+        var contentLength = rsp.Content.Headers.ContentLength; // 响应头长度可能有，也可能没有
+        if (contentLength.HasValue && contentLength.Value != size)
         {
-            return MOBILE_URLS[upperregion];
+            return (rsp.StatusCode, null); // 返回 null 表示请求的内容长度超过了预期的大小
         }
-        else
+
+        var rspContent = rsp.Content.ReadAsStream(cancellationToken);
+        byte[] responseData = new byte[size];
+        int n = rspContent.Read(responseData);
+        if (n != size)
         {
-            return MOBILE_URLS[REGION_US];
+            return (rsp.StatusCode, null); // 返回 null 表示读取的内容长度不符合预期
         }
-    }
-
-    /// <summary>
-    /// 地理位置 IP
-    /// </summary>
-    /// <returns></returns>
-    public async Task<ApiRspImpl<string>> GEOIP(CancellationToken cancellationToken = default)
-    {
-        using var sendArgs = new WebApiClientSendArgs(GEOIPURL);
-        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
-        var result = await rsp!.Content.ReadAsStringAsync(cancellationToken);
-        return ApiRspHelper.Ok(result)!;
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<byte[]>> EnRoll(string region, byte[] encrypted, CancellationToken cancellationToken = default)
-    {
-        using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(region) + ENROLL_PATH)
+        var last = rspContent.ReadByte(); // 读取最后一个字节，确保流位置正确
+        if (last != -1)
         {
-            Method = HttpMethod.Post,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                var content = new ByteArrayContent(encrypted);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
-                req.Content = content;
-
-                return Task.CompletedTask;
-            },
-        };
-        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
-        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
-        return ApiRspHelper.Ok(result)!;
+            return (rsp.StatusCode, null); // 返回 null 表示流未正确结束
+        }
+        return (rsp.StatusCode, responseData);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<byte[]>> Sync(string region, CancellationToken cancellationToken = default)
+    public async Task<(HttpStatusCode statusCode, byte[]? responseData)> PostByteArrayAsync(string requestUri, byte[] bytes, int size, CancellationToken cancellationToken = default)
     {
-        using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(region) + SYNC_PATH);
-        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
-        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
-        return ApiRspHelper.Ok(result)!;
+        // https://github.com/BeyondDimension/original.winauth/blob/master/Authenticator/BattleNetAuthenticator.cs#L363-L400
+        // https://github.com/BeyondDimension/original.winauth/blob/master/Authenticator/BattleNetAuthenticator.cs#L553-L592
+        // https://github.com/BeyondDimension/original.winauth/blob/master/Authenticator/BattleNetAuthenticator.cs#L643-L680
+
+        using HttpRequestMessage req = new(HttpMethod.Post, requestUri);
+        req.Content = new ByteArrayContent(bytes);
+        req.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+        var result = await ReadAsByteArrayAsync(req, size, cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<byte[]>> ReStore(string serial, byte[] serialBytes, CancellationToken cancellationToken = default)
+    public async Task<(HttpStatusCode statusCode, byte[]? responseData)> GetByteArrayAsync(string requestUri, int size, CancellationToken cancellationToken = default)
     {
-        using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(serial) + RESTORE_PATH)
-        {
-            Method = HttpMethod.Post,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                var content = new ByteArrayContent(serialBytes);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
-                req.Content = content;
+        // https://github.com/BeyondDimension/original.winauth/blob/master/Authenticator/BattleNetAuthenticator.cs#L477-L512
 
-                return Task.CompletedTask;
-            },
-        };
-        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
-        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
-        return ApiRspHelper.Ok(result)!;
-    }
+        using HttpRequestMessage req = new(HttpMethod.Get, requestUri);
 
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<byte[]>> ReStoreValidate(string serial, byte[] postbytes, CancellationToken cancellationToken = default)
-    {
-        using var sendArgs = new WebApiClientSendArgs(GetMobileUrl(serial) + RESTOREVALIDATE_PATH)
-        {
-            Method = HttpMethod.Post,
-            ConfigureRequestMessage = (req, args, token) =>
-            {
-                var content = new ByteArrayContent(postbytes);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream", Encoding.UTF8.WebName);
-                req.Content = content;
-
-                return Task.CompletedTask;
-            },
-        };
-        using var rsp = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
-        var result = await rsp!.Content.ReadAsByteArrayAsync(cancellationToken);
-        return ApiRspHelper.Ok(result)!;
+        var result = await ReadAsByteArrayAsync(req, size, cancellationToken);
+        return result;
     }
 }

@@ -1,5 +1,29 @@
 #if !(IOS || ANDROID)
-
+#if WINDOWS
+using System.Management;
+#endif
+using BD.Common8.Enums;
+using BD.Common8.Helpers;
+using BD.Common8.Models;
+using BD.SteamClient8.Enums.WebApi;
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Enums.WebApi.SteamGridDB;
+using BD.SteamClient8.Helpers;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.Extensions;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+using Microsoft.Extensions.Logging;
+using System.Buffers;
+using System.Collections.Concurrent;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Json;
+using ValveKeyValue;
 using static BD.SteamClient8.Services.Abstractions.PInvoke.ISteamService;
 
 namespace BD.SteamClient8.Services.PInvoke;
@@ -1393,7 +1417,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             // Search for changed app, if null it's a new app
             //SteamApp info = Apps.FirstOrDefault(x => x.ID == newID);
             //uint appId = GetAppId(v);
-            steamDownloadingChanges.Enqueue(SystemTextJsonSerializer.Serialize(app, DefaultJsonSerializerContext_.Default.SteamApp));
+            steamDownloadingChanges.Enqueue(JsonSerializer.Serialize(app, DefaultJsonSerializerContext_.Default.SteamApp));
 
             //if (info != null) // Download state changed
             //{

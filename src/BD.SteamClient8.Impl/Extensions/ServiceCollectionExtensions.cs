@@ -1,23 +1,18 @@
+using BD.SteamClient8.Models.WinAuth;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using BD.SteamClient8.Services.PInvoke;
+using BD.SteamClient8.Services.WebApi;
+using BD.SteamClient8.WinAuth;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+
 namespace BD.SteamClient8.Extensions;
 
 public static partial class ServiceCollectionExtensions
 {
-#if !(IOS || ANDROID)
-
-    /// <summary>
-    /// 尝试添加 Steamworks LocalApi Service
-    /// </summary>
-    /// <param name="services"></param>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static IServiceCollection TryAddSteamworksLocalApiService(this IServiceCollection services)
-    {
-        services.TryAddSingleton<ISteamworksLocalApiService, SteamworksLocalApiServiceImpl>();
-        return services;
-    }
-
-#endif
-
     /// <summary>
     /// 添加 SteamDb WebApi Service
     /// </summary>
@@ -135,3 +130,21 @@ public static partial class ServiceCollectionExtensions
         return services;
     }
 }
+
+#if !(IOS || ANDROID || MACCATALYST)
+static partial class ServiceCollectionExtensions
+{
+    /// <summary>
+    /// 尝试添加 Steamworks LocalApi Service
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static IServiceCollection TryAddSteamworksLocalApiService(this IServiceCollection services)
+    {
+        services.TryAddSingleton<ISteamworksLocalApiService, SteamworksLocalApiServiceImpl>();
+        return services;
+    }
+}
+
+#endif

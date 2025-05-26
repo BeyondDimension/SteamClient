@@ -22,6 +22,8 @@
 
 namespace SAM.API.Wrappers;
 
+using SAM.API.Interfaces;
+using System.Runtime.InteropServices;
 using ERemoteStoragePlatform = SAM.API.Types.ERemoteStoragePlatform;
 
 public class SteamRemoteStorage012 : NativeWrapper<ISteamRemoteStorage014>

@@ -1,10 +1,16 @@
+using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.WebApi.Idles;
 
 /// <summary>
 /// 卡片
 /// </summary>
-public sealed record class SteamCard
+public sealed record class SteamCard : JsonRecordModel<SteamCard>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 卡片名称
     /// </summary>

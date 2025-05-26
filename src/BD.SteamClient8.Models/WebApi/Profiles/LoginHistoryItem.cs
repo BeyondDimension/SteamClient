@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.Profiles;
 
 /// <summary>
 /// 登录历史
 /// </summary>
-public sealed record class LoginHistoryItem
+public sealed record class LoginHistoryItem : JsonRecordModel<LoginHistoryItem>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 登录时间
     /// </summary>

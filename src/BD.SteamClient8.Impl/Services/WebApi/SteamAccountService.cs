@@ -1,4 +1,37 @@
+using AngleSharp;
+using AngleSharp.Dom;
+using AngleSharp.Html.Parser;
+using BD.Common8.Crawler.Helpers;
+using BD.Common8.Enums;
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Enums.WebApi;
+using BD.SteamClient8.Helpers;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.Protobuf;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Models.WebApi.Profiles;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Google.Protobuf;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Polly;
 using Polly.Retry;
+using System.Diagnostics.CodeAnalysis;
+using System.Extensions;
+using System.Globalization;
+using System.Net;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace BD.SteamClient8.Services.WebApi;
 
@@ -8,8 +41,11 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     protected sealed override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     /// <summary>
     /// 用于标识和记录日志信息
@@ -61,7 +97,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     /// <summary>
     /// 重试间隔
     /// </summary>
-    static readonly IEnumerable<TimeSpan> sleepDurations = new[] { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3), };
+    static readonly IEnumerable<TimeSpan> sleepDurations = [TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(3),];
 
     #region Public Methods
 
@@ -725,7 +761,7 @@ public sealed partial class SteamAccountService : WebApiClientFactoryService, IS
     {
         IBrowsingContext context = BrowsingContext.New();
 
-        var htmlParser = context.GetService<IHtmlParser>() ?? throw new ArgumentNullException("获取 Html 解析器失败");
+        var htmlParser = context.GetService<IHtmlParser>().ThrowIsNull();
         var document = await htmlParser.ParseDocumentAsync(html);
 
         var rowElements = document.QuerySelectorAll("div.tradehistoryrow");

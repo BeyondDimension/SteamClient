@@ -20,6 +20,9 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+using System.Runtime.InteropServices;
+
 namespace SAM.API.Wrappers;
 
 public class SteamUser012 : NativeWrapper<ISteamUser012>

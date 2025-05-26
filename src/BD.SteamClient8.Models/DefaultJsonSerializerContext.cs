@@ -1,92 +1,116 @@
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.Authenticators;
+using BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber;
+using BD.SteamClient8.Models.WebApi.Idles;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Models.WebApi.Markets;
+using BD.SteamClient8.Models.WebApi.Profiles;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using BD.SteamClient8.Models.WebApi.SteamGridDB;
+using BD.SteamClient8.Models.WebApi.Trades;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models;
 
 /// <summary>
 /// Json 源生成类型上下文
 /// </summary>
-[SystemTextJsonSerializable(typeof(AchievementInfo))]
-[SystemTextJsonSerializable(typeof(AuthorizedDevice))]
-[SystemTextJsonSerializable(typeof(CurrencyData))]
-[SystemTextJsonSerializable(typeof(CursorData))]
-[SystemTextJsonSerializable(typeof(DisableAuthorizedDevice))]
-[SystemTextJsonSerializable(typeof(FloatStatInfo))]
-[SystemTextJsonSerializable(typeof(ImportedSDAEntry))]
-[SystemTextJsonSerializable(typeof(IntStatInfo))]
-[SystemTextJsonSerializable(typeof(RedeemWalletResponse))]
-[SystemTextJsonSerializable(typeof(SteamMiniProfile))]
-[SystemTextJsonSerializable(typeof(SteamRemoteFile))]
-[SystemTextJsonSerializable(typeof(SteamUser))]
-[SystemTextJsonSerializable(typeof(PlayerSummaries))]
-[SystemTextJsonSerializable(typeof(PlayerSummariesResponse))]
-[SystemTextJsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
+[JsonSerializable(typeof(AchievementInfo))]
+[JsonSerializable(typeof(AuthorizedDevice))]
+[JsonSerializable(typeof(CurrencyData))]
+[JsonSerializable(typeof(CursorData))]
+[JsonSerializable(typeof(DisableAuthorizedDevice))]
+[JsonSerializable(typeof(FloatStatInfo))]
+[JsonSerializable(typeof(ImportedSDAEntry))]
+[JsonSerializable(typeof(IntStatInfo))]
+[JsonSerializable(typeof(RedeemWalletResponse))]
+[JsonSerializable(typeof(SteamMiniProfile))]
+[JsonSerializable(typeof(SteamRemoteFile))]
+[JsonSerializable(typeof(SteamUser))]
+[JsonSerializable(typeof(PlayerSummaries))]
+[JsonSerializable(typeof(PlayerSummariesResponse))]
+[JsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
 //// Idle
-[SystemTextJsonSerializable(typeof(AppCardsAvgPrice))]
-[SystemTextJsonSerializable(typeof(IdleBadge))]
-[SystemTextJsonSerializable(typeof(CardsMarketPrice))]
-[SystemTextJsonSerializable(typeof(SteamCard))]
-[SystemTextJsonSerializable(typeof(UserIdleInfo))]
+[JsonSerializable(typeof(AppCardsAvgPrice))]
+[JsonSerializable(typeof(IdleBadge))]
+[JsonSerializable(typeof(CardsMarketPrice))]
+[JsonSerializable(typeof(SteamCard))]
+[JsonSerializable(typeof(UserIdleInfo))]
 //// Login
-[SystemTextJsonSerializable(typeof(DoLoginResponse))]
-[SystemTextJsonSerializable(typeof(FinalizeLoginStatus))]
-[SystemTextJsonSerializable(typeof(SteamLoginState))]
-[SystemTextJsonSerializable(typeof(SteamSession))]
-[SystemTextJsonSerializable(typeof(TransferInfo))]
-[SystemTextJsonSerializable(typeof(TransferInfoParams))]
-[SystemTextJsonSerializable(typeof(TransferParameters))]
+[JsonSerializable(typeof(DoLoginResponse))]
+[JsonSerializable(typeof(FinalizeLoginStatus))]
+[JsonSerializable(typeof(SteamLoginState))]
+[JsonSerializable(typeof(SteamSession))]
+[JsonSerializable(typeof(TransferInfo))]
+[JsonSerializable(typeof(TransferInfoParams))]
+[JsonSerializable(typeof(TransferParameters))]
 //// Market
-[SystemTextJsonSerializable(typeof(MarketItemOrdersHistogramResponse))]
-[SystemTextJsonSerializable(typeof(MarketItemPriceOverviewResponse))]
-[SystemTextJsonSerializable(typeof(MarketListings))]
-[SystemTextJsonSerializable(typeof(MarketTradingHistoryRenderPageResponse))]
-[SystemTextJsonSerializable(typeof(SellItemToMarketResponse))]
+[JsonSerializable(typeof(MarketItemOrdersHistogramResponse))]
+[JsonSerializable(typeof(MarketItemPriceOverviewResponse))]
+[JsonSerializable(typeof(MarketListings))]
+[JsonSerializable(typeof(MarketTradingHistoryRenderPageResponse))]
+[JsonSerializable(typeof(SellItemToMarketResponse))]
 //// Profile
-[SystemTextJsonSerializable(typeof(HistoryParseResponse))]
-[SystemTextJsonSerializable(typeof(InventoryPageResponse))]
-[SystemTextJsonSerializable(typeof(InventoryTradeHistoryRenderPageResponse))]
-[SystemTextJsonSerializable(typeof(LoginHistoryItem))]
-[SystemTextJsonSerializable(typeof(SendGiftHistoryItem))]
+[JsonSerializable(typeof(HistoryParseResponse))]
+[JsonSerializable(typeof(InventoryPageResponse))]
+[JsonSerializable(typeof(InventoryTradeHistoryRenderPageResponse))]
+[JsonSerializable(typeof(LoginHistoryItem))]
+[JsonSerializable(typeof(SendGiftHistoryItem))]
 //// SteamApp
 #if !(IOS || ANDROID)
-[SystemTextJsonSerializable(typeof(ModifiedApp))]
+[JsonSerializable(typeof(ModifiedApp))]
 #endif
-[SystemTextJsonSerializable(typeof(SteamApp))]
-[SystemTextJsonSerializable(typeof(SteamApps))]
-[SystemTextJsonSerializable(typeof(SteamAppInfo))]
-[SystemTextJsonSerializable(typeof(SteamAppSaveFile))]
+[JsonSerializable(typeof(SteamApp))]
+[JsonSerializable(typeof(SteamApps))]
+[JsonSerializable(typeof(SteamAppInfo))]
+[JsonSerializable(typeof(SteamAppSaveFile))]
 //// SteamGridDB
-[SystemTextJsonSerializable(typeof(SteamGridApp))]
-[SystemTextJsonSerializable(typeof(SteamGridItemData))]
-[SystemTextJsonSerializable(typeof(SteamGridItem))]
-[SystemTextJsonSerializable(typeof(SteamGridAppData))]
+[JsonSerializable(typeof(SteamGridApp))]
+[JsonSerializable(typeof(SteamGridItemData))]
+[JsonSerializable(typeof(SteamGridItem))]
+[JsonSerializable(typeof(SteamGridAppData))]
 //// Trade
-[SystemTextJsonSerializable(typeof(TradeAsset))]
-[SystemTextJsonSerializable(typeof(TradeConfirmation))]
-[SystemTextJsonSerializable(typeof(TradeHistory))]
-[SystemTextJsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
-[SystemTextJsonSerializable(typeof(TradeHistory.TradeItem))]
-[SystemTextJsonSerializable(typeof(TradeHistory.TradeItemAssetItem))]
-[SystemTextJsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
-[SystemTextJsonSerializable(typeof(TradeOffersResponse))]
-[SystemTextJsonSerializable(typeof(TradeOffersResponseInfo))]
-[SystemTextJsonSerializable(typeof(TradeOffersInfo))]
-[SystemTextJsonSerializable(typeof(TradeOffersItem))]
-[SystemTextJsonSerializable(typeof(TradeSummary))]
-[SystemTextJsonSerializable(typeof(TradeSummaryResponse))]
+[JsonSerializable(typeof(TradeAsset))]
+[JsonSerializable(typeof(TradeConfirmation))]
+[JsonSerializable(typeof(TradeHistory))]
+[JsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
+[JsonSerializable(typeof(TradeHistory.TradeItem))]
+[JsonSerializable(typeof(TradeHistory.TradeItemAssetItem))]
+[JsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
+[JsonSerializable(typeof(TradeOffersResponse))]
+[JsonSerializable(typeof(TradeOffersResponseInfo))]
+[JsonSerializable(typeof(TradeOffersInfo))]
+[JsonSerializable(typeof(TradeOffersItem))]
+[JsonSerializable(typeof(TradeSummary))]
+[JsonSerializable(typeof(TradeSummaryResponse))]
 //// Authenticator
-[SystemTextJsonSerializable(typeof(GetUserCountryOrRegionResponse))]
-[SystemTextJsonSerializable(typeof(SteamAddPhoneNumberResponse))]
-[SystemTextJsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
-[SystemTextJsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamDoLoginHasPhoneJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamDoLoginTfaJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamDoLoginFinalizeJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamSyncStruct))]
-[SystemTextJsonSerializable(typeof(SteamConvertSteamDataJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamMobileDologinJsonStruct))]
-[SystemTextJsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
-[SystemTextJsonSerializable(typeof(RemoveAuthenticatorResponse))]
-[SystemTextJsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
+[JsonSerializable(typeof(GetUserCountryOrRegionResponse))]
+[JsonSerializable(typeof(SteamAddPhoneNumberResponse))]
+[JsonSerializable(typeof(IsAccountWaitingForEmailConfirmationResponse))]
+[JsonSerializable(typeof(SteamGetRsaKeyJsonStruct))]
+[JsonSerializable(typeof(SteamDoLoginHasPhoneJsonStruct))]
+[JsonSerializable(typeof(SteamDoLoginTfaJsonStruct))]
+[JsonSerializable(typeof(SteamDoLoginFinalizeJsonStruct))]
+[JsonSerializable(typeof(SteamConvertSteamDataJsonStruct))]
+[JsonSerializable(typeof(SteamMobileDologinJsonStruct))]
+[JsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
+[JsonSerializable(typeof(RemoveAuthenticatorResponse))]
+[JsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
-public partial class DefaultJsonSerializerContext_ : SystemTextJsonSerializerContext
+public partial class DefaultJsonSerializerContext_ : JsonSerializerContext
 {
+    static DefaultJsonSerializerContext_()
+    {
+        // https://github.com/dotnet/runtime/issues/94135
+        s_defaultOptions = new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 不转义字符！！！
+            AllowTrailingCommas = true,
+        };
+        Default = new DefaultJsonSerializerContext_(new JsonSerializerOptions(s_defaultOptions));
+    }
 }

@@ -1,52 +1,62 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Enums.WebApi.Markets;
+using System.Text.Json;
+
 namespace BD.SteamClient8.Models.WebApi.Markets;
 
 /// <summary>
 /// 市场交易历史 html
 /// </summary>
-public sealed record class MarketTradingHistoryRenderPageResponse
+public sealed record class MarketTradingHistoryRenderPageResponse : JsonRecordModel<MarketTradingHistoryRenderPageResponse>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 是否成功
     /// </summary>
-    [SystemTextJsonProperty("success")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("success")]
     public bool Success { get; set; }
 
     /// <summary>
     /// 页数
     /// </summary>
-    [SystemTextJsonProperty("pagesize")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("pagesize")]
     public int PageSize { get; set; }
 
     /// <summary>
     /// 总数量
     /// </summary>
-    [SystemTextJsonProperty("total_count")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("total_count")]
     public int TotalCount { get; set; }
 
     /// <summary>
     /// 资产列表
     /// </summary>
-    [SystemTextJsonProperty("assets")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("assets")]
     public Dictionary<string, JsonElement>? Assets { get; set; }
 
     /// <summary>
     /// 鼠标悬浮预览图
     /// </summary>
-    [SystemTextJsonProperty("hovers")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("hovers")]
     public string? Hovers { get; set; }
 
     /// <summary>
     /// 返回 Html
     /// </summary>
-    [SystemTextJsonProperty("results_html")]
+    [global::System.Text.Json.Serialization.JsonPropertyName("results_html")]
     public string ResultsHtml { get; set; } = string.Empty;
 }
 
 /// <summary>
 /// 市场交易历史
 /// </summary>
-public sealed record class MarketTradingHistoryRenderItem
+public sealed record class MarketTradingHistoryRenderItem : JsonRecordModel<MarketTradingHistoryRenderItem>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 交易历史行 Id
     /// </summary>

@@ -1,65 +1,73 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
+using System.Extensions;
+using System.Net;
+
 namespace BD.SteamClient8.Models.WebApi.Logins;
 
-public sealed partial class SteamSession
+public sealed partial class SteamSession : JsonModel<SteamSession>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// SteamId
     /// </summary>
-    [MPKey(0), SystemTextJsonProperty("steamid")]
+    [global::MessagePack.Key(0), global::System.Text.Json.Serialization.JsonPropertyName("steamid")]
     public string SteamId { get; set; } = string.Empty;
 
     /// <summary>
     /// 登录 Token
     /// </summary>
-    [MPKey(1), SystemTextJsonProperty("access_token")]
+    [global::MessagePack.Key(1), global::System.Text.Json.Serialization.JsonPropertyName("access_token")]
     public string AccessToken { get; set; } = string.Empty;
 
     /// <summary>
     /// 刷新 Token 所需密钥
     /// </summary>
-    [MPKey(2), SystemTextJsonProperty("refresh_token")]
+    [global::MessagePack.Key(2), global::System.Text.Json.Serialization.JsonPropertyName("refresh_token")]
     public string RefreshToken { get; set; } = string.Empty;
 
     /// <summary>
-    /// Cookie容器
+    /// Cookie 容器
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public CookieCollection Cookies { get; set; } = [];
 
     /// <summary>
     /// 聊天消息队列唯一标识符
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string UmqId { get; set; } = string.Empty;
 
     /// <summary>
     /// 聊天消息唯一标识符
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string MessageId { get; set; } = string.Empty;
 
     /// <summary>
     /// 用户 APIKey
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string APIKey { get; set; } = string.Empty;
 
     /// <summary>
     /// 令牌认证密钥
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public string IdentitySecret { get; set; } = string.Empty;
 
     /// <summary>
     /// 与 Steam 通用时间的间隔
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public long ServerTimeDiff { get; set; }
 
     /// <summary>
     /// 存储用户登录状态的 httpClient
     /// </summary>
-    [SystemTextJsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public HttpClient? HttpClient { get; set; }
 
     /// <summary>

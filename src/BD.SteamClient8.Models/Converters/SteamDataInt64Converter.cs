@@ -1,12 +1,15 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.Converters;
 
 /// <summary>
 /// Steam API 数据 <see cref="JsonTokenType.String"/> => <see cref="long"/>
 /// </summary>
-public sealed class SteamDataInt64Converter : System.Text.Json.Serialization.JsonConverter<long>
+public sealed class SteamDataInt64Converter : global::System.Text.Json.Serialization.JsonConverter<long>
 {
     /// <inheritdoc/>
-    public override long Read(ref Utf8JsonReader reader, Type typeToConvert, SystemTextJsonSerializerOptions options)
+    public sealed override long Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         // 处理本就是数字的情况
         if (reader.TokenType == JsonTokenType.Number)
@@ -24,7 +27,7 @@ public sealed class SteamDataInt64Converter : System.Text.Json.Serialization.Jso
     }
 
     /// <inheritdoc/>
-    public override void Write(Utf8JsonWriter writer, long value, SystemTextJsonSerializerOptions options)
+    public sealed override void Write(Utf8JsonWriter writer, long value, JsonSerializerOptions options)
     {
         writer.WriteNumberValue(value);
     }

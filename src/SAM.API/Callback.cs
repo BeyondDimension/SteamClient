@@ -20,6 +20,9 @@
  *    distribution.
  */
 
+using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
+
 namespace SAM.API;
 
 public abstract class Callback : ICallback
@@ -38,7 +41,11 @@ public abstract class Callback : ICallback
     }
 }
 
-public abstract class Callback<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TParameter> : ICallback
+public abstract class Callback<
+#if NET5_0_OR_GREATER
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)]
+#endif
+TParameter> : ICallback
     where TParameter : struct
 {
     public delegate void CallbackFunction(TParameter arg);

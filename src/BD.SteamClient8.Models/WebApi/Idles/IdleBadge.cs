@@ -1,10 +1,16 @@
+using BD.Common8.Models.Abstractions;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Models.WebApi.Idles;
 
 /// <summary>
 /// 徽章
 /// </summary>
-public sealed record class IdleBadge
+public sealed record class IdleBadge : JsonRecordModel<IdleBadge>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 徽章名称
     /// </summary>

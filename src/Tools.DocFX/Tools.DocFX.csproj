@@ -1,18 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<TargetFramework>net$(DotNet_Version)</TargetFramework>
-		<UseProjectUtils>true</UseProjectUtils>
-		<BeyondDimensionFeatures>
-			BD.Common8.Bcl;
-		</BeyondDimensionFeatures>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<Compile Include="$(Path_Submodule)Common\src\Tools.DocFX\**\*.cs" />
-		<Compile Remove="$(Path_Submodule)Common\src\Tools.DocFX\bin\**\*.cs" />
-		<Compile Remove="$(Path_Submodule)Common\src\Tools.DocFX\obj\**\*.cs" />
+		<Compile Include="$(Path_Submodule_Common)\src\Tools.DocFX\**\*.cs">
+			<Exclude>bin\**;obj\**</Exclude>
+		</Compile>
+		<Compile Remove="$(Path_Submodule_Common)\src\Tools.DocFX\bin\**\*.cs" />
+		<Compile Remove="$(Path_Submodule_Common)\src\Tools.DocFX\obj\**\*.cs" />
 	</ItemGroup>
+
+	<Import Project="$(Path_Submodule_Common)src\SharedProject\Tools.DocFX.props" />
 
 </Project>

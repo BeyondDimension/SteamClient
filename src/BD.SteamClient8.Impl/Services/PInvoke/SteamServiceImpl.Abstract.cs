@@ -1,3 +1,13 @@
+using BD.Common8.Helpers;
+using BD.Common8.Models;
+using BD.SteamClient8.Helpers;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+using Microsoft.Win32;
+using System.Diagnostics;
+using System.Extensions;
+using System.Runtime.CompilerServices;
+using ValveKeyValue;
+
 namespace BD.SteamClient8.Services.PInvoke;
 
 public abstract partial class SteamServiceImpl

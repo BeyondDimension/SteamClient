@@ -20,6 +20,9 @@
  *    distribution.
  */
 
+using SAM.API.Interfaces;
+using System.Runtime.InteropServices;
+
 namespace SAM.API.Wrappers;
 
 public class SteamUtils005 : NativeWrapper<ISteamUtils005>
@@ -64,7 +67,12 @@ public class SteamUtils005 : NativeWrapper<ISteamUtils005>
 
     public bool GetImageRGBA(int index, byte[] data)
     {
+#if NET6_0_OR_GREATER
         ArgumentNullException.ThrowIfNull(data);
+#else
+        if (data == null)
+            throw new ArgumentNullException(nameof(data));
+#endif
         var call = GetFunction<NativeGetImageRGBA>(Functions.GetImageRGBA);
         return call(ObjectAddress, index, data, data.Length);
     }

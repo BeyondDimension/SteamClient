@@ -6,18 +6,14 @@
 		<Description>SteamClient8 基本库</Description>
 	</PropertyGroup>
 
-	<!-- 👇 NuGet 打包配置 -->
-	<ItemGroup>
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.SteamClient8.Primitives.targets" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\buildTransitive\BD.SteamClient8.Primitives.props" Pack="true" PackagePath="buildTransitive" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\Projects\BD.SteamClient8.*.props" Pack="true" PackagePath="buildTransitive\src\Sdk\Projects" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.Lib.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Sdk\BD.SteamClient8.Sdk.Ref.Package.targets" Pack="true" PackagePath="buildTransitive\src\Sdk" Visible="false" />
-		<None Include="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
-		<None Remove="$(MSBuildThisFileDirectory)..\Shared\GlobalUsings.Tools*.props" Pack="true" PackagePath="buildTransitive\src\Shared" Visible="false" />
-	</ItemGroup>
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.SourceGenerator.ResX\BD.Common8.SourceGenerator.ResX.csproj">
+			<OutputItemType>Analyzer</OutputItemType>
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+		</ProjectReference>
+	</ItemGroup>
 
 </Project>

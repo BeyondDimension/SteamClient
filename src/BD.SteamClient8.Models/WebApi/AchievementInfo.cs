@@ -1,10 +1,17 @@
+using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
+using System.Globalization;
+
 namespace BD.SteamClient8.Models.WebApi;
 
 /// <summary>
 /// Steam 成就
 /// </summary>
-public sealed record class AchievementInfo
+public sealed record class AchievementInfo : JsonRecordModel<AchievementInfo>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 游戏 AppId
     /// </summary>

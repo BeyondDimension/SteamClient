@@ -20,9 +20,17 @@
  *    distribution.
  */
 
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Runtime.InteropServices;
+
 namespace SAM.API;
 
-public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)] TNativeFunctions> : INativeWrapper
+public abstract class NativeWrapper<
+#if NET5_0_OR_GREATER
+    [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors | DynamicallyAccessedMemberTypes.NonPublicConstructors)]
+#endif
+TNativeFunctions> : INativeWrapper
 {
     protected nint ObjectAddress;
     protected TNativeFunctions? Functions;
@@ -33,7 +41,7 @@ public abstract class NativeWrapper<[DynamicallyAccessedMembers(DynamicallyAcces
             CultureInfo.CurrentCulture,
             "Steam Interface<{0}> #{1:X8}",
             typeof(TNativeFunctions),
-            ObjectAddress.ToInt32());
+            ObjectAddress);
     }
 
     public void SetupFunctions(nint objectAddress)

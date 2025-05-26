@@ -1,5 +1,8 @@
 namespace BD.SteamClient8.Constants;
 
+/// <summary>
+/// Steam API 相关 URL 常量
+/// </summary>
 public static partial class SteamApiUrls
 {
     public const string MY_PROFILE_URL = "https://steamcommunity.com/profiles/76561198289531723/";

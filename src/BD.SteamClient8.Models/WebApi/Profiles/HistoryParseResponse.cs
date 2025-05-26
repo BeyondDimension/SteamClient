@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.Profiles;
 
 /// <summary>
 /// 账户历史数据返回值
 /// </summary>
-public sealed record class HistoryParseResponse
+public sealed record class HistoryParseResponse : JsonRecordModel<HistoryParseResponse>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>未知</summary>
     public int Unknown;
 

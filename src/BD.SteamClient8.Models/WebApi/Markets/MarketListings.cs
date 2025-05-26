@@ -1,10 +1,15 @@
+using BD.Common8.Models.Abstractions;
+
 namespace BD.SteamClient8.Models.WebApi.Markets;
 
 /// <summary>
 /// 市场出售信息
 /// </summary>
-public sealed record class MarketListings
+public sealed record class MarketListings : JsonRecordModel<MarketListings>, IJsonSerializerContext
 {
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
     /// <summary>
     /// 上架中的物品
     /// </summary>
@@ -18,8 +23,11 @@ public sealed record class MarketListings
     /// <summary>
     /// 上架物品
     /// </summary>
-    public sealed record class ActiveListingItem
+    public sealed record class ActiveListingItem : JsonRecordModel<ActiveListingItem>, IJsonSerializerContext
     {
+        /// <inheritdoc/>
+        static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
         /// <summary>
         /// Id
         /// </summary>
@@ -61,8 +69,11 @@ public sealed record class MarketListings
         public string ItemMarketUrl { get; set; } = string.Empty;
     }
 
-    public sealed record class BuyorderItem
+    public sealed record class BuyorderItem : JsonRecordModel<BuyorderItem>, IJsonSerializerContext
     {
+        /// <inheritdoc/>
+        static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
         /// <summary>
         /// Id
         /// </summary>

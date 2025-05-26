@@ -1,4 +1,8 @@
 #if !(IOS || ANDROID)
+using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.Extensions;
+using System.Text;
+
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
@@ -75,7 +79,7 @@ public class SteamAppPropertyTable
     public bool TryGetPropertyValue<T>(string name, out T? result)
     {
         bool result2 = false;
-        result = default(T);
+        result = default;
         SteamAppProperty? property = this[name];
         if (property != null)
         {
@@ -245,16 +249,18 @@ public class SteamAppPropertyTable
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
+    [Obsolete("存在未释放的 MemoryStream")]
     public object? ExtractProperty(string name)
     {
         SteamAppProperty? property = this[name];
         if (property != null)
         {
-            SteamAppPropertyTable propertyTable = new SteamAppPropertyTable();
+            var propertyTable = new SteamAppPropertyTable();
             propertyTable.SetPropertyValue(property!.Name, property!.PropertyType, property?.Value);
-            MemoryStream memoryStream = new MemoryStream();
-            new BinaryWriter(memoryStream).Write(propertyTable);
-            return memoryStream;
+            var returnMemoryStream = new MemoryStream(); // 返回对象，不释放
+            using var w = new BinaryWriter(returnMemoryStream, Encoding.UTF8, true);
+            w.Write(propertyTable);
+            return returnMemoryStream;
         }
         return null;
     }
@@ -264,12 +270,19 @@ public class SteamAppPropertyTable
     /// </summary>
     /// <param name="extracted"></param>
     /// <returns></returns>
+    [Obsolete("存在未释放的 MemoryStream")]
     public string AddExtractedProperty(object extracted)
     {
-        SteamAppProperty property = new BinaryReader((MemoryStream)extracted).ReadPropertyTable()._properties[0];
-        RemoveProperty(property.Name);
-        _properties.Add(property);
-        return property.Name;
+        if (extracted is MemoryStream memoryStream)
+        {
+            using var r = new BinaryReader(memoryStream, Encoding.UTF8, true);
+            SteamAppProperty property = r.ReadPropertyTable()._properties[0];
+            RemoveProperty(property.Name);
+            _properties.Add(property);
+            return property.Name;
+
+        }
+        return string.Empty;
     }
 
     /// <summary>
@@ -305,7 +318,7 @@ public class SteamAppPropertyTable
     {
         if (other != null && Count == other.Count)
         {
-            return _properties.All((SteamAppProperty prop) => other._properties.Any((SteamAppProperty otherProp) => prop.Equals(otherProp)));
+            return _properties.All(prop => other._properties.Any(otherProp => prop.Equals(otherProp)));
         }
         return false;
     }
@@ -336,7 +349,7 @@ public class SteamAppPropertyTable
 
     private string ToStringInternal(int indent)
     {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder = new();
         string arg = new string('\t', indent);
         foreach (SteamAppProperty property in _properties)
         {
@@ -358,7 +371,8 @@ public class SteamAppPropertyTable
                     stringBuilder.AppendFormat("\t\t\"{0}\"", property.Value);
                     break;
                 default:
-                    throw new NotImplementedException("The property type " + property.PropertyType.ToString() + " is invalid.");
+                    throw new NotImplementedException(
+                        $"The property type {property.PropertyType} is invalid.");
             }
             stringBuilder.Append('\n');
         }

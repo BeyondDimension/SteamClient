@@ -5,6 +5,32 @@
 		<Description>SteamClient8 模型库</Description>
 	</PropertyGroup>
 
-	<Import Project="$(MSBuildThisFileDirectory)..\Sdk\TFM_NETX_WITH_ALL.props" />
+	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" />
+		<PackageReference Include="Portable.BouncyCastle" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+			<ItemGroup>
+				<PackageReference Include="System.Security.Cryptography.ProtectedData" />
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<ItemGroup>
+				<ProjectReference Include="..\..\ref\Common\src\BD.Common8.Security\BD.Common8.Security.csproj" />
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
+
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.3rdParty.SteamKit2\BD.Common8.3rdParty.SteamKit2.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives.ApiRsp\BD.Common8.Primitives.ApiRsp.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Primitives\BD.Common8.Primitives.csproj" />
+	</ItemGroup>
 
 </Project>

@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<IsPackable Condition="'$(Configuration)'=='Release'">true</IsPackable>
+		<TargetFrameworks>net$(DotNet_Version)</TargetFrameworks>
+		<RootNamespace>WinAuth</RootNamespace>
+		<AssemblyName>WinAuth.Authenticator</AssemblyName>
+		<PackageId>BD.SteamClient8.3rdParty.WinAuth</PackageId>
+		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+		<!--8.yy.1MMdd.1hhmm-->
+		<Version>8.25.10527.10600</Version>
+		<FileVersion>$(Version)</FileVersion>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildProjectDirectory)\LICENSE" Pack="true" PackagePath="" />
+		<None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<!-- 👇 引用 NuGet 包 -->
+	<ItemGroup>
+		<PackageReference Include="Portable.BouncyCastle" />
+		<PackageReference Include="Microsoft.IO.RecyclableMemoryStream" />
+	</ItemGroup>
+
+	<Choose>
+		<When Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+			<ItemGroup>
+				<PackageReference Include="System.Security.Cryptography.ProtectedData" />
+			</ItemGroup>
+		</When>
+		<Otherwise>
+			<ItemGroup>
+				<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Security\BD.Common8.Security.csproj" />
+			</ItemGroup>
+		</Otherwise>
+	</Choose>
+
+	<ItemGroup>
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.3rdParty.WinAuth.Abstractions\BD.SteamClient8.3rdParty.WinAuth.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

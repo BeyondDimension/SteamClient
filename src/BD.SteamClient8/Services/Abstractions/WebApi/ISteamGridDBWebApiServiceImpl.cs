@@ -1,3 +1,7 @@
+using BD.Common8.Models;
+using BD.SteamClient8.Enums.WebApi.SteamGridDB;
+using BD.SteamClient8.Models.WebApi.SteamGridDB;
+
 namespace BD.SteamClient8.Services.Abstractions.WebApi;
 
 /// <summary>
@@ -35,5 +39,5 @@ public interface ISteamGridDBWebApiServiceImpl
     /// <summary>
     /// SteamGridDB 接口密钥
     /// </summary>
-    static string? ApiKey { get; set; } = SteamGridDBApiKey;
+    static string? ApiKey { protected get; set; } = SteamGridDBApiKey;
 }

@@ -1,3 +1,18 @@
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Models;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -11,8 +26,11 @@ class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebAp
     protected override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-    DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     /// <summary>
     /// 初始化 <see cref="SteamworksWebApiServiceImpl"/> 类的新实例

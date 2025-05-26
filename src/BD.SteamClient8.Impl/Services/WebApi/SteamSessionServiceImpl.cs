@@ -1,3 +1,19 @@
+using BD.Common8.Helpers;
+using BD.Common8.Http.ClientFactory.Services;
+using BD.Common8.Models;
+using BD.SteamClient8.Constants;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
+using System.Extensions;
+using System.Security;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace BD.SteamClient8.Services.WebApi;
 
 /// <summary>
@@ -16,11 +32,14 @@ public sealed class SteamSessionServiceImpl(
     const string TAG = "SteamSessionS";
 
     /// <inheritdoc/>
-    protected sealed override SystemTextJsonSerializerOptions JsonSerializerOptions =>
-        DefaultJsonSerializerContext_.Default.Options;
+    protected sealed override string ClientName => TAG;
 
     /// <inheritdoc/>
-    protected sealed override string ClientName => TAG;
+    protected sealed override JsonSerializerOptions GetJsonSerializerOptions()
+    {
+        var o = DefaultJsonSerializerContext_.Default.Options;
+        return o;
+    }
 
     readonly ConcurrentDictionary<string, SteamSession> _sessions = new();
 
@@ -66,7 +85,7 @@ public sealed class SteamSessionServiceImpl(
     {
         try
         {
-            var temp = SystemTextJsonSerializer.Serialize(steamSession,
+            var temp = JsonSerializer.Serialize(steamSession,
                 SteamSessionServiceImpl_SteamSession_JsonSerializerContext_.Default.SteamSession);
             await ISecureStorage.Instance.SetAsync(ISteamSessionService.CurrentSteamUserKey, temp);
             return true;
@@ -85,7 +104,7 @@ public sealed class SteamSessionServiceImpl(
             var text = await ISecureStorage.Instance.GetAsync(ISteamSessionService.CurrentSteamUserKey);
             if (text != null)
             {
-                var session = SystemTextJsonSerializer.Deserialize(text,
+                var session = JsonSerializer.Deserialize(text,
                     SteamSessionServiceImpl_SteamSession_JsonSerializerContext_.Default.SteamSession);
                 if (session != null)
                 {
@@ -160,9 +179,19 @@ public sealed class SteamSessionServiceImpl(
     static string SpecialTag(string steam_id) => $"SteamSession_{steam_id}";
 }
 
-[SystemTextJsonSerializable(typeof(SteamSession))]
+[JsonSerializable(typeof(SteamSession))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
-sealed partial class SteamSessionServiceImpl_SteamSession_JsonSerializerContext_ : SystemTextJsonSerializerContext
+sealed partial class SteamSessionServiceImpl_SteamSession_JsonSerializerContext_ : JsonSerializerContext
 {
+    static SteamSessionServiceImpl_SteamSession_JsonSerializerContext_()
+    {
+        // https://github.com/dotnet/runtime/issues/94135
+        s_defaultOptions = new()
+        {
+            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping, // 不转义字符！！！
+            AllowTrailingCommas = true,
+        };
+        Default = new SteamSessionServiceImpl_SteamSession_JsonSerializerContext_(new JsonSerializerOptions(s_defaultOptions));
+    }
 }
