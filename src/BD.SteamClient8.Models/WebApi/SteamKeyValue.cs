@@ -1,3 +1,4 @@
+using BD.SteamClient8.Models.Converters;
 using System.Extensions;
 using System.Globalization;
 

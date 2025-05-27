@@ -99,6 +99,11 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
 [JsonSerializable(typeof(RemoveAuthenticatorResponse))]
 [JsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
+#if !(IOS || ANDROID)
+[JsonSerializable(typeof(SteamAppProperty))]
+[JsonSerializable(typeof(SteamAppPropertyTable))]
+[JsonSerializable(typeof(List<SteamAppProperty>))]
+#endif
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
 public sealed partial class DefaultJsonSerializerContext_ : JsonSerializerContext

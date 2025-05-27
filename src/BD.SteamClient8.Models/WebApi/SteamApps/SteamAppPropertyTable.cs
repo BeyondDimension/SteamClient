@@ -1,16 +1,47 @@
 #if !(IOS || ANDROID)
+using BD.Common8.Models.Abstractions;
 using BD.SteamClient8.Enums.WebApi.SteamApps;
+using BD.SteamClient8.Models.Converters;
 using BD.SteamClient8.Models.Extensions;
 using System.Text;
+using System.Text.Json;
+using SDColor = System.Drawing.Color;
 
 namespace BD.SteamClient8.Models.WebApi.SteamApps;
 
 /// <summary>
 /// <see cref="SteamApp"/> 属性表格
 /// </summary>
-public class SteamAppPropertyTable
+[global::System.Text.Json.Serialization.JsonConverter(typeof(SteamAppPropertyTableConverter))]
+public sealed class SteamAppPropertyTable : JsonModel<SteamAppProperty>, IJsonSerializerContext
 {
-    private List<SteamAppProperty> _properties = [];
+    /// <inheritdoc/>
+    static global::System.Text.Json.Serialization.JsonSerializerContext IJsonSerializerContext.Default => DefaultJsonSerializerContext_.Default;
+
+    readonly List<SteamAppProperty> _properties;
+
+    public static implicit operator List<SteamAppProperty>(SteamAppPropertyTable table) => table._properties;
+
+    /// <summary>
+    /// 无参构造 <see cref="SteamAppPropertyTable"/>
+    /// </summary>
+    public SteamAppPropertyTable() : this([])
+    {
+    }
+
+    internal SteamAppPropertyTable(List<SteamAppProperty> properties)
+    {
+        _properties = properties;
+    }
+
+    /// <summary>
+    /// 通过其他 <see cref="SteamAppPropertyTable"/> 构造 <see cref="SteamAppPropertyTable"/>
+    /// </summary>
+    /// <param name="other"></param>
+    public SteamAppPropertyTable(SteamAppPropertyTable other) :
+        this([.. other._properties.Select(prop => new SteamAppProperty(prop))]) // 复制值，创建一份新的
+    {
+    }
 
     /// <summary>
     /// 属性数量
@@ -20,7 +51,7 @@ public class SteamAppPropertyTable
     /// <summary>
     /// 属性名称集合
     /// </summary>
-    public IEnumerable<string> PropertyNames => _properties.Select((SteamAppProperty prop) => prop.Name);
+    public IEnumerable<string> PropertyNames => _properties.Select(prop => prop.Name);
 
     /// <summary>
     /// 属性集合
@@ -32,7 +63,7 @@ public class SteamAppPropertyTable
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public SteamAppProperty? this[string name] => _properties.FirstOrDefault((SteamAppProperty prop) => prop.Name == name);
+    public SteamAppProperty? this[string name] => _properties.FirstOrDefault(prop => prop.Name == name);
 
     /// <summary>
     /// 是否含有属性
@@ -148,23 +179,100 @@ public class SteamAppPropertyTable
     /// <summary>
     /// 新增属性
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    public void AddPropertyValue(string name, SteamAppPropertyType type, object value)
+    /// <param name="p"></param>
+    public void AddPropertyValue(SteamAppProperty p)
     {
-        SteamAppProperty item = new SteamAppProperty(name, type, value);
-        _properties.Add(item);
+        _properties.Add(p);
+    }
+
+    //#if DEBUG
+    //    /// <summary>
+    //    /// 新增属性
+    //    /// </summary>
+    //    /// <param name="name"></param>
+    //    /// <param name="type"></param>
+    //    /// <param name="value"></param>
+    //    [Obsolete("use AddPropertyValue(SteamAppProperty)", true)]
+    //    public void AddPropertyValue(string name, SteamAppPropertyType type, object value)
+    //    {
+    //        SteamAppProperty item = new SteamAppProperty(name, type, value);
+    //        _properties.Add(item);
+    //    }
+
+    //    /// <summary>
+    //    /// 设置属性值
+    //    /// </summary>
+    //    /// <param name="name"></param>
+    //    /// <param name="type"></param>
+    //    /// <param name="value"></param>
+    //    /// <returns></returns>
+    //    [Obsolete("use SetPropertyValue(string name, T? value)", true)]
+    //    public void SetPropertyValue(string name, SteamAppPropertyType type, object? value)
+    //    {
+    //        throw new NotSupportedException();
+    //        SteamAppProperty? property = this[name];
+    //        if (property == null)
+    //        {
+    //            property = new SteamAppProperty(name);
+    //            _properties.Add(property);
+    //        }
+    //        //bool result = property.PropertyType != type || !object.Equals(property.Value, value);
+    //        property.PropertyType = type;
+    //        //property.Value = value;
+    //        //return result;
+    //    }
+
+    //    /// <summary>
+    //    /// 设置属性值
+    //    /// </summary>
+    //    /// <param name="type"></param>
+    //    /// <param name="value"></param>
+    //    /// <param name="propertyPath"></param>
+    //    /// <returns></returns>
+    //    [Obsolete("use SetPropertyValue(string name, T? value)", true)]
+    //    public void SetPropertyValue(SteamAppPropertyType type, object? value, params string[] propertyPath)
+    //    {
+    //        SteamAppPropertyTable? propertyTable = this;
+    //        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+    //        {
+    //            if (propertyTable.HasProperty(item))
+    //            {
+    //                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+    //            }
+    //            else
+    //            {
+    //                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+    //                propertyTable.SetPropertyValue(item, SteamAppPropertyType.Table, propertyTable2);
+    //                propertyTable = propertyTable2;
+    //            }
+    //            if (propertyTable == null)
+    //            {
+    //                //return false;
+    //                return;
+    //            }
+    //        }
+    //        /*return*/
+    //        propertyTable.SetPropertyValue(propertyPath.Last(), type, value);
+    //    }
+    //#endif
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(SteamAppProperty p)
+    {
+        SteamAppProperty? property = this[p.Name];
+        if (property == null)
+        {
+            property = p;
+            _properties.Add(property);
+        }
     }
 
     /// <summary>
     /// 设置属性值
     /// </summary>
-    /// <param name="name"></param>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    /// <returns></returns>
-    public bool SetPropertyValue(string name, SteamAppPropertyType type, object? value)
+    public void SetPropertyValue(string name, SteamAppPropertyTable? valueTable)
     {
         SteamAppProperty? property = this[name];
         if (property == null)
@@ -172,20 +280,14 @@ public class SteamAppPropertyTable
             property = new SteamAppProperty(name);
             _properties.Add(property);
         }
-        bool result = property.PropertyType != type || !object.Equals(property.Value, value);
-        property.PropertyType = type;
-        property.Value = value;
-        return result;
+        property.PropertyType = SteamAppPropertyType.Table;
+        property.ValueTable = valueTable;
     }
 
     /// <summary>
     /// 设置属性值
     /// </summary>
-    /// <param name="type"></param>
-    /// <param name="value"></param>
-    /// <param name="propertyPath"></param>
-    /// <returns></returns>
-    public bool SetPropertyValue(SteamAppPropertyType type, object? value, params string[] propertyPath)
+    public void SetPropertyValue(SteamAppPropertyTable? valueTable, params string[] propertyPath)
     {
         SteamAppPropertyTable? propertyTable = this;
         foreach (string item in propertyPath.Take(propertyPath.Length - 1))
@@ -197,15 +299,232 @@ public class SteamAppPropertyTable
             else
             {
                 SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
-                propertyTable.SetPropertyValue(item, SteamAppPropertyType.Table, propertyTable2);
+                propertyTable.SetPropertyValue(item, propertyTable2);
                 propertyTable = propertyTable2;
             }
             if (propertyTable == null)
             {
-                return false;
+                //return false;
+                return;
             }
         }
-        return propertyTable.SetPropertyValue(propertyPath.Last(), type, value);
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueTable);
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string name, string? valueString, bool isWString = false)
+    {
+        SteamAppProperty? property = this[name];
+        if (property == null)
+        {
+            property = new SteamAppProperty(name);
+            _properties.Add(property);
+        }
+        property.PropertyType = isWString ? SteamAppPropertyType.WString : SteamAppPropertyType.String;
+        property.ValueString = valueString;
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string? valueString, bool isWString = false, params string[] propertyPath)
+    {
+        SteamAppPropertyTable? propertyTable = this;
+        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+        {
+            if (propertyTable.HasProperty(item))
+            {
+                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+            }
+            else
+            {
+                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+                propertyTable.SetPropertyValue(item, propertyTable2);
+                propertyTable = propertyTable2;
+            }
+            if (propertyTable == null)
+            {
+                //return false;
+                return;
+            }
+        }
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueString, isWString);
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string name, int valueInt32)
+    {
+        SteamAppProperty? property = this[name];
+        if (property == null)
+        {
+            property = new SteamAppProperty(name);
+            _properties.Add(property);
+        }
+        property.PropertyType = SteamAppPropertyType.Int32;
+        property.ValueInt32 = valueInt32;
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(int valueInt32, params string[] propertyPath)
+    {
+        SteamAppPropertyTable? propertyTable = this;
+        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+        {
+            if (propertyTable.HasProperty(item))
+            {
+                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+            }
+            else
+            {
+                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+                propertyTable.SetPropertyValue(item, propertyTable2);
+                propertyTable = propertyTable2;
+            }
+            if (propertyTable == null)
+            {
+                //return false;
+                return;
+            }
+        }
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueInt32);
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string name, float valueSingle)
+    {
+        SteamAppProperty? property = this[name];
+        if (property == null)
+        {
+            property = new SteamAppProperty(name);
+            _properties.Add(property);
+        }
+        property.PropertyType = SteamAppPropertyType.Float;
+        property.ValueSingle = valueSingle;
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(float valueSingle, params string[] propertyPath)
+    {
+        SteamAppPropertyTable? propertyTable = this;
+        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+        {
+            if (propertyTable.HasProperty(item))
+            {
+                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+            }
+            else
+            {
+                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+                propertyTable.SetPropertyValue(item, propertyTable2);
+                propertyTable = propertyTable2;
+            }
+            if (propertyTable == null)
+            {
+                //return false;
+                return;
+            }
+        }
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueSingle);
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string name, SDColor valueColor)
+    {
+        SteamAppProperty? property = this[name];
+        if (property == null)
+        {
+            property = new SteamAppProperty(name);
+            _properties.Add(property);
+        }
+        property.PropertyType = SteamAppPropertyType.Color;
+        property.ValueColor = valueColor;
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(SDColor valueColor, params string[] propertyPath)
+    {
+        SteamAppPropertyTable? propertyTable = this;
+        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+        {
+            if (propertyTable.HasProperty(item))
+            {
+                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+            }
+            else
+            {
+                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+                propertyTable.SetPropertyValue(item, propertyTable2);
+                propertyTable = propertyTable2;
+            }
+            if (propertyTable == null)
+            {
+                //return false;
+                return;
+            }
+        }
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueColor);
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(string name, ulong valueUInt64)
+    {
+        SteamAppProperty? property = this[name];
+        if (property == null)
+        {
+            property = new SteamAppProperty(name);
+            _properties.Add(property);
+        }
+        property.PropertyType = SteamAppPropertyType.Uint64;
+        property.ValueUInt64 = valueUInt64;
+    }
+
+    /// <summary>
+    /// 设置属性值
+    /// </summary>
+    public void SetPropertyValue(ulong valueUInt64, params string[] propertyPath)
+    {
+        SteamAppPropertyTable? propertyTable = this;
+        foreach (string item in propertyPath.Take(propertyPath.Length - 1))
+        {
+            if (propertyTable.HasProperty(item))
+            {
+                propertyTable = propertyTable.GetPropertyValue<SteamAppPropertyTable>(item);
+            }
+            else
+            {
+                SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
+                propertyTable.SetPropertyValue(item, propertyTable2);
+                propertyTable = propertyTable2;
+            }
+            if (propertyTable == null)
+            {
+                //return false;
+                return;
+            }
+        }
+        /*return*/
+        propertyTable.SetPropertyValue(propertyPath.Last(), valueUInt64);
     }
 
     /// <summary>
@@ -214,7 +533,7 @@ public class SteamAppPropertyTable
     /// <param name="name"></param>
     public void RemoveProperty(string name)
     {
-        _properties.RemoveAll((SteamAppProperty prop) => prop.Name == name);
+        _properties.RemoveAll(prop => prop.Name == name);
     }
 
     /// <summary>
@@ -233,7 +552,7 @@ public class SteamAppPropertyTable
             else
             {
                 SteamAppPropertyTable propertyTable2 = new SteamAppPropertyTable();
-                propertyTable.SetPropertyValue(item, SteamAppPropertyType.Table, propertyTable2);
+                propertyTable.SetPropertyValue(item, propertyTable2);
                 propertyTable = propertyTable2;
             }
             if (propertyTable == null)
@@ -256,7 +575,9 @@ public class SteamAppPropertyTable
         if (property != null)
         {
             var propertyTable = new SteamAppPropertyTable();
-            propertyTable.SetPropertyValue(property!.Name, property!.PropertyType, property?.Value);
+            var pNew = new SteamAppProperty();
+            pNew.SetCopyValue(property, isCreateNewTable: false);
+            propertyTable.SetPropertyValue(pNew);
             var returnMemoryStream = new MemoryStream(); // 返回对象，不释放
             using var w = new BinaryWriter(returnMemoryStream, Encoding.UTF8, true);
             w.Write(propertyTable);
@@ -291,22 +612,6 @@ public class SteamAppPropertyTable
     public void Clear()
     {
         _properties.Clear();
-    }
-
-    /// <summary>
-    /// 无参构造 <see cref="SteamAppPropertyTable"/>
-    /// </summary>
-    public SteamAppPropertyTable()
-    {
-    }
-
-    /// <summary>
-    /// 通过其他 <see cref="SteamAppPropertyTable"/> 构造 <see cref="SteamAppPropertyTable"/>
-    /// </summary>
-    /// <param name="other"></param>
-    public SteamAppPropertyTable(SteamAppPropertyTable other)
-    {
-        _properties.AddRange(other._properties.Select((SteamAppProperty prop) => new SteamAppProperty(prop)));
     }
 
     /// <summary>
@@ -347,7 +652,7 @@ public class SteamAppPropertyTable
         return num;
     }
 
-    private string ToStringInternal(int indent)
+    string ToStringInternal(int indent)
     {
         StringBuilder stringBuilder = new();
         string arg = new string('\t', indent);
@@ -358,17 +663,25 @@ public class SteamAppPropertyTable
             switch (property.PropertyType)
             {
                 case SteamAppPropertyType.Table:
-                    stringBuilder.AppendFormat("\n{0}{{\n{1}{0}}}", arg, property.GetValue<SteamAppPropertyTable>()?.ToStringInternal(indent + 1));
+                    stringBuilder.AppendFormat("\n{0}{{\n{1}{0}}}", arg,
+                        property.ValueTable?.ToStringInternal(indent + 1));
                     break;
                 case SteamAppPropertyType.String:
                 case SteamAppPropertyType.WString:
-                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.GetValue<string>()?.Replace("\\", "\\\\").Replace("\"", "\\\""));
+                    stringBuilder.AppendFormat("\t\t\"{0}\"",
+                        property.ValueString?.Replace("\\", "\\\\").Replace("\"", "\\\""));
                     break;
                 case SteamAppPropertyType.Int32:
+                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.ValueInt32);
+                    break;
                 case SteamAppPropertyType.Float:
+                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.ValueSingle);
+                    break;
                 case SteamAppPropertyType.Color:
+                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.ValueColor);
+                    break;
                 case SteamAppPropertyType.Uint64:
-                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.Value);
+                    stringBuilder.AppendFormat("\t\t\"{0}\"", property.ValueUInt64);
                     break;
                 default:
                     throw new NotImplementedException(

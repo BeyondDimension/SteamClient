@@ -675,7 +675,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
                 {
                     var launchItems = from table in from prop in (from prop in launchTable.Properties
                                                                   where prop.PropertyType == SteamAppPropertyType.Table
-                                                                  select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                                                  select prop).OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase)
                                                     select prop.GetValue<SteamAppPropertyTable>()
                                       select new SteamAppLaunchItem
                                       {
@@ -687,7 +687,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
                                           propertyTable.TryGetPropertyValue<string>(NodePlatforms, out var os) ? os : null : null,
                                       };
 
-                    LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());
+                    LaunchItems = new ObservableCollection<SteamAppLaunchItem>([.. launchItems]);
                 }
             }
 
@@ -700,7 +700,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
             {
                 var savefiles = from table in from prop in (from prop in savefilesTable.Properties
                                                             where prop.PropertyType == SteamAppPropertyType.Table
-                                                            select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                                            select prop).OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase)
                                               select prop.GetValue<SteamAppPropertyTable>()
                                 select new SteamAppSaveFile
                                 (

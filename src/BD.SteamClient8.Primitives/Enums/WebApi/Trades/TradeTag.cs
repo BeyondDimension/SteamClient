@@ -7,9 +7,15 @@ namespace BD.SteamClient8.Enums.WebApi.Trades;
 /// </summary>
 public enum TradeTag : byte
 {
+    /// <summary>
+    /// conf
+    /// </summary>
     [Description("conf")]
     CONF = 1,
 
+    /// <summary>
+    /// details
+    /// </summary>
     [Description("details")]
     DETAILS = 2,
 

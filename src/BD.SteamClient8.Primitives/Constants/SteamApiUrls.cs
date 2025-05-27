@@ -116,7 +116,7 @@ public static partial class SteamApiUrls
     public const string STEAM_LOGIN_UPDATEAUTHSESSIONWITHSTEAMGUARDCODE = "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1";
     public const string STEAM_LOGIN_FINALIZELOGIN = "https://login.steampowered.com/jwt/finalizelogin";
 
-    #endregion LoginV2
+    #endregion
 
     /// <summary>
     /// Account 账号相关信息

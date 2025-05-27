@@ -90,14 +90,14 @@ static partial class SteamAppExtensions
                 SteamAppPropertyTable? propertyValue2 = steamApp._properties.GetPropertyValue<SteamAppPropertyTable>(null, steamApp.NodeAppInfo, steamApp.NodeCommon, "name_localized");
                 if (propertyValue2 != null)
                 {
-                    steamApp._properties.SetPropertyValue(SteamAppPropertyType.Table, propertyValue2, steamApp.NodeAppInfo, "steam_edit", "base_name_localized");
+                    steamApp._properties.SetPropertyValue(propertyValue2, steamApp.NodeAppInfo, "steam_edit", "base_name_localized");
 
                     //_properties.RemoveProperty(NodeAppInfo, NodeCommon, "name_localized");
-                    steamApp._properties.SetPropertyValue(SteamAppPropertyType.Table, new SteamAppPropertyTable(), steamApp.NodeAppInfo, steamApp.NodeCommon, "name_localized");
+                    steamApp._properties.SetPropertyValue(new SteamAppPropertyTable(), steamApp.NodeAppInfo, steamApp.NodeCommon, "name_localized");
                 }
-                steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.BaseName, steamApp.NodeAppInfo, "steam_edit", "base_name");
+                steamApp._properties.SetPropertyValue(appInfo.BaseName, false, steamApp.NodeAppInfo, "steam_edit", "base_name");
 
-                steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Name, steamApp.NodeAppInfo, steamApp.NodeCommon, steamApp.NodeName);
+                steamApp._properties.SetPropertyValue(appInfo.Name, false, steamApp.NodeAppInfo, steamApp.NodeCommon, steamApp.NodeName);
             }
             else
             {
@@ -108,23 +108,23 @@ static partial class SteamAppExtensions
             //    NodeCommon,
             //    NodeName);
 
-            steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.SortAs, steamApp.NodeAppInfo,
+            steamApp._properties.SetPropertyValue(appInfo.SortAs, false, steamApp.NodeAppInfo,
                 steamApp.NodeCommon,
                 steamApp.NodeSortAs);
 
-            steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Developer, steamApp.NodeAppInfo,
+            steamApp._properties.SetPropertyValue(appInfo.Developer, false, steamApp.NodeAppInfo,
                 steamApp.NodeExtended,
                 steamApp.NodeDeveloper);
 
-            steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Developer, steamApp.NodeAppInfo,
+            steamApp._properties.SetPropertyValue(appInfo.Developer, false, steamApp.NodeAppInfo,
                 steamApp.NodeCommon,
                 "associations", "0", "name");
 
-            steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Publisher, steamApp.NodeAppInfo,
+            steamApp._properties.SetPropertyValue(appInfo.Publisher, false, steamApp.NodeAppInfo,
                 steamApp.NodeExtended,
                 steamApp.NodePublisher);
 
-            steamApp._properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Publisher, steamApp.NodeAppInfo,
+            steamApp._properties.SetPropertyValue(appInfo.Publisher, false, steamApp.NodeAppInfo,
                 steamApp.NodeCommon,
                 "associations", "1", "name");
 
@@ -136,28 +136,29 @@ static partial class SteamAppExtensions
                 {
                     var propertyTable = new SteamAppPropertyTable();
 
-                    propertyTable.SetPropertyValue("executable", SteamAppPropertyType.String, item.Executable);
+                    propertyTable.SetPropertyValue("executable", item.Executable);
 
                     if (!string.IsNullOrEmpty(item.Label))
                     {
-                        propertyTable.SetPropertyValue("description", SteamAppPropertyType.String, item.Label);
+                        propertyTable.SetPropertyValue("description", item.Label);
                     }
                     if (!string.IsNullOrEmpty(item.Arguments))
                     {
-                        propertyTable.SetPropertyValue("arguments", SteamAppPropertyType.String, item.Arguments);
+                        propertyTable.SetPropertyValue("arguments", item.Arguments);
                     }
                     if (!string.IsNullOrEmpty(item.WorkingDir))
                     {
-                        propertyTable.SetPropertyValue("workingdir", SteamAppPropertyType.String, item.WorkingDir);
+                        propertyTable.SetPropertyValue("workingdir", item.WorkingDir);
                     }
-                    if (!string.IsNullOrEmpty(item.Platform))
+                    string? platform = item.Platform;
+                    if (!string.IsNullOrEmpty(platform))
                     {
-                        propertyTable.SetPropertyValue(SteamAppPropertyType.String, item.Platform, steamApp.NodeConfig, steamApp.NodePlatforms);
+                        propertyTable.SetPropertyValue(platform, false, steamApp.NodeConfig, steamApp.NodePlatforms);
                     }
-                    launchTable.SetPropertyValue(launchTable.Count.ToString(), SteamAppPropertyType.Table, propertyTable);
+                    launchTable.SetPropertyValue(launchTable.Count.ToString(), propertyTable);
                 }
 
-                steamApp._properties.SetPropertyValue(SteamAppPropertyType.Table, launchTable, steamApp.NodeAppInfo, steamApp.NodeConfig, steamApp.NodeLaunch);
+                steamApp._properties.SetPropertyValue(launchTable, steamApp.NodeAppInfo, steamApp.NodeConfig, steamApp.NodeLaunch);
             }
 
             return true;
@@ -230,7 +231,7 @@ static partial class SteamAppExtensions
                 {
                     var launchItems = from table in from prop in (from prop in launchTable.Properties
                                                                   where prop.PropertyType == SteamAppPropertyType.Table
-                                                                  select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                                                  select prop).OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase)
                                                     select prop.GetValue<SteamAppPropertyTable>()
                                       select new SteamAppLaunchItem
                                       {
@@ -242,7 +243,7 @@ static partial class SteamAppExtensions
                                           propertyTable!.TryGetPropertyValue<string>(steamApp.NodePlatforms, out var os) ? os : null : null,
                                       };
 
-                    steamApp.LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());
+                    steamApp.LaunchItems = new ObservableCollection<SteamAppLaunchItem>([.. launchItems]);
                 }
             }
 
@@ -255,7 +256,7 @@ static partial class SteamAppExtensions
             {
                 var savefiles = from table in from prop in (from prop in savefilesTable.Properties
                                                             where prop.PropertyType == SteamAppPropertyType.Table
-                                                            select prop).OrderBy((SteamAppProperty prop) => prop.Name, StringComparer.OrdinalIgnoreCase)
+                                                            select prop).OrderBy(prop => prop.Name, StringComparer.OrdinalIgnoreCase)
                                               select prop.GetValue<SteamAppPropertyTable>()
                                 select new SteamAppSaveFile(
                                     steamApp.AppId,
@@ -267,7 +268,7 @@ static partial class SteamAppExtensions
                                     Recursive = table.GetPropertyValue(false, "recursive"),
                                 };
 
-                steamApp.SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles.ToList());
+                steamApp.SaveFiles = new ObservableCollection<SteamAppSaveFile>([.. savefiles]);
             }
 
             steamApp.BaseName = properties.GetPropertyValue(string.Empty, steamApp.NodeAppInfo, "steam_edit", "base_name");
@@ -341,7 +342,9 @@ static partial class SteamAppExtensions
     {
         if (steamApp._properties == null)
         {
+#pragma warning disable CA2208 // 正确实例化参数异常
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(steamApp._properties)} is null.");
+#pragma warning restore CA2208 // 正确实例化参数异常
         }
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(steamApp._properties);
         string s = propertyTable.ToString();
