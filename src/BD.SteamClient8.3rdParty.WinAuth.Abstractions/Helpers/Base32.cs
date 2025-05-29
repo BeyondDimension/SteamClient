@@ -5,11 +5,12 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BD.SteamClient8.WinAuth.Helpers;
 
 // See http://tools.ietf.org/html/rfc3548#section-5
-public static class Base32
+public static partial class Base32
 {
     const string _base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
@@ -34,14 +35,14 @@ public static class Base32
                 byte a, b, c, d, e, f, g, h;
                 var numCharsToOutput = GetNextGroup(bytes, ref offset, out a, out b, out c, out d, out e, out f, out g, out h);
 
-                buffer[index + 7] = numCharsToOutput >= 8 ? _base32Chars[h] : '=';
-                buffer[index + 6] = numCharsToOutput >= 7 ? _base32Chars[g] : '=';
-                buffer[index + 5] = numCharsToOutput >= 6 ? _base32Chars[f] : '=';
-                buffer[index + 4] = numCharsToOutput >= 5 ? _base32Chars[e] : '=';
-                buffer[index + 3] = numCharsToOutput >= 4 ? _base32Chars[d] : '=';
-                buffer[index + 2] = numCharsToOutput >= 3 ? _base32Chars[c] : '=';
-                buffer[index + 1] = numCharsToOutput >= 2 ? _base32Chars[b] : '=';
-                buffer[index] = numCharsToOutput >= 1 ? _base32Chars[a] : '=';
+                if (numCharsToOutput >= 8) buffer[index + 7] = _base32Chars[h];
+                if (numCharsToOutput >= 7) buffer[index + 6] = _base32Chars[g];
+                if (numCharsToOutput >= 6) buffer[index + 5] = _base32Chars[f];
+                if (numCharsToOutput >= 5) buffer[index + 4] = _base32Chars[e];
+                if (numCharsToOutput >= 4) buffer[index + 3] = _base32Chars[d];
+                if (numCharsToOutput >= 3) buffer[index + 2] = _base32Chars[c];
+                if (numCharsToOutput >= 2) buffer[index + 1] = _base32Chars[b];
+                if (numCharsToOutput >= 1) buffer[index] = _base32Chars[a];
                 index += 8;
             }
         });
@@ -61,14 +62,14 @@ public static class Base32
             byte a, b, c, d, e, f, g, h;
             var numCharsToOutput = GetNextGroup(input, ref offset, out a, out b, out c, out d, out e, out f, out g, out h);
 
-            sb.Append(numCharsToOutput >= 1 ? _base32Chars[a] : '=');
-            sb.Append(numCharsToOutput >= 2 ? _base32Chars[b] : '=');
-            sb.Append(numCharsToOutput >= 3 ? _base32Chars[c] : '=');
-            sb.Append(numCharsToOutput >= 4 ? _base32Chars[d] : '=');
-            sb.Append(numCharsToOutput >= 5 ? _base32Chars[e] : '=');
-            sb.Append(numCharsToOutput >= 6 ? _base32Chars[f] : '=');
-            sb.Append(numCharsToOutput >= 7 ? _base32Chars[g] : '=');
-            sb.Append(numCharsToOutput >= 8 ? _base32Chars[h] : '=');
+            sb.Append(numCharsToOutput >= 1 ? _base32Chars[a] : null);
+            sb.Append(numCharsToOutput >= 2 ? _base32Chars[b] : null);
+            sb.Append(numCharsToOutput >= 3 ? _base32Chars[c] : null);
+            sb.Append(numCharsToOutput >= 4 ? _base32Chars[d] : null);
+            sb.Append(numCharsToOutput >= 5 ? _base32Chars[e] : null);
+            sb.Append(numCharsToOutput >= 6 ? _base32Chars[f] : null);
+            sb.Append(numCharsToOutput >= 7 ? _base32Chars[g] : null);
+            sb.Append(numCharsToOutput >= 8 ? _base32Chars[h] : null);
         }
 
         return sb.ToString();
@@ -80,6 +81,10 @@ public static class Base32
         {
             return [];
         }
+
+        // Add: 移除空格和任何分隔符，与旧代码保持一致
+        input = RemoveWhitespaceAndAnySeparatorsRegex().Replace(input, "");
+
         var trimmedInput = input.AsSpan().TrimEnd('=');
         if (trimmedInput.Length == 0)
         {
@@ -150,4 +155,7 @@ public static class Base32
 
         return retVal;
     }
+
+    [GeneratedRegex("[\\s-]+")]
+    private static partial Regex RemoveWhitespaceAndAnySeparatorsRegex();
 }
