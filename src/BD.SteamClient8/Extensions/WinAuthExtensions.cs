@@ -4,8 +4,8 @@ using BD.Common8.Helpers;
 using BD.Common8.Models;
 using BD.SteamClient8.Models;
 using BD.SteamClient8.Models.WebApi.Authenticators;
-using BD.SteamClient8.Models.WinAuth;
 using BD.SteamClient8.Services.Abstractions.WebApi;
+using BD.SteamClient8.WinAuth.Models.Abstractions;
 using System.Extensions;
 using System.Text;
 using System.Text.Json;
@@ -20,8 +20,8 @@ public static partial class WinAuthExtensions
     /// </summary>
     /// <returns>调用成功返回 <see langword="true"/></returns>
     public static async Task<ApiRspImpl<bool>> AddAuthenticatorAsync(
-        this SteamAuthenticator @this,
-        SteamAuthenticator.EnrollState state)
+        this ISteamAuthenticator @this,
+        ISteamAuthenticator.IEnrollState state)
     {
         if (string.IsNullOrEmpty(state.AccessToken))
             return Strings.Error_InvalidLoginInfo;
@@ -29,18 +29,18 @@ public static partial class WinAuthExtensions
         state.Error = null;
         if (@this.ServerTimeDiff == default)
             await Task.Run(@this.Sync);
-        var deviceId = SteamAuthenticator.BuildRandomId();
+        var deviceId = ISteamAuthenticator.BuildRandomId();
 
         var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
         var response = await steamAuthenticatorService.AddAuthenticatorAsync(state.SteamId.ToString(), @this.ServerTime.ToString(), deviceId);
 
-        var tfaResponse = response.Content;
+        var tfaResponse = response;
 
         if (tfaResponse?.Response == null)
         {
             state.AccessToken = null;
             state.Cookies = null;
-            return state.Error = Strings.Error_InvalidResponseFromSteam.Format(response.GetMessage());
+            return state.Error = Strings.Error_InvalidResponseFromSteam.Format("tfaResponse?.Response = null");
         }
 
         if (tfaResponse.Response.Status == default || tfaResponse.Response.Status == 84)
@@ -55,7 +55,7 @@ public static partial class WinAuthExtensions
         //    return state.Error = Strings.error_invalid_response_from_steam_.Format(response);
         // }
 
-        //账号没有绑定手机号
+        // 账号没有绑定手机号
         switch (tfaResponse.Response.Status)
         {
             case 2:
@@ -90,7 +90,7 @@ public static partial class WinAuthExtensions
 
         // calculate server drift
         var servertime = tfaResponse.Response.ServerTime * 1000;
-        @this.ServerTimeDiff = servertime - AuthenticatorValueModel.CurrentTime;
+        @this.ServerTimeDiff = servertime - IAuthenticatorValueModelBase.CurrentTime;
         @this.LastServerTime = DateTime.Now.Ticks;
 
         state.RequiresActivation = true;
@@ -103,8 +103,8 @@ public static partial class WinAuthExtensions
     /// 完成添加认证器
     /// </summary>
     public static async Task<ApiRspImpl<bool>> FinalizeAddAuthenticatorAsync(
-        this SteamAuthenticator @this,
-        SteamAuthenticator.EnrollState state)
+        this ISteamAuthenticator @this,
+        ISteamAuthenticator.IEnrollState state)
     {
         if (string.IsNullOrEmpty(state.AccessToken))
             return Strings.Error_InvalidLoginInfo;
@@ -117,7 +117,7 @@ public static partial class WinAuthExtensions
 
         // try and authorise
         var retries = 0;
-        while (state.RequiresActivation == true && retries < SteamAuthenticator.ENROLL_ACTIVATE_RETRIES)
+        while (state.RequiresActivation == true && retries < ISteamAuthenticator.ENROLL_ACTIVATE_RETRIES)
         {
             var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
             var response = await steamAuthenticatorService.FinalizeAddAuthenticatorAsync(
@@ -126,23 +126,22 @@ public static partial class WinAuthExtensions
                     authenticator_code: @this.CalculateCode(false),
                     authenticator_time: @this.ServerTime.ToString()
                 );
-            var finalizeResponse = response.Content;
-            finalizeResponse.ThrowIsNull();
-            if (finalizeResponse.Response == null)
+            var finalizeResponse = response;
+            if (finalizeResponse?.Response == null)
             {
-                return state.Error = Strings.Error_InvalidResponseFromSteam.Format(response);
+                return state.Error = Strings.Error_InvalidResponseFromSteam.Format("finalizeResponse?.Response = null");
             }
 
-            if (finalizeResponse.Response.Status != default && finalizeResponse.Response.Status == SteamAuthenticator.INVALID_ACTIVATION_CODE)
+            if (finalizeResponse.Response.Status != default && finalizeResponse.Response.Status == ISteamAuthenticator.INVALID_ACTIVATION_CODE)
             {
                 return state.Error = Strings.Error_InvalidActivationCode;
             }
 
             // reset our time
-            if (string.IsNullOrEmpty(finalizeResponse.Response.ServerTime))
+            if (finalizeResponse.Response.ServerTime != default)
             {
-                var servertime = long.Parse(finalizeResponse.Response.ServerTime) * 1000;
-                @this.ServerTimeDiff = servertime - AuthenticatorValueModel.CurrentTime;
+                var servertime = finalizeResponse.Response.ServerTime * 1000;
+                @this.ServerTimeDiff = servertime - IAuthenticatorValueModelBase.CurrentTime;
                 @this.LastServerTime = DateTime.Now.Ticks;
             }
 
@@ -187,9 +186,9 @@ public static partial class WinAuthExtensions
     /// <summary>
     /// 获取 Rsa 密钥和加密密码
     /// </summary>
-    public static async Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRsaKeyAndEncryptedPasswordAsync(
-        this SteamAuthenticator @this,
-        SteamAuthenticator.EnrollState state)
+    public static async Task<(string encryptedPassword64, ulong timestamp)> GetRsaKeyAndEncryptedPasswordAsync(
+        this ISteamAuthenticator @this,
+        ISteamAuthenticator.IEnrollState state)
     {
         state.Username.ThrowIsNull();
         state.Password.ThrowIsNull();
@@ -208,7 +207,7 @@ public static partial class WinAuthExtensions
     /// <returns>返回错误信息，isOK 标识执行成功，infoMessage 为是否需要显示提示信息</returns>
     public static async Task<ApiRspImpl<(bool isOK, string? infoMessage)>> AddPhoneNumberAsync(
         this ISteamAuthenticatorService steamAuthenticatorService,
-        SteamAuthenticator.EnrollState state,
+        ISteamAuthenticator.IEnrollState state,
         string phoneNumber,
         string? countryCode = null)
     {
@@ -219,25 +218,24 @@ public static partial class WinAuthExtensions
             if (string.IsNullOrEmpty(countryCode))
             {
                 var userCountryOrRegion = await steamAuthenticatorService.GetUserCountryOrRegion(state.SteamId.ToString());
-                if (string.IsNullOrWhiteSpace(userCountryOrRegion.Content?.Response?.CountryOrRegion))
-                {
-                    return userCountryOrRegion.GetMessage();
-                }
-                countryCode = userCountryOrRegion.Content.Response.CountryOrRegion;
+                countryCode = userCountryOrRegion?.Response?.CountryOrRegion.ThrowIsNull();
             }
 
-            var steamAddPhoneNumberResponse = (await steamAuthenticatorService.AddPhoneNumberAsync(state.SteamId.ToString(), phoneNumber, countryCode)).Content;
+            var steamAddPhoneNumberResponse = await steamAuthenticatorService.AddPhoneNumberAsync(state.SteamId.ToString(), phoneNumber, countryCode);
             steamAddPhoneNumberResponse.ThrowIsNull();
             steamAddPhoneNumberResponse.Response.ThrowIsNull();
 
             if (steamAddPhoneNumberResponse.Response.ConfirmationEmailAddress == null)
+            {
+                // 账号未绑定邮箱 📫
                 return Strings.AccountNotBindEmail; // Error 级别提示消息
+            }
             state.EmailDomain = steamAddPhoneNumberResponse.Response.ConfirmationEmailAddress;
             state.PhoneNumber = steamAddPhoneNumberResponse.Response.PhoneNumberFormatted;
             state.RequiresEmailConfirmPhone = true;
         }
 
-        var waitingForEmailConfirmationResponse = (await steamAuthenticatorService.AccountWaitingForEmailConfirmation(state.SteamId.ToString())).Content;
+        var waitingForEmailConfirmationResponse = await steamAuthenticatorService.AccountWaitingForEmailConfirmation(state.SteamId.ToString());
 
         waitingForEmailConfirmationResponse.ThrowIsNull();
         waitingForEmailConfirmationResponse.Response.ThrowIsNull();
@@ -263,16 +261,15 @@ public static partial class WinAuthExtensions
     /// <returns></returns>
     public static async Task<ApiRspImpl<bool>> VerifyPhoneNumberAsync(
         this ISteamAuthenticatorService steamAuthenticatorService,
-        SteamAuthenticator.EnrollState state,
+        ISteamAuthenticator.IEnrollState state,
         string phoneNumber,
-        string? sms_code
-        )
+        string? sms_code)
     {
         state.AccessToken.ThrowIsNull();
 
         var result = await steamAuthenticatorService.VerifyPhoneNumberAsync(state.SteamId.ToString(), phoneNumber, sms_code);
 
-        return result.Content ?? false;
+        return result;
     }
 
     /// <summary>
@@ -283,19 +280,22 @@ public static partial class WinAuthExtensions
     /// <param name="scheme">1 = 移除令牌验证器但保留邮箱验证，2 = 移除所有防护</param>
     /// <returns></returns>
     public static async Task<ApiRspImpl<bool>> RemoveAuthenticatorAsync(
-        this SteamAuthenticator @this,
+        this ISteamAuthenticator @this,
         string steam_id,
         int scheme = 1)
     {
         var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
         var result = await steamAuthenticatorService.RemoveAuthenticatorAsync(steam_id, @this.RecoveryCode, scheme.ToString());
-        if (!result.IsSuccess)
-            return ApiRspHelper.Create<bool>(result);
-        if (result.Content == null)
-            return ApiRspCode.NoResponseContent;
-        if (result.Content.Response?.Success != true)
-            return Strings.RemoveAuthenticatorFail_.Format(result.Content.Response?.RevocationAttemptsRemaining);
-        return true;
+        if (result != null && result.Response != null && result.Response.Success)
+        {
+            // 成功移除安全防护令牌
+            return ApiRspHelper.Ok(true);
+        }
+        else
+        {
+            // 返回剩余尝试次数提示
+            return Strings.RemoveAuthenticatorFail_.Format(result?.Response?.RevocationAttemptsRemaining);
+        }
     }
 
     /// <summary>
@@ -309,33 +309,34 @@ public static partial class WinAuthExtensions
         string steam_id)
     {
         var result = await steamAuthenticatorService.RemoveAuthenticatorViaChallengeStartSync(steam_id);
-
-        if (!result.IsSuccess)
-            return ApiRspHelper.Create<bool>(result);
-        if (result.Content == null)
+        if (result != null)
+        {
+            // 返回内容正常序列化即表示成功
+            return ApiRspHelper.Ok(true);
+        }
+        else
+        {
             return ApiRspCode.NoResponseContent;
-
-        // 返回内容正常序列化即表示成功
-        return result.Content != null;
+        }
     }
 
     /// <summary>
     /// Steam 替换安全防护令牌
     /// </summary>
     public static async Task<ApiRspImpl<bool>> RemoveAuthenticatorViaChallengeContinueSync(
-        this SteamAuthenticator @this,
+        this ISteamAuthenticator @this,
         string steam_id,
         string? sms_code,
         bool generate_new_token = true)
     {
         var steamAuthenticatorService = Ioc.Get<ISteamAuthenticatorService>();
         var result = await steamAuthenticatorService.RemoveAuthenticatorViaChallengeContinueSync(steam_id, sms_code, generate_new_token);
-        if (!result.IsSuccess)
-            return ApiRspHelper.Create<bool>(result);
-        if (result.Content == null)
+        if (result == null)
+        {
             return ApiRspCode.NoResponseContent;
+        }
 
-        var response = result.Content;
+        var response = result;
         if (!response.Success || response.ReplacementToken == null)
         {
             return Strings.Error_InvalidResponseFromSteam.Format("ReplacementToken is null.");
@@ -344,26 +345,26 @@ public static partial class WinAuthExtensions
         // save data into this authenticator
         @this.SecretKey = response.ReplacementToken.SharedSecret.ToByteArray();
         @this.Serial = response.ReplacementToken.SerialNumber.ToString();
-        @this.DeviceId = SteamAuthenticator.BuildRandomId();
+        @this.DeviceId = ISteamAuthenticator.BuildRandomId();
         @this.SteamData = JsonSerializer.Serialize(new SteamConvertSteamDataJsonStruct
         {
             Secret_1 = response.ReplacementToken.Secret1.ToBase64().Base64Encode(),
             Status = response.ReplacementToken.Status,
-            ServerTime = (long)response.ReplacementToken.ServerTime,
+            ServerTime = unchecked((long)response.ReplacementToken.ServerTime),
             AccountName = response.ReplacementToken.AccountName,
             TokenGid = response.ReplacementToken.TokenGid,
             IdentitySecret = response.ReplacementToken.IdentitySecret.ToBase64().Base64Encode(),
             RevocationCode = response.ReplacementToken.RevocationCode,
             Uri = response.ReplacementToken.Uri,
-            SteamId = (long)response.ReplacementToken.Steamid,
+            SteamId = unchecked((long)response.ReplacementToken.Steamid),
             SerialNumber = response.ReplacementToken.SerialNumber.ToString(),
             SharedSecret = response.ReplacementToken.SharedSecret.ToBase64().Base64Encode(),
             SteamGuardScheme = response.ReplacementToken.SteamguardScheme.ToString(),
         }, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct);
 
         // calculate server drift
-        var servertime = (long)response.ReplacementToken.ServerTime * 1000;
-        @this.ServerTimeDiff = servertime - SteamAuthenticator.CurrentTime;
+        var servertime = unchecked((long)response.ReplacementToken.ServerTime) * 1000;
+        @this.ServerTimeDiff = servertime - IAuthenticatorValueModelBase.CurrentTime;
         @this.LastServerTime = DateTime.Now.Ticks;
 
         return true;

@@ -3,7 +3,7 @@
 	<Import Condition="$(IsPackable) == 'true'" Project="$(MSBuildThisFileDirectory)GeneratePackage.props" />
 
 	<!-- 👇 静态本机编译 & 剪裁 | AOT & Trimmable -->
-	<PropertyGroup Condition="!$(MSBuildProjectName.StartsWith('BD.Avalonia8.UnitTest')) AND !$(MSBuildProjectName.StartsWith('Tools.')) AND $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
+	<PropertyGroup Condition="!$(MSBuildProjectName.StartsWith('BD.SteamClient8.UnitTest')) AND !$(MSBuildProjectName.StartsWith('Tools.')) AND $([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">
 		<IsTrimmable>true</IsTrimmable>
 		<EnableTrimAnalyzer>true</EnableTrimAnalyzer>
 		<EnableSingleFileAnalyzer>true</EnableSingleFileAnalyzer>

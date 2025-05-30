@@ -1,4 +1,12 @@
 #if !(IOS || ANDROID)
+using BD.Common8.Extensions;
+using BD.SteamClient8.Helpers;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+using BD.SteamClient8.Services.PInvoke;
+using System.Diagnostics;
+using System.Extensions;
+using System.Runtime.InteropServices;
+using ValveKeyValue;
 
 namespace BD.SteamClient8.UnitTest;
 

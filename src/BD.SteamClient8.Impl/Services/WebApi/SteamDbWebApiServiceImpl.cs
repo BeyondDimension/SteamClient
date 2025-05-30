@@ -72,7 +72,7 @@ class SteamDbWebApiServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default)
+    public async Task<SteamUser?> GetUserInfo(long steamId64, CancellationToken cancellationToken = default)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_USERINFO_URL, steamId64);
         var user = await GetAsync<SteamUser>(requestUri, cancellationToken: cancellationToken) ?? new SteamUser() { SteamId64 = steamId64 };
@@ -80,19 +80,28 @@ class SteamDbWebApiServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamUser>>> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default)
+    public async Task<List<SteamUser>?> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default)
     {
         List<SteamUser> users = [];
         foreach (var i in steamId64s)
-            users.Add((await GetUserInfo(i, cancellationToken: cancellationToken)).Content!);
-        return users!;
+        {
+            var userInfo = await GetUserInfo(i, cancellationToken: cancellationToken);
+            if (userInfo != null)
+            {
+                users.Add(userInfo);
+            }
+        }
+        return users;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamApp>> GetAppInfo(int appId, CancellationToken cancellationToken = default)
+    public async Task<SteamApp?> GetAppInfo(int appId, CancellationToken cancellationToken = default)
     {
         var requestUri = string.Format(SteamApiUrls.STEAMDB_APPINFO_URL, appId);
-        var app = await GetAsync<SteamApp>(requestUri, cancellationToken: cancellationToken) ?? new SteamApp() { AppId = (uint)appId };
-        return app!;
+        var app = await GetAsync<SteamApp>(requestUri, cancellationToken: cancellationToken);
+        return app ?? new SteamApp()
+        {
+            AppId = unchecked((uint)appId),
+        };
     }
 }

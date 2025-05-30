@@ -1,4 +1,13 @@
 global using static BD.SteamClient8.UnitTest.Helpers.SteamAuthenticatorHelper;
+using BD.SteamClient8.Models;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using DotNext.Threading;
+using Microsoft.Extensions.Configuration;
+using System.Extensions;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using WinAuth;
 
 namespace BD.SteamClient8.UnitTest.Helpers;
 
@@ -37,13 +46,18 @@ static partial class SteamAuthenticatorHelper
                         return null;
 
                     var maFile_json = await File.ReadAllTextAsync(maFilePath);
-                    var steamData = SystemTextJsonSerializer.Deserialize(maFile_json, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct).ThrowIsNull();
-                    var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
-                    var serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                    var steamData = JsonSerializer.Deserialize(maFile_json, DefaultJsonSerializerContext_.Default.SteamConvertSteamDataJsonStruct).ThrowIsNull();
+                    var twoFAQQueryTimeResult = await steamAuthenticatorService.TwoFAQueryTime();
+                    var serverTime = twoFAQQueryTimeResult?.Response?.ServerTime;
+                    if (!serverTime.HasValue)
+#pragma warning disable CA2208 // 正确实例化参数异常
+                        throw new ArgumentNullException(nameof(serverTime));
+#pragma warning restore CA2208 // 正确实例化参数异常
+                    var serverTimeDiff = (serverTime.Value * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                     SteamAuthenticator = new()
                     {
                         SteamData = maFile_json,
-                        LastServerTime = long.Parse(serverTime!),
+                        LastServerTime = serverTime.Value,
                         ServerTimeDiff = serverTimeDiff,
                         SecretKey = Base64Extensions.Base64DecodeToByteArray_Nullable(steamData.SharedSecret),
                     };

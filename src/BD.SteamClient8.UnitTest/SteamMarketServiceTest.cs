@@ -1,3 +1,6 @@
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using System.Extensions;
+
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -33,8 +36,7 @@ sealed class SteamMarketServiceTest : ServiceTestBase
 
         Assert.Multiple(() =>
         {
-            Assert.That(histogram.IsSuccess && histogram.Content is not null);
-            Assert.That(histogram.Content?.Success, Is.EqualTo(1));
+            Assert.That(histogram?.Success, Is.EqualTo(1));
         });
 
         TestContext.WriteLine(Serializable.SJSON(histogram, writeIndented: true));
@@ -56,8 +58,7 @@ sealed class SteamMarketServiceTest : ServiceTestBase
 
         Assert.Multiple(() =>
         {
-            Assert.That(overview.IsSuccess && overview.Content is not null);
-            Assert.That(overview.Content?.Success, Is.True);
+            Assert.That(overview?.Success, Is.True);
         });
 
         TestContext.WriteLine(Serializable.SJSON(overview, writeIndented: true));
@@ -75,17 +76,14 @@ sealed class SteamMarketServiceTest : ServiceTestBase
             Assert.Pass("SteamLoginState is null.");
             return;
         }
-        var rsp = await steamMarketService.GetMarketListing(SteamLoginState);
+        var listings = await steamMarketService.GetMarketListing(SteamLoginState);
 
-        Assert.That(rsp.IsSuccess && rsp.Content is not null);
-
-        var listings = rsp.Content;
         listings.ThrowIsNull();
         var activeListings = listings.ActiveListings.ToList();
         var buyorders = listings.Buyorders.ToList();
 
         Assert.That(listings.ActiveListings, Is.Not.Null);
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.WriteLine(Serializable.SJSON(listings, writeIndented: true));
     }
 }

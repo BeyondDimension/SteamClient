@@ -109,6 +109,8 @@ public static partial class SteamApiUrls
 
     #region LoginV2
 
+    public const string STEAM_STORE_LOGIN_URL = $"{STEAM_STORE_URL}/login";
+
     public const string GetRSAkeyV2Url = "https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded={0}";
     public const string STEAM_LOGIN_CHECKDEVICE = "https://login.steampowered.com/jwt/checkdevice/{0}";
     public const string STEAM_LOGIN_BEGINAUTHSESSIONVIACREDENTIALS = "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1";

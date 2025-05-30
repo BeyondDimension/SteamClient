@@ -18,7 +18,16 @@ namespace BD.SteamClient8.Services.WebApi;
 /// <summary>
 /// <see cref="ISteamworksWebApiService"/> Steamworks WebApi 服务实现
 /// </summary>
-class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebApiService
+/// <remarks>
+/// 初始化 <see cref="SteamworksWebApiServiceImpl"/> 类的新实例
+/// </remarks>
+/// <param name="serviceProvider"></param>
+/// <param name="loggerFactory"></param>
+sealed class SteamworksWebApiServiceImpl(
+    IServiceProvider serviceProvider,
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(
+        loggerFactory.CreateLogger(TAG),
+        serviceProvider), ISteamworksWebApiService
 {
     const string TAG = "SteamworksWebApiS";
 
@@ -32,24 +41,12 @@ class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebAp
         return o;
     }
 
-    /// <summary>
-    /// 初始化 <see cref="SteamworksWebApiServiceImpl"/> 类的新实例
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    /// <param name="loggerFactory"></param>
-    public SteamworksWebApiServiceImpl(
-        IServiceProvider serviceProvider,
-        ILoggerFactory loggerFactory) : base(
-            loggerFactory.CreateLogger(TAG),
-            serviceProvider)
-    {
-    }
-
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     async Task<T?> GetAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
     {
         try
         {
+            var client = CreateClient();
             using var sendArgs = new WebApiClientSendArgs(requestUri)
             {
                 ConfigureRequestMessage = (req, args, token) =>
@@ -59,7 +56,7 @@ class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebAp
                     return Task.CompletedTask;
                 },
             };
-            sendArgs.SetHttpClient(CreateClient());
+            sendArgs.SetHttpClient(client);
             return await SendAsync<T>(sendArgs, cancellationToken);
         }
         catch
@@ -69,43 +66,51 @@ class SteamworksWebApiServiceImpl : WebApiClientFactoryService, ISteamworksWebAp
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<string>> GetAllSteamAppsString(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<string?>> GetAllSteamAppsString(CancellationToken cancellationToken = default)
     {
-        var rsp = await GetAsync<string>(SteamApiUrls.STEAMAPP_LIST_URL, cancellationToken: cancellationToken);
-        return ApiRspHelper.Ok(rsp ?? string.Empty)!;
+        var result = await GetAsync<string>(SteamApiUrls.STEAMAPP_LIST_URL, cancellationToken: cancellationToken);
+        return ApiRspHelper.Ok(result);
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamApp>>> GetAllSteamAppList(CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<List<SteamApp>?>> GetAllSteamAppList(CancellationToken cancellationToken = default)
     {
-        var rsp = await GetAsync<SteamApps>(SteamApiUrls.STEAMAPP_LIST_URL, cancellationToken: cancellationToken);
-        return (rsp?.AppList?.Apps ?? [])!;
+        var result = await GetAsync<SteamApps>(SteamApiUrls.STEAMAPP_LIST_URL, cancellationToken: cancellationToken);
+        return result?.AppList?.Apps;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default)
+    public async Task<ApiRspImpl<SteamUser?>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default)
     {
-        //因为某些原因放弃从社区页链接获取详细资料
+        // 因为某些原因放弃从社区页链接获取详细资料
         //var requestUri = string.Format(SteamApiUrls.STEAM_USERINFO_XML_URL, steamId64);
-        //var rsp = await s.GetAsync<SteamUser>(requestUri);
 
-        var data = new SteamUser() { SteamId64 = steamId64 };
-        var rsp = (await GetUserMiniProfile(data.SteamId32, cancellationToken: cancellationToken)).Content;
-        if (rsp != null)
+        var steamUser = new SteamUser()
         {
-            data.MiniProfile = rsp;
-            data.SteamID = WebUtility.HtmlDecode(rsp.PersonaName);
-            data.AvatarFull = rsp.AvatarUrl;
-            data.AvatarMedium = rsp.AvatarUrl;
+            SteamId64 = steamId64,
+        };
+        var userMiniProfile = await GetUserMiniProfileCore(steamUser.SteamId32, cancellationToken: cancellationToken);
+        if (userMiniProfile != null)
+        {
+            steamUser.MiniProfile = userMiniProfile;
+            steamUser.SteamID = WebUtility.HtmlDecode(userMiniProfile.PersonaName);
+            steamUser.AvatarFull = userMiniProfile.AvatarUrl;
+            steamUser.AvatarMedium = userMiniProfile.AvatarUrl;
         }
-        return data!;
+        return steamUser!;
+    }
+
+    async Task<SteamMiniProfile?> GetUserMiniProfileCore(long steamId3, CancellationToken cancellationToken = default)
+    {
+        var requestUri = string.Format(SteamApiUrls.STEAM_MINIPROFILE_URL, steamId3);
+        var result = await GetAsync<SteamMiniProfile>(requestUri, cancellationToken: cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
     public async Task<ApiRspImpl<SteamMiniProfile?>> GetUserMiniProfile(long steamId3, CancellationToken cancellationToken = default)
     {
-        var requestUri = string.Format(SteamApiUrls.STEAM_MINIPROFILE_URL, steamId3);
-        var rsp = await GetAsync<SteamMiniProfile>(requestUri, cancellationToken: cancellationToken);
-        return rsp;
+        var result = await GetUserMiniProfileCore(steamId3, cancellationToken: cancellationToken);
+        return result;
     }
 }

@@ -777,9 +777,9 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// </summary>
     public Task<ApiRspImpl<List<SteamApp>?>> GetAppInfos(bool isSaveProperties = false, CancellationToken cancellationToken = default)
     {
-        return Task.FromResult<ApiRspImpl<List<SteamApp?>>>(GetAppInfos_());
+        return Task.FromResult<ApiRspImpl<List<SteamApp>?>>(GetAppInfos_());
 
-        List<SteamApp?> GetAppInfos_()
+        List<SteamApp>? GetAppInfos_()
         {
             var apps = new List<SteamApp>();
             try
@@ -850,42 +850,42 @@ public abstract partial class SteamServiceImpl : ISteamService
                 return apps;
             }
         }
+    }
 
-        static string ReadNullTermUtf8String(Stream stream)
+    static string ReadNullTermUtf8String(Stream stream)
+    {
+        // https://github.com/SteamDatabase/SteamAppInfo/blob/d0ed9c5542f1ccdad8efcf456dd7f6665dbaca40/SteamAppInfoParser/AppInfo.cs#L113-L148
+        var buffer = ArrayPool<byte>.Shared.Rent(32);
+        try
         {
-            var buffer = ArrayPool<byte>.Shared.Rent(32);
+            var position = 0;
 
-            try
+            do
             {
-                var position = 0;
+                var b = stream.ReadByte();
 
-                do
+                if (b <= 0) // null byte or stream ended
                 {
-                    var b = stream.ReadByte();
-
-                    if (b <= 0) // null byte or stream ended
-                    {
-                        break;
-                    }
-
-                    if (position >= buffer.Length)
-                    {
-                        var newBuffer = ArrayPool<byte>.Shared.Rent(buffer.Length * 2);
-                        Buffer.BlockCopy(buffer, 0, newBuffer, 0, buffer.Length);
-                        ArrayPool<byte>.Shared.Return(buffer);
-                        buffer = newBuffer;
-                    }
-
-                    buffer[position++] = (byte)b;
+                    break;
                 }
-                while (true);
 
-                return Encoding.UTF8.GetString(buffer[..position]);
+                if (position >= buffer.Length)
+                {
+                    var newBuffer = ArrayPool<byte>.Shared.Rent(buffer.Length * 2);
+                    Buffer.BlockCopy(buffer, 0, newBuffer, 0, buffer.Length);
+                    ArrayPool<byte>.Shared.Return(buffer);
+                    buffer = newBuffer;
+                }
+
+                buffer[position++] = (byte)b;
             }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
+            while (true);
+
+            return Encoding.UTF8.GetString(buffer[..position]);
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
         }
     }
 

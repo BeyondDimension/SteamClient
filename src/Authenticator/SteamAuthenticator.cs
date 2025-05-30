@@ -40,7 +40,7 @@ namespace WinAuth;
 /// </summary>
 [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)]
 [global::MessagePack.MessagePackObject(keyAsPropertyName: true)]
-public sealed partial class SteamAuthenticator : AuthenticatorValueModel
+public sealed partial class SteamAuthenticator : AuthenticatorValueModel, ISteamAuthenticator
 {
     /// <summary>
     /// 代码中的字符数
@@ -70,37 +70,27 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
     [global::System.Text.Json.Serialization.JsonIgnore]
     public override AuthenticatorPlatform Platform => AuthenticatorPlatform.Steam;
 
-    /// <summary>
-    /// 返回验证器的序列号
-    /// </summary>
+    /// <inheritdoc/>
     public string? Serial { get; set; }
 
-    /// <summary>
-    /// 创建并注册的随机设备 ID
-    /// </summary>
+    /// <inheritdoc/>
     public string? DeviceId { get; set; }
 
-    /// <summary>
-    /// Steam Json 数据
-    /// </summary>
+    /// <inheritdoc/>
     public string? SteamData
     {
         get => field;
-        set
-        {
-            SteamDataObj = IAuthenticatorNetService.Instance.Deserialize(field = value);
-        }
+        set => SteamDataObj = IAuthenticatorNetService.Instance.Deserialize(field = value);
     }
 
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [global::MessagePack.IgnoreMember]
     [global::Newtonsoft.Json.JsonIgnore]
     [global::System.Text.Json.Serialization.JsonIgnore]
     public ISteamConvertSteamDataJsonStruct? SteamDataObj { get; private set; }
 
-    /// <summary>
-    /// 撤销代码
-    /// </summary>
+    /// <inheritdoc/>
     [IgnoreDataMember]
     [global::MessagePack.IgnoreMember]
     [global::Newtonsoft.Json.JsonIgnore]
@@ -137,20 +127,14 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
                SessionData != null;
     }
 
-    /// <summary>
-    /// 如果网络错误，忽略同步的分钟数
-    /// </summary>
-    const int SYNC_ERROR_MINUTES = 60;
+    /// <inheritdoc cref="ISteamAuthenticator.SYNC_ERROR_MINUTES"/>
+    const int SYNC_ERROR_MINUTES = ISteamAuthenticator.SYNC_ERROR_MINUTES;
 
-    /// <summary>
-    /// 尝试激活的次数
-    /// </summary>
-    public const int ENROLL_ACTIVATE_RETRIES = 30;
+    /// <inheritdoc cref="ISteamAuthenticator.ENROLL_ACTIVATE_RETRIES"/>
+    public const int ENROLL_ACTIVATE_RETRIES = ISteamAuthenticator.ENROLL_ACTIVATE_RETRIES;
 
-    /// <summary>
-    /// 激活码不正确
-    /// </summary>
-    public const int INVALID_ACTIVATION_CODE = 89;
+    /// <inheritdoc cref="ISteamAuthenticator.INVALID_ACTIVATION_CODE"/>
+    public const int INVALID_ACTIVATION_CODE = ISteamAuthenticator.INVALID_ACTIVATION_CODE;
 
     /// <summary>
     /// 验证器代码的字符集
@@ -185,22 +169,16 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         'Y',
     ];
 
-    /// <summary>
-    /// 注册状态
-    /// </summary>
+    /// <inheritdoc cref="ISteamAuthenticator.IEnrollState"/>
     [global::MessagePack.MessagePackObject(keyAsPropertyName: true)]
-    public sealed class EnrollState
+    public sealed class EnrollState : ISteamAuthenticator.IEnrollState
     {
-        /// <summary>
-        /// 语言
-        /// </summary>
+        /// <inheritdoc/>
         public string? Language { get; set; }
 
         string? _Username;
 
-        /// <summary>
-        /// 用户名
-        /// </summary>
+        /// <inheritdoc/>
         public string? Username
         {
             get => _Username;
@@ -210,9 +188,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
 
         string? _Password;
 
-        /// <summary>
-        /// 密码
-        /// </summary>
+        /// <inheritdoc/>
         public string? Password
         {
             get => _Password;
@@ -226,45 +202,29 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         //
         // public string? CaptchaText { get; set; }
 
-        /// <summary>
-        /// 电子邮件域
-        /// </summary>
+        /// <inheritdoc/>
         public string? EmailDomain { get; set; }
 
-        /// <summary>
-        /// 电子邮件认证文本
-        /// </summary>
+        /// <inheritdoc/>
         public string? EmailAuthText { get; set; }
 
-        /// <summary>
-        /// 激活代码
-        /// </summary>
+        /// <inheritdoc/>
         public string? ActivationCode { get; set; }
 
-        /// <summary>
-        /// Cookies
-        /// </summary>
+        /// <inheritdoc/>
         [global::MessagePack.MessagePackFormatter(typeof(CookieFormatter))]
         public CookieContainer? Cookies { get; set; }
 
-        /// <summary>
-        /// SteamId
-        /// </summary>
+        /// <inheritdoc/>
         public long SteamId { get; set; }
 
-        /// <summary>
-        /// 电话号码
-        /// </summary>
+        /// <inheritdoc/>
         public string? PhoneNumber { get; set; }
 
-        /// <summary>
-        /// 电话号码是否存在
-        /// </summary>
+        /// <inheritdoc/>
         public bool NoPhoneNumber { get; set; }
 
-        /// <summary>
-        /// 是否更换身份验证方式
-        /// </summary>
+        /// <inheritdoc/>
         public bool ReplaceAuth { get; set; }
 
         //public string? OAuthToken { get; set; }
@@ -277,44 +237,28 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         //
         // public bool RequiresEmailAuth { get; set; }
 
-        /// <summary>
-        /// 需要邮箱确认电话
-        /// </summary>
+        /// <inheritdoc/>
         public bool RequiresEmailConfirmPhone { get; set; }
 
-        /// <summary>
-        /// 需要激活
-        /// </summary>
+        /// <inheritdoc/>
         public bool RequiresActivation { get; set; }
 
-        /// <summary>
-        /// 撤销代码
-        /// </summary>
+        /// <inheritdoc/>
         public string? RevocationCode { get; set; }
 
-        /// <summary>
-        /// 秘密密钥
-        /// </summary>
+        /// <inheritdoc/>
         public string? SecretKey { get; set; }
 
-        /// <summary>
-        /// Success
-        /// </summary>
+        /// <inheritdoc/>
         public bool Success { get; set; }
 
-        /// <summary>
-        /// Error
-        /// </summary>
+        /// <inheritdoc/>
         public string? Error { get; set; }
 
-        /// <summary>
-        /// 访问令牌
-        /// </summary>
+        /// <inheritdoc/>
         public string? AccessToken { get; set; }
 
-        /// <summary>
-        /// 刷新令牌
-        /// </summary>
+        /// <inheritdoc/>
         public string? RefreshToken { get; set; }
     }
 
@@ -512,7 +456,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
             servertime *= 1000; // 转换为毫秒
 
             // get the difference between the server time and our current time
-            ServerTimeDiff = servertime - CurrentTime;
+            ServerTimeDiff = servertime - IAuthenticatorValueModelBase.CurrentTime;
             LastServerTime = DateTime.Now.Ticks;
 
             // clear any sync error
@@ -539,7 +483,7 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
         // sync time if required
         if (resyncTime || ServerTimeDiff == 0)
             if (interval > 0)
-                ServerTimeDiff = (interval * Period * 1000L) - CurrentTime;
+                ServerTimeDiff = (interval * Period * 1000L) - IAuthenticatorValueModelBase.CurrentTime;
             else
                 Task.Run(Sync);
 
@@ -574,11 +518,6 @@ public sealed partial class SteamAuthenticator : AuthenticatorValueModel
 
         return code.ToString();
     }
-
-    /// <summary>
-    /// 为注册创建一个随机的设备 Id 字符串
-    /// </summary>
-    public static string BuildRandomId(Guid? uuid = null) => "android:" + (uuid ?? Guid.NewGuid()).ToString();
 }
 
 sealed class SteamDataRevocationCodeJsonModel

@@ -19,13 +19,13 @@ public interface ISteamAccountService
     /// <param name="password"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(string encryptedPassword64, ulong timestamp)>> GetRSAkeyV2Async(
+    Task<(string encryptedPassword64, ulong timestamp)> GetRSAkeyV2Async(
         string username,
         string password,
         CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// 执行新版请求 Steam 登录，返回登录状态
+    /// 执行新版请求 Steam 登录，返回成功状态
     /// </summary>
     /// <param name="loginState"></param>
     /// <param name="cancellationToken"></param>
@@ -33,7 +33,9 @@ public interface ISteamAccountService
     /// <param name="isSteamClientPlatform">if is <see langword="true"/> 将颁发可用于登录 Steam 客户端 和 web 的 token；
     /// 默认 <see langword="false"/> 颁发适用于 mobile 和 web 的 token  </param>
     /// <returns></returns>
+#pragma warning disable CA1068 // CancellationToken 参数必须最后出现
     Task<ApiRspImpl> DoLoginV2Async(
+#pragma warning restore CA1068 // CancellationToken 参数必须最后出现
         SteamLoginState loginState,
         CancellationToken cancellationToken = default,
         bool rememberLogin = false,
@@ -42,14 +44,14 @@ public interface ISteamAccountService
     /// <summary>
     /// 获取 Steam 账号消费历史记录
     /// </summary>
-    Task<ApiRspImpl<(bool IsSuccess, string? Message, HistoryParseResponse? History)>> GetAccountHistoryDetail(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<(bool IsSuccess, string? Message, HistoryParseResponse? History)> GetAccountHistoryDetail(SteamLoginState loginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Steam 账号余额货币类型及账号区域信息，并检测账号是否定区
     /// <param name="loginState">登录状态</param>
     /// <param name="cancellationToken"></param>
     /// </summary>
-    Task<ApiRspImpl<bool>> GetWalletBalance(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<bool> GetWalletBalance(SteamLoginState loginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 调用 Steam 充值卡充值接口
@@ -59,7 +61,7 @@ public interface ISteamAccountService
     /// <param name="isRetry">是否重试，在尝试定区的时候可以重试，真正充值时不应重试</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<(SteamResult Result, PurchaseResultDetail? Detail)?>> RedeemWalletCode(
+    Task<(SteamResult Result, PurchaseResultDetail? Detail)?> RedeemWalletCode(
         SteamLoginState loginState,
         string walletCode,
         bool isRetry = false,
@@ -71,14 +73,14 @@ public interface ISteamAccountService
     /// <param name="currencyCode">货币</param>
     /// <param name="cancellationToken"></param>
     /// </summary>
-    Task<ApiRspImpl<bool>> SetSteamAccountCountry(SteamLoginState loginState, string currencyCode, CancellationToken cancellationToken = default);
+    Task<bool> SetSteamAccountCountry(SteamLoginState loginState, string currencyCode, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取当前可设置的区域列表
     /// <param name="loginState">登录状态</param>
     /// <param name="cancellationToken"></param>
     /// </summary>
-    Task<ApiRspImpl<List<CurrencyData>?>> GetSteamAccountCountryCodes(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<List<CurrencyData>?> GetSteamAccountCountryCodes(SteamLoginState loginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 api key
@@ -86,7 +88,7 @@ public interface ISteamAccountService
     /// <param name="steamLoginState">登录状态</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string?>> GetApiKey(SteamLoginState steamLoginState, CancellationToken cancellationToken = default);
+    Task<string?> GetApiKey(SteamLoginState steamLoginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 注册 api key
@@ -95,7 +97,7 @@ public interface ISteamAccountService
     /// <param name="domain"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string?>> RegisterApiKey(SteamLoginState steamLoginState, string? domain = null, CancellationToken cancellationToken = default);
+    Task<string?> RegisterApiKey(SteamLoginState steamLoginState, string? domain = null, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取库存信息 (有频率限制 间隔 3 分钟)
@@ -108,7 +110,7 @@ public interface ISteamAccountService
     /// <param name="language">语言(默认简体中文)</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<InventoryPageResponse?>> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese", CancellationToken cancellationToken = default);
+    Task<InventoryPageResponse?> GetInventories(ulong steamId, string appId, string contextId, int count = 100, string? startAssetId = null, string language = "schinese", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取库存交易历史
@@ -118,7 +120,7 @@ public interface ISteamAccountService
     /// <param name="cursor">分页游标(响应会返回下一次请求的游标)</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<InventoryTradeHistoryRenderPageResponse>> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null, CancellationToken cancellationToken = default);
+    Task<InventoryTradeHistoryRenderPageResponse> GetInventoryTradeHistory(SteamLoginState loginState, int[]? appFilter = null, InventoryTradeHistoryRenderPageResponse.InventoryTradeHistoryCursor? cursor = null, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 解析库存交易历史 html
@@ -135,7 +137,7 @@ public interface ISteamAccountService
     /// <param name="loginState">登录状态</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IEnumerable<SendGiftHistoryItem>?>> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<IEnumerable<SendGiftHistoryItem>?> GetSendGiftHistories(SteamLoginState loginState, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取登录历史记录
@@ -151,7 +153,7 @@ public interface ISteamAccountService
     /// <param name="accesstoken"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> CheckAccessTokenValidation(string accesstoken, CancellationToken cancellationToken = default);
+    Task<bool> CheckAccessTokenValidation(string accesstoken, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 检查账号是否绑定了手机
@@ -159,7 +161,7 @@ public interface ISteamAccountService
     /// <param name="access_Token"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool?>> CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default);
+    Task<bool?> CheckAccountPhoneStatus(string access_Token, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取账号基本信息
@@ -168,5 +170,5 @@ public interface ISteamAccountService
     /// <param name="steam64Ids"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<PlayerSummariesResponse>> GetPlayerSummaries(string webApiKey, ulong[] steam64Ids, CancellationToken cancellationToken = default);
+    Task<PlayerSummariesResponse?> GetPlayerSummaries(string webApiKey, ulong[] steam64Ids, CancellationToken cancellationToken = default);
 }

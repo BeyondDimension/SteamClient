@@ -10,7 +10,9 @@ using BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber;
 using BD.SteamClient8.Services.Abstractions.WebApi;
 using Google.Protobuf;
 using Microsoft.Extensions.Logging;
+using System.Buffers;
 using System.Extensions;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -23,11 +25,8 @@ namespace BD.SteamClient8.Services.WebApi;
 /// <remarks>
 /// 初始化 <see cref="SteamAuthenticatorServiceImpl"/> 类的新实例
 /// </remarks>
-/// <param name="steamSessionService"></param>
-/// <param name="loggerFactory"></param>
-/// <param name="serviceProvider"></param>
 public sealed class SteamAuthenticatorServiceImpl(
-    ISteamSessionService steamSessionService,
+    ISteamSessionService sessions,
     ILoggerFactory loggerFactory,
     IServiceProvider serviceProvider) : WebApiClientFactoryService(
         loggerFactory.CreateLogger(TAG),
@@ -48,28 +47,10 @@ public sealed class SteamAuthenticatorServiceImpl(
     /// </summary>
     public const string TAG = "SteamAuthenticatorWebApiS";
 
-    readonly ISteamSessionService _sessionService = steamSessionService;
-
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<IsAccountWaitingForEmailConfirmationResponse?>> AccountWaitingForEmailConfirmation(string steam_id, CancellationToken cancellationToken = default)
+    public async Task<SteamDoLoginTfaJsonStruct?> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1", CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
-        steamSession = steamSession.ThrowIsNull(steam_id);
-
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF.Format(steamSession.AccessToken))
-        {
-            Method = HttpMethod.Post,
-            ContentType = MediaTypeNames.FormUrlEncoded,
-        };
-        sendArgs.SetHttpClient(steamSession.HttpClient!);
-
-        return await SendAsync<IsAccountWaitingForEmailConfirmationResponse>(sendArgs, cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamDoLoginTfaJsonStruct?>> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1", CancellationToken cancellationToken = default)
-    {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var data = new Dictionary<string, string>
@@ -81,70 +62,20 @@ public sealed class SteamAuthenticatorServiceImpl(
             { "sms_phone_id", sms_phone_id },
         };
 
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ADD.Format(steamSession.AccessToken))
+        using var sendArgs = new WebApiClientSendArgs(string.Format(SteamApiUrls.STEAM_AUTHENTICATOR_ADD, steamSession.AccessToken))
         {
             Method = HttpMethod.Post,
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamDoLoginTfaJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        var result = await SendAsync<SteamDoLoginTfaJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default)
+    public async Task<SteamDoLoginFinalizeJsonStruct?> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
-        steamSession = steamSession.ThrowIsNull(steam_id);
-
-        var data = new Dictionary<string, string>
-        {
-            { "phone_number", phone_number },
-            { "phone_country_code", contury_code ?? "" },
-        };
-
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ADD_PHONENUMBER.Format(steamSession.AccessToken))
-        {
-            Method = HttpMethod.Post,
-            ContentType = MediaTypeNames.FormUrlEncoded,
-        };
-        sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamAddPhoneNumberResponse, Dictionary<string, string>>(sendArgs, data, cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool?>> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default)
-    {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
-        steamSession = steamSession.ThrowIsNull(steam_id);
-
-        var data = new Dictionary<string, string>
-        {
-            { "code", sms_code ?? string.Empty }
-        };
-
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_VERIFY_PHONENUMBER.Format(steamSession.AccessToken))
-        {
-            Method = HttpMethod.Post,
-            ContentType = MediaTypeNames.FormUrlEncoded,
-        };
-        sendArgs.SetHttpClient(steamSession.HttpClient!);
-        try
-        {
-            var resp = await SendAsync<string, Dictionary<string, string>>(sendArgs, data, cancellationToken);
-
-            return ApiRspHelper.Ok<bool?>(!string.IsNullOrWhiteSpace(resp));
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "verify phone number error");
-            return ApiRspHelper.Fail<bool?>(null);
-        }
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default)
-    {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var data = new Dictionary<string, string>
@@ -161,13 +92,14 @@ public sealed class SteamAuthenticatorServiceImpl(
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<SteamDoLoginFinalizeJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        var result = await SendAsync<SteamDoLoginFinalizeJsonStruct, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<GetUserCountryOrRegionResponse?>> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default)
+    public async Task<GetUserCountryOrRegionResponse?> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var param = new Dictionary<string, string>
@@ -180,18 +112,124 @@ public sealed class SteamAuthenticatorServiceImpl(
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<GetUserCountryOrRegionResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
+        var result = await SendAsync<GetUserCountryOrRegionResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<RemoveAuthenticatorResponse?>> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1", CancellationToken cancellationToken = default)
+    public async Task<SteamAddPhoneNumberResponse?> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
+        steamSession = steamSession.ThrowIsNull(steam_id);
+
+        var data = new Dictionary<string, string>
+        {
+            { "phone_number", phone_number },
+            { "phone_country_code", contury_code ?? "" },
+        };
+
+        using var sendArgs = new WebApiClientSendArgs(string.Format(SteamApiUrls.STEAM_AUTHENTICATOR_ADD_PHONENUMBER, steamSession.AccessToken))
+        {
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var result = await SendAsync<SteamAddPhoneNumberResponse, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default)
+    {
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
+        steamSession = steamSession.ThrowIsNull(steam_id);
+
+        var data = new Dictionary<string, string>
+        {
+            { "code", sms_code ?? string.Empty }
+        };
+
+        using var sendArgs = new WebApiClientSendArgs(string.Format(SteamApiUrls.STEAM_AUTHENTICATOR_VERIFY_PHONENUMBER, steamSession.AccessToken))
+        {
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        using var resp = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+        var bSize = 4096;
+        var b = ArrayPool<byte>.Shared.Rent(bSize);
+        try
+        {
+            var i = await resp.ThrowIsNull().ReadAsync(b, cancellationToken);
+            if (i > 0)
+            {
+                var str = Encoding.UTF8.GetString(b.AsSpan(0, i));
+                return !string.IsNullOrWhiteSpace(str);
+            }
+        }
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(b);
+        }
+        return false;
+
+        //try
+        //{
+        //    var resp = await SendAsync<string, Dictionary<string, string>>(sendArgs, data, cancellationToken);
+
+        //    return ApiRspHelper.Ok<bool?>(!string.IsNullOrWhiteSpace(resp));
+        //}
+        //catch (Exception ex)
+        //{
+        //    logger.LogError(ex, "verify phone number error");
+        //    return ApiRspHelper.Fail<bool?>(null);
+        //}
+    }
+
+    /// <inheritdoc/>
+    public async Task<IsAccountWaitingForEmailConfirmationResponse?> AccountWaitingForEmailConfirmation(string steam_id, CancellationToken cancellationToken = default)
+    {
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
+        steamSession = steamSession.ThrowIsNull(steam_id);
+
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_ACCOUNTWAITINGFOREMAILCONF.Format(steamSession.AccessToken))
+        {
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var result = await SendAsync<IsAccountWaitingForEmailConfirmationResponse>(sendArgs, cancellationToken);
+        return result;
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> SendPhoneVerificationCode(string steam_id, CancellationToken cancellationToken = default)
+    {
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
+        steamSession = steamSession.ThrowIsNull(steam_id);
+
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE.Format(steamSession.AccessToken))
+        {
+            Method = HttpMethod.Post,
+            ContentType = MediaTypeNames.FormUrlEncoded,
+        };
+        sendArgs.SetHttpClient(steamSession.HttpClient!);
+        var result = await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken);
+        return result.ThrowIsNull().IsSuccessStatusCode;
+    }
+
+    /// <inheritdoc/>
+    public async Task<RemoveAuthenticatorResponse?> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1", CancellationToken cancellationToken = default)
+    {
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var param = new Dictionary<string, string>
         {
-            { "revocation_code", revocation_code ?? throw new Exception("恢复代码为null") },
+            { "revocation_code", revocation_code ??
+#pragma warning disable CA2208 // 正确实例化参数异常
+                throw new ArgumentNullException("恢复代码 revocation_code 不能为 null") },
+#pragma warning restore CA2208 // 正确实例化参数异常
             { "revocation_reason", revocation_reason },
             { "steamguard_scheme", steamguard_scheme },
         };
@@ -202,13 +240,14 @@ public sealed class SteamAuthenticatorServiceImpl(
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return await SendAsync<RemoveAuthenticatorResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
+        var result = await SendAsync<RemoveAuthenticatorResponse, Dictionary<string, string>>(sendArgs, param, cancellationToken);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?>> RemoveAuthenticatorViaChallengeStartSync(string steam_id, CancellationToken cancellationToken = default)
+    public async Task<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?> RemoveAuthenticatorViaChallengeStartSync(string steam_id, CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var base64string = UrlEncoder.Default.Encode(new CTwoFactor_RemoveAuthenticatorViaChallengeStart_Request().ToByteString().ToBase64());
@@ -225,13 +264,14 @@ public sealed class SteamAuthenticatorServiceImpl(
         sendArgs.SetHttpClient(steamSession.HttpClient!);
 
         var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
-        return CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.Parser.ParseFrom(response);
+        var result = CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response.Parser.ParseFrom(response);
+        return result;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default)
+    public async Task<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         var base64string = UrlEncoder.Default.Encode(new CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Request
@@ -245,43 +285,40 @@ public sealed class SteamAuthenticatorServiceImpl(
             { "input_protobuf_encoded", base64string },
         };
 
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC.Format(steamSession.AccessToken))
+        using var sendArgs = new WebApiClientSendArgs(string.Format(SteamApiUrls.STEAM_AUTHENTICATOR_REMOVE_VIACHALLENGECONTINUESYNC, steamSession.AccessToken))
         {
             Method = HttpMethod.Post,
             ContentType = MediaTypeNames.FormUrlEncoded,
         };
         sendArgs.SetHttpClient(steamSession.HttpClient!);
         var response = await SendAsync<Stream, Dictionary<string, string>>(sendArgs, data, cancellationToken);
-        return CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response.Parser.ParseFrom(response);
+        var result = CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response.Parser.ParseFrom(response);
+        return result;
     }
 
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<bool>> SendPhoneVerificationCode(string steam_id, CancellationToken cancellationToken = default)
+    static bool IsTokenExpired(string token)
     {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
-        steamSession = steamSession.ThrowIsNull(steam_id);
+        var tokenComponents = token.Split('.');
+        // Fix up base64url to normal base64
+        var base64 = tokenComponents[1].Replace('-', '+').Replace('_', '/');
 
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_SEND_PHONEVERIFICATIONCODE.Format(steamSession.AccessToken))
+        if (base64.Length % 4 != 0)
         {
-            Method = HttpMethod.Post,
-            ContentType = MediaTypeNames.FormUrlEncoded,
-        };
-        sendArgs.SetHttpClient(steamSession.HttpClient!);
-        return (await SendAsync<HttpResponseMessage>(sendArgs, cancellationToken)).ThrowIsNull().IsSuccessStatusCode;
+            base64 += new string('=', 4 - (base64.Length % 4));
+        }
+
+        var payloadBytes = Convert.FromBase64String(base64);
+        var jwt = JsonSerializer.Deserialize(payloadBytes,
+            SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_.Default.SteamAccessToken);
+
+        // Compare expire time of the token to the current time
+        return jwt is not null && DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamSyncStruct?>> TwoFAQueryTime(CancellationToken cancellationToken = default)
+    public async Task<string?> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default)
     {
-        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_TWOFAQUERYTIME) { Method = HttpMethod.Post };
-        sendArgs.SetHttpClient(CreateClient());
-        return await SendAsync<SteamSyncStruct>(sendArgs, cancellationToken);
-    }
-
-    /// <inheritdoc/>
-    public async Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default)
-    {
-        var steamSession = (await _sessionService.RentSession(steam_id, cancellationToken))?.Content;
+        var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
         if (string.IsNullOrEmpty(steamSession.RefreshToken))
@@ -310,49 +347,35 @@ public sealed class SteamAuthenticatorServiceImpl(
         }
         catch (Exception ex)
         {
-            throw new ApplicationException("Failed to refresh token: " + ex.Message);
+            throw new ApplicationException("Failed to refresh token: " + ex.Message, ex);
         }
 
         var accessToken = response.ThrowIsNull()?.Response?.AccessToken ?? string.Empty;
         if (string.IsNullOrEmpty(accessToken))
         {
             steamSession.AccessToken = accessToken;
-            await _sessionService.AddOrSetSession(steamSession, cancellationToken);
+            await sessions.AddOrSetSession(steamSession, cancellationToken);
         }
-        return ApiRspHelper.Ok(accessToken)!;
+        return accessToken;
     }
 
-    #region Private
-
-    static bool IsTokenExpired(string token)
+    /// <inheritdoc/>
+    public async Task<SteamSyncStruct?> TwoFAQueryTime(CancellationToken cancellationToken = default)
     {
-        var tokenComponents = token.Split('.');
-        // Fix up base64url to normal base64
-        var base64 = tokenComponents[1].Replace('-', '+').Replace('_', '/');
-
-        if (base64.Length % 4 != 0)
-        {
-            base64 += new string('=', 4 - (base64.Length % 4));
-        }
-
-        var payloadBytes = Convert.FromBase64String(base64);
-        var jwt = JsonSerializer.Deserialize(payloadBytes,
-            SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_.Default.SteamAccessToken);
-
-        // Compare expire time of the token to the current time
-        return jwt is not null && DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
+        using var sendArgs = new WebApiClientSendArgs(SteamApiUrls.STEAM_AUTHENTICATOR_TWOFAQUERYTIME) { Method = HttpMethod.Post };
+        sendArgs.SetHttpClient(CreateClient());
+        var result = await SendAsync<SteamSyncStruct>(sendArgs, cancellationToken);
+        return result;
     }
-
-    internal sealed class SteamAccessToken
-    {
-        [JsonPropertyName("exp")]
-        public long Exp { get; set; }
-    }
-
-    #endregion
 }
 
-[JsonSerializable(typeof(SteamAuthenticatorServiceImpl.SteamAccessToken))]
+sealed record class SteamAccessToken
+{
+    [JsonPropertyName("exp")]
+    public long Exp { get; set; }
+}
+
+[JsonSerializable(typeof(SteamAccessToken))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
 sealed partial class SteamAuthenticatorServiceImpl_SteamAccessToken_JsonSerializerContext_ : JsonSerializerContext

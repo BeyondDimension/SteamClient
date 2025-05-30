@@ -18,6 +18,7 @@
 */
 
 using BD.SteamClient8.WinAuth.Enums;
+using BD.SteamClient8.WinAuth.Models.Abstractions;
 using BD.SteamClient8.WinAuth.Services.Abstractions;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
@@ -416,7 +417,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
             Array.Reverse(serverTime);
         }
         // get the difference between the server time and our current time
-        ServerTimeDiff = BitConverter.ToInt64(serverTime, 0) - CurrentTime;
+        ServerTimeDiff = BitConverter.ToInt64(serverTime, 0) - IAuthenticatorValueModelBase.CurrentTime;
 
         // get the secret key
         var secretKey = new byte[20];
@@ -500,7 +501,7 @@ public sealed partial class BattleNetAuthenticator : AuthenticatorValueModel
                 Array.Reverse(responseData);
             }
             // get the difference between the server time and our current time
-            var serverTimeDiff = BitConverter.ToInt64(responseData, 0) - CurrentTime;
+            var serverTimeDiff = BitConverter.ToInt64(responseData, 0) - IAuthenticatorValueModelBase.CurrentTime;
 
             // update the Data object
             ServerTimeDiff = serverTimeDiff;

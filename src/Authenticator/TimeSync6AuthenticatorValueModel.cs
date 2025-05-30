@@ -18,6 +18,7 @@
 */
 
 using BD.SteamClient8.WinAuth.Enums;
+using BD.SteamClient8.WinAuth.Models.Abstractions;
 using BD.SteamClient8.WinAuth.Services.Abstractions;
 using System.Extensions;
 using System.Runtime.Serialization;
@@ -129,7 +130,7 @@ public abstract partial class TimeSync6AuthenticatorValueModel : AuthenticatorVa
                 var dtms = date.Value.ToUnixTimeMilliseconds();
 
                 // get the difference between the server time and our current time
-                var serverTimeDiff = dtms - CurrentTime;
+                var serverTimeDiff = dtms - IAuthenticatorValueModelBase.CurrentTime;
 
                 // update the Data object
                 ServerTimeDiff = serverTimeDiff;

@@ -1,4 +1,12 @@
 global using static BD.SteamClient8.UnitTest.Helpers.SteamLoginStateHelper;
+using BD.SteamClient8.Models.WebApi.Authenticators;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using DotNext.Threading;
+using Microsoft.Extensions.Configuration;
+using System.Extensions;
+using System.Security.Cryptography;
+using System.Text.Json;
 
 namespace BD.SteamClient8.UnitTest.Helpers;
 
@@ -33,7 +41,7 @@ static partial class SteamLoginStateHelper
                     steamLoginState = Serializable.DMP2<SteamLoginState>(steamLoginStateCache);
                     steamLoginState.ThrowIsNull();
                     var check = await steamAccountService.CheckAccessTokenValidation(steamLoginState.AccessToken!);
-                    if (steamLoginState.Username != configuration["steamUsername"] || !check.Content)
+                    if (steamLoginState.Username != configuration["steamUsername"] || !check)
                         throw ThrowHelper.GetArgumentOutOfRangeException(steamLoginState.Username);
 
                     var session = new SteamSession
@@ -84,28 +92,32 @@ static partial class SteamLoginStateHelper
                     // 本地令牌获取相关信息
                     if (identitySecret is null && authenticator is not null)
                     {
-                        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(authenticator.ThrowIsNull().SteamData!);
+                        var steamData = JsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(authenticator.ThrowIsNull().SteamData!);
                         identitySecret = steamData!.IdentitySecret;
                     }
 
                     if (authenticator is null)
                     {
-                        var serverTime = (await steamAuthenticatorService.TwoFAQueryTime())?.Content?.Response?.ServerTime.ThrowIsNull();
-                        serverTimeDiff = (long.Parse(serverTime!) * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                        var twoFAQQueryTimeResult = await steamAuthenticatorService.TwoFAQueryTime();
+                        var serverTime = twoFAQQueryTimeResult?.Response?.ServerTime;
+                        if (!serverTime.HasValue)
+#pragma warning disable CA2208 // 正确实例化参数异常
+                            throw new ArgumentNullException(nameof(serverTime));
+#pragma warning restore CA2208 // 正确实例化参数异常
+                        serverTimeDiff = (serverTime.Value * 1000L) - DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
                     }
                     else
                     {
                         serverTimeDiff = authenticator.ServerTimeDiff;
                     }
 
-                    var sessionRsp = await steamSession.RentSession(steamLoginState.ThrowIsNull().SteamId.ToString());
-                    var session = sessionRsp.Content;
+                    var session = await steamSession.RentSession(steamLoginState.ThrowIsNull().SteamId.ToString());
                     if (session is not null)
                     {
                         session.ServerTimeDiff = serverTimeDiff;
                         session.IdentitySecret = identitySecret.ThrowIsNull();
-                        var apiKey = (await steamAccountService.GetApiKey(steamLoginState)).Content;
-                        session.APIKey = ApiKey = string.IsNullOrEmpty(apiKey) ? (await steamAccountService.RegisterApiKey(steamLoginState)).Content.ThrowIsNull() : apiKey;
+                        var apiKey = await steamAccountService.GetApiKey(steamLoginState);
+                        session.APIKey = ApiKey = string.IsNullOrEmpty(apiKey) ? (await steamAccountService.RegisterApiKey(steamLoginState)).ThrowIsNull() : apiKey;
                         await steamSession.AddOrSetSession(session);
                     }
                 }

@@ -1,4 +1,11 @@
-using static BD.SteamClient8.Models.WinAuth.SteamAuthenticator;
+using BD.Common8.Extensions;
+using BD.SteamClient8.Extensions;
+using BD.SteamClient8.Models.WebApi.Authenticators;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using Microsoft.Extensions.Configuration;
+using System.Extensions;
+using System.Text.Json;
+using static WinAuth.SteamAuthenticator;
 
 namespace BD.SteamClient8.UnitTest;
 
@@ -193,8 +200,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             Assert.That(steamLoginState, Is.Not.Null);
         });
 
-        var userCountryOrRegionRsp = await steamAuthenticatorService.GetUserCountryOrRegion(steamLoginState.SteamId.ToString());
-        string? userCountryOrRegion = userCountryOrRegionRsp.Content;
+        string? userCountryOrRegion = await steamAuthenticatorService.GetUserCountryOrRegion(steamLoginState.SteamId.ToString());
         Assert.That(userCountryOrRegion, Is.Not.Empty);
 
         TestContext.WriteLine(userCountryOrRegion);
@@ -211,10 +217,9 @@ sealed class AuthenticatorTest : ServiceTestBase
             Assert.That(steamLoginState, Is.Not.Null);
         });
 
-        var steamData = SystemTextJsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(steamAuthenticator.SteamData!);
+        var steamData = JsonSerializer.Deserialize<SteamConvertSteamDataJsonStruct>(steamAuthenticator.SteamData!);
 
-        var sessionRsp = await steamSessionService.RentSession(steamData.ThrowIsNull().SteamId.ToString());
-        var session = sessionRsp.Content;
+        var session = await steamSessionService.RentSession(steamData.ThrowIsNull().SteamId.ToString());
         session ??= new();
         session.AccessToken = steamLoginState.AccessToken.ThrowIsNull();
         session.RefreshToken = steamLoginState.RefreshToken.ThrowIsNull();

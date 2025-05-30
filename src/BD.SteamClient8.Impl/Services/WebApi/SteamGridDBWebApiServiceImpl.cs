@@ -74,11 +74,10 @@ class SteamGridDBWebApiServiceImpl(
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId, CancellationToken cancellationToken = default)
+    public async Task<SteamGridApp?> GetSteamGridAppBySteamAppId(long appId, CancellationToken cancellationToken = default)
     {
         var url = string.Format(SteamGridDBApiUrls.RetrieveGameBySteamAppId_Url, appId);
         var rsp = await GetAsync<SteamGridAppData>(url, MediaTypeNames.JSON, cancellationToken);
-
         if (rsp != null)
         {
             if (rsp.Success == true)
@@ -87,14 +86,14 @@ class SteamGridDBWebApiServiceImpl(
             }
             else
             {
-                Log.Error(nameof(GetSteamGridAppBySteamAppId), string.Join(",", rsp.Errors));
+                Log.Error(nameof(GetSteamGridAppBySteamAppId), string.Join(',', rsp.Errors));
             }
         }
-        return ApiRspHelper.Ok<SteamGridApp>();
+        return null;
     }
 
     /// <inheritdoc/>
-    public async Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid, CancellationToken cancellationToken = default)
+    public async Task<List<SteamGridItem>?> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid, CancellationToken cancellationToken = default)
     {
         var url = type switch
         {
@@ -136,7 +135,7 @@ class SteamGridDBWebApiServiceImpl(
                     new LogStrJoin(rsp.Errors));
             }
         }
-        return ApiRspHelper.Ok<List<SteamGridItem>?>();
+        return null;
     }
 
     readonly struct LogStrJoin(IEnumerable<string> strings)

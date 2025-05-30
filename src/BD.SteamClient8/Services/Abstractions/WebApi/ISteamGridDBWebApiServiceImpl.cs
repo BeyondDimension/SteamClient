@@ -25,7 +25,7 @@ public interface ISteamGridDBWebApiServiceImpl
     /// <param name="appId"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamGridApp?>> GetSteamGridAppBySteamAppId(long appId, CancellationToken cancellationToken = default);
+    Task<SteamGridApp?> GetSteamGridAppBySteamAppId(long appId, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 通过 GameId 获取 SteamGrid 详情列表
@@ -34,7 +34,7 @@ public interface ISteamGridDBWebApiServiceImpl
     /// <param name="type"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<SteamGridItem>?>> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid, CancellationToken cancellationToken = default);
+    Task<List<SteamGridItem>?> GetSteamGridItemsByGameId(long gameId, SteamGridItemType type = SteamGridItemType.Grid, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// SteamGridDB 接口密钥

@@ -1,3 +1,6 @@
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using BD.SteamClient8.Services.WebApi;
+
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -30,17 +33,15 @@ sealed class SteamGridDBWebApiTest : ServiceTestBase
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content?.Name, Is.Not.Empty);
+            Assert.That(rsp?.Name, Is.Not.Empty);
         });
 
-        var gridItems = await steamGridDBWebApiService.GetSteamGridItemsByGameId(rsp.Content.Id);
+        var gridItems = await steamGridDBWebApiService.GetSteamGridItemsByGameId(rsp.Id);
 
         Assert.That(gridItems, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(gridItems.IsSuccess);
-            Assert.That(gridItems.Content, Is.Not.Empty);
+            Assert.That(gridItems, Is.Not.Empty);
         });
 
         TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));

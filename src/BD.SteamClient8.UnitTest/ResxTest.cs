@@ -1,3 +1,4 @@
+using System.Reflection;
 using Resx1 = BD.SteamClient8.Resources.Strings;
 
 namespace BD.SteamClient8.UnitTest;

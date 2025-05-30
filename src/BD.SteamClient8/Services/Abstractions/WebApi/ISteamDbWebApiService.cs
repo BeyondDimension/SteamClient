@@ -20,7 +20,7 @@ public interface ISteamDbWebApiService
     /// <param name="steamId64"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default);
+    Task<SteamUser?> GetUserInfo(long steamId64, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 批量获取用户详情
@@ -28,7 +28,7 @@ public interface ISteamDbWebApiService
     /// <param name="steamId64s"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<SteamUser>>> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default);
+    Task<List<SteamUser>?> GetUserInfos(IEnumerable<long> steamId64s, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 通过 AppId 获取游戏详情
@@ -36,5 +36,5 @@ public interface ISteamDbWebApiService
     /// <param name="appId"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamApp>> GetAppInfo(int appId, CancellationToken cancellationToken = default);
+    Task<SteamApp?> GetAppInfo(int appId, CancellationToken cancellationToken = default);
 }

@@ -24,7 +24,7 @@ public interface ISteamSessionService
     /// <param name="steamSession"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> AddOrSetSession(SteamSession steamSession, CancellationToken cancellationToken = default);
+    Task<bool> AddOrSetSession(SteamSession steamSession, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 根据 STEAM ID 获取会话信息，不存在返回 null
@@ -32,14 +32,14 @@ public interface ISteamSessionService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamSession?>> RentSession(string steam_id, CancellationToken cancellationToken = default);
+    Task<SteamSession?> RentSession(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 通过文件加载登录会话信息
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamSession?>> LoadSession(CancellationToken cancellationToken = default);
+    Task<SteamSession?> LoadSession(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 将登录会话信息本地存储
@@ -47,7 +47,7 @@ public interface ISteamSessionService
     /// <param name="steamSession"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SaveSession(SteamSession steamSession, CancellationToken cancellationToken = default);
+    Task SaveSession(SteamSession steamSession, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 删除登录会话信息
@@ -55,7 +55,16 @@ public interface ISteamSessionService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> RemoveSession(string steam_id, CancellationToken cancellationToken = default);
+    Task RemoveSession(string steam_id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 解除家庭监控
+    /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="pinCode"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<bool> UnlockParental(SteamSession? steamSession, string pinCode, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 解除家庭监控
@@ -64,7 +73,7 @@ public interface ISteamSessionService
     /// <param name="pinCode"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl> UnlockParental(string steam_id, string pinCode, CancellationToken cancellationToken = default);
+    Task<bool> UnlockParental(string steam_id, string pinCode, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 恢复家庭监控
@@ -72,5 +81,13 @@ public interface ISteamSessionService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl> LockParental(string steam_id, CancellationToken cancellationToken = default);
+    Task<bool> LockParental(string steam_id, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 恢复家庭监控
+    /// </summary>
+    /// <param name="steamSession"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    Task<bool> LockParental(SteamSession? steamSession, CancellationToken cancellationToken = default);
 }

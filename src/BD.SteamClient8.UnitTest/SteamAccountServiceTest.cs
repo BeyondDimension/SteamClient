@@ -1,3 +1,7 @@
+using BD.SteamClient8.Models.WebApi.Profiles;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using BD.SteamClient8.Services.WebApi;
+
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -59,11 +63,10 @@ sealed class SteamAccountServiceTest : ServiceTestBase
 
         Assert.Multiple(() =>
         {
-            Assert.That(rsp?.Content, Is.Not.Null);
-            Assert.That(rsp!.Content!.Success, Is.True);
+            Assert.That(rsp, Is.Not.Null);
         });
 
-        var parsedRows = steamAccountService.ParseInventoryTradeHistory(rsp.Content.Html)
+        var parsedRows = steamAccountService.ParseInventoryTradeHistory(rsp.Html)
             .ToBlockingEnumerable()
             .ToArray();
 
@@ -86,11 +89,11 @@ sealed class SteamAccountServiceTest : ServiceTestBase
             return;
         }
 
-        string? apiKey = (await steamAccountService.GetApiKey(SteamLoginState!)).Content;
+        string? apiKey = await steamAccountService.GetApiKey(SteamLoginState);
 
         if (string.IsNullOrEmpty(apiKey))
         {
-            apiKey = (await steamAccountService.RegisterApiKey(SteamLoginState!)).Content;
+            apiKey = await steamAccountService.RegisterApiKey(SteamLoginState);
         }
 
         Assert.That(apiKey, Is.Not.Null);

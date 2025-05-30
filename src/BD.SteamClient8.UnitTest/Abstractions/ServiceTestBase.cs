@@ -1,3 +1,20 @@
+#if !(IOS || ANDROID || MACCATALYST)
+using BD.SteamClient8.Services.PInvoke;
+using BD.SteamClient8.Services.Abstractions.PInvoke;
+#endif
+using BD.Common8.Http.ClientFactory.Extensions;
+using BD.SteamClient8.Extensions;
+using BD.SteamClient8.Models.WebApi.Logins;
+using BD.SteamClient8.Models.WebApi.Profiles;
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using DotNext.Threading;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System.Extensions;
+using Microsoft.Extensions.Logging;
+using BD.SteamClient8.Models.WebApi.SteamApps;
+using BD.SteamClient8.Models.WebApi;
+
 namespace BD.SteamClient8.UnitTest.Abstractions;
 
 /// <summary>
@@ -44,7 +61,7 @@ abstract class ServiceTestBase
             if (InventoryPageResponse is null)
             {
                 var response = await steamAccountService.GetInventories(steam_id, app_id, context_id, 50);
-                InventoryPageResponse = response.Content;
+                InventoryPageResponse = response;
             }
         }
     }
@@ -91,7 +108,7 @@ abstract class ServiceTestBase
         services.AddSteamIdleCardService();
         services.AddSteamMarketService();
         services.AddSteamTradeService();
-#if !(IOS || ANDROID)
+#if !(IOS || ANDROID || MACCATALYST)
         services.AddSingleton<ISteamService, TestSteamServiceImpl>();
         services.TryAddSteamworksLocalApiService();
 #endif
@@ -120,7 +137,7 @@ abstract class ServiceTestBase
         builder.AddConsole();
     }
 
-#if !(IOS || ANDROID)
+#if !(IOS || ANDROID || MACCATALYST)
     sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
     {
         public override string? SteamLanguageString => default;

@@ -1,3 +1,6 @@
+using BD.SteamClient8.Services.Abstractions.WebApi;
+using BD.SteamClient8.Services.WebApi;
+
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
@@ -33,9 +36,8 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content?.UserIdleInfo, Is.Not.Null);
-            Assert.That(rsp.Content?.Badges, Is.Not.Null);
+            Assert.That(rsp?.UserIdleInfo, Is.Not.Null);
+            Assert.That(rsp?.Badges, Is.Not.Null);
         });
 
         TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
@@ -56,8 +58,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content, Is.Not.Null);
+            Assert.That(rsp, Is.Not.Null);
         });
 
         TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
@@ -78,8 +79,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
         Assert.That(rsp, Is.Not.Null);
         Assert.Multiple(() =>
         {
-            Assert.That(rsp.IsSuccess);
-            Assert.That(rsp.Content, Is.Not.Null);
+            Assert.That(rsp, Is.Not.Null);
         });
 
         TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));

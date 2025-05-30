@@ -17,7 +17,7 @@ public interface ISteamMarketService
     /// <param name="currency">Steam 货币代码</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<MarketItemPriceOverviewResponse>> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1, CancellationToken cancellationToken = default);
+    Task<MarketItemPriceOverviewResponse?> GetMarketItemPriceOverview(string appId, string marketHashName, int currency = 1, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取市场订单柱状图数据
@@ -28,7 +28,7 @@ public interface ISteamMarketService
     /// <param name="language"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<MarketItemOrdersHistogramResponse>> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese", CancellationToken cancellationToken = default);
+    Task<MarketItemOrdersHistogramResponse?> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 出售物品到市场
@@ -41,7 +41,7 @@ public interface ISteamMarketService
     /// <param name="price">价格 (货币为当前账号钱包货币,单位:分)</param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SellItemToMarketResponse>> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price, CancellationToken cancellationToken = default);
+    Task<SellItemToMarketResponse?> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取市场交易历史
@@ -59,5 +59,5 @@ public interface ISteamMarketService
     /// <param name="loginState"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<MarketListings>> GetMarketListing(SteamLoginState loginState, CancellationToken cancellationToken = default);
+    Task<MarketListings?> GetMarketListing(SteamLoginState loginState, CancellationToken cancellationToken = default);
 }

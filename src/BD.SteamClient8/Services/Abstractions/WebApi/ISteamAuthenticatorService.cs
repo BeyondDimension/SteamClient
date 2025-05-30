@@ -25,7 +25,7 @@ public interface ISteamAuthenticatorService
     /// <param name="sms_phone_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamDoLoginTfaJsonStruct?>> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1", CancellationToken cancellationToken = default);
+    Task<SteamDoLoginTfaJsonStruct?> AddAuthenticatorAsync(string steam_id, string authenticator_time, string? device_identifier, string authenticator_type = "1", string sms_phone_id = "1", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 完成令牌添加
@@ -37,7 +37,7 @@ public interface ISteamAuthenticatorService
     /// <param name="validate_sms_code"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamDoLoginFinalizeJsonStruct?>> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default);
+    Task<SteamDoLoginFinalizeJsonStruct?> FinalizeAddAuthenticatorAsync(string steam_id, string? activation_code, string authenticator_code, string authenticator_time, string validate_sms_code = "1", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取用户所在国家或地区
@@ -45,7 +45,7 @@ public interface ISteamAuthenticatorService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<GetUserCountryOrRegionResponse?>> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default);
+    Task<GetUserCountryOrRegionResponse?> GetUserCountryOrRegion(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 绑定手机
@@ -55,7 +55,7 @@ public interface ISteamAuthenticatorService
     /// <param name="contury_code"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamAddPhoneNumberResponse?>> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default);
+    Task<SteamAddPhoneNumberResponse?> AddPhoneNumberAsync(string steam_id, string phone_number, string? contury_code, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 验证手机号码
@@ -65,7 +65,7 @@ public interface ISteamAuthenticatorService
     /// <param name="sms_code"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool?>> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default);
+    Task<bool> VerifyPhoneNumberAsync(string steam_id, string phone_number, string? sms_code, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 等待邮箱确认
@@ -73,7 +73,7 @@ public interface ISteamAuthenticatorService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<IsAccountWaitingForEmailConfirmationResponse?>> AccountWaitingForEmailConfirmation(string steam_id, CancellationToken cancellationToken = default);
+    Task<IsAccountWaitingForEmailConfirmationResponse?> AccountWaitingForEmailConfirmation(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 发送手机验证码
@@ -81,7 +81,7 @@ public interface ISteamAuthenticatorService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<bool>> SendPhoneVerificationCode(string steam_id, CancellationToken cancellationToken = default);
+    Task<bool> SendPhoneVerificationCode(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 移除令牌
@@ -92,7 +92,7 @@ public interface ISteamAuthenticatorService
     /// <param name="revocation_reason"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<RemoveAuthenticatorResponse?>> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1", CancellationToken cancellationToken = default);
+    Task<RemoveAuthenticatorResponse?> RemoveAuthenticatorAsync(string steam_id, string? revocation_code, string steamguard_scheme, string revocation_reason = "1", CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 申请 Steam 替换安全防护令牌验证码
@@ -100,7 +100,7 @@ public interface ISteamAuthenticatorService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?>> RemoveAuthenticatorViaChallengeStartSync(string steam_id, CancellationToken cancellationToken = default);
+    Task<CTwoFactor_RemoveAuthenticatorViaChallengeStart_Response?> RemoveAuthenticatorViaChallengeStartSync(string steam_id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Steam 替换安全防护令牌
@@ -110,7 +110,7 @@ public interface ISteamAuthenticatorService
     /// <param name="generate_new_token"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?>> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default);
+    Task<CTwoFactor_RemoveAuthenticatorViaChallengeContinue_Response?> RemoveAuthenticatorViaChallengeContinueSync(string steam_id, string? sms_code, bool generate_new_token = true, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 刷新 AccessToken
@@ -118,5 +118,7 @@ public interface ISteamAuthenticatorService
     /// <param name="steam_id"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default);
+    Task<string?> RefreshAccessToken(string steam_id, CancellationToken cancellationToken = default);
+
+    Task<SteamSyncStruct?> TwoFAQueryTime(CancellationToken cancellationToken = default);
 }

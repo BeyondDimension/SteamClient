@@ -20,6 +20,7 @@
 using BD.Common8.Models.Abstractions;
 using BD.SteamClient8.WinAuth.Enums;
 using BD.SteamClient8.WinAuth.Models;
+using BD.SteamClient8.WinAuth.Models.Abstractions;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Engines;
@@ -171,11 +172,13 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
 
         // 改进：使用 StringBuilder 替代字符串+
         var secretKey = SecretKey.ThrowIsNull();
-        var chars = ArrayPool<char>.Shared.Rent(secretKey.Length * 2);
+        var len = secretKey.Length * 2;
+        var chars = ArrayPool<char>.Shared.Rent(len);
         try
         {
-            HexConverter2.EncodeToUtf16(secretKey, chars);
-            b.Append(chars);
+            var span = chars.AsSpan(0, len);
+            HexConverter2.EncodeToUtf16(secretKey, span);
+            b.Append(span);
         }
         finally
         {
@@ -343,7 +346,7 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
     {
         get
         {
-            return CurrentTime + ServerTimeDiff;
+            return IAuthenticatorValueModelBase.CurrentTime + ServerTimeDiff;
         }
     }
 
@@ -357,7 +360,7 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
         get
         {
             // calculate the code interval; the server's time div 30,000
-            return (CurrentTime + ServerTimeDiff) / (Period * 1000L);
+            return (IAuthenticatorValueModelBase.CurrentTime + ServerTimeDiff) / (Period * 1000L);
         }
     }
 
@@ -379,12 +382,7 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
         }
     }
 
-    /// <summary>
-    /// 计算验证器的当前代码
-    /// </summary>
-    /// <param name="resync"></param>
-    /// <param name="interval"></param>
-    /// <returns>authenticator code</returns>
+    /// <inheritdoc/>
     public virtual string CalculateCode(bool resync = false, long interval = -1)
     {
         // sync time if required
@@ -392,7 +390,7 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
         {
             if (interval > 0)
             {
-                ServerTimeDiff = (interval * Period * 1000L) - CurrentTime;
+                ServerTimeDiff = (interval * Period * 1000L) - IAuthenticatorValueModelBase.CurrentTime;
             }
             else
             {
@@ -1008,11 +1006,6 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
     }
 
     /// <summary>
-    /// 获取自 1/1/70 以来的毫秒数（与 Java currentTimeMillis 相同）
-    /// </summary>
-    public static long CurrentTime => DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-
-    /// <summary>
     /// 将十六进制字符串转换为字节数组。例如“001f406a”->byte[]｛0x00，0x1f，0x40，0x6a｝
     /// </summary>
     /// <param name="hex">要转换的十六进制字符串</param>
@@ -1069,13 +1062,15 @@ public partial class AuthenticatorValueModel : IAuthenticatorValueModel
             data = DecryptSequenceNoHash(data, encryptedTypes, password);
 
             // check the hash
-            var chars = ArrayPool<char>.Shared.Rent(salt.Length + data.Length);
-            var compareplain = ArrayPool<byte>.Shared.Rent(chars.Length / 2 + 1);
+            var chars_len = salt.Length + data.Length;
+            var chars = ArrayPool<char>.Shared.Rent(chars_len);
+            var compareplain_len = chars.Length / 2 + 1;
+            var compareplain = ArrayPool<byte>.Shared.Rent(compareplain_len);
             try
             {
                 salt.CopyTo(chars);
                 data.CopyTo(chars.AsSpan(salt.Length));
-                var statusFromHexString = Convert.FromHexString(chars, compareplain, out var _, out var bytesWritten);
+                var statusFromHexString = Convert.FromHexString(chars.AsSpan(0, chars_len), compareplain, out var _, out var bytesWritten);
                 ThrowIsNotDone(statusFromHexString);
                 var compareplainSpan = compareplain.AsSpan(0, bytesWritten);
                 var comparehash = Convert.ToHexString(sha(compareplainSpan));

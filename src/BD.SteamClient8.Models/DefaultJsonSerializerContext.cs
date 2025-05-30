@@ -11,6 +11,7 @@ using BD.SteamClient8.Models.WebApi.Trades;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace BD.SteamClient8.Models;
@@ -99,6 +100,8 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(SteamMobileConfGetListJsonStruct))]
 [JsonSerializable(typeof(RemoveAuthenticatorResponse))]
 [JsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
+[JsonSerializable(typeof(JsonDocument))]
+[JsonSerializable(typeof(JsonObject))]
 #if !(IOS || ANDROID)
 [JsonSerializable(typeof(SteamAppProperty))]
 [JsonSerializable(typeof(SteamAppPropertyTable))]

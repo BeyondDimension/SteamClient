@@ -19,14 +19,14 @@ public interface ISteamworksWebApiService
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<string>> GetAllSteamAppsString(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<string?>> GetAllSteamAppsString(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取所有 Steam 游戏列表
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<List<SteamApp>>> GetAllSteamAppList(CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<List<SteamApp>?>> GetAllSteamAppList(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Steam 个人资料
@@ -34,7 +34,7 @@ public interface ISteamworksWebApiService
     /// <param name="steamId64"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    Task<ApiRspImpl<SteamUser>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default);
+    Task<ApiRspImpl<SteamUser?>> GetUserInfo(long steamId64, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// 获取 Mini 资料

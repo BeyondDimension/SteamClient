@@ -118,10 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CaptchaNeeded" xml:space="preserve">
-    <value>请在输入验证码后再次登录。</value>
+    <value>请在输入验证码后再次登录</value>
   </data>
   <data name="EmailAuthNeeded" xml:space="preserve">
-    <value>请查看账号绑定邮箱，输入邮件验证码后继续。</value>
+    <value>请查看账号绑定邮箱，输入邮件验证码后继续</value>
   </data>
   <data name="Error_InvalidActivationCode" xml:space="preserve">
     <value>无效的验证码</value>
@@ -130,25 +130,25 @@
     <value>来自 Steam 的无效响应：{0}</value>
   </data>
   <data name="Error_ITwoFactorService_AddAuthenticator_v0001" xml:space="preserve">
-    <value>无法发送短信，检查您的手机号已在您的 Steam 帐户中注册。</value>
+    <value>无法发送短信，检查您的手机号已在您的 Steam 帐户中注册</value>
   </data>
   <data name="Error_NoOAuth" xml:space="preserve">
-    <value>来自Steam的无效响应（没有OAuth令牌）。</value>
+    <value>来自 Steam 的无效响应（没有 OAuth 令牌）</value>
   </data>
   <data name="Error_OnActivating" xml:space="preserve">
-    <value>激活令牌时出现了问题。Steam 服务器可能存在问题。请稍后再试。</value>
+    <value>激活令牌时出现了问题，Steam 服务器可能存在问题，请稍后再试</value>
   </data>
   <data name="Error_Password" xml:space="preserve">
-    <value>您所输入的账户名或密码不正确。</value>
+    <value>您所输入的账户名或密码不正确</value>
   </data>
   <data name="Error_SteamguardPhoneAjax" xml:space="preserve">
-    <value>您的 Steam 帐户必须附有支持短信的手机号码, {0}请到 Steam 客户端或 Steam 网站的帐户详细信息添加电话号码。</value>
+    <value>您的 Steam 帐户必须附有支持短信的手机号码, {0}请到 Steam 客户端或 Steam 网站的帐户详细信息添加电话号码</value>
   </data>
   <data name="Error_TooManyRequests" xml:space="preserve">
-    <value>IP 登录请求过于频繁，请稍后重试。</value>
+    <value>IP 登录请求过于频繁，请稍后重试</value>
   </data>
   <data name="RequiresActivation" xml:space="preserve">
-    <value>请查看账号绑定手机号信息，输入验证码后继续。</value>
+    <value>请查看账号绑定手机号信息，输入验证码后继续</value>
   </data>
   <data name="Error_HasAuthenticator" xml:space="preserve">
     <value>您的帐户似乎已添加了身份验证器，需要移除现有的身份验证器才可以通过账号导入</value>
@@ -170,5 +170,44 @@
   </data>
   <data name="RemoveAuthenticatorFail_" xml:space="preserve">
     <value>移除令牌验证器失败，剩余尝试次数：{0}</value>
+  </data>
+  <data name="请填写正确的Steam用户名密码" xml:space="preserve">
+    <value>请填写正确的 Steam 用户名密码</value>
+  </data>
+  <data name="登录失败获取RSAkey出现错误请重试" xml:space="preserve">
+    <value>登录失败，获取 RSAkey 出现错误，请重试</value>
+  </data>
+  <data name="请核对您的密码和账户名称并重试" xml:space="preserve">
+    <value>请核对您的密码和账户名称并重试</value>
+  </data>
+  <data name="与Steam通信时出现问题请稍后重试" xml:space="preserve">
+    <value>与 Steam 通信时出现问题，请稍后重试</value>
+  </data>
+  <data name="短期内来自您所在位置的失败登录过多请15分钟后再试" xml:space="preserve">
+    <value>短期内来自您所在位置的失败登录过多，请 15 分钟后再试</value>
+  </data>
+  <data name="登录遇到未知错误请稍后重试_" xml:space="preserve">
+    <value>登录遇到未知错误，X-eresult：{0}，请稍后重试</value>
+  </data>
+  <data name="需要2FA验证码" xml:space="preserve">
+    <value>需要 2FA 验证码</value>
+  </data>
+  <data name="需要邮箱验证码" xml:space="preserve">
+    <value>需要邮箱验证码</value>
+  </data>
+  <data name="登录失败请确认输入验证码是否正确" xml:space="preserve">
+    <value>登录失败，请确认输入验证码是否正确</value>
+  </data>
+  <data name="FinalizeLoginAsync登录失败" xml:space="preserve">
+    <value>FinalizeLoginAsync 登录失败</value>
+  </data>
+  <data name="获取Steam账号消费历史记录出现错误" xml:space="preserve">
+    <value>获取 Steam 账号消费历史记录出现错误</value>
+  </data>
+  <data name="访问网站页面信息异常" xml:space="preserve">
+    <value>访问网站页面信息异常</value>
+  </data>
+  <data name="获取Html解析器失败" xml:space="preserve">
+    <value>获取 Html 解析器失败</value>
   </data>
 </root>
