@@ -10,5 +10,7 @@ static partial class Steam
     /// <summary>
     /// Custom delegate to get path to steamclient64.dll, steamclient.dll, steamclient.dylib, steamclient.so native library.
     /// </summary>
-    public static Func<string, string>? GetSteamClientNativeLibraryPathDelegate { private get; set; }
+    public static Func<string?>? GetSteamClientNativeLibraryPathDelegate { private get; set; }
+
+    public static bool IsSetCustomPathDelegate => GetInstallPathDelegate != null || GetSteamClientNativeLibraryPathDelegate != null;
 }

@@ -1,4 +1,5 @@
 using BD.Common8.Models.Abstractions;
+using BD.SteamClient8.Constants;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Runtime.CompilerServices;
@@ -106,13 +107,78 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>, IJsonS
     [global::MessagePack.Key(9), global::MemoryPack.MemoryPackOrder(9), global::System.Text.Json.Serialization.JsonPropertyOrder(9)]
     public string? TwofactorCode { get; set; }
 
+    static string GetRandomHexNumber(int digits)
+    {
+        var buffer = new byte[digits / 2];
+        Random.Shared.NextBytes(buffer);
+        string result = string.Concat(buffer.Select(x => x.ToString("X2")));
+        if (digits % 2 == 0)
+            return result;
+        return result + Random.Shared.Next(16).ToString("X");
+    }
+
+    static IEnumerable<Cookie> GenerateCookies(string accessToken, string steamId)
+    {
+        var steamLoginSecure = steamId + "%7C%7C" + accessToken;
+        var sessionid = GetRandomHexNumber(32);
+
+        yield return new Cookie("sessionid", sessionid, "/", SteamApiUrls.STEAM_STORE_HOST);
+        yield return new Cookie("steamLoginSecure", steamLoginSecure, "/", SteamApiUrls.STEAM_STORE_HOST);
+
+        yield return new Cookie("sessionid", sessionid, "/", SteamApiUrls.STEAM_COMMUNITY_HOST);
+        yield return new Cookie("steamLoginSecure", steamLoginSecure, "/", SteamApiUrls.STEAM_COMMUNITY_HOST);
+    }
+
+    internal static CookieCollection? GetCookieCollection(
+        CookieCollection? cookieCollection,
+        string? accessToken,
+        string steamId)
+    {
+        if (cookieCollection == null)
+        {
+            if (!string.IsNullOrWhiteSpace(accessToken))
+            {
+                var result = new CookieCollection();
+                foreach (var cookie in GenerateCookies(accessToken, steamId))
+                {
+                    result.Add(cookie);
+                }
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            if (!string.IsNullOrWhiteSpace(accessToken))
+            {
+                foreach (var cookie in GenerateCookies(accessToken, steamId))
+                {
+                    var oldCookie = cookieCollection.FirstOrDefault(
+                        x => x.Domain == cookie.Domain && x.Name == cookie.Name);
+                    if (oldCookie == null || oldCookie.Expired)
+                    {
+                        cookieCollection.Add(cookie);
+                    }
+                }
+            }
+            return cookieCollection;
+        }
+    }
+
     /// <summary>
-    /// Cookie信息集合
+    /// Cookie 信息集合
     /// </summary>
     [global::MessagePack.MessagePackFormatter(typeof(global::System.Runtime.Serialization.Formatters.CookieFormatter))]
     [global::System.Runtime.Serialization.Formatters.CookieCollectionFormatter]
     [global::MessagePack.Key(10), global::MemoryPack.MemoryPackOrder(10), global::System.Text.Json.Serialization.JsonPropertyOrder(10)]
-    public CookieCollection? Cookies { get; set; }
+    public CookieCollection? Cookies
+    {
+        get => GetCookieCollection(field, AccessToken, SteamId.ToString());
+        set => field = value;
+    }
 
     /// <summary>
     /// SteamId 字符串

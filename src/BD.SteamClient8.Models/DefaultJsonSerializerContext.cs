@@ -1,3 +1,4 @@
+using BD.SteamClient8.Models.PInvoke;
 using BD.SteamClient8.Models.WebApi;
 using BD.SteamClient8.Models.WebApi.Authenticators;
 using BD.SteamClient8.Models.WebApi.Authenticators.PhoneNumber;
@@ -21,6 +22,11 @@ namespace BD.SteamClient8.Models;
 /// </summary>
 [JsonSerializable(typeof(AchievementInfo))]
 [JsonSerializable(typeof(AuthorizedDevice))]
+[JsonSerializable(typeof(AuthorizedDevice[]))]
+[JsonSerializable(typeof(IEnumerable<AuthorizedDevice>))]
+[JsonSerializable(typeof(List<AuthorizedDevice>))]
+[JsonSerializable(typeof(IList<AuthorizedDevice>))]
+[JsonSerializable(typeof(IReadOnlyList<AuthorizedDevice>))] // 只使用源生成的类型信息时，对于集合、数组类型必须声明 attr
 [JsonSerializable(typeof(CurrencyData))]
 [JsonSerializable(typeof(CursorData))]
 [JsonSerializable(typeof(DisableAuthorizedDevice))]
@@ -31,6 +37,10 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(SteamMiniProfile))]
 [JsonSerializable(typeof(SteamRemoteFile))]
 [JsonSerializable(typeof(SteamUser))]
+[JsonSerializable(typeof(SteamUser[]))]
+[JsonSerializable(typeof(List<SteamUser>))]
+[JsonSerializable(typeof(IList<SteamUser>))]
+[JsonSerializable(typeof(IReadOnlyList<SteamUser>))]
 [JsonSerializable(typeof(PlayerSummaries))]
 [JsonSerializable(typeof(PlayerSummariesResponse))]
 [JsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
@@ -63,8 +73,13 @@ namespace BD.SteamClient8.Models;
 //// SteamApp
 #if !(IOS || ANDROID)
 [JsonSerializable(typeof(ModifiedApp))]
+[JsonSerializable(typeof(List<ModifiedApp>))]
 #endif
 [JsonSerializable(typeof(SteamApp))]
+[JsonSerializable(typeof(SteamApp[]))]
+[JsonSerializable(typeof(List<SteamApp>))]
+[JsonSerializable(typeof(IList<SteamApp>))]
+[JsonSerializable(typeof(IReadOnlyList<SteamApp>))]
 [JsonSerializable(typeof(SteamApps))]
 [JsonSerializable(typeof(SteamAppInfo))]
 [JsonSerializable(typeof(SteamAppSaveFile))]
@@ -102,6 +117,8 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(GenerateAccessTokenForAppResponse))]
 [JsonSerializable(typeof(JsonDocument))]
 [JsonSerializable(typeof(JsonObject))]
+[JsonSerializable(typeof(AchievementAndUnlockTimeResult))]
+[JsonSerializable(typeof(CloudArchiveQuotaResult))]
 #if !(IOS || ANDROID)
 [JsonSerializable(typeof(SteamAppProperty))]
 [JsonSerializable(typeof(SteamAppPropertyTable))]

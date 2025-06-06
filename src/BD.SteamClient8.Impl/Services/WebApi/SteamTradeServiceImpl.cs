@@ -284,7 +284,7 @@ partial class SteamTradeServiceImpl // 交易报价
             ContentType = MediaTypeNames.FormUrlEncoded,
             ConfigureRequestMessage = (req, args, token) =>
             {
-                req.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id));
+                req.Headers.Referrer = new Uri(GetTradeOfferUrl(trade_offer_id), UriKind.Absolute);
 
                 return Task.CompletedTask;
             },
@@ -365,7 +365,7 @@ partial class SteamTradeServiceImpl // 交易报价
         var steamSession = await sessions.RentSession(steam_id, cancellationToken);
         steamSession = steamSession.ThrowIsNull(steam_id);
 
-        var uri = new Uri(trade_offer_url);
+        var uri = new Uri(trade_offer_url, UriKind.Absolute);
         var querys = HttpUtility.ParseQueryString(uri.Query);
         var partner = querys["partner"];
         var token = querys["token"];
@@ -777,7 +777,7 @@ partial class SteamTradeServiceImpl // 交易确认
             queryParams.Keys
                 .Select(key => $"{Uri.EscapeDataString(key!)}={Uri.EscapeDataString(queryParams[key]!)}"));
 
-        var builder = new UriBuilder(SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS.Format(confirmation.Id))
+        var builder = new UriBuilder(string.Format(SteamApiUrls.STEAM_MOBILECONF_GET_CONFIRMATION_DETAILS, confirmation.Id))
         {
             Query = query,
         };

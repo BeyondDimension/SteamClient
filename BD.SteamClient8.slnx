@@ -21,6 +21,7 @@
     <Project Path="src/BD.SteamClient8.Primitives/BD.SteamClient8.Primitives.csproj" />
     <Project Path="src/BD.SteamClient8/BD.SteamClient8.csproj" />
     <Project Path="src/SAM.API/SAM.API.csproj" Id="d46e66e1-76ef-4479-b453-4ae0591b0853" />
+    <Project Path="src/SteamPathHelper/SteamPathHelper.shproj" Id="6f6a0bba-b3e7-4212-ad10-96901b55e3aa" />
   </Folder>
   <Folder Name="/3.SharedLibrary/Reference/">
     <Project Path="ref/Common/src/BD.Common8.3rdParty.SteamKit2/BD.Common8.3rdParty.SteamKit2.csproj" Id="4b2b0365-de37-4b65-b614-3e4e7c05147d" />

@@ -726,7 +726,7 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
         return this;
     }
 
-    public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
+    public static SteamApp? FromReader(BinaryReader reader, ReadOnlySpan<string> stringPool = default, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
     {
         uint id = reader.ReadUInt32();
         if (id == 0)
@@ -808,7 +808,9 @@ public partial class SteamApp : JsonModel<SteamApp>, IJsonSerializerContext, ICo
     /// 是否已下载
     /// </summary>
     [global::System.Text.Json.Serialization.JsonIgnore]
-    public bool IsInstalled => IsBitSet(State, 2);
+    public bool IsInstalled => IsInstalledByState(State);
+
+    public static bool IsInstalledByState(int state) => IsBitSet(state, 2);
 
     static bool IsBitSet(int b, int pos)
     {

@@ -88,14 +88,14 @@ public static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader, string[]? stringPool = null)
+    public static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader, ReadOnlySpan<string> stringPool = default)
     {
         SteamAppPropertyTable propertyTable = new SteamAppPropertyTable();
         SteamAppPropertyType propertyType;
         while ((propertyType = (SteamAppPropertyType)reader.ReadByte()) != SteamAppPropertyType._EndOfTable_)
         {
             string name;
-            if (stringPool == null)
+            if (stringPool.IsEmpty)
             {
                 name = reader.ReadAppInfoString();
             }

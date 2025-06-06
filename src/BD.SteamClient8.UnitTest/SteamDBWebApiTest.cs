@@ -3,7 +3,7 @@ using BD.SteamClient8.Services.Abstractions.WebApi;
 namespace BD.SteamClient8.UnitTest;
 
 /// <summary>
-/// <see cref="SteamDbWebApiServiceImpl"/> 单元测试
+/// <see cref="ISteamDbWebApiService"/> 单元测试
 /// </summary>
 sealed class SteamDBWebApiTest : ServiceTestBase
 {
@@ -35,7 +35,7 @@ sealed class SteamDBWebApiTest : ServiceTestBase
             Assert.That(rsp?.ProfileUrl, Is.Not.Empty);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -75,6 +75,6 @@ sealed class SteamDBWebApiTest : ServiceTestBase
             Assert.That(rsp?.Name, Is.Not.Empty);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }

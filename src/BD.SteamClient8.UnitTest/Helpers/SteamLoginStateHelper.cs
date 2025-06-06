@@ -50,8 +50,7 @@ static partial class SteamLoginStateHelper
                         AccessToken = steamLoginState.AccessToken!,
                         RefreshToken = steamLoginState.RefreshToken!,
                     };
-                    session.Cookies.Add(steamLoginState.Cookies!);
-                    session.GenerateSetCookie();
+                    session.Cookies = steamLoginState.Cookies;
                     await steamSession.AddOrSetSession(session);
                 }
                 catch

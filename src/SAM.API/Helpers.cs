@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SAM.API;
 
-internal static class Helpers
+internal static partial class Helpers
 {
     public const int MemoryBufferSize = 1024 * 32;
 

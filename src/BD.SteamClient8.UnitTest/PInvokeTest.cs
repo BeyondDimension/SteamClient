@@ -32,44 +32,43 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试本机库初始化
     /// </summary>
     [Test]
-    public async Task SteamworksLocal()
+    public void SteamworksLocal()
     {
-        TestContext.WriteLine($"UserName: {Environment.UserName}");
-        TestContext.WriteLine($"UserInteractive: {Environment.UserInteractive}");
-        TestContext.WriteLine($"UserDomainName: {Environment.UserDomainName}");
-        TestContext.WriteLine($"ProcessPath: {Environment.ProcessPath}");
-        TestContext.WriteLine($"CurrentDirectory: {Environment.CurrentDirectory}");
-        TestContext.WriteLine($"OSArchitecture: {RuntimeInformation.OSArchitecture}");
-        TestContext.WriteLine($"ProcessArchitecture: {RuntimeInformation.ProcessArchitecture}");
-        TestContext.WriteLine($"RuntimeIdentifier: {RuntimeInformation.RuntimeIdentifier}");
-        TestContext.WriteLine($"FrameworkDescription: {RuntimeInformation.FrameworkDescription}");
+        TestContext.Out.WriteLine($"UserName: {Environment.UserName}");
+        TestContext.Out.WriteLine($"UserInteractive: {Environment.UserInteractive}");
+        TestContext.Out.WriteLine($"UserDomainName: {Environment.UserDomainName}");
+        TestContext.Out.WriteLine($"ProcessPath: {Environment.ProcessPath}");
+        TestContext.Out.WriteLine($"CurrentDirectory: {Environment.CurrentDirectory}");
+        TestContext.Out.WriteLine($"OSArchitecture: {RuntimeInformation.OSArchitecture}");
+        TestContext.Out.WriteLine($"ProcessArchitecture: {RuntimeInformation.ProcessArchitecture}");
+        TestContext.Out.WriteLine($"RuntimeIdentifier: {RuntimeInformation.RuntimeIdentifier}");
+        TestContext.Out.WriteLine($"FrameworkDescription: {RuntimeInformation.FrameworkDescription}");
+        TestContext.Out.WriteLine($"ISteamworksLocalApiService.IsSupported: {ISteamworksLocalApiService.IsSupported}");
 
-        var init_result = await steamworksLocalApiService.Initialize();
-        if (IsCI() && init_result.ClientException != null)
+        var init_exception = steamworksLocalApiService.Initialize(0, false);
+        if (IsCI() && init_exception != null)
         {
-            TestContext.WriteLine(init_result.ClientException);
+            TestContext.Out.WriteLine(init_exception);
             return; // CI 中运行出现异常忽略
         }
 
-        Assert.That(init_result.IsSuccess, init_result.GetMessage());
+        Assert.That(init_exception, Is.EqualTo(null));
 
-        var steamId64 = await steamworksLocalApiService.GetSteamId64();
+        var steamId64 = steamworksLocalApiService.GetSteamId64();
         Assert.Multiple(() =>
         {
-            Assert.That(steamId64.IsSuccess, steamId64.GetMessage());
-            Assert.That(steamId64.Content, !Is.EqualTo(0L), steamId64.GetMessage());
+            Assert.That(steamId64, !Is.EqualTo(0L));
         });
 
-        await steamworksLocalApiService.OwnsApp(730);
+        steamworksLocalApiService.OwnsApp(730);
 
-        var countryOrRegion = await steamworksLocalApiService.GetCountryOrRegionByIP();
+        var countryOrRegion = steamworksLocalApiService.GetCountryOrRegionByIP();
         Assert.Multiple(() =>
         {
-            Assert.That(countryOrRegion.IsSuccess, countryOrRegion.GetMessage());
-            Assert.That(countryOrRegion.Content, Is.Not.Empty, countryOrRegion.GetMessage());
+            Assert.That(countryOrRegion, Is.Not.Empty, countryOrRegion);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(countryOrRegion, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(countryOrRegion, writeIndented: true));
     }
 
     /// <summary>
@@ -78,7 +77,7 @@ sealed class PInvokeTest : ServiceTestBase
     [Test]
     public void VdfBenchmark()
     {
-        var steamDirPath = ISteamService.SteamDirPath;
+        var steamDirPath = SteamPathHelper.GetSteamDirPath();
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
@@ -89,7 +88,7 @@ sealed class PInvokeTest : ServiceTestBase
         var k = kv.Deserialize(File.OpenRead(vdfStr));
         _ = k.GetHashCode();
         sw.Stop();
-        TestContext.WriteLine(
+        TestContext.Out.WriteLine(
             $"ValveKeyValue (VDF)       : {sw.ElapsedMilliseconds / numIterations}ms, {sw.ElapsedTicks / numIterations}ticks average");
     }
 
@@ -100,7 +99,7 @@ sealed class PInvokeTest : ServiceTestBase
     [Test]
     public void VdfValueEdit()
     {
-        var steamDirPath = ISteamService.SteamDirPath;
+        var steamDirPath = SteamPathHelper.GetSteamDirPath();
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
@@ -110,7 +109,7 @@ sealed class PInvokeTest : ServiceTestBase
         {
             var kv = v["Software"]["valve"]["Steam"]["ipv6check_http_state"] as KVObjectValue<string>;
             kv.ThrowIsNull().Value = "bad1";
-            TestContext.WriteLine($"{v["Software"]["valve"]["Steam"]["ipv6check_http_state"]}");
+            TestContext.Out.WriteLine($"{v["Software"]["valve"]["Steam"]["ipv6check_http_state"]}");
             //VdfHelper.Write(vdfStr, v);
         }
     }
@@ -121,43 +120,42 @@ sealed class PInvokeTest : ServiceTestBase
     [Test]
     public void RemoveAuthorizedDeviceList()
     {
-        var steamDirPath = ISteamService.SteamDirPath;
+        var steamDirPath = SteamPathHelper.GetSteamDirPath();
         if (string.IsNullOrEmpty(steamDirPath))
             return;
 
         string vdfStr = Path.Combine(steamDirPath, "config", "config.vdf");
         var v = VdfHelper.Read(vdfStr);
-        if (v["AuthorizedDevice"] is KVCollectionValue authorizedDevices)
+        if (v?["AuthorizedDevice"] is KVCollectionValue authorizedDevices)
         {
             authorizedDevices.Remove("130741779");
             //v["AuthorizedDevice"] = authorizedDevices;
             foreach (var x in (KVCollectionValue)v["AuthorizedDevice"])
             {
-                TestContext.WriteLine($"{x.Name}   {x["description"]}");
+                TestContext.Out.WriteLine($"{x.Name}   {x["description"]}");
             }
             //VdfHelper.Write(vdfStr, v);
         }
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
     /// 测试获取记住的用户列表
     /// </summary>
     [Test]
-    public async Task GetRememberUserList()
+    public void GetRememberUserList()
     {
-        var list_rsp = await steamService.GetRememberUserList();
+        var list_rsp = steamService.GetRememberUserList();
         Assert.Multiple(() =>
         {
-            Assert.That(list_rsp.IsSuccess);
-            Assert.That(list_rsp.Content, Is.Not.Null);
+            Assert.That(list_rsp, Is.Not.Null);
         });
 
-        var list = list_rsp.Content;
+        var list = list_rsp;
         list.ForEach(x =>
         {
-            TestContext.WriteLine($"{x.SteamId64}   {x.SteamID}");
+            TestContext.Out.WriteLine($"{x.SteamId64}   {x.SteamID}");
         });
         Assert.That(list, Is.Not.Empty);
     }
@@ -166,20 +164,19 @@ sealed class PInvokeTest : ServiceTestBase
     /// 测试获取下载的游戏列表
     /// </summary>
     [Test]
-    public async Task GetDownloadingAppList()
+    public void GetDownloadingAppList()
     {
-        var list_rsp = await steamService.GetDownloadingAppList();
+        var list_rsp = steamService.GetDownloadingAppList();
 
         Assert.Multiple(() =>
         {
-            Assert.That(list_rsp.IsSuccess);
-            Assert.That(list_rsp.Content, Is.Not.Null);
+            Assert.That(list_rsp, Is.Not.Null);
         });
 
-        var list = list_rsp.Content;
+        var list = list_rsp;
         list.ForEach(x =>
         {
-            TestContext.WriteLine($"{x.Name}   {x.AppId}");
+            TestContext.Out.WriteLine($"{x.Name}   {x.AppId}");
         });
     }
 }

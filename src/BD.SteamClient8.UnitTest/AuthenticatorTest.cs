@@ -96,7 +96,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             });
         }
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
@@ -142,7 +142,7 @@ sealed class AuthenticatorTest : ServiceTestBase
             Assert.That(await Update());
         });
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
@@ -203,7 +203,7 @@ sealed class AuthenticatorTest : ServiceTestBase
         string? userCountryOrRegion = await steamAuthenticatorService.GetUserCountryOrRegion(steamLoginState.SteamId.ToString());
         Assert.That(userCountryOrRegion, Is.Not.Empty);
 
-        TestContext.WriteLine(userCountryOrRegion);
+        TestContext.Out.WriteLine(userCountryOrRegion);
     }
 
     async Task<bool> Update()

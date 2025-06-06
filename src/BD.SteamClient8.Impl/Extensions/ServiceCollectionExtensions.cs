@@ -1,6 +1,8 @@
+#if !(IOS || ANDROID || MACCATALYST)
+using BD.SteamClient8.Services.PInvoke;
+#endif
 using BD.SteamClient8.Services.Abstractions.PInvoke;
 using BD.SteamClient8.Services.Abstractions.WebApi;
-using BD.SteamClient8.Services.PInvoke;
 using BD.SteamClient8.Services.WebApi;
 using BD.SteamClient8.Services.WinAuth;
 using BD.SteamClient8.WinAuth;

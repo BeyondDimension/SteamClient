@@ -66,15 +66,15 @@ public class Client : IDisposable
         return processDirPath;
     }
 
-    public bool Initialize(long appId)
+    public bool Initialize(long appId, bool processPathIsReadOnly = false)
     {
-        if (string.IsNullOrEmpty(Steam.GetInstallPath()) == true)
-        {
-            throw new ClientInitializeException(ClientInitializeFailure.GetInstallPath, "failed to get Steam install path");
-        }
+        //if (string.IsNullOrEmpty(Steam.GetInstallPath()) == true)
+        //{
+        //    throw new ClientInitializeException(ClientInitializeFailure.GetInstallPath, "failed to get Steam install path");
+        //}
 
         string? steam_appid_file_path = null;
-
+        bool loadFailed = false;
         try
         {
             if (appId != 0)
@@ -83,34 +83,47 @@ public class Client : IDisposable
 
                 if (Steam.Load() == false)
                 {
-                    steam_appid_file_path = "steam_appid.txt";
-                    var processPath =
+                    if (!processPathIsReadOnly)
+                    {
+                        steam_appid_file_path = "steam_appid.txt";
+                        var processPath =
 #if NET6_0_OR_GREATER
-                        Environment.ProcessPath;
+                            Environment.ProcessPath;
 #elif NETFRAMEWORK
-                        global::System.Windows.Forms.Application.ExecutablePath;
+                            global::System.Windows.Forms.Application.ExecutablePath;
 #else
-                        global::System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
+                            global::System.Diagnostics.Process.GetCurrentProcess().MainModule?.FileName;
 #endif
-                    var processDirPath = GetProcessDirectoryPath(processPath);
-                    if (processDirPath != null)
-                    {
-                        steam_appid_file_path = Path.Combine(processDirPath, steam_appid_file_path);
-                    }
-                    File.WriteAllText(steam_appid_file_path, appId.ToString());
+                        var processDirPath = GetProcessDirectoryPath(processPath);
+                        if (processDirPath != null)
+                        {
+                            steam_appid_file_path = Path.Combine(processDirPath, steam_appid_file_path);
+                        }
+                        File.WriteAllText(steam_appid_file_path, appId.ToString());
 
-                    if (Steam.Load() == false)
-                    {
-                        throw new ClientInitializeException(ClientInitializeFailure.Load, "failed to load Steam");
+                        if (Steam.Load() == false)
+                        {
+                            loadFailed = true;
+                        }
                     }
+                    else
+                    {
+                        loadFailed = true;
+                    }
+
                 }
             }
             else
             {
                 if (Steam.Load() == false)
                 {
-                    throw new ClientInitializeException(ClientInitializeFailure.Load, "failed to load Steam");
+                    loadFailed = true;
                 }
+            }
+
+            if (loadFailed)
+            {
+                throw new ClientInitializeException(ClientInitializeFailure.Load, "failed to load Steam");
             }
 
             SteamClient = Steam.CreateInterface<SteamClient018>("SteamClient018")!;
@@ -133,7 +146,7 @@ public class Client : IDisposable
 
             SteamUtils = SteamClient.GetSteamUtils007(_Pipe);
             var currentAppId = SteamUtils.GetAppId();
-            if (appId > 0 && currentAppId != (uint)appId)
+            if (appId > 0 && currentAppId != unchecked((uint)appId))
             {
                 //var envAppId = Environment.GetEnvironmentVariable(KEY_STEAM_APP_ID);
                 throw new ClientInitializeException(ClientInitializeFailure.AppIdMismatch, $"appID mismatch, appId: {appId}"); //, currentAppId: {currentAppId}, envAppId: {envAppId}");
@@ -147,7 +160,7 @@ public class Client : IDisposable
         }
         finally
         {
-            if (steam_appid_file_path != null)
+            if (!processPathIsReadOnly && steam_appid_file_path != null)
             {
                 try
                 {

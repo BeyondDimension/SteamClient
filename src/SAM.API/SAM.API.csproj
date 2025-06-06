@@ -6,6 +6,7 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<PackageId>BD.SteamClient8.3rdParty.SAM.API</PackageId>
 		<AssemblyName>SAM.API</AssemblyName>
+		<DefineConstants>$(DefineConstants);PROJ_3RD_PARTY_SAM_API</DefineConstants>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -41,5 +42,7 @@
 		<None Include="$(MSBuildProjectDirectory)\LICENSE.txt" Pack="true" PackagePath="" />
 		<None Include="$(MSBuildProjectDirectory)\README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
+
+	<Import Project="..\SteamPathHelper\SteamPathHelper.projitems" Label="Shared" />
 
 </Project>

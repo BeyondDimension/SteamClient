@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>6f6a0bba-b3e7-4212-ad10-96901b55e3aa</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SteamPathHelper</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SteamPathHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SteamPathHelper.Linux.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SteamPathHelper.MacOS.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SteamPathHelper.Windows.cs" />
+  </ItemGroup>
+</Project>

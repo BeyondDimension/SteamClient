@@ -72,6 +72,12 @@ public sealed partial class SteamAccountService(
     /// </summary>
     public const string default_donotcache = "-62135596800000"; // default(DateTime).ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalMilliseconds.ToString();
 
+    static string GetHttpClientId(string steamUserName)
+    {
+        var id = $"{nameof(SteamAccountService)}-{steamUserName}";
+        return id;
+    }
+
     /// <summary>
     /// 使用 Steam 用户名作为唯一 Id，创建一个新的 <see cref="HttpClient"/> 实例，隔离不同用户的请求，避免 Cookie 污染和冲突
     /// </summary>
@@ -79,8 +85,15 @@ public sealed partial class SteamAccountService(
     /// <returns></returns>
     HttpClient CreateClient(string steamUserName)
     {
-        var client = base.CreateClient($"{TAG}-{steamUserName}");
+        var id = GetHttpClientId(steamUserName);
+        var client = base.CreateClient(id);
         return client;
+    }
+
+    CookieContainer GetCookieContainer(string steamUserName)
+    {
+        var id = GetHttpClientId(steamUserName);
+        return base.GetCookieContainer(id);
     }
 
     /// <summary>
@@ -318,7 +331,6 @@ public sealed partial class SteamAccountService(
             RefreshToken = loginState.RefreshToken,
             Cookies = cookieContainer.GetAllCookies(),
         };
-        session.GenerateSetCookie();
         await sessions.AddOrSetSession(session, cancellationToken);
         return ApiRspHelper.Ok();
 
@@ -1065,13 +1077,21 @@ public sealed partial class SteamAccountService(
         var result = await WaitAndRetryAsync(sleepDurations).ExecuteAsync(async () =>
         {
             using var stream = await SendAsync<Stream>(sendArgs, cancellationToken);
+#if DEBUG
+            using var memoryStream = new MemoryStream();
+            stream!.CopyTo(memoryStream);
+            var htmlString = Encoding.UTF8.GetString(memoryStream.ToArray());
+            memoryStream.Position = 0;
+            var parseApiKey = ParseApiKeyFromHttpContent(memoryStream);
+#else
             var parseApiKey = ParseApiKeyFromHttpContent(stream);
-            if (string.IsNullOrEmpty(parseApiKey))
-            {
-#pragma warning disable CA2208 // 正确实例化参数异常
-                throw new ArgumentNullException(nameof(parseApiKey));
-#pragma warning restore CA2208 // 正确实例化参数异常
-            }
+#endif
+            //            if (string.IsNullOrEmpty(parseApiKey))
+            //            {
+            //#pragma warning disable CA2208 // 正确实例化参数异常
+            //                throw new ArgumentNullException(nameof(parseApiKey));
+            //#pragma warning restore CA2208 // 正确实例化参数异常
+            //            }
             return parseApiKey;
         });
         return result;
@@ -1098,7 +1118,7 @@ public sealed partial class SteamAccountService(
             {
                 Name = "sessionid",
                 Value = loginState.SeesionId,
-                Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
+                Domain = SteamApiUrls.STEAM_COMMUNITY_HOST,
                 Secure = true,
                 Path = "/",
             },
@@ -1185,7 +1205,7 @@ public sealed partial class SteamAccountService(
             {
                 Name = "Steam_Language",
                 Value = loginState.Language ?? "schinese",
-                Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
+                Domain = SteamApiUrls.STEAM_COMMUNITY_HOST,
                 Secure = true,
                 Path = "/",
             },
@@ -1193,7 +1213,7 @@ public sealed partial class SteamAccountService(
             {
                 Name = "timezoneOffset",
                 Value = Uri.EscapeDataString($"{TimeSpan.FromHours(8).TotalSeconds},0"),
-                Domain = new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host,
+                Domain = SteamApiUrls.STEAM_COMMUNITY_HOST,
             },
         };
 
@@ -1433,12 +1453,12 @@ public sealed partial class SteamAccountService(
     public async IAsyncEnumerable<LoginHistoryItem>? GetLoginHistory(SteamLoginState loginState, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         const string url = SteamApiUrls.STEAM_ACCOUNT_HISTORY_LOGIN;
-
+        var host = new Uri(url, UriKind.Absolute).Host;
         var cookieCollection = new CookieCollection
         {
             loginState.Cookies!,
-            new Cookie("sessionid", loginState.SeesionId, "/", $".{new Uri(url,UriKind.Absolute).Host}"),
-            new Cookie("steamLoginSecure", loginState.Cookies!["steamLoginSecure"]?.Value, "/", $".{new Uri(url).Host}"),
+            new Cookie("sessionid", loginState.SeesionId, "/", $".{host}"),
+            new Cookie("steamLoginSecure", loginState.Cookies!["steamLoginSecure"]?.Value, "/", $".{host}"),
         };
 
         var username = loginState.Username.ThrowIsNull();
@@ -1454,7 +1474,15 @@ public sealed partial class SteamAccountService(
 
         using var respStream = await SendAsync<Stream>(sendArgs, cancellationToken)
             ?? throw new Exception("访问网站页面信息异常");
+#if DEBUG
+        using var memoryStream = new MemoryStream();
+        respStream!.CopyTo(memoryStream);
+        var htmlString = Encoding.UTF8.GetString(memoryStream.ToArray());
+        memoryStream.Position = 0;
+        var result = await ParseHtmlResponseStream(memoryStream, (doc) => Task.FromResult(doc));
+#else
         var result = await ParseHtmlResponseStream(respStream, (doc) => Task.FromResult(doc));
+#endif
 
         var tableElement = result.QuerySelector("table");
 

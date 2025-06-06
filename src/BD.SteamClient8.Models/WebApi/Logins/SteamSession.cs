@@ -38,7 +38,11 @@ public sealed partial class SteamSession : JsonModel<SteamSession>, IJsonSeriali
 #if !(NETFRAMEWORK && !NET462_OR_GREATER) && !(NETSTANDARD && !NETSTANDARD2_0_OR_GREATER)
     [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
-    public CookieCollection Cookies { get; set; } = [];
+    public CookieCollection? Cookies
+    {
+        get => SteamLoginState.GetCookieCollection(field, AccessToken, SteamId);
+        set => field = value;
+    }
 
     /// <summary>
     /// 聊天消息队列唯一标识符
@@ -80,45 +84,4 @@ public sealed partial class SteamSession : JsonModel<SteamSession>, IJsonSeriali
     [global::System.Text.Json.Serialization.JsonIgnore]
 #endif
     public HttpClient? HttpClient { get; set; }
-
-    /// <summary>
-    /// 设置 Cookie 信息
-    /// </summary>
-    /// <returns></returns>
-    public bool GenerateSetCookie()
-    {
-        if (string.IsNullOrEmpty(AccessToken))
-        {
-            return false;
-        }
-
-        var steamLoginSecure = SteamId + "%7C%7C" + AccessToken;
-        var sessionid = GetRandomHexNumber(32);
-        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
-        Cookies.Add(new Cookie("sessionid", sessionid, "/", new Uri(SteamApiUrls.STEAM_COMMUNITY_URL).Host));
-        Cookies.Add(new Cookie("steamLoginSecure", steamLoginSecure, "/", new Uri(SteamApiUrls.STEAM_STORE_URL).Host));
-        Cookies.Add(new Cookie("sessionid", sessionid, "/", new Uri(SteamApiUrls.STEAM_STORE_URL).Host));
-
-        // Cookie 去重保留最新
-        var deduplicated = new CookieCollection();
-        Cookies.Cast<Cookie>()
-            .GroupBy(cookie => new { cookie.Domain, cookie.Name })
-            .SelectMany(group =>
-            {
-                return group.OrderByDescending(cookie => cookie.TimeStamp).Take(1);
-            }).ForEach(deduplicated.Add);
-        Cookies = deduplicated;
-        return true;
-    }
-
-    static string GetRandomHexNumber(int digits)
-    {
-        Random random = new Random();
-        byte[] buffer = new byte[digits / 2];
-        random.NextBytes(buffer);
-        string result = string.Concat(buffer.Select(x => x.ToString("X2")).ToArray());
-        if (digits % 2 == 0)
-            return result;
-        return result + random.Next(16).ToString("X");
-    }
 }

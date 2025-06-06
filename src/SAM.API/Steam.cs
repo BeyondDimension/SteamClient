@@ -43,29 +43,9 @@ public static partial class Steam
         {
             return GetInstallPathDelegate();
         }
-#if WINDOWS
-#else
-#if NETFRAMEWORK || NETSTANDARD
-#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-#else
-#endif
-#else
-        if (OperatingSystem.IsWindows())
-#endif
-#endif
-        {
-            return Registry.GetValue(
-                @"HKEY_CURRENT_USER\SOFTWARE\Valve\Steam",
-                "SteamPath",
-                null)?.ToString();
-        }
-#if !WINDOWS
-        else
-        {
-            throw new PlatformNotSupportedException();
-        }
-#endif
+
+        var installPath = Helpers.GetSteamDirPath();
+        return installPath;
     }
 
     [UnmanagedFunctionPointer(CallingConvention.Cdecl, CharSet = CharSet.Ansi)]
@@ -119,64 +99,25 @@ public static partial class Steam
                 return true;
             }
 
-            var path = GetInstallPath();
-            if (path == null)
-            {
-                return false;
-            }
-
+            string? path;
             if (GetSteamClientNativeLibraryPathDelegate != null)
             {
-                path = GetSteamClientNativeLibraryPathDelegate(path);
+                path = GetSteamClientNativeLibraryPathDelegate();
+                if (string.IsNullOrWhiteSpace(path))
+                {
+                    return false;
+                }
             }
             else
             {
-#if WINDOWS
-                path = GetSteamClientNativeLibraryPathByWindows(path);
-#elif MACOS
-                path = GetSteamClientNativeLibraryPathByMacOS(path);
-#else
-#if NETFRAMEWORK || NETSTANDARD
-#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-#else
-#endif
-#else
-                if (OperatingSystem.IsMacOS())
-#endif
+                path = Helpers.GetSteamClientNativeLibraryPath();
+                if (string.IsNullOrWhiteSpace(path))
                 {
-                    path = GetSteamClientNativeLibraryPathByMacOS(path);
+                    return false;
                 }
-#if NETFRAMEWORK || NETSTANDARD
-#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-#else
-#endif
-#else
-                else if (OperatingSystem.IsWindows())
-#endif
-                {
-                    path = GetSteamClientNativeLibraryPathByWindows(path);
-                }
-#if NETFRAMEWORK || NETSTANDARD
-#if NET471_OR_GREATER || NETSTANDARD1_1_OR_GREATER
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-#else
-#endif
-#else
-                else if (OperatingSystem.IsLinux())
-#endif
-                {
-                    path = GetSteamClientNativeLibraryPathByLinux(path);
-                }
-                else
-                {
-                    throw new PlatformNotSupportedException();
-                }
-#endif
             }
 
-            var module = NativeLibrary.Load(path);
+            var module = NativeLibrary.Load(path!);
             if (module == IntPtr.Zero)
             {
                 return false;
@@ -208,35 +149,4 @@ public static partial class Steam
             return false;
         }
     }
-
-#if !MACOS
-    static string GetSteamClientNativeLibraryPathByWindows(string path)
-    {
-        // C:\Program Files (x86)\Steam\steamclient64.dll
-        path = Path.Combine(path,
-            Environment.Is64BitProcess ?
-                "steamclient64.dll" :
-                "steamclient.dll");
-        return path;
-    }
-#endif
-#if !WINDOWS
-#if !MACOS
-    static string GetSteamClientNativeLibraryPathByLinux(string path)
-    {
-        // /home/{0}/.local/share/Steam/linux64/steamclient.so
-        path = Path.Combine(path,
-            Environment.Is64BitProcess ?
-                "linux64" :
-                "linux32",
-            "steamclient.so");
-        return path;
-    }
-#endif
-    static string GetSteamClientNativeLibraryPathByMacOS(string path)
-    {
-        path = Path.Combine(path, "steamclient.dylib");
-        return path;
-    }
-#endif
 }

@@ -5,6 +5,7 @@ using BD.SteamClient8.Services.Abstractions.WebApi;
 using BD.SteamClient8.Services.WebApi;
 using Microsoft.Extensions.Configuration;
 using System.Extensions;
+using System.Security.Cryptography;
 using System.Web;
 
 namespace BD.SteamClient8.UnitTest;
@@ -61,8 +62,8 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             Assert.That(tradeHistoryDetail, Is.Not.Null);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(tradeOffersSummary, writeIndented: true));
-        TestContext.WriteLine(Serializable.SJSON(tradeHistoryDetail, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(tradeOffersSummary, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(tradeHistoryDetail, writeIndented: true));
     }
 
     /// <summary>
@@ -72,8 +73,16 @@ sealed class SteamTradeServiceTest : ServiceTestBase
     [Test]
     public async Task AcceptTradeOffer()
     {
+        var hashSteamId = Hashs.String.SHA384(SteamLoginState.SteamId.ToString());
+        switch (hashSteamId)
+        {
+            case "7d69650e6be3b16a9a845d45592002679e25abc914149c9633d7272aa1dc7ef44aa974568f2d3e439886f805b6d91da1":
+                // 需要有交易的账号才能执行测试
+                return;
+        }
+
         // ------------接受所有礼物形式的交易报价
-        var accept_result = await steamTradeService.AcceptAllGiftTradeOfferAsync(SteamLoginState!.SteamId.ToString());
+        var accept_result = await steamTradeService.AcceptAllGiftTradeOfferAsync(SteamLoginState.SteamId.ToString());
         Assert.That(accept_result, Is.True);
 
         // ------------开启后台任务 定时接收礼物报价
@@ -126,7 +135,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
         Assert.That(stopTask, Is.Not.Null);
         Assert.That(stopTask.IsSuccess, Is.True);
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
@@ -175,7 +184,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             Assert.That(send_result, Is.True);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(send_result, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(send_result, writeIndented: true));
     }
 
     /// <summary>
@@ -221,7 +230,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             Assert.That(send_result, Is.True);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(send_result, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(send_result, writeIndented: true));
     }
 
     /// <summary>
@@ -270,7 +279,7 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             }
         }
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
@@ -311,6 +320,6 @@ sealed class SteamTradeServiceTest : ServiceTestBase
             Assert.That(sendResult);
         }
 
-        TestContext.WriteLine(Serializable.SJSON(confirmations, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(confirmations, writeIndented: true));
     }
 }

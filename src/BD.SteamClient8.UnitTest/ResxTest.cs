@@ -11,7 +11,7 @@ sealed class ResxTest
         var s1 = GetProperties(typeof(Resx1));
         Assert.That(s1, Is.Not.Empty);
 
-        TestContext.WriteLine(s1.Length.ToString());
+        TestContext.Out.WriteLine(s1.Length.ToString());
     }
 
     static PropertyInfo[] GetProperties(Type type)

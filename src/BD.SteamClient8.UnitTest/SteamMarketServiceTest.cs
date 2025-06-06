@@ -39,7 +39,7 @@ sealed class SteamMarketServiceTest : ServiceTestBase
             Assert.That(histogram?.Success, Is.EqualTo(1));
         });
 
-        TestContext.WriteLine(Serializable.SJSON(histogram, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(histogram, writeIndented: true));
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ sealed class SteamMarketServiceTest : ServiceTestBase
             Assert.That(overview?.Success, Is.True);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(overview, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(overview, writeIndented: true));
     }
 
     /// <summary>
@@ -84,6 +84,6 @@ sealed class SteamMarketServiceTest : ServiceTestBase
 
         Assert.That(listings.ActiveListings, Is.Not.Null);
 
-        TestContext.WriteLine(Serializable.SJSON(listings, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(listings, writeIndented: true));
     }
 }

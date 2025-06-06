@@ -24,9 +24,7 @@ namespace BD.SteamClient8.Services.WebApi;
 /// </remarks>
 public sealed class SteamSessionServiceImpl(
     IServiceProvider serviceProvider,
-    ILoggerFactory loggerFactory,
-    ISteamAccountService steamAccountS,
-    ISecureStorage secureStorage) : WebApiClientFactoryService(loggerFactory.CreateLogger(TAG),
+    ILoggerFactory loggerFactory) : WebApiClientFactoryService(loggerFactory.CreateLogger(TAG),
         serviceProvider), ISteamSessionService
 {
     const string TAG = "SteamSessionS";
@@ -53,7 +51,11 @@ public sealed class SteamSessionServiceImpl(
         var tag = SpecialTag(steamSession.SteamId);
         steamSession.HttpClient = CreateClient(tag);
         var container = GetCookieContainer(tag);
-        container.Add(steamSession.Cookies);
+        var c = steamSession.Cookies;
+        if (c != null)
+        {
+            container.Add(c);
+        }
         _sessions[tag] = steamSession;
         return true;
     }
@@ -81,6 +83,8 @@ public sealed class SteamSessionServiceImpl(
     /// <inheritdoc/>
     public async Task<SteamSession?> LoadSession(CancellationToken cancellationToken = default)
     {
+        // 延时加载服务
+        var secureStorage = ISecureStorage.Instance;
         var currentSteamSessionJsonStr = await secureStorage.GetAsync(ISteamSessionService.CurrentSteamUserKey);
         if (!string.IsNullOrWhiteSpace(currentSteamSessionJsonStr))
         {
@@ -88,10 +92,11 @@ public sealed class SteamSessionServiceImpl(
                 SteamSessionServiceImpl_SteamSession_JsonSerializerContext_.Default.SteamSession);
             if (currentSteamSession != null)
             {
-                var checkAccessTokenValidResult = await steamAccountS.CheckAccessTokenValidation(currentSteamSession.AccessToken, cancellationToken);
+                // 延时加载服务
+                var steamAccountService = Ioc.Get<ISteamAccountService>();
+                var checkAccessTokenValidResult = await steamAccountService.CheckAccessTokenValidation(currentSteamSession.AccessToken, cancellationToken);
                 if (checkAccessTokenValidResult)
                 {
-                    currentSteamSession.GenerateSetCookie();
                     AddOrSetSessionCore(currentSteamSession);
                     return currentSteamSession;
                 }
@@ -133,7 +138,7 @@ public sealed class SteamSessionServiceImpl(
                 Content = new MultipartFormDataContent()
                 {
                     { new ByteArrayContent(Encoding.UTF8.GetBytes(pinCode)), "pin" },
-                    { new ByteArrayContent(Encoding.UTF8.GetBytes(container.GetCookies(new Uri(unlock_url))["sessionid"]?.Value ?? string.Empty)), "sessionid" },
+                    { new ByteArrayContent(Encoding.UTF8.GetBytes(container.GetCookies(new Uri(unlock_url, UriKind.Absolute))["sessionid"]?.Value ?? string.Empty)), "sessionid" },
                 }
             };
             using (await steamSession.HttpClient.UseDefaultSendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken))

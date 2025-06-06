@@ -36,7 +36,7 @@ sealed class SteamAccountServiceTest : ServiceTestBase
     {
         await GetInventories(steamAccountService, steam_id, appId, contextId);
 
-        TestContext.WriteLine(Serializable.SJSON(InventoryPageResponse, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(InventoryPageResponse, writeIndented: true));
     }
 
     /// <summary>
@@ -72,8 +72,8 @@ sealed class SteamAccountServiceTest : ServiceTestBase
 
         Assert.That(parsedRows, Is.Not.Null);
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
-        TestContext.WriteLine(Serializable.SJSON(parsedRows, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(parsedRows, writeIndented: true));
     }
 
     /// <summary>
@@ -99,7 +99,7 @@ sealed class SteamAccountServiceTest : ServiceTestBase
         Assert.That(apiKey, Is.Not.Null);
         Assert.That(apiKey, Is.Not.EqualTo(string.Empty));
 
-        TestContext.WriteLine("OK");
+        TestContext.Out.WriteLine("OK");
     }
 
     /// <summary>
@@ -118,7 +118,7 @@ sealed class SteamAccountServiceTest : ServiceTestBase
         var history = await steamAccountService.GetSendGiftHistories(SteamLoginState);
         Assert.That(history, Is.Not.Null);
 
-        TestContext.WriteLine(Serializable.SJSON(history, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(history, writeIndented: true));
     }
 
     /// <summary>
@@ -141,10 +141,10 @@ sealed class SteamAccountServiceTest : ServiceTestBase
         List<LoginHistoryItem> loginHistories = new();
         await foreach (var item in result)
         {
-            Console.WriteLine(item.City);
+            TestContext.Out.WriteLine(item.City);
             loginHistories.Add(item);
         }
 
-        TestContext.WriteLine(Serializable.SJSON(loginHistories, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(loginHistories, writeIndented: true));
     }
 }

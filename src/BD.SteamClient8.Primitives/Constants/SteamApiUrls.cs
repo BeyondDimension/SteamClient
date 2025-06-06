@@ -71,6 +71,9 @@ public static partial class SteamApiUrls
 
     public const string STEAMCN_USERINFO_XML_URL = "https://my.steamchina.com/profiles/76561198289531723?xml=1";
 
+    public const string STEAM_COMMUNITY_HOST = "steamcommunity.com";
+    public const string STEAM_STORE_HOST = "store.steampowered.com";
+
     public const string STEAM_COMMUNITY_URL = "https://steamcommunity.com";
     public const string STEAM_STORE_URL = "https://store.steampowered.com";
 

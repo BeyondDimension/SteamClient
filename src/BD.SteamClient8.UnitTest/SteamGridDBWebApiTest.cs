@@ -44,7 +44,7 @@ sealed class SteamGridDBWebApiTest : ServiceTestBase
             Assert.That(gridItems, Is.Not.Empty);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
-        TestContext.WriteLine(Serializable.SJSON(gridItems, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(gridItems, writeIndented: true));
     }
 }

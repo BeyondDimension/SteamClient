@@ -40,7 +40,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp?.Badges, Is.Not.Null);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp, Is.Not.Null);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 
     /// <summary>
@@ -82,6 +82,6 @@ sealed class SteamIdleServiceTest : ServiceTestBase
             Assert.That(rsp, Is.Not.Null);
         });
 
-        TestContext.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
+        TestContext.Out.WriteLine(Serializable.SJSON(rsp, writeIndented: true));
     }
 }

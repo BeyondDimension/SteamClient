@@ -6,12 +6,24 @@
 		<Description>SteamClient8 主库</Description>
 	</PropertyGroup>
 
+	<!-- Windows Only -->
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<PackageReference Include="System.Management" />
+	</ItemGroup>
+
+	<!-- Desktop Only --><!--
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios' AND $([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'android'">
+		<PackageReference Include="DynamicData" />
+	</ItemGroup>-->
+
+	<Import Project="..\SteamPathHelper\SteamPathHelper.projitems" Label="Shared" />
+
 	<Import Project="$(MSBuildThisFileDirectory)..\TFM_NETX_ALL.props" />
 
 	<ItemGroup>
-	  <ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
-	  <ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-	  <ProjectReference Include="$(Path_Submodule_Common)\src\BD.Common8.3rdParty.ValveKeyValue\BD.Common8.3rdParty.ValveKeyValue.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)\src\BD.Common8.3rdParty.ValveKeyValue\BD.Common8.3rdParty.ValveKeyValue.csproj" />
 	</ItemGroup>
 
 </Project>

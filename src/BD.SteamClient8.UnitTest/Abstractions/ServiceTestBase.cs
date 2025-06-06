@@ -14,6 +14,8 @@ using System.Extensions;
 using Microsoft.Extensions.Logging;
 using BD.SteamClient8.Models.WebApi.SteamApps;
 using BD.SteamClient8.Models.WebApi;
+using BD.SteamClient8.Services.Abstractions.Mvvm;
+using System.Diagnostics;
 
 namespace BD.SteamClient8.UnitTest.Abstractions;
 
@@ -75,6 +77,26 @@ abstract class ServiceTestBase
     /// <inheritdoc cref="SetUpAttribute"/>
     public virtual async ValueTask Setup()
     {
+        IOPath.InitFileSystem(() =>
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var result = Path.Combine(baseDir, "AppData");
+            IOPath.DirCreateByNotExists(result);
+            return result;
+        }, () =>
+        {
+            var baseDir = AppContext.BaseDirectory;
+            var result = Path.Combine(baseDir, "Cache");
+            IOPath.DirCreateByNotExists(result);
+            return result;
+        });
+
+        TestContext.Out.WriteLine($"ProcessPath: {Environment.ProcessPath}");
+        TestContext.Out.WriteLine($"BaseDirectory: {IOPath.BaseDirectory}");
+        TestContext.Out.WriteLine($"AppDataDirectory: {IOPath.AppDataDirectory}");
+        TestContext.Out.WriteLine($"CacheDirectory: {IOPath.CacheDirectory}");
+        TestContext.Out.WriteLine($"IsPrivilegedProcess: {Environment.IsPrivilegedProcess}");
+
         using (await lock_Setup.AcquireLockAsync(CancellationToken.None))
         {
             if (IsInit)
@@ -138,21 +160,27 @@ abstract class ServiceTestBase
     }
 
 #if !(IOS || ANDROID || MACCATALYST)
-    sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory)
+    sealed class TestSteamServiceImpl(ILoggerFactory loggerFactory) : SteamServiceImpl(loggerFactory), ISteamConnectService
     {
-        public override string? SteamLanguageString => default;
+        public bool IsConnectToSteam { get; set; }
 
-        public override SteamApp[]? SteamApps => [];
+        public string? SteamLanguageString => default;
 
-        public override SteamApp[]? DownloadApps => [];
+        public IReadOnlyList<SteamApp> SteamApps => [];
 
-        public override SteamUser[]? SteamUsers => [];
+        public IReadOnlyList<SteamApp> DownloadApps => [];
+
+        public IReadOnlyList<SteamUser> SteamUsers => [];
+
+        public SteamUser? CurrentSteamUser { get; }
 
         protected override string? StratSteamDefaultParameter => default;
 
         protected override bool IsRunSteamAdministrator => default;
 
         protected override Dictionary<uint, string?>? HideGameList => default;
+
+        protected override ISteamConnectService Conn => this;
     }
 #endif
 }

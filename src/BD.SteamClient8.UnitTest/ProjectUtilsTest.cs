@@ -9,10 +9,10 @@ sealed class _ProjectUtilsTest
     [Test]
     public void Test()
     {
-        TestContext.WriteLine($"tfm: {tfm}");
-        TestContext.WriteLine($"IsCI: {IsCI().ToLowerString()}");
-        TestContext.WriteLine($"ProjPath: {ProjPath}");
-        TestContext.WriteLine($"ROOT_ProjPath: {ROOT_ProjPath}");
-        TestContext.WriteLine($"DataPath: {DataPath}");
+        TestContext.Out.WriteLine($"tfm: {tfm}");
+        TestContext.Out.WriteLine($"IsCI: {IsCI().ToLowerString()}");
+        TestContext.Out.WriteLine($"ProjPath: {ProjPath}");
+        TestContext.Out.WriteLine($"ROOT_ProjPath: {ROOT_ProjPath}");
+        TestContext.Out.WriteLine($"DataPath: {DataPath}");
     }
 }
