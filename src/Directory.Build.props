@@ -43,7 +43,7 @@
 	<!-- 👇 程序集信息 -->
 	<PropertyGroup>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10529.12400</Version>
+		<Version>8.25.10606.11900</Version>
 		<Copyright>©️ $(Company). All rights reserved.</Copyright>
 		<Authors>$(Company)</Authors>
 		<FileVersion>$(Version)</FileVersion>

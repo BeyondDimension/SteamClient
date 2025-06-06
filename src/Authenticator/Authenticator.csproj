@@ -8,7 +8,7 @@
 		<PackageId>BD.SteamClient8.3rdParty.WinAuth</PackageId>
 		<PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10527.10600</Version>
+		<Version>8.25.10606.11900</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>

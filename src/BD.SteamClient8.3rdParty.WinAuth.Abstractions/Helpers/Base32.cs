@@ -14,40 +14,40 @@ public static partial class Base32
 {
     const string _base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-#if NET6_0_OR_GREATER
-    public static string GenerateBase32()
-    {
-        const int length = 20;
-        // base32 takes 5 bytes and converts them into 8 characters, which would be (byte length / 5) * 8
-        // except that it also pads ('=') for the last processed chunk if it's less than 5 bytes.
-        // So in order to handle the padding we add 1 less than the chunk size to our byte length
-        // which will either be removed due to integer division truncation if the length was already a multiple of 5
-        // or it will increase the divided length by 1 meaning that a 1-4 byte length chunk will be 1 instead of 0
-        // so the padding is now included in our string length calculation
-        return string.Create((length + 4) / 5 * 8, 0, static (buffer, _) =>
-        {
-            Span<byte> bytes = stackalloc byte[length];
-            RandomNumberGenerator.Fill(bytes);
+    //#if NET6_0_OR_GREATER
+    //    public static string GenerateBase32()
+    //    {
+    //        const int length = 20;
+    //        // base32 takes 5 bytes and converts them into 8 characters, which would be (byte length / 5) * 8
+    //        // except that it also pads ('=') for the last processed chunk if it's less than 5 bytes.
+    //        // So in order to handle the padding we add 1 less than the chunk size to our byte length
+    //        // which will either be removed due to integer division truncation if the length was already a multiple of 5
+    //        // or it will increase the divided length by 1 meaning that a 1-4 byte length chunk will be 1 instead of 0
+    //        // so the padding is now included in our string length calculation
+    //        return string.Create((length + 4) / 5 * 8, 0, static (buffer, _) =>
+    //        {
+    //            Span<byte> bytes = stackalloc byte[length];
+    //            RandomNumberGenerator.Fill(bytes);
 
-            var index = 0;
-            for (var offset = 0; offset < bytes.Length;)
-            {
-                byte a, b, c, d, e, f, g, h;
-                var numCharsToOutput = GetNextGroup(bytes, ref offset, out a, out b, out c, out d, out e, out f, out g, out h);
+    //            var index = 0;
+    //            for (var offset = 0; offset < bytes.Length;)
+    //            {
+    //                byte a, b, c, d, e, f, g, h;
+    //                var numCharsToOutput = GetNextGroup(bytes, ref offset, out a, out b, out c, out d, out e, out f, out g, out h);
 
-                if (numCharsToOutput >= 8) buffer[index + 7] = _base32Chars[h];
-                if (numCharsToOutput >= 7) buffer[index + 6] = _base32Chars[g];
-                if (numCharsToOutput >= 6) buffer[index + 5] = _base32Chars[f];
-                if (numCharsToOutput >= 5) buffer[index + 4] = _base32Chars[e];
-                if (numCharsToOutput >= 4) buffer[index + 3] = _base32Chars[d];
-                if (numCharsToOutput >= 3) buffer[index + 2] = _base32Chars[c];
-                if (numCharsToOutput >= 2) buffer[index + 1] = _base32Chars[b];
-                if (numCharsToOutput >= 1) buffer[index] = _base32Chars[a];
-                index += 8;
-            }
-        });
-    }
-#endif
+    //                if (numCharsToOutput >= 8) buffer[index + 7] = _base32Chars[h];
+    //                if (numCharsToOutput >= 7) buffer[index + 6] = _base32Chars[g];
+    //                if (numCharsToOutput >= 6) buffer[index + 5] = _base32Chars[f];
+    //                if (numCharsToOutput >= 5) buffer[index + 4] = _base32Chars[e];
+    //                if (numCharsToOutput >= 4) buffer[index + 3] = _base32Chars[d];
+    //                if (numCharsToOutput >= 3) buffer[index + 2] = _base32Chars[c];
+    //                if (numCharsToOutput >= 2) buffer[index + 1] = _base32Chars[b];
+    //                if (numCharsToOutput >= 1) buffer[index] = _base32Chars[a];
+    //                index += 8;
+    //            }
+    //        });
+    //    }
+    //#endif
 
     public static string ToBase32(byte[]? input)
     {

@@ -16,7 +16,7 @@
 		<Copyright>Copyright © Gibbed 2019</Copyright>
 		<PackageLicenseExpression>Zlib</PackageLicenseExpression>
 		<!--8.yy.1MMdd.1hhmm-->
-		<Version>8.25.10525.11800</Version>
+		<Version>8.25.10606.11900</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 	</PropertyGroup>

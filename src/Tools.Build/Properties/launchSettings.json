@@ -3,6 +3,10 @@
     "Tools.Build": {
       "commandName": "Project",
       "commandLineArgs": "b"
+    },
+    "Tools.Build(NuGetPush)": {
+      "commandName": "Project",
+      "commandLineArgs": "push"
     }
   }
 }
