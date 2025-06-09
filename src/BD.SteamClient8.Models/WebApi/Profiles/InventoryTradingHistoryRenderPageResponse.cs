@@ -39,7 +39,7 @@ public sealed record class InventoryTradeHistoryRenderPageResponse : JsonRecordM
     /// 描述
     /// </summary>
     [global::System.Text.Json.Serialization.JsonPropertyName("descriptions")]
-    public JsonElement Descriptions { get; set; }
+    public JsonElement? Descriptions { get; set; }
 
     /// <summary>
     /// 历史记录请求标记

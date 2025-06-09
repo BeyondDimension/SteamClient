@@ -1,3 +1,4 @@
+using BD.Common8.Models;
 using BD.SteamClient8.Models.PInvoke;
 using BD.SteamClient8.Models.WebApi;
 using BD.SteamClient8.Models.WebApi.Authenticators;
@@ -28,6 +29,11 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(IList<AuthorizedDevice>))]
 [JsonSerializable(typeof(IReadOnlyList<AuthorizedDevice>))] // 只使用源生成的类型信息时，对于集合、数组类型必须声明 attr
 [JsonSerializable(typeof(CurrencyData))]
+[JsonSerializable(typeof(CurrencyData[]))]
+[JsonSerializable(typeof(IEnumerable<CurrencyData>))]
+[JsonSerializable(typeof(List<CurrencyData>))]
+[JsonSerializable(typeof(IList<CurrencyData>))]
+[JsonSerializable(typeof(IReadOnlyList<CurrencyData>))]
 [JsonSerializable(typeof(CursorData))]
 [JsonSerializable(typeof(DisableAuthorizedDevice))]
 [JsonSerializable(typeof(FloatStatInfo))]
@@ -35,9 +41,17 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(IntStatInfo))]
 [JsonSerializable(typeof(RedeemWalletResponse))]
 [JsonSerializable(typeof(SteamMiniProfile))]
+[JsonSerializable(typeof(ApiRspImpl<SteamMiniProfile>))]
 [JsonSerializable(typeof(SteamRemoteFile))]
+[JsonSerializable(typeof(SteamRemoteFile[]))]
+[JsonSerializable(typeof(IEnumerable<SteamRemoteFile>))]
+[JsonSerializable(typeof(List<SteamRemoteFile>))]
+[JsonSerializable(typeof(IList<SteamRemoteFile>))]
+[JsonSerializable(typeof(IReadOnlyList<SteamRemoteFile>))]
+[JsonSerializable(typeof(ApiRspImpl<SteamUser>))]
 [JsonSerializable(typeof(SteamUser))]
 [JsonSerializable(typeof(SteamUser[]))]
+[JsonSerializable(typeof(IEnumerable<SteamUser>))]
 [JsonSerializable(typeof(List<SteamUser>))]
 [JsonSerializable(typeof(IList<SteamUser>))]
 [JsonSerializable(typeof(IReadOnlyList<SteamUser>))]
@@ -46,8 +60,18 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(PlayerSummariesResponse.PlayerSummariesDetail))]
 //// Idle
 [JsonSerializable(typeof(AppCardsAvgPrice))]
+[JsonSerializable(typeof(AppCardsAvgPrice[]))]
+[JsonSerializable(typeof(IEnumerable<AppCardsAvgPrice>))]
+[JsonSerializable(typeof(List<AppCardsAvgPrice>))]
+[JsonSerializable(typeof(IList<AppCardsAvgPrice>))]
+[JsonSerializable(typeof(IReadOnlyList<AppCardsAvgPrice>))]
 [JsonSerializable(typeof(IdleBadge))]
 [JsonSerializable(typeof(CardsMarketPrice))]
+[JsonSerializable(typeof(CardsMarketPrice[]))]
+[JsonSerializable(typeof(IEnumerable<CardsMarketPrice>))]
+[JsonSerializable(typeof(List<CardsMarketPrice>))]
+[JsonSerializable(typeof(IList<CardsMarketPrice>))]
+[JsonSerializable(typeof(IReadOnlyList<CardsMarketPrice>))]
 [JsonSerializable(typeof(SteamCard))]
 [JsonSerializable(typeof(UserIdleInfo))]
 //// Login
@@ -70,6 +94,11 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(InventoryTradeHistoryRenderPageResponse))]
 [JsonSerializable(typeof(LoginHistoryItem))]
 [JsonSerializable(typeof(SendGiftHistoryItem))]
+[JsonSerializable(typeof(SendGiftHistoryItem[]))]
+[JsonSerializable(typeof(IEnumerable<SendGiftHistoryItem>))]
+[JsonSerializable(typeof(List<SendGiftHistoryItem>))]
+[JsonSerializable(typeof(IList<SendGiftHistoryItem>))]
+[JsonSerializable(typeof(IReadOnlyList<SendGiftHistoryItem>))]
 //// SteamApp
 #if !(IOS || ANDROID)
 [JsonSerializable(typeof(ModifiedApp))]
@@ -77,6 +106,7 @@ namespace BD.SteamClient8.Models;
 #endif
 [JsonSerializable(typeof(SteamApp))]
 [JsonSerializable(typeof(SteamApp[]))]
+[JsonSerializable(typeof(IEnumerable<SteamApp>))]
 [JsonSerializable(typeof(List<SteamApp>))]
 [JsonSerializable(typeof(IList<SteamApp>))]
 [JsonSerializable(typeof(IReadOnlyList<SteamApp>))]
@@ -90,7 +120,17 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(SteamGridAppData))]
 //// Trade
 [JsonSerializable(typeof(TradeAsset))]
+[JsonSerializable(typeof(TradeAsset[]))]
+[JsonSerializable(typeof(IEnumerable<TradeAsset>))]
+[JsonSerializable(typeof(List<TradeAsset>))]
+[JsonSerializable(typeof(IList<TradeAsset>))]
+[JsonSerializable(typeof(IReadOnlyList<TradeAsset>))]
 [JsonSerializable(typeof(TradeConfirmation))]
+[JsonSerializable(typeof(TradeConfirmation[]))]
+[JsonSerializable(typeof(IEnumerable<TradeConfirmation>))]
+[JsonSerializable(typeof(List<TradeConfirmation>))]
+[JsonSerializable(typeof(IList<TradeConfirmation>))]
+[JsonSerializable(typeof(IReadOnlyList<TradeConfirmation>))]
 [JsonSerializable(typeof(TradeHistory))]
 [JsonSerializable(typeof(TradeHistory.TradeHistoryResponseDetail))]
 [JsonSerializable(typeof(TradeHistory.TradeItem))]
@@ -119,11 +159,24 @@ namespace BD.SteamClient8.Models;
 [JsonSerializable(typeof(JsonObject))]
 [JsonSerializable(typeof(AchievementAndUnlockTimeResult))]
 [JsonSerializable(typeof(CloudArchiveQuotaResult))]
+[JsonSerializable(typeof(LocalDlssDll))]
 #if !(IOS || ANDROID)
 [JsonSerializable(typeof(SteamAppProperty))]
 [JsonSerializable(typeof(SteamAppPropertyTable))]
 [JsonSerializable(typeof(List<SteamAppProperty>))]
 #endif
+[JsonSerializable(typeof(RedeemWalletCodeResult))]
+[JsonSerializable(typeof(SteamKeyValue))]
+[JsonSerializable(typeof(InventoryTradeHistoryRenderPageResponse))]
+[JsonSerializable(typeof(InventoryTradeHistoryRow))]
+[JsonSerializable(typeof(InventoryTradeHistoryGroup))]
+[JsonSerializable(typeof(InventoryTradeHistoryItem))]
+[JsonSerializable(typeof(MarketTradingHistoryRenderItem))]
+[JsonSerializable(typeof(UserBadgesResponse))]
+[JsonSerializable(typeof(SteamSyncStruct))]
+[JsonSerializable(typeof(SteamSyncResponseStruct))]
+[JsonSerializable(typeof(UserStatsReceivedResult))]
+[JsonSerializable(typeof(ApiRspImpl))]
 [JsonSourceGenerationOptions(
     AllowTrailingCommas = true)]
 public sealed partial class DefaultJsonSerializerContext_ : JsonSerializerContext

@@ -29,6 +29,10 @@ public abstract record class StatInfo : JsonRecordModel<StatInfo>, IJsonSerializ
     /// <summary>
     /// 数值
     /// </summary>
+    [global::System.Runtime.Serialization.IgnoreDataMember]
+    [global::MessagePack.IgnoreMember]
+    [global::Newtonsoft.Json.JsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public abstract object Value { get; set; }
 
     /// <summary>

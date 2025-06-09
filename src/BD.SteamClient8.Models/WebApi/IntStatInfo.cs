@@ -1,4 +1,5 @@
 using BD.Common8.Models.Abstractions;
+using System.Text.Json;
 
 namespace BD.SteamClient8.Models.WebApi;
 
@@ -48,12 +49,29 @@ public sealed record class IntStatInfo : StatInfo, IJsonModel<IntStatInfo>, IJso
     /// <summary>
     /// 当前数值
     /// </summary>
+    [global::System.Runtime.Serialization.IgnoreDataMember]
+    [global::MessagePack.IgnoreMember]
+    [global::Newtonsoft.Json.JsonIgnore]
+    [global::System.Text.Json.Serialization.JsonIgnore]
     public override object Value
     {
         get => IntValue;
         set
         {
-            var b = int.TryParse((string)value, out int i);
+            string? strValue;
+            if (value is string s)
+            {
+                strValue = s;
+            }
+            else if (value is JsonElement element)
+            {
+                strValue = element.GetString();
+            }
+            else
+            {
+                strValue = value?.ToString();
+            }
+            var b = int.TryParse(strValue, out int i);
             if (b)
             {
                 if ((Permission & 2) != 0 && IntValue != i)
