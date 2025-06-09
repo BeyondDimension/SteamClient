@@ -21,7 +21,7 @@
 		</When>
 		<Otherwise>
 			<ItemGroup>
-				<ProjectReference Include="..\..\ref\Common\src\BD.Common8.Security\BD.Common8.Security.csproj" />
+				<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Security\BD.Common8.Security.csproj" />
 			</ItemGroup>
 		</Otherwise>
 	</Choose>

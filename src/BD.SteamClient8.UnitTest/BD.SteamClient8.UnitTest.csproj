@@ -35,12 +35,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\ref\Common\src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
-		<ProjectReference Include="..\Authenticator\Authenticator.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
-		<ProjectReference Include="..\BD.SteamClient8\BD.SteamClient8.csproj" />
+		<ProjectReference Include="$(Path_Submodule_Common)src\BD.Common8.Bcl\BD.Common8.Bcl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\Authenticator\Authenticator.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Impl\BD.SteamClient8.Impl.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Models\BD.SteamClient8.Models.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8.Primitives\BD.SteamClient8.Primitives.csproj" />
+		<ProjectReference Include="$(Path_Submodule_SteamClient)src\BD.SteamClient8\BD.SteamClient8.csproj" />
 	</ItemGroup>
 
 </Project>
