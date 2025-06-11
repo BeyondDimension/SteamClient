@@ -10,7 +10,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\ref\Common\src\ProjectUtils.cs" />
+		<Compile Include="$(Path_Submodule_Common)src\ProjectUtils.cs" />
+		<Compile Include="$(Path_Submodule_Common)src\BD.Common8.UnitTest\SerializationTestHelper.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
