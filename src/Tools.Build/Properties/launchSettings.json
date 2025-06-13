@@ -4,6 +4,10 @@
       "commandName": "Project",
       "commandLineArgs": "b"
     },
+    "Tools.Build(TestProjects)": {
+      "commandName": "Project",
+      "commandLineArgs": "build --test"
+    },
     "Tools.Build(NuGetPush)": {
       "commandName": "Project",
       "commandLineArgs": "push"
