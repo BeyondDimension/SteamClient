@@ -1,3 +1,4 @@
+using BD.Common8.UnitTest;
 using BD.SteamClient8.Models;
 using DotNext.Collections.Generic;
 using DotNext.Reflection;
@@ -23,8 +24,6 @@ sealed class SerializationTest
     const string serviceAsmName = "BD.SteamClient8";
     const string serviceNamespaceStartsWith = "BD.SteamClient8.Services";
 
-    static JsonSerializerContext JSC => DefaultJsonSerializerContext_.Default;
-
     ImmutableArray<Type> modelTypes;
 
     static bool IsProtobufModelType(Type t)
@@ -32,9 +31,18 @@ sealed class SerializationTest
         return t.Namespace != null && t.Namespace.StartsWith("BD.SteamClient8.Models.Protobuf");
     }
 
-    [SetUp]
+    static JsonSerializerOptions opt = null!;
+
+    internal static JsonSerializerOptions GetOptions()
+    {
+        return SerializationTestHelper.GetOptions(DefaultJsonSerializerContext_.Default);
+    }
+
+
+    [OneTimeSetUp]
     public void Setup()
     {
+        opt = GetOptions();
         var modelAsm = Assembly.Load(modelAsmName).ThrowIsNull();
         var q = GetModelTypesByModelAssemblies(modelNamespaceStartsWith,
             t =>
@@ -58,7 +66,7 @@ sealed class SerializationTest
         List<Exception> exceptions = [];
         foreach (var t in modelTypes)
         {
-            Json(JSC, t, exceptions, static x => x);
+            Json(opt, t, exceptions, static x => x);
         }
         if (exceptions.Count != 0)
         {
@@ -143,7 +151,7 @@ sealed class SerializationTest
                 continue;
             }
 
-            Json(JSC, it, exceptions, static x => x.Key, static (it, ex) =>
+            Json(opt, it, exceptions, static x => x.Key, static (it, ex) =>
             {
                 var errMsg =
 $"""
