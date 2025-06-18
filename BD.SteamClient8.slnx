@@ -12,6 +12,7 @@
     <File Path="src/Directory.Build.props" />
     <File Path="src/Directory.Build.targets" />
     <File Path="src/GeneratePackage.props" />
+    <File Path="src/Path.Submodule.props" />
     <File Path="src/TFM_NETX_ALL.props" />
     <File Path="src/Version.props" />
   </Folder>

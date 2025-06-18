@@ -1,23 +1,6 @@
 <Project>
 	<Import Project="$(MSBuildThisFileDirectory)Version.props" />
-
-	<Choose>
-		<When Condition="Exists('$(MSBuildThisFileDirectory)..\..\..\.gitmodules') AND Exists('$(MSBuildThisFileDirectory)..\..\Common\README.md')">
-			<PropertyGroup>
-				<Path_Submodule>$(MSBuildThisFileDirectory)..\..\</Path_Submodule>
-			</PropertyGroup>
-		</When>
-		<When Condition="Exists('$(MSBuildThisFileDirectory)..\ref')">
-			<PropertyGroup>
-				<Path_Submodule>$(MSBuildThisFileDirectory)..\ref\</Path_Submodule>
-			</PropertyGroup>
-		</When>
-	</Choose>
-
-	<PropertyGroup>
-		<Path_Submodule_Common>$(Path_Submodule)Common\</Path_Submodule_Common>
-		<Path_Submodule_SteamClient>$(Path_Submodule)..\</Path_Submodule_SteamClient>
-	</PropertyGroup>
+	<Import Project="$(MSBuildThisFileDirectory)Path.Submodule.props" />
 
 	<!-- 👇 全局 Property 配置 -->
 	<PropertyGroup>
