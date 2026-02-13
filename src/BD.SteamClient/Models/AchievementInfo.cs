@@ -37,15 +37,6 @@ public class AchievementInfo : ReactiveObject
         AppId,
         IsAchieved ? IconNormal : IconLocked);
 
-    //public Task<string?> IconNormalStream => IHttpService.Instance.GetImageAsync(string.Format(
-    //    STEAMAPP_ICON_URL,
-    //    AppId, IconNormal), ImageChannelType.SteamAchievementIcon);
-    //public Task<string?> IconLockedStream => IHttpService.Instance.GetImageAsync(string.Format(
-    //    STEAMAPP_ICON_URL,
-    //    AppId, IconLocked), ImageChannelType.SteamAchievementIcon);
-
-    //public Task<ImageSource.ClipStream?> IconStream => ImageSource.GetAsync(IconUrl);
-
     public int Permission { get; set; }
 
     public bool IsProtection => (Permission & 3) != 0;

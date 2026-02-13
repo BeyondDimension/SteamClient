@@ -1,6 +1,9 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+using Polly;
 using System.IO;
 using ValveKeyValue;
+using static SteamKit2.DepotManifest;
+using static SteamKit2.Internal.CStoreBrowse_GetStoreCategories_Response;
 
 namespace BD.SteamClient.Services.Implementation;
 
@@ -852,7 +855,7 @@ public abstract partial class SteamServiceImpl : ISteamService
         return filePath;
     }
 
-    public async Task<ImageSource.ClipStream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default)
+    public async Task<Stream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default)
     {
         var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
         //var mostRecentUser = Conn.CurrentSteamUser;
@@ -860,12 +863,14 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             var customFilePath = GetAppCustomImageFilePath(app.AppId, mostRecentUser, type);
             if (customFilePath != null && File.Exists(customFilePath))
-                return customFilePath;
+            {
+                return new FileStream(customFilePath!, FileMode.Open, FileAccess.Read, IOPath.FileShareReadWriteDelete);
+            }
         }
 
         var cacheFilePath = GetAppLibCacheFilePath(app.AppId, type);
         if (cacheFilePath != null && File.Exists(cacheFilePath))
-            return cacheFilePath;
+            return new FileStream(cacheFilePath!, FileMode.Open, FileAccess.Read, IOPath.FileShareReadWriteDelete);
 
         var url = type switch
         {
@@ -880,9 +885,17 @@ public abstract partial class SteamServiceImpl : ISteamService
 
         if (string.IsNullOrEmpty(url))
             return default;
-        var value = await ImageSource.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
+        //var value = await ImageSource.GetAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
 
-        return value;
+        var imageHttpClientService = Ioc.Get_Nullable<IImageHttpClientService>();
+        if (imageHttpClientService == default)
+            return default;
+
+        var imageMemoryStream = await imageHttpClientService.GetImageMemoryStreamAsync(url, cache: true, cacheFirst: true, cancellationToken: token);
+        if (imageMemoryStream == default)
+            return default;
+
+        return imageMemoryStream;
     }
 
     /// <summary>
