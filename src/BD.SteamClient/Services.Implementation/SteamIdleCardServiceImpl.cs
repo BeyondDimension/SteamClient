@@ -4,6 +4,7 @@ using AngleSharp.Common;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
+using BD.SteamClient.Constants;
 using BD.SteamClient.Models.Idle;
 using Nito.Comparers.Linq;
 using System.Linq;
@@ -210,6 +211,52 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
         }
         return Enumerable.Empty<CardsMarketPrice>();
     }
+
+    public async Task<(IReadOnlyCollection<uint> appIds, HttpStatusCode status)> GetPrivateGameAppIdsAsync(string steam_id)
+    {
+        var steamSession = _sessionService.RentSession(steam_id);
+        if (steamSession == null)
+            throw new Exception($"Unable to find session for {steam_id}, pelese login first");
+
+        try
+        {
+            var url = SteamApiUrls.STEAM_PROFILE_GAMES_ALL_URL.Format(steamSession.SteamId);
+            var response = await steamSession.HttpClient!.GetAsync(url);
+            if (!response.IsSuccessStatusCode)
+                return (Array.Empty<uint>(), response.StatusCode);
+
+            var html = await response.Content.ReadAsStringAsync();
+            var match = Regex.Match(html, @"var\s+rgGames\s*=\s*(\[[\s\S]*?\]);");
+            if (!match.Success)
+                return (Array.Empty<uint>(), HttpStatusCode.OK);
+
+            var privateAppIds = new HashSet<uint>();
+            using var document = JsonDocument.Parse(match.Groups[1].Value);
+            if (document.RootElement.ValueKind == JsonValueKind.Array)
+            {
+                foreach (var item in document.RootElement.EnumerateArray())
+                {
+                    if (!item.TryGetProperty("appid", out var appidValue))
+                        continue;
+                    if (!TryGetUInt32(appidValue, out var appId))
+                        continue;
+
+                    if (item.TryGetProperty("is_private", out var isPrivateValue)
+                        && IsTrueJsonValue(isPrivateValue))
+                    {
+                        privateAppIds.Add(appId);
+                    }
+                }
+            }
+
+            return (privateAppIds.ToArray(), HttpStatusCode.OK);
+        }
+        catch (Exception ex)
+        {
+            Log.Warn(nameof(GetPrivateGameAppIdsAsync), ex, "获取私密游戏列表失败");
+            return (Array.Empty<uint>(), HttpStatusCode.InternalServerError);
+        }
+    }
     #endregion
 
     #region Private
@@ -324,6 +371,29 @@ public class SteamIdleCardServiceImpl : HttpClientUseCookiesWithDynamicProxyServ
             card.Name = name != null ? WebUtility.HtmlDecode(string.Join("", name)).Trim() : "";
             return card;
         }
+    }
+
+    private static bool IsTrueJsonValue(JsonElement value)
+    {
+        return value.ValueKind switch
+        {
+            JsonValueKind.True => true,
+            JsonValueKind.False => false,
+            JsonValueKind.Number => value.TryGetInt32(out var v) && v != 0,
+            JsonValueKind.String => bool.TryParse(value.GetString(), out var v) && v,
+            _ => false,
+        };
+    }
+
+    private static bool TryGetUInt32(JsonElement value, out uint appId)
+    {
+        if (value.ValueKind == JsonValueKind.Number && value.TryGetUInt32(out appId))
+            return true;
+        if (value.ValueKind == JsonValueKind.String && uint.TryParse(value.GetString(), out appId))
+            return true;
+
+        appId = default;
+        return false;
     }
     #endregion
 }

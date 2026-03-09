@@ -28,4 +28,11 @@ public interface ISteamIdleCardService
     /// <param name="currency"></param>
     /// <returns></returns>
     Task<IEnumerable<CardsMarketPrice>> GetCardsMarketPrice(uint appId, string currency);
+
+    /// <summary>
+    /// 获取账号私密游戏 AppId 列表
+    /// </summary>
+    /// <param name="steam_id"></param>
+    /// <returns></returns>
+    Task<(IReadOnlyCollection<uint> appIds, HttpStatusCode status)> GetPrivateGameAppIdsAsync(string steam_id);
 }
