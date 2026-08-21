@@ -19,6 +19,12 @@
 		<NeutralLanguage>zh-Hans</NeutralLanguage>
 		<AndroidSdkDirectory Condition="$([MSBuild]::IsOSPlatform('windows')) And Exists('C:\Users\Aigio\AppData\Local\Android\Sdk')">C:\Users\Aigio\AppData\Local\Android\Sdk</AndroidSdkDirectory>
 	</PropertyGroup>
+
+	<!-- 👇 .NET 11+ 配置 -->
+	<PropertyGroup Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net11.0'))">
+		<Features>$(Features);runtime-async=on</Features>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<Compile Include="..\AssemblyInfo.cs">
 			<LinkBase>Properties</LinkBase>
