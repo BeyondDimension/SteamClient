@@ -281,8 +281,12 @@ public abstract partial class SteamServiceImpl : ISteamService
                             SteamID = (string)item["PersonaName"],
                             PersonaName = (string)item["PersonaName"],
                             RememberPassword = (bool)item["RememberPassword"],
-                            AllowAutoLogin = (bool)item["AllowAutoLogin"],
+                            // AllowAutoLogin = (bool)item["AllowAutoLogin"],
 
+                            AllowAutoLogin = item["AllowAutoLogin"] != null ?
+                                (bool)item["AllowAutoLogin"] :
+                                (bool)item["AutoLogin"],
+                            
                             // 老版本 Steam 数据 小写 mostrecent 支持
                             MostRecent = item["mostrecent"] != null ?
                                 (bool)item["mostrecent"] :
@@ -506,7 +510,8 @@ public abstract partial class SteamServiceImpl : ISteamService
                             item["MostRecent"] = 0;
                             continue;
                         }
-                        item["AllowAutoLogin"] = 1;
+                        item["AutoLogin"] = 1;
+                        item["AllowAutoLogin"] = 1;  //暂时保留旧版兼容，之后移除
                         item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
                         item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
                         item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);
