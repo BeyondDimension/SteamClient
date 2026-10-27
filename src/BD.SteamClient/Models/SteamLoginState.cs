@@ -43,7 +43,7 @@ public sealed partial class SteamLoginState : JsonModel<SteamLoginState>
     [MPKey(9), MP2Key(9), JsonPropertyOrder(9)]
     public string? TwofactorCode { get; set; }
 
-    [MessagePackFormatter(typeof(CookieFormatter))]
+    [MessagePackFormatter(typeof(CookieCollectionFormatter))]
     [CookieCollectionFormatter]
     [MPKey(10), MP2Key(10), JsonPropertyOrder(10)]
     public CookieCollection? Cookies { get; set; }
