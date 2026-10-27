@@ -280,12 +280,13 @@ public abstract partial class SteamServiceImpl : ISteamService
                             AccountName = (string)item["AccountName"],
                             SteamID = (string)item["PersonaName"],
                             PersonaName = (string)item["PersonaName"],
-                            RememberPassword = (bool)item["RememberPassword"],
+                            RememberPassword = item["RememberPassword"] != null && (bool)item["RememberPassword"],
+                            AutoLogin = ReadAutoLogin(item),
                             // AllowAutoLogin = (bool)item["AllowAutoLogin"],
 
                             AllowAutoLogin = item["AllowAutoLogin"] != null ?
                                 (bool)item["AllowAutoLogin"] :
-                                (bool)item["AutoLogin"],
+                                ReadAutoLogin(item),
                             
                             // 老版本 Steam 数据 小写 mostrecent 支持
                             MostRecent = item["mostrecent"] != null ?
@@ -488,6 +489,13 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
+    static bool ReadAutoLogin(KVObject item)
+    {
+        if (item["AutoLogin"] != null)
+            return (bool)item["AutoLogin"];
+        return item["AllowAutoLogin"] != null && (bool)item["AllowAutoLogin"];
+    }
+
     public void UpdateLocalUserData(IEnumerable<SteamUser> users)
     {
         if (string.IsNullOrWhiteSpace(UserVdfPath) || !File.Exists(UserVdfPath))
@@ -511,8 +519,9 @@ public abstract partial class SteamServiceImpl : ISteamService
                             continue;
                         }
                         item["AutoLogin"] = 1;
+                        itemUser.AutoLogin = true;
                         item["AllowAutoLogin"] = 1;  //暂时保留旧版兼容，之后移除
-                        item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent);
+                        item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent); //暂时保留旧版兼容，之后移除
                         item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
                         item["SkipOfflineModeWarning"] = Convert.ToInt16(itemUser.SkipOfflineModeWarning);
                     }

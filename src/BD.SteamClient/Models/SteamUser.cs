@@ -132,6 +132,16 @@ public class SteamUser : ReactiveObject
     [XmlIgnore]
     public bool AllowAutoLogin { get; set; }
 
+    bool _AutoLogin;
+
+    /// <summary>AutoLogin value from Steam's loginusers.vdf.</summary>
+    [XmlIgnore]
+    public bool AutoLogin
+    {
+        get => _AutoLogin;
+        set => this.RaiseAndSetIfChanged(ref _AutoLogin, value);
+    }
+
     /// <summary>
     /// 用户名
     /// </summary>
@@ -140,8 +150,14 @@ public class SteamUser : ReactiveObject
     /// <summary>
     /// 是否记住密码
     /// </summary>
+    bool _RememberPassword;
+
     [XmlIgnore]
-    public bool RememberPassword { get; set; }
+    public bool RememberPassword
+    {
+        get => _RememberPassword;
+        set => this.RaiseAndSetIfChanged(ref _RememberPassword, value);
+    }
 
     /// <summary>
     /// 密码
