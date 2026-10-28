@@ -37,8 +37,29 @@ public interface ISteamAccountService
     /// 执行新版请求 Steam 登录，返回登录状态
     /// </summary>
     /// <param name="loginState"></param>
+    /// <param name="platformType">显式选择 MobileApp 时仅获取移动令牌，不创建网页登录 Cookie；默认保留现有行为。</param>
+    /// <param name="cancellationToken">移动端账号验证的取消令牌。</param>
     /// <returns></returns>
-    Task DoLoginV2Async(SteamLoginState loginState);
+    Task DoLoginV2Async(SteamLoginState loginState, EAuthTokenPlatformType? platformType = null, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 查询已扫描的登录会话信息。调用会让远程会话感知当前账号，必须先获得用户的扫码和账号选择意图。
+    /// </summary>
+    Task<CAuthentication_GetAuthSessionInfo_Response> GetQrAuthSessionInfoAsync(
+        string accessToken,
+        SteamLoginQrChallenge challenge,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// 使用 Steam Guard shared_secret 确认登录；只可在用户检查会话信息并明确同意后调用。
+    /// </summary>
+    Task ApproveQrAuthSessionAsync(
+        string accessToken,
+        SteamLoginQrChallenge challenge,
+        ulong steamId,
+        byte[] sharedSecret,
+        bool persistent,
+        CancellationToken cancellationToken = default);
 
     /// <summary>
     /// QRCode 登录
@@ -53,6 +74,26 @@ public interface ISteamAccountService
     Task DoLoginWithQRCodeAsync(
             SteamLoginState loginState,
             Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
+            string? deviceFriendlyName = null,
+            uint gamingDeviceType = default,
+            int osType = 20,
+            CancellationToken cancellationToken = default
+        );
+
+    /// <summary>
+    /// QRCode 登录并显式选择 WebBrowser 或 MobileApp 令牌；两种平台均完成网页登录 Cookie 传输。
+    /// </summary>
+    /// <param name="loginState">登录状态。</param>
+    /// <param name="processSessionFunc">显示二维码并返回是否继续等待；二维码更新时会再次调用。</param>
+    /// <param name="platformType">WebBrowser 用于网页登录，MobileApp 用于需要移动端权限的令牌操作。</param>
+    /// <param name="deviceFriendlyName"></param>
+    /// <param name="gamingDeviceType"></param>
+    /// <param name="osType"></param>
+    /// <param name="cancellationToken"></param>
+    Task DoLoginWithQRCodeAsync(
+            SteamLoginState loginState,
+            Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
+            EAuthTokenPlatformType platformType,
             string? deviceFriendlyName = null,
             uint gamingDeviceType = default,
             int osType = 20,

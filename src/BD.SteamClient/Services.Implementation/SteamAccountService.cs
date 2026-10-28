@@ -401,7 +401,10 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         return result;
     }
 
-    public async Task<(string encryptedPassword64, ulong timestamp)> GetRSAkeyV2Async(string username, string password)
+    public Task<(string encryptedPassword64, ulong timestamp)> GetRSAkeyV2Async(string username, string password)
+        => GetRSAkeyV2Async(username, password, CancellationToken.None);
+
+    async Task<(string encryptedPassword64, ulong timestamp)> GetRSAkeyV2Async(string username, string password, CancellationToken cancellationToken)
     {
         var data = UrlEncoder.Default.Encode(new CAuthentication_GetPasswordRSAPublicKey_Request()
         {
@@ -410,11 +413,11 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var requestUri = new Uri("https://api.steampowered.com/IAuthenticationService/GetPasswordRSAPublicKey/v1?input_protobuf_encoded=" + data);
 
-        var result = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        var result = await WaitAndRetryAsync().ExecuteAsync(async token =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
 
-            var respone = await client.SendAsync(request);
+            using var respone = await client.SendAsync(request, token);
 
             if (!respone.IsSuccessStatusCode)
             {
@@ -422,7 +425,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
 
             var result = CAuthentication_GetPasswordRSAPublicKey_Response.Parser.ParseFrom(
-                await respone.Content.ReadAsStreamAsync());
+                await respone.Content.ReadAsByteArrayAsync(token));
+            token.ThrowIfCancellationRequested();
             try
             {
                 // 使用 RSA 密钥加密密码
@@ -441,20 +445,37 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 logger.LogError(ex, "RSA 加密密码失败");
                 throw;
             }
-        });
+        }, cancellationToken);
 
         return result;
     }
 
-    public async Task DoLoginV2Async(SteamLoginState loginState)
+    public async Task DoLoginV2Async(SteamLoginState loginState, EAuthTokenPlatformType? platformType = null, CancellationToken cancellationToken = default)
     {
+        cancellationToken.ThrowIfCancellationRequested();
+        if (platformType == EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp)
+        {
+            try
+            {
+                await DoMobileLoginAsync(loginState, cancellationToken).ConfigureAwait(false);
+            }
+            catch (SteamAuthenticationException ex) when (ex.Result == 5 && loginState.ClientId is null)
+            {
+                loginState.ResetStatus();
+                loginState.Message = "请核对您的密码和账户名称并重试。";
+            }
+            return;
+        }
+        if (platformType.HasValue)
+            throw new ArgumentOutOfRangeException(nameof(platformType), "Only an explicit MobileApp platform is supported.");
+
         loginState.Success = false;
 
         if (loginState.ClientId != null)
         {
             if (loginState.Requires2FA || loginState.RequiresEmailAuth)
             {
-                await UpdateAuthSessionWithSteamGuardAsync(loginState);
+                await UpdateAuthSessionWithSteamGuardAsync(loginState, cancellationToken);
             }
         }
         else
@@ -474,14 +495,16 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             if (string.IsNullOrEmpty(loginState.SeesionId))
             {
                 // 访问一次登录页获取 SessionId
-                await WaitAndRetryAsync().ExecuteAsync(async () =>
+                await WaitAndRetryAsync().ExecuteAsync(async token =>
                 {
-                    await client.GetAsync("https://store.steampowered.com/login/");
-                });
+                    using var response = await client.GetAsync("https://store.steampowered.com/login/", token);
+                    response.EnsureSuccessStatusCode();
+                }, cancellationToken);
                 loginState.SeesionId = cookieContainer.GetCookieValue(new Uri(STEAM_STORE_URL), "sessionid");
             }
 
-            var (encryptedPassword64, timestamp) = await GetRSAkeyV2Async(loginState.Username, loginState.Password);
+            var (encryptedPassword64, timestamp) = await GetRSAkeyV2Async(loginState.Username, loginState.Password, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
 
             if (string.IsNullOrEmpty(encryptedPassword64))
             {
@@ -502,14 +525,14 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 Persistence = ESessionPersistence.KEsessionPersistencePersistent,
             }.ToByteString().ToBase64();
 
-            var (result, respone) = await WaitAndRetryAsync().ExecuteAsync(async () =>
+            var (result, eResult) = await WaitAndRetryAsync().ExecuteAsync(async token =>
             {
                 var data = new FormUrlEncodedContent(new Dictionary<string, string?>()
                 {
                     { "input_protobuf_encoded", input_protobuf_encoded },
                 });
 
-                var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1")
+                using var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaCredentials/v1")
                 {
                     Content = data,
                 };
@@ -520,11 +543,13 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 if (loginState.Cookies != null)
                     cookieContainer.Add(loginState.Cookies);
 
-                var respone = await client.SendAsync(request);
-                using var responeStream = await respone.Content.ReadAsStreamAsync();
-                var result = CAuthentication_BeginAuthSessionViaCredentials_Response.Parser.ParseFrom(responeStream);
-                return (result, respone);
-            });
+                using var respone = await client.SendAsync(request, token);
+                var result = CAuthentication_BeginAuthSessionViaCredentials_Response.Parser.ParseFrom(
+                    await respone.Content.ReadAsByteArrayAsync(token));
+                var eResult = respone.Headers.TryGetValues("X-eresult", out var values) ? values.FirstOrDefault() : null;
+                return (result, eResult);
+            }, cancellationToken);
+            cancellationToken.ThrowIfCancellationRequested();
 
             loginState.ClientId = result.ClientId;
             loginState.SteamId = result.Steamid;
@@ -532,8 +557,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (loginState.SteamId == 0)
             {
-                var eResult = respone.Headers.GetValues("X-eresult").FirstOrDefault();
-
                 loginState.Message = eResult switch
                 {
                     "5" => "请核对您的密码和账户名称并重试。",
@@ -559,9 +582,9 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 }
                 else if (result.AllowedConfirmations[0].ConfirmationType == EAuthSessionGuardType.KEauthSessionGuardTypeEmailCode)
                 {
-                    await WaitAndRetryAsync().ExecuteAsync(async () =>
+                    await WaitAndRetryAsync().ExecuteAsync(async token =>
                     {
-                        var req = new HttpRequestMessage(HttpMethod.Post, "https://login.steampowered.com/jwt/checkdevice/" + loginState.SteamId)
+                        using var req = new HttpRequestMessage(HttpMethod.Post, "https://login.steampowered.com/jwt/checkdevice/" + loginState.SteamId)
                         {
                             Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                             {
@@ -573,8 +596,9 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                         req.Headers.UserAgent.Clear();
                         req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
 
-                        (await client.SendAsync(req)).EnsureSuccessStatusCode();
-                    });
+                        using var response = await client.SendAsync(req, token);
+                        response.EnsureSuccessStatusCode();
+                    }, cancellationToken);
 
                     loginState.Message = "需要邮箱验证码";
                     loginState.RequiresEmailAuth = true;
@@ -584,7 +608,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
         }
 
-        var pollAuthSessionStatusResponse = await PollAuthSessionStatusAsync(loginState.ClientId!.Value, loginState.RequestId!);
+        var pollAuthSessionStatusResponse = await PollAuthSessionStatusAsync(loginState.ClientId!.Value, loginState.RequestId!, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
         loginState.AccessToken = pollAuthSessionStatusResponse.AccessToken;
         loginState.RefreshToken = pollAuthSessionStatusResponse.RefreshToken;
 
@@ -595,7 +620,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             return;
         }
 
-        var tokens = await FinalizeLoginAsync(pollAuthSessionStatusResponse.RefreshToken, loginState.SeesionId);
+        var tokens = await FinalizeLoginAsync(pollAuthSessionStatusResponse.RefreshToken, loginState.SeesionId, cancellationToken);
+        cancellationToken.ThrowIfCancellationRequested();
 
         if (string.IsNullOrEmpty(tokens?.SteamId))
         {
@@ -603,12 +629,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             loginState.ResetStatus();
             return;
         }
-
-        loginState.Success = true;
-        loginState.RequiresCaptcha = false;
-        loginState.Requires2FA = false;
-        loginState.RequiresEmailAuth = false;
-        loginState.Message = null;
 
         if (tokens.TransferInfo?.Any() == true)
         {
@@ -621,9 +641,9 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                     continue;
                 }
 
-                await WaitAndRetryAsync().ExecuteAsync(async () =>
+                await WaitAndRetryAsync().ExecuteAsync(async token =>
                 {
-                    var req = new HttpRequestMessage(HttpMethod.Post, transfer.Url)
+                    using var req = new HttpRequestMessage(HttpMethod.Post, transfer.Url)
                     {
                         Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                         {
@@ -636,25 +656,32 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                     req.Headers.UserAgent.Clear();
                     req.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
 
-                    (await client.SendAsync(req)).EnsureSuccessStatusCode();
+                    using var response = await client.SendAsync(req, token);
+                    response.EnsureSuccessStatusCode();
                     //var res = data.Content.ReadAsStringAsync();
-                });
+                }, cancellationToken);
             }
 
             //await client.GetAsync("https://store.steampowered.com/");
             //await client.GetAsync("https://steamcommunity.com/");
             loginState.Cookies = cookieContainer.GetAllCookies();
         }
+        cancellationToken.ThrowIfCancellationRequested();
         var session = new SteamSession();
         session.SteamId = loginState.SteamId.ToString();
         session.AccessToken = loginState.AccessToken;
         session.RefreshToken = loginState.RefreshToken;
         session.CookieContainer = cookieContainer;
         sessions.AddOrSetSeesion(session);
+        loginState.Success = true;
+        loginState.RequiresCaptcha = false;
+        loginState.Requires2FA = false;
+        loginState.RequiresEmailAuth = false;
+        loginState.Message = null;
     }
 
     //<inheritdoc/>
-    public async Task DoLoginWithQRCodeAsync(
+    public Task DoLoginWithQRCodeAsync(
             SteamLoginState loginState,
             Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
             string? deviceFriendlyName = null,
@@ -662,73 +689,102 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             int osType = 20, //EOSType
             CancellationToken cancellationToken = default
         )
+        => DoLoginWithQRCodeAsync(loginState, processSessionFunc, EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser,
+            deviceFriendlyName, gamingDeviceType, osType, cancellationToken);
+
+    /// <inheritdoc />
+    public async Task DoLoginWithQRCodeAsync(
+            SteamLoginState loginState,
+            Func<CAuthentication_BeginAuthSessionViaQR_Response, Task<bool>> processSessionFunc,
+            EAuthTokenPlatformType platformType,
+            string? deviceFriendlyName = null,
+            uint gamingDeviceType = default,
+            int osType = 20,
+            CancellationToken cancellationToken = default
+        )
     {
-        var session = await BeginAuthSessionViaQRCode(
-                deviceFriendlyName,
-                gamingDeviceType,
-                osType,
-                cancellationToken
-            );
+        ArgumentNullException.ThrowIfNull(loginState);
+        ArgumentNullException.ThrowIfNull(processSessionFunc);
+        if (platformType is not (EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser or EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp))
+            throw new ArgumentOutOfRangeException(nameof(platformType), "QR login supports WebBrowser or MobileApp tokens.");
+        loginState.ResetStatus();
+        loginState.AccessToken = null;
+        loginState.RefreshToken = null;
+        loginState.Cookies = null;
+        loginState.SteamId = 0;
+        loginState.SteamIdString = null;
+        loginState.Message = null;
+        cancellationToken.ThrowIfCancellationRequested();
 
-        string? errorMsg = session switch
+        // The deadline covers HTTP, UI callbacks, polling and cookie transfers.
+        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeout.CancelAfter(TimeSpan.FromMinutes(2));
+        var token = timeout.Token;
+        try
         {
-            { HasRequestId: var hasReqId, HasClientId: var hasClientId, HasChallengeUrl: var hasUrl }
-                when !hasReqId && !hasClientId && !hasUrl => "获取二维码登录会话信息失败!",
-            // 没有二维码验证地址
-            { HasChallengeUrl: false } => "获取 ChallengeUrl 错误",
-            // 没有 ClientId 确认登录状态 （PollAuthSessionStatusAsync）需要
-            { HasClientId: false } => "获取 ClientId 错误",
-            // 没有 RequestId 确认登录状态 （PollAuthSessionStatusAsync）需要
-            { HasRequestId: false } => "获取 RequestId 错误",
-            _ => null,
-        };
+            var session = await BeginAuthSessionViaQRCode(platformType, deviceFriendlyName, gamingDeviceType, osType, token);
+            if (session.ClientId == 0 || session.RequestId.IsEmpty || string.IsNullOrWhiteSpace(session.ChallengeUrl))
+            {
+                loginState.Message = "获取二维码登录会话信息失败，请重试。";
+                return;
+            }
 
-        if (!string.IsNullOrEmpty(errorMsg))
-        {
-            loginState.Message = errorMsg;
-            loginState.Success = false;
-            return;
+            loginState.ClientId = session.ClientId;
+            loginState.RequestId = session.RequestId.ToByteArray();
+            token.ThrowIfCancellationRequested();
+            if (!await processSessionFunc(session.Clone()).WaitAsync(token))
+            {
+                loginState.Message = "取消扫描二维码登录";
+                return;
+            }
+            token.ThrowIfCancellationRequested();
+
+            // Steam specifies seconds; malformed/absent intervals must not cause a busy loop.
+            var interval = float.IsFinite(session.Interval) && session.Interval > 0
+                ? TimeSpan.FromSeconds(Math.Min(session.Interval, 120)) : TimeSpan.FromSeconds(1);
+            while (true)
+            {
+                var poll = await SendQrLoginRequestAsync("PollAuthSessionStatus",
+                    new CAuthentication_PollAuthSessionStatus_Request
+                    {
+                        ClientId = session.ClientId,
+                        RequestId = session.RequestId,
+                    }, CAuthentication_PollAuthSessionStatus_Response.Parser, token);
+
+                if (!string.IsNullOrEmpty(poll.AccessToken) && !string.IsNullOrEmpty(poll.RefreshToken))
+                {
+                    await CompleteQrWebLoginAsync(loginState, poll, token);
+                    return;
+                }
+
+                var changed = false;
+                if (poll.HasNewClientId && poll.NewClientId != 0 && poll.NewClientId != session.ClientId)
+                {
+                    session.ClientId = poll.NewClientId;
+                    loginState.ClientId = poll.NewClientId;
+                    changed = true;
+                }
+                if (!string.IsNullOrEmpty(poll.NewChallengeUrl) && poll.NewChallengeUrl != session.ChallengeUrl)
+                {
+                    session.ChallengeUrl = poll.NewChallengeUrl;
+                    changed = true;
+                }
+                if (changed)
+                {
+                    token.ThrowIfCancellationRequested();
+                    if (!await processSessionFunc(session.Clone()).WaitAsync(token))
+                    {
+                        loginState.Message = "取消扫描二维码登录";
+                        return;
+                    }
+                }
+                await Task.Delay(interval, token);
+            }
         }
-
-        // 确认登录状态
-        var confirmLoginStatus = await processSessionFunc(session);
-
-        if (!confirmLoginStatus)
+        catch (OperationCanceledException) when (timeout.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
         {
-            loginState.Message = "取消扫描二维码登录";
-            loginState.Success = false;
-            return;
+            loginState.Message = "二维码登录已超时，请刷新二维码后重试。";
         }
-
-        byte[] requestIdBytes = session.RequestId.ToByteArray();
-
-        var pollAuthSessionStatusResponse = await PollAuthSessionStatusAsync(session.ClientId, requestIdBytes);
-
-        if (!pollAuthSessionStatusResponse.HasAccessToken || !pollAuthSessionStatusResponse.HasRefreshToken)
-        {
-            loginState.Message = "登录信息已过期";
-            loginState.Success = false;
-            return;
-        }
-
-        loginState.AccessToken = pollAuthSessionStatusResponse.AccessToken;
-        loginState.RefreshToken = pollAuthSessionStatusResponse.RefreshToken;
-        loginState.SteamId =
-            TryParseAccessTokenSteamId(pollAuthSessionStatusResponse.AccessToken, out ulong parsedSteamId)
-                ? parsedSteamId
-                : default;
-
-        loginState.RequestId = requestIdBytes;
-        loginState.Username = pollAuthSessionStatusResponse.AccountName;
-        loginState.Success = pollAuthSessionStatusResponse.HasAccessToken && pollAuthSessionStatusResponse.HasRefreshToken;
-        loginState.Cookies = cookieContainer.GetAllCookies();
-
-        var steamSession = new SteamSession();
-        steamSession.SteamId = loginState.SteamId.ToString();
-        steamSession.AccessToken = loginState.AccessToken;
-        steamSession.RefreshToken = loginState.RefreshToken;
-        steamSession.CookieContainer = cookieContainer;
-        sessions.AddOrSetSeesion(steamSession);
     }
 
     bool TryParseAccessTokenSteamId(string token, out ulong steamId)
@@ -754,12 +810,14 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     /// <summary>
     /// 开启二维码登录会话
     /// </summary>
+    /// <param name="platformType"></param>
     /// <param name="deviceFriendlyName"></param>
     /// <param name="gamingDeviceType"></param>
     /// <param name="osType"></param>
     /// <param name="cancellationToken"></param>
     /// <returns>二维码会话信息</returns>
     async Task<CAuthentication_BeginAuthSessionViaQR_Response> BeginAuthSessionViaQRCode(
+            EAuthTokenPlatformType platformType,
             string? deviceFriendlyName = null,
             uint gamingDeviceType = default,
             int osType = 20,
@@ -770,42 +828,26 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         var input_protobuf_encoded = new CAuthentication_BeginAuthSessionViaQR_Request
         {
-            PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser
-               | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient
-               | EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
+            PlatformType = platformType,
             DeviceFriendlyName = deviceFriendlyName,
             DeviceDetails = new CAuthentication_DeviceDetails
             {
                 DeviceFriendlyName = deviceFriendlyName,
                 GamingDeviceType = gamingDeviceType,
                 OsType = osType,
-                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser
-               | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient
-               | EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
+                PlatformType = platformType,
             },
-        }.ToByteString().ToBase64();
+        };
 
-        return await WaitAndRetryAsync().ExecuteAsync(async () =>
-         {
-             var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/BeginAuthSessionViaQR/v1")
-             {
-                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
-                 {
-                    { "input_protobuf_encoded", input_protobuf_encoded },
-                 }),
-             };
-
-             var response = await client.SendAsync(request);
-
-             return CAuthentication_BeginAuthSessionViaQR_Response.Parser.ParseFrom(response.Content.ReadAsStream());
-         });
+        return await SendQrLoginRequestAsync("BeginAuthSessionViaQR", input_protobuf_encoded,
+            CAuthentication_BeginAuthSessionViaQR_Response.Parser, cancellationToken);
     }
 
-    async Task<CAuthentication_PollAuthSessionStatus_Response> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id)
+    async Task<CAuthentication_PollAuthSessionStatus_Response> PollAuthSessionStatusAsync(ulong client_id, byte[] request_id, CancellationToken cancellationToken = default)
     {
-        var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        var r = await WaitAndRetryAsync().ExecuteAsync(async token =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1")
+            using var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/PollAuthSessionStatus/v1")
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                 {
@@ -818,20 +860,20 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 }),
             };
 
-            var respone = await client.SendAsync(request);
+            using var respone = await client.SendAsync(request, token);
 
             if (!respone.IsSuccessStatusCode)
             {
                 throw new Exception($"PollAuthSessionStatus 出现错误: {respone.StatusCode}");
             }
 
-            var result = CAuthentication_PollAuthSessionStatus_Response.Parser.ParseFrom(await respone.Content.ReadAsStreamAsync());
+            var result = CAuthentication_PollAuthSessionStatus_Response.Parser.ParseFrom(await respone.Content.ReadAsByteArrayAsync(token));
             return result;
-        });
+        }, cancellationToken);
         return r;
     }
 
-    async Task<bool> UpdateAuthSessionWithSteamGuardAsync(SteamLoginState loginState)
+    async Task<bool> UpdateAuthSessionWithSteamGuardAsync(SteamLoginState loginState, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(loginState.ClientId);
 
@@ -843,9 +885,9 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             CodeType = loginState.Requires2FA ? EAuthSessionGuardType.KEauthSessionGuardTypeDeviceCode : EAuthSessionGuardType.KEauthSessionGuardTypeEmailCode,
         }.ToByteString().ToBase64();
 
-        var result = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        var result = await WaitAndRetryAsync().ExecuteAsync(async token =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1")
+            using var request = new HttpRequestMessage(HttpMethod.Post, "https://api.steampowered.com/IAuthenticationService/UpdateAuthSessionWithSteamGuardCode/v1")
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                 {
@@ -853,7 +895,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 }),
             };
 
-            var respone = await client.SendAsync(request);
+            using var respone = await client.SendAsync(request, token);
 
             if (!respone.IsSuccessStatusCode)
             {
@@ -861,16 +903,16 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
 
             return false;
-        });
+        }, cancellationToken);
 
         return result;
     }
 
-    async Task<FinalizeLoginStatus> FinalizeLoginAsync(string nonce, string? sessionid)
+    async Task<FinalizeLoginStatus> FinalizeLoginAsync(string nonce, string? sessionid, CancellationToken cancellationToken = default)
     {
-        var r = await WaitAndRetryAsync().ExecuteAsync(async () =>
+        var r = await WaitAndRetryAsync().ExecuteAsync(async token =>
         {
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://login.steampowered.com/jwt/finalizelogin")
+            using var request = new HttpRequestMessage(HttpMethod.Post, "https://login.steampowered.com/jwt/finalizelogin")
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string?>()
                 {
@@ -882,14 +924,14 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             request.Headers.TryAddWithoutValidation("Origin", "https://login.steampowered.com");
 
-            var respone = await client.SendAsync(request);
+            using var respone = await client.SendAsync(request, token);
 
             if (!respone.IsSuccessStatusCode)
             {
                 throw new Exception($"FinalizeLoginAsync 出现错误: {respone.StatusCode}");
             }
 
-            var result = await respone.Content.ReadFromJsonAsync(FinalizeLoginStatus_.Default.FinalizeLoginStatus);
+            var result = await respone.Content.ReadFromJsonAsync(FinalizeLoginStatus_.Default.FinalizeLoginStatus, token);
 
             if (result == null)
             {
@@ -897,7 +939,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
 
             return result;
-        });
+        }, cancellationToken);
         return r;
     }
 
