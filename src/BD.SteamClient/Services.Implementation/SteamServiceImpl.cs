@@ -289,9 +289,12 @@ public abstract partial class SteamServiceImpl : ISteamService
                                 ReadAutoLogin(item),
                             
                             // 老版本 Steam 数据 小写 mostrecent 支持
+                            // 新版 Steam 已移除 MostRecent，为空时使用 AutoLogin 代替
                             MostRecent = item["mostrecent"] != null ?
                                 (bool)item["mostrecent"] :
-                                (bool)item["MostRecent"],
+                                item["MostRecent"] != null ?
+                                    (bool)item["MostRecent"] :
+                                    ReadAutoLogin(item),
 
                             Timestamp = timestamp,
                             LastLoginTime = timestamp.ToDateTimeS(),
@@ -871,7 +874,8 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public async Task<Stream?> GetAppImageAsync(SteamApp app, SteamApp.LibCacheType type, CancellationToken token = default)
     {
-        var mostRecentUser = Conn.SteamUsers.Items.Where(s => s.MostRecent).FirstOrDefault();
+        var mostRecentUser = Conn.SteamUsers.Items.FirstOrDefault(s => s.MostRecent)
+            ?? Conn.SteamUsers.Items.FirstOrDefault(s => s.AutoLogin);
         //var mostRecentUser = Conn.CurrentSteamUser;
         if (mostRecentUser != null)
         {

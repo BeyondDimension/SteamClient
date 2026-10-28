@@ -967,10 +967,13 @@ public class SteamApp : ReactiveObject
 
     public async void RefreshEditImage()
     {
+        var olds = new[] { EditLibraryGridStream, EditLibraryHeroStream, EditLibraryLogoStream, EditHeaderLogoStream };
         EditLibraryGridStream = await GetStreamAsync(LibraryGridStream);
         EditLibraryHeroStream = await GetStreamAsync(LibraryHeroStream);
         EditLibraryLogoStream = await GetStreamAsync(LibraryLogoStream);
         EditHeaderLogoStream = await GetStreamAsync(HeaderLogoStream);
+        foreach (var old in olds)
+            old?.Dispose();
     }
 
 #endif
