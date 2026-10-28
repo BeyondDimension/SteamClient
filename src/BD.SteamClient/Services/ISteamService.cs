@@ -107,8 +107,9 @@ public partial interface ISteamService
     void WatchLocalUserDataChange(Action changedAction);
 
     /// <summary>
-    /// 从 Steam 本地客户端缓存文件中读取游戏数据
+    /// 在后台读取并解析 Steam 本地客户端缓存文件，不阻塞调用线程。
     /// </summary>
+    /// <param name="isSaveProperties">仅编辑保存时保留完整属性树及原始记录；普通库存加载只保留提取后的字段。</param>
     Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false);
 
     List<ModifiedApp>? GetModifiedApps();

@@ -600,11 +600,11 @@ public abstract partial class SteamServiceImpl : ISteamService
     private static readonly Lazy<uint[]> MagicNumbers = new([MagicNumber, MagicNumberV2, MagicNumberV3]);
 
     /// <summary>
-    /// 从steam本地客户端缓存文件中读取游戏数据
+    /// 从 Steam 本地客户端缓存文件中读取游戏数据；解析在后台执行，不阻塞 UI 调用线程。
     /// </summary>
-    public /*async*/ Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false)
+    public Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false)
     {
-        return Task.FromResult(GetAppInfos_());
+        return Task.Run(GetAppInfos_);
         List<SteamApp> GetAppInfos_()
         {
             var apps = new List<SteamApp>();
@@ -644,7 +644,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                     binaryReader.BaseStream.Position = offset;
                 }
 
-                var installAppIds = GetInstalledAppIds();
+                var installAppIds = GetInstalledAppIds().ToHashSet();
                 while ((app = SteamApp.FromReader(binaryReader, stringPool, installAppIds, isSaveProperties, num == MagicNumberV2, num == MagicNumberV3)) != null)
                 {
                     if (app.AppId > 0)
@@ -707,7 +707,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                 }
                 while (true);
 
-                return Encoding.UTF8.GetString(buffer[..position]);
+                return Encoding.UTF8.GetString(buffer, 0, position);
             }
             finally
             {
@@ -751,7 +751,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             //File.Copy(AppInfoPath, bakFile, true);
 
             var applist = await GetAppInfos(true);
-            var editApps = Conn.SteamApps.Items.Where(s => s.IsEdited);
+            var editApps = Conn.SteamApps.Items.Where(s => s.IsEdited).ToDictionary(s => s.AppId);
             var modifiedApps = new List<ModifiedApp>();
 
             using BinaryWriter binaryWriter = new(new MemoryStream(), Encoding.UTF8, true);
@@ -764,8 +764,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             using BinaryWriter binaryWriter2 = new(new MemoryStream(), Encoding.UTF8, true);
             foreach (SteamApp app in applist)
             {
-                var editApp = editApps.FirstOrDefault(s => s.AppId == app.AppId);
-                if (editApp != null)
+                if (editApps.TryGetValue(app.AppId, out var editApp))
                 {
                     app.SetEditProperty(editApp);
                     modifiedApps.Add(new ModifiedApp(app));
@@ -776,7 +775,8 @@ public abstract partial class SteamServiceImpl : ISteamService
 
             long num = binaryWriter.BaseStream.Position + 8L + binaryWriter2.BaseStream.Length;
             binaryWriter.Write(num);
-            binaryWriter.Write(((MemoryStream)binaryWriter2.BaseStream).ToArray());
+            binaryWriter2.BaseStream.Position = 0;
+            binaryWriter2.BaseStream.CopyTo(binaryWriter.BaseStream);
             binaryWriter.Write((uint)list.Count);
             foreach (string text in list)
             {
@@ -793,11 +793,6 @@ public abstract partial class SteamServiceImpl : ISteamService
             modifiedFileStream.Write(Serializable.SMP(modifiedApps));
             modifiedFileStream.Close();
 
-            applist = null;
-            modifiedApps = null;
-            editApps = null;
-
-            GC.Collect();
         }
         catch (Exception ex)
         {

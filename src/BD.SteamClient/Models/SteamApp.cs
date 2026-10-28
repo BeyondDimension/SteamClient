@@ -748,7 +748,7 @@ public class SteamApp : ReactiveObject
 
     #endregion
 
-    public SteamApp ExtractReaderProperty(SteamAppPropertyTable properties, uint[]? installedAppIds = null)
+    public SteamApp ExtractReaderProperty(SteamAppPropertyTable properties, IReadOnlySet<uint>? installedAppIds = null)
     {
         if (properties != null)
         {
@@ -856,7 +856,7 @@ public class SteamApp : ReactiveObject
         return this;
     }
 
-    public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, uint[]? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
+    public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, IReadOnlySet<uint>? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
     {
         uint id = reader.ReadUInt32();
         if (id == 0)
@@ -870,28 +870,36 @@ public class SteamApp : ReactiveObject
         try
         {
             int count = reader.ReadInt32();
-            byte[] array = reader.ReadBytes(count);
-            using BinaryReader binaryReader = new(new MemoryStream(array), Encoding.UTF8, true);
-            app._stuffBeforeHash = binaryReader.ReadBytes(16);
-            binaryReader.ReadBytes(20);
-            app._changeNumber = binaryReader.ReadUInt32();
-
-            if (isMagicNumberV2 || isMagicNumberV3)
+            long nextEntry = reader.BaseStream.Position + count;
+            // Display loads need extracted fields only; keep the raw entry solely for edit/save.
+            byte[]? originalData = isSaveProperties ? reader.ReadBytes(count) : null;
+            using var dataStream = originalData == null ? null : new MemoryStream(originalData);
+            using var dataReader = dataStream == null ? null : new BinaryReader(dataStream, Encoding.UTF8, true);
+            var propertyReader = dataReader ?? reader;
+            try
             {
-                binaryReader.ReadBytes(20);
+                if (isSaveProperties)
+                    app._stuffBeforeHash = propertyReader.ReadBytes(16);
+                else
+                    propertyReader.BaseStream.Seek(16, SeekOrigin.Current);
+                propertyReader.BaseStream.Seek(20, SeekOrigin.Current);
+                app._changeNumber = propertyReader.ReadUInt32();
+
+                if (isMagicNumberV2 || isMagicNumberV3)
+                    propertyReader.BaseStream.Seek(20, SeekOrigin.Current);
+
+                var properties = propertyReader.ReadPropertyTable(stringPool);
+                if (isSaveProperties)
+                {
+                    app._properties = properties;
+                    app._originalData = originalData;
+                }
+                app.ExtractReaderProperty(properties, installedAppIds);
             }
-
-            var properties = binaryReader.ReadPropertyTable(stringPool);
-
-            if (properties == null)
-                return app;
-
-            if (isSaveProperties)
+            finally
             {
-                app._properties = properties;
-                app._originalData = array;
+                reader.BaseStream.Position = nextEntry;
             }
-            app.ExtractReaderProperty(properties, installedAppIds);
         }
         catch (Exception ex)
         {
@@ -904,10 +912,10 @@ public class SteamApp : ReactiveObject
     {
         if (_properties == null)
             throw new ArgumentNullException($"SteamApp Write Failed. {nameof(_properties)} is null.");
-        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable(_properties);
+        var propertyTable = _properties;
         string s = propertyTable.ToString();
         byte[] bytes = Encoding.UTF8.GetBytes(s);
-        SHA1 sha = SHA1.Create();
+        using SHA1 sha = SHA1.Create();
         byte[] array = sha.ComputeHash(bytes);
         writer.Write(this.AppId);
         byte[] array2 = propertyTable.GetPropertyTableByte_0x07564429(stringTable, stringLookup);

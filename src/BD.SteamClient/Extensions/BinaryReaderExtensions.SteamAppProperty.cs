@@ -10,19 +10,28 @@ public static partial class BinaryReaderExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ReadAppInfoString(this BinaryReader reader)
     {
-        byte[] buffer;
-        int count;
-        using (MemoryStream memoryStream = new())
+        var buffer = ArrayPool<byte>.Shared.Rent(256);
+        try
         {
+            var count = 0;
             byte value;
             while ((value = reader.ReadByte()) != 0)
             {
-                memoryStream.WriteByte(value);
+                if (count == buffer.Length)
+                {
+                    var largerBuffer = ArrayPool<byte>.Shared.Rent(buffer.Length * 2);
+                    Buffer.BlockCopy(buffer, 0, largerBuffer, 0, count);
+                    ArrayPool<byte>.Shared.Return(buffer);
+                    buffer = largerBuffer;
+                }
+                buffer[count++] = value;
             }
-            buffer = memoryStream.GetBuffer();
-            count = (int)memoryStream.Length;
+            return Encoding.UTF8.GetString(buffer, 0, count);
         }
-        return Encoding.UTF8.GetString(buffer, 0, count);
+        finally
+        {
+            ArrayPool<byte>.Shared.Return(buffer);
+        }
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
