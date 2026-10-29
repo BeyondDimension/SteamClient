@@ -18,7 +18,8 @@ sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
 
     public SteamworksLocalApiServiceImpl()
     {
-        Steam.GetInstallPathDelegate = SteamServiceImpl.GetSteamDynamicLinkLibraryPath;
+        Steam.GetInstallPathDelegate = () =>
+            (Ioc.Get_Nullable<ISteamService>() as SteamServiceImpl)?.GetSteamDynamicLinkLibraryPath();
         SteamClient = new SAMAPIClient();
     }
 

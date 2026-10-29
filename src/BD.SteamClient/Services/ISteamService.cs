@@ -112,6 +112,12 @@ public partial interface ISteamService
     /// <param name="isSaveProperties">仅编辑保存时保留完整属性树及原始记录；普通库存加载只保留提取后的字段。</param>
     Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false);
 
+    /// <summary>
+    /// 在后台读取库存并同步逐批调用回调；回调中的列表仅在本次调用期间有效。
+    /// 空文件不产生批次；读取或回调失败以及取消会通过返回的任务传播。
+    /// </summary>
+    Task ReadAppInfosInBatchesAsync(Action<IReadOnlyList<SteamApp>> onBatch, CancellationToken cancellationToken = default);
+
     List<ModifiedApp>? GetModifiedApps();
 
     /// <summary>

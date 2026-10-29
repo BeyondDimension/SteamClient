@@ -125,17 +125,58 @@ abstract partial class SteamServiceImpl
 #endif
     }
 
-    /// <summary>
-    /// 获取 Steam 动态链接库 (DLL) 文件夹目录
-    /// </summary>
-    /// <returns></returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static string? GetSteamDynamicLinkLibraryPath()
+    bool IsSystemSteamProgramPath(string configured)
     {
-#if MACCATALYST || MACOS
-        return $"/Users/{Environment.UserName}/Library/Application Support/Steam/Steam.AppBundle/Steam/Contents/MacOS";
+        var detected = detectedSteamProgram;
+        if (string.IsNullOrWhiteSpace(detected)) return false;
+        try
+        {
+#if WINDOWS
+            return string.Equals(Path.GetFullPath(configured), Path.GetFullPath(detected), StringComparison.OrdinalIgnoreCase);
 #else
-        return GetSteamDirPath();
+            return string.Equals(Path.GetFullPath(configured), Path.GetFullPath(detected), StringComparison.Ordinal);
+#endif
+        }
+        catch (Exception ex) when (ex is ArgumentException || ex is NotSupportedException || ex is PathTooLongException)
+        {
+            return false;
+        }
+    }
+
+    string? GetEffectiveSteamDirPath(string? configured)
+    {
+        if (string.IsNullOrWhiteSpace(configured) || IsSystemSteamProgramPath(configured))
+            return detectedSteamDirectory;
+
+        var directory = Path.GetDirectoryName(configured);
+        if (string.IsNullOrEmpty(directory)) return null;
+#if WINDOWS
+        return directory;
+#elif MACCATALYST || MACOS
+        // An application bundle is a launcher, not the Steam data directory.
+        var macOs = new DirectoryInfo(directory);
+        if (macOs.Name == "MacOS" && macOs.Parent?.Name == "Contents" &&
+            macOs.Parent.Parent?.Name.EndsWith(".app", StringComparison.OrdinalIgnoreCase) == true)
+            return detectedSteamDirectory;
+        if (macOs.Name == "MacOS" && macOs.Parent?.Name == "Contents" &&
+            macOs.Parent.Parent?.Name == "Steam" && macOs.Parent.Parent.Parent?.Name == "Steam.AppBundle")
+            return macOs.Parent.Parent.Parent.Parent?.FullName;
+        return Directory.Exists(Path.Combine(directory, "config")) || Directory.Exists(Path.Combine(directory, "steamapps"))
+            ? directory : null;
+#else
+        // A wrapper outside the data directory must not become the data directory.
+        return Directory.Exists(Path.Combine(directory, "config")) || Directory.Exists(Path.Combine(directory, "steamapps"))
+            ? directory : null;
+#endif
+    }
+
+    internal string? GetSteamDynamicLinkLibraryPath()
+    {
+        var directory = SteamDirPath;
+#if MACCATALYST || MACOS
+        return directory == null ? null : Path.Combine(directory, "Steam.AppBundle", "Steam", "Contents", "MacOS");
+#else
+        return directory;
 #endif
     }
 
@@ -188,7 +229,7 @@ abstract partial class SteamServiceImpl
 #elif LINUX || MACOS || MACCATALYST
         try
         {
-            var registryVdfPath = GetRegistryVdfPath();
+            var registryVdfPath = RegistryVdfPath;
             if (!string.IsNullOrWhiteSpace(registryVdfPath) && File.Exists(registryVdfPath))
             {
                 var v = VdfHelper.Read(registryVdfPath);
