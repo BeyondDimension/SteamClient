@@ -570,8 +570,7 @@ public abstract partial class SteamServiceImpl : ISteamService
                             continue;
                         }
 
-                        item["AutoLogin"] = 1;
-                        itemUser.AutoLogin = true;
+                        item["AutoLogin"] = Convert.ToInt16(itemUser.AutoLogin);
                         item["AllowAutoLogin"] = 1; //暂时保留旧版兼容，之后移除
                         item["MostRecent"] = Convert.ToInt16(itemUser.MostRecent); //暂时保留旧版兼容，之后移除
                         item["WantsOfflineMode"] = Convert.ToInt16(itemUser.WantsOfflineMode);
