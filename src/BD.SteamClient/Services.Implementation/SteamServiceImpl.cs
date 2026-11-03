@@ -263,15 +263,19 @@ public abstract partial class SteamServiceImpl : ISteamService
     public void StartSteam(string? arguments = null)
     {
         var steamProgramPath = this.SteamProgramPath;
-        if (!string.IsNullOrWhiteSpace(SteamProgramPath) && File.Exists(SteamProgramPath))
+        if (!string.IsNullOrWhiteSpace(steamProgramPath) && File.Exists(steamProgramPath))
         {
             if (OperatingSystem.IsWindows() && !IsRunSteamAdministrator)
             {
-                StartAsInvoker(SteamProgramPath, arguments);
+                StartAsInvoker(steamProgramPath, arguments);
+            }
+            else if (OperatingSystem.IsMacOS())
+            {
+                Process2.StartPath("Steam", steamProgramPath, arguments);
             }
             else
             {
-                Process2.Start(SteamProgramPath, arguments, useShellExecute: true);
+                Process2.Start(steamProgramPath, arguments, useShellExecute: true);
             }
         }
     }
@@ -1121,7 +1125,7 @@ public abstract partial class SteamServiceImpl : ISteamService
             {
                 var v = VdfHelper.Read(libraryFoldersPath);
 
-                for (int i = 1;; i++)
+                for (int i = 1; ; i++)
                 {
                     try
                     {
