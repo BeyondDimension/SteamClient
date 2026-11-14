@@ -91,7 +91,7 @@ public class SteamAuthenticatorServiceImpl : HttpClientUseCookiesWithDynamicProx
             throw new Exception($"Unable to find session for {steam_id}, pelese login first");
 
         var param = new Dictionary<string, string>();
-        param.Add("revocation_code", revocation_code ?? throw new Exception("恢复代码为null"));
+        param.Add("revocation_code", revocation_code ?? throw new Exception(BD.SteamClient.Resources.SteamStrings.Get("RevocationCodeNull")));
         param.Add("revocation_reason", revocation_reason);
         param.Add("steamguard_scheme", steamguard_scheme);
 

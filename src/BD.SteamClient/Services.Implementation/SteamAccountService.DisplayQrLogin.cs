@@ -20,20 +20,20 @@ public sealed partial class SteamAccountService
         request.Headers.UserAgent.ParseAdd(uas.GetUserAgent());
         using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
         if (!response.IsSuccessStatusCode)
-            throw new HttpRequestException($"Steam 二维码登录请求失败 (HTTP {(int)response.StatusCode})。", null, response.StatusCode);
+            throw new HttpRequestException(BD.SteamClient.Resources.SteamStrings.Format("QrHttpError", (int)response.StatusCode), null, response.StatusCode);
         if (!response.Headers.TryGetValues("X-eresult", out var results)
             || !int.TryParse(results.SingleOrDefault(), NumberStyles.None, CultureInfo.InvariantCulture, out var result))
-            throw new InvalidOperationException("Steam 二维码登录响应缺少有效的 EResult。");
+            throw new InvalidOperationException(BD.SteamClient.Resources.SteamStrings.Get("QrInvalidResult"));
         if (result != 1)
         {
-            var message = result switch
+            var messageKey = result switch
             {
-                15 => "二维码登录已被拒绝。",
-                27 => "二维码登录已过期，请刷新二维码后重试。",
-                84 => "请求过于频繁，请稍后重试。",
-                _ => "Steam 二维码登录请求失败。",
+                15 => "QrRejected",
+                27 => "QrExpired",
+                84 => "RequestTooFrequent",
+                _ => "QrRequestFailed",
             };
-            throw new InvalidOperationException($"{message} (EResult {result})");
+            throw new InvalidOperationException(BD.SteamClient.Resources.SteamStrings.Format("QrResultError", BD.SteamClient.Resources.SteamStrings.Get(messageKey), result));
         }
         return parser.ParseFrom(await response.Content.ReadAsByteArrayAsync(cancellationToken));
     }
@@ -51,13 +51,13 @@ public sealed partial class SteamAccountService
         }
         var finalized = await FinalizeLoginAsync(poll.RefreshToken, loginState.SeesionId, cancellationToken);
         if (!ulong.TryParse(finalized.SteamId, NumberStyles.None, CultureInfo.InvariantCulture, out var steamId) || steamId == 0)
-            throw new InvalidOperationException("Steam 网页登录未返回有效的 Steam ID。");
+            throw new InvalidOperationException(BD.SteamClient.Resources.SteamStrings.Get("WebInvalidSteamId"));
 
         if (finalized.TransferInfo is not null)
         {
             foreach (var transfer in finalized.TransferInfo)
             {
-                var uri = new Uri(transfer.Url ?? throw new InvalidOperationException("Steam 网页登录缺少 Cookie 传输地址。"));
+                var uri = new Uri(transfer.Url ?? throw new InvalidOperationException(BD.SteamClient.Resources.SteamStrings.Get("WebMissingTransferUrl")));
                 if (uri.Host is "help.steampowered.com" or "steam.tv")
                     continue;
                 using var request = new HttpRequestMessage(HttpMethod.Post, uri)

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="CredentialsRequired" xml:space="preserve"><value>请填写正确的 Steam 用户名密码</value></data>
+  <data name="TwoFactorRequired" xml:space="preserve"><value>需要2FA验证码</value></data>
+  <data name="EmailCodeRequired" xml:space="preserve"><value>需要邮箱验证码</value></data>
+  <data name="MobileConfirmationPending" xml:space="preserve"><value>Steam 移动登录尚未确认，请完成验证后重试。</value></data>
+  <data name="QrHttpError" xml:space="preserve"><value>Steam 二维码登录请求失败 (HTTP {0})。</value></data>
+  <data name="QrInvalidResult" xml:space="preserve"><value>Steam 二维码登录响应缺少有效的 EResult。</value></data>
+  <data name="QrRejected" xml:space="preserve"><value>二维码登录已被拒绝。</value></data>
+  <data name="QrExpired" xml:space="preserve"><value>二维码登录已过期，请刷新二维码后重试。</value></data>
+  <data name="RequestTooFrequent" xml:space="preserve"><value>请求过于频繁，请稍后重试。</value></data>
+  <data name="QrRequestFailed" xml:space="preserve"><value>Steam 二维码登录请求失败。</value></data>
+  <data name="WebInvalidSteamId" xml:space="preserve"><value>Steam 网页登录未返回有效的 Steam ID。</value></data>
+  <data name="WebMissingTransferUrl" xml:space="preserve"><value>Steam 网页登录缺少 Cookie 传输地址。</value></data>
+  <data name="RsaKeyError" xml:space="preserve"><value>获取 RSAKey 出现错误: {0}</value></data>
+  <data name="RsaKeyInvalid" xml:space="preserve"><value>获取 RSAKey 出现错误: 无效的{0}</value></data>
+  <data name="LoginRateLimit" xml:space="preserve"><value>{0} 请求过于频繁，请稍后再试，{1}</value></data>
+  <data name="LoginInvalidResponse" xml:space="preserve"><value>登录错误: 无效的 {0}</value></data>
+  <data name="LoginError" xml:space="preserve"><value>登录错误: {0}</value></data>
+  <data name="LoginEmailRequired" xml:space="preserve"><value>登录错误: 需要邮箱验证码</value></data>
+  <data name="LoginTokenRequired" xml:space="preserve"><value>登录错误: 需要输入令牌</value></data>
+  <data name="InvalidCredentials" xml:space="preserve"><value>请核对您的密码和账户名称并重试。</value></data>
+  <data name="LoginRsaFailed" xml:space="preserve"><value>登录失败，获取 RSAkey 出现错误，请重试</value></data>
+  <data name="SteamCommunicationError" xml:space="preserve"><value>与 Steam 通信时出现问题。请稍后重试。</value></data>
+  <data name="LoginTooManyFailures" xml:space="preserve"><value>短期内来自您所在位置的失败登录过多。请15分钟后再试。</value></data>
+  <data name="LoginUnknownError" xml:space="preserve"><value>{0} 登录遇到未知错误，请稍后重试。</value></data>
+  <data name="LoginInvalidCode" xml:space="preserve"><value>登录失败，请确认输入验证码是否正确。</value></data>
+  <data name="FinalizeLoginFailed" xml:space="preserve"><value>FinalizeLoginAsync 登录失败</value></data>
+  <data name="QrSessionFailed" xml:space="preserve"><value>获取二维码登录会话信息失败，请重试。</value></data>
+  <data name="QrCanceled" xml:space="preserve"><value>取消扫描二维码登录</value></data>
+  <data name="QrTimeout" xml:space="preserve"><value>二维码登录已超时，请刷新二维码后重试。</value></data>
+  <data name="PollError" xml:space="preserve"><value>PollAuthSessionStatus 出现错误: {0}</value></data>
+  <data name="FinalizeError" xml:space="preserve"><value>FinalizeLoginAsync 出现错误: {0}</value></data>
+  <data name="AccountHistoryFailed" xml:space="preserve"><value>获取 Steam 账号消费历史记录出现错误</value></data>
+  <data name="HtmlParserFailed" xml:space="preserve"><value>获取Html解析器失败</value></data>
+  <data name="DateParseFailed" xml:space="preserve"><value>日期转换失败!</value></data>
+  <data name="MarketSessionFailed" xml:space="preserve"><value>获取会话信息失败,请稍后重试!</value></data>
+  <data name="ConfirmationImagesFailed" xml:space="preserve"><value>获取报价图片响应错误</value></data>
+  <data name="RevocationCodeNull" xml:space="preserve"><value>恢复代码为null</value></data>
+  <data name="QrResultError" xml:space="preserve"><value>{0} (EResult {1})</value></data>
+</root>

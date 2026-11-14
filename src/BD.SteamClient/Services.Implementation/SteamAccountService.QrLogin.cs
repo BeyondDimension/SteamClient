@@ -16,7 +16,7 @@ public sealed partial class SteamAccountService
             loginState.RefreshToken = null;
             if (string.IsNullOrWhiteSpace(loginState.Username) || string.IsNullOrEmpty(loginState.Password))
             {
-                loginState.Message = "请填写正确的 Steam 用户名密码";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("CredentialsRequired");
                 return;
             }
             loginState.Username = SteamUNPWDRegex().Replace(loginState.Username, string.Empty);
@@ -78,7 +78,7 @@ public sealed partial class SteamAccountService
                 && !begin.AllowedConfirmations.Any(x => x.ConfirmationType is EAuthSessionGuardType.KEauthSessionGuardTypeDeviceConfirmation
                     or EAuthSessionGuardType.KEauthSessionGuardTypeEmailConfirmation))
             {
-                loginState.Message = loginState.Requires2FA ? "需要2FA验证码" : "需要邮箱验证码";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get(loginState.Requires2FA ? "TwoFactorRequired" : "EmailCodeRequired");
                 return;
             }
         }
@@ -116,7 +116,7 @@ public sealed partial class SteamAccountService
                 loginState.ClientId = poll.NewClientId;
             if (string.IsNullOrEmpty(poll.RefreshToken))
             {
-                loginState.Message = "Steam 移动登录尚未确认，请完成验证后重试。";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("MobileConfirmationPending");
                 return;
             }
             loginState.RefreshToken = poll.RefreshToken;

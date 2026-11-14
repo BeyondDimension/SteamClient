@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="CredentialsRequired" xml:space="preserve"><value>Please enter a valid Steam account name and password.</value></data>
+  <data name="TwoFactorRequired" xml:space="preserve"><value>A two-factor authentication code is required.</value></data>
+  <data name="EmailCodeRequired" xml:space="preserve"><value>An email verification code is required.</value></data>
+  <data name="MobileConfirmationPending" xml:space="preserve"><value>Steam mobile login has not been confirmed. Complete verification and try again.</value></data>
+  <data name="QrHttpError" xml:space="preserve"><value>The Steam QR code login request failed (HTTP {0}).</value></data>
+  <data name="QrInvalidResult" xml:space="preserve"><value>The Steam QR code login response does not contain a valid EResult.</value></data>
+  <data name="QrRejected" xml:space="preserve"><value>QR code login was rejected.</value></data>
+  <data name="QrExpired" xml:space="preserve"><value>QR code login has expired. Refresh the QR code and try again.</value></data>
+  <data name="RequestTooFrequent" xml:space="preserve"><value>Too many requests. Please try again later.</value></data>
+  <data name="QrRequestFailed" xml:space="preserve"><value>The Steam QR code login request failed.</value></data>
+  <data name="WebInvalidSteamId" xml:space="preserve"><value>Steam web login did not return a valid Steam ID.</value></data>
+  <data name="WebMissingTransferUrl" xml:space="preserve"><value>Steam web login is missing a cookie transfer URL.</value></data>
+  <data name="RsaKeyError" xml:space="preserve"><value>Failed to retrieve RSAKey: {0}</value></data>
+  <data name="RsaKeyInvalid" xml:space="preserve"><value>Failed to retrieve RSAKey: invalid {0}</value></data>
+  <data name="LoginRateLimit" xml:space="preserve"><value>{0} Too many requests. Please try again later, {1}</value></data>
+  <data name="LoginInvalidResponse" xml:space="preserve"><value>Login error: invalid {0}</value></data>
+  <data name="LoginError" xml:space="preserve"><value>Login error: {0}</value></data>
+  <data name="LoginEmailRequired" xml:space="preserve"><value>Login error: an email verification code is required.</value></data>
+  <data name="LoginTokenRequired" xml:space="preserve"><value>Login error: an authenticator code is required.</value></data>
+  <data name="InvalidCredentials" xml:space="preserve"><value>Please check your password and account name and try again.</value></data>
+  <data name="LoginRsaFailed" xml:space="preserve"><value>Login failed because RSAkey could not be retrieved. Please try again.</value></data>
+  <data name="SteamCommunicationError" xml:space="preserve"><value>There was a problem communicating with Steam. Please try again later.</value></data>
+  <data name="LoginTooManyFailures" xml:space="preserve"><value>There have been too many failed login attempts from your location recently. Please try again in 15 minutes.</value></data>
+  <data name="LoginUnknownError" xml:space="preserve"><value>{0} An unknown login error occurred. Please try again later.</value></data>
+  <data name="LoginInvalidCode" xml:space="preserve"><value>Login failed. Please check the verification code you entered.</value></data>
+  <data name="FinalizeLoginFailed" xml:space="preserve"><value>FinalizeLoginAsync login failed.</value></data>
+  <data name="QrSessionFailed" xml:space="preserve"><value>Failed to retrieve the QR code login session. Please try again.</value></data>
+  <data name="QrCanceled" xml:space="preserve"><value>QR code login was canceled.</value></data>
+  <data name="QrTimeout" xml:space="preserve"><value>QR code login timed out. Refresh the QR code and try again.</value></data>
+  <data name="PollError" xml:space="preserve"><value>PollAuthSessionStatus error: {0}</value></data>
+  <data name="FinalizeError" xml:space="preserve"><value>FinalizeLoginAsync error: {0}</value></data>
+  <data name="AccountHistoryFailed" xml:space="preserve"><value>Failed to retrieve the Steam account purchase history.</value></data>
+  <data name="HtmlParserFailed" xml:space="preserve"><value>Failed to obtain the HTML parser.</value></data>
+  <data name="DateParseFailed" xml:space="preserve"><value>Date conversion failed!</value></data>
+  <data name="MarketSessionFailed" xml:space="preserve"><value>Failed to retrieve session information. Please try again later!</value></data>
+  <data name="ConfirmationImagesFailed" xml:space="preserve"><value>Failed to retrieve trade offer images.</value></data>
+  <data name="RevocationCodeNull" xml:space="preserve"><value>The recovery code is null.</value></data>
+  <data name="QrResultError" xml:space="preserve"><value>{0} (EResult {1})</value></data>
+</root>

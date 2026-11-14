@@ -270,7 +270,9 @@ public sealed class SteamLoginQrTests
         var state = new SteamLoginState { Username = "offline", Password = "offline-password", Requires2FA = true };
         await service.DoLoginV2Async(state, EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp);
         Assert.That(state.Success, Is.False);
-        Assert.That(state.Message, Is.EqualTo("请核对您的密码和账户名称并重试。"));
+        var message = state.Message;
+        Assert.That(message, Is.Not.Null);
+        Assert.That(SteamLoginState.Parse(state.ToBytes())?.Message, Is.EqualTo(message));
         Assert.That(state.ClientId, Is.Null);
         Assert.That(state.RequestId, Is.Null);
         Assert.That(state.Requires2FA, Is.False);

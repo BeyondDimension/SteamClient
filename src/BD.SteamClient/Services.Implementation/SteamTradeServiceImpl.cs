@@ -450,7 +450,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         var html = JsonDocument.Parse(await resp.Content.ReadAsStringAsync()).RootElement.GetProperty("html").GetString();
 
         if (string.IsNullOrEmpty(html))
-            throw new ArgumentException("获取报价图片响应错误");
+            throw new ArgumentException(BD.SteamClient.Resources.SteamStrings.Get("ConfirmationImagesFailed"));
 
         // 解析html
         var parser = new HtmlParser();

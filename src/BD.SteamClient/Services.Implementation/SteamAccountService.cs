@@ -80,12 +80,12 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             var result = await client.SendAsync(request);
 
             if (!result.IsSuccessStatusCode)
-                throw new Exception($"获取 RSAKey 出现错误: {result.StatusCode}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyError", result.StatusCode));
 
             var jsonObj = await result.Content.ReadFromJsonAsync<JsonObject>();
 
             if (jsonObj == null)
-                throw new Exception($"获取 RSAKey 出现错误: 无效的{nameof(jsonObj)}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyInvalid", nameof(jsonObj)));
 
             var success = jsonObj["success"]?.GetValue<bool>();
             var publickey_exp = jsonObj["publickey_exp"]?.GetValue<string>();
@@ -95,7 +95,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 string.IsNullOrEmpty(publickey_exp) ||
                 string.IsNullOrEmpty(publickey_mod) ||
                 string.IsNullOrEmpty(timestamp))
-                throw new Exception($"获取 RSAKey 出现错误: " + jsonObj.ToJsonString());
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyError", jsonObj.ToJsonString()));
 
             // 使用 RSA 密钥加密密码
             using var rsa = new RSACryptoServiceProvider();
@@ -127,7 +127,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         if (string.IsNullOrEmpty(loginState.Username) ||
             string.IsNullOrEmpty(loginState.Password))
         {
-            loginState.Message = "请填写正确的 Steam 用户名密码";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("CredentialsRequired");
             return;
         }
 
@@ -177,7 +177,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         if (respone.StatusCode == HttpStatusCode.TooManyRequests)
         {
             var retryAfter = respone.Headers.RetryAfter?.ToString();
-            loginState.Message = $"{HttpStatusCode.TooManyRequests} 请求过于频繁，请稍后再试，{retryAfter}";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginRateLimit", HttpStatusCode.TooManyRequests, retryAfter);
             logger.LogError(loginState.Message);
             loginState.Requires2FA = false;
             loginState.RequiresCaptcha = false;
@@ -201,7 +201,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             {
                 logger.LogError(ex, "login fail, statusCode: {statusCode}.", respone.StatusCode);
             }
-            loginState.Message = $"登录错误: 无效的 {nameof(jsonObj)}";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginInvalidResponse", nameof(jsonObj));
             loginState.Success = false;
             return;
         }
@@ -233,7 +233,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 {
                     loginState.CaptchaImageBase64 = await GetCaptchaImageBase64(loginState.CaptchaId);
                 }
-                loginState.Message = $"登录错误: " + message;
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginError", message);
                 return;
             }
             else
@@ -242,7 +242,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 loginState.CaptchaId = null;
                 loginState.CaptchaUrl = null;
                 loginState.CaptchaText = null;
-                loginState.Message = $"登录错误: " + message;
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginError", message);
                 return;
             }
         }
@@ -264,7 +264,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             {
                 loginState.EmailDomain = emaildomain;
             }
-            loginState.Message = $"登录错误: 需要邮箱验证码";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("LoginEmailRequired");
         }
         else
         {
@@ -276,7 +276,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         loginState.Requires2FA = requires_twofactor.HasValue && requires_twofactor.Value;
         if (loginState.Requires2FA)
         {
-            loginState.Message = $"登录错误: 需要输入令牌";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("LoginTokenRequired");
             return;
         }
 
@@ -292,7 +292,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             //}
             if (!string.IsNullOrEmpty(message))
             {
-                loginState.Message = $"登录错误: " + message;
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginError", message);
                 return;
             }
         }
@@ -421,7 +421,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (!respone.IsSuccessStatusCode)
             {
-                throw new Exception($"获取 RSAKey 出现错误: {respone.StatusCode}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyError", respone.StatusCode));
             }
 
             var result = CAuthentication_GetPasswordRSAPublicKey_Response.Parser.ParseFrom(
@@ -462,7 +462,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             catch (SteamAuthenticationException ex) when (ex.Result == 5 && loginState.ClientId is null)
             {
                 loginState.ResetStatus();
-                loginState.Message = "请核对您的密码和账户名称并重试。";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("InvalidCredentials");
             }
             return;
         }
@@ -483,7 +483,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             if (string.IsNullOrEmpty(loginState.Username) ||
                 string.IsNullOrEmpty(loginState.Password))
             {
-                loginState.Message = "请填写正确的 Steam 用户名密码";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("CredentialsRequired");
                 return;
             }
 
@@ -508,7 +508,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (string.IsNullOrEmpty(encryptedPassword64))
             {
-                loginState.Message = "登录失败，获取 RSAkey 出现错误，请重试";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("LoginRsaFailed");
                 loginState.ResetStatus();
                 return;
             }
@@ -557,13 +557,13 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (loginState.SteamId == 0)
             {
-                loginState.Message = eResult switch
+                switch (eResult)
                 {
-                    "5" => "请核对您的密码和账户名称并重试。",
-                    "20" => "与 Steam 通信时出现问题。请稍后重试。",
-                    "84" => "短期内来自您所在位置的失败登录过多。请15分钟后再试。",
-                    _ => $"{eResult} 登录遇到未知错误，请稍后重试。",
-                };
+                    case "5": loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("InvalidCredentials"); break;
+                    case "20": loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("SteamCommunicationError"); break;
+                    case "84": loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("LoginTooManyFailures"); break;
+                    default: loginState.Message = BD.SteamClient.Resources.SteamStrings.Format("LoginUnknownError", eResult); break;
+                }
 
                 // 短期内来自您所在位置的失败登录过多。请稍后再试。
                 // 登录遇到问题，请检查账号名或密码是否正确。
@@ -575,7 +575,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             {
                 if (result.AllowedConfirmations[0].ConfirmationType == EAuthSessionGuardType.KEauthSessionGuardTypeDeviceCode)
                 {
-                    loginState.Message = "需要2FA验证码";
+                    loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("TwoFactorRequired");
                     loginState.Requires2FA = true;
                     loginState.Success = false;
                     return;
@@ -600,7 +600,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                         response.EnsureSuccessStatusCode();
                     }, cancellationToken);
 
-                    loginState.Message = "需要邮箱验证码";
+                    loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("EmailCodeRequired");
                     loginState.RequiresEmailAuth = true;
                     loginState.Success = false;
                     return;
@@ -615,7 +615,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         if (string.IsNullOrEmpty(pollAuthSessionStatusResponse.RefreshToken))
         {
-            loginState.Message = "登录失败，请确认输入验证码是否正确。";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("LoginInvalidCode");
             loginState.ResetStatus();
             return;
         }
@@ -625,7 +625,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         if (string.IsNullOrEmpty(tokens?.SteamId))
         {
-            loginState.Message = "FinalizeLoginAsync 登录失败";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("FinalizeLoginFailed");
             loginState.ResetStatus();
             return;
         }
@@ -725,7 +725,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             var session = await BeginAuthSessionViaQRCode(platformType, deviceFriendlyName, gamingDeviceType, osType, token);
             if (session.ClientId == 0 || session.RequestId.IsEmpty || string.IsNullOrWhiteSpace(session.ChallengeUrl))
             {
-                loginState.Message = "获取二维码登录会话信息失败，请重试。";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("QrSessionFailed");
                 return;
             }
 
@@ -734,7 +734,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             token.ThrowIfCancellationRequested();
             if (!await processSessionFunc(session.Clone()).WaitAsync(token))
             {
-                loginState.Message = "取消扫描二维码登录";
+                loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("QrCanceled");
                 return;
             }
             token.ThrowIfCancellationRequested();
@@ -774,7 +774,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                     token.ThrowIfCancellationRequested();
                     if (!await processSessionFunc(session.Clone()).WaitAsync(token))
                     {
-                        loginState.Message = "取消扫描二维码登录";
+                        loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("QrCanceled");
                         return;
                     }
                 }
@@ -783,7 +783,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         }
         catch (OperationCanceledException) when (timeout.IsCancellationRequested && !cancellationToken.IsCancellationRequested)
         {
-            loginState.Message = "二维码登录已超时，请刷新二维码后重试。";
+            loginState.Message = BD.SteamClient.Resources.SteamStrings.Get("QrTimeout");
         }
     }
 
@@ -864,7 +864,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (!respone.IsSuccessStatusCode)
             {
-                throw new Exception($"PollAuthSessionStatus 出现错误: {respone.StatusCode}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("PollError", respone.StatusCode));
             }
 
             var result = CAuthentication_PollAuthSessionStatus_Response.Parser.ParseFrom(await respone.Content.ReadAsByteArrayAsync(token));
@@ -928,14 +928,14 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (!respone.IsSuccessStatusCode)
             {
-                throw new Exception($"FinalizeLoginAsync 出现错误: {respone.StatusCode}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("FinalizeError", respone.StatusCode));
             }
 
             var result = await respone.Content.ReadFromJsonAsync(FinalizeLoginStatus_.Default.FinalizeLoginStatus, token);
 
             if (result == null)
             {
-                throw new Exception($"FinalizeLoginAsync 出现错误: {result}");
+                throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("FinalizeError", result));
             }
 
             return result;
@@ -945,7 +945,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
     public async Task<(bool IsSuccess, string? Message, HistoryParseResponse? History)> GetAccountHistoryDetail(SteamLoginState loginState)
     {
-        (bool IsSuccess, string? Message, HistoryParseResponse? History) result = (false, "获取 Steam 账号消费历史记录出现错误", null);
+        (bool IsSuccess, string? Message, HistoryParseResponse? History) result = (false, BD.SteamClient.Resources.SteamStrings.Get("AccountHistoryFailed"), null);
 
         if (loginState.Cookies == null)
         {
@@ -1498,7 +1498,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         var htmlParser = context.GetService<IHtmlParser>();
 
         if (htmlParser == null)
-            throw new ArgumentNullException("获取Html解析器失败");
+            throw new ArgumentNullException(BD.SteamClient.Resources.SteamStrings.Get("HtmlParserFailed"));
 
         var document = await htmlParser.ParseDocumentAsync(html);
 
@@ -1530,7 +1530,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
             if (!DateTime.TryParse(timeElement?.TextContent?.Trim(), cultureInfo, out var timeDate))
             {
-                throw new ArgumentException("日期转换失败!");
+                throw new ArgumentException(BD.SteamClient.Resources.SteamStrings.Get("DateParseFailed"));
             }
 
             time = timeDate.TimeOfDay;
@@ -1544,7 +1544,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
                 if (!DateTime.TryParse(dateText?.Trim(), CultureInfo.GetCultureInfo("zh-CN"), out date))
                 {
-                    throw new ArgumentException("日期转换失败!");
+                    throw new ArgumentException(BD.SteamClient.Resources.SteamStrings.Get("DateParseFailed"));
                 }
             }
 
@@ -1725,7 +1725,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         var htmlParser = context.GetService<IHtmlParser>();
 
         if (htmlParser == null)
-            throw new ArgumentNullException("获取Html解析器失败");
+            throw new ArgumentNullException(BD.SteamClient.Resources.SteamStrings.Get("HtmlParserFailed"));
 
         var document = await htmlParser.ParseDocumentAsync(respStream);
 
@@ -1816,7 +1816,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         var htmlParser = context.GetService<IHtmlParser>();
 
         if (htmlParser == null)
-            throw new ArgumentNullException("获取Html解析器失败");
+            throw new ArgumentNullException(BD.SteamClient.Resources.SteamStrings.Get("HtmlParserFailed"));
 
         var document = htmlParser.ParseDocument(respStream);
 
@@ -1850,7 +1850,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             var htmlParser = context.GetService<IHtmlParser>();
 
             if (htmlParser == null)
-                throw new ArgumentNullException("获取Html解析器失败");
+                throw new ArgumentNullException(BD.SteamClient.Resources.SteamStrings.Get("HtmlParserFailed"));
 
             var document = await htmlParser.ParseDocumentAsync(stream);
 

@@ -152,8 +152,10 @@ public sealed class SteamDisplayQrLoginTests
         using var service = new SteamAccountService(services, _ => handler) { UseRetry = false };
         var state = new SteamLoginState();
 
-        Assert.ThrowsAsync<InvalidOperationException>(() => service.DoLoginWithQRCodeAsync(state,
+        var error = Assert.ThrowsAsync<InvalidOperationException>(() => service.DoLoginWithQRCodeAsync(state,
             _ => throw new AssertionException("A rejected begin response must never display a QR.")));
+        if (int.TryParse(result, out var errorCode))
+            Assert.That(error!.Message, Does.Contain($"(EResult {errorCode})"));
 
         Assert.That(state.Success, Is.False);
     }

@@ -33,7 +33,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
         string requestUrl = $"{STEAM_COMMUNITY_URL}/market/sellitem/";
 
         if (string.IsNullOrEmpty(loginState.SeesionId))
-            throw new InvalidOperationException("获取会话信息失败,请稍后重试!");
+            throw new InvalidOperationException(BD.SteamClient.Resources.SteamStrings.Get("MarketSessionFailed"));
 
         Dictionary<string, string> data = new Dictionary<string, string>()
         {
