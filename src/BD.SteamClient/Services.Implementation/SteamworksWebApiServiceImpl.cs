@@ -1,4 +1,4 @@
-using System;
+using System.Text.Json.Serialization.Metadata;
 
 namespace BD.SteamClient.Services.Implementation;
 
@@ -17,24 +17,47 @@ internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, IS
     {
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
+    async Task<T?> GetAsync<T>(string requestUri, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken = default)
     {
-        var client = CreateClient(TAG, HttpHandlerCategory.Default);
-        return client.GetAsync<T>(logger, requestUri, accept,
-            cancellationToken: cancellationToken, userAgent: http_helper.UserAgent, jsonSerializer: Newtonsoft.Json.JsonSerializer.CreateDefault());
+        try
+        {
+            var client = CreateClient(TAG, HttpHandlerCategory.Default);
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            request.Headers.Accept.ParseAdd(MediaTypeNames.JSON);
+            if (http_helper.UserAgent is { } userAgent)
+                request.Headers.UserAgent.ParseAdd(userAgent);
+            using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            if (!response.IsSuccessStatusCode)
+                return default;
+            if (typeof(T) == typeof(string))
+                return (T)(object)await response.Content.ReadAsStringAsync(cancellationToken);
+            return await response.Content.ReadFromJsonAsync(jsonTypeInfo, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "SendAsync fail, requestUri: {requestUri}", requestUri);
+            return default;
+        }
     }
 
     public async Task<string> GetAllSteamAppsString()
     {
-        var rsp = await GetAsync<string>(STEAMAPP_LIST_URL);
+        var rsp = await GetAsync(STEAMAPP_LIST_URL, SteamWebJsonContext.Default.String);
         return rsp ?? string.Empty;
     }
 
     public async Task<List<SteamApp>> GetAllSteamAppList()
     {
-        var rsp = await GetAsync<SteamApps>(STEAMAPP_LIST_URL);
-        return rsp?.AppList?.Apps ?? new List<SteamApp>();
+        var rsp = await GetAsync(STEAMAPP_LIST_URL, SteamWebJsonContext.Default.JsonObject);
+        if (rsp?["applist"]?["apps"] is not JsonArray apps)
+            return new List<SteamApp>();
+        var result = new List<SteamApp>(apps.Count);
+        foreach (var app in apps)
+        {
+            if (app is JsonObject item)
+                result.Add(new SteamApp { AppId = item["appid"]?.GetValue<uint>() ?? 0, Name = item["name"]?.GetValue<string>() });
+        }
+        return result;
     }
 
     public async Task<SteamUser> GetUserInfo(long steamId64)
@@ -58,7 +81,7 @@ internal sealed class SteamworksWebApiServiceImpl : GeneralHttpClientFactory, IS
     public async Task<SteamMiniProfile?> GetUserMiniProfile(long steamId3)
     {
         var requestUri = string.Format(STEAM_MINIPROFILE_URL, steamId3);
-        var rsp = await GetAsync<SteamMiniProfile>(requestUri);
+        var rsp = await GetAsync(requestUri, SteamWebJsonContext.Default.SteamMiniProfile);
         return rsp;
     }
 }

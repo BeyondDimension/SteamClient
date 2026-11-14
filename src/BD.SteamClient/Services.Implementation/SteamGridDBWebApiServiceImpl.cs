@@ -1,4 +1,4 @@
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
+using System.Text.Json.Serialization.Metadata;
 
 namespace BD.SteamClient.Services.Implementation;
 
@@ -7,8 +7,6 @@ internal sealed class SteamGridDBWebApiServiceImpl : GeneralHttpClientFactory, I
     const string TAG = "SteamGridDBWebApiS";
 
     protected override string? DefaultClientName => TAG;
-
-    readonly JsonSerializer jsonSerializer = new();
 
     public SteamGridDBWebApiServiceImpl(
         IHttpClientFactory clientFactory,
@@ -20,30 +18,34 @@ internal sealed class SteamGridDBWebApiServiceImpl : GeneralHttpClientFactory, I
 
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    Task<T?> GetAsync<T>(string requestUri, string accept = MediaTypeNames.JSON, CancellationToken cancellationToken = default) where T : notnull
+    async Task<T?> GetAsync<T>(string requestUri, JsonTypeInfo<T> jsonTypeInfo, CancellationToken cancellationToken = default)
     {
-        var client = CreateClient(TAG, HttpHandlerCategory.Default);
-        return SendAsync<T>(client, logger, jsonSerializer, requestUri,
-            () =>
-            {
-                var apiKeySteamGridDB = ISteamGridDBWebApiServiceImpl.ApiKey;
-                apiKeySteamGridDB.ThrowIsNull();
-                var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
-                request.Headers.Accept.ParseAdd(accept);
-                var userAgent = http_helper.UserAgent;
-                if (userAgent != null)
-                    request.Headers.UserAgent.ParseAdd(userAgent);
-                return request;
-            }
-            , accept, cancellationToken: cancellationToken);
+        try
+        {
+            var client = CreateClient(TAG, HttpHandlerCategory.Default);
+            var apiKeySteamGridDB = ISteamGridDBWebApiServiceImpl.ApiKey;
+            apiKeySteamGridDB.ThrowIsNull();
+            using var request = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKeySteamGridDB);
+            request.Headers.Accept.ParseAdd(MediaTypeNames.JSON);
+            if (http_helper.UserAgent is { } userAgent)
+                request.Headers.UserAgent.ParseAdd(userAgent);
+            using var response = await client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+            if (!response.IsSuccessStatusCode)
+                return default;
+            return await response.Content.ReadFromJsonAsync(jsonTypeInfo, cancellationToken);
+        }
+        catch (Exception e)
+        {
+            logger.LogError(e, "SendAsync fail, requestUri: {requestUri}", requestUri);
+            return default;
+        }
     }
 
     public async Task<SteamGridApp?> GetSteamGridAppBySteamAppId(long appId)
     {
         var url = string.Format(RetrieveGameBySteamAppId_Url, appId);
-        var rsp = await GetAsync<SteamGridAppData>(url, MediaTypeNames.JSON, default);
+        var rsp = await GetAsync(url, SteamWebJsonContext.Default.SteamGridAppData);
 
         if (rsp != null)
         {
@@ -83,7 +85,7 @@ internal sealed class SteamGridDBWebApiServiceImpl : GeneralHttpClientFactory, I
             url += "&dimensions=600x900";
         }
 
-        var rsp = await GetAsync<SteamGridItemData>(url, MediaTypeNames.JSON, default);
+        var rsp = await GetAsync(url, SteamWebJsonContext.Default.SteamGridItemData);
 
         if (rsp != null)
         {

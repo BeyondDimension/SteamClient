@@ -60,7 +60,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             logger.LogError(ex, "第 {i} 次重试，MemberName：{memberName}，FilePath：{sourceFilePath}，LineNumber：{sourceLineNumber}", i, memberName, sourceFilePath, sourceLineNumber);
         });
 
-    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
     public async Task<(string encryptedPassword64, string timestamp)> GetRSAkeyAsync(string username, string password)
     {
         var data = new Dictionary<string, string>()
@@ -68,7 +67,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             { "donotache", default_donotache },
             { "username", username },
         };
-        [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
         async Task<(string encryptedPassword64, string timestamp)> GetRSAkeyAsync()
         {
             var request = new HttpRequestMessage(HttpMethod.Post, GetRSAkeyUrl)
@@ -82,7 +80,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             if (!result.IsSuccessStatusCode)
                 throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyError", result.StatusCode));
 
-            var jsonObj = await result.Content.ReadFromJsonAsync<JsonObject>();
+            var jsonObj = await result.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.JsonObject);
 
             if (jsonObj == null)
                 throw new Exception(BD.SteamClient.Resources.SteamStrings.Format("RsaKeyInvalid", nameof(jsonObj)));
@@ -119,7 +117,6 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
     [GeneratedRegex("[^\\u0000-\\u007F]")]
     private static partial Regex SteamUNPWDRegex();
 
-    [RequiresUnreferencedCode("Calls System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync<T>(JsonSerializerOptions, CancellationToken)")]
     public async Task DoLoginAsync(SteamLoginState loginState, bool isTransfer = false, bool isDownloadCaptchaImage = false)
     {
         loginState.Success = false;
@@ -188,7 +185,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         JsonObject? jsonObj = null;
         if (respone.IsSuccessStatusCode)
-            jsonObj = await respone.Content.ReadFromJsonAsync<JsonObject>();
+            jsonObj = await respone.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.JsonObject);
 
         if (jsonObj == null)
         {
@@ -1486,7 +1483,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
 
         resp.EnsureSuccessStatusCode();
 
-        var result = await resp.Content.ReadFromJsonAsync<InventoryTradeHistoryRenderPageResponse>();
+        var result = await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.InventoryTradeHistoryRenderPageResponse);
 
         return result;
     }
@@ -1634,7 +1631,7 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
         {
             var resp = await client.GetAsync(url);
 
-            return await resp.Content.ReadFromJsonAsync<InventoryPageResponse>();
+            return await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.InventoryPageResponse);
         });
 
         return inventories;

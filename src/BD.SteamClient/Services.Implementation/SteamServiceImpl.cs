@@ -227,14 +227,14 @@ public abstract partial class SteamServiceImpl : ISteamService
     public bool IsSteamChinaLauncher()
     {
 #if WINDOWS
-        var process = GetSteamProces();
+        using var process = GetSteamProces();
         if (process != null)
         {
             try
             {
-                return GetCommandLineArgsCore().Contains("-steamchina", StringComparison.OrdinalIgnoreCase);
+                return WindowsProcessCommandLine.Read(process.Id).Contains("-steamchina", StringComparison.OrdinalIgnoreCase);
             }
-            catch (Win32Exception ex) when ((uint)ex.ErrorCode == 0x80004005)
+            catch (Win32Exception ex) when (ex.NativeErrorCode is 5 or 87 or 1067 || (uint)ex.ErrorCode == 0x80004005)
             {
                 // 没有对该进程的安全访问权限。
                 return false;
@@ -243,17 +243,6 @@ public abstract partial class SteamServiceImpl : ISteamService
             {
                 // 进程已退出。
                 return false;
-            }
-        }
-
-        string GetCommandLineArgsCore()
-        {
-            using (var searcher = new ManagementObjectSearcher(
-                       "SELECT CommandLine FROM Win32_Process WHERE ProcessId = " + process.Id))
-            using (var objects = searcher.Get())
-            {
-                var @object = objects.Cast<ManagementBaseObject>().SingleOrDefault();
-                return @object?["CommandLine"]?.ToString() ?? "";
             }
         }
 #endif
@@ -755,6 +744,9 @@ public abstract partial class SteamServiceImpl : ISteamService
 
         var installAppIds = GetDownloadingAppList(steamDirectory).Where(x => x.IsInstalled).Select(x => x.AppId)
             .ToHashSet();
+        // Scope sharing to this read: apps retain the canonical strings, but the lookup
+        // and values from a previous library are not rooted by a process-wide intern pool.
+        var sharedMetadata = isSaveProperties ? null : new Dictionary<string, string>(StringComparer.Ordinal);
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
@@ -763,10 +755,28 @@ public abstract partial class SteamServiceImpl : ISteamService
             if (app == null)
                 break;
             if (app.AppId > 0 && (isSaveProperties || HideGameList == null || !HideGameList.ContainsKey(app.AppId)))
+            {
+                if (sharedMetadata != null)
+                {
+                    app.Developer = ShareMetadataString(app.Developer, sharedMetadata);
+                    app.Publisher = ShareMetadataString(app.Publisher, sharedMetadata);
+                    app.OSList = ShareMetadataString(app.OSList, sharedMetadata);
+                }
                 onApp(app);
+            }
         }
 
         cancellationToken.ThrowIfCancellationRequested();
+    }
+
+    static string? ShareMetadataString(string? value, Dictionary<string, string> sharedMetadata)
+    {
+        if (string.IsNullOrEmpty(value))
+            return value;
+        if (sharedMetadata.TryGetValue(value, out var shared))
+            return shared;
+        sharedMetadata.Add(value, value);
+        return value;
     }
 
     static string ReadNullTermUtf8String(Stream stream)

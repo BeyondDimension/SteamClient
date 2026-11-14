@@ -415,7 +415,15 @@ public class SteamApp : ReactiveObject
     /// </summary>
     public long BytesStaged { get; set; }
 
-    public IList<uint> ChildApp { get; set; } = new List<uint>();
+    IList<uint>? _ChildApp;
+
+    // Most library entries have no children. Preserve the mutable collection contract
+    // without allocating a separate empty List for every app during inventory reads.
+    public IList<uint> ChildApp
+    {
+        get => _ChildApp ??= new List<uint>();
+        set => _ChildApp = value;
+    }
 
     private ObservableCollection<SteamAppLaunchItem>? _LaunchItems;
 
@@ -759,19 +767,24 @@ public class SteamApp : ReactiveObject
             //    app.InstalledDir = Path.Combine(ISteamService.Instance.SteamDirPath, ISteamService.dirname_steamapps, NodeCommon, installpath);
             //}
 
-            Name = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeName);
-            SortAs = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeSortAs);
-            if (!SortAs.Any_Nullable())
+            var appInfo = properties.GetPropertyValue<SteamAppPropertyTable?>(NodeAppInfo);
+            var common = appInfo?.GetPropertyValue<SteamAppPropertyTable?>(NodeCommon);
+            var extended = appInfo?.GetPropertyValue<SteamAppPropertyTable?>(NodeExtended);
+            var ufs = appInfo?.GetPropertyValue<SteamAppPropertyTable?>("ufs");
+
+            Name = common?.GetPropertyValue(NodeName, string.Empty) ?? string.Empty;
+            SortAs = common?.GetPropertyValue(NodeSortAs, string.Empty) ?? string.Empty;
+            if (string.IsNullOrEmpty(SortAs) || string.Equals(SortAs, Name, StringComparison.Ordinal))
             {
                 SortAs = Name;
             }
-            ParentId = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, NodeParentId);
-            Developer = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeExtended, NodeDeveloper);
-            Publisher = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeExtended, NodePublisher);
+            ParentId = common?.GetPropertyValue<uint>(NodeParentId) ?? 0;
+            Developer = extended?.GetPropertyValue(NodeDeveloper, string.Empty) ?? string.Empty;
+            Publisher = extended?.GetPropertyValue(NodePublisher, string.Empty) ?? string.Empty;
             //SteamReleaseDate = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, "steam_release_date");
             //OriginReleaseDate = properties.GetPropertyValue<uint>(0, NodeAppInfo, NodeCommon, "original_release_date");
 
-            var type = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodeAppType);
+            var type = common?.GetPropertyValue(NodeAppType, string.Empty) ?? string.Empty;
             if (Enum.TryParse(type, true, out SteamAppType apptype))
             {
                 Type = apptype;
@@ -782,7 +795,7 @@ public class SteamApp : ReactiveObject
                 Debug.WriteLineIf(!string.IsNullOrEmpty(type), string.Format("AppInfo: New AppType '{0}'", type));
             }
 
-            OSList = properties.GetPropertyValue(string.Empty, NodeAppInfo, NodeCommon, NodePlatforms);
+            OSList = common?.GetPropertyValue(NodePlatforms, string.Empty) ?? string.Empty;
 
             if (installedAppIds != null)
             {
@@ -799,7 +812,8 @@ public class SteamApp : ReactiveObject
 
             if (IsInstalled)
             {
-                var launchTable = properties.GetPropertyValue<SteamAppPropertyTable?>(null, NodeAppInfo, NodeConfig, NodeLaunch);
+                var launchTable = appInfo?.GetPropertyValue<SteamAppPropertyTable?>(NodeConfig)
+                    ?.GetPropertyValue<SteamAppPropertyTable?>(NodeLaunch);
 
                 if (launchTable != null)
                 {
@@ -817,14 +831,14 @@ public class SteamApp : ReactiveObject
                                           propertyTable.TryGetPropertyValue<string>(NodePlatforms, out var os) ? os : null : null,
                                       };
 
-                    LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems.ToList());
+                    LaunchItems = new ObservableCollection<SteamAppLaunchItem>(launchItems);
                 }
             }
 
-            CloudQuota = properties.GetPropertyValue(0, NodeAppInfo, "ufs", "quota");
-            CloudMaxnumFiles = properties.GetPropertyValue(0, NodeAppInfo, "ufs", "maxnumfiles");
+            CloudQuota = ufs?.GetPropertyValue<int>("quota") ?? 0;
+            CloudMaxnumFiles = ufs?.GetPropertyValue<int>("maxnumfiles") ?? 0;
 
-            var savefilesTable = properties.GetPropertyValue<SteamAppPropertyTable?>(null, NodeAppInfo, "ufs", "savefiles");
+            var savefilesTable = ufs?.GetPropertyValue<SteamAppPropertyTable?>("savefiles");
 
             if (savefilesTable != null)
             {
@@ -843,12 +857,13 @@ public class SteamApp : ReactiveObject
                                     Recursive = table.GetPropertyValue(false, "recursive"),
                                 };
 
-                SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles.ToList());
+                SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles);
             }
 
-            BaseName = properties.GetPropertyValue(string.Empty, NodeAppInfo, "steam_edit", "base_name");
+            BaseName = appInfo?.GetPropertyValue<SteamAppPropertyTable?>("steam_edit")
+                ?.GetPropertyValue("base_name", string.Empty) ?? string.Empty;
 
-            if (string.IsNullOrEmpty(BaseName))
+            if (string.IsNullOrEmpty(BaseName) || string.Equals(BaseName, Name, StringComparison.Ordinal))
             {
                 BaseName = Name;
             }

@@ -67,7 +67,6 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
     #endregion
 
     #region Trade 交易报价
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<bool> AcceptAllGiftTradeOfferAsync(string steam_id)
     {
         var steamSession = _sessionService.RentSession(steam_id);
@@ -102,7 +101,6 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return false;
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<bool> AcceptTradeOfferAsync(string steam_id, string trade_offer_id, TradeInfo? tradeInfo = null, IEnumerable<Confirmation>? confirmations = null)
     {
         var steamSession = _sessionService.RentSession(steam_id);
@@ -163,7 +161,6 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return await response.Content.ReadFromJsonAsync(TradeResponse_.Default.TradeResponse);
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     public async Task<TradeInfo?> GetTradeOfferAsync(string api_key, string trade_offer_id)
     {
         var queryString = new NameValueCollection()
@@ -183,7 +180,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return JsonDocument.Parse(await response.Content.ReadAsStringAsync()).RootElement
             .GetProperty("response")
             .GetProperty("offer")
-            .Deserialize<TradeInfo>() ?? null;
+            .Deserialize(SteamTradeJsonContext.Default.TradeInfo) ?? null;
     }
 
     public async Task<TradeSummary?> GetTradeOffersSummaryAsync(string api_key)
@@ -235,7 +232,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         using var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, builder.Uri);
 
         var response = await client.SendAsync(httpRequestMessage);
-        var result = await JsonSerializer.DeserializeAsync<TradeHistory>(await response.Content.ReadAsStreamAsync());
+        var result = await JsonSerializer.DeserializeAsync(await response.Content.ReadAsStreamAsync(), SteamTradeJsonContext.Default.TradeHistory);
 
         return result?.Response;
     }
@@ -373,7 +370,7 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
             if (contentString.Contains("Steam Guard Mobile Authenticator is providing incorrect Steam Guard codes."))
                 return Enumerable.Empty<Confirmation>();
 
-            var confirmations = confirmations_page.GetProperty("conf").Deserialize<IEnumerable<Confirmation>>();
+            var confirmations = confirmations_page.GetProperty("conf").Deserialize(SteamTradeJsonContext.Default.IEnumerableConfirmation);
             return confirmations ?? Enumerable.Empty<Confirmation>();
         }
         return Enumerable.Empty<Confirmation>();
@@ -621,27 +618,26 @@ public sealed partial class SteamTradeServiceImpl : HttpClientUseCookiesWithDyna
         return steamSession.CookieContainer.GetCookieValue(new Uri(STEAM_COMMUNITY_URL), "sessionid")!;
     }
 
-    [RequiresUnreferencedCode("Calls System.Text.Json.JsonSerializer.Serialize<TValue>(TValue, JsonSerializerOptions)")]
     private static string GenerateJsonTradeOffer(List<Asset> my_itmes, List<Asset> them_items)
     {
-        var offer = new
+        var offer = new TradeOffer
         {
             Newversion = true,
             Version = 4,
-            Me = new
+            Me = new TradeOfferParty
             {
                 Assets = my_itmes,
                 Currency = Array.Empty<int>(),
                 Ready = false
             },
-            Them = new
+            Them = new TradeOfferParty
             {
                 Assets = them_items,
                 Currency = Array.Empty<int>(),
                 Ready = false
             }
         };
-        return JsonSerializer.Serialize(offer, options: new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        return JsonSerializer.Serialize(offer, SteamTradeJsonContext.Default.TradeOffer);
     }
     #endregion
 

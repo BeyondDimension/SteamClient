@@ -177,7 +177,7 @@ public class SteamAuthenticatorServiceImpl : HttpClientUseCookiesWithDynamicProx
             throw new Exception("Failed to refresh token: " + ex.Message);
         }
 
-        var response = JsonSerializer.Deserialize<GenerateAccessTokenForAppResponse>(responseStr);
+        var response = JsonSerializer.Deserialize(responseStr, SteamTradeJsonContext.Default.GenerateAccessTokenForAppResponse);
         if (response != null && !string.IsNullOrEmpty(response.Response.AccessToken))
         {
             steamSession.AccessToken = response.Response.AccessToken;
@@ -229,25 +229,25 @@ public class SteamAuthenticatorServiceImpl : HttpClientUseCookiesWithDynamicProx
         }
 
         var payloadBytes = Convert.FromBase64String(base64);
-        var jwt = JsonSerializer.Deserialize<SteamAccessToken>(System.Text.Encoding.UTF8.GetString(payloadBytes));
+        var jwt = JsonSerializer.Deserialize(payloadBytes, SteamTradeJsonContext.Default.SteamAccessToken);
 
         // Compare expire time of the token to the current time
         return DateTimeOffset.UtcNow.ToUnixTimeSeconds() > jwt.Exp;
     }
 
-    private class SteamAccessToken
+    internal class SteamAccessToken
     {
         [JsonPropertyName("exp")]
         public long Exp { get; set; }
     }
 
-    private class GenerateAccessTokenForAppResponse
+    internal class GenerateAccessTokenForAppResponse
     {
         [JsonPropertyName("response")]
-        public GenerateAccessTokenForAppResponseResponse? Response;
+        public GenerateAccessTokenForAppResponseResponse? Response { get; set; }
     }
 
-    private class GenerateAccessTokenForAppResponseResponse
+    internal class GenerateAccessTokenForAppResponseResponse
     {
         [JsonPropertyName("access_token")]
         public string? AccessToken { get; set; }
