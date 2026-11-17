@@ -54,3 +54,11 @@ namespace Microsoft.Extensions.DependencyInjection;
 // ReSharper disable once CheckNamespace
 namespace BD.SteamClient;
 </pre>
+
+### Native AOT
+
+- SAM 使用泛型委托及结构体封送；保留原有调用约定、`MarshalAs` 与结构体布局。
+- ValveKeyValue 条件表达式使用强类型解释执行，保留原有条件语法及错误行为。Steam 本地 VDF 路径使用 `KVObject` 树，不依赖反射式对象映射。
+- 登录令牌、库存、交易与市场 HTTP 响应使用 `System.Text.Json` 源生成元数据；交易报价使用显式线协议模型。游戏目录只读取 Steam API 的 `appid`、`name` 字段，不反射整个 UI 游戏模型。
+- Google.Protobuf 登录消息使用生成的 `Parser`。WinAuth 的 SteamKit2 验证器迁移消息单独保留 protobuf-net 实际使用的属性元数据和嵌套消息适配器；不保留整个程序集。任意其他 SteamKit 服务或 ValveKeyValue 的 `Deserialize<T>` 反射式对象映射仍需针对实际消息/类型单独验证。
+

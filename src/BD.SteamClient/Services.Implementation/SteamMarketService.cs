@@ -16,7 +16,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         var resp = await client.GetAsync(url);
 
-        return await resp.Content.ReadFromJsonAsync<MarketItemPriceOverviewResponse>();
+        return await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.MarketItemPriceOverviewResponse);
     }
 
     public async Task<MarketItemOrdersHistogramResponse> GetMarketItemOrdersHistogram(long marketItemNameId, string country = "CN", int currency = 23, string language = "schinese")
@@ -25,7 +25,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         var resp = await client.GetAsync(url);
 
-        return await resp.Content.ReadFromJsonAsync<MarketItemOrdersHistogramResponse>();
+        return await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.MarketItemOrdersHistogramResponse);
     }
 
     public async Task<SellItemToMarketResponse> SellItemToMarket(SteamLoginState loginState, string appId, string contextId, long assetId, int amount, int price)
@@ -64,7 +64,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         var resp = await client.SendAsync(requestMsg);
 
-        return await resp.Content.ReadFromJsonAsync<SellItemToMarketResponse>();
+        return await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.SellItemToMarketResponse);
     }
 
     public async IAsyncEnumerable<MarketTradingHisotryRenderItem> GetMarketTradingHistory(SteamLoginState loginState, int start = 0, int count = 100)
@@ -88,7 +88,7 @@ public class SteamMarketService : HttpClientUseCookiesWithDynamicProxyServiceImp
 
         resp.EnsureSuccessStatusCode();
 
-        var result = await resp.Content.ReadFromJsonAsync<MarketTradingHisotryRenderPageResponse>();
+        var result = await resp.Content.ReadFromJsonAsync(SteamWebJsonContext.Default.MarketTradingHisotryRenderPageResponse);
 
         if (result == null || !result.Success)
             yield break;

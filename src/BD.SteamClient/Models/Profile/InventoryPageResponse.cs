@@ -48,7 +48,6 @@ public record struct InventoryPageResponse
     public record ProfileInventoryAssetDescription([property: S_JsonProperty("appid")] int AppId, [property: S_JsonProperty("contextid")] string ContextId, [property: S_JsonProperty("assetid")] string AssetId, [property: S_JsonProperty("classid")] string ClassId, [property: S_JsonProperty("instanceid")] string InstanceId, [property: S_JsonProperty("tradable")] int Tradable, [property: S_JsonProperty("marketable")] int Marketable, [property: S_JsonProperty("name")] string Name, [property: S_JsonProperty("market_name")] string MarketName, [property: S_JsonProperty("market_hash_name")] string MarketHashName, [property: S_JsonProperty("icon_url")] string IconUrl)
     {
         [JsonIgnore]
-        [JsonExtensionData]
         public Dictionary<string, JsonElement> UnunsedProperties { get; set; } = new();
     }
 }
