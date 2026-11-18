@@ -523,10 +523,24 @@ public class SteamApp : ReactiveObject
 
     private Process? _Process;
 
+    private object? _ProcessLock;
+
+    private object ProcessLock => LazyInitializer.EnsureInitialized(ref _ProcessLock);
+
+    /// <summary>The model-owned idle child. Achievement and cloud-manager windows are independent.</summary>
     public Process? Process
     {
-        get => _Process;
-        set => this.RaiseAndSetIfChanged(ref _Process, value);
+        get => Volatile.Read(ref _Process);
+        set
+        {
+            lock (ProcessLock)
+            {
+                if (ReferenceEquals(_Process, value))
+                    return;
+                _Process = value;
+            }
+            this.RaisePropertyChanged();
+        }
     }
 
     private bool _IsWatchDownloading;
@@ -562,60 +576,81 @@ public class SteamApp : ReactiveObject
 
     public SteamAppPropertyTable? ChangesData => _properties;
 
+    /// <summary>
+    /// Ensures one idle child is running, or opens an independent achievement/cloud-manager window.
+    /// The returned idle handle is borrowed; a GUI handle belongs to the caller.
+    /// </summary>
     public Process? StartSteamAppProcess(SteamAppRunType runType = SteamAppRunType.Idle)
     {
-        var arg = runType switch
-        {
-            SteamAppRunType.UnlockAchievement => "-achievement",
-            SteamAppRunType.CloudManager => "-cloudmanager",
-            _ => "-silence",
-        };
-        string arguments = $"-clt app {arg} -id {AppId}";
-        var processPath = Environment.ProcessPath;
-        processPath.ThrowIsNull();
-        if (OperatingSystem.IsWindows())
-        {
-            return Process = Process2.Start(processPath, arguments);
-        }
-        else
-        {
-            if (OperatingSystem.IsLinux())
-            {
-                var psi = new ProcessStartInfo
-                {
-                    Arguments = arguments,
-                    FileName = Path.Combine(AppContext.BaseDirectory, "Steam++.sh"),
-                    UseShellExecute = true,
-                };
-                Console.WriteLine(psi.FileName);
-                psi.Environment.Add("SteamAppId", AppId.ToString());
-                return Process = Process.Start(psi);
-            }
-            else
-            {
-                return Process = Process2.Start(
-                processPath,
-                arguments,
-                environment: new Dictionary<string, string>() {
-                    {
-                        "SteamAppId",
-                        AppId.ToString()
-                    }
-                });
-            }
-        }
+        if (runType is SteamAppRunType.UnlockAchievement or SteamAppRunType.CloudManager)
+            return SteamAppProcessLauncher.Start(AppId, runType);
+
+        return SetIdleProcessRunning(true);
     }
 
-    public void RunOrStopSteamAppProcess()
+    /// <summary>Stops and releases the owned idle child, if any, without touching GUI windows.</summary>
+    public void StopSteamAppProcess() => SetIdleProcessRunning(false);
+
+    /// <summary>Atomically toggles the owned idle child.</summary>
+    public void RunOrStopSteamAppProcess() => SetIdleProcessRunning(null);
+
+    Process? SetIdleProcessRunning(bool? shouldRun)
     {
-        if (Process != null && !Process.HasExited)
+        Process? oldProcess = null;
+        var changed = false;
+        try
         {
-            Process.KillEntireProcessTree();
-            Process = null;
+            lock (ProcessLock)
+            {
+                var process = _Process;
+                var isRunning = process != null && !process.HasExited;
+                if (shouldRun ?? !isRunning)
+                {
+                    if (isRunning)
+                        return process;
+
+                    oldProcess = process;
+                    _Process = null;
+                    changed = process != null;
+                    var started = SteamAppProcessLauncher.Start(AppId, SteamAppRunType.Idle);
+                    _Process = started;
+                    changed |= started != null;
+                    return started;
+                }
+
+                if (process == null)
+                    return null;
+
+                if (isRunning)
+                {
+                    try
+                    {
+                        process.KillEntireProcessTree();
+                    }
+                    catch (InvalidOperationException) when (process.HasExited)
+                    {
+                        // The child may have exited between the liveness check and Kill.
+                    }
+                    catch (Win32Exception) when (process.HasExited)
+                    {
+                        // Some platforms report the same exit race as a native error.
+                    }
+                    // Kill is asynchronous. Do not permit another start before this child exits.
+                    process.WaitForExit();
+                }
+
+                _Process = null;
+                oldProcess = process;
+                changed = true;
+                return null;
+            }
         }
-        else
+        finally
         {
-            StartSteamAppProcess();
+            // Notifications and disposal callbacks must not re-enter while ownership is changing.
+            oldProcess?.Dispose();
+            if (changed)
+                this.RaisePropertyChanged(nameof(Process));
         }
     }
 

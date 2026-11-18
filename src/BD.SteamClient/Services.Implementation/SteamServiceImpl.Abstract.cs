@@ -126,8 +126,10 @@ abstract partial class SteamServiceImpl
     }
 
     bool IsSystemSteamProgramPath(string configured)
+        => IsSystemSteamProgramPath(configured, detectedSteamProgram);
+
+    static bool IsSystemSteamProgramPath(string configured, string? detected)
     {
-        var detected = detectedSteamProgram;
         if (string.IsNullOrWhiteSpace(detected)) return false;
         try
         {
@@ -144,9 +146,12 @@ abstract partial class SteamServiceImpl
     }
 
     string? GetEffectiveSteamDirPath(string? configured)
+        => GetEffectiveSteamDirPath(configured, detectedSteamDirectory, detectedSteamProgram);
+
+    static string? GetEffectiveSteamDirPath(string? configured, string? detectedDirectory, string? detectedProgram)
     {
-        if (string.IsNullOrWhiteSpace(configured) || IsSystemSteamProgramPath(configured))
-            return detectedSteamDirectory;
+        if (string.IsNullOrWhiteSpace(configured) || IsSystemSteamProgramPath(configured, detectedProgram))
+            return detectedDirectory;
 
         var directory = Path.GetDirectoryName(configured);
         if (string.IsNullOrEmpty(directory)) return null;
@@ -157,7 +162,7 @@ abstract partial class SteamServiceImpl
         var macOs = new DirectoryInfo(directory);
         if (macOs.Name == "MacOS" && macOs.Parent?.Name == "Contents" &&
             macOs.Parent.Parent?.Name.EndsWith(".app", StringComparison.OrdinalIgnoreCase) == true)
-            return detectedSteamDirectory;
+            return detectedDirectory;
         if (macOs.Name == "MacOS" && macOs.Parent?.Name == "Contents" &&
             macOs.Parent.Parent?.Name == "Steam" && macOs.Parent.Parent.Parent?.Name == "Steam.AppBundle")
             return macOs.Parent.Parent.Parent.Parent?.FullName;
@@ -170,9 +175,16 @@ abstract partial class SteamServiceImpl
 #endif
     }
 
+    /// <summary>Resolves the native Steam library directory without constructing application services.</summary>
+    public static string? ResolveSteamDynamicLinkLibraryPath(string? configuredSteamProgramPath)
+        => GetSteamDynamicLinkLibraryDirectory(GetEffectiveSteamDirPath(
+            configuredSteamProgramPath, GetSteamDirPath(), GetSteamProgramPath()));
+
     internal string? GetSteamDynamicLinkLibraryPath()
+        => GetSteamDynamicLinkLibraryDirectory(SteamDirPath);
+
+    static string? GetSteamDynamicLinkLibraryDirectory(string? directory)
     {
-        var directory = SteamDirPath;
 #if MACCATALYST || MACOS
         return directory == null ? null : Path.Combine(directory, "Steam.AppBundle", "Steam", "Contents", "MacOS");
 #else

@@ -232,11 +232,12 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             try
             {
+                // Query the native process handle directly; launcher detection must not require WMI.
                 return WindowsProcessCommandLine.Read(process.Id).Contains("-steamchina", StringComparison.OrdinalIgnoreCase);
             }
-            catch (Win32Exception ex) when (ex.NativeErrorCode is 5 or 87 or 1067 || (uint)ex.ErrorCode == 0x80004005)
+            catch (Win32Exception ex) when (ex.NativeErrorCode is 5 or 87 or 1067)
             {
-                // 没有对该进程的安全访问权限。
+                // 没有进程访问权限，或进程已退出。
                 return false;
             }
             catch (InvalidOperationException)
