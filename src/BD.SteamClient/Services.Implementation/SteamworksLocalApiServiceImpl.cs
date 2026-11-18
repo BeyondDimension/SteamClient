@@ -184,6 +184,19 @@ sealed class SteamworksLocalApiServiceImpl : ISteamworksLocalApiService
         };
     }
 
+    public void AddUserStatsStoredCallback(Action<ulong, int> action)
+    {
+        var callback = SteamClient.CreateAndRegisterCallback<UserStatsStoredCallback>();
+        callback.OnRun += value => action(value.GameId, value.Result);
+    }
+
+    sealed class UserStatsStoredCallback : Callback<UserStatsStored>
+    {
+        public override int Id => 1102;
+
+        public override bool IsServer => false;
+    }
+
     sealed class UserStatsReceivedWrapper : IUserStatsReceived
     {
         readonly UserStatsReceived userStatsReceived;

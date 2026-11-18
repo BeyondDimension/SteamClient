@@ -25,8 +25,8 @@ public static class VdfHelper
     public static KVObject Read(string filePath, bool isBinary = false)
     {
         var kv = KVSerializer.Create(isBinary ? KVSerializationFormat.KeyValues1Binary : KVSerializationFormat.KeyValues1Text);
-        var data = kv.Deserialize(IOPath.OpenRead(filePath), options);
-        return data;
+        using var input = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete);
+        return kv.Deserialize(input, options);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

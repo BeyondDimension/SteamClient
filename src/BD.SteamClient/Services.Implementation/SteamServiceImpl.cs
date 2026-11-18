@@ -288,62 +288,67 @@ public abstract partial class SteamServiceImpl : ISteamService
 
     public List<SteamUser> GetRememberUserList()
     {
-        var userVdfPath = this.UserVdfPath;
-        var users = new List<SteamUser>();
+        TryGetRememberUserList(out var users);
+        return users;
+    }
+
+    public bool TryGetRememberUserList(out List<SteamUser> users)
+    {
+        users = new List<SteamUser>();
+        var steamDirectory = SteamDirPath;
+        if (steamDirectory == null)
+            return false;
+        var userVdfPath = Path.Combine(steamDirectory, "config", "loginusers.vdf");
+        var invalidEntry = false;
         try
         {
-            if (!string.IsNullOrWhiteSpace(UserVdfPath) && File.Exists(UserVdfPath))
+            var savedUsers = VdfHelper.Read(userVdfPath);
+            foreach (var item in savedUsers)
             {
-                var v = VdfHelper.Read(UserVdfPath);
-                foreach (var item in v)
+                try
                 {
-                    try
+                    long timestamp = item["timestamp"] != null ? (long)item["timestamp"] : (long)item["Timestamp"];
+                    var autoLogin = ReadAutoLogin(item);
+                    var personaName = (string)item["PersonaName"];
+                    users.Add(new SteamUser
                     {
-                        long timestamp = item["timestamp"] != null ? (long)item["timestamp"] : (long)item["Timestamp"];
-                        var user = new SteamUser
-                        {
-                            SteamId64 = Convert.ToInt64(item.Name),
-                            AccountName = (string)item["AccountName"],
-                            SteamID = (string)item["PersonaName"],
-                            PersonaName = (string)item["PersonaName"],
-                            RememberPassword = item["RememberPassword"] != null && (bool)item["RememberPassword"],
-                            AutoLogin = ReadAutoLogin(item),
-                            // AllowAutoLogin = (bool)item["AllowAutoLogin"],
-
-                            AllowAutoLogin = item["AllowAutoLogin"] != null
-                                ? (bool)item["AllowAutoLogin"]
-                                : ReadAutoLogin(item),
-
-                            // 老版本 Steam 数据 小写 mostrecent 支持
-                            // 新版 Steam 已移除 MostRecent，为空时使用 AutoLogin 代替
-                            MostRecent = item["mostrecent"] != null ? (bool)item["mostrecent"] :
-                                item["MostRecent"] != null ? (bool)item["MostRecent"] :
-                                ReadAutoLogin(item),
-                            Timestamp = timestamp,
-                            LastLoginTime = timestamp.ToDateTimeS(),
-                            WantsOfflineMode = (bool)item["WantsOfflineMode"],
-
-                            // 因为警告这个东西应该都不需要所以直接默认跳过好了
-                            // SkipOfflineModeWarning = i.SkipOfflineModeWarning != null ?
-                            //    Convert.ToBoolean(Convert.ToByte(i.SkipOfflineModeWarning.ToString())) : false,
-                            SkipOfflineModeWarning = true,
-                        };
-
-                        users.Add(user);
-                    }
-                    catch (Exception e)
-                    {
-                        logger.LogError(e, "GetRememberUserList fail(0).");
-                    }
+                        SteamId64 = Convert.ToInt64(item.Name),
+                        AccountName = (string)item["AccountName"],
+                        SteamID = personaName,
+                        PersonaName = personaName,
+                        RememberPassword = item["RememberPassword"] != null && (bool)item["RememberPassword"],
+                        AutoLogin = autoLogin,
+                        AllowAutoLogin = item["AllowAutoLogin"] != null ? (bool)item["AllowAutoLogin"] : autoLogin,
+                        MostRecent = item["mostrecent"] != null ? (bool)item["mostrecent"] :
+                            item["MostRecent"] != null ? (bool)item["MostRecent"] : autoLogin,
+                        Timestamp = timestamp,
+                        LastLoginTime = timestamp.ToDateTimeS(),
+                        WantsOfflineMode = (bool)item["WantsOfflineMode"],
+                        SkipOfflineModeWarning = true,
+                    });
+                }
+                catch (Exception e)
+                {
+                    invalidEntry = true;
+                    logger.LogError(e, "Could not read a saved Steam user.");
                 }
             }
+        }
+        catch (FileNotFoundException)
+        {
+            return true;
+        }
+        catch (DirectoryNotFoundException)
+        {
+            return Directory.Exists(steamDirectory);
         }
         catch (Exception e)
         {
             logger.LogError(e, "GetRememberUserList fail(1).");
+            return false;
         }
 
-        return users;
+        return !invalidEntry || users.Count > 0;
     }
 
     public bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> items)

@@ -77,6 +77,9 @@ public partial interface ISteamService
     /// <returns></returns>
     List<SteamUser> GetRememberUserList();
 
+    /// <summary>Reads saved users and distinguishes an empty list from an inaccessible or unreadable file.</summary>
+    bool TryGetRememberUserList(out List<SteamUser> users);
+
     bool UpdateAuthorizedDeviceList(IEnumerable<AuthorizedDevice> model);
 
     bool RemoveAuthorizedDeviceList(AuthorizedDevice list);

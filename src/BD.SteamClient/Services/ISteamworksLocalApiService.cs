@@ -79,6 +79,8 @@ public interface ISteamworksLocalApiService
 
     void AddUserStatsReceivedCallback(Action<IUserStatsReceived> action) { }
 
+    void AddUserStatsStoredCallback(Action<ulong, int> action) { }
+
     bool RequestCurrentStats() => default;
 
     bool ResetAllStats(bool achievementsToo) => default;
