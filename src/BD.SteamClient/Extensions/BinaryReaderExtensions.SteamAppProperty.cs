@@ -48,6 +48,9 @@ public static partial class BinaryReaderExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void WriteAppInfoString(this BinaryWriter writer, string str)
     {
+        if (str.Contains('\0'))
+            throw new InvalidDataException("A Steam appinfo string cannot contain a NUL character.");
+
         byte[] bytes = Encoding.UTF8.GetBytes(str);
         writer.Write(bytes);
         writer.Write((byte)0);
@@ -56,9 +59,12 @@ public static partial class BinaryReaderExtensions
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void WriteAppInfoWideString(this BinaryWriter writer, string str)
     {
-        byte[] bytes = Encoding.Unicode.GetBytes(str);
-        writer.Write(bytes);
-        writer.Write((byte)0);
+        if (str.Contains('\0'))
+            throw new InvalidDataException("A Steam appinfo wide string cannot contain a NUL character.");
+
+        foreach (var c in str)
+            writer.Write((ushort)c);
+        writer.Write((ushort)0);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -161,7 +167,7 @@ public static partial class BinaryReaderExtensions
                     writer.WriteAppInfoString(property.Value?.ToString() ?? string.Empty);
                     break;
                 case SteamAppPropertyType.WString:
-                    writer.WriteAppInfoString_0x07564429(property.Value?.ToString() ?? string.Empty, stringTable, stringLookup);
+                    writer.WriteAppInfoWideString(property.Value?.ToString() ?? string.Empty);
                     break;
                 case SteamAppPropertyType.Int32:
                     if (property.Value is not int int32)
@@ -203,12 +209,51 @@ public static partial class BinaryReaderExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader, string[]? stringPool = null)
+    public static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader, string[]? stringPool = null) =>
+        ReadPropertyTable(reader, stringPool, null, 0);
+
+    internal static SteamAppPropertyTable ReadPropertyTable(this BinaryReader reader, string[] stringPool, long endOffset) =>
+        ReadPropertyTable(reader, stringPool, endOffset, 0);
+
+    internal static SteamAppPropertyTable ReadAppInfoMetadata(this BinaryReader reader, string[] stringPool, long endOffset, bool installed) =>
+        ReadPropertyTable(reader, stringPool, endOffset, 0, AppInfoPart.Root, installed);
+
+    enum AppInfoPart : byte { All, Root, App, Common, Extended, Config, Ufs, Skip }
+
+    static AppInfoPart SelectAppInfoPart(AppInfoPart parent, string name, bool installed) => parent switch
     {
-        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable();
-        SteamAppPropertyType propertyType;
-        while ((propertyType = (SteamAppPropertyType)reader.ReadByte()) != SteamAppPropertyType._EndOfTable_)
+        AppInfoPart.All => AppInfoPart.All,
+        AppInfoPart.Root when name == "appinfo" => AppInfoPart.App,
+        AppInfoPart.App => name switch
         {
+            "common" => AppInfoPart.Common,
+            "extended" => AppInfoPart.Extended,
+            "config" when installed => AppInfoPart.Config,
+            "ufs" => AppInfoPart.Ufs,
+            "steam_edit" => AppInfoPart.All,
+            _ => AppInfoPart.Skip,
+        },
+        AppInfoPart.Common when name is "name" or "sortas" or "parent" or "type" or "oslist" => AppInfoPart.All,
+        AppInfoPart.Extended when name is "developer" or "publisher" => AppInfoPart.All,
+        AppInfoPart.Config when name == "launch" => AppInfoPart.All,
+        AppInfoPart.Ufs when name is "quota" or "maxnumfiles" or "savefiles" => AppInfoPart.All,
+        _ => AppInfoPart.Skip,
+    };
+
+    static SteamAppPropertyTable ReadPropertyTable(BinaryReader reader, string[]? stringPool, long? endOffset, int depth,
+        AppInfoPart part = AppInfoPart.All, bool installed = false)
+    {
+        if (depth >= 64)
+            throw new InvalidDataException("The Steam appinfo property table is too deeply nested.");
+
+        var stream = reader.BaseStream;
+        SteamAppPropertyTable propertyTable = new SteamAppPropertyTable();
+        while (endOffset == null || stream.Position < endOffset)
+        {
+            var propertyType = (SteamAppPropertyType)reader.ReadByte();
+            if (propertyType == SteamAppPropertyType._EndOfTable_)
+                return propertyTable;
+
             string name;
             if (stringPool == null)
             {
@@ -216,21 +261,99 @@ public static partial class BinaryReaderExtensions
             }
             else
             {
-                name = stringPool[reader.ReadInt32()];
+                var index = reader.ReadUInt32();
+                if (index >= stringPool.Length)
+                    throw new InvalidDataException("Invalid Steam appinfo string table index.");
+                name = stringPool[index];
             }
-            propertyTable.AddPropertyValue(value: propertyType switch
+            var child = SelectAppInfoPart(part, name, installed);
+            if (child == AppInfoPart.Skip)
             {
-                SteamAppPropertyType.Table => reader.ReadPropertyTable(stringPool),
-                SteamAppPropertyType.String => reader.ReadAppInfoString(),
+                SkipIndexedProperty(reader, propertyType, endOffset!.Value);
+                continue;
+            }
+            object value = propertyType switch
+            {
+                SteamAppPropertyType.Table => ReadPropertyTable(reader, stringPool, endOffset, depth + 1, child, installed),
+                SteamAppPropertyType.String => ReadPropertyString(reader, endOffset),
                 SteamAppPropertyType.WString => reader.ReadAppInfoWideString(),
                 SteamAppPropertyType.Int32 => reader.ReadInt32(),
                 SteamAppPropertyType.Uint64 => reader.ReadUInt64(),
                 SteamAppPropertyType.Float => reader.ReadSingle(),
                 SteamAppPropertyType.Color => reader.ReadColor(),
-                _ => throw new NotImplementedException("The property type " + propertyType.ToString() + " has not been implemented."),
-            }, name: name, type: propertyType);
+                _ => throw new InvalidDataException($"Unsupported Steam appinfo property type: {(byte)propertyType}."),
+            };
+            if (endOffset is { } end && stream.Position > end)
+                throw new InvalidDataException("A Steam appinfo property crosses its record boundary.");
+            propertyTable.AddPropertyValue(name, propertyType, value);
         }
-        return propertyTable;
+        throw new InvalidDataException("Unterminated Steam appinfo property table.");
+    }
+
+    static string ReadPropertyString(BinaryReader reader, long? endOffset)
+    {
+        if (endOffset is not { } end || reader.BaseStream is not MemoryStream stream || !stream.TryGetBuffer(out var buffer))
+            return reader.ReadAppInfoString();
+
+        var position = stream.Position;
+        if (position >= end)
+            throw new InvalidDataException("Missing Steam appinfo string value.");
+        var bytes = buffer.AsSpan((int)position, (int)(end - position));
+        var length = bytes.IndexOf((byte)0);
+        if (length < 0)
+            throw new InvalidDataException("Unterminated Steam appinfo string value.");
+        stream.Position = position + length + 1;
+        return Encoding.UTF8.GetString(bytes[..length]);
+    }
+
+    static void SkipIndexedProperty(BinaryReader reader, SteamAppPropertyType type, long end)
+    {
+        var stream = (MemoryStream)reader.BaseStream;
+        var depth = 0;
+        while (true)
+        {
+            switch (type)
+            {
+                case SteamAppPropertyType.Table:
+                    depth++;
+                    break;
+                case SteamAppPropertyType.String:
+                    stream.TryGetBuffer(out var buffer);
+                    var position = stream.Position;
+                    var length = position < end ? buffer.AsSpan((int)position, (int)(end - position)).IndexOf((byte)0) : -1;
+                    if (length < 0) throw new InvalidDataException("Unterminated Steam appinfo string value.");
+                    stream.Position += length + 1;
+                    break;
+                case SteamAppPropertyType.WString:
+                    while (stream.Position + 2 <= end && reader.ReadUInt16() != 0) { }
+                    break;
+                case SteamAppPropertyType.Int32:
+                case SteamAppPropertyType.Float:
+                    stream.Position += 4;
+                    break;
+                case SteamAppPropertyType.Uint64:
+                    stream.Position += 8;
+                    break;
+                case SteamAppPropertyType.Color:
+                    stream.Position += 3;
+                    break;
+                case SteamAppPropertyType._EndOfTable_:
+                    depth--;
+                    break;
+                default:
+                    throw new InvalidDataException($"Unsupported Steam appinfo property type: {(byte)type}.");
+            }
+
+            if (stream.Position > end)
+                throw new InvalidDataException("A Steam appinfo property crosses its record boundary.");
+            if (depth == 0)
+                return;
+            if (stream.Position == end)
+                throw new InvalidDataException("Unterminated Steam appinfo property table.");
+            type = (SteamAppPropertyType)reader.ReadByte();
+            if (type != SteamAppPropertyType._EndOfTable_)
+                stream.Position += 4;
+        }
     }
 }
 

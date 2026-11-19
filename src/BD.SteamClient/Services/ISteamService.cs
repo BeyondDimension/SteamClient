@@ -112,7 +112,7 @@ public partial interface ISteamService
     /// <summary>
     /// 在后台读取并解析 Steam 本地客户端缓存文件，不阻塞调用线程。
     /// </summary>
-    /// <param name="isSaveProperties">仅编辑保存时保留完整属性树及原始记录；普通库存加载只保留提取后的字段。</param>
+    /// <param name="isSaveProperties">保留完整属性树以供编辑，旧版缓存还保留原始记录；普通库存加载只保留提取后的字段。</param>
     Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false);
 
     /// <summary>
@@ -121,10 +121,12 @@ public partial interface ISteamService
     /// </summary>
     Task ReadAppInfosInBatchesAsync(Action<IReadOnlyList<SteamApp>> onBatch, CancellationToken cancellationToken = default);
 
-    List<ModifiedApp>? GetModifiedApps();
+    IReadOnlyDictionary<uint, SteamAppEdit> GetAppInfoEdits();
+
+    Task SaveLocalAppInfoEditsAsync(IReadOnlyDictionary<uint, SteamAppEdit> changes);
 
     /// <summary>
-    /// 保存修改后的游戏数据到 Steam 本地客户端缓存文件
+    /// Steam 退出后，将已保存的编辑或重置应用到其缓存。
     /// </summary>
     Task<bool> SaveAppInfosToSteam();
 

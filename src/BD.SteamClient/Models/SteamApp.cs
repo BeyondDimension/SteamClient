@@ -173,142 +173,6 @@ public class SteamApp : ReactiveObject
 
     #endregion
 
-#if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
-
-    public bool SetEditProperty(SteamApp appInfo)
-    {
-        if (_properties != null)
-        {
-            // steam_edit Data
-            //SteamAppPropertyTable? propertyValue = _properties.GetPropertyValue<SteamAppPropertyTable>(null, NodeAppInfo, NodeCommon);
-            //if (propertyValue != null)
-            //{
-            //    string? text = Name;
-            //    if (text != null)
-            //    {
-            //        SteamAppPropertyTable? propertyValue2 = propertyValue.GetPropertyValue<SteamAppPropertyTable>(null, "name_localized");
-            //        if (propertyValue2 != null)
-            //        {
-            //            _properties.SetPropertyValue(SteamAppPropertyType.Table, propertyValue2, NodeAppInfo, "steam_edit", "base_name_localized");
-            //            propertyValue.RemoveProperty("name_localized");
-            //        }
-            //        _properties.SetPropertyValue(SteamAppPropertyType.String, text, NodeAppInfo, "steam_edit", "base_name");
-            //        //if (SteamData.UseCompleted && this.IsCompleted)
-            //        //{
-            //        //    text += SteamData.CompletedSuffix;
-            //        //}
-            //        propertyValue.SetPropertyValue("name", SteamAppPropertyType.String, text);
-            //    }
-            //    else
-            //    {
-            //        Log.Info("SteamApp Write Error", $"AppInfo {AppId:X8} has null name!");
-            //    }
-
-            //    //string? text2 = propertyValue.GetPropertyValue<string>("type", "game");
-            //    //if (text2 != null)
-            //    //{
-            //    //    _properties.SetPropertyValue(SteamAppPropertyType.String, text2, NodeAppInfo, "steam_edit", "base_type");
-            //    //    //if (SteamData.UseHidden && this.IsHidden)
-            //    //    //{
-            //    //    //    text2 = "hidden_" + text2;
-            //    //    //}
-            //    //    propertyValue.SetPropertyValue("type", SteamAppPropertyType.String, text2);
-            //    //}
-            //    //else
-            //    //{
-            //    //    Log.Info("SteamApp Write Error", $"AppInfo {AppId:X8} has null type!");
-            //    //}
-            //}
-
-            //SortAs = appInfo.SortAs;
-            //Developer = appInfo.Developer;
-            //Publisher = appInfo.Publisher;
-            //LaunchItems = appInfo.LaunchItems;
-
-            if (!string.IsNullOrEmpty(appInfo.Name) && appInfo.Name != appInfo.BaseName)
-            {
-                Name = appInfo.Name;
-
-                SteamAppPropertyTable propertyValue2 = _properties.GetPropertyValue<SteamAppPropertyTable>(null, NodeAppInfo, NodeCommon, "name_localized");
-                if (propertyValue2 != null)
-                {
-                    _properties.SetPropertyValue(SteamAppPropertyType.Table, propertyValue2, NodeAppInfo, "steam_edit", "base_name_localized");
-
-                    //_properties.RemoveProperty(NodeAppInfo, NodeCommon, "name_localized"); 
-                    _properties.SetPropertyValue(SteamAppPropertyType.Table, new SteamAppPropertyTable(), NodeAppInfo, NodeCommon, "name_localized");
-                }
-                _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.BaseName, NodeAppInfo, "steam_edit", "base_name");
-
-                _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Name, NodeAppInfo, NodeCommon, NodeName);
-            }
-            else
-            {
-                Log.Info("SteamApp Write Error", $"AppInfo {AppId:X8} has null name!");
-            }
-
-            //_properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Name, NodeAppInfo,
-            //    NodeCommon,
-            //    NodeName);
-
-            _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.SortAs, NodeAppInfo,
-                NodeCommon,
-                NodeSortAs);
-
-            _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Developer, NodeAppInfo,
-                NodeExtended,
-                NodeDeveloper);
-
-            _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Developer, NodeAppInfo,
-                NodeCommon,
-                "associations", "0", "name");
-
-            _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Publisher, NodeAppInfo,
-                NodeExtended,
-                NodePublisher);
-
-            _properties.SetPropertyValue(SteamAppPropertyType.String, appInfo.Publisher, NodeAppInfo,
-                NodeCommon,
-                "associations", "1", "name");
-
-            if (appInfo.LaunchItems.Any_Nullable())
-            {
-                var launchTable = new SteamAppPropertyTable();
-
-                foreach (var item in appInfo.LaunchItems)
-                {
-                    var propertyTable = new SteamAppPropertyTable();
-
-                    propertyTable.SetPropertyValue("executable", SteamAppPropertyType.String, item.Executable);
-
-                    if (!string.IsNullOrEmpty(item.Label))
-                    {
-                        propertyTable.SetPropertyValue("description", SteamAppPropertyType.String, item.Label);
-                    }
-                    if (!string.IsNullOrEmpty(item.Arguments))
-                    {
-                        propertyTable.SetPropertyValue("arguments", SteamAppPropertyType.String, item.Arguments);
-                    }
-                    if (!string.IsNullOrEmpty(item.WorkingDir))
-                    {
-                        propertyTable.SetPropertyValue("workingdir", SteamAppPropertyType.String, item.WorkingDir);
-                    }
-                    if (!string.IsNullOrEmpty(item.Platform))
-                    {
-                        propertyTable.SetPropertyValue(SteamAppPropertyType.String, item.Platform, NodeConfig, NodePlatforms);
-                    }
-                    launchTable.SetPropertyValue(launchTable.Count.ToString(), SteamAppPropertyType.Table, propertyTable);
-                }
-
-                _properties.SetPropertyValue(SteamAppPropertyType.Table, launchTable, NodeAppInfo, NodeConfig, NodeLaunch);
-            }
-
-            return true;
-        }
-        return false;
-    }
-
-#endif
-
     private bool _IsEdited;
 
     public bool IsEdited
@@ -452,14 +316,6 @@ public class SteamApp : ReactiveObject
 
 #endif
 
-    private Stream? _EditLibraryGridStream;
-
-    public Stream? EditLibraryGridStream
-    {
-        get => _EditLibraryGridStream;
-        set => this.RaiseAndSetIfChanged(ref _EditLibraryGridStream, value);
-    }
-
     public string LibraryHeroUrl => string.Format(STEAMAPP_LIBRARYHERO_URL, AppId);
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
@@ -467,14 +323,6 @@ public class SteamApp : ReactiveObject
     public Task<Stream?> LibraryHeroStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Library_Hero);
 
 #endif
-
-    private Stream? _EditLibraryHeroStream;
-
-    public Stream? EditLibraryHeroStream
-    {
-        get => _EditLibraryHeroStream;
-        set => this.RaiseAndSetIfChanged(ref _EditLibraryHeroStream, value);
-    }
 
     public string LibraryHeroBlurUrl => string.Format(STEAMAPP_LIBRARYHEROBLUR_URL, AppId);
 
@@ -492,14 +340,6 @@ public class SteamApp : ReactiveObject
 
 #endif
 
-    private Stream? _EditLibraryLogoStream;
-
-    public Stream? EditLibraryLogoStream
-    {
-        get => _EditLibraryLogoStream;
-        set => this.RaiseAndSetIfChanged(ref _EditLibraryLogoStream, value);
-    }
-
     public string HeaderLogoUrl => string.Format(STEAMAPP_HEADIMAGE_URL, AppId);
 
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
@@ -507,14 +347,6 @@ public class SteamApp : ReactiveObject
     public Task<Stream?> HeaderLogoStream => ISteamService.Instance.GetAppImageAsync(this, LibCacheType.Header);
 
 #endif
-
-    private Stream? _EditHeaderLogoStream;
-
-    public Stream? EditHeaderLogoStream
-    {
-        get => _EditHeaderLogoStream;
-        set => this.RaiseAndSetIfChanged(ref _EditHeaderLogoStream, value);
-    }
 
     public string CAPSULELogoUrl => string.Format(STEAMAPP_CAPSULE_URL, AppId);
 
@@ -575,6 +407,20 @@ public class SteamApp : ReactiveObject
     SteamAppPropertyTable? _properties;
 
     public SteamAppPropertyTable? ChangesData => _properties;
+
+    SteamAppEdit? originalEditValues;
+
+    /// <summary>Returns editable values before Watt Toolkit's overrides.</summary>
+    public SteamAppEdit GetOriginalEditValues() => SteamAppEdit.Capture(this).WithOverrides(originalEditValues);
+
+    /// <summary>Replaces the current overrides, restoring fields no longer edited.</summary>
+    public void ApplyAppInfoEdit(SteamAppEdit edit)
+    {
+        originalEditValues?.ApplyTo(this);
+        originalEditValues = edit.IsEmpty ? null : edit.OriginalFields(this);
+        edit.ApplyTo(this);
+        IsEdited = !edit.IsEmpty;
+    }
 
     /// <summary>
     /// Ensures one idle child is running, or opens an independent achievement/cloud-manager window.
@@ -895,16 +741,20 @@ public class SteamApp : ReactiveObject
                 SaveFiles = new ObservableCollection<SteamAppSaveFile>(savefiles);
             }
 
-            BaseName = appInfo?.GetPropertyValue<SteamAppPropertyTable?>("steam_edit")
-                ?.GetPropertyValue("base_name", string.Empty) ?? string.Empty;
-
-            if (string.IsNullOrEmpty(BaseName) || string.Equals(BaseName, Name, StringComparison.Ordinal))
-            {
-                BaseName = Name;
-            }
+            originalEditValues = SteamAppEditProperties.ReadOriginals(appInfo);
+            BaseName = originalEditValues?.Name ?? Name;
+            IsEdited = originalEditValues != null;
         }
         return this;
     }
+
+    internal static SteamApp FromShardedAppInfo(uint id, SteamAppPropertyTable properties,
+        IReadOnlySet<uint> installedAppIds, bool isSaveProperties) => new SteamApp
+        {
+            AppId = id,
+            // Keep editable properties for backups, not raw bytes using a shard-local string table.
+            _properties = isSaveProperties ? properties : null,
+        }.ExtractReaderProperty(properties, installedAppIds);
 
     public static SteamApp? FromReader(BinaryReader reader, string[]? stringPool = null, IReadOnlySet<uint>? installedAppIds = null, bool isSaveProperties = false, bool isMagicNumberV2 = false, bool isMagicNumberV3 = false)
     {
@@ -1011,27 +861,6 @@ public class SteamApp : ReactiveObject
          *             Because for a very short time after starting the download for this DLC the stateFlags becomes 20 = 00000010100
          *             I think Bit 5 indicates if "something" is happening with a DLC and Bit 10 indicates if it is downloading.
          */
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    static async Task<Stream?> GetStreamAsync(Task<Stream?> task)
-    {
-        if (task != null)
-        {
-            return await task;
-        }
-        return null;
-    }
-
-    public async void RefreshEditImage()
-    {
-        var olds = new[] { EditLibraryGridStream, EditLibraryHeroStream, EditLibraryLogoStream, EditHeaderLogoStream };
-        EditLibraryGridStream = await GetStreamAsync(LibraryGridStream);
-        EditLibraryHeroStream = await GetStreamAsync(LibraryHeroStream);
-        EditLibraryLogoStream = await GetStreamAsync(LibraryLogoStream);
-        EditHeaderLogoStream = await GetStreamAsync(HeaderLogoStream);
-        foreach (var old in olds)
-            old?.Dispose();
     }
 
 #endif

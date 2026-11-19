@@ -643,7 +643,6 @@ public abstract partial class SteamServiceImpl : ISteamService
         }
     }
 
-    private uint univeseNumber;
     private const uint MagicNumber = 123094055U;
     private const uint MagicNumberV2 = 123094056U;
     private const uint MagicNumberV3 = 123094057U;
@@ -655,18 +654,13 @@ public abstract partial class SteamServiceImpl : ISteamService
     /// </summary>
     public Task<List<SteamApp>> GetAppInfos(bool isSaveProperties = false)
     {
-        var directory = SteamDirPath;
-        return GetAppInfos(CombineSteamPath(directory, "appcache", "appinfo.vdf"), directory, isSaveProperties);
-    }
-
-    private Task<List<SteamApp>> GetAppInfos(string? appInfoPath, string? steamDirectory, bool isSaveProperties)
-    {
+        var steamDirectory = SteamDirPath;
         return Task.Run(() =>
         {
             var apps = new List<SteamApp>();
             try
             {
-                ReadAppInfos(appInfoPath, steamDirectory, apps.Add, isSaveProperties, CancellationToken.None);
+                ReadAppInfos(steamDirectory, apps.Add, isSaveProperties, CancellationToken.None);
             }
             catch (Exception ex)
             {
@@ -683,13 +677,12 @@ public abstract partial class SteamServiceImpl : ISteamService
         if (onBatch == null)
             throw new ArgumentNullException(nameof(onBatch));
         var steamDirectory = SteamDirPath;
-        var appInfoPath = CombineSteamPath(steamDirectory, "appcache", "appinfo.vdf");
 
         return Task.Run(() =>
         {
             const int batchSize = 128;
             var batch = new List<SteamApp>(batchSize);
-            ReadAppInfos(appInfoPath, steamDirectory, app =>
+            ReadAppInfos(steamDirectory, app =>
             {
                 batch.Add(app);
                 if (batch.Count == batchSize)
@@ -706,30 +699,67 @@ public abstract partial class SteamServiceImpl : ISteamService
         }, cancellationToken);
     }
 
-    private void ReadAppInfos(string? AppInfoPath, string? steamDirectory, Action<SteamApp> onApp,
-        bool isSaveProperties, CancellationToken cancellationToken)
+    private void ReadAppInfos(string? steamDirectory, Action<SteamApp> onApp, bool isSaveProperties,
+        CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        if (string.IsNullOrEmpty(AppInfoPath))
+        if (steamDirectory == null)
             throw new FileNotFoundException("Steam appinfo path is not available.");
 
-        using var stream = new FileStream(AppInfoPath, FileMode.Open, FileAccess.Read,
+        var installedAppIds = GetInstalledAppIds(steamDirectory);
+        var hiddenApps = isSaveProperties ? null : HideGameList;
+        // Scope sharing to this read; the values from previous libraries are not rooted.
+        var sharedMetadata = isSaveProperties ? null : new Dictionary<string, string>(StringComparer.Ordinal);
+        void Publish(SteamApp app)
+        {
+            if (app.AppId == 0 || hiddenApps?.ContainsKey(app.AppId) == true)
+                return;
+
+            if (sharedMetadata != null)
+            {
+                app.Developer = ShareMetadataString(app.Developer, sharedMetadata);
+                app.Publisher = ShareMetadataString(app.Publisher, sharedMetadata);
+                app.OSList = ShareMetadataString(app.OSList, sharedMetadata);
+            }
+            onApp(app);
+        }
+
+        // After migration an older appinfo.vdf can remain; don't mix its entries with the shards.
+        var hasShards = false;
+        foreach (var path in EnumerateAppInfoShards(steamDirectory))
+        {
+            hasShards = true;
+            ReadAppInfoShard(path, installedAppIds, Publish, isSaveProperties, cancellationToken);
+        }
+        if (!hasShards)
+            ReadLegacyAppInfos(Path.Combine(steamDirectory, "appcache", "appinfo.vdf"), installedAppIds,
+                Publish, isSaveProperties, cancellationToken);
+
+        cancellationToken.ThrowIfCancellationRequested();
+    }
+
+    HashSet<uint> GetInstalledAppIds(string? steamDirectory) => GetDownloadingAppList(steamDirectory)
+        .Where(static app => app.IsInstalled).Select(static app => app.AppId).ToHashSet();
+
+    uint ReadLegacyAppInfos(string appInfoPath, IReadOnlySet<uint> installedAppIds, Action<SteamApp> onApp,
+        bool isSaveProperties, CancellationToken cancellationToken)
+    {
+        using var stream = new FileStream(appInfoPath, FileMode.Open, FileAccess.Read,
             FileShare.ReadWrite | FileShare.Delete);
         if (stream.Length == 0)
-            return;
+            return 0;
 
         using BinaryReader binaryReader = new(stream, Encoding.UTF8, true);
         uint num = binaryReader.ReadUInt32();
         if (!MagicNumbers.Value.Contains(num))
         {
-            var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(AppInfoPath),
-                num);
+            var msg = string.Format("\"{0}\" magic code is not supported: 0x{1:X8}", Path.GetFileName(appInfoPath), num);
             logger.LogError($"{nameof(GetAppInfos)} msg: {{msg}}", msg);
             Toast.Show(ToastIcon.Error, msg);
             throw new InvalidDataException(msg);
         }
 
-        univeseNumber = binaryReader.ReadUInt32();
+        var universe = binaryReader.ReadUInt32();
 
         string[]? stringPool = null;
         if (num == MagicNumberV3)
@@ -748,31 +778,17 @@ public abstract partial class SteamServiceImpl : ISteamService
             binaryReader.BaseStream.Position = offset;
         }
 
-        var installAppIds = GetDownloadingAppList(steamDirectory).Where(x => x.IsInstalled).Select(x => x.AppId)
-            .ToHashSet();
-        // Scope sharing to this read: apps retain the canonical strings, but the lookup
-        // and values from a previous library are not rooted by a process-wide intern pool.
-        var sharedMetadata = isSaveProperties ? null : new Dictionary<string, string>(StringComparer.Ordinal);
         while (true)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            var app = SteamApp.FromReader(binaryReader, stringPool, installAppIds, isSaveProperties,
+            var app = SteamApp.FromReader(binaryReader, stringPool, installedAppIds, isSaveProperties,
                 num == MagicNumberV2, num == MagicNumberV3);
             if (app == null)
                 break;
-            if (app.AppId > 0 && (isSaveProperties || HideGameList == null || !HideGameList.ContainsKey(app.AppId)))
-            {
-                if (sharedMetadata != null)
-                {
-                    app.Developer = ShareMetadataString(app.Developer, sharedMetadata);
-                    app.Publisher = ShareMetadataString(app.Publisher, sharedMetadata);
-                    app.OSList = ShareMetadataString(app.OSList, sharedMetadata);
-                }
-                onApp(app);
-            }
+            onApp(app);
         }
 
-        cancellationToken.ThrowIfCancellationRequested();
+        return universe;
     }
 
     static string? ShareMetadataString(string? value, Dictionary<string, string> sharedMetadata)
@@ -819,105 +835,6 @@ public abstract partial class SteamServiceImpl : ISteamService
         {
             ArrayPool<byte>.Shared.Return(buffer);
         }
-    }
-
-    public List<ModifiedApp>? GetModifiedApps()
-    {
-        try
-        {
-            var file = Path.Combine(IOPath.AppDataDirectory, ModifiedFileName);
-            if (!File.Exists(file))
-            {
-                return null;
-            }
-
-            using FileStream modifiedFileStream = File.Open(file, FileMode.Open, FileAccess.Read);
-            return Serializable.DMP<List<ModifiedApp>>(modifiedFileStream);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, nameof(GetModifiedApps));
-        }
-
-        return null;
-    }
-
-    /// <summary>
-    /// 保存修改后的游戏数据到 Steam 本地客户端缓存文件
-    /// </summary>
-    public async Task<bool> SaveAppInfosToSteam()
-    {
-        var steamDirectory = SteamDirPath;
-        var appInfoPath = CombineSteamPath(steamDirectory, "appcache", "appinfo.vdf");
-        if (string.IsNullOrEmpty(appInfoPath) || !File.Exists(appInfoPath) || !Conn.SteamApps.Items.Any_Nullable())
-            return false;
-
-        //var bakFile = AppInfoPath + ".bak";
-
-        try
-        {
-            //File.Copy(AppInfoPath, bakFile, true);
-
-            var applist = await GetAppInfos(appInfoPath, steamDirectory, true);
-            var editApps = Conn.SteamApps.Items.Where(s => s.IsEdited).ToDictionary(s => s.AppId);
-            if (!string.Equals(steamDirectory, SteamDirPath, StringComparison.Ordinal)) return false;
-            var modifiedApps = new List<ModifiedApp>();
-
-            using BinaryWriter binaryWriter = new(new MemoryStream(), Encoding.UTF8, true);
-            binaryWriter.Write(MagicNumberV3);
-            binaryWriter.Write(univeseNumber);
-
-            List<string> list = new List<string>();
-            Dictionary<string, uint> dictionary = new Dictionary<string, uint>();
-
-            using BinaryWriter binaryWriter2 = new(new MemoryStream(), Encoding.UTF8, true);
-            foreach (SteamApp app in applist)
-            {
-                if (editApps.TryGetValue(app.AppId, out var editApp))
-                {
-                    app.SetEditProperty(editApp);
-                    modifiedApps.Add(new ModifiedApp(app));
-                }
-
-                app.Write(binaryWriter2, list, dictionary);
-            }
-
-            binaryWriter2.Write(0);
-
-            long num = binaryWriter.BaseStream.Position + 8L + binaryWriter2.BaseStream.Length;
-            binaryWriter.Write(num);
-            binaryWriter2.BaseStream.Position = 0;
-            binaryWriter2.BaseStream.CopyTo(binaryWriter.BaseStream);
-            binaryWriter.Write((uint)list.Count);
-            foreach (string text in list)
-            {
-                binaryWriter.WriteAppInfoString(text);
-            }
-
-            if (!string.Equals(steamDirectory, SteamDirPath, StringComparison.Ordinal)) return false;
-
-            using FileStream fileStream = File.Open(appInfoPath, FileMode.Create, FileAccess.Write);
-            binaryWriter.BaseStream.Position = 0L;
-            await binaryWriter.BaseStream.CopyToAsync(fileStream);
-            fileStream.Close();
-            binaryWriter.Close();
-
-            using FileStream modifiedFileStream = File.Open(Path.Combine(IOPath.AppDataDirectory, ModifiedFileName),
-                FileMode.Create, FileAccess.Write);
-            modifiedFileStream.Write(Serializable.SMP(modifiedApps));
-            modifiedFileStream.Close();
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, $"{nameof(SaveAppInfosToSteam)} 保存 AppInfos 出现错误");
-            Toast.Show(GetString("SaveEditedAppInfo_SaveFailed")!);
-            //if (File.Exists(bakFile))
-            //    File.Copy(bakFile, AppInfoPath, true);
-
-            return false;
-        }
-
-        return true;
     }
 
     public uint[] GetInstalledAppIds()
