@@ -1,4 +1,5 @@
 #if (WINDOWS || MACCATALYST || MACOS || LINUX) && !(IOS || ANDROID)
+using MessagePack.Resolvers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -6,6 +7,12 @@ namespace BD.SteamClient.Models;
 
 public static class SteamAppEditBackup
 {
+    // Old .stmbak files and modifications.vdf share the same three-slot row contract.
+    static readonly MessagePackSerializerOptions legacyOptions = Serializable.lz4Options.WithResolver(
+        CompositeResolver.Create(
+            [new MessagePack.Formatters.ListFormatter<ModifiedApp>(), new ModifiedAppFormatter()],
+            [BuiltinResolver.Instance]));
+
     public static IReadOnlyDictionary<uint, SteamAppEdit> Read(Stream source) => ReadEdits(source);
 
     internal static Dictionary<uint, SteamAppEdit> ReadEdits(Stream source)
@@ -46,7 +53,7 @@ public static class SteamAppEditBackup
     static Dictionary<uint, SteamAppEdit> ReadLegacy(Stream source)
     {
         var edits = new Dictionary<uint, SteamAppEdit>();
-        foreach (var row in Serializable.DMP<List<ModifiedApp>>(source))
+        foreach (var row in MessagePackSerializer.Deserialize<List<ModifiedApp>>(source, legacyOptions)!)
         {
             var properties = row.ReadChanges()?.GetPropertyValue<SteamAppPropertyTable>("appinfo");
             if (row.AppId == 0 || properties == null)
@@ -54,6 +61,48 @@ public static class SteamAppEditBackup
             edits[row.AppId] = SteamAppEditProperties.ReadLegacyEdit(properties);
         }
         return edits;
+    }
+
+    sealed class ModifiedAppFormatter : IMessagePackFormatter<ModifiedApp>
+    {
+        public void Serialize(ref MessagePackWriter writer, ModifiedApp value, MessagePackSerializerOptions options)
+        {
+            if (value is null)
+            {
+                writer.WriteNil();
+                return;
+            }
+
+            writer.WriteArrayHeader(3);
+            writer.Write(value.AppId);
+            writer.Write(value.OriginalData);
+            writer.Write(value.ChangesData);
+        }
+
+        public ModifiedApp Deserialize(ref MessagePackReader reader, MessagePackSerializerOptions options)
+        {
+            if (reader.TryReadNil())
+                return null!;
+
+            var count = reader.ReadArrayHeader();
+            options.Security.DepthStep(ref reader);
+            try
+            {
+                var row = new ModifiedApp();
+                for (var slot = 0; slot < count; slot++)
+                {
+                    switch (slot)
+                    {
+                        case 0: row.AppId = reader.ReadUInt32(); break;
+                        case 1: row.OriginalData = ByteArrayFormatter.Instance.Deserialize(ref reader, options); break;
+                        case 2: row.ChangesData = ByteArrayFormatter.Instance.Deserialize(ref reader, options); break;
+                        default: reader.Skip(); break;
+                    }
+                }
+                return row;
+            }
+            finally { reader.Depth--; }
+        }
     }
 }
 
