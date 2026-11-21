@@ -150,6 +150,62 @@ public sealed class SteamLoginQrTests
         return "e30." + Convert.ToBase64String(payload).TrimEnd('=').Replace('+', '-').Replace('/', '_') + ".offline-signature";
     }
 
+    [Test]
+    public async Task ExplicitWebCredentialSignInRequestsWebPlatformAndFinalizesSession()
+    {
+        using var rsa = RSA.Create(2048);
+        var key = rsa.ExportParameters(false);
+        var access = Token("web");
+        var refresh = Token("web", refresh: true);
+        EAuthTokenPlatformType? requestedPlatform = null;
+        var handler = new FakeHandler(async (request, cancellationToken) =>
+        {
+            switch (request.RequestUri!.AbsolutePath.TrimEnd('/'))
+            {
+                case "/login":
+                    return new HttpResponseMessage(HttpStatusCode.OK);
+                case "/IAuthenticationService/GetPasswordRSAPublicKey/v1":
+                    return Response(new CAuthentication_GetPasswordRSAPublicKey_Response
+                    {
+                        PublickeyExp = Convert.ToHexString(key.Exponent!),
+                        PublickeyMod = Convert.ToHexString(key.Modulus!),
+                        Timestamp = 123,
+                    });
+                case "/IAuthenticationService/BeginAuthSessionViaCredentials/v1":
+                    var form = await request.Content!.ReadAsStringAsync(cancellationToken);
+                    const string field = "input_protobuf_encoded=";
+                    var encoded = form.Split('&').Single(x => x.StartsWith(field, StringComparison.Ordinal))[field.Length..];
+                    var begin = CAuthentication_BeginAuthSessionViaCredentials_Request.Parser.ParseFrom(
+                        Convert.FromBase64String(WebUtility.UrlDecode(encoded)));
+                    requestedPlatform = begin.PlatformType;
+                    return Response(new CAuthentication_BeginAuthSessionViaCredentials_Response
+                    { ClientId = Challenge.ClientId, Steamid = SteamId, RequestId = ByteString.CopyFromUtf8("offline") });
+                case "/IAuthenticationService/PollAuthSessionStatus/v1":
+                    return Response(new CAuthentication_PollAuthSessionStatus_Response { AccessToken = access, RefreshToken = refresh });
+                case "/jwt/finalizelogin":
+                    return new HttpResponseMessage(HttpStatusCode.OK)
+                    {
+                        Content = new StringContent($$"""{"steamID":"{{SteamId}}","transfer_info":[]}""", Encoding.UTF8, "application/json"),
+                    };
+                default:
+                    throw new AssertionException($"Unexpected web sign-in request: {request.RequestUri.AbsolutePath}");
+            }
+        });
+        using var services = CreateServices();
+        using var service = new SteamAccountService(services, _ => handler) { UseRetry = false };
+        var state = new SteamLoginState { Username = "offline", Password = "offline-password" };
+
+        await service.DoLoginV2Async(state, EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser);
+
+        Assert.Multiple(() =>
+        {
+            Assert.That(requestedPlatform, Is.EqualTo(EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser));
+            Assert.That(state.Success, Is.True);
+            Assert.That(state.AccessToken, Is.EqualTo(access));
+            Assert.That(state.RefreshToken, Is.EqualTo(refresh));
+        });
+    }
+
     [TestCase(false)]
     [TestCase(true)]
     public async Task ExplicitMobileLoginUsesDeviceCodeAndDoesNotFinalizeWebSession(bool supplyCodeAtStart)

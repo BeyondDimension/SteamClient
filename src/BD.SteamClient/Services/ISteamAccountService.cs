@@ -37,8 +37,8 @@ public interface ISteamAccountService
     /// 执行新版请求 Steam 登录，返回登录状态
     /// </summary>
     /// <param name="loginState"></param>
-    /// <param name="platformType">显式选择 MobileApp 时仅获取移动令牌，不创建网页登录 Cookie；默认保留现有行为。</param>
-    /// <param name="cancellationToken">移动端账号验证的取消令牌。</param>
+    /// <param name="platformType">WebBrowser 请求网页会话；MobileApp 仅获取移动令牌；null 保留旧行为。</param>
+    /// <param name="cancellationToken">登录请求的取消令牌。</param>
     /// <returns></returns>
     Task DoLoginV2Async(SteamLoginState loginState, EAuthTokenPlatformType? platformType = null, CancellationToken cancellationToken = default);
 

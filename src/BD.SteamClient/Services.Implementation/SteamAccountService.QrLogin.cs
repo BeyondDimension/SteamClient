@@ -52,10 +52,10 @@ public sealed partial class SteamAccountService
                     EncryptionTimestamp = rsaInfo.Timestamp,
                     WebsiteId = "Mobile",
                     PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
-                    DeviceFriendlyName = "SteamTools",
+                    DeviceFriendlyName = "Android Device",
                     DeviceDetails = new CAuthentication_DeviceDetails
                     {
-                        DeviceFriendlyName = "SteamTools",
+                        DeviceFriendlyName = "Android Device",
                         PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeMobileApp,
                         OsType = -500, // EOSType.AndroidUnknown, matching the Steam mobile protocol.
                         GamingDeviceType = 528,
@@ -305,7 +305,7 @@ public sealed partial class SteamAccountService
         }
     }
 
-    sealed class SteamAuthenticationException(int result)
+    public sealed class SteamAuthenticationException(int result)
         : InvalidOperationException($"Steam authentication request was rejected (EResult {result}).")
     {
         public int Result { get; } = result;

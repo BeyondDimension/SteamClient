@@ -463,8 +463,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
             }
             return;
         }
-        if (platformType.HasValue)
-            throw new ArgumentOutOfRangeException(nameof(platformType), "Only an explicit MobileApp platform is supported.");
+        if (platformType is not (null or EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser))
+            throw new ArgumentOutOfRangeException(nameof(platformType), "Credential login supports explicit WebBrowser or MobileApp platforms.");
 
         loginState.Success = false;
 
@@ -517,7 +517,8 @@ public sealed partial class SteamAccountService : HttpClientUseCookiesWithDynami
                 EncryptedPassword = encryptedPassword64,
                 EncryptionTimestamp = timestamp,
                 WebsiteId = "Community",
-                PlatformType = EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient,
+                // Keep the legacy request for callers that do not select a platform.
+                PlatformType = platformType ?? (EAuthTokenPlatformType.KEauthTokenPlatformTypeWebBrowser | EAuthTokenPlatformType.KEauthTokenPlatformTypeSteamClient),
                 RememberLogin = true,
                 Persistence = ESessionPersistence.KEsessionPersistencePersistent,
             }.ToByteString().ToBase64();
